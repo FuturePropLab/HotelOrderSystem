@@ -1,4 +1,4 @@
-package bussinesslogicservice;
+package businesslogicservice;
 
 import po.Order;
 import tools.ResultMessage;

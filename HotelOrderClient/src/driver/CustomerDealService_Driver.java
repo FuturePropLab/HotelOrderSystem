@@ -1,9 +1,7 @@
 package driver;
 
-import bussinesslogicservice.CustomerDealService;
-
+import businesslogicservice.CustomerDealService;
 import tools.ResultMessage;
-import vo.CustomerInputVO;
 import vo.CustomerVO;
 
 public class CustomerDealService_Driver {
