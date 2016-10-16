@@ -2,10 +2,14 @@ package dataservice.Account;
 
 import java.util.List;
 
-public interface Hotel {
-	public ResultMessage addHotel(HotelAccountPO);
+import po.HotelAccountPO;
+import po.SearchCondition;
+import stub.ResultMessage;
 
-	public ResultMessage modifyHotel(HotelAccountPO);
+public interface Hotel {
+	public ResultMessage addHotel(HotelAccountPO hotelAccPO);
+
+	public ResultMessage modifyHotel(HotelAccountPO hotelAccPO);
 
 	public HotelAccountPO getHotel(String hotel_id);
 

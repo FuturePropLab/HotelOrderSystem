@@ -2,6 +2,10 @@ package dataservice.Account;
 
 import java.util.List;
 
+import po.SearchCondition;
+import po.WebAccountPO;
+import stub.ResultMessage;
+
 public interface Web {
 	public ResultMessage addWeb(WebAccountPO po);
 
