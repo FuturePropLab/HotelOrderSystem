@@ -27,6 +27,14 @@ public class OrderPO {
 	private Mark mark;
 	private String assessment;
 	
+	public OrderPO() {
+		super();
+	}
+	public OrderPO(String orderID) {
+		super();
+		this.orderID = orderID;
+	}
+	
 	
 	public String getOrderID() {
 		return orderID;

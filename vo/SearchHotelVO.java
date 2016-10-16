@@ -14,4 +14,17 @@ public class SearchHotelVO {
 	public DateRange availableDate;//有空房期间
 	public Star star;
 	public boolean booked;//是否要是以前预订过的酒店
+	
+	public SearchHotelVO(String address, String district, String hotelName, RoomType roomType, PriceRange priceRange,
+			DateRange availableDate, Star star, boolean booked) {
+		super();
+		this.address = address;
+		this.district = district;
+		this.hotelName = hotelName;
+		this.roomType = roomType;
+		this.priceRange = priceRange;
+		this.availableDate = availableDate;
+		this.star = star;
+		this.booked = booked;
+	}
 }
