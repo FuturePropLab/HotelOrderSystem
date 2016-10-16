@@ -1,4 +1,4 @@
-package stub;
+package tool;
 
 public enum ResultMessage {
 	Exist,

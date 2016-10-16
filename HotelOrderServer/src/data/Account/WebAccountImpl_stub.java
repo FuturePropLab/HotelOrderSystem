@@ -5,7 +5,7 @@ import java.util.List;
 import dataservice.Account.Web;
 import po.SearchCondition;
 import po.WebAccountPO;
-import stub.ResultMessage;
+import tool.ResultMessage;
 
 public class WebAccountImpl_stub implements Web{
 

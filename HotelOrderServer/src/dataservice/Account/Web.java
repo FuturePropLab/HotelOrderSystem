@@ -4,7 +4,7 @@ import java.util.List;
 
 import po.SearchCondition;
 import po.WebAccountPO;
-import stub.ResultMessage;
+import tool.ResultMessage;
 
 public interface Web {
 	public ResultMessage addWeb(WebAccountPO po);

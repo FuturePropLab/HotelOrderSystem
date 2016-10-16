@@ -5,7 +5,7 @@ import java.util.List;
 import dataservice.Account.Hotel;
 import po.HotelAccountPO;
 import po.SearchCondition;
-import stub.ResultMessage;
+import tool.ResultMessage;
 
 public class HotelAccountImpl_stub implements Hotel{
 

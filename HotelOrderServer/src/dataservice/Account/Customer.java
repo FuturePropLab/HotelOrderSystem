@@ -3,7 +3,7 @@ package dataservice.Account;
 import java.util.List;
 import po.CustomerAccountPO;
 import po.SearchCondition;
-import stub.ResultMessage;
+import tool.ResultMessage;
 
 public interface Customer {
 	public ResultMessage modifyCustomer(CustomerAccountPO CusPO);
