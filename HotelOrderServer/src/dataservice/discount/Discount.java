@@ -3,7 +3,7 @@ package dataservice.discount;
 import java.util.List;
 
 import po.DiscountPO;
-import tool.ResultMessage;
+import tools.ResultMessage;
 public interface Discount {
 	public ResultMessage add(DiscountPO discount);
 

@@ -4,7 +4,7 @@ import java.util.List;
 
 import po.HotelAccountPO;
 import po.SearchCondition;
-import tool.ResultMessage;
+import tools.ResultMessage;
 
 public interface Hotel {
 	public ResultMessage addHotel(HotelAccountPO hotelAccPO);

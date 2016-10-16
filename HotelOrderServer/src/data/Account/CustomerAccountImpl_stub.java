@@ -6,7 +6,7 @@ import java.util.List;
 import dataservice.Account.Customer;
 import po.CustomerAccountPO;
 import po.SearchCondition;
-import tool.ResultMessage;
+import tools.ResultMessage;
 
 public class CustomerAccountImpl_stub implements Customer{
 

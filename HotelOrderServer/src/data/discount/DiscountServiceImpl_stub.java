@@ -5,7 +5,7 @@ import java.util.List;
 import dataservice.discount.Discount;
 import dataservice.discount.DiscountSearch;
 import po.DiscountPO;
-import tool.ResultMessage;
+import tools.ResultMessage;
 public class DiscountServiceImpl_stub implements Discount{
 
 	@Override
