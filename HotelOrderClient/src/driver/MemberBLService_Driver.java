@@ -2,8 +2,8 @@ package driver;
 
 import java.util.List;
 
-import blservice.MemberService;
-import blservice.OrderService;
+import businesslogicservice.MemberService;
+import businesslogicservice.OrderService;
 import tools.MemberType.Type;
 import tools.ResultMessage;
 import vo.ApplyResult;

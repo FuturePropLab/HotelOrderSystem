@@ -1,4 +1,4 @@
-package blservice;
+package businesslogicservice;
 
 import java.util.List;
 

@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import Exception.OutOfBoundsException;
-import dataservice.OrderService;
+import dataservice.OrderDataService;
 import po.OrderPO;
 import po.SearchOrderInfo;
 import tools.DateRange;
@@ -21,7 +21,7 @@ import vo.OrderVO;
 import vo.SearchHotelVO;
 
 public class OrderDataService_Driver {
-	public boolean drive(OrderService orderService) {
+	public boolean drive(OrderDataService orderService) {
 		OrderPO order=new OrderPO("000000001");
 		ResultMessage result=orderService.add(order);
 		if(result.equals(ResultMessage.NotExist)){

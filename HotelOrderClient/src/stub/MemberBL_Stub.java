@@ -3,8 +3,8 @@ package stub;
 import java.util.ArrayList;
 import java.util.List;
 
-import blservice.MemberService;
-import blservice.OrderService;
+import businesslogicservice.MemberService;
+import businesslogicservice.OrderService;
 import tools.MemberType;
 import tools.OrderState;
 import tools.ResultMessage;

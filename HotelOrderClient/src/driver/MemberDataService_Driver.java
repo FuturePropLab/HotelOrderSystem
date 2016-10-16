@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.w3c.dom.ls.LSInput;
 
-import dataservice.MemberService;
+import dataservice.MemberDataService;
 import po.ApplyPO;
 import po.BackPO;
 import po.MemberPO;
@@ -18,7 +18,7 @@ public class MemberDataService_Driver {
 	private static final String apply_id="000000003";
 	private static final String back_id="000000004";
 	
-	public boolean drive(MemberService memberService) {
+	public boolean drive(MemberDataService memberService) {
 		ResultMessage result=memberService.addMember(customer_ID_test);
 		if(result.equals(ResultMessage.NotExist)){
 			return false;

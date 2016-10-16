@@ -3,8 +3,8 @@ package stub;
 import java.util.ArrayList;
 import java.util.List;
 
-import dataservice.MemberService;
-import dataservice.OrderService;
+import dataservice.MemberDataService;
+import dataservice.OrderDataService;
 import po.ApplyPO;
 import po.BackPO;
 import po.MemberPO;
@@ -15,7 +15,7 @@ import tools.MemberType.Type;
 import vo.ApplyResult;
 import tools.ResultMessage;
 
-public class MemberData_Stub implements MemberService{
+public class MemberData_Stub implements MemberDataService{
 	private static final String customer_ID_test="000000002";
 	private static final String apply_id="000000003";
 	private static final String back_id="000000004";

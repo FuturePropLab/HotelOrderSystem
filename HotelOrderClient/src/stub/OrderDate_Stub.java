@@ -3,12 +3,12 @@ package stub;
 import java.util.ArrayList;
 import java.util.List;
 
-import dataservice.OrderService;
+import dataservice.OrderDataService;
 import po.OrderPO;
 import po.SearchOrderInfo;
 import tools.ResultMessage;
 
-public class OrderDate_Stub implements OrderService{
+public class OrderDate_Stub implements OrderDataService{
 
 	@Override
 	public ResultMessage add(OrderPO order) {
