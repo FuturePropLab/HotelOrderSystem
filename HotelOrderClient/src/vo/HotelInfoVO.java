@@ -1,78 +1,32 @@
 package vo;
 
+import tools.Star;
+
 public class HotelInfoVO {
 	
-	private String hotelID;
-	private String hotelName;
-	private String hotelAddress;
-	private String district;
-	private String starLevel;
-	private String grade;
-	private String introduction;
-	private String facility;
-	private HotelRoomInfoVO hotelRoomPO;
+	public String hotelID;
+	public String hotelName;
+	public  String hotelAddress;
+	public  String ComeAddr;
+	public  String grade;//评分
+	public  String introduction;//简介
+	public  String facility;//设备
+	public  HotelRoomInfoVO hotelRoomVO;//客房信息
+	public Star star;//星级
 	
-	public void setHotelID(String id){
-		this.hotelID = id;
-	}
-	public String getHotelID(){
-		return this.hotelID;
-	}
+
+	public HotelInfoVO(String hotelID,String hotelName, String hotelAddress,String district,String grade,String introduction,String facility,HotelRoomInfoVO hotelRoomVO,Star star){
+	this.hotelID=hotelID;
+	this.hotelName=hotelName;
+	this.hotelAddress=hotelAddress;
+	this.ComeAddr=district;
+	this.star=star;
+	this. grade=grade;
+	this.introduction=introduction;
+	this.facility=facility;
+	this.hotelRoomVO=hotelRoomVO;
 	
-	public void setHotelName(String name){
-		this.hotelName = name;
-	}
-	public String getHotelName(){
-		return this.hotelName;
-	}
+}
 	
-	public void setHotelAddress(String address){
-		this.hotelAddress = address;
-	}
-	public String getHotelAddress(){
-		return this.hotelAddress;
-	}
-	
-	public void setDistrict(String district){
-		this.district = district;
-	}
-	public String getDistrict(){
-		return this.district;
-	}
-	
-	public void setStarLevel(String starLevel){
-		this.starLevel = starLevel;
-	}
-	public String getStarLevel(){
-		return this.starLevel;
-	}
-	
-	public void setGrade(String grade){
-		this.grade = grade;
-	}
-	public String getGrade(){
-		return this.grade;
-	}
-	
-	public void setIntroduction(String introduction){
-		this.introduction = introduction;
-	}
-	public String getIntroduction(){
-		return this.introduction;
-	}
-	
-	public void setFacility(String facility){
-		this.facility = facility;
-	}
-	public String getFacility(){
-		return this.facility;
-	}
-	
-	public void setHotelRoomPO(HotelRoomInfoVO hotelRoom){
-		this.hotelRoomPO = hotelRoom;
-	}
-	public HotelRoomInfoVO getHotelRoomPO(){
-		return this.hotelRoomPO;
-	}
 	
 }
