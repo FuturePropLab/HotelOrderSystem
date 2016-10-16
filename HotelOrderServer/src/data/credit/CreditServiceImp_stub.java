@@ -6,7 +6,7 @@ import dataservice.credit.CreditService;
 import po.CreditLogPO;
 import po.ResultMessage;
 
-public class CreditServiceImp implements CreditService{
+public class CreditServiceImp_stub implements CreditService{
 
 	@Override
 	public ResultMessage add(CreditLogPO creditlog) {

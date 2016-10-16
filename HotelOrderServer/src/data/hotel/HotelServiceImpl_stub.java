@@ -3,32 +3,32 @@ package data.hotel;
 import java.util.List;
 
 import dataservice.hotel.HotelService;
-import po.HotelInfoVO;
+import po.HotelInfoPO;
 import po.ResultMessage;
 import po.SearchHotelInfo;
 
-public class HotelServiceImpl implements HotelService {
+public class HotelServiceImpl_stub implements HotelService {
 
 	@Override
-	public ResultMessage addHotelInfo(HotelInfoVO hotelInfo) {
+	public ResultMessage addHotelInfo(HotelInfoPO hotelInfo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ResultMessage modifyHotelInfo(HotelInfoVO hotelInfo) {
+	public ResultMessage modifyHotelInfo(HotelInfoPO hotelInfo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public HotelInfoVO getHotelInfo(String hotelID) {
+	public HotelInfoPO getHotelInfo(String hotelID) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<HotelInfoVO> searchHotelList(SearchHotelInfo searchInfo) {
+	public List<HotelInfoPO> searchHotelList(SearchHotelInfo searchInfo) {
 		// TODO Auto-generated method stub
 		return null;
 	}

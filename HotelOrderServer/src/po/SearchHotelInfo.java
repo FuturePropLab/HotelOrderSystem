@@ -2,7 +2,7 @@ package po;
 
 public class SearchHotelInfo {
 	private SearchHotelType searchType;
-	private HotelInfoVO hotelInfo;
+	private HotelInfoPO hotelInfo;
 	
 	public void setSearchType(SearchHotelType type){
 		this.searchType = type;
@@ -11,10 +11,10 @@ public class SearchHotelInfo {
 		return this.searchType;
 	}
 	
-	public void setHotelInfoPO(HotelInfoVO hotelInfo){
+	public void setHotelInfoPO(HotelInfoPO hotelInfo){
 		this.hotelInfo = hotelInfo;
 	}
-	public HotelInfoVO getHotelInfoPO(){
+	public HotelInfoPO getHotelInfoPO(){
 		return this.hotelInfo;
 	}
 

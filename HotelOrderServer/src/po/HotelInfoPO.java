@@ -1,6 +1,6 @@
 package po;
 
-public class HotelInfoVO {
+public class HotelInfoPO {
 	
 	private String hotelID;
 	private String hotelName;

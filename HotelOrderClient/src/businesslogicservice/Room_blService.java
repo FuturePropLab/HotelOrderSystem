@@ -1,5 +1,5 @@
 package businesslogicservice;
 
-public class Room_blService {
+public interface Room_blService {
 
 }

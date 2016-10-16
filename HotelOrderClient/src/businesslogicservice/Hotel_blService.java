@@ -1,5 +1,5 @@
 package businesslogicservice;
 
-public class Hotel_blService {
+public interface Hotel_blService {
 
 }

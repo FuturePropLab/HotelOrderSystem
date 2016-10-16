@@ -2,17 +2,17 @@ package dataservice.hotel;
 
 import java.util.List;
 
-import po.HotelInfoVO;
+import po.HotelInfoPO;
 import po.ResultMessage;
 import po.SearchHotelInfo;
 
-//½Ó¿Ú£¬¹©µ÷ÓÃ
+//ï¿½Ó¿Ú£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 public interface HotelService {
 		
-		public ResultMessage addHotelInfo(HotelInfoVO hotelInfo);
-		public ResultMessage modifyHotelInfo(HotelInfoVO hotelInfo);
-		public HotelInfoVO getHotelInfo(String hotelID);
-		public List<HotelInfoVO> searchHotelList(SearchHotelInfo searchInfo);
+		public ResultMessage addHotelInfo(HotelInfoPO hotelInfo);
+		public ResultMessage modifyHotelInfo(HotelInfoPO hotelInfo);
+		public HotelInfoPO getHotelInfo(String hotelID);
+		public List<HotelInfoPO> searchHotelList(SearchHotelInfo searchInfo);
 		
 		
 }
