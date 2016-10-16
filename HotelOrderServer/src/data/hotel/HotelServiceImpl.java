@@ -6,8 +6,8 @@ import dataservice.hotel.HotelService;
 import po.HotelInfoVO;
 import po.ResultMessage;
 import po.SearchHotelInfo;
-//实现hotelService接口
-public class HotelServiceImp implements HotelService {
+
+public class HotelServiceImpl implements HotelService {
 
 	@Override
 	public ResultMessage addHotelInfo(HotelInfoVO hotelInfo) {
