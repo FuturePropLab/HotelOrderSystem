@@ -6,6 +6,11 @@ import tools.MemberType.Type;
 
 public class ApplyPO {
 	private String customer_ID;
+	private String apply_id;//申请单的ID
+	public String getApply_id() {
+		return apply_id;
+	}
+
 	private Type type=Type.None;
 	private Date birthday;
 	private String companyName;
@@ -42,5 +47,6 @@ public class ApplyPO {
 		super();
 		this.customer_ID = customer_ID;
 		this.type = type;
+		apply_id="000000003";
 	}
 }

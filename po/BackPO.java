@@ -4,6 +4,11 @@ import vo.ApplyResult;
 
 public class BackPO {
 	public String customer_ID;
+	public String back_id;//返回单的ID
+	public String getBack_id() {
+		return back_id;
+	}
+
 	public String reasion;
 	public ApplyResult result;
 	
@@ -32,5 +37,6 @@ public class BackPO {
 		this.customer_ID = customer_ID;
 		this.reasion = reasion;
 		this.result = result;
+		back_id="000000004";
 	}
 }

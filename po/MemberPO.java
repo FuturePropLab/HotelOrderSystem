@@ -23,4 +23,4 @@ public class MemberPO {
 		this.customer_ID = customer_ID;
 		this.memberType = memberType;
 	}
-  }
+}

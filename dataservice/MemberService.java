@@ -9,9 +9,9 @@ import tools.ResultMessage;
 
 public interface MemberService {
 
-	public ResultMessage addmember(String customer_id);
-	public ResultMessage modifymember(MemberPO member);
-	public MemberPO getmember(String customer_id);
+	public ResultMessage addMember(String customer_id);
+	public ResultMessage modifyMember(MemberPO member);
+	public MemberPO getMember(String customer_id);
 	public ResultMessage addApply(ApplyPO po);
 	public ResultMessage addBack (BackPO po);
 	public ResultMessage modifyApply(ApplyPO po);
