@@ -1,7 +1,7 @@
 package driver;
 
-import dataservice.RoomDataService;
-import stub.RoomData_Stub;
+import dataservice.CreditDataService;
+import stub.CreditData_Stub;
 
 public class DriverController {
 	public static void main(String[] args) {
@@ -28,9 +28,18 @@ public class DriverController {
 //		RoomDealService hotelDealService = new RoomDeal_Stub();
 //		RoomDealService_Driver driver = new RoomDealService_Driver();
 //		driver.drive(hotelDealService);
-		RoomDataService hotelDataService = new RoomData_Stub();
-		RoomDataService_Driver driver = new RoomDataService_Driver();
-		driver.drive(hotelDataService);
+//		RoomDataService hotelDataService = new RoomData_Stub();
+//		RoomDataService_Driver driver = new RoomDataService_Driver();
+//		driver.drive(hotelDataService);
+		
+		
+//		CreditLogDealService_Driver driver = new CreditLogDealService_Driver();
+//		CreditLogDealService creditLogDealService = new CreditLogDeal_Stub();
+//		driver.drive(creditLogDealService);
+		
+		CreditDataService_Driver driver = new CreditDataService_Driver();
+		CreditDataService creditDataService = new CreditData_Stub();
+		driver.drive(creditDataService);
 		
 	}
 }
