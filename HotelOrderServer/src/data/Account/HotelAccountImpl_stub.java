@@ -2,7 +2,6 @@ package data.Account;
 
 import java.util.List;
 
-import dataservice.Account.Customer;
 import dataservice.Account.Hotel;
 import po.HotelAccountPO;
 import po.SearchCondition;
