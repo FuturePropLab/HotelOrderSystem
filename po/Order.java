@@ -7,7 +7,7 @@ import tools.Mark;
 import tools.OrderState;
 import tools.RoomType;
 
-public class OrderPO {
+public class Order {
 	private String orderID;
 	private String customerID;
 	private String hotelID;
@@ -27,10 +27,7 @@ public class OrderPO {
 	private Mark mark;
 	private String assessment;
 	
-	public OrderPO() {
-		super();
-	}
-	public OrderPO(String orderID) {
+	public Order(String orderID){
 		super();
 		this.orderID = orderID;
 	}
