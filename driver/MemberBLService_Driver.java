@@ -18,7 +18,7 @@ import vo.OrderInputVO;
 import vo.OrderVO;
 import vo.SearchHotelVO;
 
-public class OrderBLService_Driver {
+public class MemberBLService_Driver {
 	public boolean drive(OrderService orderService) {
 		OrderInputVO orderInput=new OrderInputVO("001", "002", new Time(0), new Time(0), 
 				new Time(0), RoomType.Single, 1, 1, false);
