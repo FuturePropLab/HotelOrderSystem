@@ -3,7 +3,7 @@ package driver;
 import java.util.ArrayList;
 import java.util.List;
 
-import bussinesslogicservice.RoomHotelInfoService;
+import businesslogicservice.RoomHotelInfoService;
 import tools.RoomType;
 import tools.TypeRoomInfo;
 import vo.HotelRoomInfoVO;

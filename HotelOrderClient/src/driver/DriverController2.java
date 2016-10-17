@@ -3,7 +3,7 @@ package driver;
 import dataservice.RoomDataService;
 import stub.RoomData_Stub;
 
-public class DriverController {
+public class DriverController2 {
 	public static void main(String[] args) {
 		
 //		CustomerSignupService customerSignupService = new CustomerSignup_Stub();

@@ -1,6 +1,6 @@
 package driver;
 
-import bussinesslogicservice.RoomSingleService;
+import businesslogicservice.RoomSingleService;
 import tools.RoomType;
 import vo.RoomVO;
 

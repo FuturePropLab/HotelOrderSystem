@@ -1,4 +1,4 @@
-package Driver;
+package driver;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,11 +20,11 @@ public class HotelDealblService_Driver {
 public void drive(HotelDealService hotelDealService) throws OutOfBoundsException{
 	List<HotelInfoVO> hotelInfolist = new ArrayList<HotelInfoVO>();
 	List<TypeRoomInfo> typeList = new ArrayList<TypeRoomInfo>();
-	TypeRoomInfo typeRoomInfo1= new TypeRoomInfo("002","ÈÙ»ª´ó¾Æµê",RoomType.Single,5,180.0);
+	TypeRoomInfo typeRoomInfo1= new TypeRoomInfo("002","ï¿½Ù»ï¿½ï¿½ï¿½Æµï¿½",RoomType.Single,5,180.0);
 	typeList.add(typeRoomInfo1);
-	HotelRoomInfoVO hotelRoomInfoVO = new HotelRoomInfoVO("002","ÈÙ»ª´ó¾Æµê",typeList);
+	HotelRoomInfoVO hotelRoomInfoVO = new HotelRoomInfoVO("002","ï¿½Ù»ï¿½ï¿½ï¿½Æµï¿½",typeList);
 	
-	HotelInfoVO hotelinfo=new HotelInfoVO("002","ÈÙ»ª´ó¾Æµê", "nanjing","xinjiekou","good","good","room",hotelRoomInfoVO,Star.five);
+	HotelInfoVO hotelinfo=new HotelInfoVO("002","ï¿½Ù»ï¿½ï¿½ï¿½Æµï¿½", "nanjing","xinjiekou","good","good","room",hotelRoomInfoVO,Star.five);
 	hotelInfolist.add(hotelinfo);
 	
 	PriceRange range=new PriceRange(10,20);
@@ -46,7 +46,7 @@ public void drive(HotelDealService hotelDealService) throws OutOfBoundsException
 	
 	System.out.println(hotelDealService.SearchHotel(searchhotel).get(0).facility);
 //	List<HotelInfoVO> hotelInfolist2 = new ArrayList<HotelInfoVO>();
-//	hotelInfolist2£½hotel.SortHotel(hotelInfolist, SortType.grade);
+//	hotelInfolist2ï¿½ï¿½hotel.SortHotel(hotelInfolist, SortType.grade);
 
 	
 }

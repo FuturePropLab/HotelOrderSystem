@@ -8,6 +8,12 @@ public class HotelRoomInfoPO {
 	private String hotelID;
 	private String hotelName;
 	private List<TypeRoomInfo> typeRoomInfo;
+	
+	public HotelRoomInfoPO(String string, String string2, List<TypeRoomInfo> typeList) {
+		this.hotelID = hotelID;
+		this.hotelName = hotelName;
+		this.typeRoomInfo= typeRoomInfo;
+	}
 	public String getHotelID() {
 		return hotelID;
 	}

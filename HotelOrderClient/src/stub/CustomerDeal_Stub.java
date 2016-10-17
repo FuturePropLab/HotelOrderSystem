@@ -1,6 +1,6 @@
 package stub;
 
-import bussinesslogicservice.CustomerDealService;
+import businesslogicservice.CustomerDealService;
 import tools.MemberType;
 import tools.ResultMessage;
 import vo.CustomerVO;

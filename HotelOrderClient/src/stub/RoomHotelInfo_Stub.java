@@ -3,7 +3,7 @@ package stub;
 import java.util.ArrayList;
 import java.util.List;
 
-import bussinesslogicservice.RoomHotelInfoService;
+import businesslogicservice.RoomHotelInfoService;
 import tools.ResultMessage;
 import tools.RoomType;
 import tools.TypeRoomInfo;

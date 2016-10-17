@@ -1,4 +1,4 @@
-package Stub;
+package stub;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,11 +31,11 @@ public class ManageHotelInfo_Stub implements ManageHotelInfoService {
 	
 		
 		List<TypeRoomInfo> typeList = new ArrayList<TypeRoomInfo>();
-		TypeRoomInfo typeRoomInfo1= new TypeRoomInfo("001","ÈÙ»ª´ó¾Æµê",RoomType.Single,5,180.0);
+		TypeRoomInfo typeRoomInfo1= new TypeRoomInfo("001","ï¿½Ù»ï¿½ï¿½ï¿½Æµï¿½",RoomType.Single,5,180.0);
 		typeList.add(typeRoomInfo1);
-		HotelRoomInfoVO hotelRoomInfoVO = new HotelRoomInfoVO("001","ÈÙ»ª´ó¾Æµê",typeList);
+		HotelRoomInfoVO hotelRoomInfoVO = new HotelRoomInfoVO("001","ï¿½Ù»ï¿½ï¿½ï¿½Æµï¿½",typeList);
 		
-		HotelInfoVO hotelinfo=new HotelInfoVO("001","ÈÙ»ª´ó¾Æµê", "nanjing","xinjiekou","good","good","room",hotelRoomInfoVO,Star.five);
+		HotelInfoVO hotelinfo=new HotelInfoVO("001","ï¿½Ù»ï¿½ï¿½ï¿½Æµï¿½", "nanjing","xinjiekou","good","good","room",hotelRoomInfoVO,Star.five);
 		
 		return hotelinfo;
 	}

@@ -8,7 +8,7 @@ import tools.ActionType;
 import tools.ResultMessage;
 import vo.CreditlogVO;
 
-public class CreditLogDeal_Stub implements bussinesslogicservice.CreditLogDealService {
+public class CreditLogDeal_Stub implements businesslogicservice.CreditLogDealService {
 
 	@Override
 	public ResultMessage addlog(Order order, ActionType type, int result) {

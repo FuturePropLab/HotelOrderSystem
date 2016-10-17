@@ -1,6 +1,6 @@
 package stub;
 
-import bussinesslogicservice.RoomSingleService;
+import businesslogicservice.RoomSingleService;
 import tools.ResultMessage;
 import tools.RoomType;
 import vo.RoomVO;
