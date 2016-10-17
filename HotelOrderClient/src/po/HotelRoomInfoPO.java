@@ -14,6 +14,9 @@ public class HotelRoomInfoPO {
 		this.hotelName = hotelName;
 		this.typeRoomInfo= typeRoomInfo;
 	}
+	public HotelRoomInfoPO() {
+		super();
+	}
 	public String getHotelID() {
 		return hotelID;
 	}

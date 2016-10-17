@@ -10,9 +10,9 @@ import po.BackPO;
 import po.MemberPO;
 import po.OrderPO;
 import po.SearchOrderInfo;
+import tools.ApplyResult;
 import tools.MemberType;
 import tools.MemberType.Type;
-import vo.ApplyResult;
 import tools.ResultMessage;
 
 public class MemberData_Stub implements MemberDataService{

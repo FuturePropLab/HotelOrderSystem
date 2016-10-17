@@ -8,9 +8,9 @@ import dataservice.MemberDataService;
 import po.ApplyPO;
 import po.BackPO;
 import po.MemberPO;
+import tools.ApplyResult;
 import tools.MemberType;
 import tools.ResultMessage;
-import vo.ApplyResult;
 import tools.MemberType.Type;
 
 public class MemberDataService_Driver {

@@ -1,3 +1,4 @@
+
 package stub;
 
 import java.util.ArrayList;
@@ -6,8 +7,8 @@ import java.util.List;
 import dataservice.HotelDataService;
 import po.HotelInfoPO;
 import po.HotelRoomInfoPO;
-import po.SearchHotel;
 import tools.ResultMessage2;
+import tools.SearchHotel;
 import tools.Star;
 
 public class HotelData_Stub implements HotelDataService{

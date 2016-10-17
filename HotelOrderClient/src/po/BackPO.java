@@ -1,6 +1,6 @@
 package po;
 
-import vo.ApplyResult;
+import tools.ApplyResult;
 
 public class BackPO {
 	public String customer_ID;

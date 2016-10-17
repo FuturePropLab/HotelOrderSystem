@@ -3,8 +3,8 @@ package dataservice;
 import java.util.List;
 
 import po.HotelInfoPO;
-import po.SearchHotel;
 import tools.ResultMessage2;
+import tools.SearchHotel;
 
 public interface HotelDataService {
 	public ResultMessage2 addHotelInfo (HotelInfoPO hotelInfo);
