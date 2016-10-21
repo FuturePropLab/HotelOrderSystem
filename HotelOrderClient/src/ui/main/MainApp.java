@@ -6,9 +6,8 @@ import javafx.stage.Stage;
 public class MainApp extends Application{
 
 	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void start(Stage primaryStage){
 		MainUI mainUI=new MainUI(primaryStage);
-		
 	}
 
 	public static void main(String[] args) {
