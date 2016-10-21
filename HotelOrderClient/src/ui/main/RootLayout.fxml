@@ -5,17 +5,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.main.RootLayoutController">
    <children>
       <AnchorPane layoutX="1142.0" prefHeight="59.0" prefWidth="158.0">
          <children>
-            <ImageView fitHeight="39.0" fitWidth="38.0" layoutX="120.0">
+            <ImageView fitHeight="39.0" fitWidth="38.0" layoutX="120.0" onMouseClicked="#handleExit">
                <image>
                   <Image url="@../../../resources/images/close.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="14.0" fitWidth="40.0" layoutX="70.0" layoutY="13.0">
+            <ImageView fitHeight="14.0" fitWidth="40.0" layoutX="70.0" layoutY="13.0" onMouseClicked="#handleMinimize">
                <image>
                   <Image url="@../../../resources/images/minimize.png" />
                </image>
