@@ -1,25 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
-
-<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="ui.hotel.HotelDetailController">
+<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.hotel.HotelDetailController">
    <children>
-      <TabPane layoutX="576.0" layoutY="14.0" prefHeight="200.0" prefWidth="276.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="475.0" layoutY="7.0" prefHeight="750.0" prefWidth="424.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
-          <Tab text="Untitled Tab 1">
+          <Tab text="   简介  ">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="389.0" prefWidth="424.0">
+                     <children>
+                        <ImageView fitHeight="147.0" fitWidth="277.0" layoutX="74.0" AnchorPane.leftAnchor="74.0" AnchorPane.topAnchor="0.0">
+                           <image>
+                              <Image url="@../../../resources/images/picture.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="156.0" fitWidth="297.0" layoutX="74.0" layoutY="347.0">
+                           <image>
+                              <Image url="@../../../resources/images/picture.png" />
+                           </image>
+                        </ImageView>
+                        <TextFlow layoutX="-2.0" layoutY="147.0" lineSpacing="10.0" prefHeight="200.0" prefWidth="315.0" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <Text fill="#310ddb" strokeType="OUTSIDE" strokeWidth="0.0" text="                这是样例酒店简介的文字                  " textAlignment="CENTER" wrappingWidth="220.0">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </TextFlow>
+                        <ScrollBar layoutX="401.0" layoutY="3.0" orientation="VERTICAL" prefHeight="212.0" prefWidth="18.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="设施服务">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
             </content>
           </Tab>
-          <Tab text="Untitled Tab 2">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
-          </Tab>
+            <Tab text="  评价  ">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
         </tabs>
       </TabPane>
+      <ImageView fitHeight="250.0" fitWidth="475.0" layoutY="7.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../../../resources/images/picture.png" />
+         </image>
+      </ImageView>
+      <Separator layoutX="472.0" orientation="VERTICAL" prefHeight="750.0" prefWidth="6.0" />
    </children>
 </AnchorPane>

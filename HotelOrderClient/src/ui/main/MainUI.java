@@ -1,7 +1,13 @@
 package ui.main;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -54,19 +60,27 @@ public class MainUI {
      * Shows the hotel details inside the root layout.
      */
     public void showHotelDetails() {
-        try {
-            // Load hotel details.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainUI.class.getResource("../hotel/HotelDetail.fxml"));
-            AnchorPane hotelDetails = (AnchorPane) loader.load();
-
-            // Set hotel details into the center of root layout.
-            rootLayoutController.setDetails(hotelDetails);
-            primaryStage.show();
-            HotelDetailController controller = loader.getController();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    	try {
+			HotelDetailController controller = (HotelDetailController) replaceSceneContent("../hotel/HotelDetail.fxml");
+		} catch (Exception e) {
+			Logger.getLogger(MainUI.class.getName()).log(Level.SEVERE, null, e);
+		}
     }
+    
+    private Initializable replaceSceneContent(String fxml) throws Exception {  
+        FXMLLoader loader = new FXMLLoader();  
+        InputStream in = MainUI.class.getResourceAsStream(fxml);  
+        loader.setBuilderFactory(new JavaFXBuilderFactory());  
+        loader.setLocation(MainUI.class.getResource(fxml));  
+        AnchorPane page;  
+        try {  
+            page = (AnchorPane) loader.load(in);  
+        } finally {  
+            in.close();  
+        }   
+        Scene scene = new Scene(page);  
+        primaryStage.setScene(scene);  
+        primaryStage.sizeToScene();  
+        return (Initializable) loader.getController();  
+    }  
 }
