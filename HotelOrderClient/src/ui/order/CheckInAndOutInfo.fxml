@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="900.0">
+         <children>
+            <Label layoutX="130.0" layoutY="50.0" prefHeight="44.0" prefWidth="129.0" text="客房类型">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="130.0" layoutY="127.0" prefHeight="44.0" prefWidth="129.0" text="客房价格">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <TextField layoutX="395.0" layoutY="130.0" prefHeight="43.0" prefWidth="189.0" />
+            <TextField layoutX="392.0" layoutY="47.0" prefHeight="43.0" prefWidth="189.0" />
+         </children>
+      </AnchorPane>
+      <TabPane layoutY="200.0" prefHeight="550.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="入住">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="130.0" layoutY="98.0" prefHeight="44.0" prefWidth="129.0" text="入住时间">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="130.0" layoutY="183.0" prefHeight="44.0" prefWidth="129.0" text="房间号">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="130.0" layoutY="261.0" prefHeight="45.0" prefWidth="155.0" text="预计退房时间">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <TextField layoutX="406.0" layoutY="99.0" prefHeight="43.0" prefWidth="189.0" />
+                        <TextField layoutX="407.0" layoutY="182.0" prefHeight="43.0" prefWidth="189.0" />
+                        <TextField layoutX="409.0" layoutY="259.0" prefHeight="43.0" prefWidth="189.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="退房">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="130.0" layoutY="100.0" prefHeight="57.0" prefWidth="158.0" text="实际退房时间">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <TextField layoutX="395.0" layoutY="108.0" prefHeight="43.0" prefWidth="189.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

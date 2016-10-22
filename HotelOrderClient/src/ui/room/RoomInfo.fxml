@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <TabPane prefHeight="750.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="总统套房">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="191.0" fitWidth="252.0" layoutX="47.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Downloads/IMG_7268.JPG" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="398.0" layoutY="401.0" prefHeight="46.0" prefWidth="126.0" text="客房总数">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="400.0" layoutY="130.0" prefHeight="46.0" prefWidth="126.0" text="房间价格">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="400.0" layoutY="190.0" prefHeight="46.0" prefWidth="126.0" text="房间号">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="400.0" layoutY="250.0" prefHeight="46.0" prefWidth="126.0" text="客房详情">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <TextField layoutX="574.0" layoutY="403.0" prefHeight="40.0" prefWidth="181.0" />
+                        <TextField layoutX="570.0" layoutY="130.0" prefHeight="40.0" prefWidth="181.0" />
+                        <TextField layoutX="570.0" layoutY="190.0" prefHeight="40.0" prefWidth="181.0" />
+                        <TextArea layoutX="571.0" layoutY="250.0" prefHeight="100.0" prefWidth="201.0" />
+                        <Label layoutX="399.0" layoutY="469.0" prefHeight="46.0" prefWidth="139.0" text="可使用房间数">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <TextField layoutX="575.0" layoutY="465.0" prefHeight="40.0" prefWidth="181.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="豪华套房">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+            <Tab text="双人间">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+               </content>
+            </Tab>
+            <Tab text="单人间">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

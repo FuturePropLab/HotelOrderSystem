@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <Label layoutX="161.0" layoutY="79.0" prefHeight="58.0" prefWidth="151.0" text="姓名">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="158.0" layoutY="176.0" prefHeight="58.0" prefWidth="151.0" text="性别">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="472.0" layoutY="78.0" prefHeight="58.0" prefWidth="151.0" text="联系方式">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="472.0" layoutY="173.0" prefHeight="58.0" prefWidth="151.0" text="信用值">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <TextField layoutX="259.0" layoutY="88.0" prefHeight="41.0" prefWidth="148.0" />
+      <TextField layoutX="261.0" layoutY="181.0" prefHeight="41.0" prefWidth="148.0" />
+      <TextField layoutX="633.0" layoutY="88.0" prefHeight="41.0" prefWidth="148.0" />
+      <TextField layoutX="634.0" layoutY="181.0" prefHeight="41.0" prefWidth="148.0" />
+      <Label layoutX="155.0" layoutY="329.0" prefHeight="41.0" prefWidth="118.0" text="会员信息">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="290.0" layoutY="322.0" prefHeight="58.0" prefWidth="151.0" text="无">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Button layoutX="405.0" layoutY="328.0" mnemonicParsing="false" text="会员注册">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
