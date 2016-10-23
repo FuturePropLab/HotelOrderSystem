@@ -13,7 +13,7 @@
          <children>
             <ImageView fitHeight="39.0" fitWidth="38.0" layoutX="120.0" onMouseClicked="#handleExit">
                <image>
-                  <Image url="@../../../resources/images/close.png" />
+                  <Image url="@../../../resources/images/closeButtonwsw.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="14.0" fitWidth="40.0" layoutX="70.0" layoutY="13.0" onMouseClicked="#handleMinimize">
