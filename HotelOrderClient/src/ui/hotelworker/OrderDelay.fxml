@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <SplitPane dividerPositions="0.3997326203208556" layoutX="8.0" layoutY="8.0" orientation="VERTICAL" prefHeight="750.0" prefWidth="901.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -28,7 +28,7 @@
                         <Font name="Gloucester MT Extra Condensed" size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="542.0" layoutY="121.0" minHeight="37.0" minWidth="95.0" prefHeight="37.0" prefWidth="151.0" text="最晚到店时间">
+                  <Label layoutX="568.0" layoutY="123.0" minHeight="37.0" minWidth="95.0" prefHeight="37.0" prefWidth="151.0" text="最晚到店时间">
                      <font>
                         <Font name="Gloucester MT Extra Condensed" size="24.0" />
                      </font>
@@ -41,6 +41,26 @@
                   <Label layoutX="298.0" layoutY="210.0" minHeight="37.0" minWidth="95.0" prefHeight="37.0" prefWidth="125.0" text="入住人数">
                      <font>
                         <Font name="Gloucester MT Extra Condensed" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="195.0" layoutY="126.0" text="异常" textFill="#ee8a11">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="449.0" layoutY="130.0" text="2016-10-1" textFill="#c62590">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="195.0" layoutY="215.0" text="总统套房" textFill="#c62590">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="404.0" layoutY="219.0" text="1" textFill="#c62590">
+                     <font>
+                        <Font size="17.0" />
                      </font>
                   </Label>
                </children>
@@ -59,6 +79,16 @@
                               <Label layoutX="67.0" layoutY="24.0" minHeight="51.0" minWidth="95.0" prefHeight="51.0" prefWidth="114.0" text="入住时间">
                                  <font>
                                     <Font name="Baskerville Old Face" size="22.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="67.0" layoutY="81.0" text="2016-10-2" textFill="#c62590">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="313.0" layoutY="81.0" text="2016-10-3" textFill="#c62590">
+                                 <font>
+                                    <Font size="17.0" />
                                  </font>
                               </Label>
                            </children>
