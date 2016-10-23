@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="200.0" fitWidth="229.0" layoutX="101.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../Desktop/room.png" />
+            <Image url="@../../../resources/images/room.png" />
          </image>
       </ImageView>
       <Label layoutX="458.0" layoutY="106.0" prefHeight="45.0" prefWidth="179.0" text="xx大酒店">
