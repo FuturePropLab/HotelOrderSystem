@@ -11,8 +11,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="750.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60">
+<AnchorPane prefHeight="750.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Circle fill="WHITE" layoutX="90.0" layoutY="76.0" radius="62.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="14.0" />
       <ImageView fitHeight="86.0" fitWidth="78.0" layoutX="51.0" layoutY="33.0">
@@ -22,7 +21,7 @@
       </ImageView>
       <TreeTableView layoutY="182.0" prefHeight="569.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <columns>
-          <TreeTableColumn prefWidth="399.0" text="C1" />
+          <TreeTableColumn prefWidth="399.0" />
         </columns>
       </TreeTableView>
       <AnchorPane layoutY="671.0" prefHeight="72.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">

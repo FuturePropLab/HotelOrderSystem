@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Group?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -9,8 +10,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60">
+<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane layoutX="126.0" prefHeight="750.0" prefWidth="620.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -207,7 +207,7 @@
             </Group>
             <Group layoutX="348.0" layoutY="438.0">
                <children>
-                  <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="284.0" stroke="BLACK" strokeType="INSIDE" width="245.0" />
+                  <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="217.0" stroke="BLACK" strokeType="INSIDE" width="245.0" />
                   <Label layoutX="17.0" layoutY="14.0" text="评分">
                      <font>
                         <Font size="22.0" />
@@ -255,6 +255,11 @@
                   <Font size="18.0" />
                </font>
             </Label>
+            <Hyperlink layoutX="398.0" layoutY="672.0" text="撤销该订单">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Hyperlink>
          </children>
       </AnchorPane>
    </children>
