@@ -5,7 +5,6 @@ import java.util.List;
 import po.OrderPO;
 import po.SearchOrderInfo;
 import tools.ResultMessage;
-import vo.SearchHotelVO;
 
 public interface OrderDataService {
 	public ResultMessage add(OrderPO order);
