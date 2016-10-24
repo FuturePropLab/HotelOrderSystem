@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="900.0">
          <children>
@@ -22,8 +21,8 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <TextField layoutX="395.0" layoutY="130.0" prefHeight="43.0" prefWidth="189.0" />
-            <TextField layoutX="392.0" layoutY="47.0" prefHeight="43.0" prefWidth="189.0" />
+            <TextField layoutX="395.0" layoutY="130.0" prefHeight="43.0" prefWidth="189.0" text="111" />
+            <TextField layoutX="392.0" layoutY="47.0" prefHeight="43.0" prefWidth="189.0" text="双人间" />
          </children>
       </AnchorPane>
       <TabPane layoutY="200.0" prefHeight="550.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE">
@@ -47,9 +46,9 @@
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="406.0" layoutY="99.0" prefHeight="43.0" prefWidth="189.0" />
-                        <TextField layoutX="407.0" layoutY="182.0" prefHeight="43.0" prefWidth="189.0" />
-                        <TextField layoutX="409.0" layoutY="259.0" prefHeight="43.0" prefWidth="189.0" />
+                        <TextField layoutX="406.0" layoutY="99.0" prefHeight="43.0" prefWidth="189.0" text="2016-5-1" />
+                        <TextField layoutX="407.0" layoutY="182.0" prefHeight="43.0" prefWidth="189.0" text="111" />
+                        <TextField layoutX="409.0" layoutY="259.0" prefHeight="43.0" prefWidth="189.0" text="2016-5-2" />
                      </children>
                   </AnchorPane>
             </content>

@@ -66,8 +66,8 @@
                         </Label>
                         <RadioButton layoutX="306.0" layoutY="339.0" mnemonicParsing="false" text="是" />
                         <RadioButton layoutX="306.0" layoutY="374.0" mnemonicParsing="false" text="否" />
-                        <TextField layoutX="260.0" layoutY="221.0" />
-                        <TextField layoutX="260.0" layoutY="272.0" />
+                        <TextField layoutX="260.0" layoutY="221.0" text="2016-10-1" />
+                        <TextField layoutX="260.0" layoutY="272.0" text="2016-10-2" />
                      </children></AnchorPane>
             </content>
           </Tab>

@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TabPane prefHeight="750.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -129,12 +128,12 @@
                                     <Font size="22.0" />
                                  </font>
                               </Label>
-                              <TextField prefHeight="20.0" prefWidth="187.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <TextField GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                              <TextField GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField GridPane.columnIndex="1" />
+                              <TextField prefHeight="20.0" prefWidth="187.0" text="2016-5-1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField text="2015-5-2" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField text="2016-5-1" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <TextField text="2016-5-2" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                              <TextField text="2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField text="412" GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
                      </children>
