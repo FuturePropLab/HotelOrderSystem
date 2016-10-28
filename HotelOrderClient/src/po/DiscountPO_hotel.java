@@ -4,7 +4,19 @@ import java.util.Date;
 
 public class DiscountPO_hotel extends DiscountPO{
 
-	public Date startDate;
-	public Date EndDate;
+	private Date startDate;
+	private Date EndDate;
+	public Date getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+	public Date getEndDate() {
+		return EndDate;
+	}
+	public void setEndDate(Date endDate) {
+		EndDate = endDate;
+	}
 
 }

@@ -1,6 +1,14 @@
 package po;
 
 public class DiscountPO_web extends DiscountPO{
-	 public String type;
+	private String type;
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 
 }
