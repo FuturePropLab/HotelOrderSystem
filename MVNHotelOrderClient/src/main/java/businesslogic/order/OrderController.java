@@ -1,6 +1,5 @@
 package businesslogic.order;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import businesslogicservice.OrderService;
@@ -8,7 +7,7 @@ import tools.ResultMessage;
 import vo.ExecutionInfoVO;
 import vo.OrderInputVO;
 import vo.OrderVO;
-import vo.SearchHotelVO;
+import vo.SearchOrderInfoVO;
 
 /**
  * 订单的控制器，实现OrderService
@@ -18,7 +17,7 @@ import vo.SearchHotelVO;
 public class OrderController implements OrderService{
 
 	public OrderVO createOrders(OrderInputVO orderInput) {
-		
+		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -27,7 +26,7 @@ public class OrderController implements OrderService{
 		return null;
 	}
 
-	public List<OrderVO> CheckOrderList(SearchHotelVO searchOrderInfo) {
+	public List<OrderVO> CheckOrderList(SearchOrderInfoVO searchOrderInfo) {
 		// TODO Auto-generated method stub
 		return null;
 	}

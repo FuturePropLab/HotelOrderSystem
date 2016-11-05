@@ -1,4 +1,5 @@
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\runner\ClientRunner.java
+D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\businesslogic\order\CheckInInfo.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\po\DiscountPO_web.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\ui\discount\Discount.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\po\DiscountPO_web_period.java
@@ -7,6 +8,7 @@ D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\busine
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\dataservice\RoomDataService.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\stub\Account_stub.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\driver\CreditDataService_Driver.java
+D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\dataservice\AccountDataService.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\tools\ActionType.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\vo\OrderInputVO.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\businesslogicservice\OrderService.java
@@ -27,6 +29,7 @@ D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\po\Hot
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\stub\RoomData_Stub.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\driver\CustomerSignupService_Driver.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\businesslogic\strategy\Strategy.java
+D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\businesslogic\order\AssessInfo.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\ui\room\Room.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\businesslogic\login\Login.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\po\OrderPO.java
@@ -34,6 +37,7 @@ D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\stub\M
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\stub\RoomHotelInfo_Stub.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\stub\HotelDeal_Stub.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\ui\order\Order.java
+D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\businesslogic\order\CheckOutInfo.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\businesslogic\discount\DiscountType.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\stub\Discount_stub.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\businesslogicservice\RoomHotelInfoService.java
@@ -58,7 +62,6 @@ D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\vo\Dis
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\businesslogic\discount\Discount.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\driver\ManageHotelInfoService_Driver.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\vo\SearchConditionVO.java
-D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\dataservice\AccountHotelDataService.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\businesslogicservice\CreditLogDealService.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\Exception\OutOfBoundsException.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\vo\HotelAccountVO.java
@@ -93,6 +96,7 @@ D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\rmi\Re
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\po\BackPO.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\businesslogicservice\DiscountCalService.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\ui\credit\Credit.java
+D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\businesslogic\order\CustomerInfo.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\driver\DriverController2.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\businesslogicservice\DiscountWebService.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\ui\webdesign\Webdesign.java
@@ -139,14 +143,15 @@ D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\vo\Sea
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\businesslogic\discount\Type.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\businesslogicservice\RoomSingleService.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\businesslogicservice\AccountCustomerService.java
+D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\businesslogic\order\OrderController.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\driver\MemberDataService_Driver.java
+D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\businesslogic\order\HotelInfo.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\businesslogic\room\Room.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\tools\ApplyResult.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\businesslogic\login\State.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\driver\HotelDealblService_Driver.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\tools\SearchHotel.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\businesslogic\login\LoginController.java
-D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\dataservice\AccountCustomerDataService.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\businesslogic\discount\HotelDiscount.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\tools\ResultMessage2.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\stub\OrderDate_Stub.java
@@ -155,6 +160,7 @@ D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\stub\C
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\businesslogic\credit\Credit.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\po\CustomerPO.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\po\ApplyPO.java
+D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\businesslogic\order\PlacingOrderInfo.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\businesslogicservice\AccountHotelService.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\businesslogicservice\CustomerDealService.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\main\java\po\SearchOrderInfo.java

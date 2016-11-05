@@ -6,12 +6,20 @@ import vo.LogVO;
 /**
  * Login的领域类
  * @author zjy
- *
+ * 
  */
 public class Login {
-	private AccountDataService accountService;
-	private State state=State.logout;
-	
+	private AccountDataService accountDataService;
+	private State state;
+	/**
+	 * 
+	 * @param accountDataService AccountDataService接口
+	 */
+	public Login(AccountDataService accountDataService) {
+		super();
+		this.accountDataService = accountDataService;
+		this.state=State.logout;
+	}
 	/**
 	 * 
 	 * @param username 用户输入的用户名
@@ -19,13 +27,13 @@ public class Login {
 	 * @return 登陆的结果
 	 */
 	public LogVO login(String username,String password){
-		if(accountService.getHotel(username)!=null){
+		if(accountDataService.getHotel(username)!=null){
 			return new LogVO(State.login, username, password, AccountType.Hotel);
 		}
-		else if (accountService.getWeb(username)!=null) {
+		else if (accountDataService.getWeb(username)!=null) {
 			return new LogVO(State.login, username, password, AccountType.Web);
 		}
-		else if (accountService.getCustomer(username)!=null){
+		else if (accountDataService.getCustomer(username)!=null){
 			return new LogVO(State.login, username, password, AccountType.Customer);
 		}
 		return new LogVO(State.logout, null, null, null);
