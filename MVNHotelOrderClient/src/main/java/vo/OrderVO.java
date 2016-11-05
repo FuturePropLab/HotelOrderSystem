@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import tools.Mark;
 import tools.OrderState;
 import tools.RoomType;
-
+/**
+ * 订单的信息，因信息太多，暂时不提供直接由构造方法设置属性的方式
+ * @author zjy
+ *
+ */
 public class OrderVO {
 	public String orderID;
 	public String customerID;

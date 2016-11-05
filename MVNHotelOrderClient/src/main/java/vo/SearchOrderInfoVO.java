@@ -2,7 +2,11 @@ package vo;
 
 import java.sql.Time;
 import tools.OrderState;
-
+/**
+ * 搜索订单信息
+ * @author zjy
+ *
+ */
 public class SearchOrderInfoVO {
 	public String orderID;
 	public String customerID;

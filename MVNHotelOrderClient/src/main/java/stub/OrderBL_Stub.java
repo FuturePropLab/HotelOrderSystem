@@ -10,6 +10,7 @@ import vo.ExecutionInfoVO;
 import vo.OrderInputVO;
 import vo.OrderVO;
 import vo.SearchHotelVO;
+import vo.SearchOrderInfoVO;
 
 public class OrderBL_Stub implements OrderService{
 
@@ -39,7 +40,7 @@ public class OrderBL_Stub implements OrderService{
 	}
 
 
-	public List<OrderVO> CheckOrderList(SearchHotelVO searchOrderInfo) {
+	public List<OrderVO> CheckOrderList(SearchOrderInfoVO searchOrderInfo) {
 		List<OrderVO> list=new ArrayList<OrderVO>();
 		return list;
 	}

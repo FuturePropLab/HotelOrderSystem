@@ -17,6 +17,7 @@ import vo.ExecutionInfoVO;
 import vo.OrderInputVO;
 import vo.OrderVO;
 import vo.SearchHotelVO;
+import vo.SearchOrderInfoVO;
 
 public class OrderBLService_Driver {
 	public boolean drive(OrderService orderService) {
@@ -32,17 +33,11 @@ public class OrderBLService_Driver {
 			return false;
 		}
 		
-		SearchHotelVO searchOrderInfo;
-		try {
-			searchOrderInfo = new SearchHotelVO("address", "district", "hotelName", 
-					RoomType.Single, new PriceRange(0, 1), new DateRange(new Date(), new Date()), Star.one, false);
-			List<OrderVO> list=orderService.CheckOrderList(searchOrderInfo);
-			if(list==null){
-				return false;
-			}
-		} catch (OutOfBoundsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		SearchOrderInfoVO searchOrderInfo;
+		searchOrderInfo = new SearchOrderInfoVO("000000001", "000000001", "000000001", new Time(0), OrderState.Unexecuted);
+		List<OrderVO> list=orderService.CheckOrderList(searchOrderInfo);
+		if(list==null){
+			return false;
 		}
 		
 		OrderVO order_temp=orderService.checkSingleOrder("000000001");

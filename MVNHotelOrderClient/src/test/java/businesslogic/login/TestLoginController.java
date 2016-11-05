@@ -3,7 +3,11 @@ package businesslogic.login;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-
+/**
+ * 
+ * @author zjy
+ *
+ */
 public class TestLoginController {
 
 	@Test
