@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <SplitPane dividerPositions="0.3997326203208556" layoutX="8.0" layoutY="8.0" orientation="VERTICAL" prefHeight="750.0" prefWidth="901.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Label layoutX="81.0" layoutY="42.0" minHeight="51.0" minWidth="95.0" prefHeight="51.0" prefWidth="114.0" text="订单号">
+                     <font>
+                        <Font name="Gloucester MT Extra Condensed" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="81.0" layoutY="121.0" minHeight="37.0" minWidth="95.0" prefHeight="37.0" prefWidth="125.0" text="订单状态">
+                     <font>
+                        <Font name="Gloucester MT Extra Condensed" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="298.0" layoutY="121.0" minHeight="37.0" minWidth="95.0" prefHeight="37.0" prefWidth="151.0" text="订单开始时间">
+                     <font>
+                        <Font name="Gloucester MT Extra Condensed" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="568.0" layoutY="123.0" minHeight="37.0" minWidth="95.0" prefHeight="37.0" prefWidth="151.0" text="最晚到店时间">
+                     <font>
+                        <Font name="Gloucester MT Extra Condensed" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="81.0" layoutY="208.0" minHeight="37.0" minWidth="95.0" prefHeight="37.0" prefWidth="125.0" text="房间类型">
+                     <font>
+                        <Font name="Gloucester MT Extra Condensed" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="298.0" layoutY="210.0" minHeight="37.0" minWidth="95.0" prefHeight="37.0" prefWidth="125.0" text="入住人数">
+                     <font>
+                        <Font name="Gloucester MT Extra Condensed" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="195.0" layoutY="126.0" text="异常" textFill="#ee8a11">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="449.0" layoutY="130.0" text="2016-10-1" textFill="#c62590">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="195.0" layoutY="215.0" text="总统套房" textFill="#c62590">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="404.0" layoutY="219.0" text="1" textFill="#c62590">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="898.0">
+               <children>
+                  <TitledPane animated="false" layoutX="80.0" layoutY="117.0" text="入住信息">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="161.0" prefWidth="716.0">
+                           <children>
+                              <Label layoutX="282.0" layoutY="24.0" minHeight="51.0" minWidth="95.0" prefHeight="51.0" prefWidth="147.0" text="预计离开时间">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="22.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="67.0" layoutY="24.0" minHeight="51.0" minWidth="95.0" prefHeight="51.0" prefWidth="114.0" text="入住时间">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="22.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="67.0" layoutY="81.0" text="2016-10-2" textFill="#c62590">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="313.0" layoutY="81.0" text="2016-10-3" textFill="#c62590">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </TitledPane>
+                  <Label layoutX="90.0" layoutY="33.0" minHeight="51.0" minWidth="95.0" prefHeight="51.0" prefWidth="114.0" text="房间号">
+                     <font>
+                        <Font name="Gloucester MT Extra Condensed" size="30.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="557.0" layoutY="346.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="101.0" text="确认" />
+                  <Button layoutX="685.0" layoutY="346.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="101.0" text="取消" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

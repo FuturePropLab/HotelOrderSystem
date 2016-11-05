@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60">
+   <children>
+      <Hyperlink layoutX="123.0" layoutY="193.0" text="客房信息">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Hyperlink>
+      <Group layoutX="123.0" layoutY="273.0">
+         <children>
+            <Line endY="170.0" layoutX="20.0" layoutY="45.0" />
+            <Line endX="20.0" layoutX="20.0" layoutY="75.0" />
+            <Line endX="20.0" layoutX="20.0" layoutY="123.0" />
+            <Line endX="20.0" layoutX="20.0" layoutY="167.0" />
+            <Line endX="20.0" layoutX="20.0" layoutY="214.0" />
+            <Hyperlink text="所有订单">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink layoutX="37.0" layoutY="54.0" text="未执行订单">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink layoutX="37.0" layoutY="99.0" text="已执行订单">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink layoutX="37.0" layoutY="144.0" text="已撤销订单">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink layoutX="37.0" layoutY="189.0" text="异常订单">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Hyperlink>
+         </children>
+      </Group>
+      <Hyperlink layoutX="123.0" layoutY="112.0" text="酒店信息">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink layoutX="123.0" layoutY="543.0" text="优惠策略">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Hyperlink>
+      <Group layoutX="458.0" layoutY="112.0">
+         <children>
+            <Hyperlink text="更新入住和退房信息">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink layoutX="69.0" layoutY="53.0" text="更新线上入住和退房信息">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink layoutX="69.0" layoutY="100.0" text="更新线下入住和退房信息">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Hyperlink>
+            <Line endY="80.0" layoutX="48.0" layoutY="45.0" />
+            <Line endX="20.0" layoutX="48.0" layoutY="75.0" />
+            <Line endX="20.0" layoutX="48.0" layoutY="123.0" />
+         </children>
+      </Group>
+   </children>
+</AnchorPane>
