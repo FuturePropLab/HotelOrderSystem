@@ -36,16 +36,18 @@ public class Order {
 	 * 订单的构造方法，通过客户下单生成订单，构造之后会调用saveOrder
 	 * @param orderInput 下单信息
 	 */
-	public Order(OrderInputVO orderInput){
+	public Order(OrderInputVO orderInput,CustomerInfo customerInfo,HotelInfo hotelInfo,OrderDataService orderDataService){
 		super();
-		//saveOrder();
+		this.customerInfo=customerInfo;
+		this.hotelInfo=hotelInfo;
+		this.orderDataService=orderDataService;
+		saveOrder();
 	}
 	/**
 	 * 持久化保存订单
-	 * @param orderVO 订单的信息
 	 * @return  成功则返回true，失败返回false
 	 */
-	public boolean saveOrder(OrderVO orderVO){
+	public boolean saveOrder(){
 		return orderDataService.add(getOrderPO()).equals(ResultMessage.Exist);
 	}
 	/**
@@ -168,5 +170,13 @@ public class Order {
 				checkInInfo.checkInTime, checkOutInfo.checkOutTime, revokeTime, placingOrderInfo.roomType, 
 				placingOrderInfo.numberOfRooms, value, placingOrderInfo.planedPeopleNumber, placingOrderInfo.child, 
 				orderState, assessInfo.mark, assessInfo.assessment);
+	}
+	
+	
+	/**
+	 * 定时从data层更新订单的信息
+	 */
+	private void sync() {
+		
 	}
 }
