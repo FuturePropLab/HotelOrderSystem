@@ -10,6 +10,6 @@ import tools.Mark;
  *
  */
 public class AssessInfo {
-	private Mark mark;
-	private String assessment;
+	public Mark mark;
+	public String assessment;
 }

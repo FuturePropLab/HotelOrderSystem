@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import tools.Mark;
 import tools.OrderState;
 import tools.RoomType;
-
+/**
+ * 
+ * @author zjy
+ *
+ */
 public class OrderPO {
 	private String orderID;
 	private String customerID;
@@ -34,7 +38,30 @@ public class OrderPO {
 		super();
 		this.orderID = orderID;
 	}
-	
+	public OrderPO(String orderID, String customerID, String hotelID, ArrayList<String> roomNumber, Time startTime,
+			Time latestTime, Time planedLeaveTime, Time checkInTime, Time checkOutTime, Time revokeTime,
+			RoomType roomType, int numberOfRooms, int value, int planedPeopleNumber, boolean child,
+			OrderState orderState, Mark mark, String assessment) {
+		super();
+		this.orderID = orderID;
+		this.customerID = customerID;
+		this.hotelID = hotelID;
+		this.roomNumber = roomNumber;
+		this.startTime = startTime;
+		this.latestTime = latestTime;
+		this.planedLeaveTime = planedLeaveTime;
+		this.checkInTime = checkInTime;
+		this.checkOutTime = checkOutTime;
+		this.revokeTime = revokeTime;
+		this.roomType = roomType;
+		this.numberOfRooms = numberOfRooms;
+		this.value = value;
+		this.planedPeopleNumber = planedPeopleNumber;
+		this.child = child;
+		this.orderState = orderState;
+		this.mark = mark;
+		this.assessment = assessment;
+	}
 	
 	public String getOrderID() {
 		return orderID;

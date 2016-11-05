@@ -8,5 +8,12 @@ import java.sql.Time;
  *
  */
 public class CheckOutInfo {
-	private Time checkOutTime;//实际离开时间
+	public Time checkOutTime;//实际离开时间
+	/**
+	 * 
+	 * @return 退房信息填写完毕则返回true，否则返回false
+	 */
+	public boolean filled() {
+		return checkOutTime!=null;
+	}
 }
