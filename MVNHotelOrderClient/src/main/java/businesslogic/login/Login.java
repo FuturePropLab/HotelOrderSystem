@@ -1,6 +1,6 @@
 package businesslogic.login;
 
-import dataservice.AccountCustomerDataService;
+import dataservice.AccountDataService;
 import vo.LogVO;
 
 /**
@@ -19,13 +19,13 @@ public class Login {
 	 * @return 登陆的结果
 	 */
 	public LogVO login(String username,String password){
-		if(accountService.getHotelAccount(username)!=null){
+		if(accountService.getHotel(username)!=null){
 			return new LogVO(State.login, username, password, AccountType.Hotel);
 		}
-		else if (accountService.getWebAccount(username)!=null) {
+		else if (accountService.getWeb(username)!=null) {
 			return new LogVO(State.login, username, password, AccountType.Web);
 		}
-		else if (accountService.getCustomerAccount(username)!=null){
+		else if (accountService.getCustomer(username)!=null){
 			return new LogVO(State.login, username, password, AccountType.Customer);
 		}
 		return new LogVO(State.logout, null, null, null);
