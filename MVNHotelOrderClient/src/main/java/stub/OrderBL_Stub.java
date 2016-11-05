@@ -9,7 +9,6 @@ import tools.ResultMessage;
 import vo.ExecutionInfoVO;
 import vo.OrderInputVO;
 import vo.OrderVO;
-import vo.SearchHotelVO;
 import vo.SearchOrderInfoVO;
 
 public class OrderBL_Stub implements OrderService{

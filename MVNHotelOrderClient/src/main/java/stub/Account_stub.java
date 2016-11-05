@@ -8,7 +8,10 @@ import businesslogicservice.AccountHotelService;
 import businesslogicservice.AccountWebService;
 import tools.ResultMessage;
 import vo.CustomerAccountVO;
+import vo.CustomerSearchVO;
 import vo.HotelAccountVO;
+import vo.HotelInputVO;
+import vo.HotelSearchVO;
 import vo.SearchConditionVO;
 import vo.WebAccountVO;
 
@@ -115,6 +118,24 @@ public class Account_stub implements AccountCustomerService, AccountWebService, 
 		list.add(customerA);
 		System.out.println(list.get(0).customerName);
 		return list;
+	}
+
+
+	public List<CustomerAccountVO> searchCustomerAccount(CustomerSearchVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public List<HotelAccountVO> searchHotelAccount(HotelSearchVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public ResultMessage addHotelAccount(HotelAccountVO hotelAccount, HotelInputVO hotelInputVO) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
