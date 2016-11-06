@@ -32,8 +32,6 @@ public interface AccountDataService {
 	public HotelAccountPO getHotel(String hotel_id);
 
 	public ResultMessage deleteHotel(String hotel_id);
-
-	public List<HotelAccountPO> searchHotelList(SearchCondition searchCondition);
 	
 	public ResultMessage addWeb(WebAccountPO po);
 
@@ -45,6 +43,6 @@ public interface AccountDataService {
 	 */
 	public WebAccountPO getWeb(String WebAccount_id);
 
-	public List<WebAccountPO> searchWebList(SearchCondition searchCondition);
+	
 
 }

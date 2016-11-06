@@ -1,6 +1,5 @@
 package businesslogic.account;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import businesslogic.customer.Customer;
@@ -13,26 +12,24 @@ import vo.CustomerVO;
   *
   */
 public class MockCustomer extends Customer implements CustomerInfo{
-	private List<CustomerVO> list;
+	private List<CustomerVO> customerList;
+	private CustomerVO customerVO;
 	
 	/**
 	 * 实现接口
 	 */
 	public List<CustomerVO> searchCustomer(CustomerSearchVO customerSearchVO) {
-		if(customerSearchVO!=null){
-			CustomerVO customerVO1 = new CustomerVO("wsw", "bbd", "male", "15210262516", null);
-			CustomerVO customerVO2 = new CustomerVO("wsw2", "bbd2", "male", "15210262516", null);
-			list.add(customerVO1);
-			list.add(customerVO2);
-			return list;
-		}
-		return list;
+		return customerList;
 	}
 	/**
 	 * 初始化
 	 */
-	public MockCustomer(){
-		list = new ArrayList<CustomerVO>();
+	public MockCustomer( List<CustomerVO> customerList,CustomerVO customerVO){
+		this.customerList = customerList;
+		this.customerVO = customerVO;
+	}
+	public CustomerVO getCustomerDetail(String customer_id) {
+		return customerVO;
 	}
 
 }

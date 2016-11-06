@@ -25,7 +25,7 @@ public class AccountData_stub implements AccountDataService{
 
 	public CustomerAccountPO getCustomer(String customer_id) {
 		CustomerAccountPO accountPO = new CustomerAccountPO(customer_id,"wsw","qisini");
-		
+		//ystem.out.println(accountPO.getCustomerName());
 		return accountPO;
 	}
 
@@ -40,48 +40,50 @@ public class AccountData_stub implements AccountDataService{
 	}
 
 	public ResultMessage addHotel(HotelAccountPO hotelAccPO) {
-		// TODO Auto-generated method stub
-		return null;
+		if(hotelAccPO!=null)  
+			return ResultMessage.Exist;
+		return ResultMessage.NotExist;
+
 	}
 
 	public ResultMessage modifyHotel(HotelAccountPO hotelAccPO) {
-		// TODO Auto-generated method stub
-		return null;
+		if(hotelAccPO!=null) 
+			return ResultMessage.Exist;
+		return ResultMessage.NotExist;
+		
 	}
 
 	public HotelAccountPO getHotel(String hotel_id) {
-		// TODO Auto-generated method stub
-		return null;
+		HotelAccountPO hotelAccountPO = new HotelAccountPO(hotel_id, "荣华大酒店", "ingedg");
+		return hotelAccountPO;
 	}
 
 	public ResultMessage deleteHotel(String hotel_id) {
-		// TODO Auto-generated method stub
-		return null;
+		if(hotel_id!=null)  
+			return ResultMessage.Exist;
+		return ResultMessage.NotExist;
 	}
 
-	public List<HotelAccountPO> searchHotelList(SearchCondition searchCondition) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	public ResultMessage addWeb(WebAccountPO po) {
-		// TODO Auto-generated method stub
-		return null;
+		if(po!=null) 
+			return ResultMessage.Exist;
+		return ResultMessage.NotExist;
+		
 	}
 
 	public ResultMessage modifyWeb(WebAccountPO po) {
-		// TODO Auto-generated method stub
-		return null;
+		if(po!=null) 
+			return ResultMessage.Exist;
+		return ResultMessage.NotExist;
 	}
 
 	public WebAccountPO getWeb(String WebAccount_id) {
-		// TODO Auto-generated method stub
-		return null;
+		WebAccountPO accountPO = new WebAccountPO(WebAccount_id, "zzjy", "qwer");
+		return accountPO;
 	}
 
-	public List<WebAccountPO> searchWebList(SearchCondition searchCondition) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 }

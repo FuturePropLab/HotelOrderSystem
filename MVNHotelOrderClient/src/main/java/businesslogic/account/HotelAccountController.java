@@ -5,9 +5,9 @@ import java.util.List;
 import businesslogicservice.AccountHotelService;
 import tools.ResultMessage;
 import vo.HotelAccountVO;
+import vo.HotelInfoVO;
 import vo.HotelInputVO;
 import vo.HotelSearchVO;
-import vo.SearchConditionVO;
 
 /**
  * 
@@ -50,6 +50,11 @@ public class HotelAccountController implements AccountHotelService {
 
 	public List<HotelAccountVO> searchHotelAccount(HotelSearchVO vo) {
 		return account.searchHotelAccount(vo);
+	}
+
+
+	public HotelInfoVO getHotelDetail(String hotel_id) {
+		return account.getHotelDetail(hotel_id);
 	}
 
 }

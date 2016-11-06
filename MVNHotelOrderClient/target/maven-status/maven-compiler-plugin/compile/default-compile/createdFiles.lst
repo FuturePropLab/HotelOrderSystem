@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 businesslogicservice\CustomerDealService.class
 stub\MemberData_Stub.class
 businesslogic\order\PlacingOrderInfo.class
@@ -173,3 +174,5 @@ ui\hotel\Hotel.class
 vo\DiscountVO_web.class
 po\HotelAccountPO.class
 driver\CustomerSignupService_Driver.class
+=======
+>>>>>>> origin/master

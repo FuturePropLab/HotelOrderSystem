@@ -1,8 +1,36 @@
 package businesslogic.account;
 
-import tools.ResultMessage;
-import vo.HotelInputVO;
+import java.util.List;
 
+import tools.ResultMessage;
+import vo.HotelInfoVO;
+import vo.HotelInputVO;
+import vo.HotelSearchVO;
+
+/**
+ * 酒店模块调用接口
+ * @author wshwbluebird
+ *
+ */
 public interface HotelInfo {
-	public ResultMessage addHotel( HotelInputVO vo);
+	/**
+	 * 同层调用酒店模块的增加酒店的方法
+	 * @param hotelInputVO
+	 * @return return
+	 */
+	public ResultMessage addHotel( HotelInputVO hotelInputVO);
+	
+	/**
+	 * 同层调用酒店模块的搜索酒店的方法
+	 * @param hotelSearchVO
+	 * @return List<HotelInfoPO> 
+	 */
+	public List<HotelInfoVO> searchHotel(HotelSearchVO hotelSearchVO);
+	
+	/**
+	 * 同层调用酒店模块的获取酒店基本信息的方法
+	 * @param hotel_id
+	 * @return HotelInfoVO
+	 */
+	public HotelInfoVO getHotelDetail(String hotel_id);
 }
