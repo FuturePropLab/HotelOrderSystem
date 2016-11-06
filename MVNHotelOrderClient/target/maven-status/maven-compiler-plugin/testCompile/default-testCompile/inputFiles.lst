@@ -1,5 +1,8 @@
 <<<<<<< Updated upstream
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\test\java\businesslogic\account\TestAccountHotel.java
+=======
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\test\java\businesslogicservice\impl\TestLoginServiceImpl1.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\test\java\businesslogic\login\TestLogin.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\test\java\businesslogic\order\TestOrder.java
@@ -7,9 +10,20 @@ D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\test\java\busine
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\test\java\businesslogicservice\impl\TestLoginEXP.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\test\java\businesslogic\account\TestAccountWeb.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\test\java\businesslogic\login\TestLoginController.java
+<<<<<<< Updated upstream
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\test\java\businesslogic\order\TestOrderController.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\test\java\businesslogic\account\TestAccountCustomer.java
 =======
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+=======
+/Users/chenyuyan/GitHub/HotelOrderSystem/MVNHotelOrderClient/src/test/java/businesslogicservice/impl/TestLoginServiceImpl1.java
+/Users/chenyuyan/GitHub/HotelOrderSystem/MVNHotelOrderClient/src/test/java/businesslogicservice/impl/TestLoginEXP.java
+/Users/chenyuyan/GitHub/HotelOrderSystem/MVNHotelOrderClient/src/test/java/businesslogicservice/impl/TestLoginServiceImpl2.java
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 /Users/wshwbluebird/javaNeon/HotelOrderSystem/MVNHotelOrderClient/src/test/java/businesslogic/room/TestHotelRoomInfo.java
 /Users/wshwbluebird/javaNeon/HotelOrderSystem/MVNHotelOrderClient/src/test/java/businesslogic/login/TestLoginController.java
 /Users/wshwbluebird/javaNeon/HotelOrderSystem/MVNHotelOrderClient/src/test/java/businesslogicservice/impl/TestLoginServiceImpl1.java
@@ -25,4 +39,8 @@ D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\test\java\busine
 /Users/wshwbluebird/javaNeon/HotelOrderSystem/MVNHotelOrderClient/src/test/java/businesslogic/account/TestAccountCustomer.java
 /Users/wshwbluebird/javaNeon/HotelOrderSystem/MVNHotelOrderClient/src/test/java/businesslogic/order/TestOrderController.java
 /Users/wshwbluebird/javaNeon/HotelOrderSystem/MVNHotelOrderClient/src/test/java/businesslogic/credit/TestCredit.java
+<<<<<<< Updated upstream
+=======
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 >>>>>>> Stashed changes

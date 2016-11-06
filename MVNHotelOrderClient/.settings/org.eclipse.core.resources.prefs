@@ -1,5 +1,14 @@
+=\=\=\=\=\=\=
+<<<<<<<=Updated upstream
+>>>>>>>=Stashed changes
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
+encoding//src/main/java/businesslogic/login=UTF-8
+encoding//src/main/java/stub/CustomerDeal_Stub.java=UTF-8
+encoding//src/main/java/stub/HotelDeal_Stub.java=UTF-8
+encoding//src/main/java/stub/ManageHotelInfo_Stub.java=UTF-8
 encoding//src/main/java/vo/HotelInfoVO.java=GBK
+encoding//src/main/java/vo/OrderVO.java=UTF-8
 encoding//src/test/java=UTF-8
+encoding//src/test/java/businesslogic/hotel/TestHotel.java=UTF-8
 encoding/<project>=UTF-8

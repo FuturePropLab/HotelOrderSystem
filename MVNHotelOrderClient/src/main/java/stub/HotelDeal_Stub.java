@@ -64,9 +64,9 @@ public class HotelDeal_Stub implements HotelDealService {
 	}
 
 	
-	public List<DiscountVO> getHotelDiscount(String hotel_id) {
+	public List<DiscountVO_hotel> getHotelDiscount(String hotel_id) {
 		// TODO Auto-generated method stub
-		List<DiscountVO> discountList = new ArrayList<DiscountVO>();
+		List<DiscountVO_hotel> discountList = new ArrayList<DiscountVO_hotel>();
 		Date date1 = new Date(2016, 9, 23);
 		Date date2 = new Date(2016,9,24);
 		

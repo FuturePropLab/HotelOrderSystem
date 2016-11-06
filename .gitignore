@@ -1,2 +1,15 @@
 *.class
 *.class
+*.class
+
+*.class
+
+*.class
+
+MVNHotelOrderClient/target/classes/driver/CustomerDealService_Driver.class
+
+MVNHotelOrderClient/target/classes/driver/CustomerSignupService_Driver.class
+
+MVNHotelOrderClient/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+
+*.class
