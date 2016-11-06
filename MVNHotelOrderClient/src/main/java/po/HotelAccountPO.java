@@ -5,9 +5,9 @@ public class HotelAccountPO {
 	private String name;
 	private String password;
 	public HotelAccountPO(String id,String name,String password){
-		id=this.id;
-		name=this.name;
-		password=this.password;
+		this.id=id;
+		this.name=name;
+		this.password=password;
 	}
 	public String getId() {
 		return id;

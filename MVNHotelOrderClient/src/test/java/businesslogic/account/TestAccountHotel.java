@@ -26,11 +26,11 @@ public class TestAccountHotel {
 	@Before
 	public  void testBeforeClass(){
 		 List<HotelInfoVO> hotelList = new ArrayList<HotelInfoVO>();
-		 HotelInfoVO hotelInfoVO1 = new HotelInfoVO("aaa", "BIG1", "xxxx", "xxxx","5" , "good",
+		 HotelInfoVO hotelInfoVO1 = new HotelInfoVO("aaa", "BIG1", "xxxx", "xxxx",null , "good",
 				 "null", null, Star.five);
-		 HotelInfoVO hotelInfoVO2 = new HotelInfoVO("bbb", "BIG2", "xxxx", "xxxx","5" , "good",
+		 HotelInfoVO hotelInfoVO2 = new HotelInfoVO("bbb", "BIG2", "xxxx", "xxxx",null , "good",
 				 "null", null, Star.five);
-		 HotelInfoVO hotelInfoVO3 = new HotelInfoVO("cc", "BIG3", "xxxx", "xxxx","5" , "good",
+		 HotelInfoVO hotelInfoVO3 = new HotelInfoVO("cc", "BIG3", "xxxx", "xxxx",null , "good",
 				 "null", null, Star.five);
 		 hotelList.add(hotelInfoVO1);
 		 hotelList.add(hotelInfoVO2);

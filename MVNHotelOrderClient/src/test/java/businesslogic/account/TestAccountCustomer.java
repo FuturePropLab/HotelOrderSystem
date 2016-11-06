@@ -64,7 +64,7 @@ public class TestAccountCustomer {
 	
 	@Test
 	public void testGetCustomerDetailt() {
-		assertEquals("wsw", account.getCustomerDetail("123321").customeID );
+		assertEquals("wsw", account.getCustomerDetail("123321").customerID );
 		  
 	}
 

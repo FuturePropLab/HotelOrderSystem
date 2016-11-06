@@ -5,8 +5,8 @@ public class HotelAccountVO {
 	public String name;
 	public String password;
 	public HotelAccountVO(String id,String name,String password){
-		id=this.id;
-		name=this.name;
-		password=this.password;
+		this.id=id;
+		this.name=name;
+		this.password=password;
 	}
 }
