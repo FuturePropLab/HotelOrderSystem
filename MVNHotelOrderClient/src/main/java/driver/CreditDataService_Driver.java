@@ -12,7 +12,7 @@ public class CreditDataService_Driver {
 		
 		System.out.println(creditDataService.add(creditLogPO2));
 		
-		System.out.println(creditDataService.getLogList("asd").get(1).orderPO.getOrderID());
+		System.out.println(creditDataService.getLogList("asd").get(1).getOrderPO().getOrderID());
 		
     	
     	

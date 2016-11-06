@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\test\java\businesslogic\account\TestAccountHotel.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\test\java\businesslogicservice\impl\TestLoginServiceImpl1.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\test\java\businesslogic\login\TestLogin.java
@@ -8,3 +9,20 @@ D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\test\java\busine
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\test\java\businesslogic\login\TestLoginController.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\test\java\businesslogic\order\TestOrderController.java
 D:\软工\未来道具实验室\HotelOrderSystem\MVNHotelOrderClient\src\test\java\businesslogic\account\TestAccountCustomer.java
+=======
+/Users/wshwbluebird/javaNeon/HotelOrderSystem/MVNHotelOrderClient/src/test/java/businesslogic/room/TestHotelRoomInfo.java
+/Users/wshwbluebird/javaNeon/HotelOrderSystem/MVNHotelOrderClient/src/test/java/businesslogic/login/TestLoginController.java
+/Users/wshwbluebird/javaNeon/HotelOrderSystem/MVNHotelOrderClient/src/test/java/businesslogicservice/impl/TestLoginServiceImpl1.java
+/Users/wshwbluebird/javaNeon/HotelOrderSystem/MVNHotelOrderClient/src/test/java/businesslogic/login/TestLogin.java
+/Users/wshwbluebird/javaNeon/HotelOrderSystem/MVNHotelOrderClient/src/test/java/businesslogic/room/TestRoomDeal.java
+/Users/wshwbluebird/javaNeon/HotelOrderSystem/MVNHotelOrderClient/src/test/java/businesslogic/account/TestAccountHotel.java
+/Users/wshwbluebird/javaNeon/HotelOrderSystem/MVNHotelOrderClient/src/test/java/businesslogic/room/TestRoomSingle.java
+/Users/wshwbluebird/javaNeon/HotelOrderSystem/MVNHotelOrderClient/src/test/java/businesslogicservice/impl/TestLoginEXP.java
+/Users/wshwbluebird/javaNeon/HotelOrderSystem/MVNHotelOrderClient/src/test/java/businesslogic/order/TestOrder.java
+/Users/wshwbluebird/javaNeon/HotelOrderSystem/MVNHotelOrderClient/src/test/java/businesslogic/account/TestAccountWeb.java
+/Users/wshwbluebird/javaNeon/HotelOrderSystem/MVNHotelOrderClient/src/test/java/businesslogicservice/impl/TestLoginServiceImpl2.java
+/Users/wshwbluebird/javaNeon/HotelOrderSystem/MVNHotelOrderClient/src/test/java/businesslogic/strategy/TestStrategy.java
+/Users/wshwbluebird/javaNeon/HotelOrderSystem/MVNHotelOrderClient/src/test/java/businesslogic/account/TestAccountCustomer.java
+/Users/wshwbluebird/javaNeon/HotelOrderSystem/MVNHotelOrderClient/src/test/java/businesslogic/order/TestOrderController.java
+/Users/wshwbluebird/javaNeon/HotelOrderSystem/MVNHotelOrderClient/src/test/java/businesslogic/credit/TestCredit.java
+>>>>>>> Stashed changes

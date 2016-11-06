@@ -9,7 +9,7 @@ public class MockCustomerInfo implements CustomerInfo{
 	public CustomerVO getCustomer(String customerID) {
 		// TODO Auto-generated method stub
 		return new CustomerVO(customerID, "customerName", "gender", "telephone", new MemberVO(customerID, 
-				new MemberType(customerID)));
+				new MemberType(customerID)),34);
 	}
 
 }

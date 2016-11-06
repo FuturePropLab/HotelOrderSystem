@@ -12,7 +12,7 @@ public class CustomerDealService_Driver {
 		
 		CustomerVO customerVO1 = 
 				new CustomerVO("123456", "王帅惟", 
-						"男", "15050522805", null);
+						"男", "15050522805", null,34);
 		ResultMessage result = customerDealService.changeCustomerInfo(customerVO1);
 		
 		if(ResultMessage.Exist == result)  System.out.println("add success");

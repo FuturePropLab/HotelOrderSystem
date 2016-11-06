@@ -3,6 +3,7 @@ package vo;
 import java.sql.Time;
 import java.util.ArrayList;
 
+import po.OrderPO;
 import tools.Mark;
 import tools.OrderState;
 import tools.RoomType;
@@ -30,5 +31,34 @@ public class OrderVO {
 	public OrderState orderState;
 	public Mark mark;
 	public String assessment;
+	
+	public OrderVO(){
+		
+	}
+	
+	/**
+	 * wsw 新增的初始化方法
+	 * @param order
+	 */
+	public OrderVO(OrderPO order){
+		this.orderID = order.getOrderID();
+		this.customerID = order.getCustomerID();
+		this.hotelID = order.getHotelID();
+		this.roomNumber = order.getRoomNumber();
+		this.startTime = order.getStartTime();
+		this.latestTime =  order.getLatestTime();
+		this.planedLeaveTime =  order.getPlanedLeaveTime();
+		this.checkInTime =  order.getCheckInTime();
+		this.checkOutTime =  order.getCheckOutTime();
+		this.revokeTime =  order.getRevokeTime();
+		this.roomType =  order.getRoomType();
+		this.numberOfRooms =  order.getNumberOfRooms();
+		this.value =  order.getValue();
+		this.planedPeopleNumber =  order.getPlanedPeopleNumber();
+		this.child =  false;
+		this.orderState =  order.getOrderState();
+		this.mark =  order.getMark();
+		this.assessment =  order.getAssessment();
+	}
 
 }

@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: businesslogic.order.TestOrder
 -------------------------------------------------------------------------------
+<<<<<<< Updated upstream
 Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 sec
+=======
+Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.015 sec
+>>>>>>> Stashed changes

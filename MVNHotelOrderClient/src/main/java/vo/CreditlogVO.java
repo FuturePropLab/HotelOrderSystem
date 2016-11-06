@@ -5,10 +5,10 @@ import tools.ActionType;
 
 public class CreditlogVO {
 		public ActionType actionType ;
-		public Order order ;
+		public OrderVO order ;
 		public int changeValue;// 
 		
-		public CreditlogVO(ActionType actionType , Order order,int changeValue){
+		public CreditlogVO(ActionType actionType , OrderVO order,int changeValue){
 			this.actionType = actionType;
 			this.changeValue = changeValue;
 			this.order = order;

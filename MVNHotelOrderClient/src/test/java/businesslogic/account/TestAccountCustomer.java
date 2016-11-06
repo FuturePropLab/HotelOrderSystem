@@ -25,9 +25,9 @@ public class TestAccountCustomer {
 	@Before
 	public  void testBeforeClass(){
 		List<CustomerVO> customerList = new ArrayList<CustomerVO>();
-		CustomerVO customerVO1 = new CustomerVO("wsw", "bbd", "male", "15210262516", null);
-		CustomerVO customerVO2 = new CustomerVO("wsw2", "bbd2", "male", "15210262516", null);
-		CustomerVO customerVO3 = new CustomerVO("wsw3", "bbd3", "male", "15210262516", null);
+		CustomerVO customerVO1 = new CustomerVO("wsw", "bbd", "male", "15210262516", null,123);
+		CustomerVO customerVO2 = new CustomerVO("wsw2", "bbd2", "male", "15210262516", null,123);
+		CustomerVO customerVO3 = new CustomerVO("wsw3", "bbd3", "male", "15210262516", null,123);
 		customerList.add(customerVO1);
 		customerList.add(customerVO2);
 		customerList.add(customerVO3);

@@ -29,4 +29,10 @@ public class CreditLogDeal_Stub implements businesslogicservice.CreditLogDealSer
 		
 	}
 
+
+	public ResultMessage charge(String customer_id, int ChargeMoney) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

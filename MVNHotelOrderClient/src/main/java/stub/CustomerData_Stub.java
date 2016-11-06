@@ -19,7 +19,7 @@ public class CustomerData_Stub implements CustomerDataService {
 		MemberType memberType = new MemberType("123");
 		MemberVO membervo = new MemberVO("123",memberType);
 		CustomerPO customerPO = new CustomerPO(customer_id, "王帅惟", 
-				"男", "15055022805", membervo);
+				"男", "15055022805", membervo,123);
 		
 		return customerPO;
 	}

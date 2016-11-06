@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import tools.Mark;
 import tools.OrderState;
 import tools.RoomType;
+import vo.OrderVO;
 /**
  * 
  * @author zjy
@@ -83,6 +84,58 @@ public class OrderPO {
 		this.orderState = orderState;
 		this.mark = mark;
 		this.assessment = assessment;
+	}
+	
+	/**
+	 * wsw 增加了一个新的初始化方法
+	 * @param order
+	 */
+	public OrderPO(Order order){
+		super();
+		this.orderID = order.getOrderID();
+		this.customerID = order.getCustomerID();
+		this.hotelID = order.getHotelID();
+		this.roomNumber = order.getRoomNumber();
+		this.startTime = order.getStartTime();
+		this.latestTime =  order.getLatestTime();
+		this.planedLeaveTime =  order.getPlanedLeaveTime();
+		this.checkInTime =  order.getCheckInTime();
+		this.checkOutTime =  order.getCheckOutTime();
+		this.revokeTime =  order.getRevokeTime();
+		this.roomType =  order.getRoomType();
+		this.numberOfRooms =  order.getNumberOfRooms();
+		this.value =  order.getValue();
+		this.planedPeopleNumber =  order.getPlanedPeopleNumber();
+		this.child =  false;
+		this.orderState =  order.getOrderState();
+		this.mark =  order.getMark();
+		this.assessment =  order.getAssessment();
+	}
+	
+	/**
+	 * wsw 增加了一个新的初始化方法
+	 * @param orderVO
+	 */
+	public OrderPO(OrderVO orderVO){
+		super();
+		this.orderID = orderVO.orderID;
+		this.customerID = orderVO.customerID;
+		this.hotelID = orderVO.hotelID;
+		this.roomNumber = orderVO.roomNumber;
+		this.startTime = orderVO.startTime;
+		this.latestTime = orderVO.latestTime;
+		this.planedLeaveTime = orderVO.planedLeaveTime;
+		this.checkInTime = orderVO.checkInTime;
+		this.checkOutTime = orderVO.checkOutTime;
+		this.revokeTime = orderVO.revokeTime;
+		this.roomType = orderVO.roomType;
+		this.numberOfRooms = orderVO.numberOfRooms;
+		this.value = orderVO.value;
+		this.planedPeopleNumber = orderVO.planedPeopleNumber;
+		this.child = orderVO.child;
+		this.orderState = orderVO.orderState;
+		this.mark = orderVO.mark;
+		this.assessment = orderVO.assessment;
 	}
 	
 	public String getOrderID() {
