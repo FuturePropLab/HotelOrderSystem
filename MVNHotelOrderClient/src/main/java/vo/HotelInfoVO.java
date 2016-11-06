@@ -8,11 +8,11 @@ public class HotelInfoVO {
 	public String hotelName;
 	public  String hotelAddress;
 	public  String ComeAddr;
-	public  String grade;//评分
-	public  String introduction;//简介
-	public  String facility;//设备
-	public  HotelRoomInfoVO hotelRoomVO;//客房信息
-	public Star star;//星级
+	public  String grade;
+	public  String introduction;
+	public  String facility;
+	public  HotelRoomInfoVO hotelRoomVO;
+	public Star star;
 	
 
 	public HotelInfoVO(String hotelID,String hotelName, String hotelAddress,String district,String grade,String introduction,String facility,HotelRoomInfoVO hotelRoomVO,Star star){

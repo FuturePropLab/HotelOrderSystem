@@ -5,6 +5,7 @@ import java.util.List;
 import tools.ResultMessage;
 import vo.CustomerAccountVO;
 import vo.CustomerSearchVO;
+import vo.CustomerVO;
 
 public interface AccountCustomerService {
 	/**
@@ -27,4 +28,11 @@ public interface AccountCustomerService {
 	 * @return List<CustomerAccountVO>
 	 */
 	public List<CustomerAccountVO> searchCustomerAccount(CustomerSearchVO vo);
+	
+	/**
+	 * 通过客户的ID 返回客户的基本信息
+	 * @param customer_id
+	 * @return CustomerVO
+	 */
+	public CustomerVO getCustomerDetail(String customer_id);
 }

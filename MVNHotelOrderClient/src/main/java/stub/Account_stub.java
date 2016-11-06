@@ -9,11 +9,14 @@ import businesslogicservice.AccountWebService;
 import tools.ResultMessage;
 import vo.CustomerAccountVO;
 import vo.CustomerSearchVO;
+import vo.CustomerVO;
 import vo.HotelAccountVO;
+import vo.HotelInfoVO;
 import vo.HotelInputVO;
 import vo.HotelSearchVO;
 import vo.SearchConditionVO;
 import vo.WebAccountVO;
+import vo.WebDesignerSearchVO;
 
 public class Account_stub implements AccountCustomerService, AccountWebService, AccountHotelService {
 
@@ -134,6 +137,30 @@ public class Account_stub implements AccountCustomerService, AccountWebService, 
 
 
 	public ResultMessage addHotelAccount(HotelAccountVO hotelAccount, HotelInputVO hotelInputVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public List<WebAccountVO> searchWebAccount(WebDesignerSearchVO webDesignerSearchVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public CustomerVO getCustomerInfo(String customer_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public HotelInfoVO getHotelDetail(String hotel_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public CustomerVO getCustomerDetail(String customer_id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -6,12 +6,31 @@ package po;
  *
  */
 public class CustomerAccountPO {
-	public String customerId; //客户ID
-	public String customerName; //客户姓名
-	public String password;  //客户密码
+	private String customerId; //客户ID
+	private String customerName; //客户姓名
+	private String password;  //客户密码
 	public CustomerAccountPO(String customerId,String customerName,String password){
-		customerId=this.customerId;
-		customerName=this.customerName;
-		password=this.password;
+		this.customerId = customerId;
+		this.customerName =customerName;
+		this.password = password;
 	}
+	public String getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
+	}
+	public String getCustomerName() {
+		return customerName;
+	}
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 }
