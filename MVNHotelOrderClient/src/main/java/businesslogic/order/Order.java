@@ -1,6 +1,7 @@
 package businesslogic.order;
 
 import java.sql.Time;
+import java.util.ArrayList;
 
 import dataservice.OrderDataService;
 import po.OrderPO;
@@ -9,12 +10,16 @@ import tools.OrderState;
 import tools.ResultMessage;
 import tools.RoomType;
 import vo.AssessVO;
+import vo.CustomerVO;
 import vo.ExecutionInfoVO;
+import vo.HotelInfoVO;
 import vo.OrderInputVO;
 import vo.OrderVO;
 
 /**
  * 订单的领域类
+ * orderID应该由data层决定，初始化order对象的时候应该没有orderID
+ * order对象调用saveOrder()时，返回值应该是orderID，这一点还有待讨论
  * @author zjy
  *
  */
@@ -35,19 +40,28 @@ public class Order {
 	/**
 	 * 订单的构造方法，通过客户下单生成订单，构造之后会调用saveOrder
 	 * @param orderInput 下单信息
+	 * @param customerInfo 实现客户信息接口的对象
+	 * @param hotelInfo 实现酒店信息接口的对象
+	 * @param OrderDataService 实现OrderDataService接口的对象
 	 */
 	public Order(OrderInputVO orderInput,CustomerInfo customerInfo,HotelInfo hotelInfo,OrderDataService orderDataService){
 		super();
 		this.customerInfo=customerInfo;
 		this.hotelInfo=hotelInfo;
 		this.orderDataService=orderDataService;
+		init(orderInput);
 		saveOrder();
 	}
 	/**
+	 * @deprecated
 	 * 持久化保存订单
 	 * @return  成功则返回true，失败返回false
 	 */
 	public boolean saveOrder(){
+		orderID="orderID";//目前尚未有生成订单ID的方法
+		value=1;//目前尚未有生成订单价值的方法
+		placingOrderInfo.roomNumber=new ArrayList<String>();//目前尚未有生成房间号码的方法
+		placingOrderInfo.roomNumber.add("8888");
 		return orderDataService.add(getOrderPO()).equals(ResultMessage.Exist);
 	}
 	/**
@@ -121,13 +135,13 @@ public class Order {
 	}
 	/**
 	 * 
-	 * @return 下单的客户的ID
+	 * @return 下单的客户的信息
 	 */
-	public String getCustomer(){
-		return placingOrderInfo.customerID;
+	public CustomerVO getCustomer(){
+		return customerInfo.getCustomer(placingOrderInfo.customerID);
 	}
 	/**
-	 * @deprecated
+	 * 
 	 * 得到客户的下单信息
 	 * @return 下单信息
 	 */
@@ -138,13 +152,13 @@ public class Order {
 	}
 	/**
 	 * 
-	 * @return 订单相关的酒店ID
+	 * @return 订单相关的酒店信息
 	 */
-	public String getHotelID(){
-		return placingOrderInfo.hotelID;
+	public HotelInfoVO getHotelInfo(){
+		return hotelInfo.getHotelInfo(placingOrderInfo.hotelID);
 	}
 	/**
-	 * @deprecated
+	 * 
 	 * 得到订单的入住和退房信息
 	 * @return 入住和退房信息
 	 */
@@ -153,7 +167,6 @@ public class Order {
 				checkInInfo.checkInTime, checkOutInfo.checkOutTime);
 	}
 	/**
-	 * @deprecated
 	 * 得到订单的评价信息
 	 * @return 评价信息
 	 */
@@ -172,7 +185,18 @@ public class Order {
 				orderState, assessInfo.mark, assessInfo.assessment);
 	}
 	
-	
+	/**
+	 * 订单的初始化
+	 */
+	private void init(OrderInputVO orderInput) {
+		this.orderState=OrderState.Unexecuted;
+		this.placingOrderInfo=new PlacingOrderInfo(orderInput.customerID, orderInput.roomType, 
+				orderInput.numberOfRooms, null, orderInput.hotelID, orderInput.startTime, 
+				orderInput.latestTime, orderInput.planedLeaveTime, orderInput.planedPeopleNumber, orderInput.child);
+		this.checkInInfo=new CheckInInfo(null, null);
+		this.checkOutInfo=new CheckOutInfo(null);
+		this.assessInfo=new AssessInfo(null, null);
+	}
 	/**
 	 * 定时从data层更新订单的信息
 	 */
