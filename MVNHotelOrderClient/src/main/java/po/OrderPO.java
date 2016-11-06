@@ -34,9 +34,31 @@ public class OrderPO {
 	public OrderPO() {
 		super();
 	}
+	/**
+	 * 仅供测试用
+	 * @param orderID 订单ID
+	 */
 	public OrderPO(String orderID) {
 		super();
 		this.orderID = orderID;
+		this.customerID="customerID";
+		this.hotelID="hotelID";
+		this.roomNumber=new ArrayList<String>();
+		this.roomNumber.add("8888");
+		this.startTime=new Time(0);
+		this.latestTime=new Time(0);
+		this.planedLeaveTime=new Time(0);
+		this.checkInTime=new Time(0);
+		this.checkOutTime=new Time(0);
+		this.revokeTime=null;
+		this.roomType=RoomType.EluxeSuite;
+		this.numberOfRooms=1;
+		this.value=1;
+		this.planedPeopleNumber=1;
+		this.child=false;
+		this.orderState=OrderState.Unexecuted;
+		this.mark=null;
+		this.assessment=null;
 	}
 	public OrderPO(String orderID, String customerID, String hotelID, ArrayList<String> roomNumber, Time startTime,
 			Time latestTime, Time planedLeaveTime, Time checkInTime, Time checkOutTime, Time revokeTime,

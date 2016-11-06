@@ -46,11 +46,31 @@ public class Order {
 	 */
 	public Order(OrderInputVO orderInput,CustomerInfo customerInfo,HotelInfo hotelInfo,OrderDataService orderDataService){
 		super();
+		if(orderInput.equals(null)){
+			return;
+		}
 		this.customerInfo=customerInfo;
 		this.hotelInfo=hotelInfo;
 		this.orderDataService=orderDataService;
 		init(orderInput);
 		saveOrder();
+	}
+	/**
+	 * 订单的构造方法，通过从data层得到的OrderPO创建出的Order
+	 * @param orderPO
+	 * @param customerInfo
+	 * @param hotelInfo
+	 * @param orderDataService
+	 */
+	public Order(OrderPO orderPO,CustomerInfo customerInfo,HotelInfo hotelInfo,OrderDataService orderDataService){
+		super();
+		if(orderPO.equals(null)){
+			return;
+		}
+		this.customerInfo=customerInfo;
+		this.hotelInfo=hotelInfo;
+		this.orderDataService=orderDataService;
+		init(orderPO);
 	}
 	/**
 	 * @deprecated
@@ -71,6 +91,7 @@ public class Order {
 	 */
 	public boolean changeState(OrderState orderState){
 		this.orderState=orderState;
+		orderDataService.modify(getOrderPO());
 		return true;
 	}
 	/**
@@ -179,10 +200,24 @@ public class Order {
 	 */
 	public OrderPO getOrderPO() {
 		return new OrderPO(orderID, placingOrderInfo.customerID, placingOrderInfo.hotelID, placingOrderInfo.roomNumber,
-				placingOrderInfo.startTime, placingOrderInfo.latestTime, checkInInfo.planedLeaveTime, 
+				placingOrderInfo.startTime, placingOrderInfo.latestTime, placingOrderInfo.planedLeaveTime, 
 				checkInInfo.checkInTime, checkOutInfo.checkOutTime, revokeTime, placingOrderInfo.roomType, 
 				placingOrderInfo.numberOfRooms, value, placingOrderInfo.planedPeopleNumber, placingOrderInfo.child, 
 				orderState, assessInfo.mark, assessInfo.assessment);
+	}
+	/**
+	 * 
+	 * @return 房间号码
+	 */
+	public ArrayList<String> getRoomNumber(){
+		return placingOrderInfo.roomNumber;
+	}
+	/**
+	 * 
+	 * @return 撤销时间
+	 */
+	public Time getRevokeTime(){
+		return revokeTime;
 	}
 	
 	/**
@@ -196,6 +231,21 @@ public class Order {
 		this.checkInInfo=new CheckInInfo(null, null);
 		this.checkOutInfo=new CheckOutInfo(null);
 		this.assessInfo=new AssessInfo(null, null);
+	}
+	/**
+	 * 订单的初始化
+	 */
+	private void init(OrderPO orderPO) {
+		this.orderID=orderPO.getOrderID();
+		this.value=orderPO.getValue();
+		this.orderState=orderPO.getOrderState();
+		this.revokeTime=orderPO.getRevokeTime();
+		this.placingOrderInfo=new PlacingOrderInfo(orderPO.getCustomerID(), orderPO.getRoomType(), 
+				orderPO.getNumberOfRooms(), orderPO.getRoomNumber(), orderPO.getHotelID(), orderPO.getStartTime(), 
+				orderPO.getLatestTime(), orderPO.getPlanedLeaveTime(), orderPO.getPlanedPeopleNumber(), orderPO.isChild());
+		this.checkInInfo=new CheckInInfo(orderPO.getPlanedLeaveTime(), orderPO.getCheckInTime());
+		this.checkOutInfo=new CheckOutInfo(orderPO.getCheckOutTime());
+		this.assessInfo=new AssessInfo(orderPO.getMark(), orderPO.getAssessment());
 	}
 	/**
 	 * 定时从data层更新订单的信息

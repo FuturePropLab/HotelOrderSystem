@@ -21,7 +21,7 @@ public class OrderDate_Stub implements OrderDataService{
 	
 	public OrderPO findOrder(String order_id) {
 		if(order_id!=null){
-			return new OrderPO("000000001");
+			return new OrderPO(order_id);
 		}
 		return null;
 	}

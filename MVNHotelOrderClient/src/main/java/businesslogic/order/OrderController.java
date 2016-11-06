@@ -1,9 +1,15 @@
 package businesslogic.order;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import businesslogicservice.OrderService;
+import dataservice.OrderDataService;
+import po.OrderPO;
+import po.SearchOrderInfo;
+import tools.OrderState;
 import tools.ResultMessage;
+import ui.main.MainApp;
 import vo.ExecutionInfoVO;
 import vo.OrderInputVO;
 import vo.OrderVO;
@@ -15,50 +21,172 @@ import vo.SearchOrderInfoVO;
  *
  */
 public class OrderController implements OrderService{
+	private OrderDataService orderDataService;
 
+	/**
+	 * 
+	 * @param orderDataService 实现了orderDataService接口的对象
+	 */
+	public OrderController(OrderDataService orderDataService) {
+		super();
+		this.orderDataService = orderDataService;
+	}
+	
+	private OrderVO getOrderVO(Order order) {
+		OrderVO orderVO=new OrderVO();
+		orderVO.orderID=order.getOrderID();
+		orderVO.customerID=order.getCustomer().customerID;
+		orderVO.hotelID=order.getHotelInfo().hotelID;
+		orderVO.roomNumber=order.getRoomNumber();
+		orderVO.startTime=order.getPlacingOrderInfo().startTime;
+		orderVO.latestTime=order.getPlacingOrderInfo().latestTime;
+		orderVO.planedLeaveTime=order.getPlacingOrderInfo().planedLeaveTime;
+		orderVO.checkInTime=order.getCheckInAndOutInfo().checkInTime;
+		orderVO.checkOutTime=order.getCheckInAndOutInfo().checkOutTime;
+		orderVO.revokeTime=order.getRevokeTime();
+		orderVO.roomType=order.getPlacingOrderInfo().roomType;
+		orderVO.numberOfRooms=order.getPlacingOrderInfo().numberOfRooms;
+		orderVO.value=order.getOrderValue();
+		orderVO.planedPeopleNumber=order.getPlacingOrderInfo().planedPeopleNumber;
+		orderVO.child=order.getPlacingOrderInfo().child;
+		orderVO.orderState=order.getState();
+		orderVO.mark=order.getAssessInfo().mark;
+		orderVO.assessment=order.getAssessInfo().assessment;
+		return orderVO;
+	}
+	private OrderVO getOrderVO(OrderPO orderPO) {
+		OrderVO orderVO=new OrderVO();
+		orderVO.orderID=orderPO.getOrderID();
+		orderVO.customerID=orderPO.getCustomerID();
+		orderVO.hotelID=orderPO.getHotelID();
+		orderVO.roomNumber=orderPO.getRoomNumber();
+		orderVO.startTime=orderPO.getStartTime();
+		orderVO.latestTime=orderPO.getLatestTime();
+		orderVO.planedLeaveTime=orderPO.getPlanedLeaveTime();
+		orderVO.checkInTime=orderPO.getCheckInTime();
+		orderVO.checkOutTime=orderPO.getCheckOutTime();
+		orderVO.revokeTime=orderPO.getRevokeTime();
+		orderVO.roomType=orderPO.getRoomType();
+		orderVO.numberOfRooms=orderPO.getNumberOfRooms();
+		orderVO.value=orderPO.getValue();
+		orderVO.planedPeopleNumber=orderPO.getPlanedPeopleNumber();
+		orderVO.child=orderPO.isChild();
+		orderVO.orderState=orderPO.getOrderState();
+		orderVO.mark=orderPO.getMark();
+		orderVO.assessment=orderPO.getAssessment();
+		return orderVO;
+	}
+	
+	/**
+	 * 创建订单
+	 * @param orderInput 下单信息
+	 * @return 订单信息
+	 */
 	public OrderVO createOrders(OrderInputVO orderInput) {
-		// TODO Auto-generated method stub
-		return null;
+		Order order=new Order(orderInput, new MockCustomerInfo(), new MockHotelInfo(), orderDataService);//暂时先用Mock代替
+		return getOrderVO(order);
 	}
-
+	/**
+	 * 持久化保存订单
+	 * @deprecated
+	 * 因每次创建新订单时Order对象会自动持久化保存订单，所以应该用不到
+	 * @param preorder 订单信息
+	 * @return 调用成功则返回Exist，失败返回NotExist
+	 */
 	public ResultMessage saveOrder(OrderVO preorder) {
-		// TODO Auto-generated method stub
-		return null;
+		Order order=new Order(orderDataService.findOrder(preorder.orderID), new MockCustomerInfo(), //暂时先用Mock代替
+				new MockHotelInfo(), orderDataService);
+		if(order.saveOrder()){
+			return ResultMessage.Exist;
+		}
+		return ResultMessage.NotExist;
 	}
-
+	/**
+	 * 搜索订单
+	 * @param searchOrderInfo 搜索订单的搜索条件
+	 * @return 符合条件的订单列表
+	 */
 	public List<OrderVO> CheckOrderList(SearchOrderInfoVO searchOrderInfo) {
-		// TODO Auto-generated method stub
-		return null;
+		List<OrderPO> poList=orderDataService.searchOrder(new SearchOrderInfo(searchOrderInfo.orderID, 
+				searchOrderInfo.customerID, searchOrderInfo.hotelID, searchOrderInfo.startTime, 
+				searchOrderInfo.orderState));
+		List<OrderVO> voList=new ArrayList<OrderVO>();
+		for(OrderPO orderPO:poList){
+			voList.add(getOrderVO(orderPO));
+		}
+		return voList;
 	}
-
+	/**
+	 * 获取单个订单的信息
+	 * @param order_id 订单的ID
+	 * @return 订单的信息
+	 */
 	public OrderVO checkSingleOrder(String order_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return getOrderVO(orderDataService.findOrder(order_id));
 	}
-
+	/**
+	 * 撤销订单
+	 * @param order 订单的信息
+	 * @return 调用成功则返回Exist，失败返回NotExist
+	 */
 	public ResultMessage revokeCurrentOrder(OrderVO order) {
-		// TODO Auto-generated method stub
-		return null;
+		Order order2=new Order(orderDataService.findOrder(order.orderID),  new MockCustomerInfo(),
+				new MockHotelInfo(), orderDataService); //暂时先用Mock代替
+		if(order2.getState().equals(OrderState.Unexecuted)){
+			order2.changeState(OrderState.Revoked);
+			return ResultMessage.Exist;
+		}
+		return ResultMessage.NotExist;
 	}
-
+	/**
+	 * 计算撤销订单将要损失的信用值
+	 * @param order 订单的信息
+	 * @return 预计损失的信用值
+	 */
 	public int calculateCreditLose(OrderVO order) {
-		// TODO Auto-generated method stub
-		return 0;
+		Order order2=new Order(orderDataService.findOrder(order.orderID),  new MockCustomerInfo(),
+				new MockHotelInfo(), orderDataService); //暂时先用Mock代替
+		return order2.getOrderValue();
 	}
-
+	/**
+	 * 客户到店办理入住时，酒店工作人员执行订单，即修改订单的入住信息
+	 * @param executionInfo 修改的信息
+	 * @return 调用成功则返回Exist，失败返回NotExist
+	 */
 	public ResultMessage executionModify(ExecutionInfoVO executionInfo) {
-		// TODO Auto-generated method stub
-		return null;
+		Order order=new Order(orderDataService.findOrder(executionInfo.orderID),  new MockCustomerInfo(),
+				new MockHotelInfo(), orderDataService); //暂时先用Mock代替
+		boolean checkIn=order.modifyCheckInInfo(executionInfo);
+		boolean checkOut=order.modifyCheckOutInfo(executionInfo);
+		if(checkIn&&checkOut){
+			return ResultMessage.Exist;
+		}
+		return ResultMessage.NotExist;
 	}
-
+	/**
+	 * 时间超过最晚到店时间时，自动将订单置为异常订单
+	 * @deprecated 因为订单对象会定时自动刷新，所以这个方法应该用不着
+	 * @param Order 订单信息
+	 * @return 调用成功则返回Exist，失败返回NotExist
+	 */
 	public ResultMessage AutoToBad(OrderVO Order) {
-		// TODO Auto-generated method stub
-		return null;
+		Order order2=new Order(orderDataService.findOrder(Order.orderID),  new MockCustomerInfo(),
+				new MockHotelInfo(), orderDataService); //暂时先用Mock代替
+		return ResultMessage.Exist;
 	}
-
+	/**
+	 * 撤销异常订单
+	 * @param badOrder 订单信息
+	 * @return 调用成功则返回Exist，失败返回NotExist
+	 */
 	public ResultMessage revokeBadOrderr(OrderVO badOrder) {
-		// TODO Auto-generated method stub
-		return null;
+		Order order=new Order(orderDataService.findOrder(badOrder.orderID),  new MockCustomerInfo(),
+				new MockHotelInfo(), orderDataService); //暂时先用Mock代替
+		if(order.getState().equals(OrderState.Exception)){
+			order.changeState(OrderState.Unexecuted);
+			return ResultMessage.Exist;
+		}
+		return ResultMessage.NotExist;
 	}
 
 }

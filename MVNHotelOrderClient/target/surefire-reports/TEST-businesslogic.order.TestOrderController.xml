@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="2" failures="0" name="businesslogicservice.impl.TestLoginServiceImpl1" time="0" errors="0" skipped="0">
+<testsuite tests="9" failures="0" name="businesslogic.order.TestOrderController" time="0.001" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="D:\eclipse\JDK\jre\bin"/>
@@ -61,6 +61,13 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
   </properties>
-  <testcase classname="businesslogicservice.impl.TestLoginServiceImpl1" name="test1" time="0"/>
-  <testcase classname="businesslogicservice.impl.TestLoginServiceImpl1" name="test2" time="0"/>
+  <testcase classname="businesslogic.order.TestOrderController" name="testAutoToBad" time="0.001"/>
+  <testcase classname="businesslogic.order.TestOrderController" name="testCreateOrders" time="0"/>
+  <testcase classname="businesslogic.order.TestOrderController" name="testRevokeBadOrderr" time="0"/>
+  <testcase classname="businesslogic.order.TestOrderController" name="testRevokeCurrentOrder" time="0"/>
+  <testcase classname="businesslogic.order.TestOrderController" name="testCheckSingleOrder" time="0"/>
+  <testcase classname="businesslogic.order.TestOrderController" name="testCheckOrderList" time="0"/>
+  <testcase classname="businesslogic.order.TestOrderController" name="testCalculateCreditLose" time="0"/>
+  <testcase classname="businesslogic.order.TestOrderController" name="testSaveOrder" time="0"/>
+  <testcase classname="businesslogic.order.TestOrderController" name="testExecutionModify" time="0"/>
 </testsuite>

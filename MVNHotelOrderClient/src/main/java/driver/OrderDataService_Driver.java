@@ -38,7 +38,7 @@ public class OrderDataService_Driver {
 			return false;
 		}
 		
-		SearchOrderInfo searchOrderInfo=new SearchOrderInfo();
+		SearchOrderInfo searchOrderInfo=new SearchOrderInfo(null, null, null, null, OrderState.Unexecuted);
 		List<OrderPO> list=orderService.searchOrder(searchOrderInfo);
 		if(list==null){
 			return false;
