@@ -25,7 +25,7 @@ public class ManageHotelInfoService_Driver {
 		typeList.add(typeRoomInfo1);
 		HotelRoomInfoVO hotelRoomInfoVO = new HotelRoomInfoVO("002","�ٻ���Ƶ�",typeList);
 		
-		HotelInfoVO hotelinfo=new HotelInfoVO("002","�ٻ���Ƶ�", "nanjing","xinjiekou","good","good","room",hotelRoomInfoVO,Star.five);
+		HotelInfoVO hotelinfo=new HotelInfoVO("002","�ٻ���Ƶ�", "nanjing","xinjiekou",null,"good","room",hotelRoomInfoVO,Star.five);
 		
 		
 		System.out.println(manageHotelInfoService.addHotel(vo));

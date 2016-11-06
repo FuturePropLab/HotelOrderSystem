@@ -10,7 +10,8 @@ import vo.HotelInfoVO;
 public interface HotelInfo {
 	/**
 	 * 获取酒店信息
+	 * @param hotelID 酒店ID
 	 * @return 酒店信息
 	 */
-	public HotelInfoVO getHotelInfo();
+	public HotelInfoVO getHotelInfo(String hotelID);
 }

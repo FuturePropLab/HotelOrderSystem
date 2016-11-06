@@ -10,7 +10,8 @@ import vo.CustomerVO;
 public interface CustomerInfo {
 	/**
 	 * 获得客户信息
+	 * @param customerID 客户ID
 	 * @return 客户信息
 	 */
-	public CustomerVO getCustomer();
+	public CustomerVO getCustomer(String customerID);
 }

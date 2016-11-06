@@ -54,7 +54,7 @@ public class Account {
 		CustomerInfo customerInfo =new MockCustomer();
 		ArrayList<CustomerVO> list = (ArrayList<CustomerVO>) customerInfo.searchCustomer(customerSearchVO);
 		for(int i = 0 ;i<list.size();i++){
-			CustomerAccountVO vo  = getCustomerAccount(list.get(i).customeID);
+			CustomerAccountVO vo  = getCustomerAccount(list.get(i).customerID);
 			accountList.add(vo);		
 		}
 		

@@ -27,7 +27,7 @@ public class HotelDeal_Stub implements HotelDealService {
 		typeList.add(typeRoomInfo1);
 		HotelRoomInfoVO hotelRoomInfoVO = new HotelRoomInfoVO("001","�ٻ���Ƶ�",typeList);
 		
-		HotelInfoVO hotelinfo=new HotelInfoVO("001","�ٻ���Ƶ�", "nanjing","xinjiekou","good","good","room",hotelRoomInfoVO,Star.five);
+		HotelInfoVO hotelinfo=new HotelInfoVO("001","�ٻ���Ƶ�", "nanjing","xinjiekou",null,"good","room",hotelRoomInfoVO,Star.five);
 		hotelInfolist.add(hotelinfo);
 
 		return hotelInfolist;
@@ -44,7 +44,7 @@ public class HotelDeal_Stub implements HotelDealService {
 		typeList.add(typeRoomInfo1);
 		HotelRoomInfoVO hotelRoomInfoVO = new HotelRoomInfoVO("001","�ٻ���Ƶ�",typeList);
 		
-		HotelInfoVO hotelinfo=new HotelInfoVO("001","�ٻ���Ƶ�", "nanjing","xinjiekou","good","good","room",hotelRoomInfoVO,Star.five);
+		HotelInfoVO hotelinfo=new HotelInfoVO("001","�ٻ���Ƶ�", "nanjing","xinjiekou",null,"good","room",hotelRoomInfoVO,Star.five);
 		hotelInfolist.add(hotelinfo);
 
 		return hotelInfolist;
@@ -58,7 +58,7 @@ public class HotelDeal_Stub implements HotelDealService {
 		typeList.add(typeRoomInfo1);
 		HotelRoomInfoVO hotelRoomInfoVO = new HotelRoomInfoVO("001","�ٻ���Ƶ�",typeList);
 		
-		HotelInfoVO hotelinfo=new HotelInfoVO("001","�ٻ���Ƶ�", "nanjing","xinjiekou","good","good","room",hotelRoomInfoVO,Star.five);
+		HotelInfoVO hotelinfo=new HotelInfoVO("001","�ٻ���Ƶ�", "nanjing","xinjiekou",null,"good","room",hotelRoomInfoVO,Star.five);
 		
 		return hotelinfo;
 	}

@@ -34,7 +34,7 @@ public class ManageHotelInfo_Stub implements ManageHotelInfoService {
 		typeList.add(typeRoomInfo1);
 		HotelRoomInfoVO hotelRoomInfoVO = new HotelRoomInfoVO("001","�ٻ���Ƶ�",typeList);
 		
-		HotelInfoVO hotelinfo=new HotelInfoVO("001","�ٻ���Ƶ�", "nanjing","xinjiekou","good","good","room",hotelRoomInfoVO,Star.five);
+		HotelInfoVO hotelinfo=new HotelInfoVO("001","�ٻ���Ƶ�", "nanjing","xinjiekou",null,"good","room",hotelRoomInfoVO,Star.five);
 		
 		return hotelinfo;
 	}
