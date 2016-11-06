@@ -11,7 +11,7 @@ public class RoomSingleService_Driver {
 			   "我的大酒店", "301", RoomType.Single, 203.00);
 	   
 	   System.out.println(roomSingleService.addSingleRoom("12312"));
-	   System.out.println(roomSingleService.editSingleRoom("234", "401").roomType);
+	   System.out.println(roomSingleService.editSingleRoom(roomVo));
 	   System.out.println(roomSingleService.deleteSingleRoom("234", "401"));
 	   System.out.println(roomSingleService.saveSingleRoom(roomVo));
 	   

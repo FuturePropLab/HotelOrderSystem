@@ -1,0 +1,5 @@
+package businesslogic.room;
+
+public class RoomHotelInfo {
+
+}

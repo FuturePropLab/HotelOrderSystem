@@ -8,7 +8,7 @@ public interface RoomSingleService {
 	
 	public ResultMessage addSingleRoom (String hotel_id);
 	
-	public RoomVO editSingleRoom (String hotel_id, String room_id);
+	public ResultMessage editSingleRoom (RoomVO room);
 	
 	public ResultMessage deleteSingleRoom (String hotel_id,String room_id);
 	

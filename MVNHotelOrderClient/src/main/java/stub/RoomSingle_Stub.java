@@ -21,10 +21,8 @@ public class RoomSingle_Stub implements RoomSingleService {
 	}
 
 
-	public RoomVO editSingleRoom(String hotel_id, String room_id) {
-		RoomVO roomVo = new RoomVO(hotel_id,"我的大酒店",
-				room_id, RoomType.Single, 200.00);
-		return roomVo;
+	public ResultMessage editSingleRoom(RoomVO room) {
+		return ResultMessage.Exist;
 	}
 
 
