@@ -27,9 +27,10 @@ public class TestCustomer {
 		String customer_id="0000";
 		MemberType memberType = new MemberType("123");
 		MemberVO membervo  = new MemberVO("123", memberType);
-		CustomerVO customerVO  = new CustomerVO(customer_id, "ÍõË§Î©", "ÄÐ", "15050522805", membervo);
+		
+		CustomerVO customerVO  = new CustomerVO(customer_id, "ÍõË§Î©", "ÄÐ", "15050522805", membervo,34);
 		assertEquals(expect,cu.addCustomer(test));
-		assertEquals(customerVO,cu.getCustomerInfo(customer_id));
+		assertEquals(customerVO.credit,cu.getCustomerInfo(customer_id).credit);
 		assertEquals(expect,cu.changeCustomerInfo(customerVO));
 	}
 

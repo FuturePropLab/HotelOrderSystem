@@ -6,6 +6,7 @@ import java.util.List;
 import businesslogicservice.CustomerDealService;
 import tools.MemberType;
 import tools.ResultMessage;
+import tools.ResultMessage2;
 import vo.CustomerSearchVO;
 import vo.CustomerVO;
 import vo.MemberVO;
@@ -21,9 +22,9 @@ public class CustomerDeal_Stub implements CustomerDealService {
 	}
 
 	
-	public ResultMessage changeCustomerInfo(CustomerVO customerInfo) {
-		if(customerInfo!=null)  return ResultMessage.Exist;
-				return ResultMessage.NotExist;
+	public ResultMessage2 changeCustomerInfo(CustomerVO customerInfo) {
+		if(customerInfo!=null)  return ResultMessage2.success;
+				return ResultMessage2.success;
 	}
 	public List<CustomerVO> searchCustomer(CustomerSearchVO customerSearchVO){
 		MemberType memberType = new MemberType("123");
