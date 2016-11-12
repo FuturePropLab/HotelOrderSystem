@@ -13,3 +13,21 @@ MVNHotelOrderClient/target/classes/driver/CustomerSignupService_Driver.class
 MVNHotelOrderClient/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
 
 *.class
+*.class
+*.class
+*.class
+*.class
+*.class
+*.class
+MVNHotelOrderClient/target/classes/businesslogic/customer/Customer.class
+*.class
+MVNHotelOrderClient/target/classes/stub/CustomerDeal_Stub.class
+*.class
+*.class
+*.class
+MVNHotelOrderClient/target/classes/businesslogic/customer/Customer.class
+*.class
+MVNHotelOrderClient/target/classes/businesslogicservice/CustomerDealService.class
+*.class
+*.class
+MVNHotelOrderClient/target/classes/driver/CustomerDealService_Driver.class

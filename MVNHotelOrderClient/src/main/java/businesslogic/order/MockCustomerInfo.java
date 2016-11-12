@@ -3,7 +3,11 @@ package businesslogic.order;
 import tools.MemberType;
 import vo.CustomerVO;
 import vo.MemberVO;
-
+/**
+ * 
+ * @author zjy
+ *
+ */
 public class MockCustomerInfo implements CustomerInfo{
 
 	public CustomerVO getCustomer(String customerID) {

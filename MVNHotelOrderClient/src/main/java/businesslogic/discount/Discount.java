@@ -13,7 +13,11 @@ public class Discount {
 	/**
 	 * 
 	 * @param orderInput
+<<<<<<< HEAD
 	 * @return 返回符合条件的优惠
+=======
+	 * @return 符合订单条件的所有优惠策略
+>>>>>>> origin/master
 	 */
 
 	public List<DiscountVO> getSuitableDiscount(OrderInputVO orderInput) {
@@ -24,7 +28,11 @@ public class Discount {
 	/**
 	 * 
 	 * @param discount_id
+<<<<<<< HEAD
 	 * @return 优惠策略设为无效
+=======
+	 * @return 被设置为生效或失效的优惠策略 
+>>>>>>> origin/master
 	 */
 	public DiscountVO invalidDiscount(String discount_id) {
 		DiscountCal_stub test=new DiscountCal_stub();
@@ -34,7 +42,11 @@ public class Discount {
 	/**
 	 * 
 	 * @param dsvo
+<<<<<<< HEAD
 	 * @return 返回符合搜索条件的优惠 
+=======
+	 * @return 所有优惠策略 
+>>>>>>> origin/master
 	 */
 	public List<DiscountVO> CheckDiscount(DiscountSearchVO dsvo){
 		DiscountCal_stub test=new DiscountCal_stub();

@@ -5,7 +5,11 @@ import tools.Mark;
 import tools.Star;
 import vo.HotelInfoVO;
 import vo.HotelRoomInfoVO;
-
+/**
+ * 
+ * @author zjy
+ *
+ */
 public class MockHotelInfo implements HotelInfo{
 
 	public HotelInfoVO getHotelInfo(String hotelID) {
