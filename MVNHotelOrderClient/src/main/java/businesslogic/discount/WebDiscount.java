@@ -1,9 +1,6 @@
 package businesslogic.discount;
 
-import java.util.Date;
-
 import stub.Discount_stub;
-import tools.ResultMessage;
 import tools.ResultMessage2;
 import vo.DiscountVO;
 import vo.DiscountVO_web;

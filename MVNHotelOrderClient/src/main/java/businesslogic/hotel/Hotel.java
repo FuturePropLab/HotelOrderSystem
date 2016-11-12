@@ -16,9 +16,9 @@ import vo.SearchHotelVO;
 
 public class Hotel {
 	/**
-	 * 添加酒店信息
+	 * 娣诲姞閰掑簵
 	 * @param vo
-	 * @return 添加成功与否
+	 * @return 娣诲姞鎴愬姛
 	 */
 	public ResultMessage2 addHotel(HotelInputVO vo) {
 		// TODO Auto-generated method stub
@@ -27,9 +27,9 @@ public class Hotel {
 	}
 	
 	/**
-	 * 修改酒店信息
+	 * 缂栬緫閰掑簵淇℃伅
 	 * @param hotel_id
-	 * @return 修改后酒店信息
+	 * @return 閰掑簵淇℃伅
 	 */
 	public HotelInfoVO editHotelInfo(String hotel_id) {
 		// TODO Auto-generated method stub
@@ -37,9 +37,9 @@ public class Hotel {
 		return test.editHotelInfo(hotel_id);
 	}
 	/**
-	 * 保存酒店信息
+	 *淇濆瓨閰掑簵淇℃伅
 	 * @param hotelInfo
-	 * @return成功失败
+	 * @return 鎴愬姛
 	 */
 	public ResultMessage2 saveHotelInfo(HotelInfoVO hotelInfo) {
 		// TODO Auto-generated method stub
@@ -48,9 +48,9 @@ public class Hotel {
 	}
 
 	/**
-	 * 搜索酒店
+	 * 鎼滅储閰掑簵
 	 * @param searchhotel
-	 * @return 符合条件的酒店
+	 * @return 閰掑簵淇℃伅鍒楄〃
 	 */
 	public List<HotelInfoVO> SearchHotel(SearchHotelVO searchhotel) {
 		// TODO Auto-generated method stub
@@ -59,10 +59,10 @@ public class Hotel {
 	}
 
 	/**
-	 * 排序
+	 * 鎺掑簭
 	 * @param hotelInfo
 	 * @param sortType
-	 * @return 按一定顺序排列的酒店信息
+	 * @return 鎺掑簭鍒楄〃
 	 */
 	public List<HotelInfoVO> SortHotel(List<HotelInfoVO> hotelInfo, SortType sortType) {
 		// TODO Auto-generated method stub
@@ -70,9 +70,9 @@ public class Hotel {
 		return test.SortHotel(hotelInfo, sortType);
 	}
 	/**
-	 * 
+	 * 鑾峰彇閰掑簵淇℃伅
 	 * @param hotel_id
-	 * @return 酒店详细信息
+	 * @return 
 	 */
 	public HotelInfoVO getHotelInfo(String hotel_id) {
 		// TODO Auto-generated method stub
@@ -83,7 +83,7 @@ public class Hotel {
 	/**
 	 * 
 	 * @param hotel_id
-	 * @return 酒店优惠策略
+	 * @return 閰掑簵浼樻儬鍒楄〃
 	 */
 	public List<DiscountVO_hotel> getHotelDiscount(String hotel_id) {
 		// TODO Auto-generated method stub
@@ -93,7 +93,7 @@ public class Hotel {
 	/**
 	 * 
 	 * @param hotel_id
-	 * @return 酒店评价信息
+	 * @return 閰掑簵璇勪环
 	 */
 	public List<CommentVO> getComment(String hotel_id) {
 		// TODO Auto-generated method stub

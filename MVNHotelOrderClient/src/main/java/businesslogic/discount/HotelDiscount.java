@@ -13,9 +13,9 @@ import vo.DiscountVO_hotel;
 public class HotelDiscount extends Discount{
 
 	/**
-	 * Ôö¼Ó¾ÆµêÓÅ»İ²ßÂÔ
+	 * å¢åŠ é…’åº—ä¼˜æƒ ç­–ç•¥
 	 * @param hotel_id
-	 * @return
+	 * @return æ·»åŠ æˆåŠŸ
 	 */
 
 	public ResultMessage2 addHotelDiscount(String hotel_id) {
@@ -25,9 +25,9 @@ public class HotelDiscount extends Discount{
 		return test.addHotelDiscount(hotel_id);
 	}
 	/**
-	 * ĞŞ¸Ä¾ÆµêÓÅ»İ²ßÂÔ
+	 * ä¿®æ”¹ç¼–è¾‘é…’åº—ä¼˜æƒ ç­–ç•¥
 	 * @param Discount_id
-	 * @return
+	 * @return ä¿®æ”¹åä¿¡æ¯
 	 */
 	public DiscountVO_hotel editHotelDiscount(String Discount_id){
 		Discount_stub test=new Discount_stub();
@@ -38,7 +38,7 @@ public class HotelDiscount extends Discount{
 		
 	}
 	/**
-	 * »ñÈ¡¾ÆµêÓÅ»İ²ßÂÔ
+	 * è·å–é…’åº—ä¼˜æƒ ç­–ç•¥
 	 * @param Discount_id
 	 * @return
 	 */
@@ -49,7 +49,7 @@ public class HotelDiscount extends Discount{
 		
 	}
 	/**
-	 * »ñÈ¡¾ÆµêÈ«²¿ÓÅ»İ²ßÂÔ
+	 * è·å–é…’åº—å…¨éƒ¨ä¼˜æƒ ç­–ç•¥
 	 * @param hotel_id
 	 * @return
 	 */

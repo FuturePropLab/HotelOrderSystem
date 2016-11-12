@@ -20,11 +20,11 @@ public class TestWebDiscount {
 		WebDiscount test=new WebDiscount();
 		Date t1=new Date(2016,9,1);
 		Date t2=new Date(2016,9,2);
-		DiscountVO_web dis=new DiscountVO_web(10,"�½ֿ�",9.9,t1,t2,10);
+		DiscountVO_web dis=new DiscountVO_web(10,"新街口",9.9,t1,t2,10);
 		String discountid="0001";
 		
 		assertEquals(expect,test.addWebDiscount(dis));
-		assertEquals(dis,test.editWebDiscount(discountid));
+		assertEquals(t2,test.editWebDiscount(discountid).enddate);
 		assertEquals(expect,test.saveDiscount(dis));
 		
 	}

@@ -5,6 +5,8 @@ import java.util.List;
 import businesslogicservice.DiscountDealService;
 import vo.DiscountSearchVO;
 import vo.DiscountVO;
+import vo.DiscountVO_hotel;
+import vo.DiscountVO_web;
 import vo.OrderInputVO;
 
 /**
@@ -16,12 +18,12 @@ public class discountCalController implements DiscountDealService {
 	
 	/**
 	 * @param OrderInputVO
-	 * @return µ÷ÓÃÁìÓòÀàµÄ·½·¨
+	 * @return ç¬¦åˆæ¡ä»¶çš„ä¼˜æƒ ç­–ç•¥
 	 */
-	public List<DiscountVO> getSuitableDiscount(OrderInputVO orderInput) {
+	/*public List<DiscountVO> getSuitableDiscount(OrderInputVO orderInput) {
 		Discount discount = new Discount();
 		return ((DiscountDealService) discount).getSuitableDiscount(orderInput);
-	}
+	}*/
 
 	public DiscountVO invalidDiscount(String discount_id) {
 		// TODO Auto-generated method stub
@@ -34,5 +36,17 @@ public class discountCalController implements DiscountDealService {
 		Discount discount = new Discount();
 		return ((DiscountDealService) discount).CheckDiscount(dsvo);
 	}
+
+	public List<DiscountVO_hotel> getSuitableDiscount_hotel(OrderInputVO orderInput) {
+		// TODO Auto-generated method stub
+		Discount discount = new Discount();
+		return ((DiscountDealService) discount).getSuitableDiscount_hotel(orderInput);
+		
+	}
+
+	public List<DiscountVO_web> getSuitableDiscount_web(OrderInputVO orderInput) {
+		// TODO Auto-generated method stub
+		Discount discount = new Discount();
+		return ((DiscountDealService) discount).getSuitableDiscount_web(orderInput);	}
 
 }

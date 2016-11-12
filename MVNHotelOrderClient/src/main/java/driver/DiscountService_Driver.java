@@ -1,10 +1,15 @@
 package driver;
 
+import java.sql.Time;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 import tools.ResultMessage;
+import tools.ResultMessage2;
 import vo.DiscountVO;
+import vo.DiscountVO_hotel;
+import vo.DiscountVO_web;
 
 public class DiscountService_Driver {
 	public static void main(String[] args) {
@@ -17,30 +22,34 @@ public class DiscountService_Driver {
 		DiscountVO disvo = new DiscountVO();
 		disvo.discount = 7;
 		disvo.Discount_id = "0050";
-		disvo = dis.addHotelDiscount("005");
+		
+		
+		ResultMessage2 re;
+		re=dis.addHotelDiscount("005");
 		System.out.println(disvo.discount);
 		
 		disvo = dis.getSingleHotelDiscount("001");
 		System.out.println(disvo.Discount_id);
 		
-		List<DiscountVO> list = new LinkedList<DiscountVO>();
-		list = dis.getHotelDiscount("001");
+		List<DiscountVO_hotel> list = new LinkedList<DiscountVO_hotel>();
+		
+		list=dis.getHotelDiscount("001");
 		System.out.println(list.get(0).Discount_id);
 		
 		disvo = dis.editHotelDiscount("000");
 		System.out.println(disvo.Discount_id);
 		
-		ResultMessage res = dis.saveDiscount(disvo);
-		if (res != ResultMessage.Exist)
+		ResultMessage2 res = dis.saveDiscount(disvo);
+		if (res != ResultMessage2.success)
 			System.out.println("Success");
 		else
 			System.out.println("False");
 		
-		disvo=dis.getAHotelDiscount("000");
-		System.out.println(disvo.discount);
 		
-		res=dis. addWebDiscount(disvo);
-		if (res != ResultMessage.Exist)
+		DiscountVO_web webvo=new DiscountVO_web(2,"nanjing",9.0,Time.valueOf("2016/11/3"), Time.valueOf("2016/11/4"),2);
+		
+		res=dis. addWebDiscount(webvo);
+		if (res != ResultMessage2.success)
 			System.out.println("Success");
 		else
 			System.out.println("False");

@@ -28,10 +28,10 @@ public class TestHotelDiscount {
 		DiscountVO_hotel expect2=new DiscountVO_hotel("0000",9.9,t1,t2);
 		List<DiscountVO_hotel> list=new LinkedList();
 		list.add(expect2);
-		assertEquals(list,test.getHotelDiscount(hotelid));
-		assertEquals(expect2,test.getSingleHotelDiscount(discountid));
-		assertEquals(expect2,test.editHotelDiscount(hotelid));
-		assertEquals(expect,test.addHotelDiscount(hotelid));
+		assertEquals(t1,test.getHotelDiscount(hotelid).get(0).startDate);
+		assertEquals(t1,test.getSingleHotelDiscount(discountid).startDate);
+		assertEquals(t2,test.editHotelDiscount(hotelid).EndDate);
+		assertEquals(ResultMessage2.success,test.addHotelDiscount(hotelid));
 	}
 	}
 		/*public ResultMessage2 addHotelDiscount(String hotel_id) {
@@ -81,7 +81,7 @@ public class MockDiscount {
 		 type=str;
 	 }
 	 public List<DiscountVO> getsuitableDiscount(){
-		 //Ó¦¸Ã¸ù¾Ýtype ºÍ orderInputÀ´get
+		 //Ó¦ï¿½Ã¸ï¿½ï¿½ï¿½type ï¿½ï¿½ orderInputï¿½ï¿½get
 		 List<DiscountVO> res=new LinkedList<DiscountVO>();
 		 DiscountVO dv=new DiscountVO();
 		 dv.discount=0.9;
@@ -111,11 +111,11 @@ public class TestStrategy {
 		
 		OrderInputVO orderInput = new OrderInputVO("0001", "00", Time.valueOf("2016/11/3"), Time.valueOf("2016/11/4"), Time.valueOf("2016/11/5"), RoomType.Double, 1, 1, false);
 		Strategy str=new Strategy();
-		StrategyVO expect=new StrategyVO(null, null);//´ýÐÞ¸Ä
+		StrategyVO expect=new StrategyVO(null, null);//ï¿½ï¿½ï¿½Þ¸ï¿½
 		
 		MockDiscount disW = new MockDiscount(orderInput,"web");
 		MockDiscount disH = new MockDiscount(orderInput,"hotel");
-		disW.getsuitableDiscount()//´ý²¹³ä
+		disW.getsuitableDiscount()//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		assertEquals(expect,str.CalculateBestStrategy(orderInput));
 	}
 	

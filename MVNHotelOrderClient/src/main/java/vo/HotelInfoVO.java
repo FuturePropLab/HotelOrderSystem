@@ -27,6 +27,17 @@ public class HotelInfoVO {
 	this.facility=facility;
 	this.hotelRoomVO=hotelRoomVO;
 	
+}public HotelInfoVO(String hotelID,String hotelName, String hotelAddress,String district,String introduction,String facility,HotelRoomInfoVO hotelRoomVO,Star star){
+	this.hotelID=hotelID;
+	this.hotelName=hotelName;
+	this.hotelAddress=hotelAddress;
+	this.ComeAddr=district;
+	this.star=star;
+	this. mark=mark;
+	this.introduction=introduction;
+	this.facility=facility;
+	this.hotelRoomVO=hotelRoomVO;
+	
 }
 	
 	

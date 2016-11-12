@@ -13,7 +13,7 @@ public class Discount {
 	/**
 	 * 
 	 * @param orderInput
-	 * @return ·ûºÏ¶©µ¥Ìõ¼şµÄËùÓĞÓÅ»İ²ßÂÔ
+	 * @return è¿”å›ç¬¦åˆæ¡ä»¶çš„ä¼˜æƒ 
 	 */
 
 	public List<DiscountVO> getSuitableDiscount(OrderInputVO orderInput) {
@@ -24,7 +24,7 @@ public class Discount {
 	/**
 	 * 
 	 * @param discount_id
-	 * @return ±»ÉèÖÃÎªÉúĞ§»òÊ§Ğ§µÄÓÅ»İ²ßÂÔ 
+	 * @return ä¼˜æƒ ç­–ç•¥è®¾ä¸ºæ— æ•ˆ
 	 */
 	public DiscountVO invalidDiscount(String discount_id) {
 		DiscountCal_stub test=new DiscountCal_stub();
@@ -34,7 +34,7 @@ public class Discount {
 	/**
 	 * 
 	 * @param dsvo
-	 * @return ËùÓĞÓÅ»İ²ßÂÔ 
+	 * @return è¿”å›ç¬¦åˆæœç´¢æ¡ä»¶çš„ä¼˜æƒ  
 	 */
 	public List<DiscountVO> CheckDiscount(DiscountSearchVO dsvo){
 		DiscountCal_stub test=new DiscountCal_stub();

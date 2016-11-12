@@ -14,7 +14,7 @@ public class Customer {
 	/**
 	 * 
 	 * @param customerInput
-	 * @return ³É¹¦
+	 * @return æ·»åŠ å®¢æˆ·
 	 */
 	public ResultMessage2 addCustomer(CustomerInputVO customerInput){
 		CustomerSignup_Stub test=new CustomerSignup_Stub();
@@ -23,9 +23,9 @@ public class Customer {
 		
 	}
 	/**
-	 * »ñÈ¡¿Í»§ĞÅÏ¢
+	 * è·å¾—å®¢æˆ·ä¿¡æ¯
 	 * @param customer_id
-	 * @return ¿Í»§ĞÅÏ¢
+	 * @return å®¢æˆ·ä¿¡æ¯
 	 */
 	public CustomerVO getCustomerInfo(String customer_id){
 		CustomerDeal_Stub test=new CustomerDeal_Stub();
@@ -35,7 +35,7 @@ public class Customer {
 		
 	}
 	/**
-	 * ĞŞ¸Ä¿Í»§ĞÅÏ¢
+	 * ä¿®æ”¹å®¢æˆ·ä¿¡æ¯
 	 * @param customerInfo
 	 * @return
 	 */
@@ -46,9 +46,9 @@ public class Customer {
 		
 	}
 	/**
-	 * ËÑË÷¿Í»§ĞÅÏ¢
+	 * æœç´¢å®¢æˆ·
 	 * @param customerSearchVO
-	 * @return ¿Í»§ĞÅÏ¢ÁĞ±í
+	 * @return ç¬¦åˆæ¡ä»¶çš„å®¢æˆ·åˆ—è¡¨
 	 */
 	public List<CustomerVO> searchCustomer(CustomerSearchVO customerSearchVO){
 		CustomerDeal_Stub test=new CustomerDeal_Stub();

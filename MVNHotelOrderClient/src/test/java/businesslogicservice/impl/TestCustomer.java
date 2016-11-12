@@ -28,7 +28,7 @@ public class TestCustomer {
 		MemberType memberType = new MemberType("123");
 		MemberVO membervo  = new MemberVO("123", memberType);
 		
-		CustomerVO customerVO  = new CustomerVO(customer_id, "ÍõË§Î©", "ÄÐ", "15050522805", membervo,34);
+		CustomerVO customerVO  = new CustomerVO(customer_id, "çŽ‹å¸…æƒŸ", "ç”·", "15050522805", membervo,34);
 		assertEquals(expect,cu.addCustomer(test));
 		assertEquals(customerVO.credit,cu.getCustomerInfo(customer_id).credit);
 		assertEquals(expect,cu.changeCustomerInfo(customerVO));
@@ -56,6 +56,6 @@ public class TestCustomer {
 	}
 	MemberType memberType = new MemberType("123");
 		MemberVO membervo  = new MemberVO("123", memberType);
-		CustomerVO customerVO  = new CustomerVO(customer_id, "ÍõË§Î©", "ÄÐ", "15050522805", membervo);
+		CustomerVO customerVO  = new CustomerVO(customer_id, "ï¿½ï¿½Ë§Î©", "ï¿½ï¿½", "15050522805", membervo);
 		return customerVO;
 	*/
