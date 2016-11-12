@@ -39,7 +39,7 @@ public class Customer {
 	 * @param customerInfo
 	 * @return
 	 */
-	public ResultMessage changeCustomerInfo(CustomerVO customerInfo){
+	public ResultMessage2 changeCustomerInfo(CustomerVO customerInfo){
 		CustomerDeal_Stub test=new CustomerDeal_Stub();
 		
 		return  test.changeCustomerInfo(customerInfo);
