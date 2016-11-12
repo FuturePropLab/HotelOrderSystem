@@ -92,7 +92,7 @@ public class Discount_stub implements DiscountWebService,DiscountHotelService{
 		// TODO Auto-generated method stub
 		Date t1=new Date(2016,9,1);
 		Date t2=new Date(2016,9,2);
-		DiscountVO_web dis=new DiscountVO_web(10,"�½ֿ�",9.9,t1,t2,10);
+		DiscountVO_web dis=new DiscountVO_web(10,"新街口",9.9,t1,t2,10);
 		
 		return dis;
 	}
