@@ -1,0 +1,15 @@
+businesslogic\credit\TestCredit.class
+businesslogic\room\TestRoomSingle.class
+businesslogic\account\TestAccountWeb.class
+businesslogic\account\TestAccountCustomer.class
+businesslogic\room\TestRoomDeal.class
+businesslogic\login\TestLogin.class
+businesslogic\login\TestLoginController.class
+businesslogicservice\impl\TestLoginServiceImpl2.class
+businesslogic\account\TestAccountHotel.class
+businesslogic\order\TestOrderController.class
+businesslogicservice\impl\TestLoginEXP.class
+businesslogic\order\TestOrder.class
+businesslogicservice\impl\TestLoginServiceImpl1.class
+businesslogic\room\TestHotelRoomInfo.class
+businesslogic\strategy\TestStrategy.class

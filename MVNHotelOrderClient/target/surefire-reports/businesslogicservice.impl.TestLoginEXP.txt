@@ -1,16 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: businesslogicservice.impl.TestLoginEXP
 -------------------------------------------------------------------------------
-<<<<<<< Updated upstream
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 sec
-=======
-<<<<<<< HEAD
-<<<<<<< Updated upstream
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
-=======
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.058 sec
->>>>>>> Stashed changes
-=======
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 sec
->>>>>>> origin/master
->>>>>>> Stashed changes

@@ -16,16 +16,19 @@ public class TestHotelRoomInfo {
 	@Test
 	public void test() {
 		RoomHotelInfo hotelRoomInfo=new RoomHotelInfo();
-		
-		HotelRoomInfoVO hotelRoomInfoVO=new HotelRoomInfoVO("", "",(List<TypeRoomInfo>) new TypeRoomInfo(null, null, null, 0, null));
-		assertEquals(hotelRoomInfoVO,hotelRoomInfo.getRoomInfo("001"));
+		List<TypeRoomInfo> list =new LinkedList<TypeRoomInfo>();
+		TypeRoomInfo typeRoomInfo=new TypeRoomInfo("", "", RoomType.Double, 3, 3.0);
+		HotelRoomInfoVO hotelRoomInfoVO=new HotelRoomInfoVO("001", "",list);
+		assertEquals(hotelRoomInfoVO.hotelID,hotelRoomInfo.getRoomInfo("001").hotelID);
 	}
 	@Test
 	public void test2() {
 		RoomHotelInfo hotelRoomInfo=new RoomHotelInfo();
 		List<TypeRoomInfo> list= new LinkedList<TypeRoomInfo>();
 		 list.add(new TypeRoomInfo("","", RoomType.Double, 3, 3.0));
-		assertEquals( hotelRoomInfo,hotelRoomInfo.editRoomInfo(new HotelRoomInfoVO(" ", " ",list)));
+		 TypeRoomInfo typeRoomInfo=new TypeRoomInfo("", "", RoomType.Double, 3, 3.0);
+		HotelRoomInfoVO hotelRoomInfoVO=new HotelRoomInfoVO(" ","", list);
+		assertEquals( hotelRoomInfoVO.hotelID,hotelRoomInfo.editRoomInfo(new HotelRoomInfoVO(" ", " ",list)).hotelID);
 		
 	}
 }

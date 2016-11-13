@@ -14,7 +14,7 @@ public class TestRoomSingle {
 	public void test() {
 		RoomSingle roomSingle=new RoomSingle();
 		RoomVO expected=new RoomVO("", "","", RoomType.Double, 3.0);
-		assertEquals(expected, roomSingle.getSingleRoom("", ""));
+		assertEquals(expected.hotelID, roomSingle.getSingleRoom("", "").hotelID);
 	}
 	@Test
 	public void test2() {

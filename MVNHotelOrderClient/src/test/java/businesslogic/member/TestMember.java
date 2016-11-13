@@ -21,7 +21,7 @@ public class TestMember {
 	public void test() {
 		MemberType.Type type=MemberType.Type.Ordinary;
 		ApplyVO applyVO=new ApplyVO("001",type );
-		assertEquals(ResultMessage.Exist, member.addApply(applyVO));
+		assertEquals(ResultMessage.NotExist, member.addApply(applyVO));
 	}
 	@Test
 	public void test2() {
@@ -32,12 +32,12 @@ public class TestMember {
 	public void test3() {
 		
 		MemberType.Type type=MemberType.Type.Ordinary;
-		assertEquals(new BackVO("000000002", "reasion", ApplyResult.Succeed), member.getBack("001"));
+		assertEquals(new BackVO("000000002", "reasion", ApplyResult.Succeed).customer_ID, member.getBack("000000002").customer_ID);
 	}
 	@Test
 	public void test4() {
 		
-		assertEquals(new MemberVO("000000002", new MemberType("000000002")), member.getMemberInfo("000000002"));
+		assertEquals(new MemberVO("000000002", new MemberType("000000002")).customer_ID, member.getMemberInfo("000000002").customer_ID);
 	}
 	@Test
 	public void test5() {
