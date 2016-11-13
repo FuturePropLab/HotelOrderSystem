@@ -34,4 +34,11 @@ public ResultMessage2 saveDiscount(DiscountVO discount) {
 	return test.saveDiscount(discount);
 	
 }
+
+public DiscountVO_web getWebDiscount(String discount_id) {
+	// TODO Auto-generated method stub
+	Discount_stub test=new Discount_stub();
+	return test.getWebDiscount(discount_id);
+}
+
 }

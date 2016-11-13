@@ -31,5 +31,11 @@ public class DiscountWebController implements DiscountWebService {
 		
 	}
 
+	public DiscountVO_web getWebDiscount(String Discount_id) {
+		// TODO Auto-generated method stub
+		WebDiscount web=new WebDiscount();
+		return web.getWebDiscount(Discount_id);
+	}
+
 
 }
