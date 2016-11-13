@@ -3,6 +3,7 @@
 >>>>>>>=Stashed changes
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
+<<<<<<< Updated upstream
 encoding//src/main/java/businesslogic/customer/Customer.java=UTF-8
 encoding//src/main/java/businesslogic/customer/CustomerDealController.java=UTF-8
 encoding//src/main/java/businesslogic/customer/CustomerSignupController.java=UTF-8
@@ -21,6 +22,9 @@ encoding//src/main/java/businesslogic/hotel/MockHotelDiscount.java=UTF-8
 encoding//src/main/java/businesslogic/hotel/MockOrder.java=UTF-8
 encoding//src/main/java/businesslogic/hotel/getComment.java=UTF-8
 encoding//src/main/java/businesslogic/hotel/getDiscountInfo.java=UTF-8
+=======
+encoding//src/main/java/businesslogic/discount/Discount.java=UTF-8
+>>>>>>> Stashed changes
 encoding//src/main/java/businesslogic/login=UTF-8
 encoding//src/main/java/driver/CustomerDealService_Driver.java=UTF-8
 encoding//src/main/java/driver/CustomerSignupService_Driver.java=UTF-8
