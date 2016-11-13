@@ -40,7 +40,7 @@ public class MockDiscount implements DiscountDealService {
 		// TODO Auto-generated method stub
 		// 应该根据type 和 orderInput来get
 		List<DiscountVO_web> res = new LinkedList<DiscountVO_web>();
-		DiscountVO dv = new DiscountVO_web();
+		DiscountVO dv = new DiscountVO_web(0, type, 0, null, null, 0);
 		dv.discount = 0.9;
 		dv.Discount_id = "0001";
 		res.add((DiscountVO_web) dv);
