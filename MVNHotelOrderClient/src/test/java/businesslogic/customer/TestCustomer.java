@@ -27,7 +27,7 @@ public class TestCustomer {
 		String customer_id="0000";
 		MemberType memberType = new MemberType("123");
 		MemberVO membervo  = new MemberVO("123", memberType);
-		CustomerVO customerVO  = new CustomerVO(customer_id, "ÍõË§Î©", "ÄÐ", "15050522805", membervo,34);
+		CustomerVO customerVO  = new CustomerVO(customer_id, "çŽ‹å¸…æƒŸ", "ç”·", "15050522805", membervo,34);
 		assertEquals(expect,cu.addCustomer(test));
 		assertEquals(customerVO.customerName,cu.getCustomerInfo(customer_id).customerName);
 		assertEquals(ResultMessage.Exist,cu.changeCustomerInfo(customerVO));
