@@ -31,3 +31,4 @@ MVNHotelOrderClient/target/classes/businesslogicservice/CustomerDealService.clas
 *.class
 *.class
 MVNHotelOrderClient/target/classes/driver/CustomerDealService_Driver.class
+*.lst
