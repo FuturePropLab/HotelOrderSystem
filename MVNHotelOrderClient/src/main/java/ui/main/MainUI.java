@@ -14,7 +14,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import ui.hotel.HotelDetailController;
-
+/**
+ * 整个UI的控制器，包括初始化打开软件的UI
+ * @author zjy
+ *
+ */
 public class MainUI {
 	private Stage primaryStage;
     private AnchorPane rootLayout;
@@ -23,10 +27,10 @@ public class MainUI {
 	public MainUI(Stage primaryStage) {
 		super();
 		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("AddressApp");
-        this.primaryStage.getIcons().add(new Image("file:resources/images/close.png"));
+		this.primaryStage.setTitle("AddressApp");//设置APP的标题
+        //this.primaryStage.getIcons().add(new Image("file:resources/images/close.png"));//设置APP的图标
         initRootLayout();
-        showHotelDetails();
+        //showHotelDetails();
 	}
 	
 	/**
