@@ -25,6 +25,7 @@
     <property name="line.separator" value="
 "/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+<<<<<<< Updated upstream
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 8.1"/>
     <property name="classworlds.conf" value="D:\eclipse\eclipse\workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf7369758734369867938.tmp"/>
@@ -32,9 +33,27 @@
     <property name="java.library.path" value="D:\eclipse\JDK\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;D:/eclipse/eclipse/JRE1.8/bin/server;D:/eclipse/eclipse/JRE1.8/bin;D:/eclipse/eclipse/JRE1.8/lib/amd64;.;C:\ProgramData\Oracle\Java\javapath;C:\Windows\System32;C:\Windows;C:\Windows\system32\WBEM;D:\eclipse\JDK\bin;D:\eclipse\JDK\jre\bin;D:\eclipse\Inno Setup\Inno Setup 5;D:\eclipse\eclipse for c++\mingw\bin;D:\eclipse\eclipse for c++\mingw\mingw32\bin;D:\eclipse\eclipse for c++\mingw;C:\Users\asus-a\AppData\Roaming\npm;C:\Users\asus-a\Desktop;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
+<<<<<<< Updated upstream
     <property name="sun.management.compiler" value="HotSpot Client Compiler"/>
     <property name="os.version" value="6.3"/>
     <property name="user.home" value="C:\Users\asus-a"/>
+=======
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.0"/>
+    <property name="user.home" value="C:\Users\13129"/>
+=======
+    <property name="os.name" value="Mac OS X"/>
+    <property name="classworlds.conf" value="/Users/wshwbluebird/java/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf1811076054825311063.tmp"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/Users/wshwbluebird/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.12"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="user.home" value="/Users/wshwbluebird"/>
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     <property name="user.timezone" value="Asia/Shanghai"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
     <property name="java.specification.version" value="1.8"/>
@@ -57,9 +76,20 @@
     <property name="file.separator" value="\"/>
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
     <property name="sun.cpu.endian" value="little"/>
+<<<<<<< Updated upstream
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.desktop" value="windows"/>
+<<<<<<< Updated upstream
     <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
+=======
+    <property name="sun.cpu.isalist" value="amd64"/>
+=======
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="sun.cpu.isalist" value=""/>
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   </properties>
   <testcase classname="businesslogic.login.TestLoginController" name="testLogin" time="0"/>
 </testsuite>
