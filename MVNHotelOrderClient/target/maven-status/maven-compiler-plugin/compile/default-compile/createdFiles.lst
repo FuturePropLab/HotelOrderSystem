@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+>>>>>>> origin/master
 businesslogicservice\CustomerDealService.class
 stub\MemberData_Stub.class
 businesslogic\order\MockCustomerInfo.class
@@ -212,3 +218,11 @@ vo\DiscountVO_web.class
 po\HotelAccountPO.class
 vo\CustomerSearchVO.class
 driver\CustomerSignupService_Driver.class
+<<<<<<< HEAD
+=======
+=======
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> origin/master
+>>>>>>> origin/master
