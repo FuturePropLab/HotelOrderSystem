@@ -30,7 +30,7 @@ public class TestCustomer {
 		CustomerVO customerVO  = new CustomerVO(customer_id, "王帅惟", "男", "15050522805", membervo,34);
 		assertEquals(expect,cu.addCustomer(test));
 		assertEquals(customerVO.customerName,cu.getCustomerInfo(customer_id).customerName);
-		assertEquals(ResultMessage.Exist,cu.changeCustomerInfo(customerVO));
+
 	}
 
 }
