@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 businesslogicservice\CustomerDealService.class
 stub\MemberData_Stub.class
 businesslogic\order\MockCustomerInfo.class
@@ -212,9 +211,4 @@ ui\hotel\Hotel.class
 vo\DiscountVO_web.class
 po\HotelAccountPO.class
 vo\CustomerSearchVO.class
-<<<<<<< Updated upstream
 driver\CustomerSignupService_Driver.class
-=======
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
