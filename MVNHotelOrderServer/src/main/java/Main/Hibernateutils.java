@@ -4,7 +4,6 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.*;
 import org.hibernate.service.ServiceRegistry;
  
-	@SuppressWarnings("deprecation")
 	public class Hibernateutils {
         private static SessionFactory sessionFactory;
         static {
@@ -17,8 +16,7 @@ import org.hibernate.service.ServiceRegistry;
 //            	sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
                
             } catch (Throwable ex) {
-            throw new ExceptionInInitializerError(ex);
-
+                throw new ExceptionInInitializerError(ex);
             }
         }
         public static SessionFactory getSessionFactory() {
