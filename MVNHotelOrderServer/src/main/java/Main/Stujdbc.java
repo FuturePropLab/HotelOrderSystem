@@ -6,14 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Main {
+public class Stujdbc {
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
 	static final String DB_URL = "jdbc:mysql://localhost/wsw";
 	
 	static final String USER = "root";
 	static final String PASS = "root";
 	
-	public static void main(String[] args) {
+	int getNUM() {
 		Connection conn = null;
 		Statement stmt = null;
 		
@@ -32,24 +32,28 @@ public class Main {
 		      String sql;
 		      sql = "SELECT * FROM STUDENT";
 		      ResultSet rs = stmt.executeQuery(sql);
-		      
+		      int num = 0;
 		      while(rs.next()){
-		    	  String sno = rs.getString("sno");
-		    	  String sn = rs.getString("sn");
-		    	  String sd = rs.getString("sd");
-		    	  String si = rs.getString("si");
-		    	  
-		    	  System.out.println("*************************************");
-		    	  System.out.println("sno:   "+sno);
-		    	  System.out.println("sn:   "+sn);
-		    	  System.out.println("sd:   "+sd);
-		    	  System.out.println("si:   "+si);
-		    	  System.out.println("*************************************");
+//		    	  String sno = rs.getString("sno");
+//		    	  String sn = rs.getString("sn");
+//		    	  String sd = rs.getString("sd");
+//		    	  String si = rs.getString("si");
+//		    	  
+//		    	  System.out.println("*************************************");
+//		    	  System.out.println("sno:   "+sno);
+//		    	  System.out.println("sn:   "+sn);
+//		    	  System.out.println("sd:   "+sd);
+//		    	  System.out.println("si:   "+si);
+//		    	  System.out.println("*************************************");
+		    	  num++;
 		      }
 		      
 		      rs.close();
 		      stmt.close();
 		      conn.close();
+		      return num;
+		      
+		      
 		}catch(SQLException se){
 			se.printStackTrace();
 		} catch (ClassNotFoundException e) {
@@ -68,5 +72,8 @@ public class Main {
 		         se.printStackTrace();
 		      }//end finally try
 		   }//end try
+		return 0;
 	}
+	
+
 }
