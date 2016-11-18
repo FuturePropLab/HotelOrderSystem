@@ -9,7 +9,7 @@ import org.hibernate.service.ServiceRegistry;
         static {
             try {
             	Configuration cfg = new Configuration();
-            	cfg.configure("hibernate.cfg.xml");
+            	cfg.configure("/hibernate.cfg.xml");
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(cfg.getProperties()).build();
                  sessionFactory = cfg
