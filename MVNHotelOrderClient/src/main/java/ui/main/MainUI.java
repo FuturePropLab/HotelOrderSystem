@@ -52,6 +52,12 @@ public class MainUI {
             // Give the controller access to the main app.
             rootLayoutController= loader.getController();
             rootLayoutController.setPrimaryStage(primaryStage);
+            
+//            FXMLLoader hotelDetailsloader = new FXMLLoader();
+//            hotelDetailsloader.setLocation(MainUI.class
+//                    .getResource("../hotel/HotelDetail.fxml"));
+//            AnchorPane hotelDetailsLayout = (AnchorPane) hotelDetailsloader.load();
+//            rootLayoutController.setDetails(hotelDetailsLayout);
 
             primaryStage.show();
         } catch (IOException e) {

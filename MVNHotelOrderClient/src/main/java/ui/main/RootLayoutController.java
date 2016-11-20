@@ -23,6 +23,14 @@ public class RootLayoutController {
 	@FXML
 	private AnchorPane guid;
 
+	public AnchorPane getDetails() {
+		return details;
+	}
+
+	public AnchorPane getGuid() {
+		return guid;
+	}
+
 	public void setDetails(AnchorPane details) {
 		this.details = details;
 	}
