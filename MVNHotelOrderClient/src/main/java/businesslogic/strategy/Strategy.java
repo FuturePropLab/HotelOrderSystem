@@ -1,6 +1,6 @@
 package businesslogic.strategy;
 
-import businesslogicservice.DiscountDealService;
+import businesslogicservice.DiscountGetService;
 import vo.DiscountVO;
 import vo.DiscountVO_hotel;
 import vo.DiscountVO_web;

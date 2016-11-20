@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import businesslogicservice.DiscountDealService;
+import businesslogicservice.DiscountGetService;
 import vo.DiscountSearchVO;
 import vo.DiscountVO;
 import vo.DiscountVO_hotel;
 import vo.DiscountVO_web;
 import vo.OrderInputVO;
 
-public class DiscountCal_stub implements DiscountDealService{
+public class DiscountCal_stub implements DiscountGetService{
 
 	public List<DiscountVO> getSuitableDiscount(OrderInputVO orderInput) {
 		// TODO Auto-generated method stub

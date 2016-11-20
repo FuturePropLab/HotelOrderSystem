@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import businesslogic.discount.Discount;
-import businesslogicservice.DiscountDealService;
+import businesslogicservice.DiscountGetService;
 import vo.DiscountSearchVO;
 import vo.DiscountVO;
 import vo.DiscountVO_hotel;
@@ -16,7 +16,7 @@ import vo.OrderInputVO;
  * @author LWY
  *
  */
-public class MockDiscount implements DiscountDealService {
+public class MockDiscount implements DiscountGetService {
 	private String type;
 
 	//constructor
@@ -47,17 +47,17 @@ public class MockDiscount implements DiscountDealService {
 		return res;
 	}
 	
-	
-	// 无须调用的方法
-	public DiscountVO invalidDiscount(String discount_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public List<DiscountVO> CheckDiscount(DiscountSearchVO dsvo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	
+//	// 无须调用的方法
+//	public DiscountVO invalidDiscount(String discount_id) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	public List<DiscountVO> CheckDiscount(DiscountSearchVO dsvo) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 
 }

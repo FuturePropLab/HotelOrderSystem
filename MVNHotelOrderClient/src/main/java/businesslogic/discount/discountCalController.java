@@ -2,7 +2,7 @@ package businesslogic.discount;
 
 import java.util.List;
 
-import businesslogicservice.DiscountDealService;
+import businesslogicservice.DiscountGetService;
 import vo.DiscountSearchVO;
 import vo.DiscountVO;
 import vo.DiscountVO_hotel;
@@ -14,7 +14,7 @@ import vo.OrderInputVO;
  * @author chenyuyan
  *
  */
-public class discountCalController implements DiscountDealService {
+public class discountCalController implements DiscountGetService {
 	
 	/**
 	 * @param OrderInputVO
@@ -25,28 +25,28 @@ public class discountCalController implements DiscountDealService {
 		return ((DiscountDealService) discount).getSuitableDiscount(orderInput);
 	}*/
 
-	public DiscountVO invalidDiscount(String discount_id) {
-		// TODO Auto-generated method stub
-		Discount discount = new Discount();
-		return ((DiscountDealService) discount).invalidDiscount(discount_id);
-	}
-
-	public List<DiscountVO> CheckDiscount(DiscountSearchVO dsvo) {
-		// TODO Auto-generated method stub
-		Discount discount = new Discount();
-		return ((DiscountDealService) discount).CheckDiscount(dsvo);
-	}
+//	public DiscountVO invalidDiscount(String discount_id) {
+//		// TODO Auto-generated method stub
+//		Discount discount = new Discount();
+//		return ((DiscountGetService) discount).invalidDiscount(discount_id);
+//	}
+//
+//	public List<DiscountVO> CheckDiscount(DiscountSearchVO dsvo) {
+//		// TODO Auto-generated method stub
+//		Discount discount = new Discount();
+//		return ((DiscountGetService) discount).CheckDiscount(dsvo);
+//	}
 
 	public List<DiscountVO_hotel> getSuitableDiscount_hotel(OrderInputVO orderInput) {
 		// TODO Auto-generated method stub
 		Discount discount = new Discount();
-		return ((DiscountDealService) discount).getSuitableDiscount_hotel(orderInput);
+		return ((DiscountGetService) discount).getSuitableDiscount_hotel(orderInput);
 		
 	}
 
 	public List<DiscountVO_web> getSuitableDiscount_web(OrderInputVO orderInput) {
 		// TODO Auto-generated method stub
 		Discount discount = new Discount();
-		return ((DiscountDealService) discount).getSuitableDiscount_web(orderInput);	}
+		return ((DiscountGetService) discount).getSuitableDiscount_web(orderInput);	}
 
 }
