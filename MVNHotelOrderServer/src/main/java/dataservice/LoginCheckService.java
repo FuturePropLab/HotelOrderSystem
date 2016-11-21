@@ -3,6 +3,8 @@ package dataservice;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
+import tools.AccountType;
+
 /**
  * 检验登录的RMI调用
  * @author wshwbluebird
@@ -16,5 +18,5 @@ public interface LoginCheckService extends Remote{
 	 * @return boolean
 	 * @throws RemoteException 
 	 */
-	public boolean checkLogin(String username ,String password) throws RemoteException;
+	public boolean checkLogin(String username ,String password, AccountType accountType) throws RemoteException;
 }

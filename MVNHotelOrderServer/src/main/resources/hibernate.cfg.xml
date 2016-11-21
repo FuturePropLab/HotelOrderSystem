@@ -24,6 +24,6 @@ jdbc:mysql://localhost:3306/wsw
         <property name="format_sql">true</property>
         <mapping class="testHibernate.Student"/>
         <mapping class="testHibernate.SC"/>
-        <mapping class="testHibernate.AccountPO"/>
+        <mapping class="po.AccountPO"/>
     </session-factory>
 </hibernate-configuration>

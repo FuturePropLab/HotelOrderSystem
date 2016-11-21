@@ -5,17 +5,18 @@ import org.hibernate.Transaction;
 
 import passwordtool.MD5Util;
 import passwordtool.ShaUtil;
+import po.AccountPO;
 import tools.AccountType;
 
 public class AccountHibernate {
 		public static void main(String[] args) throws Exception {
 			Session s = Hibernateutils.getSessionFactory().openSession();  //查询用
 	        Transaction t = s.beginTransaction(); // 提交用
-	        String id = "ID001";
+	        String id = "CS001";
 	        String password = "zhujunyi";
 	        MD5Util md = new MD5Util();
 	        ShaUtil sh = new ShaUtil();
-	        AccountPO po = new AccountPO(md.md5Encode(id),sh.shaEncode(password), "朱俊逸001", AccountType.Customer);
+	        AccountPO po = new AccountPO(md.md5Encode(id),sh.shaEncode(password), AccountType.Customer);
 	        s.save(po);
 	        t.commit();
 	       // Query q = s.createSQLQuery("select sa from Student where sno IN (select sno from SC where g > 90)")

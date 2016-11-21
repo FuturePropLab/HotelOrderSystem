@@ -1,6 +1,8 @@
 package po;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,17 +13,15 @@ import tools.AccountType;
 public class AccountPO {
 		private String id;
 		private String password;
-		private String name;
+		@Enumerated(EnumType.STRING)
 		private AccountType accountType;
 		
-		public AccountPO(String id , String password , String name , AccountType accountType){
+		public AccountPO(String id , String password  , AccountType accountType){
 			this.id = id;
-			this.name = name;
 			this.password = password;
 			this.accountType = accountType;
 		}
 		@Id
-		@GeneratedValue(strategy=GenerationType.AUTO)
 		public String getId() {
 			return id;
 		}
@@ -37,14 +37,7 @@ public class AccountPO {
 			this.password = password;
 		}
 
-		public String getName() {
-			return name;
-		}
-
-		public void setName(String name) {
-			this.name = name;
-		}
-
+		@Enumerated(EnumType.STRING)
 		public AccountType getAccountType() {
 			return accountType;
 		}
