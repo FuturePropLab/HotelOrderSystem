@@ -1,4 +1,4 @@
-package Main;
+package testHibernate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

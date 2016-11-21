@@ -1,8 +1,10 @@
-package Main;
+package testHibernate;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import testHibernate.OOhibernate;
 
 public class TestHibernate1 {
 

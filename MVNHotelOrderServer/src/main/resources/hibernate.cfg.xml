@@ -19,7 +19,8 @@ jdbc:mysql://localhost:3306/wsw
         <!-- Show and print nice SQL on stdout -->
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
-        <mapping class="Main.Student"/>
-         <mapping class="Main.SC"/>
+        <mapping class="testHibernate.Student"/>
+        <mapping class="testHibernate.SC"/>
+        <mapping class="testHibernate.AccountPO"/>
     </session-factory>
 </hibernate-configuration>

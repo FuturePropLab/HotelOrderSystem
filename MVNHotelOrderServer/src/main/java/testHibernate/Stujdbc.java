@@ -1,4 +1,4 @@
-package Main;
+package testHibernate;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

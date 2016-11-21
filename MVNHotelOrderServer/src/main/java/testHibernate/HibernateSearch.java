@@ -1,4 +1,4 @@
-package Main;
+package testHibernate;
 
 import java.util.Iterator;
 import java.util.List;
