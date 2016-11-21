@@ -5,12 +5,13 @@ import vo.MemberVO;
 public class CustomerPO {
 
 
-	  private String customeID; //客户的ID
-	  private String customerName; //客户的姓名
-	  private String gender; //客户的性别
-	  private String telephone; //客户饿的电话
-	  private MemberPO memberpo; //客户饿的会员信息
+	  private String customeID; //瀹㈡埛鐨処D
+	  private String customerName; //瀹㈡埛鐨勫鍚�
+	  private String gender; //瀹㈡埛鐨勬�у埆
+	  private String telephone; //瀹㈡埛楗跨殑鐢佃瘽
+	  private MemberPO memberpo; //瀹㈡埛楗跨殑浼氬憳淇℃伅
 	  private int credit;
+	  private String passworld;
 	  
 	 public CustomerPO( String customeID, String customerName,
       String gender, String telephone, MemberVO membervo,int credit){
@@ -21,6 +22,15 @@ public class CustomerPO {
 		   this.telephone =telephone;
 		   this.credit = credit;
 	  }
+	 public CustomerPO(String username,String password,
+				String customerName, String telephone, String gender){
+				   //this.customeID = customeID;
+				   this.customerName = username;
+				   this.gender = gender;
+				   this.memberpo = memberpo;
+				   this.telephone =telephone;
+				   
+			  }
 	 
 	  public String getCustomeID() {
 		return customeID;

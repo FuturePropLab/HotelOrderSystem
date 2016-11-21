@@ -2,6 +2,7 @@ package businesslogic.customer;
 
 import java.util.List;
 
+import po.CustomerPO;
 import stub.CustomerDeal_Stub;
 import stub.CustomerSignup_Stub;
 import tools.ResultMessage;
@@ -18,6 +19,19 @@ public class Customer {
 	 */
 	public ResultMessage2 addCustomer(CustomerInputVO customerInput){
 		CustomerSignup_Stub test=new CustomerSignup_Stub();
+		ResultMessage2 re=ResultMessage2.success;
+		for(int i=0;i<customerInput.telephone.length();i++){
+			if(customerInput.telephone.charAt(i)>'9'&&customerInput.telephone.charAt(i)<'0'){
+				re=ResultMessage2.fail;
+			}
+		}
+		if(re==ResultMessage2.success){
+		
+		
+		}
+		
+		
+		
 		
 		return test.addCustomer(customerInput);
 		
