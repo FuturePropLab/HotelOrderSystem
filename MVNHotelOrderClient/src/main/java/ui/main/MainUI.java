@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -52,12 +53,6 @@ public class MainUI {
             // Give the controller access to the main app.
             rootLayoutController= loader.getController();
             rootLayoutController.setPrimaryStage(primaryStage);
-            
-//            FXMLLoader hotelDetailsloader = new FXMLLoader();
-//            hotelDetailsloader.setLocation(MainUI.class
-//                    .getResource("../hotel/HotelDetail.fxml"));
-//            AnchorPane hotelDetailsLayout = (AnchorPane) hotelDetailsloader.load();
-//            rootLayoutController.setDetails(hotelDetailsLayout);
 
             primaryStage.show();
         } catch (IOException e) {
@@ -65,8 +60,8 @@ public class MainUI {
         }
     }
     
-    
     /**
+     * @deprecated
      * Shows the hotel details inside the root layout.
      */
     public void showHotelDetails() {

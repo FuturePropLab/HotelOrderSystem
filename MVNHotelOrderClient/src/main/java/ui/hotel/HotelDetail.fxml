@@ -20,9 +20,9 @@
         <tabs>
           <Tab text="   简介  ">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="389.0" prefWidth="424.0">
+              <AnchorPane fx:id="introduction" minHeight="0.0" minWidth="0.0" prefHeight="389.0" prefWidth="424.0">
                      <children>
-                        <ImageView fitHeight="147.0" fitWidth="277.0" layoutX="74.0" AnchorPane.leftAnchor="74.0" AnchorPane.topAnchor="0.0">
+                        <ImageView fitHeight="147.0" fitWidth="277.0" layoutX="74.0" AnchorPane.topAnchor="0.0">
                            <image>
                               <Image url="@../../../resources/images/picture.png" />
                            </image>
@@ -48,17 +48,17 @@
           </Tab>
           <Tab text="设施服务">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane fx:id="facilities" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
             </content>
           </Tab>
             <Tab text="  评价  ">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane fx:id="assessment" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>
             </Tab>
         </tabs>
       </TabPane>
-      <ImageView fitHeight="250.0" fitWidth="475.0" layoutY="7.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ImageView fx:id="hotelImage" fitHeight="250.0" fitWidth="475.0" layoutY="7.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../../../resources/images/picture.png" />
          </image>
@@ -80,30 +80,36 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label prefHeight="62.0" prefWidth="110.0" text="总统套房" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Label fx:id="EluxeSuite" prefHeight="62.0" prefWidth="110.0" text="总统套房" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="62.0" prefWidth="110.0" text="双人间" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <Label fx:id="Standard" prefHeight="62.0" prefWidth="110.0" text="标准间" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="62.0" prefWidth="110.0" text="豪华套房" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Label fx:id="Suites" prefHeight="62.0" prefWidth="110.0" text="豪华套房" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="62.0" prefWidth="110.0" text="单人间" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                  <Label fx:id="Double" prefHeight="62.0" prefWidth="110.0" text="双人间" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="109.0" text="预订" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="109.0" text="预订" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="109.0" text="预订" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                  <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="109.0" text="预订" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Label fx:id="Single" prefHeight="62.0" prefWidth="110.0" text="单人间" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="bookEluxeSuite" mnemonicParsing="false" onAction="#handleBookEluxeSuite" prefHeight="36.0" prefWidth="109.0" text="预订" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Button fx:id="bookSuites" mnemonicParsing="false" onAction="#handleBookSuites" prefHeight="36.0" prefWidth="109.0" text="预订" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Button fx:id="bookDouble" mnemonicParsing="false" onAction="#handleBookDouble" prefHeight="36.0" prefWidth="109.0" text="预订" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                  <Button fx:id="bookStandard" mnemonicParsing="false" onAction="#handleBookStandard" prefHeight="36.0" prefWidth="109.0" text="预订" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Button fx:id="bookSingle" mnemonicParsing="false" onAction="#handleBookSingle" prefHeight="36.0" prefWidth="109.0" text="预订" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                </children>
             </GridPane>
             <Separator layoutY="98.0" prefHeight="9.0" prefWidth="466.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />

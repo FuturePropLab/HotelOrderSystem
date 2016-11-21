@@ -1,13 +1,11 @@
 package ui.main;
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.control.Button;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -43,12 +41,19 @@ public class RootLayoutController {
 		this.primaryStage = primaryStage;
 	}
 	
-//	/**
-//     * Initializes the controller class. This method is automatically called
-//     * after the fxml file has been loaded.
-//     */
-//    @FXML
-//    private void initialize() {
+	/**
+     * Initializes the controller class. This method is automatically called
+     * after the fxml file has been loaded.
+     */
+    @FXML
+    private void initialize() {
+        try {
+			changeDetails("../hotel/HotelDetail.fxml");
+	        changeGuid("GuideUI.fxml");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	
 //        // Initialize the person table with the two columns.
 //        firstNameColumn.setCellValueFactory(
 //                cellData -> cellData.getValue().firstNameProperty());
@@ -61,7 +66,7 @@ public class RootLayoutController {
 //        // Listen for selection changes and show the person details when changed.
 //        personTable.getSelectionModel().selectedItemProperty().addListener(
 //                (observable, oldValue, newValue) -> showPersonDetails(newValue));
-//    }
+    }
 
 	/**
      * Closes the application.
@@ -78,5 +83,24 @@ public class RootLayoutController {
     private void handleMinimize() {
     	primaryStage.setIconified(true);
     }
+    
+    /**
+     * 用来切换rootlayout的details的板块
+     * @param fxml details所在的fxlm文件的名称（相对路径）
+     * @throws IOException FXMLLoader.load(URL location)加载失败时
+     */
+    public void changeDetails(String fxml) throws IOException {
+    	Parent child = (Parent) FXMLLoader.load(getClass().getResource(fxml));
+    	details.getChildren().addAll(child);
+	}
 
+    /**
+     * 用来切换rootlayout的guid的板块
+     * @param fxml guid所在的fxlm文件的名称（相对路径）
+     * @throws IOException FXMLLoader.load(URL location)加载失败时
+     */
+    public void changeGuid(String fxml) throws IOException {
+    	Parent child = (Parent) FXMLLoader.load(getClass().getResource(fxml));
+    	guid.getChildren().addAll(child);
+	}
 }

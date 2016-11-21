@@ -1,41 +1,78 @@
 package ui.hotel;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Button;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
+import javafx.scene.control.Label;
 
 /**
- * The controller for the root layout. The root layout provides the basic
- * application layout.
  * 
  * @author zjy
  */
 public class HotelDetailController {
-	private Stage stage;
-
-	public void setPrimaryStage(Stage stage) {
-		this.stage = stage;
-	}
-
+	@FXML
+	private ImageView hotelImage;
+	@FXML
+	private Label EluxeSuite;
+	@FXML
+	private Label Suites;
+	@FXML
+	private Label Standard;
+	@FXML
+	private Label Double;
+	@FXML
+	private Label Single;
+	@FXML
+	private Button bookEluxeSuite;
+	@FXML
+	private Button bookSuites;
+	@FXML
+	private Button bookStandard;
+	@FXML
+	private Button bookDouble;
+	@FXML
+	private Button bookSingle;
+	@FXML
+	private AnchorPane introduction;
+	@FXML
+	private AnchorPane facilities;
+	@FXML
+	private AnchorPane assessment;
+	
 	/**
-     * Closes the application.
-     */
-    @FXML
-    private void handleExit() {
-        System.exit(0);
-    }
-    
-    /**
-     * Minimize the application.
-     */
-    @FXML
-    private void handleMinimize() {
-    	stage.setIconified(true);
-    }
-
+	 * bookEluxeSuite被单击时调用
+	 */
+	@FXML
+	private void handleBookEluxeSuite() {
+		
+	}
+	/**
+	 * bookSuites被单击时调用
+	 */
+	@FXML
+	private void handleBookSuites() {
+		
+	}
+	/**
+	 * bookStandard被单击时调用
+	 */
+	@FXML
+	private void handleBookStandard() {
+		
+	}
+	/**
+	 * bookDouble被单击时调用
+	 */
+	@FXML
+	private void handleBookDouble() {
+		
+	}
+	/**
+	 * bookSingle被单击时调用
+	 */
+	@FXML
+	private void handleBookSingle() {
+		
+	}
 }
