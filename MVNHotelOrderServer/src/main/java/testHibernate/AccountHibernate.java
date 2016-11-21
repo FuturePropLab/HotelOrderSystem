@@ -12,10 +12,10 @@ public class AccountHibernate {
 			Session s = Hibernateutils.getSessionFactory().openSession();  //查询用
 	        Transaction t = s.beginTransaction(); // 提交用
 	        String id = "ID001";
-	        String password = "nothing";
+	        String password = "zhujunyi";
 	        MD5Util md = new MD5Util();
 	        ShaUtil sh = new ShaUtil();
-	        AccountPO po = new AccountPO(md.md5Encode(id),sh.shaEncode(password), "what", AccountType.Customer);
+	        AccountPO po = new AccountPO(md.md5Encode(id),sh.shaEncode(password), "朱俊逸001", AccountType.Customer);
 	        s.save(po);
 	        t.commit();
 	       // Query q = s.createSQLQuery("select sa from Student where sno IN (select sno from SC where g > 90)")
