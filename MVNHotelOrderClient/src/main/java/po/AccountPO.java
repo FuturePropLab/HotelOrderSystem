@@ -5,12 +5,12 @@ import tools.AccountType;
 public class AccountPO {
 		private String id;
 		private String password;
-		private String name;
+		private String username;
 		private AccountType accountType;
 		
-		public AccountPO(String id , String password , String name , AccountType accountType){
+		public AccountPO(String id , String password , String username , AccountType accountType){
 			this.id = id;
-			this.name = name;
+			this.username = username;
 			this.password = password;
 			this.accountType = accountType;
 		}
@@ -27,12 +27,12 @@ public class AccountPO {
 			this.password = password;
 		}
 
-		public String getName() {
-			return name;
+		public String getUsername() {
+			return username;
 		}
 
-		public void setName(String name) {
-			this.name = name;
+		public void setUsername(String username) {
+			this.username = username;
 		}
 
 		public AccountType getAccountType() {
