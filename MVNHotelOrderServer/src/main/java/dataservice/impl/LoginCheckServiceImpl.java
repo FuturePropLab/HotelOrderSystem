@@ -19,6 +19,11 @@ public class LoginCheckServiceImpl implements LoginCheckService {
 	/**
 	 * 检查登录是否成功
 	 */
+	private LoginCheckDatahelper loginCheckDatahelper;
+	
+	public LoginCheckServiceImpl(){
+		loginCheckDatahelper = new LoginCheckDatahelperImpl();
+	}
 	public ResultMessage_LoginCheck checkLogin(String username, String password, AccountType accountType) throws RemoteException {
 		
 		ShaUtil sha = new ShaUtil();
@@ -28,15 +33,13 @@ public class LoginCheckServiceImpl implements LoginCheckService {
 		} catch (Exception e) {
 			return ResultMessage_LoginCheck.InvalidUsername;
 		}
-		LoginCheckDatahelper loginCheckDatahelper = new LoginCheckDatahelperImpl();
 		String realPassSha = loginCheckDatahelper.passwordInSha(username, accountType);
 		if("Bad_ID".equals(realPassSha))  return ResultMessage_LoginCheck.InvalidUsername;
 		if(!inputPassSha.equals(realPassSha)) return ResultMessage_LoginCheck.InvalidPassword;
 		return ResultMessage_LoginCheck.Success;
 	}
 
-	public String getUserID(String username, String password, AccountType accountType) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+	public String getUserID(String username, String password) throws RemoteException {	
+		return loginCheckDatahelper.getID(username, password);
 	}
 }

@@ -6,6 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 import dataservice.LoginCheckService;
 import dataservice.impl.LoginCheckServiceImpl;
 import tools.AccountType;
+import tools.ResultMessage_LoginCheck;
 
 public class DataRemoteObject extends UnicastRemoteObject implements  LoginCheckService{
 	/**
@@ -18,13 +19,13 @@ public class DataRemoteObject extends UnicastRemoteObject implements  LoginCheck
 		loginCheckService = new LoginCheckServiceImpl();
 
 	}
-	public boolean checkLogin(String username, String password,AccountType accountType)  throws RemoteException{ {		
+	public ResultMessage_LoginCheck checkLogin(String username, String password,AccountType accountType)  throws RemoteException{ {		
 		return loginCheckService.checkLogin(username, password,accountType);
 	}
 
 	
 	}
-	public String getUserID(String username, String password, AccountType accountType) throws RemoteException {
-		return loginCheckService.getUserID(username, password, accountType);
+	public String getUserID(String username, String password) throws RemoteException {
+		return loginCheckService.getUserID(username, password);
 	}
 }

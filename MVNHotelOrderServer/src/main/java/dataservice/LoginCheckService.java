@@ -8,13 +8,13 @@ import tools.ResultMessage;
 import tools.ResultMessage_LoginCheck;
 
 /**
- * 检验登录的RMI调用
+ * 已经正式开始写了
  * @author wshwbluebird
  *
  */
 public interface LoginCheckService extends Remote{
 	/**
-	 * 向数据端传递rmi调用 检测用户名密码四否匹配
+	 * 检测用户名密码 输入是否匹配
 	 * @param username
 	 * @param password
 	 * @return boolean
@@ -22,5 +22,14 @@ public interface LoginCheckService extends Remote{
 	 */
 	public ResultMessage_LoginCheck checkLogin(String username ,String password, AccountType accountType) throws RemoteException;
 	
-	public String  getUserID(String username, String password, AccountType accountType) throws RemoteException;
+	/**
+	 * 通过用户名密码获取  该客户的ID信息
+	 * 如果id不存在返回FAIL
+	 * @param username
+	 * @param password
+	 * @param accountType
+	 * @return 该账户的ID 信息
+	 * @throws RemoteException
+	 */
+	public String  getUserID(String username, String password) throws RemoteException;
 }
