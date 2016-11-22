@@ -11,4 +11,5 @@ public class DiscountVO_hotel extends DiscountVO{
 		this.startDate=start;
 		this.EndDate=End;
 	}
+
 }

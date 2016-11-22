@@ -14,7 +14,7 @@ import vo.OrderInputVO;
  * @author chenyuyan
  *
  */
-public class discountCalController implements DiscountGetService {
+public class DiscountCalController implements DiscountGetService {
 	
 	/**
 	 * @param OrderInputVO
