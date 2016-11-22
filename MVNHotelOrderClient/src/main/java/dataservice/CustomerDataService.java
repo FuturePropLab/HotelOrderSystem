@@ -2,9 +2,10 @@ package dataservice;
 
 import po.CustomerPO;
 import tools.ResultMessage;
+import tools.ResultMessage_signUp;
 
 public interface CustomerDataService {
-	public ResultMessage add(CustomerPO customerInfo);
+	public ResultMessage_signUp add(CustomerPO customerInfo);
 	
 	public CustomerPO find(String customer_id);
 	
