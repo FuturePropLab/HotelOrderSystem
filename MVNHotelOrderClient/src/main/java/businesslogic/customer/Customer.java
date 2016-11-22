@@ -26,7 +26,7 @@ public class Customer {
 			}
 		}
 		if(re==ResultMessage2.success){
-		
+			CustomerPO customerinfo = new CustomerPO(customerInput.username,customerInput.password,customerInput.customerName,customerInput.telephone,customerInput.gender);
 		
 		}
 		

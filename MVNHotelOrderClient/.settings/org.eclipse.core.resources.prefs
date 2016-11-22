@@ -22,6 +22,7 @@ encoding//src/main/java/businesslogic/hotel/MockOrder.java=UTF-8
 encoding//src/main/java/businesslogic/hotel/getComment.java=UTF-8
 encoding//src/main/java/businesslogic/hotel/getDiscountInfo.java=UTF-8
 encoding//src/main/java/businesslogic/login=UTF-8
+encoding//src/main/java/businesslogic/strategy/HotelStrategy.java=UTF-8
 encoding//src/main/java/driver/CustomerDealService_Driver.java=UTF-8
 encoding//src/main/java/driver/CustomerSignupService_Driver.java=UTF-8
 encoding//src/main/java/driver/DiscountService_Driver.java=UTF-8
