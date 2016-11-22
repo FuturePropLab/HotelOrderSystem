@@ -38,23 +38,31 @@ public class LoginCheckDatahelperImpl implements LoginCheckDatahelper {
 		try {
 			md5id = md.md5Encode(userid);
 		} catch (Exception e) {
-			return "Bad Input";
+			return "Bad_ID";
 		}
 		
 		//用标准的sql方法实现
 		Session s = Hibernateutils.getSessionFactory().openSession();  //获取数据库连接池
-		Query q = s.createSQLQuery("select password from accountpo where id = '"+md5id
+		Query q = s.createSQLQuery("select password from accountpo where username = '"+md5id
 				+"' and accounttype = '"+accountType+"'");
 		List<String> passwordlist =  q.list();
 		s.close();
 		
 		//id输入错误的情况
-		if(passwordlist.isEmpty())  return "No this Id";
+		if(passwordlist.isEmpty())  return "Bad_ID";
 		else return passwordlist.get(0);
 	}
-//	public static void main(String[] args) {
-//		LoginCheckDatahelperImpl impl = new LoginCheckDatahelperImpl();
-//		System.out.println(impl.passwordInSha("CS002", AccountType.Customer));
-//	}
+	public static void main(String[] args) {
+		LoginCheckDatahelperImpl impl = new LoginCheckDatahelperImpl();
+		System.out.println(impl.passwordInSha("zhujunyi", AccountType.Customer));
+	}
+
+	/**
+	 *通过用户名密码获取 id
+	 */
+	public String getID(String username, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

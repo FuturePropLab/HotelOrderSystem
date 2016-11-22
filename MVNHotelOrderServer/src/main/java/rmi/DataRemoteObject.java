@@ -24,4 +24,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements  LoginCheck
 
 	
 	}
+	public String getUserID(String username, String password, AccountType accountType) throws RemoteException {
+		return loginCheckService.getUserID(username, password, accountType);
+	}
 }

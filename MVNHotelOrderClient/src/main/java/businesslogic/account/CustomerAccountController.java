@@ -26,5 +26,10 @@ public class CustomerAccountController implements AccountCustomerService{
 	public CustomerVO getCustomerDetail(String customer_id) {
 		return account.getCustomerDetail(customer_id);
 	}
+
+	public String getAccountID(String username, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 		
 }
