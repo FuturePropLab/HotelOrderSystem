@@ -15,6 +15,7 @@ import javafx.stage.Stage;
  * @author zjy
  */
 public class RootLayoutController {
+	private DetailsController detailsController;
 	private Stage primaryStage;
 	@FXML
 	private AnchorPane details;
@@ -27,6 +28,10 @@ public class RootLayoutController {
 
 	public AnchorPane getGuid() {
 		return guid;
+	}
+
+	public DetailsController getDetailsController() {
+		return detailsController;
 	}
 
 	public void setDetails(AnchorPane details) {
@@ -90,8 +95,12 @@ public class RootLayoutController {
      * @throws IOException FXMLLoader.load(URL location)加载失败时
      */
     public void changeDetails(String fxml) throws IOException {
-    	Parent child = (Parent) FXMLLoader.load(getClass().getResource(fxml));
+    	FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxml));
+    	Parent child = (Parent) loader.load();
     	details.getChildren().addAll(child);
+    	detailsController=loader.getController();
+    	detailsController.setRootLayoutController(this);
 	}
 
     /**
