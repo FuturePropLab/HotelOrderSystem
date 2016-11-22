@@ -1,5 +1,7 @@
 package po;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -10,7 +12,8 @@ import javax.persistence.Id;
 import tools.AccountType;
 
 @Entity
-public class AccountPO {
+public class AccountPO implements Serializable{
+	private static final long serialVersionUID = -3068966912083464632L;
 		private String userid;
 		private String password;
 		private String username;
