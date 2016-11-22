@@ -4,7 +4,9 @@ import java.util.List;
 
 import businesslogicservice.AccountCustomerService;
 import tools.ResultMessage;
+import tools.ResultMessage2;
 import vo.CustomerAccountVO;
+import vo.CustomerInputVO;
 import vo.CustomerSearchVO;
 import vo.CustomerVO;
 
@@ -17,6 +19,12 @@ public class CustomerAccountController implements AccountCustomerService{
 
 	public ResultMessage accountModify(CustomerAccountVO customerAccount) {
 		return account.accountModify(customerAccount);
+	}
+	/**
+	 * 
+	 */
+	public ResultMessage2 accountAdd(CustomerInputVO customerAccount){
+		return account.AddCustomerAccount(customerAccount);
 	}
 
 	public List<CustomerAccountVO> searchCustomerAccount(CustomerSearchVO customerSearchVO) {

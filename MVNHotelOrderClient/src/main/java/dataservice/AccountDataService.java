@@ -7,6 +7,8 @@ import po.HotelAccountPO;
 import po.SearchCondition;
 import po.WebAccountPO;
 import tools.ResultMessage;
+import tools.ResultMessage2;
+import vo.CustomerInputVO;
 
 public interface AccountDataService {
 
@@ -18,6 +20,14 @@ public interface AccountDataService {
 	 */
 	public CustomerAccountPO getCustomer(String customer_id);
 
+	/**
+	 * @author chenyuyan 11/22
+	 * 数据层 增加customer
+	 * @param customerInfo
+	 * @return
+	 */
+	public ResultMessage2 accountAdd(CustomerInputVO customerInfo);
+	
 	public List<CustomerAccountPO> searchCustomerList(SearchCondition searchCondition);
 	
 	public ResultMessage addHotel(HotelAccountPO hotelAccPO);

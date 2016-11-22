@@ -11,8 +11,8 @@ public class CustomerPO {
 	  private String telephone; //电话
 	  private MemberPO memberpo; //会员信息
 	  private int credit;
-	  private String password;
-	  private String userName;//用户名
+	  
+	  
 	  
 	 public CustomerPO( String customeID, String customerName,
       String gender, String telephone, MemberVO membervo,int credit){
@@ -23,7 +23,7 @@ public class CustomerPO {
 		   this.telephone =telephone;
 		   this.credit = credit;
 	  }
-	 public CustomerPO(String username,String password,
+	/* public CustomerPO(String username,String password,
 				String customerName, String telephone, String gender){
 				   //this.customeID = customeID;
 				   this.customerName = username;
@@ -32,7 +32,7 @@ public class CustomerPO {
 				    this.password=password;
 				   this.telephone =telephone;
 				   
-			  }
+			  }*/
 	 
 	  public String getCustomeID() {
 		return customeID;
