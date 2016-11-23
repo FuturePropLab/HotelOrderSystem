@@ -9,6 +9,16 @@ import vo.CustomerVO;
 
 public interface AccountCustomerService {
 	/**
+	 * @author chenyuyan   1122
+	 * @param username
+	 * @param password
+	 * @return 返回该账户的id
+	 */
+	String getAccountID(String username , String password);
+	
+	
+	
+	/**
 	 * 通过客户的id 获取客户账户信息的值对象
 	 * @param customer_id
 	 * @return CustomerAccountVO

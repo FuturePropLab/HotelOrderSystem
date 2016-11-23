@@ -32,12 +32,6 @@ public class ClientRunner {
 	
 	
 	public void test(){
-		try {
-			System.out.println(remoteHelper.getLoginCheckService().checkLogin("wsw", "19961125"));
-			System.out.println(remoteHelper.getLoginCheckService().checkLogin("zjy", "huaidan"));
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	public static void main(String[] args){

@@ -165,4 +165,10 @@ public class Account_stub implements AccountCustomerService, AccountWebService, 
 		return null;
 	}
 
+
+	public String getAccountID(String username, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

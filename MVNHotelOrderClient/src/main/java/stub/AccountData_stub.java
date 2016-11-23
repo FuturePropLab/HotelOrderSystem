@@ -9,6 +9,8 @@ import po.HotelAccountPO;
 import po.SearchCondition;
 import po.WebAccountPO;
 import tools.ResultMessage;
+import tools.ResultMessage2;
+import vo.CustomerInputVO;
 
 /**
  * 
@@ -82,6 +84,11 @@ public class AccountData_stub implements AccountDataService{
 	public WebAccountPO getWeb(String WebAccount_id) {
 		WebAccountPO accountPO = new WebAccountPO(WebAccount_id, "zzjy", "qwer");
 		return accountPO;
+	}
+
+	public ResultMessage2 accountAdd(CustomerInputVO customerInfo) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

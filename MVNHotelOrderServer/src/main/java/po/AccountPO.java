@@ -11,32 +11,44 @@ import tools.AccountType;
 
 @Entity
 public class AccountPO {
-		private String id;
+		private String userid;
 		private String password;
+		private String username;
 		@Enumerated(EnumType.STRING)
 		private AccountType accountType;
 		
-		public AccountPO(String id , String password  , AccountType accountType){
-			this.id = id;
+		public AccountPO(String id ,String username, String password  , AccountType accountType){
+			this.userid = id;
+			this.username =username;
 			this.password = password;
 			this.accountType = accountType;
 		}
 		@Id
-		public String getId() {
-			return id;
+		public String getUserid() {
+			return userid;
 		}
-
-		public void setId(String id) {
-			this.id = id;
+		
+		public void setUserid(String userid) {
+			this.userid = userid;
 		}
+		
 		public String getPassword() {
 			return password;
 		}
 
+
 		public void setPassword(String password) {
 			this.password = password;
 		}
-
+		
+		public String getUsername() {
+			return username;
+		}
+		
+		public void setUsername(String username) {
+			this.username = username;
+		}
+		
 		@Enumerated(EnumType.STRING)
 		public AccountType getAccountType() {
 			return accountType;

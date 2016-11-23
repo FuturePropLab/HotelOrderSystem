@@ -9,7 +9,9 @@ import po.HotelAccountPO;
 import po.WebAccountPO;
 import stub.AccountData_stub;
 import tools.ResultMessage;
+import tools.ResultMessage2;
 import vo.CustomerAccountVO;
+import vo.CustomerInputVO;
 import vo.CustomerSearchVO;
 import vo.CustomerVO;
 import vo.HotelAccountVO;
@@ -80,6 +82,30 @@ public class Account {
 				customerAccount.customerName, customerAccount.password);
 		return accountDataService.modifyCustomer(accountPO);
 	}
+	/**
+	 * @author chenyuyan
+	 * 增加customer的持久化账户信息
+	 * @return ResultMessage2
+	 */
+	public ResultMessage2 AddCustomerAccount(CustomerInputVO customerInfo){
+		
+		return null;
+		
+	}
+	/**
+	 * @author chenyuyan
+	 * 根据用户名和密码生成一个id；
+	 * @param username
+	 * @param passworld
+	 * @return
+	 */
+	public String getID(String username,String password){
+		String id="0";
+		return id;
+		
+	}
+	
+	
 	/**
 	 * 通过客户的搜索信息 返回全部的符合条件的客户信息列表
 	 * @param customerSearchVO

@@ -3,6 +3,7 @@ package driver;
 import businesslogicservice.CustomerSignupService;
 import tools.ResultMessage;
 import tools.ResultMessage2;
+import tools.ResultMessage_signUp;
 import vo.CustomerInputVO;
 
 public class CustomerSignupService_Driver {
@@ -10,9 +11,9 @@ public class CustomerSignupService_Driver {
 				CustomerInputVO customerInput = 
 						new CustomerInputVO("bluebird", "123456", 
 								"鐜嬪竻鎯�", "15050522805", "鐢�");
-				ResultMessage2 result = customerSignupService.addCustomer(customerInput);
+				ResultMessage_signUp result = customerSignupService.addCustomer(customerInput);
 				
-				if(ResultMessage2.success == result)  System.out.println("add success");
+				if(ResultMessage_signUp.Success == result)  System.out.println("add success");
 				
 				else  System.out.println("add fail");
 				
