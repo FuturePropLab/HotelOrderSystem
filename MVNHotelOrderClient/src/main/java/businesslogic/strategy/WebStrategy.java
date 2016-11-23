@@ -20,19 +20,18 @@ public class WebStrategy {
 
 	public WebStrategy(OrderInputVO orderInput) {
 		
+		DiscountGetService discount = new DiscountCalController();
+		strategyList = discount.getSuitableDiscount_web(orderInput);
+		
 //		DiscountGetService disDealService = new MockDiscount("web");//桩程序
 //		
 //		strategyList = disDealService.getSuitableDiscount_web(orderInput);
-		
-		DiscountGetService discount = new DiscountCalController();
-		strategyList = discount.getSuitableDiscount_web(orderInput);
 	}
 /**
  * 计算得到最优
  * @return 最优策略
  */
 	public DiscountVO_web calBest() {
-//		return (DiscountVO_web) strategyList.get(0);
 
 		double min = 1.0;
 		DiscountVO_web res = new DiscountVO_web(0, null, min, null, null, 0);
@@ -49,5 +48,7 @@ public class WebStrategy {
 			}
 		}
 		return res;
+		
+//		return (DiscountVO_web) strategyList.get(0);
 	}
 }

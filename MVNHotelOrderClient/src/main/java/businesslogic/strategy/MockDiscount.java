@@ -26,7 +26,7 @@ public class MockDiscount implements DiscountGetService {
 
 	
 	public List<DiscountVO_hotel> getSuitableDiscount_hotel(OrderInputVO orderInput) {
-		// TODO Auto-generated method stub
+	
 		// 应该根据type 和 orderInput来get
 		List<DiscountVO_hotel> res = new LinkedList<DiscountVO_hotel>();
 		DiscountVO dv = new DiscountVO_hotel(type, 0, null, null);
@@ -37,7 +37,7 @@ public class MockDiscount implements DiscountGetService {
 	}
 
 	public List<DiscountVO_web> getSuitableDiscount_web(OrderInputVO orderInput) {
-		// TODO Auto-generated method stub
+		
 		// 应该根据type 和 orderInput来get
 		List<DiscountVO_web> res = new LinkedList<DiscountVO_web>();
 		DiscountVO dv = new DiscountVO_web(0, type, 0, null, null, 0);
