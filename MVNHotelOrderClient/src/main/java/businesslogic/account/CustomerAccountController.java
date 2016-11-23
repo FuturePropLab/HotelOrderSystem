@@ -3,41 +3,57 @@ package businesslogic.account;
 import java.util.List;
 
 import businesslogicservice.AccountCustomerService;
+import tools.AccountType;
 import tools.ResultMessage;
 import tools.ResultMessage2;
+import tools.ResultMessage_Account;
+import vo.AccountVO;
 import vo.CustomerAccountVO;
 import vo.CustomerInputVO;
 import vo.CustomerSearchVO;
 import vo.CustomerVO;
+import vo.HotelSearchVO;
 
+/**
+ * 
+ * @author wshwbluebird
+ *
+ */
 public class CustomerAccountController implements AccountCustomerService{
 	private Account account;
 	
-	public CustomerAccountVO getCustomerAccount(String customer_id) {
-		return account.getCustomerAccount(customer_id);
+	public CustomerAccountController(){
+		account = new Account();
 	}
 
-	public ResultMessage accountModify(CustomerAccountVO customerAccount) {
-		return account.accountModify(customerAccount);
-	}
-	/**
-	 * 
-	 */
-	public ResultMessage2 accountAdd(CustomerInputVO customerAccount){
-		return account.AddCustomerAccount(customerAccount);
+	public String getAccountID(String username) {
+		return null;
 	}
 
-	public List<CustomerAccountVO> searchCustomerAccount(CustomerSearchVO customerSearchVO) {
-		return account.searchCustomerAccount(customerSearchVO);
-	}
-
-	public CustomerVO getCustomerDetail(String customer_id) {
-		return account.getCustomerDetail(customer_id);
-	}
-
-	public String getAccountID(String username, String password) {
+	public ResultMessage_Account addAccount(String username, String password) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public ResultMessage_Account resetPassword(String userid, String newPassword) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getUsername(String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public CustomerVO getCustomerDetail(String customer_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<AccountVO> searchCustomerAccount(CustomerSearchVO customerSearchVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 		
 }

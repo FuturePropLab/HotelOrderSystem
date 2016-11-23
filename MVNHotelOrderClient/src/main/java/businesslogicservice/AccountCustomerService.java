@@ -2,47 +2,61 @@ package businesslogicservice;
 
 import java.util.List;
 
-import tools.ResultMessage;
-import vo.CustomerAccountVO;
+import tools.AccountType;
+import tools.ResultMessage_Account;
+import vo.AccountVO;
 import vo.CustomerSearchVO;
 import vo.CustomerVO;
+import vo.HotelSearchVO;
 
 public interface AccountCustomerService {
 	/**
-	 * @author chenyuyan   1122
+	 * 通过用户名 返回该账户的ID
 	 * @param username
 	 * @param password
-	 * @return 返回该账户的id
+	 * @return 该账户的ID 
 	 */
-	String getAccountID(String username , String password);
+	public String getAccountID(String username);
 	
+	/**
+	 * 通过注册的用户名和密码 以及账户类型 新增一个新的账户  自动生成ID
+	 * @param username
+	 * @param password
+	 * @param accountType
+	 * @return 是否成功
+	 */
+	public ResultMessage_Account addAccount(String username ,String password);
+	
+	/**
+	 * 通过输入账户名 重制账户的密码
+	 * @param userid
+	 * @param newPassword
+	 * @return 重设是否成功
+	 */
+	public ResultMessage_Account resetPassword(String userid, String newPassword);
 	
 	
 	/**
-	 * 通过客户的id 获取客户账户信息的值对象
+	 * 通过账户的id ，获取账户的名字
+	 * @param userId
+	 * @return 该账户的用户名
+	 */
+	public String getUsername(String userId);
+	
+	/**
+	 * 通过客户的id 返回客户的个人基本信息
 	 * @param customer_id
-	 * @return CustomerAccountVO
-	 */
-	public CustomerAccountVO getCustomerAccount(String customer_id);
-	
-	/**
-	 * 通过customerAccount的值对象 修改已有的CustomerAccount数据，返回是否成功
-	 * @param customerAccount
-	 * @return ResultMessage
-	 */
-	public ResultMessage accountModify(CustomerAccountVO customerAccount);
-	
-	/**
-	 * 通过搜索信息返回客户账户信息的列表
-	 * @param SearchCondition
-	 * @return List<CustomerAccountVO>
-	 */
-	public List<CustomerAccountVO> searchCustomerAccount(CustomerSearchVO vo);
-	
-	/**
-	 * 通过客户的ID 返回客户的基本信息
-	 * @param customer_id
-	 * @return CustomerVO
+	 * @return 
 	 */
 	public CustomerVO getCustomerDetail(String customer_id);
+	
+	
+	/**
+	 * 通过客户的搜索信息值 返回符合条件的AccountVO 列表
+	 * @param customerSearchVO
+	 * @return 符合条件的客户账户VO 列表
+	 */
+	public List<AccountVO> searchCustomerAccount(CustomerSearchVO customerSearchVO);
+	
+
 }

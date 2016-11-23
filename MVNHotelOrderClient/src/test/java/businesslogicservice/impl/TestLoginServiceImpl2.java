@@ -8,10 +8,10 @@ import businesslogicservice.LoginService;
 
 public class TestLoginServiceImpl2 {
 
-	@Test
-	public void test() {
-		LoginService lg =  new LoginServiceImpl();
-		assertEquals(lg.checkValid("wsw", "wsq"), false);
-	}
+//	@Test
+//	public void test() {
+//		LoginService lg =  new LoginServiceImpl();
+//		assertEquals(lg.checkValid("wsw", "wsq"), false);
+//	}
 
 }

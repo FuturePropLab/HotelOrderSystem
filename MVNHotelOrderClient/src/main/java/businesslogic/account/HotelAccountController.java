@@ -4,6 +4,8 @@ import java.util.List;
 
 import businesslogicservice.AccountHotelService;
 import tools.ResultMessage;
+import tools.ResultMessage_Account;
+import vo.AccountVO;
 import vo.HotelAccountVO;
 import vo.HotelInfoVO;
 import vo.HotelInputVO;
@@ -27,34 +29,40 @@ public class HotelAccountController implements AccountHotelService {
 	}
 
 
-	public ResultMessage addHotelAccount(HotelAccountVO hotelAccount, HotelInputVO hotelInputVO) {
-	
-		return account.addHotelAccount(hotelAccount, hotelInputVO);
+	public String getAccountID(String username) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
-	public ResultMessage modifyHotelAccount(HotelAccountVO hotelAccount) {
-		return account.modifyHotelAccount(hotelAccount);
+	public ResultMessage_Account addAccount(String username, String password) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
-	public HotelAccountVO getHotelAccount(String hotel_id) {
-		return account.getHotelAccount(hotel_id);
+	public ResultMessage_Account resetPassword(String userid, String newPassword) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
-	public ResultMessage deleteHotelAccount(String hotel_id) {
-		return account.deleteHotelAccount(hotel_id);
+	public String getUsername(String userId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
-	public List<HotelAccountVO> searchHotelAccount(HotelSearchVO vo) {
-		return account.searchHotelAccount(vo);
+	public List<AccountVO> searchHotelAccount(HotelSearchVO hotelSearchVO) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
 	public HotelInfoVO getHotelDetail(String hotel_id) {
-		return account.getHotelDetail(hotel_id);
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 
 }

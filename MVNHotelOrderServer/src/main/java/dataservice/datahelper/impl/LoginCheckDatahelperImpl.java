@@ -7,6 +7,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import dataservice.datahelper.LoginCheckDatahelper;
+import passwordtool.DESUtil;
 import passwordtool.MD5Util;
 import passwordtool.ShaUtil;
 import testHibernate.Hibernateutils;
@@ -23,19 +24,18 @@ public class LoginCheckDatahelperImpl implements LoginCheckDatahelper {
 	 * 实现借口方法
 	 */
 	public String passwordInSha(String username, AccountType accountType) {
-		MD5Util md = new MD5Util();
-		String md5id = "" ;
+		String DESid = "" ;
 		
 		//加密失败的情况s
 		try {
-			md5id = md.md5Encode(username);
+			DESid =DESUtil.encode(username);
 		} catch (Exception e) {
 			return "Bad_ID";
 		}
 		
 		//用标准的sql方法实现
 		Session s = Hibernateutils.getSessionFactory().openSession();  //获取数据库连接池
-		Query q = s.createSQLQuery("select password from accountpo where username = '"+md5id
+		Query q = s.createSQLQuery("select password from accountpo where username = '"+DESid
 				+"' and accounttype = '"+accountType+"'");
 		List<String> passwordlist =  q.list();
 		s.close();
@@ -49,18 +49,16 @@ public class LoginCheckDatahelperImpl implements LoginCheckDatahelper {
 	 *通过用户名密码获取 id
 	 */
 	public String getID(String username, String password) {
-		MD5Util md = new MD5Util();
-		ShaUtil sh = new ShaUtil();
-		String md5id,shpass;
+		String desid,shpass;
 		try {
-			md5id = md.md5Encode(username);
-			shpass = sh.shaEncode(password);
+			desid = DESUtil.encode(username);
+			shpass = ShaUtil.shaEncode(password);
 		} catch (Exception e) {
 			return "FAIL";
 		}
 		Session s = Hibernateutils.getSessionFactory().openSession();  //获取数据库连接池
 		Query q = s.createSQLQuery("select userid from accountpo where username = '"
-		+md5id+"' and password = '"+shpass+"'");
+		+desid+"' and password = '"+shpass+"'");
 		List<String> idlist =  q.list();
 		s.close();
 		if(idlist.isEmpty())  return "FAIL";

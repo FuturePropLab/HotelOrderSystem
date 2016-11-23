@@ -41,7 +41,7 @@ public class MD5Util {
 	 public static void main(String[] args) throws Exception {
 		MD5Util md = new MD5Util();
 		System.out.println(md.md5Encode("1231231231231231233243232432"));
-		System.out.println(md.md5Encode("1234"));
+		System.out.println(md.md5Encode(""));
 		System.out.println(md.md5Encode("12345").length());
 	}
 }
