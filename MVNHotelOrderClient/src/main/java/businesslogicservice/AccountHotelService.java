@@ -42,6 +42,13 @@ public interface AccountHotelService {
 	public String getUsername(String userId);
 	
 	/**
+	 * 根据id 删除账户信息
+	 * @param userId
+	 * @return 删除操作是否成功
+	 */
+	public ResultMessage_Account deleteAccount(String userId);
+	
+	/**
 	 * 通过客户的搜索信息值 返回符合条件的AccountVO 列表
 	 * @param hotelSearchVO
 	 * @return 符合条件的客户账户VO 列表

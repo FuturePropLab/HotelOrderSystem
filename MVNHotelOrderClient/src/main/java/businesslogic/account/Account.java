@@ -9,6 +9,9 @@ import tools.ResultMessage_Account;
 import vo.AccountVO;
 import vo.CustomerSearchVO;
 import vo.CustomerVO;
+import vo.HotelInfoVO;
+import vo.HotelSearchVO;
+import vo.WebDesignerSearchVO;
 
 /**
  * Account 委托类
@@ -113,6 +116,47 @@ public class Account {
 	 * @return 符合条件的客户账户VO 列表
 	 */
 	public List<AccountVO> searchCustomerAccount(CustomerSearchVO customerSearchVO){
+		//TODO
+		return null;
+	}
+	
+	/**
+	 * 根据输入的网站设计人员的搜索信息 返回符合条件的网站设计人员账户信息列表
+	 * @param webDesignerSearchVO
+	 * @return  List<AccountVO>
+	 */
+	public List<AccountVO> searchWebDesignerAccount(WebDesignerSearchVO webDesignerSearchVO){
+		//TODO
+		return null;
+	}
+	
+
+	/**
+	 * 通过客户的搜索信息值 返回符合条件的AccountVO 列表
+	 * @param hotelSearchVO
+	 * @return 符合条件的客户账户VO 列表
+	 */
+	public List<AccountVO> searchHotelAccount(HotelSearchVO hotelSearchVO) {
+		//TODO
+		return null;
+	}
+	
+	/**
+	 * 根据酒店的ID 查看酒店的详细信息
+	 * @param hotel_id
+	 * @return HotelInfoPO 
+	 */
+	public HotelInfoVO getHotelDetail(String hotel_id) {
+		//TODO
+		return null;
+	}
+	
+	/**
+	 * 根据id 删除账户信息
+	 * @param userId
+	 * @return 删除操作是否成功
+	 */
+	public ResultMessage_Account deleteAccount(String userId) {
 		//TODO
 		return null;
 	}

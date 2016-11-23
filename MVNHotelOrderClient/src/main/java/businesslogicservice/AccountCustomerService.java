@@ -2,12 +2,10 @@ package businesslogicservice;
 
 import java.util.List;
 
-import tools.AccountType;
 import tools.ResultMessage_Account;
 import vo.AccountVO;
 import vo.CustomerSearchVO;
 import vo.CustomerVO;
-import vo.HotelSearchVO;
 
 public interface AccountCustomerService {
 	/**
@@ -44,9 +42,16 @@ public interface AccountCustomerService {
 	public String getUsername(String userId);
 	
 	/**
+	 * 根据id 删除账户信息
+	 * @param userId
+	 * @return 删除操作是否成功
+	 */
+	public ResultMessage_Account deleteAccount(String userId);
+	
+	/**
 	 * 通过客户的id 返回客户的个人基本信息
 	 * @param customer_id
-	 * @return 
+	 * @return CustomerVO
 	 */
 	public CustomerVO getCustomerDetail(String customer_id);
 	

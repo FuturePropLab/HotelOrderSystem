@@ -47,6 +47,13 @@ public interface AccountWebService {
 	public String getUsername(String userId);
 	
 	/**
+	 * 根据id 删除账户信息
+	 * @param userId
+	 * @return 删除操作是否成功
+	 */
+	public ResultMessage_Account deleteAccount(String userId);
+	
+	/**
 	 * 根据输入的网站设计人员的搜索信息 返回符合条件的网站设计人员账户信息列表
 	 * @param webDesignerSearchVO
 	 * @return  List<AccountVO>

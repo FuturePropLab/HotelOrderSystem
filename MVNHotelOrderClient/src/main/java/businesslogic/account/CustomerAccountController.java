@@ -4,15 +4,10 @@ import java.util.List;
 
 import businesslogicservice.AccountCustomerService;
 import tools.AccountType;
-import tools.ResultMessage;
-import tools.ResultMessage2;
 import tools.ResultMessage_Account;
 import vo.AccountVO;
-import vo.CustomerAccountVO;
-import vo.CustomerInputVO;
 import vo.CustomerSearchVO;
 import vo.CustomerVO;
-import vo.HotelSearchVO;
 
 /**
  * 
@@ -22,37 +17,41 @@ import vo.HotelSearchVO;
 public class CustomerAccountController implements AccountCustomerService{
 	private Account account;
 	
+	/**
+	 * 无参数 初始化方法
+	 */
 	public CustomerAccountController(){
 		account = new Account();
 	}
+	
 
 	public String getAccountID(String username) {
-		return null;
+		return account.getAccountID(username);
 	}
 
 	public ResultMessage_Account addAccount(String username, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		return account.addAccount(username, password, AccountType.Customer);
 	}
 
 	public ResultMessage_Account resetPassword(String userid, String newPassword) {
-		// TODO Auto-generated method stub
-		return null;
+		return account.resetPassword(userid, newPassword);
 	}
 
 	public String getUsername(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return account.getUsername(userId);
 	}
 
 	public CustomerVO getCustomerDetail(String customer_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return account.getCustomerDetail(customer_id);
 	}
 
 	public List<AccountVO> searchCustomerAccount(CustomerSearchVO customerSearchVO) {
-		// TODO Auto-generated method stub
-		return null;
+		return account.searchCustomerAccount(customerSearchVO);
+	}
+
+
+	public ResultMessage_Account deleteAccount(String userId) {
+		return account.deleteAccount(userId);
 	}
 	
 		

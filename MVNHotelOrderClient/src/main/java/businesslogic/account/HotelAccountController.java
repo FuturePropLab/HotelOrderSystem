@@ -3,12 +3,10 @@ package businesslogic.account;
 import java.util.List;
 
 import businesslogicservice.AccountHotelService;
-import tools.ResultMessage;
+import tools.AccountType;
 import tools.ResultMessage_Account;
 import vo.AccountVO;
-import vo.HotelAccountVO;
 import vo.HotelInfoVO;
-import vo.HotelInputVO;
 import vo.HotelSearchVO;
 
 /**
@@ -30,38 +28,37 @@ public class HotelAccountController implements AccountHotelService {
 
 
 	public String getAccountID(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		return account.getAccountID(username);
 	}
 
 
 	public ResultMessage_Account addAccount(String username, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		return account.addAccount(username, password, AccountType.Hotel);
 	}
 
 
 	public ResultMessage_Account resetPassword(String userid, String newPassword) {
-		// TODO Auto-generated method stub
-		return null;
+		return account.resetPassword(userid, newPassword);
 	}
 
 
 	public String getUsername(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return account.getUsername(userId);
 	}
 
 
 	public List<AccountVO> searchHotelAccount(HotelSearchVO hotelSearchVO) {
-		// TODO Auto-generated method stub
-		return null;
+		return account.searchHotelAccount(hotelSearchVO);
 	}
 
 
 	public HotelInfoVO getHotelDetail(String hotel_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return account.getHotelDetail(hotel_id);
+	}
+
+
+	public ResultMessage_Account deleteAccount(String userId) {
+		return account.deleteAccount(userId);
 	}
 
 

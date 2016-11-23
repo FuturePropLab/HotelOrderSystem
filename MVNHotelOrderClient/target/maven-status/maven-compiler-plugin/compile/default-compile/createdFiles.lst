@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
->>>>>>> origin/master
 businesslogicservice\CustomerDealService.class
 stub\MemberData_Stub.class
 businesslogic\order\MockCustomerInfo.class
@@ -77,9 +71,9 @@ businesslogicservice\OrderService.class
 stub\OrderBL_Stub.class
 tools\SearchHotel.class
 dataservice\CustomerDataService.class
-businesslogic\discount\discountCalController.class
 stub\AccountData_stub.class
 vo\HotelAccountVO.class
+businesslogic\discount\DiscountCalController.class
 po\BackPO.class
 driver\OrderDataService_Driver.class
 vo\HotelInfoVO.class
@@ -96,7 +90,6 @@ businesslogic\order\HotelInfo.class
 dataservice\RoomDataService.class
 tools\RoomType.class
 vo\DiscountVO.class
-po\AccoutPO.class
 stub\CustomerData_Stub.class
 vo\ExecutionInfoVO.class
 po\MemberPO.class
@@ -218,11 +211,3 @@ vo\DiscountVO_web.class
 po\HotelAccountPO.class
 vo\CustomerSearchVO.class
 driver\CustomerSignupService_Driver.class
-<<<<<<< HEAD
-=======
-=======
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
->>>>>>> origin/master
->>>>>>> origin/master

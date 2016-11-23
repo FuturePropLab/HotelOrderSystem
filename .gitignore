@@ -40,3 +40,6 @@ MVNHotelOrderClient/target/surefire-reports/TEST-businesslogicservice.impl.TestL
 MVNHotelOrderClient/target/surefire-reports/TEST-businesslogic.login.TestLoginController.xml
 
 MVNHotelOrderClient/target/surefire-reports/TEST-businesslogic.order.TestOrder.xml
+*.class
+*.class
+*.class

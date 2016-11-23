@@ -3,10 +3,9 @@ package businesslogic.account;
 import java.util.List;
 
 import businesslogicservice.AccountWebService;
-import tools.ResultMessage;
+import tools.AccountType;
 import tools.ResultMessage_Account;
 import vo.AccountVO;
-import vo.WebAccountVO;
 import vo.WebDesignerSearchVO;
 /**
  * 实现WebDesignerAccountService的接口
@@ -25,28 +24,27 @@ public class WebDesignerAccountController implements AccountWebService {
 	}
 
 	public String getAccountID(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		return account.getAccountID(username);
 	}
 
 	public ResultMessage_Account addAccount(String username, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		return account.addAccount(username, password, AccountType.Web);
 	}
 
 	public ResultMessage_Account resetPassword(String userid, String newPassword) {
-		// TODO Auto-generated method stub
-		return null;
+		return account.resetPassword(userid, newPassword);
 	}
 
 	public String getUsername(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return account.getUsername(userId);
 	}
 
 	public List<AccountVO> searchWebDesignerAccount(WebDesignerSearchVO webDesignerSearchVO) {
-		// TODO Auto-generated method stub
-		return null;
+		return account.searchWebDesignerAccount(webDesignerSearchVO);
+	}
+
+	public ResultMessage_Account deleteAccount(String userId) {
+		return account.deleteAccount(userId);
 	}
 	
 }

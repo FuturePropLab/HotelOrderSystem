@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
->>>>>>> origin/master
 businesslogic\member\TestMember.class
 businesslogicservice\impl\TestWebDiscount.class
 businesslogic\credit\TestCredit.class
@@ -31,26 +25,3 @@ businesslogicservice\impl\TestLoginServiceImpl1.class
 businesslogic\room\TestHotelRoomInfo.class
 businesslogic\strategy\TestStrategy.class
 businesslogicservice\impl\TestCustomer.class
-<<<<<<< HEAD
-=======
-=======
-=======
-businesslogic/credit/TestCredit.class
-businesslogic/account/TestAccountWeb.class
-businesslogic/login/TestLoginController.class
-businesslogicservice/impl/TestLoginServiceImpl2.class
-businesslogic/strategy/TestStrategy.class
-businesslogic/account/TestAccountCustomer.class
-businesslogic/login/TestLogin.class
-businesslogicservice/impl/TestLoginEXP.class
-businesslogic/room/TestRoomSingle.class
-businesslogic/room/TestHotelRoomInfo.class
-businesslogicservice/impl/TestLoginServiceImpl1.class
-businesslogic/order/TestOrderController.class
-businesslogic/account/TestAccountHotel.class
-businesslogic/order/TestOrder.class
-businesslogic/room/TestRoomDeal.class
->>>>>>> Stashed changes
->>>>>>> Stashed changes
->>>>>>> origin/master
->>>>>>> origin/master
