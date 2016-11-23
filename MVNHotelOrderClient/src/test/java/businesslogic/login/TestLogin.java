@@ -12,15 +12,15 @@ import stub.AccountData_stub;
  */
 public class TestLogin {
 
-	@Test
-	public void testLogin() {
-		Login login=new Login(new AccountData_stub());
-		assertEquals(login.login("zjy", "password").state, State.login);
-	}
-	@Test
-	public void testGetState() {
-		Login login=new Login(new AccountData_stub());
-		assertEquals(login.getState(), State.logout);
-	}
+//	@Test
+//	public void testLogin() {
+//		Login login=new Login(new AccountData_stub());
+//		assertEquals(login.login("zjy", "password").state, State.login);
+//	}
+//	@Test
+//	public void testGetState() {
+//		Login login=new Login(new AccountData_stub());
+//		assertEquals(login.getState(), State.logout);
+//	}
 
 }
