@@ -9,4 +9,6 @@ public interface CustomerDataService {
 	public CustomerPO find(String customer_id);
 	
 	public ResultMessage modify (CustomerPO customerInfo);
+	
+	
 }
