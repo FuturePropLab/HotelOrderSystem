@@ -127,12 +127,14 @@ public class RootLayoutController {
     	if(fxml==null){
     		fullLayoutController=null;
     		fullLayout.getChildren().clear();
+       		fullLayout.setDisable(true);
     		return;
     	}
     	FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(fxml));
     	Parent child = (Parent) loader.load();
     	fullLayout.getChildren().addAll(child);
+    	fullLayout.setDisable(false);
     	fullLayoutController=loader.getController();
     	fullLayoutController.setRootLayoutController(this);
 	}
