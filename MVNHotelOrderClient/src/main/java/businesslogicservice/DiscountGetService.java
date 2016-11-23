@@ -2,11 +2,9 @@ package businesslogicservice;
 
 import java.util.List;
 
-import vo.DiscountSearchVO;
-import vo.DiscountVO;
-import vo.DiscountVO_hotel;
-import vo.DiscountVO_web;
 import vo.OrderInputVO;
+import vo.StrategyVO_hotel;
+import vo.StrategyVO_web;
 /**
  * 
  * @author lwy
@@ -18,7 +16,7 @@ public interface DiscountGetService {
 		 * @param orderInput
 		 * @return
 		 */
-		public List<DiscountVO_hotel> getSuitableDiscount_hotel(OrderInputVO orderInput);
-		public List<DiscountVO_web> getSuitableDiscount_web(OrderInputVO orderInput);
+		public List<StrategyVO_hotel> getSuitableDiscount_hotel(OrderInputVO orderInput);
+		public List<StrategyVO_web> getSuitableDiscount_web(OrderInputVO orderInput);
 
 }

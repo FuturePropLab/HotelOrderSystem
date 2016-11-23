@@ -5,8 +5,11 @@ package vo;
  *
  */
 public class StrategyVO {
-	private DiscountVO_hotel hotel;
-	private DiscountVO_web web;
+	
+	public StrategyVO_hotel hotel;
+	
+	public StrategyVO_web web;
+	
 	public double discount;//hotel 和 web 折扣 叠乘
 	
 	/**
@@ -14,9 +17,10 @@ public class StrategyVO {
 	 * @param hotelDiscount
 	 * @param webDiscount
 	 */
-	public StrategyVO(DiscountVO_hotel hotel, DiscountVO_web web) {
+	
+	public StrategyVO(StrategyVO_hotel hotel, StrategyVO_web webBest) {
 		this.hotel = hotel;
-		this.web = web;
-		discount=hotel.discount*web.discount;
+		this.web = webBest;
+		discount=hotel.discount*webBest.discount;
 	}
 }

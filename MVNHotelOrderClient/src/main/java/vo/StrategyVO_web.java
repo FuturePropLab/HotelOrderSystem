@@ -1,7 +1,6 @@
 package vo;
 
-import java.util.Calendar;
-
+import tools.Strategy_webType;
 
 /**
  * 
@@ -10,12 +9,14 @@ import java.util.Calendar;
  */
 public class StrategyVO_web {
 
-		public double discount;
-		
-	    public StrategyVO_web(double discount){
+	public Strategy_webType type;
 
-	    	this.discount=discount;
-		}
-		
-	
+	public double discount;
+
+	public StrategyVO_web(double discount, Strategy_webType type) {
+
+		this.discount = discount;
+		this.type = type;
+	}
+
 }

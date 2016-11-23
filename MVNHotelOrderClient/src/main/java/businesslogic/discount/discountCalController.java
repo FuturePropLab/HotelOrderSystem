@@ -8,6 +8,8 @@ import vo.DiscountVO;
 import vo.DiscountVO_hotel;
 import vo.DiscountVO_web;
 import vo.OrderInputVO;
+import vo.StrategyVO_hotel;
+import vo.StrategyVO_web;
 
 /**
  * 
@@ -37,14 +39,14 @@ public class DiscountCalController implements DiscountGetService {
 //		return ((DiscountGetService) discount).CheckDiscount(dsvo);
 //	}
 
-	public List<DiscountVO_hotel> getSuitableDiscount_hotel(OrderInputVO orderInput) {
+	public List<StrategyVO_hotel> getSuitableDiscount_hotel(OrderInputVO orderInput) {
 		// TODO Auto-generated method stub
 		Discount discount = new Discount();
 		return ((DiscountGetService) discount).getSuitableDiscount_hotel(orderInput);
 		
 	}
 
-	public List<DiscountVO_web> getSuitableDiscount_web(OrderInputVO orderInput) {
+	public List<StrategyVO_web> getSuitableDiscount_web(OrderInputVO orderInput) {
 		// TODO Auto-generated method stub
 		Discount discount = new Discount();
 		return ((DiscountGetService) discount).getSuitableDiscount_web(orderInput);	}

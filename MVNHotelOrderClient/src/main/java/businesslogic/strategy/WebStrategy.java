@@ -5,10 +5,8 @@ import java.util.List;
 
 import businesslogic.discount.DiscountCalController;
 import businesslogicservice.DiscountGetService;
-import vo.DiscountVO;
-import vo.DiscountVO_hotel;
-import vo.DiscountVO_web;
 import vo.OrderInputVO;
+import vo.StrategyVO_web;
 /**
  * 
  * @author LinWenye
@@ -16,7 +14,7 @@ import vo.OrderInputVO;
  */
 
 public class WebStrategy {
-	private List<DiscountVO_web> strategyList;
+	private List<StrategyVO_web> strategyList;
 
 	public WebStrategy(OrderInputVO orderInput) {
 		
@@ -31,15 +29,15 @@ public class WebStrategy {
  * 计算得到最优
  * @return 最优策略
  */
-	public DiscountVO_web calBest() {
+	public StrategyVO_web calBest() {
 
 		double min = 1.0;
-		DiscountVO_web res = new DiscountVO_web(0, null, min, null, null, 0);
+		StrategyVO_web res = new StrategyVO_web(min, null);
 		
 		Iterator iter = strategyList.iterator();
 	
 		while (iter.hasNext()) {
-			DiscountVO_web discountVO_web = (DiscountVO_web) iter.next();
+			StrategyVO_web discountVO_web = (StrategyVO_web) iter.next();
 			if (discountVO_web.discount < min) {
 
 				min = discountVO_web.discount;

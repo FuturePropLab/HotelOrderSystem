@@ -10,6 +10,8 @@ import vo.DiscountVO;
 import vo.DiscountVO_hotel;
 import vo.DiscountVO_web;
 import vo.OrderInputVO;
+import vo.StrategyVO_hotel;
+import vo.StrategyVO_web;
 
 public class DiscountCal_stub implements DiscountGetService{
 
@@ -46,12 +48,12 @@ public class DiscountCal_stub implements DiscountGetService{
 		return dis;
 	}
 
-	public List<DiscountVO_hotel> getSuitableDiscount_hotel(OrderInputVO orderInput) {
+	public List<StrategyVO_hotel> getSuitableDiscount_hotel(OrderInputVO orderInput) {
 		// TODO Auto-generated method stub
-		List<DiscountVO_hotel> dis=new ArrayList();
+		List<StrategyVO_hotel> dis=new ArrayList();
 		Date t1=new Date(2016,9,1);
 		Date t2=new Date(2016,9,2);
-		DiscountVO_hotel dvo=new DiscountVO_hotel("0000",9.9,t1,t2);
+		StrategyVO_hotel dvo=new StrategyVO_hotel(9.9, null);
 		dis.add(dvo);
 		
 		return dis;
@@ -59,13 +61,13 @@ public class DiscountCal_stub implements DiscountGetService{
 		
 	}
 
-	public List<DiscountVO_web> getSuitableDiscount_web(OrderInputVO orderInput) {
+	public List<StrategyVO_web> getSuitableDiscount_web(OrderInputVO orderInput) {
 		// TODO Auto-generated method stub
-		List<DiscountVO_web> dis=new ArrayList();
+		List<StrategyVO_web> dis=new ArrayList();
 		Date t1=new Date(2016,9,1);
 		Date t2=new Date(2016,9,2);
 		
-		DiscountVO_web dvo=new DiscountVO_web(2,"nanjing",9.0,t1,t2,2);
+		StrategyVO_web dvo=new StrategyVO_web(2, null);
 		dis.add(dvo);
 		
 		return dis;
