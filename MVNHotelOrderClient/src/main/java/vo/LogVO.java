@@ -1,7 +1,7 @@
 package vo;
 
-import businesslogic.login.AccountType;
 import businesslogic.login.State;
+import tools.AccountType;
 
 /**
  * 登陆的信息

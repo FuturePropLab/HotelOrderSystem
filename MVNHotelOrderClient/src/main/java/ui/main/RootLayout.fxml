@@ -9,6 +9,7 @@
    <children>
       <AnchorPane fx:id="details" layoutX="612.0" prefHeight="750.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <AnchorPane fx:id="guid" prefHeight="750.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="fullLayout" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <AnchorPane layoutX="1142.0" prefHeight="59.0" prefWidth="158.0">
          <children>
             <ImageView fitHeight="39.0" fitWidth="38.0" layoutX="120.0" onMouseClicked="#handleExit">

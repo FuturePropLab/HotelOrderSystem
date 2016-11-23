@@ -18,6 +18,8 @@ public class RootLayoutController {
 	private DetailsController detailsController;
 	private Stage primaryStage;
 	@FXML
+	private AnchorPane fullLayout;
+	@FXML
 	private AnchorPane details;
 	@FXML
 	private AnchorPane guid;
@@ -53,8 +55,9 @@ public class RootLayoutController {
     @FXML
     private void initialize() {
         try {
-			changeDetails("../hotel/HotelDetail.fxml");
-	        changeGuid("GuideUI.fxml");
+        	changeFullLayout("../login/Login.fxml");
+//			changeDetails("../hotel/HotelDetail.fxml");
+//        	changeGuid("GuideUI.fxml");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -111,5 +114,15 @@ public class RootLayoutController {
     public void changeGuid(String fxml) throws IOException {
     	Parent child = (Parent) FXMLLoader.load(getClass().getResource(fxml));
     	guid.getChildren().addAll(child);
+	}
+    
+    /**
+     * 用来切换rootlayout的整个界面
+     * @param fxml guid所在的fxlm文件的名称（相对路径）
+     * @throws IOException FXMLLoader.load(URL location)加载失败时
+     */
+    public void changeFullLayout(String fxml) throws IOException {
+    	Parent child = (Parent) FXMLLoader.load(getClass().getResource(fxml));
+    	fullLayout.getChildren().addAll(child);
 	}
 }

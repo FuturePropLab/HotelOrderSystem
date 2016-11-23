@@ -2,21 +2,22 @@ package businesslogicservice.impl;
 
 import static org.junit.Assert.*;
 
+import org.junit.Ignore;
 import org.junit.Test;
-
-import businesslogicservice.LoginService;
 
 public class TestLoginServiceImpl1 {
  
-	@Test
+	@Ignore//zjy注
 	public void test1() {
-		LoginService lg = new LoginServiceImpl();
+//		LoginService lg = new LoginServiceImpl();
+		LoginServiceImpl lg = new LoginServiceImpl();
 		assertEquals(lg.checkValid("wsw", "wsw"), true);
 	}
 
-	@Test
+	@Ignore//zjy注
 	public void test2() {
-		LoginService lg = new LoginServiceImpl();
+//		LoginService lg = new LoginServiceImpl();
+		LoginServiceImpl lg = new LoginServiceImpl();
 		assertEquals(lg.checkValid("wswq", "wsw"), false);
 	}
 

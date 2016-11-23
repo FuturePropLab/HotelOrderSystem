@@ -30,9 +30,4 @@ public class LoginController implements LoginService{
 		return login.login(username, password);
 	}
 
-	public boolean checkValid(String userID, String password) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }
