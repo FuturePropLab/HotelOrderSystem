@@ -1,10 +1,18 @@
 package businesslogicservice;
 
-import vo.LogVO;
+import java.rmi.RemoteException;
+
+import tools.AccountType;
+import tools.ResultMessage_LoginCheck;
 
 /**
  * 
  * @author zjy
+ *
+ */
+/**
+ * 修改
+ * @author wshwbluebird
  *
  */
 public interface LoginService {
@@ -13,6 +21,7 @@ public interface LoginService {
 	 * @param username 用户输入的用户名
 	 * @param password 用户输入的密码
 	 * @return 登陆的结果
+	 * @throws RemoteException 
 	 */
-	public LogVO login(String username,String password);
+	public ResultMessage_LoginCheck login(String username,String password,AccountType accountType) throws RemoteException;
 }

@@ -1,7 +1,11 @@
 package businesslogic.login;
 
-import dataservice.AccountDataService;
+import java.rmi.RemoteException;
+
+import dataservice.LoginCheckService;
+import rmi.RemoteHelper;
 import tools.AccountType;
+import tools.ResultMessage_LoginCheck;
 import vo.LogVO;
 
 /**
@@ -10,15 +14,21 @@ import vo.LogVO;
  * 
  */
 public class Login {
-	private AccountDataService accountDataService;
+	private LoginCheckService loginCheckService;
 	private State state;
 	/**
 	 * 
 	 * @param accountDataService AccountDataService接口
 	 */
-	public Login(AccountDataService accountDataService) {
+	public Login(LoginCheckService loginCheckService) {
 		super();
-		this.accountDataService = accountDataService;
+		this.loginCheckService = loginCheckService;
+		this.state=State.logout;
+	}
+	
+	
+	public Login(){
+		this.loginCheckService = RemoteHelper.getInstance().getLoginCheckService();
 		this.state=State.logout;
 	}
 	/**
@@ -26,18 +36,10 @@ public class Login {
 	 * @param username 用户输入的用户名
 	 * @param password 用户输入的密码
 	 * @return 登陆的结果
+	 * @throws RemoteException 
 	 */
-	public LogVO login(String username,String password){
-//		if(accountDataService.getHotel(username)!=null){
-//			return new LogVO(State.login, username, password, AccountType.Hotel);
-//		}
-//		else if (accountDataService.getWeb(username)!=null) {
-//			return new LogVO(State.login, username, password, AccountType.Web);
-//		}
-//		else if (accountDataService.getCustomer(username)!=null){
-//			return new LogVO(State.login, username, password, AccountType.Customer);
-//		}
-		return new LogVO(State.logout, null, null, null);
+	public ResultMessage_LoginCheck login(String username,String password,AccountType accountType) throws RemoteException{
+		return loginCheckService.checkLogin(username, password, accountType);
 	}
 	/**
 	 * 

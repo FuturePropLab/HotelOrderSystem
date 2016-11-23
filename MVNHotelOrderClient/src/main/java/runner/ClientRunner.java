@@ -5,7 +5,10 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import businesslogic.login.LoginController;
+import dataservice.LoginCheckService;
 import rmi.RemoteHelper;
+import tools.AccountType;
 
 public class ClientRunner {
 	private RemoteHelper remoteHelper;
@@ -31,10 +34,12 @@ public class ClientRunner {
 	}
 	
 	
-	public void test(){
+	public void test() throws RemoteException{
+//		LoginController loginController = new LoginController();
+//		System.out.println("ans:  "+loginController.login("zhujunyi", "zhujunyi",AccountType.Customer));
 	}
 	
-	public static void main(String[] args){
+	public static void main(String[] args) throws RemoteException{
 		ClientRunner cr = new ClientRunner();
 		cr.test();
 	}

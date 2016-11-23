@@ -1,6 +1,6 @@
 package tools;
 
-public enum ResultMessage_LoginCheck {
+public enum ResultMessage_LoginCheck{
 	Success,
 	InvalidUsername,
 	InvalidPassword,
