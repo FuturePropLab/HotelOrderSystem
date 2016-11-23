@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dataservice.AccountDataService;
+import po.AccountPO;
 import po.CustomerAccountPO;
 import po.HotelAccountPO;
 import po.SearchCondition;
 import po.WebAccountPO;
 import tools.ResultMessage;
 import tools.ResultMessage2;
+import tools.ResultMessage_Account;
 import vo.CustomerInputVO;
 
 /**
@@ -87,6 +89,31 @@ public class AccountData_stub implements AccountDataService{
 	}
 
 	public ResultMessage2 accountAdd(CustomerInputVO customerInfo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ResultMessage_Account resetPassword(String userid, String newPassword) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public AccountPO getAccountByUserName(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public AccountPO getAccountByID(String userid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ResultMessage_Account addAccount(AccountPO accountPO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ResultMessage_Account deleteAccount(String userid) {
 		// TODO Auto-generated method stub
 		return null;
 	}

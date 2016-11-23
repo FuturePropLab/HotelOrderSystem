@@ -28,15 +28,15 @@ public class Login {
 	 * @return 登陆的结果
 	 */
 	public LogVO login(String username,String password){
-		if(accountDataService.getHotel(username)!=null){
-			return new LogVO(State.login, username, password, AccountType.Hotel);
-		}
-		else if (accountDataService.getWeb(username)!=null) {
-			return new LogVO(State.login, username, password, AccountType.Web);
-		}
-		else if (accountDataService.getCustomer(username)!=null){
-			return new LogVO(State.login, username, password, AccountType.Customer);
-		}
+//		if(accountDataService.getHotel(username)!=null){
+//			return new LogVO(State.login, username, password, AccountType.Hotel);
+//		}
+//		else if (accountDataService.getWeb(username)!=null) {
+//			return new LogVO(State.login, username, password, AccountType.Web);
+//		}
+//		else if (accountDataService.getCustomer(username)!=null){
+//			return new LogVO(State.login, username, password, AccountType.Customer);
+//		}
 		return new LogVO(State.logout, null, null, null);
 	}
 	/**

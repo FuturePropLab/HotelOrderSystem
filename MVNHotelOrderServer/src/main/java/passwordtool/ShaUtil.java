@@ -14,7 +14,7 @@ public class ShaUtil {
 	 * @return 40 bits shaPassword
 	 * @throws Exception
 	 */
-	public  String shaEncode(String inStr) throws Exception {
+	public static String shaEncode(String inStr) throws Exception {
         MessageDigest sha = null;
         try {
             sha = MessageDigest.getInstance("SHA");
@@ -38,9 +38,9 @@ public class ShaUtil {
     }
 	
 	 public static void main(String[] args) throws Exception {
-			ShaUtil sha = new ShaUtil();
-			System.out.println(sha.shaEncode("1231231231231231233243232432"));
-			System.out.println(sha.shaEncode("1234"));
-			System.out.println(sha.shaEncode("12345").length());
+//			ShaUtil sha = new ShaUtil();
+//			System.out.println(sha.shaEncode("1231231231231231233243232432"));
+//			System.out.println(sha.shaEncode("1234"));
+//			System.out.println(sha.shaEncode("12345").length());
 		}
 }

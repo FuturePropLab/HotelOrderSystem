@@ -1,58 +1,47 @@
 package dataservice;
 
-import java.util.List;
-
-import po.CustomerAccountPO;
-import po.HotelAccountPO;
-import po.SearchCondition;
-import po.WebAccountPO;
-import tools.ResultMessage;
-import tools.ResultMessage2;
-import vo.CustomerInputVO;
+import po.AccountPO;
+import tools.ResultMessage_Account;
 
 public interface AccountDataService {
-
-	public ResultMessage modifyCustomer(CustomerAccountPO CusPO);
-	/**
-	 * 数据层 获取CustomerAccountPO
-	 * @param customer_id
-	 * @return CustomerAccountPO
-	 */
-	public CustomerAccountPO getCustomer(String customer_id);
-
-	/**
-	 * @author chenyuyan 11/22
-	 * 数据层 增加customer
-	 * @param customerInfo
-	 * @return
-	 */
-	public ResultMessage2 accountAdd(CustomerInputVO customerInfo);
-	
-	public List<CustomerAccountPO> searchCustomerList(SearchCondition searchCondition);
-	
-	public ResultMessage addHotel(HotelAccountPO hotelAccPO);
-
-	public ResultMessage modifyHotel(HotelAccountPO hotelAccPO);
 	
 	/**
-	 * 数据层 获取HotelAccountPO
-	 * @param hotel_id
-	 * @return HotelAccountPO
+	 * 根据账户的ID 和 输入的密码 存储该账户新的密码
+	 * @param userid
+	 * @param newPassword
+	 * @return 修改密码是否成功
 	 */
-	public HotelAccountPO getHotel(String hotel_id);
-
-	public ResultMessage deleteHotel(String hotel_id);
+	public ResultMessage_Account resetPassword(String userid , String newPassword);
 	
-	public ResultMessage addWeb(WebAccountPO po);
-
-	public ResultMessage modifyWeb(WebAccountPO po);
 	/**
-	 * 数据层 获取WebAccountPO 网站设计人员
-	 * @param WebAccount_id
-	 * @return WebAccountPO
+	 * 通过账户用户名 获取账户持久化数据 
+	 * @param username
+	 * @return AccountPO
+	 * @return password==null
 	 */
-	public WebAccountPO getWeb(String WebAccount_id);
+	public AccountPO getAccountByUserName(String username);
+		
+	/**
+	 * 通过账户ID 获取账户持久化数据 传过来的
+	 * @param userid
+	 * @return AccountPO
+	 * @return password==null
+	 */
+	public AccountPO getAccountByID(String userid);
+	
+	/**
+	 * 新增持久化账户细信息
+	 * @param accountPO
+	 * @return 新增持久化账户细信息是否成功
+	 */
+	public ResultMessage_Account addAccount(AccountPO accountPO);
+	
+	/**
+	 * 删除持久化账户细信息
+	 * @param userid
+	 * @return 删除持久化账户细信息是否成功
+	 */
+	public ResultMessage_Account deleteAccount(String userid);
 
 	
-
 }

@@ -2,47 +2,58 @@ package businesslogicservice;
 
 import java.util.List;
 
-import tools.ResultMessage;
-import vo.HotelAccountVO;
+import tools.ResultMessage_Account;
+import vo.AccountVO;
 import vo.HotelInfoVO;
-import vo.HotelInputVO;
 import vo.HotelSearchVO;
 
 public interface AccountHotelService {
 	/**
-	 * 根据输入新增酒店
-	 * @param hotelAccount
-	 * @param hotelInputVO
-	 * @return ResultMessage
+	 * 通过用户名 返回该账户的ID
+	 * @param username
+	 * @param password
+	 * @return 该账户的ID 
 	 */
-	public ResultMessage addHotelAccount (HotelAccountVO hotelAccount,HotelInputVO hotelInputVO);
+	public String getAccountID(String username);
 	
 	/**
-	 * 根据值对象修改持久化存储信息
-	 * @param hotelAccount
-	 * @return ResultMessage
+	 * 通过注册的用户名和密码 以及账户类型 新增一个新的账户  自动生成ID
+	 * @param username
+	 * @param password
+	 * @param accountType
+	 * @return 是否成功
 	 */
-	public ResultMessage modifyHotelAccount (HotelAccountVO hotelAccount);
+	public ResultMessage_Account addAccount(String username ,String password);
 	
 	/**
-	 * 根据ID获取酒店账户的值对象信息
-	 * @param hotel_id
-	 * @return HotelAccountVO
+	 * 通过输入账户名 重制账户的密码
+	 * @param userid
+	 * @param newPassword
+	 * @return 重设是否成功
 	 */
-	public HotelAccountVO getHotelAccount(String hotel_id);
-	/**
-	 * 根据ID删除酒店的账户信息
-	 * @param hotel_id
-	 * @return ResultMessage
-	 */
-	public ResultMessage deleteHotelAccount (String hotel_id);
+	public ResultMessage_Account resetPassword(String userid, String newPassword);
+	
 	
 	/**
-	 * 根据搜索信息获得所有符合条件的酒店信息列表
+	 * 通过账户的id ，获取账户的名字
+	 * @param userId
+	 * @return 该账户的用户名
+	 */
+	public String getUsername(String userId);
+	
+	/**
+	 * 根据id 删除账户信息
+	 * @param userId
+	 * @return 删除操作是否成功
+	 */
+	public ResultMessage_Account deleteAccount(String userId);
+	
+	/**
+	 * 通过客户的搜索信息值 返回符合条件的AccountVO 列表
 	 * @param hotelSearchVO
-	 * @return List<HotelAccountVO>
+	 * @return 符合条件的客户账户VO 列表
 	 */
-	public List<HotelAccountVO>searchHotelAccount (HotelSearchVO hotelSearchVO);
+	public List<AccountVO> searchHotelAccount(HotelSearchVO hotelSearchVO);
 	
 	/**
 	 * 根据酒店的ID 查看酒店的详细信息

@@ -3,10 +3,10 @@ package businesslogic.account;
 import java.util.List;
 
 import businesslogicservice.AccountHotelService;
-import tools.ResultMessage;
-import vo.HotelAccountVO;
+import tools.AccountType;
+import tools.ResultMessage_Account;
+import vo.AccountVO;
 import vo.HotelInfoVO;
-import vo.HotelInputVO;
 import vo.HotelSearchVO;
 
 /**
@@ -27,34 +27,39 @@ public class HotelAccountController implements AccountHotelService {
 	}
 
 
-	public ResultMessage addHotelAccount(HotelAccountVO hotelAccount, HotelInputVO hotelInputVO) {
-	
-		return account.addHotelAccount(hotelAccount, hotelInputVO);
+	public String getAccountID(String username) {
+		return account.getAccountID(username);
 	}
 
 
-	public ResultMessage modifyHotelAccount(HotelAccountVO hotelAccount) {
-		return account.modifyHotelAccount(hotelAccount);
+	public ResultMessage_Account addAccount(String username, String password) {
+		return account.addAccount(username, password, AccountType.Hotel);
 	}
 
 
-	public HotelAccountVO getHotelAccount(String hotel_id) {
-		return account.getHotelAccount(hotel_id);
+	public ResultMessage_Account resetPassword(String userid, String newPassword) {
+		return account.resetPassword(userid, newPassword);
 	}
 
 
-	public ResultMessage deleteHotelAccount(String hotel_id) {
-		return account.deleteHotelAccount(hotel_id);
+	public String getUsername(String userId) {
+		return account.getUsername(userId);
 	}
 
 
-	public List<HotelAccountVO> searchHotelAccount(HotelSearchVO vo) {
-		return account.searchHotelAccount(vo);
+	public List<AccountVO> searchHotelAccount(HotelSearchVO hotelSearchVO) {
+		return account.searchHotelAccount(hotelSearchVO);
 	}
 
 
 	public HotelInfoVO getHotelDetail(String hotel_id) {
 		return account.getHotelDetail(hotel_id);
 	}
+
+
+	public ResultMessage_Account deleteAccount(String userId) {
+		return account.deleteAccount(userId);
+	}
+
 
 }
