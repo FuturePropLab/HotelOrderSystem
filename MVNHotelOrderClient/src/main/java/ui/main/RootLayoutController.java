@@ -124,6 +124,11 @@ public class RootLayoutController {
      * @throws IOException FXMLLoader.load(URL location)加载失败时
      */
     public void changeFullLayout(String fxml) throws IOException {
+    	if(fxml==null){
+    		fullLayoutController=null;
+    		fullLayout.getChildren().clear();
+    		return;
+    	}
     	FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(fxml));
     	Parent child = (Parent) loader.load();

@@ -39,6 +39,7 @@ public class LoginController extends FullLayoutController{
 		try {
 			result = loginService.login(username.getText(), password.getText(),AccountType.Customer);
 			if(result.equals(ResultMessage_LoginCheck.Success)){
+				rootLayoutController.changeFullLayout(null);
 				rootLayoutController.changeDetails("../hotel/HotelDetail.fxml");
 				rootLayoutController.changeGuid("GuideUI.fxml");
 			}
