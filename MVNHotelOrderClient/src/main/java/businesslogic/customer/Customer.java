@@ -1,5 +1,6 @@
 package businesslogic.customer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import businesslogic.account.Account;
@@ -40,9 +41,10 @@ public class Customer {
 			 //Account customer = new Account();
 			AccountCustomerService account=new CustomerAccountController();
 			 ResultMessage_Account result = account.addAccount(customerInput.username, customerInput.password);//密码，username，
+			 if(result==ResultMessage_Account.Success){
 			 String id = account.getAccountID(customerInput.username);
 			 
-			 if(result==ResultMessage_Account.Success){
+			
 			 MemberVO membervo=null;
 			 int credit = 0;
 			 
@@ -95,6 +97,41 @@ public class Customer {
 	 */
 	public List<CustomerVO> searchCustomer(CustomerSearchVO customerSearchVO){
 		CustomerDeal_Stub test=new CustomerDeal_Stub();
+		List <CustomerPO> customerPO=new ArrayList<CustomerPO>();
+		
+		customerPO=customerdata.searchCustomer();
+		
+		List <CustomerVO> customerVO = new ArrayList<CustomerVO>();
+		
+		int flag=0;//一个标志，用来判断是否已经筛选过啦
+		String id = customerSearchVO.userID;
+		
+		String telephone = customerSearchVO.telephone;
+		
+		if(id!=null){
+			flag=1;
+			for (int i=0;i<customerPO.size();i++){
+				if(customerPO.get(i).getCustomeID()==id){
+					customerVO.add(new CustomerVO(customerPO.get(i)));
+					
+				}
+			}
+		}
+		if(telephone!=null){
+			if(flag==0){
+				for(int i=0;i<customerPO.size();i++){
+					if(customerPO.get(i).getTelephone()==telephone){
+						customerVO.add(new CustomerVO(customerPO.get(i)));
+					}
+				}
+			}else{
+				for(int i2=0;i2<customerVO.size();i2++){
+					if(customerVO.get(i2).telephone!=telephone){
+						customerVO.remove(customerVO.get(i2));
+					}
+				}
+			}
+		}
 		
 		return  test.searchCustomer(customerSearchVO);
 	}

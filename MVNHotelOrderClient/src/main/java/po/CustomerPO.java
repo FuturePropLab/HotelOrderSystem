@@ -23,6 +23,7 @@ public class CustomerPO {
 		   this.telephone =telephone;
 		   this.credit = credit;
 	  }
+	 
 	/* public CustomerPO(String username,String password,
 				String customerName, String telephone, String gender){
 				   //this.customeID = customeID;
@@ -33,6 +34,7 @@ public class CustomerPO {
 				   this.telephone =telephone;
 				   
 			  }*/
+	
 	 
 	  public String getCustomeID() {
 		return customeID;

@@ -1,5 +1,7 @@
 package stub;
 
+import java.util.List;
+
 import dataservice.CustomerDataService;
 import po.CustomerPO;
 import tools.MemberType;
@@ -30,6 +32,12 @@ public class CustomerData_Stub implements CustomerDataService {
 	public ResultMessage_Modify modify(CustomerPO customerInfo) {
 		if(customerInfo!=null)  return ResultMessage_Modify.Success;
 				return ResultMessage_Modify.Failure;
+	}
+
+
+	public List<CustomerPO> searchCustomer() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
