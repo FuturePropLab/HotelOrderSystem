@@ -15,7 +15,9 @@ import javafx.stage.Stage;
  * @author zjy
  */
 public class RootLayoutController {
+	private FullLayoutController fullLayoutController;
 	private DetailsController detailsController;
+	private GuideUIController guideUIController;
 	private Stage primaryStage;
 	@FXML
 	private AnchorPane fullLayout;
@@ -122,7 +124,11 @@ public class RootLayoutController {
      * @throws IOException FXMLLoader.load(URL location)加载失败时
      */
     public void changeFullLayout(String fxml) throws IOException {
-    	Parent child = (Parent) FXMLLoader.load(getClass().getResource(fxml));
+    	FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxml));
+    	Parent child = (Parent) loader.load();
     	fullLayout.getChildren().addAll(child);
+    	fullLayoutController=loader.getController();
+    	fullLayoutController.setRootLayoutController(this);
 	}
 }

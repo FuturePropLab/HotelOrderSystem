@@ -7,8 +7,13 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import tools.AccountType;
-
-public class LoginController {
+import ui.main.FullLayoutController;
+/**
+ * 
+ * @author zjy
+ *
+ */
+public class LoginController extends FullLayoutController{
 	@FXML
 	private TextField username;
 	@FXML
@@ -20,9 +25,17 @@ public class LoginController {
 	private LoginService loginService;//对象的创建目前是个问题
 	
 	@FXML
+	private void initialize() {
+		loginService=new LoginController();
+	}
+	
+	@FXML
 	private void handleLogin(){
 		System.out.println(username.getText());
 		System.out.println(password.getText());
 		loginService.login(username.getText(), password.getText());
+		if(customer){
+			
+		}
 	}
 }

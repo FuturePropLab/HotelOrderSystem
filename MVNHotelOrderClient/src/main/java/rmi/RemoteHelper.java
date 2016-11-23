@@ -3,6 +3,7 @@ package rmi;
 import java.rmi.Remote;
 
 import dataservice.LoginCheckService;
+import dataservice.OrderDataService;
 
 public class RemoteHelper {
 	private Remote remote;
@@ -20,6 +21,10 @@ public class RemoteHelper {
 	
 	public LoginCheckService getLoginCheckService(){
 		return (LoginCheckService )remote;
+	}
+	
+	public OrderDataService getOrderDataService(){
+		return (OrderDataService)remote;
 	}
 	
 	

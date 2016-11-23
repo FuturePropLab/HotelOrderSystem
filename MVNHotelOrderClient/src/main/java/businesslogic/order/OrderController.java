@@ -1,5 +1,6 @@
 package businesslogic.order;
 
+import java.rmi.Remote;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import businesslogicservice.OrderService;
 import dataservice.OrderDataService;
 import po.OrderPO;
 import po.SearchOrderInfo;
+import rmi.RemoteHelper;
 import tools.OrderState;
 import tools.ResultMessage;
 import ui.main.MainApp;
@@ -30,6 +32,15 @@ public class OrderController implements OrderService{
 	public OrderController(OrderDataService orderDataService) {
 		super();
 		this.orderDataService = orderDataService;
+	}
+	
+	/**
+	 * 通过RMI得到OrderDataService的构造方法
+	 * @author wsw
+	 */
+	public OrderController() {
+		super();
+		this.orderDataService = RemoteHelper.getInstance().getOrderDataService();
 	}
 	
 	private OrderVO getOrderVO(Order order) {
