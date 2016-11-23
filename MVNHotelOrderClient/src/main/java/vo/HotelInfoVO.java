@@ -9,11 +9,11 @@ public class HotelInfoVO {
 	public String hotelName;
 	public  String hotelAddress;
 	public  String ComeAddr;
-	public  Mark mark;//ÆÀ·Ö  zjy¸Ä 2016.11.6
-	public  String introduction;//¼ò½é
-	public  String facility;//Éè±¸
-	public  HotelRoomInfoVO hotelRoomVO;//¿Í·¿ĞÅÏ¢
-	public Star star;//ĞÇ¼¶
+	public  Mark mark;//è¯„åˆ†  zjyæ”¹ 2016.11.6
+	public  String introduction;//ç®€ä»‹
+	public  String facility;//è®¾å¤‡
+	public  HotelRoomInfoVO hotelRoomVO;//å®¢æˆ¿ä¿¡æ¯
+	public Star star;//æ˜Ÿçº§
 	
 
 	public HotelInfoVO(String hotelID,String hotelName, String hotelAddress,String district,Mark mark,String introduction,String facility,HotelRoomInfoVO hotelRoomVO,Star star){

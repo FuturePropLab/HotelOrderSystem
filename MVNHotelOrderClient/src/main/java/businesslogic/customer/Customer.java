@@ -3,6 +3,8 @@ package businesslogic.customer;
 import java.util.List;
 
 import businesslogic.account.Account;
+import businesslogic.account.CustomerAccountController;
+import businesslogicservice.AccountCustomerService;
 import dataservice.CustomerDataService;
 import po.CustomerPO;
 import po.MemberPO;
@@ -10,6 +12,7 @@ import stub.CustomerDeal_Stub;
 import stub.CustomerSignup_Stub;
 import tools.ResultMessage;
 import tools.ResultMessage2;
+import tools.ResultMessage_Account;
 import tools.ResultMessage_signUp;
 import vo.CustomerInputVO;
 import vo.CustomerSearchVO;
@@ -33,17 +36,19 @@ public class Customer {
 			}
 		}
 		if(re==ResultMessage_signUp.Success){
-			 Account customer = new Account();
-			 ResultMessage2 account = customer.AddCustomerAccount(customerInput);//密码，username，
-			 String id = customer.getID(customerInput.username, customerInput.password);
+			 //Account customer = new Account();
+			AccountCustomerService account=new CustomerAccountController();
+			 ResultMessage_Account result = account.addAccount(customerInput.username, customerInput.password);//密码，username，
+			 String id = account.getAccountID(customerInput.username);
 			 
+			 if(result==ResultMessage_Account.Success){
 			 MemberVO membervo=null;
 			 int credit = 0;
 			 
 			 CustomerPO customerinfo = new CustomerPO(id,customerInput.customerName,customerInput.gender,customerInput.telephone,membervo,credit);
 			 re=customerdata.add(customerinfo);
 			//CustomerPO customerinfo = new CustomerPO(customerInput.username,customerInput.password,customerInput.customerName,customerInput.telephone,customerInput.gender);
-			
+			 }
 		}
 		
 		
