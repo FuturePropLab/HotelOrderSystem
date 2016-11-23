@@ -4,14 +4,15 @@ import dataservice.CustomerDataService;
 import po.CustomerPO;
 import tools.MemberType;
 import tools.ResultMessage;
+import tools.ResultMessage_signUp;
 import vo.MemberVO;
 
 public class CustomerData_Stub implements CustomerDataService {
 
 	
-	public ResultMessage add(CustomerPO customerInfo) {
-		if(customerInfo!=null)  return ResultMessage.Exist;
-				return ResultMessage.NotExist;
+	public ResultMessage_signUp add(CustomerPO customerInfo) {
+		if(customerInfo!=null)  return ResultMessage_signUp.Success;
+				return ResultMessage_signUp.Wrong;
 	}
 
 	

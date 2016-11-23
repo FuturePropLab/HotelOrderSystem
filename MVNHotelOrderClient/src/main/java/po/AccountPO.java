@@ -1,8 +1,17 @@
 package po;
 
+import java.io.Serializable;
+
 import tools.AccountType;
 
-public class AccountPO {
+/**
+ * 
+ * @author wshwbluebird
+ *
+ */
+public class AccountPO implements Serializable{
+	
+	private static final long serialVersionUID = -377944023292189306L;
 		private String id;
 		private String password;
 		private String username;

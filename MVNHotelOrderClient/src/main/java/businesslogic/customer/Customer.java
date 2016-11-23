@@ -41,7 +41,7 @@ public class Customer {
 			 int credit = 0;
 			 
 			 CustomerPO customerinfo = new CustomerPO(id,customerInput.customerName,customerInput.gender,customerInput.telephone,membervo,credit);
-			 
+			 re=customerdata.add(customerinfo);
 			//CustomerPO customerinfo = new CustomerPO(customerInput.username,customerInput.password,customerInput.customerName,customerInput.telephone,customerInput.gender);
 			
 		}
