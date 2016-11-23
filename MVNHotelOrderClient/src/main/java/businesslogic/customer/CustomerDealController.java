@@ -5,6 +5,7 @@ import java.util.List;
 import businesslogicservice.CustomerDealService;
 import tools.ResultMessage;
 import tools.ResultMessage2;
+import tools.ResultMessage_Modify;
 import vo.CustomerSearchVO;
 import vo.CustomerVO;
 
@@ -17,7 +18,7 @@ public class CustomerDealController implements CustomerDealService {
 		return cus.getCustomerInfo(customer_id);
 	}
 
-	public ResultMessage2 changeCustomerInfo(CustomerVO customerInfo) {
+	public ResultMessage_Modify changeCustomerInfo(CustomerVO customerInfo) {
 		// TODO Auto-generated method stub
 		Customer cus=new Customer();
 		return cus.changeCustomerInfo(customerInfo);

@@ -3,6 +3,7 @@ package driver;
 import businesslogicservice.CustomerDealService;
 import tools.ResultMessage;
 import tools.ResultMessage2;
+import tools.ResultMessage_Modify;
 import vo.CustomerVO;
 
 public class CustomerDealService_Driver {
@@ -14,9 +15,9 @@ public class CustomerDealService_Driver {
 		CustomerVO customerVO1 = 
 				new CustomerVO("123456", "鐜嬪竻鎯�", 
 						"鐢�", "15050522805", null,34);
-		ResultMessage2 result = customerDealService.changeCustomerInfo(customerVO1);
+		ResultMessage_Modify result = customerDealService.changeCustomerInfo(customerVO1);
 		
-		if(ResultMessage2.success == result)  System.out.println("add success");
+		if(ResultMessage_Modify.Success == result)  System.out.println("add success");
 		
 		else  System.out.println("add fail");
 	}

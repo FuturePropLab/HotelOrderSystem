@@ -2,6 +2,7 @@ package dataservice;
 
 import po.CustomerPO;
 import tools.ResultMessage;
+import tools.ResultMessage_Modify;
 import tools.ResultMessage_signUp;
 
 public interface CustomerDataService {
@@ -9,7 +10,7 @@ public interface CustomerDataService {
 	
 	public CustomerPO find(String customer_id);
 	
-	public ResultMessage modify (CustomerPO customerInfo);
+	public ResultMessage_Modify  modify (CustomerPO customerInfo);
 	
 	
 	

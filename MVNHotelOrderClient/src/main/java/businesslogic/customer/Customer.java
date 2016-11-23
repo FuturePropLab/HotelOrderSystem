@@ -13,6 +13,7 @@ import stub.CustomerSignup_Stub;
 import tools.ResultMessage;
 import tools.ResultMessage2;
 import tools.ResultMessage_Account;
+import tools.ResultMessage_Modify;
 import tools.ResultMessage_signUp;
 import vo.CustomerInputVO;
 import vo.CustomerSearchVO;
@@ -78,10 +79,13 @@ public class Customer {
 	 * @param customerInfo
 	 * @return
 	 */
-	public ResultMessage2 changeCustomerInfo(CustomerVO customerInfo){
+	public ResultMessage_Modify changeCustomerInfo(CustomerVO customerInfo){
 		CustomerDeal_Stub test=new CustomerDeal_Stub();
 		
-		return  test.changeCustomerInfo(customerInfo);
+		CustomerPO newcustomerInfo = new CustomerPO(customerInfo.customerID,customerInfo.customerName,customerInfo.gender,customerInfo.telephone,customerInfo.membervo,customerInfo.credit);
+		
+		
+		return  customerdata.modify(newcustomerInfo);
 		
 	}
 	/**
