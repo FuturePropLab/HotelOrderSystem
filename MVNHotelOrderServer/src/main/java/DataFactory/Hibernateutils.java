@@ -14,7 +14,7 @@ import org.hibernate.service.ServiceRegistry;
                         .applySettings(cfg.getProperties()).build();
                  sessionFactory = cfg
                         .buildSessionFactory(serviceRegistry);
-//            	sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
+            	//sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
                
             } catch (Throwable ex) {
                 throw new ExceptionInInitializerError(ex);

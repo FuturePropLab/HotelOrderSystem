@@ -10,16 +10,14 @@ import dataservice.datahelper.impl.LoginCheckDatahelperImpl;
  * @author wshwbluebird
  *
  */
-public class DataHelperUtils {
-	private static LoginCheckDatahelper loginCheckDatahelper = new LoginCheckDatahelperImpl();
-	private static AccountDataHelper accountDataHelper = new AccountDataHelperImpl();
+public  class DataHelperUtils {
 	
 	/**
 	 * 
 	 * @return LoginCheckDatahelper
 	 */
 	public static LoginCheckDatahelper getLoginCheckDatahelper(){
-		return loginCheckDatahelper;
+		return LoginCheckDatahelperImpl.getInstance();
 	}
 	
 	/**
@@ -27,7 +25,7 @@ public class DataHelperUtils {
 	 * @return
 	 */
 	public static AccountDataHelper getAccountDataHelper(){
-		return accountDataHelper;
+		return AccountDataHelperImpl.getInstance();
 	}
 	
 }

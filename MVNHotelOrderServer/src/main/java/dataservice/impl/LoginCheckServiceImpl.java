@@ -32,7 +32,9 @@ public class LoginCheckServiceImpl implements LoginCheckService {
 		} catch (Exception e) {
 			return ResultMessage_LoginCheck.InvalidUsername;
 		}
+		//System.out.println("here!!");
 		LoginCheckDatahelper loginCheckDatahelper = DataHelperUtils.getLoginCheckDatahelper();
+		//System.out.println("there!!");
 		String realPassSha = loginCheckDatahelper.passwordInSha(username, accountType);
 		if("Bad_ID".equals(realPassSha))  return ResultMessage_LoginCheck.InvalidUsername;
 		if(!inputPassSha.equals(realPassSha)) return ResultMessage_LoginCheck.InvalidPassword;

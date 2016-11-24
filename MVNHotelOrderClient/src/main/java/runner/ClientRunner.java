@@ -5,15 +5,15 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-import businesslogic.login.LoginController;
 import rmi.RemoteHelper;
-import tools.AccountType;
 
 public class ClientRunner {
 	private RemoteHelper remoteHelper;
 	
 	public ClientRunner() {
+		System.out.println("has???");
 		linkToServer();
+		
 
 	}
 	
@@ -23,7 +23,6 @@ public class ClientRunner {
 			System.out.println("ready to link");
 			remoteHelper.setRemote(Naming.lookup("rmi://localhost:8888/DataRemoteObject"));
 			//System.out.println("linked");
-			System.out.println("sadasd");
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {
@@ -35,9 +34,7 @@ public class ClientRunner {
 	
 	
 	public void test() throws RemoteException{
-		LoginController loginController = new LoginController();
-		System.out.println("ASdas");
-		System.out.println("ans:  "+loginController.login("zhujunyi", "zhujunyi",AccountType.Customer));
+		
 	}
 	
 	public static void main(String[] args) throws RemoteException{

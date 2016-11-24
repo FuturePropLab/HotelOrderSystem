@@ -4,5 +4,6 @@ public enum ResultMessage_Account {
   Success,
   Fail,
   InvalidInput,
+  InvalidGennerateID,
   SystemError
 }

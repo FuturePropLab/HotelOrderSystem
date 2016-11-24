@@ -2,6 +2,7 @@ package po;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -20,6 +21,9 @@ public class AccountPO implements Serializable{
 		@Enumerated(EnumType.STRING)
 		private AccountType accountType;
 		
+		public AccountPO(){
+			
+		}
 		public AccountPO(String id ,String username, String password  , AccountType accountType){
 			this.userid = id;
 			this.username =username;
@@ -34,7 +38,7 @@ public class AccountPO implements Serializable{
 		public void setUserid(String userid) {
 			this.userid = userid;
 		}
-		
+
 		public String getPassword() {
 			return password;
 		}

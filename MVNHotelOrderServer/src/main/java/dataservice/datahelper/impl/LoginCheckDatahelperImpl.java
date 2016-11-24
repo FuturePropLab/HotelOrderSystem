@@ -1,14 +1,12 @@
 package dataservice.datahelper.impl;
 
 import java.util.List;
-import java.util.Map;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 import dataservice.datahelper.LoginCheckDatahelper;
 import passwordtool.DESUtil;
-import passwordtool.MD5Util;
 import passwordtool.ShaUtil;
 import testHibernate.Hibernateutils;
 import tools.AccountType;
@@ -19,6 +17,26 @@ import tools.AccountType;
  *
  */
 public class LoginCheckDatahelperImpl implements LoginCheckDatahelper {
+	
+	//单件模式
+	private static LoginCheckDatahelperImpl loginCheckDatahelperImpl = null;
+	
+	private LoginCheckDatahelperImpl(){
+		
+	}
+	
+	/**
+	 * 单件模式实力化 线程不安全
+	 * @return
+	 */
+	public static LoginCheckDatahelperImpl getInstance(){
+		if(loginCheckDatahelperImpl == null){
+			loginCheckDatahelperImpl = new LoginCheckDatahelperImpl();
+		}
+		return loginCheckDatahelperImpl;
+	}
+	
+	
 	
 	/**
 	 * 实现借口方法
