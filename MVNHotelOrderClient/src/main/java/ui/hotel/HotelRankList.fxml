@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <SplitPane dividerPositions="0.2" layoutX="432.0" layoutY="412.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -23,57 +30,50 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="金台饭店">
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="金台饭店" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <font>
                               <Font size="36.0" />
                            </font>
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
-                           <GridPane.margin>
-                              <Insets left="150.0" />
-                           </GridPane.margin>
                         </Label>
-                        <ImageView fitHeight="60.0" fitWidth="60.0" GridPane.columnIndex="1">
-                           <image>
-                              <Image url="@../../../resources/images/star__selected.png" />
-                           </image>
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                        </ImageView>
-                        <ImageView fitHeight="60.0" fitWidth="60.0" GridPane.columnIndex="1">
-                           <image>
-                              <Image url="@../../../resources/images/star__selected.png" />
-                           </image>
-                           <GridPane.margin>
-                              <Insets left="70.0" />
-                           </GridPane.margin>
-                        </ImageView>
-                        <ImageView fitHeight="60.0" fitWidth="60.0" GridPane.columnIndex="1">
-                           <image>
-                              <Image url="@../../../resources/images/star__selected.png" />
-                           </image>
-                           <GridPane.margin>
-                              <Insets left="210.0" />
-                           </GridPane.margin>
-                        </ImageView>
-                        <ImageView fitHeight="60.0" fitWidth="60.0" GridPane.columnIndex="1">
-                           <image>
-                              <Image url="@../../../resources/images/star__selected.png" />
-                           </image>
-                           <GridPane.margin>
-                              <Insets left="140.0" />
-                           </GridPane.margin>
-                        </ImageView>
-                        <ImageView fitHeight="60.0" fitWidth="60.0" GridPane.columnIndex="1">
-                           <image>
-                              <Image url="@../../../resources/images/star_unselected.png" />
-                           </image>
-                           <GridPane.margin>
-                              <Insets left="280.0" />
-                           </GridPane.margin>
-                        </ImageView>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                           <children>
+                              <HBox layoutX="70.0" layoutY="43.0">
+                                 <children>
+                                    <ImageView fitHeight="60.0" fitWidth="60.0">
+                                       <image>
+                                          <Image url="@../../../resources/images/star__selected.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <ImageView fitHeight="60.0" fitWidth="60.0">
+                                       <image>
+                                          <Image url="@../../../resources/images/star__selected.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="60.0" fitWidth="60.0">
+                                       <image>
+                                          <Image url="@../../../resources/images/star__selected.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="60.0" fitWidth="60.0">
+                                       <image>
+                                          <Image url="@../../../resources/images/star__selected.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="60.0" fitWidth="60.0">
+                                       <image>
+                                          <Image url="@../../../resources/images/star_unselected.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
                      </children>
                   </GridPane>
                </children>
