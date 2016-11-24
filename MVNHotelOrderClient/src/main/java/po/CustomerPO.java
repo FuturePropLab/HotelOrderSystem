@@ -15,7 +15,7 @@ public class CustomerPO {
 	  
 	  
 	 public CustomerPO( String customeID, String customerName,
-      String gender, String telephone, MemberVO membervo,int credit){
+      String gender, String telephone, MemberPO memberpo,int credit){
 		   this.customeID = customeID;
 		   this.customerName = customerName;
 		   this.gender = gender;

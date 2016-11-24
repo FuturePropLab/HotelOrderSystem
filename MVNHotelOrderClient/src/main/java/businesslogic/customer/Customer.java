@@ -39,7 +39,7 @@ public class Customer {
 		}
 		if(re==ResultMessage_signUp.Success){
 			 //Account customer = new Account();
-			AccountCustomerService account=new CustomerAccountController();
+			 AccountCustomerService account=new CustomerAccountController();
 			 ResultMessage_Account result = account.addAccount(customerInput.username, customerInput.password);//密码，username，
 			 if(result==ResultMessage_Account.Success){
 			 String id = account.getAccountID(customerInput.username);

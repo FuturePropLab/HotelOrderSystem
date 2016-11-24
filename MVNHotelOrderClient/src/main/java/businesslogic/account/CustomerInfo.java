@@ -8,6 +8,8 @@ import vo.CustomerVO;
  * 客户调用的接口
  * @author wshwbluebird
  *
+ *
+ *
  */
 public interface CustomerInfo {
 		/**
