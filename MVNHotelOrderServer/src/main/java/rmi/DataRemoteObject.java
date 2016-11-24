@@ -20,6 +20,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements  LoginCheck
 
 	}
 	public ResultMessage_LoginCheck checkLogin(String username, String password,AccountType accountType)  throws RemoteException{ {		
+		System.out.println("远程调用方法 : loginCheckService.checkLogin ");
 		return loginCheckService.checkLogin(username, password,accountType);
 	}
 

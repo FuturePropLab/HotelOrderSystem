@@ -7,7 +7,7 @@ import tools.ResultMessage_Account;
 public class AccountDataHelperImpl implements AccountDataHelper{
 
 	public ResultMessage_Account resetPassword(String userid, String newPassword) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
