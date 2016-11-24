@@ -128,6 +128,7 @@ public class Customer {
 				for(int i2=0;i2<customerVO.size();i2++){
 					if(customerVO.get(i2).telephone!=telephone){
 						customerVO.remove(customerVO.get(i2));
+						i2--;
 					}
 				}
 			}
