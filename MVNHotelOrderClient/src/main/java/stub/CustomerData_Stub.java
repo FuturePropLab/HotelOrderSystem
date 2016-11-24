@@ -4,6 +4,7 @@ import java.util.List;
 
 import dataservice.CustomerDataService;
 import po.CustomerPO;
+import po.MemberPO;
 import tools.MemberType;
 import tools.ResultMessage;
 import tools.ResultMessage_Modify;
@@ -22,8 +23,9 @@ public class CustomerData_Stub implements CustomerDataService {
 	public CustomerPO find(String customer_id) {
 		MemberType memberType = new MemberType("123");
 		MemberVO membervo = new MemberVO("123",memberType);
+		MemberPO memberpo = new  MemberPO("123",memberType);
 		CustomerPO customerPO = new CustomerPO(customer_id, "王帅惟", 
-				"男", "15055022805", membervo,123);
+				"男", "15055022805", memberpo,123);
 		
 		return customerPO;
 	}

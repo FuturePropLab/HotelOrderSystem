@@ -45,10 +45,10 @@ public class Customer {
 			 String id = account.getAccountID(customerInput.username);
 			 
 			
-			 MemberVO membervo=null;
+			 MemberPO memberpo=null;
 			 int credit = 0;
 			 
-			 CustomerPO customerinfo = new CustomerPO(id,customerInput.customerName,customerInput.gender,customerInput.telephone,membervo,credit);
+			 CustomerPO customerinfo = new CustomerPO(id,customerInput.customerName,customerInput.gender,customerInput.telephone,memberpo,credit);
 			 re=customerdata.add(customerinfo);
 			//CustomerPO customerinfo = new CustomerPO(customerInput.username,customerInput.password,customerInput.customerName,customerInput.telephone,customerInput.gender);
 			 }
@@ -57,7 +57,8 @@ public class Customer {
 		
 		
 		
-		return test.addCustomer(customerInput);
+		//return test.addCustomer(customerInput);
+		return re;
 		
 	}
 	/**
@@ -83,8 +84,10 @@ public class Customer {
 	 */
 	public ResultMessage_Modify changeCustomerInfo(CustomerVO customerInfo){
 		CustomerDeal_Stub test=new CustomerDeal_Stub();
+		MemberVO membervo = customerInfo.membervo;
+		MemberPO memberpo = new MemberPO(membervo.customer_ID,membervo.memberType);
 		
-		CustomerPO newcustomerInfo = new CustomerPO(customerInfo.customerID,customerInfo.customerName,customerInfo.gender,customerInfo.telephone,customerInfo.membervo,customerInfo.credit);
+		CustomerPO newcustomerInfo = new CustomerPO(customerInfo.customerID,customerInfo.customerName,customerInfo.gender,customerInfo.telephone,memberpo,customerInfo.credit);
 		
 		
 		return  customerdata.modify(newcustomerInfo);
@@ -134,6 +137,8 @@ public class Customer {
 			}
 		}
 		
-		return  test.searchCustomer(customerSearchVO);
+		//return  test.searchCustomer(customerSearchVO);
+		return customerVO;
+		
 	}
 }
