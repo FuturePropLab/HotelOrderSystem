@@ -17,6 +17,6 @@ public interface RoomDataService {
 	
 	public ResultMessage  deleteRoom(String hotel_id, String room_id);
 	
-	public  ResultMessage modifyRoom(RoomPO room);
+	public  ResultMessage modifyRoomState(RoomPO room);//ÐÞ¸Ä·¿¼ä×´Ì¬
 	
 }

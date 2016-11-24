@@ -1,12 +1,19 @@
 package businesslogic.room;
 
 import businesslogicservice.RoomSingleService;
+import dataservice.RoomDataService;
+import po.RoomPO;
 import stub.RoomSingle_Stub;
 import tools.ResultMessage;
 import vo.RoomVO;
-
-public class RoomSingle implements RoomSingleService {
-
+/**
+ * Î¯ÍÐÀà
+ * 
+ * @author chenyuyan
+ *
+ */
+public class RoomSingle  {
+	private RoomDataService roomDataService;
 	public RoomVO getSingleRoom(String hotel_id, String room_id) {
 		// TODO Auto-generated method stub
 		RoomSingle_Stub roomSingle_Stub=new RoomSingle_Stub();
@@ -23,7 +30,12 @@ public class RoomSingle implements RoomSingleService {
 		// TODO Auto-generated method stub
 		RoomSingle_Stub roomSingle_Stub=new RoomSingle_Stub();
 		
-		return roomSingle_Stub.editSingleRoom(room);
+		RoomPO roompo = new RoomPO(room.hotelID,room.roomID,room.state);
+		
+		
+		//return roomSingle_Stub.editSingleRoom(room);
+		return roomDataService.modifyRoomState(roompo);
+		
 	}
 
 	public ResultMessage deleteSingleRoom(String hotel_id, String room_id) {

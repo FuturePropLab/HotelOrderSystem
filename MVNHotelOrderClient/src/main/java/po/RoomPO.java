@@ -20,6 +20,18 @@ public class RoomPO {
 		this.hotelName = hotelName;
 		state = RoomState.Available;
 	}
+	/**
+	 * @author chenyuyan 11/24
+	 * 增加一个构造方法，
+	 * @return
+	 */
+	public RoomPO(String hotelID,String roomID,RoomState roomstate){
+		this.hotelID = hotelID;
+		this.roomID = roomID;
+		this.state = roomstate;
+		
+		
+	}
 	
 	public String getHotelID() {
 		return hotelID;

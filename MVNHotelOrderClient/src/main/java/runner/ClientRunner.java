@@ -23,6 +23,7 @@ public class ClientRunner {
 			System.out.println("ready to link");
 			remoteHelper.setRemote(Naming.lookup("rmi://localhost:8888/DataRemoteObject"));
 			//System.out.println("linked");
+
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {
@@ -34,14 +35,10 @@ public class ClientRunner {
 	
 	
 	public void test() throws RemoteException{
-		
 	}
 	
 	public static void main(String[] args) throws RemoteException{
-		System.out.println("sadasd");
 		ClientRunner cr = new ClientRunner();
-		System.out.println("sadasd");
 		cr.test();
-		System.out.println("sadasd");
 	}
 }
