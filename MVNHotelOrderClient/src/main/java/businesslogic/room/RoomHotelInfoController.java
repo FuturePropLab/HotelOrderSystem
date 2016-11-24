@@ -1,30 +1,29 @@
 package businesslogic.room;
+
 import businesslogicservice.RoomHotelInfoService;
-import stub.RoomHotelInfo_Stub;
 import tools.ResultMessage;
 import vo.HotelRoomInfoVO;
-/**
- * 委托类
- * 
- * @author chenyuyan
- *
- */
-public class RoomHotelInfo {
+
+public class RoomHotelInfoController implements RoomHotelInfoService{
 
 	public HotelRoomInfoVO getRoomInfo(String hotel_id) {
 		// TODO Auto-generated method stub
-		return new RoomHotelInfo_Stub().getRoomInfo(hotel_id);
+		RoomHotelInfo roominfo = new RoomHotelInfo();
+		
+		return roominfo.getRoomInfo(hotel_id);
 	}
 
 	public HotelRoomInfoVO editRoomInfo(HotelRoomInfoVO hotelRoomInfo) {
 		// TODO Auto-generated method stub
-		RoomHotelInfo_Stub roomHotelInfo_Stub=new RoomHotelInfo_Stub();
-		return roomHotelInfo_Stub.editRoomInfo(hotelRoomInfo);
+		RoomHotelInfo roominfo = new RoomHotelInfo();
+		return roominfo.editRoomInfo(hotelRoomInfo);
 	}
 
 	public ResultMessage saveRoomInfo(HotelRoomInfoVO hotelRoomInfo) {
 		// TODO Auto-generated method stub
-		return new RoomHotelInfo_Stub().saveRoomInfo(hotelRoomInfo);
+		RoomHotelInfo roominfo = new RoomHotelInfo();
+		
+		return roominfo.saveRoomInfo(hotelRoomInfo);
 	}
 
 }
