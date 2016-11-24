@@ -85,8 +85,7 @@ public class Customer {
 	public ResultMessage_Modify changeCustomerInfo(CustomerVO customerInfo){
 		CustomerDeal_Stub test=new CustomerDeal_Stub();
 		MemberVO membervo = customerInfo.membervo;
-		MemberPO memberpo = new MemberPO(membervo.customer_ID,membervo.memberType);
-		
+		MemberPO memberpo = new MemberPO(membervo.customer_ID,membervo.memberType);	
 		CustomerPO newcustomerInfo = new CustomerPO(customerInfo.customerID,customerInfo.customerName,customerInfo.gender,customerInfo.telephone,memberpo,customerInfo.credit);
 		
 		

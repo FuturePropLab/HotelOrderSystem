@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import serviceFactory.LoginServiceUtil;
 import tools.AccountType;
 import tools.ResultMessage_LoginCheck;
 import ui.main.FullLayoutController;
@@ -26,18 +27,12 @@ public class LoginController extends FullLayoutController{
 	private ChoiceBox<AccountType> accountType;
 	@FXML
 	private Button loginButton;
-	private LoginService loginService;//对象的创建目前是个问题
-	
-	@FXML
-	private void initialize() {
-		loginService=new businesslogic.login.LoginController();
-	}
 	
 	@FXML
 	private void handleLogin(){
 		ResultMessage_LoginCheck result;
 		try {
-			result = loginService.login(username.getText(), password.getText(),AccountType.Customer);
+			result = LoginServiceUtil.getLoginService().login(username.getText(), password.getText(),AccountType.Customer);
 			if(result.equals(ResultMessage_LoginCheck.Success)){
 				rootLayoutController.changeFullLayout(null);
 				rootLayoutController.changeDetails("../hotel/HotelDetail.fxml");
