@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import businesslogicservice.DiscountGetService;
-import vo.OrderInputVO;
+import vo.OrderInputCalVO;
 import vo.StrategyVO_hotel;
 import vo.StrategyVO_web;
 
@@ -21,17 +21,17 @@ public class MockDiscount implements DiscountGetService {
 		type = str;
 	}
 
-	public List<StrategyVO_hotel> getSuitableDiscount_hotel(OrderInputVO orderInput) {
+	public List<StrategyVO_hotel> getSuitableDiscount_hotel(OrderInputCalVO orderInput) {
 
 		// 应该根据type 和 orderInput来get
 		List<StrategyVO_hotel> res = new LinkedList<StrategyVO_hotel>();
-		StrategyVO_hotel dv = new StrategyVO_hotel(0, null);
+		StrategyVO_hotel dv = new StrategyVO_hotel(0, null, null, null);
 		dv.discount = 0.9;
 		res.add((StrategyVO_hotel) dv);
 		return res;
 	}
 
-	public List<StrategyVO_web> getSuitableDiscount_web(OrderInputVO orderInput) {
+	public List<StrategyVO_web> getSuitableDiscount_web(OrderInputCalVO orderInput) {
 
 		// 应该根据type 和 orderInput来get
 		List<StrategyVO_web> res = new LinkedList<StrategyVO_web>();
@@ -41,16 +41,6 @@ public class MockDiscount implements DiscountGetService {
 		return res;
 	}
 
-	//
-	// // 无须调用的方法
-	// public DiscountVO invalidDiscount(String discount_id) {
-	// // TODO Auto-generated method stub
-	// return null;
-	// }
-	//
-	// public List<DiscountVO> CheckDiscount(DiscountSearchVO dsvo) {
-	// // TODO Auto-generated method stub
-	// return null;
-	// }
+
 
 }
