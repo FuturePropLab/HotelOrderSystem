@@ -3,13 +3,20 @@ package dataservice.datahelper;
 import po.AccountPO;
 import tools.ResultMessage_Account;
 
+/**
+ * 
+ * @author wshwbluebird
+ *
+ */
 public interface AccountDataHelper{
 	
 	/**
 	 * 修改数据库中 该id的密码
+	 *  
 	 * @param userid
 	 * @param newPassword
-	 * @return ResultMessage_Account
+	 * @return ResultMessage_Account 
+	 * 
 	 */
 	public ResultMessage_Account resetPassword(String userid, String newPassword);
 	

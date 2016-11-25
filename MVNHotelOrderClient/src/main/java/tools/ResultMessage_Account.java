@@ -1,8 +1,14 @@
 package tools;
 
+/**
+ * 
+ * @author wshwbluebird
+
+ */
 public enum ResultMessage_Account {
-  Success,
-  Fail,
-  InvalidInput,
-  SystemError
+	  Success, 
+	  Fail,
+	  InvalidInput,
+	  InvalidGennerateID,
+	  SystemError
 }

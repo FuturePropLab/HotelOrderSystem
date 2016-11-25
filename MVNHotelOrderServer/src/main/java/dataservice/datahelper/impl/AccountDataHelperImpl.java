@@ -15,6 +15,7 @@ import passwordtool.DESUtil;
 import passwordtool.ShaUtil;
 import po.AccountPO;
 import tools.AccountType;
+import tools.ResultMessage;
 import tools.ResultMessage_Account;
 
 /**
@@ -28,7 +29,10 @@ public class AccountDataHelperImpl implements AccountDataHelper{
 	private AccountDataHelperImpl(){
 		
 	}
-	
+	/**
+	 * 获取单件实例化方法
+	 * @return
+	 */
 	public static AccountDataHelperImpl getInstance(){
 		if(accountDataHelperImpl==null){
 			accountDataHelperImpl = new AccountDataHelperImpl();
@@ -36,8 +40,10 @@ public class AccountDataHelperImpl implements AccountDataHelper{
 		return accountDataHelperImpl;
 	}
 	
-	/**
-	 * 重设密码
+	
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.datahelper.AccountDataHelper#resetPassword(java.lang.String, java.lang.String)
 	 */
 	public ResultMessage_Account resetPassword(String userid, String newPassword) {
 		String password;
@@ -75,8 +81,9 @@ public class AccountDataHelperImpl implements AccountDataHelper{
 	}
 
 	
-	/**
-	 * 
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.datahelper.AccountDataHelper#getAccountByUserName(java.lang.String)
 	 */
 	public AccountPO getAccountByUserName(String username) {
 		String shaUsername = DESUtil.encode(username);
@@ -98,8 +105,9 @@ public class AccountDataHelperImpl implements AccountDataHelper{
 	}
 
 	
-	/**
-	 * 
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.datahelper.AccountDataHelper#getAccountByID(java.lang.String)
 	 */
 	public AccountPO getAccountByID(String userid) {
 		Session s = Hibernateutils.getSessionFactory().openSession();
@@ -120,8 +128,9 @@ public class AccountDataHelperImpl implements AccountDataHelper{
 	}
 
 	
-	/**
-	 * 
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.datahelper.AccountDataHelper#addAccount(po.AccountPO)
 	 */
 	public ResultMessage_Account addAccount(AccountPO accountPO) {
 		String userid = accountPO.getUserid();
@@ -165,9 +174,28 @@ public class AccountDataHelperImpl implements AccountDataHelper{
 		}
 	}
 
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.datahelper.AccountDataHelper#deleteAccount(java.lang.String)
+	 */
 	public ResultMessage_Account deleteAccount(String userid) {
-		// TODO Auto-generated method stub
-		return null;
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		try{
+			Transaction t =s.beginTransaction();
+			AccountPO accountPO = (AccountPO)s.load(AccountPO.class, userid);  //加载id为 userid的accountPO
+			if(accountPO==null){
+				return ResultMessage_Account.Fail;
+			}
+			
+			s.delete(accountPO);
+			t.commit();
+			return ResultMessage_Account.Success;
+		}catch(Exception e){
+			return ResultMessage_Account.SystemError;
+		}finally {
+			s.close();
+		}
+	
 	}
 
 }
