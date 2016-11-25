@@ -33,8 +33,8 @@ public class RoomSingle  {
 		RoomPO roompo = new RoomPO(room.hotelID,room.roomID,room.state);
 		
 		
-		//return roomSingle_Stub.editSingleRoom(room);
-		return roomDataService.modifyRoomState(roompo);
+		return roomSingle_Stub.editSingleRoom(room);
+		
 		
 	}
 

@@ -30,6 +30,17 @@ public class RoomVO {
 		this.hotelName = hotelName;
 		state = RoomState.Available;
 	}
-	
+	/**
+	 * @author chenyuyan 11/24
+	 * 增加一个构造方法
+	 * @param hotel_id
+	 * @param room_id
+	 * @param state
+	 */
+	public RoomVO(String hotel_id, String room_id, RoomState state){
+		this.hotelID = hotel_id;
+		this.roomID = room_id;
+		this.state = state;
+	}
 
 }

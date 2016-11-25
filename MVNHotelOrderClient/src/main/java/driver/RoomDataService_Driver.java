@@ -28,7 +28,7 @@ public class RoomDataService_Driver {
   		System.out.println(roomDataService.addRoom(roomPo));
   		System.out.println(roomDataService.deleteRoom("233", "301"));
   		System.out.println(roomDataService.getRoom("asd", "ssdf").getHotelName());
-  		System.out.println(roomDataService.modifyRoom(roomPo));
+  		System.out.println(roomDataService.modifyRoomState(roomPo));
   		
   		
       }
