@@ -1,8 +1,10 @@
 package serviceFactory;
 
 import businesslogic.account.CustomerAccountController;
+import businesslogicservice.AccountCustomerService;
 
 public class AccountContollerUtil {
-		private static CustomerAccountController customerAccountController = new CustomerAccountController();
-	
+		public static AccountCustomerService  getAccountCustomerServiceUtil(){
+			return CustomerAccountController.getInstance();
+		}
 }

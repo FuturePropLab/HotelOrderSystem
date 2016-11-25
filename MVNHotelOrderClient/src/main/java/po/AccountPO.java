@@ -11,21 +11,22 @@ import tools.AccountType;
  */
 public class AccountPO implements Serializable{
 	
-	private static final long serialVersionUID = -377944023292189306L;
-		private String id;
+	private static final long serialVersionUID = -3068966912083464632L;
+		private String userid;
 		private String password;
 		private String username;
 		private AccountType accountType;
 		
-		public AccountPO(String id , String password , String username , AccountType accountType){
-			this.id = id;
+		public AccountPO(String id , String username , String password , AccountType accountType){
+			this.userid = id;
 			this.username = username;
 			this.password = password;
 			this.accountType = accountType;
 		}
 
-		public String getId() {
-			return id;
+		
+		public String getUserid() {
+			return userid;
 		}
 
 		public String getPassword() {

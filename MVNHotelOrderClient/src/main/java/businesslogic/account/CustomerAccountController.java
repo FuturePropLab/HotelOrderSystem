@@ -15,14 +15,24 @@ import vo.CustomerVO;
  *
  */
 public class CustomerAccountController implements AccountCustomerService{
+	private static CustomerAccountController customerAccountController = null;
+	private CustomerAccountController(){
+		account = new Account();
+	}
 	private Account account;
+	
+	public static CustomerAccountController getInstance(){
+		if(customerAccountController==null)
+			customerAccountController  =new CustomerAccountController();
+		return customerAccountController;
+	}
 	
 	/**
 	 * 无参数 初始化方法
 	 */
-	public CustomerAccountController(){
-		account = new Account();
-	}
+//	public CustomerAccountController(){
+//		account = new Account();
+//	}
 	
 
 	public String getAccountID(String username) {

@@ -5,13 +5,17 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import businesslogicservice.LoginService;
+import dataservice.AccountDataService;
+import po.AccountPO;
 import rmi.RemoteHelper;
+import serviceFactory.LoginServiceUtil;
+import tools.AccountType;
 
 public class ClientRunner {
 	private RemoteHelper remoteHelper;
 	
 	public ClientRunner() {
-		System.out.println("has???");
 		linkToServer();
 		
 
@@ -22,7 +26,7 @@ public class ClientRunner {
 			remoteHelper = RemoteHelper.getInstance();
 			System.out.println("ready to link");
 			remoteHelper.setRemote(Naming.lookup("rmi://localhost:8888/DataRemoteObject"));
-			//System.out.println("linked");
+			System.out.println("linked");
 
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -35,6 +39,10 @@ public class ClientRunner {
 	
 	
 	public void test() throws RemoteException{
+			AccountDataService accountDataService= RemoteHelper.getInstance().getAccountDataService();
+			System.out.println(accountDataService.addAccount(
+					new AccountPO("RMI001", "rmiwsw", "zhujunyi", AccountType.Customer)));
+		
 	}
 	
 	public static void main(String[] args) throws RemoteException{

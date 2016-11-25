@@ -4,7 +4,6 @@ import DataFactory.DataHelperUtils;
 import dataservice.AccountDataService;
 import dataservice.datahelper.AccountDataHelper;
 import po.AccountPO;
-import tools.AccountType;
 import tools.ResultMessage_Account;
 
 /**
@@ -63,6 +62,10 @@ public class AccountDataServiceImpl implements AccountDataService {
 	 * @see dataservice.AccountDataService#addAccount(po.AccountPO)
 	 */
 	public ResultMessage_Account addAccount(AccountPO accountPO) {
+		System.out.println(accountPO.getUserid());
+		System.out.println(accountPO.getUsername());
+		System.out.println(accountPO.getPassword());
+		System.out.println(accountPO.getAccountType());
 		AccountDataHelper accountDataHelper = DataHelperUtils.getAccountDataHelper();
 		return accountDataHelper.addAccount(accountPO);
 	}

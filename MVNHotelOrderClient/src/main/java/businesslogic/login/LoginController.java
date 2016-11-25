@@ -20,7 +20,8 @@ import vo.LogVO;
  *
  */
 public class LoginController implements LoginService{
-	private Login loginw;
+	private static LoginController loginController = null;
+	private Login loginw; //变量名设重复了
 	/**
 	 * 
 	 * @param accountDataService AccountDataService接口
@@ -30,9 +31,18 @@ public class LoginController implements LoginService{
 		this.loginw = new Login();
 	}
 	
-	public LoginController(){
+	/**
+	 * 单件模式初始化
+	 */
+	private LoginController(){
 		super();
 		this.loginw = new Login();
+	}
+	
+	public static LoginController getInstance(){
+		if(loginController==null)
+			loginController = new LoginController();
+		return loginController;
 	}
 
 	/**
