@@ -1,5 +1,7 @@
 package businesslogic.room;
 import businesslogicservice.RoomHotelInfoService;
+import dataservice.RoomDataService;
+import po.HotelRoomInfoPO;
 import stub.RoomHotelInfo_Stub;
 import tools.ResultMessage;
 import vo.HotelRoomInfoVO;
@@ -10,10 +12,18 @@ import vo.HotelRoomInfoVO;
  *
  */
 public class RoomHotelInfo {
-
+/**
+ * 酒店整体客房信息
+ * @param hotel_id
+ * @return
+ */
+	private RoomDataService roomData;
 	public HotelRoomInfoVO getRoomInfo(String hotel_id) {
 		// TODO Auto-generated method stub
-		return new RoomHotelInfo_Stub().getRoomInfo(hotel_id);
+		HotelRoomInfoPO roomInfopo = roomData.getRoomInfo(hotel_id);
+		HotelRoomInfoVO roomInfovo = new HotelRoomInfoVO(roomInfopo.getHotelID(),roomInfopo.getHotelName(),roomInfopo.getTypeRoomInfo());
+		//return new RoomHotelInfo_Stub().getRoomInfo(hotel_id);
+		return roomInfovo;
 	}
 
 	public HotelRoomInfoVO editRoomInfo(HotelRoomInfoVO hotelRoomInfo) {
