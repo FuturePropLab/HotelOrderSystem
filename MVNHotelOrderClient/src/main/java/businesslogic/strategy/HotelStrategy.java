@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
-import businesslogic.discount.DiscountCalController;
+import businesslogic.discount.DiscountGet;
 import businesslogicservice.DiscountGetService;
 import vo.OrderInputCalVO;
 import vo.StrategyVO_hotel;
@@ -34,7 +34,7 @@ public class HotelStrategy {
 	 *            构造方法
 	 */
 	public HotelStrategy(OrderInputCalVO orderInput) {
-		DiscountGetService discount = new DiscountCalController();
+		DiscountGetService discount = new DiscountGet();
 		strategyList = discount.getSuitableDiscount_hotel(orderInput);
 		this.orderInput = orderInput;
 	}

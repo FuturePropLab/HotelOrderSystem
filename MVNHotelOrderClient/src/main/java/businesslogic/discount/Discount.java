@@ -10,7 +10,6 @@ import vo.OrderInputCalVO;
 import vo.OrderInputVO;
 
 public class Discount {
-	DiscountType discountType;
 	/**
 	 * 
 	 * @param orderInput

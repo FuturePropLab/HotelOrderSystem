@@ -6,7 +6,14 @@ import java.util.List;
 import po.DiscountPO;
 import tools.DiscountSearch;
 import tools.ResultMessage;
+
+/**
+ * 
+ * @author LWY
+ *
+ */
 public interface DiscountDataService {
+	
 	public ResultMessage add(DiscountPO discount);
 
 	public ResultMessage modify(DiscountPO discount);

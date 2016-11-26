@@ -67,7 +67,7 @@ public class DiscountCal_stub implements DiscountGetService{
 		Date t1=new Date(2016,9,1);
 		Date t2=new Date(2016,9,2);
 		
-		StrategyVO_web dvo=new StrategyVO_web(2, null);
+		StrategyVO_web dvo=new StrategyVO_web(2, null, null, null);
 		dis.add(dvo);
 		
 		return dis;

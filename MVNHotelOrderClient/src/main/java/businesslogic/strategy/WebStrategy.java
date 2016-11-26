@@ -3,7 +3,7 @@ package businesslogic.strategy;
 import java.util.Iterator;
 import java.util.List;
 
-import businesslogic.discount.DiscountCalController;
+import businesslogic.discount.DiscountGet;
 import businesslogicservice.DiscountGetService;
 import vo.OrderInputCalVO;
 import vo.OrderInputVO;
@@ -19,7 +19,7 @@ public class WebStrategy {
 
 	public WebStrategy(OrderInputCalVO orderInput) {
 		
-		DiscountGetService discount = new DiscountCalController();
+		DiscountGetService discount = new DiscountGet();
 		strategyList = discount.getSuitableDiscount_web(orderInput);
 		
 //		DiscountGetService disDealService = new MockDiscount("web");//桩程序
