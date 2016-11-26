@@ -28,13 +28,18 @@ public class RoomHotelInfo {
 
 	public HotelRoomInfoVO editRoomInfo(HotelRoomInfoVO hotelRoomInfo) {
 		// TODO Auto-generated method stub
-		RoomHotelInfo_Stub roomHotelInfo_Stub=new RoomHotelInfo_Stub();
-		return roomHotelInfo_Stub.editRoomInfo(hotelRoomInfo);
+		
+		//RoomHotelInfo_Stub roomHotelInfo_Stub=new RoomHotelInfo_Stub();
+		//return roomHotelInfo_Stub.editRoomInfo(hotelRoomInfo);
+		return hotelRoomInfo;
+		
 	}
 
 	public ResultMessage saveRoomInfo(HotelRoomInfoVO hotelRoomInfo) {
 		// TODO Auto-generated method stub
-		return new RoomHotelInfo_Stub().saveRoomInfo(hotelRoomInfo);
+		HotelRoomInfoPO roomInfopo = new HotelRoomInfoPO(hotelRoomInfo.hotelID,hotelRoomInfo.hotelName,hotelRoomInfo.typeRoomInfo);
+		//return new RoomHotelInfo_Stub().saveRoomInfo(hotelRoomInfo);
+		return roomData.editHotelRoom(roomInfopo);
 	}
 
 }

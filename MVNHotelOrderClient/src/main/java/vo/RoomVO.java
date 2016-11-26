@@ -1,5 +1,6 @@
 package vo;
 
+import po.RoomPO;
 import tools.RoomState;
 import tools.RoomType;
 
@@ -41,6 +42,23 @@ public class RoomVO {
 		this.hotelID = hotel_id;
 		this.roomID = room_id;
 		this.state = state;
+	}
+	/**
+	 * @author chenyuyan 11/26
+	 * 增加构造方法，持久化数据转化为vo
+	 * @param roompo
+	 */
+	public RoomVO(RoomPO roompo){
+		
+		this.hotelID = roompo.getHotelID();
+		this.hotelName = roompo.getHotelName();
+		this.roomID = roompo.getRoomID();
+		this.roomType = roompo.getRoomType();
+		this.price = roompo.getPrice();
+		this.state = roompo.getState();
+		
+		
+		
 	}
 
 }

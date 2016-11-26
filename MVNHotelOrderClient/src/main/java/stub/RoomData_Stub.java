@@ -7,6 +7,7 @@ import dataservice.RoomDataService;
 import po.HotelRoomInfoPO;
 import po.RoomPO;
 import tools.ResultMessage;
+import tools.ResultMessage_Modify;
 import tools.RoomType;
 import tools.TypeRoomInfo;
 
@@ -57,10 +58,22 @@ public class RoomData_Stub implements RoomDataService {
 	
 
 
-	public ResultMessage modifyRoomState(RoomPO room) {
+	public ResultMessage_Modify modifyRoomState(RoomPO room) {
 		// TODO Auto-generated method stub
-		if(room!=null)  return ResultMessage.Exist;
-		return ResultMessage.NotExist;
+		if(room!=null)  return ResultMessage_Modify.Success;
+		return ResultMessage_Modify.Failure;
+	}
+
+
+	public ResultMessage editHotelRoom(HotelRoomInfoPO roomInfopo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public int searchEmptyRoom(RoomType type) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

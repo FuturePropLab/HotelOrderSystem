@@ -2,6 +2,7 @@ package stub;
 
 import businesslogicservice.RoomSingleService;
 import tools.ResultMessage;
+import tools.ResultMessage_delete;
 import tools.RoomType;
 import vo.RoomVO;
 
@@ -26,9 +27,9 @@ public class RoomSingle_Stub implements RoomSingleService {
 	}
 
 
-	public ResultMessage deleteSingleRoom(String hotel_id, String room_id) {
-		if(hotel_id!=null&&room_id!=null)  return ResultMessage.Exist;
-				return ResultMessage.NotExist;
+	public ResultMessage_delete deleteSingleRoom(String hotel_id, String room_id) {
+		if(hotel_id!=null&&room_id!=null)  return ResultMessage_delete.Success;
+				return ResultMessage_delete.Failure;
 	}
 
 

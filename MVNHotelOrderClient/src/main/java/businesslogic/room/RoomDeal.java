@@ -5,6 +5,7 @@ import po.Order;
 import po.RoomPO;
 import stub.RoomDeal_Stub;
 import tools.ResultMessage;
+import tools.ResultMessage_Modify;
 import tools.RoomState;
 import tools.RoomType;
 import vo.RoomVO;
@@ -23,7 +24,7 @@ public class RoomDeal {
  * @param state
  * @return
  */
-	public ResultMessage ChangeState(String hotel_id, String room_id, RoomState state) {
+	public ResultMessage_Modify ChangeState(String hotel_id, String room_id, RoomState state) {
 		// TODO Auto-generated method stub
 		//RoomVO roomVO=new RoomVO(hotel_id,"" , room_id, RoomType.Double, 10);
 		RoomVO roomVO = new RoomVO(hotel_id,room_id,state);
@@ -35,6 +36,9 @@ public class RoomDeal {
 		return roomDataService.modifyRoomState(roompo);
 		
 	}
+	
+	
+	
 
 	public ResultMessage arrangeRoom(Order order) {
 		// TODO Auto-generated method stub
@@ -42,6 +46,14 @@ public class RoomDeal {
 		
 		
 		return roomDeal_Stub.arrangeRoom(order);
+	}
+	
+	
+     public int searchEmpty(RoomType type){
+		return roomDataService.searchEmptyRoom(type);
+    	 
+		
+		
 	}
 
 }
