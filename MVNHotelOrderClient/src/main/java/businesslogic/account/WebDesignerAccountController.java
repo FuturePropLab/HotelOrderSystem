@@ -16,11 +16,19 @@ public class WebDesignerAccountController implements AccountWebService {
 	
 	private Account account;
 	
+	private static WebDesignerAccountController webDesignerAccountController = null;
+	
 	/**
 	 * 初始化
 	 */
-	public WebDesignerAccountController(){
+	private WebDesignerAccountController(){
 		this.account = new Account();
+	}
+	
+	public static WebDesignerAccountController getInstance(){
+		if(webDesignerAccountController == null)
+			webDesignerAccountController = new WebDesignerAccountController();
+		return webDesignerAccountController;
 	}
 
 	public String getAccountID(String username) {

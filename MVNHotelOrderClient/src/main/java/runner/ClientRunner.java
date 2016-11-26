@@ -5,6 +5,9 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import businesslogicservice.AccountCustomerService;
+import businesslogicservice.AccountHotelService;
+import businesslogicservice.AccountWebService;
 import businesslogicservice.LoginService;
 import dataservice.AccountDataService;
 import po.AccountPO;
@@ -39,9 +42,18 @@ public class ClientRunner {
 	
 	
 	public void test() throws RemoteException{
-			AccountDataService accountDataService= RemoteHelper.getInstance().getAccountDataService();
-			System.out.println(accountDataService.addAccount(
-					new AccountPO("RMI001", "rmiwsw", "zhujunyi", AccountType.Customer)));
+//		AccountCustomerService accountCustomerService = serviceFactory.AccountContollerUtil.getAccountCustomerServiceUtil();
+//		System.out.println(accountCustomerService.getUsername("zhujusnyi"));
+//		System.out.println(accountCustomerService.addAccount("wangshuaiwei", "zhujunyi"));
+//		String id ;
+//		System.out.println(id = accountCustomerService.getAccountID("wangshuaiwei"));
+//		System.out.println(accountCustomerService.resetPassword(id, "zhujunyi"));
+//		System.out.println(accountCustomerService.deleteAccount("RMI001"));;
+		
+//		AccountHotelService accountHotelService = serviceFactory.AccountContollerUtil.getAccoutHotelServiceUtil();
+//		System.out.println(accountHotelService.addAccount("teddybear", "teddybear"));
+//		AccountWebService accountWebService  = serviceFactory.AccountContollerUtil.getAccountWebDesignerServiceUtil();
+//		System.out.println(accountWebService.addAccount("manager", "manager"));
 		
 	}
 	

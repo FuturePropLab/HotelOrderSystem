@@ -18,14 +18,21 @@ public class HotelAccountController implements AccountHotelService {
 	
 	private Account account;
 	
-
+	private static HotelAccountController hotelAccountController = null;
+	
 	/**
-	 * 初始化
+	 * 单件模式初始化
 	 */
-	public HotelAccountController(){
+	private HotelAccountController(){
 		this.account = new Account();
 	}
-
+	
+	public static HotelAccountController getInstance(){
+		if(hotelAccountController == null)
+			hotelAccountController = new HotelAccountController();
+		return hotelAccountController;
+	}
+	
 
 	public String getAccountID(String username) {
 		return account.getAccountID(username);

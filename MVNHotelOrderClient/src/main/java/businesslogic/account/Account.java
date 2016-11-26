@@ -1,10 +1,13 @@
 package businesslogic.account;
 
 import java.rmi.RemoteException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import dataservice.AccountDataService;
 import po.AccountPO;
+import rmi.RemoteHelper;
 import stub.AccountData_stub;
 import tools.AccountType;
 import tools.ResultMessage_Account;
@@ -25,6 +28,7 @@ public class Account {
 	
 	static final String invalid_input = "INVALID_INPUT";
 	static final String usrname_notexits = "USERNAME_NOT_EXITS";
+	static final String usrID_notexits = "USERID_NOT_EXITS";
 	static final String rmi_fail = "RMI_FAIL";
 	
 	
@@ -55,7 +59,7 @@ public class Account {
 	 * 无参数初始化
 	 */
 	public Account(){
-		this.accountDataService = new AccountData_stub();
+		this.accountDataService = RemoteHelper.getInstance().getAccountDataService();
 		this.hotelInfo = null;
 		this.customerInfo = null;
 	}
@@ -91,8 +95,37 @@ public class Account {
 	 * @return 是否成功
 	 */
 	public ResultMessage_Account addAccount(String username ,String password,AccountType accountType){
-		//TODO
-		return null;
+		if(!Certificate.isValidUsername(username) || !Certificate.isValidPassword(password)){
+			return ResultMessage_Account.InvalidInput;
+		}
+		
+		String generatedID= "";
+		
+		//generate id by accounttype
+		if(accountType == AccountType.Customer)  generatedID = "CS";
+		else if (accountType == AccountType.Hotel)  generatedID = "HT";
+		else if	(accountType == accountType.Web) generatedID = "WB";
+		else return ResultMessage_Account.InvalidInput;
+		
+		AccountPO accountPO;
+		ResultMessage_Account result  = ResultMessage_Account.InvalidGennerateID;
+		int generatetime = 0;
+		//generate id by current time 
+		do{
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSS");
+			LocalDateTime now = LocalDateTime.now();
+			generatedID = generatedID + dtf.format(now);
+			accountPO = new AccountPO(generatedID, username, password, accountType); 
+			try {
+				result = accountDataService.addAccount(accountPO);
+			} catch (RemoteException e) {
+				return ResultMessage_Account.SystemError;
+			}
+			generatetime++;
+			if(result!=ResultMessage_Account.InvalidGennerateID)  return result;
+		}while(result == ResultMessage_Account.InvalidGennerateID && generatetime < 3);
+		
+		return ResultMessage_Account.SystemError;
 		
 	}
 	
@@ -101,10 +134,18 @@ public class Account {
 	 * @param userid
 	 * @param newPassword
 	 * @return 重设是否成功
+	 * 
+	 *TODO  补充返回注释说明
 	 */
 	public ResultMessage_Account resetPassword(String userid, String newPassword){
-		
-		return null;
+		if(!Certificate.isValidPassword(newPassword) || !Certificate.isValidUserID(userid)){
+			return ResultMessage_Account.InvalidInput;
+		}
+		try {
+			return accountDataService.resetPassword(userid, newPassword);
+		} catch (RemoteException e) {
+			return ResultMessage_Account.SystemError;
+		}
 	}
 	
 	
@@ -114,8 +155,18 @@ public class Account {
 	 * @return 该账户的用户名
 	 */
 	public String getUsername(String userId){
-		//TODO
-		return null;
+		if(!Certificate.isValidUserID(userId)){
+			return invalid_input;
+		}
+		AccountPO accountPO;
+		try {
+			accountPO = accountDataService.getAccountByUserName(userId);
+			if(accountPO==null)
+				return usrID_notexits;
+			return accountPO.getUsername();
+		} catch (RemoteException e) {
+			 return rmi_fail;
+		}		
 	}
 	
 	/**
@@ -176,8 +227,14 @@ public class Account {
 	 * @return 删除操作是否成功
 	 */
 	public ResultMessage_Account deleteAccount(String userId) {
-		//TODO
-		return null;
+		if(!Certificate.isValidUserID(userId)){
+			return ResultMessage_Account.InvalidInput;
+		}
+		try {
+			return accountDataService.deleteAccount(userId);
+		} catch (RemoteException e) {
+			return ResultMessage_Account.SystemError;
+		}
 	}
 	
 }

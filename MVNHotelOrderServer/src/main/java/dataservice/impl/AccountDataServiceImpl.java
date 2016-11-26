@@ -77,7 +77,7 @@ public class AccountDataServiceImpl implements AccountDataService {
 	public ResultMessage_Account deleteAccount(String userid) {
 		//TODO 检测用户名 是否符合要求
 		if(userid.length()<5 || userid.length()>=20) 
-			return null;
+			return ResultMessage_Account.InvalidInput;
 		AccountDataHelper accountDataHelper = DataHelperUtils.getAccountDataHelper();
 		return accountDataHelper.deleteAccount(userid);
 	}
