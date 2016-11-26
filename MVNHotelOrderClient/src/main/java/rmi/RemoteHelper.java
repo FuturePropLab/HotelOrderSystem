@@ -5,6 +5,7 @@ import java.rmi.Remote;
 import dataservice.AccountDataService;
 import dataservice.LoginCheckService;
 import dataservice.OrderDataService;
+import dataservice.StrategyGetService;
 
 /**
  * 
@@ -45,5 +46,11 @@ public class RemoteHelper {
 		return (OrderDataService)remote;
 	}
 	
-	
+	/**
+	 * 
+	 * @return 供计算的有效策略
+	 */
+	public StrategyGetService geStrategy(){
+		return (StrategyGetService)remote;
+	}
 }

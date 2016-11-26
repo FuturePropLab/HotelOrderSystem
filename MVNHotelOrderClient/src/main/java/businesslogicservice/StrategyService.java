@@ -1,9 +1,12 @@
 package businesslogicservice;
 
-import java.util.List;
-
-import vo.DiscountVO;
-
+import vo.OrderInputCalVO;
+import vo.StrategyVO;
+/**
+ * 
+ * @author LWY
+ *
+ */
 public interface StrategyService {
-	public DiscountVO CalculateBestStrategy(List<DiscountVO> discountList);
+	public StrategyVO CalculateBestStrategy(OrderInputCalVO orderInputCalVO);
 }

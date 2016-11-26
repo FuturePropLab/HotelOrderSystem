@@ -4,16 +4,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import businesslogicservice.DiscountGetService;
+import businesslogicservice.StrategyGetService;
 import vo.DiscountSearchVO;
 import vo.DiscountVO;
 import vo.DiscountVO_hotel;
 import vo.OrderInputCalVO;
-import vo.OrderInputVO;
 import vo.StrategyVO_hotel;
 import vo.StrategyVO_web;
 
-public class DiscountCal_stub implements DiscountGetService{
+public class DiscountCal_stub implements StrategyGetService{
 
 	public List<DiscountVO> getSuitableDiscount(OrderInputCalVO orderInput) {
 		// TODO Auto-generated method stub
@@ -53,7 +52,7 @@ public class DiscountCal_stub implements DiscountGetService{
 		List<StrategyVO_hotel> dis=new ArrayList();
 		Date t1=new Date(2016,9,1);
 		Date t2=new Date(2016,9,2);
-		StrategyVO_hotel dvo=new StrategyVO_hotel(9.9, null, null, null);
+		StrategyVO_hotel dvo=new StrategyVO_hotel(null);
 		dis.add(dvo);
 		
 		return dis;
@@ -67,7 +66,7 @@ public class DiscountCal_stub implements DiscountGetService{
 		Date t1=new Date(2016,9,1);
 		Date t2=new Date(2016,9,2);
 		
-		StrategyVO_web dvo=new StrategyVO_web(2, null, null, null);
+		StrategyVO_web dvo=new StrategyVO_web(null);
 		dis.add(dvo);
 		
 		return dis;

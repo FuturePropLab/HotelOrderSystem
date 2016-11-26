@@ -5,13 +5,11 @@ import java.util.List;
 
 import businesslogicservice.StrategyService;
 import vo.DiscountVO;
+import vo.OrderInputCalVO;
 
 public class StrategyService_Driver {
 	public void drive(StrategyService strategy ){
-		DiscountVO dis=new DiscountVO();
-		dis.discount=7;
-		List<DiscountVO> discountList = new LinkedList<DiscountVO>();
-		discountList.add(dis);
+		OrderInputCalVO discountList = new OrderInputCalVO(0, null, null, null, null, null, 0);
 		strategy.CalculateBestStrategy(discountList);
 	}
 }

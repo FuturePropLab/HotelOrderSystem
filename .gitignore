@@ -43,3 +43,5 @@ MVNHotelOrderClient/target/surefire-reports/TEST-businesslogic.order.TestOrder.x
 *.class
 *.class
 *.class
+
+MVNHotelOrderClient/target/classes/driver/RoomSingleService_Driver.class
