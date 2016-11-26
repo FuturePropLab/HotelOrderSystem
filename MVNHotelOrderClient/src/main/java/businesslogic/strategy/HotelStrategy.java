@@ -1,12 +1,12 @@
 package businesslogic.strategy;
 
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
 import businesslogic.discount.DiscountCalController;
 import businesslogicservice.DiscountGetService;
-import vo.DiscountVO_hotel;
-import vo.OrderInputVO;
+import vo.OrderInputCalVO;
 import vo.StrategyVO_hotel;
 
 /**
@@ -17,6 +17,9 @@ import vo.StrategyVO_hotel;
 public class HotelStrategy {
 
 	private List<StrategyVO_hotel> strategyList;
+	private OrderInputCalVO orderInput;
+
+	public double price = -1;
 
 	// public HotelStrategy(OrderInputVO orderInput) {
 	// 桩程序
@@ -30,9 +33,10 @@ public class HotelStrategy {
 	 * @param orderInput
 	 *            构造方法
 	 */
-	public HotelStrategy(OrderInputVO orderInput) {
+	public HotelStrategy(OrderInputCalVO orderInput) {
 		DiscountGetService discount = new DiscountCalController();
 		strategyList = discount.getSuitableDiscount_hotel(orderInput);
+		this.orderInput = orderInput;
 	}
 
 	/**
@@ -41,15 +45,35 @@ public class HotelStrategy {
 	 */
 	public StrategyVO_hotel calBest() {
 
-		double min = 1.0;
 		StrategyVO_hotel res = null;
 
+		Calendar end = orderInput.planedLeaveTime;
+		Calendar start = orderInput.startTime;
+
+		long s1 = start.getTimeInMillis();
+		long e1 = end.getTimeInMillis();
+		long days = (e1 - s1) / (1000 * 60 * 60 * 24);
+
 		Iterator iter = strategyList.iterator();
+		
 		while (iter.hasNext()) {
 			StrategyVO_hotel discountVO_hotel = (StrategyVO_hotel) iter.next();
-			if (discountVO_hotel.discount < min) {
 
-				min = discountVO_hotel.discount;
+			long s = discountVO_hotel.startDate.getTimeInMillis();
+			long e = discountVO_hotel.endDate.getTimeInMillis();
+			long daysWithHotelDiscount = (e - s) / (1000 * 60 * 60 * 24);
+
+			double price = orderInput.price * orderInput.numberOfRooms
+					* (daysWithHotelDiscount * discountVO_hotel.discount + days - daysWithHotelDiscount);
+
+			if (this.price < 0) {
+
+				res = discountVO_hotel;
+				this.price = price;
+
+			} else if (price < this.price) {
+
+				this.price = price;
 
 				res = discountVO_hotel;
 			}

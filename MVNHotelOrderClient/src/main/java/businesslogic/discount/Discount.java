@@ -6,6 +6,7 @@ import stub.DiscountCal_stub;
 import stub.Discount_stub;
 import vo.DiscountSearchVO;
 import vo.DiscountVO;
+import vo.OrderInputCalVO;
 import vo.OrderInputVO;
 
 public class Discount {
@@ -18,7 +19,7 @@ public class Discount {
 	 * @return 符合订单条件的所有优惠策略
 	 */
 
-	public List<DiscountVO> getSuitableDiscount(OrderInputVO orderInput) {
+	public List<DiscountVO> getSuitableDiscount(OrderInputCalVO orderInput) {
 		// TODO Auto-generated method stub
 		DiscountCal_stub test=new DiscountCal_stub();	
 		return test.getSuitableDiscount(orderInput);

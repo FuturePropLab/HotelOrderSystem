@@ -5,6 +5,7 @@ import java.util.List;
 
 import businesslogic.discount.DiscountCalController;
 import businesslogicservice.DiscountGetService;
+import vo.OrderInputCalVO;
 import vo.OrderInputVO;
 import vo.StrategyVO_web;
 /**
@@ -16,7 +17,7 @@ import vo.StrategyVO_web;
 public class WebStrategy {
 	private List<StrategyVO_web> strategyList;
 
-	public WebStrategy(OrderInputVO orderInput) {
+	public WebStrategy(OrderInputCalVO orderInput) {
 		
 		DiscountGetService discount = new DiscountCalController();
 		strategyList = discount.getSuitableDiscount_web(orderInput);

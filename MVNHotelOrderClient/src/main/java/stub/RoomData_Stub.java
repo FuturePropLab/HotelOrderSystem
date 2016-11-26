@@ -27,10 +27,10 @@ public class RoomData_Stub implements RoomDataService {
 
 	public HotelRoomInfoPO getRoomInfo(String hotel_id) {
 		List<TypeRoomInfo> typeList = new ArrayList<TypeRoomInfo>();
-		TypeRoomInfo typeRoomInfo1= new TypeRoomInfo(hotel_id,"荣华大酒店",
+		TypeRoomInfo typeRoomInfo1= new TypeRoomInfo(hotel_id,"鑽ｅ崕澶ч厭搴�",
 				RoomType.Single,5,180.0);
 		typeList.add(typeRoomInfo1);
-		HotelRoomInfoPO hotelRoomInfoPO = new HotelRoomInfoPO(hotel_id,"荣华大酒店",typeList);
+		HotelRoomInfoPO hotelRoomInfoPO = new HotelRoomInfoPO(hotel_id,"鑽ｅ崕澶ч厭搴�",typeList);
 		return hotelRoomInfoPO;
 	}
 
@@ -43,7 +43,7 @@ public class RoomData_Stub implements RoomDataService {
 	
 	public RoomPO getRoom(String hotel_id, String room_id) {
 		RoomPO roomPo = new RoomPO("2333",
-				"301", "荣华大酒店", RoomType.Single, 180.00);
+				"301", "鑽ｅ崕澶ч厭搴�", RoomType.Single, 180.00);
 		return roomPo;
 	}
 
@@ -54,9 +54,13 @@ public class RoomData_Stub implements RoomDataService {
 	}
 
 	
-	public ResultMessage modifyRoom(RoomPO room) {
+	
+
+
+	public ResultMessage modifyRoomState(RoomPO room) {
+		// TODO Auto-generated method stub
 		if(room!=null)  return ResultMessage.Exist;
-				return ResultMessage.NotExist;
+		return ResultMessage.NotExist;
 	}
 
 }

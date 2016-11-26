@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import businesslogic.strategy.Strategy;
 import tools.RoomType;
+import vo.OrderInputCalVO;
 import vo.OrderInputVO;
 /**
  * 
@@ -21,7 +22,7 @@ public class TestStrategy {
 	public void test() {
 		
 		//LocalDateTime time= LocalDateTime.now();原定用LocalDateTime,由于与朱俊毅的冲突，暂改
-		OrderInputVO orderInput = new OrderInputVO("0001", "00", new Time(0), new Time(0), new Time(0), RoomType.Double, 1, 1, false);
+		OrderInputCalVO orderInput = new OrderInputCalVO(0, "0001", "00", null, null, null, 0);
 		Strategy str=new Strategy();
 		
 //		MockDiscount disW = new MockDiscount("web");
@@ -30,7 +31,7 @@ public class TestStrategy {
 //		disW.getSuitableDiscount(orderInput);
 		//(以上部分不得不放在正常程序类里面，不需要的时候注释掉）
 		
-		assertEquals(0,str.CalculateBestStrategy(orderInput).discount,0.00001);
+		assertEquals(0,str.CalculateBestStrategy(orderInput).price,0.00001);
 	}
 	
 

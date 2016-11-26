@@ -8,14 +8,14 @@ import businesslogicservice.DiscountGetService;
 import vo.DiscountSearchVO;
 import vo.DiscountVO;
 import vo.DiscountVO_hotel;
-import vo.DiscountVO_web;
+import vo.OrderInputCalVO;
 import vo.OrderInputVO;
 import vo.StrategyVO_hotel;
 import vo.StrategyVO_web;
 
 public class DiscountCal_stub implements DiscountGetService{
 
-	public List<DiscountVO> getSuitableDiscount(OrderInputVO orderInput) {
+	public List<DiscountVO> getSuitableDiscount(OrderInputCalVO orderInput) {
 		// TODO Auto-generated method stub
 		List<DiscountVO> dis=new ArrayList();
 		Date t1=new Date(2016,9,1);
@@ -48,12 +48,12 @@ public class DiscountCal_stub implements DiscountGetService{
 		return dis;
 	}
 
-	public List<StrategyVO_hotel> getSuitableDiscount_hotel(OrderInputVO orderInput) {
+	public List<StrategyVO_hotel> getSuitableDiscount_hotel(OrderInputCalVO orderInput) {
 		// TODO Auto-generated method stub
 		List<StrategyVO_hotel> dis=new ArrayList();
 		Date t1=new Date(2016,9,1);
 		Date t2=new Date(2016,9,2);
-		StrategyVO_hotel dvo=new StrategyVO_hotel(9.9, null);
+		StrategyVO_hotel dvo=new StrategyVO_hotel(9.9, null, null, null);
 		dis.add(dvo);
 		
 		return dis;
@@ -61,7 +61,7 @@ public class DiscountCal_stub implements DiscountGetService{
 		
 	}
 
-	public List<StrategyVO_web> getSuitableDiscount_web(OrderInputVO orderInput) {
+	public List<StrategyVO_web> getSuitableDiscount_web(OrderInputCalVO orderInput) {
 		// TODO Auto-generated method stub
 		List<StrategyVO_web> dis=new ArrayList();
 		Date t1=new Date(2016,9,1);
