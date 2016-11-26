@@ -1,8 +1,10 @@
 package businesslogic.account;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 import dataservice.AccountDataService;
+import po.AccountPO;
 import stub.AccountData_stub;
 import tools.AccountType;
 import tools.ResultMessage_Account;
@@ -19,6 +21,12 @@ import vo.WebDesignerSearchVO;
  *
  */
 public class Account {
+	
+	
+	static final String invalid_input = "INVALID_INPUT";
+	static final String usrname_notexits = "USERNAME_NOT_EXITS";
+	static final String rmi_fail = "RMI_FAIL";
+	
 	
 	HotelInfo hotelInfo ;
 	CustomerInfo customerInfo;
@@ -57,11 +65,22 @@ public class Account {
 	 * 通过用户名 返回该账户的ID
 	 * @param username
 	 * @param password
-	 * @return 该账户的ID 
+	 * @return 该账户的ID ,  "INVALID_INPUT": 输入不合法 ， "USERNAME_NOT_EXITS":用户名不合法
+	 * 						"RMI_FAIL" : rmi连接错误
 	 */
 	public String getAccountID(String username){
-		//TODO
-		return username;		
+		if(!Certificate.isValidUsername(username)){
+			return invalid_input;
+		}
+		AccountPO accountPO;
+		try {
+			accountPO = accountDataService.getAccountByUserName(username);
+			if(accountPO==null)
+				return usrname_notexits;
+			return accountPO.getUserid();
+		} catch (RemoteException e) {
+			 return rmi_fail;
+		}			
 	}
 	
 	/**
@@ -84,7 +103,7 @@ public class Account {
 	 * @return 重设是否成功
 	 */
 	public ResultMessage_Account resetPassword(String userid, String newPassword){
-		//TODO
+		
 		return null;
 	}
 	
@@ -160,4 +179,5 @@ public class Account {
 		//TODO
 		return null;
 	}
+	
 }
