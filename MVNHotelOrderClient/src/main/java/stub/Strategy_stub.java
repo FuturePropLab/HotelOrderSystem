@@ -4,12 +4,14 @@ import java.util.List;
 
 import businesslogicservice.StrategyService;
 import vo.DiscountVO;
+import vo.OrderInputCalVO;
+import vo.StrategyVO;
 
 public class Strategy_stub implements StrategyService {
-	public DiscountVO CalculateBestStrategy(List<DiscountVO> discountList){
-		DiscountVO bes=new DiscountVO();
-		bes=discountList.get(0);
-		return bes;
+
+	public StrategyVO CalculateBestStrategy(OrderInputCalVO orderInputCalVO) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

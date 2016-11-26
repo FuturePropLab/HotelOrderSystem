@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import businesslogic.discount.DiscountGet;
-import businesslogicservice.DiscountGetService;
+import businesslogicservice.StrategyGetService;
 import vo.OrderInputCalVO;
 import vo.StrategyVO_hotel;
 
@@ -34,7 +34,7 @@ public class HotelStrategy {
 	 *            构造方法
 	 */
 	public HotelStrategy(OrderInputCalVO orderInput) {
-		DiscountGetService discount = new DiscountGet();
+		StrategyGetService discount = new DiscountGet();
 		strategyList = discount.getSuitableDiscount_hotel(orderInput);
 		this.orderInput = orderInput;
 	}
