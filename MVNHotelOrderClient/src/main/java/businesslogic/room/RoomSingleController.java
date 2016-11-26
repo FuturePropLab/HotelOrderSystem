@@ -2,6 +2,7 @@ package businesslogic.room;
 
 import businesslogicservice.RoomSingleService;
 import tools.ResultMessage;
+import tools.ResultMessage_delete;
 import vo.RoomVO;
 
 public class RoomSingleController implements RoomSingleService{
@@ -27,7 +28,7 @@ public class RoomSingleController implements RoomSingleService{
 		return roomsingle.editSingleRoom(room);
 	}
 
-	public ResultMessage deleteSingleRoom(String hotel_id, String room_id) {
+	public ResultMessage_delete deleteSingleRoom(String hotel_id, String room_id) {
 		// TODO Auto-generated method stub
 		RoomSingle roomsingle = new RoomSingle();
 		

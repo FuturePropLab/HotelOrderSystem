@@ -1,8 +1,12 @@
 package businesslogic.room;
 
+import java.util.List;
+
 import businesslogicservice.RoomHotelInfoService;
 import tools.ResultMessage;
+import tools.RoomState;
 import vo.HotelRoomInfoVO;
+import vo.RoomVO;
 
 public class RoomHotelInfoController implements RoomHotelInfoService{
 
@@ -25,5 +29,5 @@ public class RoomHotelInfoController implements RoomHotelInfoService{
 		
 		return roominfo.saveRoomInfo(hotelRoomInfo);
 	}
-
+	
 }

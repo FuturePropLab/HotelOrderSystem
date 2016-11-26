@@ -1,6 +1,7 @@
 package businesslogicservice;
 
 import tools.ResultMessage;
+import tools.ResultMessage_delete;
 import vo.RoomVO;
 
 public interface RoomSingleService {
@@ -10,7 +11,7 @@ public interface RoomSingleService {
 	
 	public ResultMessage editSingleRoom (RoomVO room);
 	
-	public ResultMessage deleteSingleRoom (String hotel_id,String room_id);
+	public ResultMessage_delete deleteSingleRoom (String hotel_id,String room_id);
 	
 	public ResultMessage saveSingleRoom (RoomVO room);
 	
