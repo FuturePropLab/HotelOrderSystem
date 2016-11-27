@@ -2,6 +2,7 @@ package businesslogicservice;
 
 import java.util.List;
 
+import tools.ResultMessage2;
 import vo.DiscountSearchVO;
 import vo.DiscountVO;
 /**
@@ -11,6 +12,6 @@ import vo.DiscountVO;
  *
  */
 public interface DiscountDealService {
-	public DiscountVO invalidDiscount(String discount_id);
+	public ResultMessage2 invalidDiscount(String discount_id);
 	public List<DiscountVO> checkDiscount(DiscountSearchVO dsvo);
 }

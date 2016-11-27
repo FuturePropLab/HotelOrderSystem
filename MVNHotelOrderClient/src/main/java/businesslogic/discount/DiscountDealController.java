@@ -3,6 +3,7 @@ package businesslogic.discount;
 import java.util.List;
 
 import businesslogicservice.DiscountDealService;
+import tools.ResultMessage2;
 import vo.DiscountSearchVO;
 import vo.DiscountVO;
 
@@ -13,7 +14,7 @@ public class DiscountDealController implements DiscountDealService{
 	public DiscountDealController(){
 		discount = new Discount();
 	}
-	public DiscountVO invalidDiscount(String discount_id) {
+	public ResultMessage2 invalidDiscount(String discount_id) {
 		// TODO Auto-generated method stub
 		return discount.invalidDiscount(discount_id);
 	}
