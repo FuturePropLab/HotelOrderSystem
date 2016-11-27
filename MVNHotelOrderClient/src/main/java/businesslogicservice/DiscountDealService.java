@@ -13,5 +13,5 @@ import vo.DiscountVO;
  */
 public interface DiscountDealService {
 	public ResultMessage2 invalidDiscount(String discount_id);
-	public List<DiscountVO> checkDiscount(DiscountSearchVO dsvo);
+//	public List<DiscountVO> checkDiscount(DiscountSearchVO dsvo);
 }

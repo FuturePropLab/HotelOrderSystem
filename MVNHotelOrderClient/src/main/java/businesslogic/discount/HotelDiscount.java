@@ -5,6 +5,7 @@ import java.util.List;
 import po.DiscountPO_hotel;
 import stub.Discount_stub;
 import tools.ResultMessage2;
+import tools.ResultMessage_strategy;
 import vo.DiscountVO_hotel;
 
 public class HotelDiscount extends Discount{
@@ -17,7 +18,7 @@ public class HotelDiscount extends Discount{
 	 * @return 添加成功
 	 */
 	
-	public ResultMessage2 addHotelDiscount(String hotel_id,DiscountVO_hotel dis) {
+	public ResultMessage_strategy addHotelDiscount(String hotel_id,DiscountVO_hotel dis) {
 		// TODO Auto-generated method stub
 //		Discount_stub test=new Discount_stub();
 //		
@@ -31,7 +32,7 @@ public class HotelDiscount extends Discount{
 	 * @param Discount_id
 	 * @return 修改后信息
 	 */
-	public ResultMessage2 editHotelDiscount(String Discount_id,DiscountVO_hotel dis){
+	public ResultMessage_strategy editHotelDiscount(String Discount_id,DiscountVO_hotel dis){
 		
 		Discount_stub test=new Discount_stub();
 		return test.editHotelDiscount(Discount_id, dis);

@@ -8,6 +8,7 @@ import businesslogicservice.DiscountHotelService;
 import businesslogicservice.DiscountWebService;
 import tools.ResultMessage;
 import tools.ResultMessage2;
+import tools.ResultMessage_strategy;
 import vo.DiscountVO;
 import vo.DiscountVO_hotel;
 import vo.DiscountVO_web;
@@ -47,22 +48,22 @@ public class Discount_stub implements DiscountWebService,DiscountHotelService{
 
 
 	
-	public ResultMessage2 editHotelDiscount(String discount_id,DiscountVO_hotel dis) {
+	public ResultMessage_strategy editHotelDiscount(String discount_id,DiscountVO_hotel dis) {
 		// TODO Auto-generated method stub
 		Date t1=new Date(2016,9,1);
 		Date t2=new Date(2016,9,2);
 		DiscountVO_hotel dvo= new DiscountVO_hotel("0000",9.9,t1,t2);
 		dvo.Discount_id=discount_id;
-		return ResultMessage2.success;
+		return ResultMessage_strategy.Success;
 	}
 
-	
-	public ResultMessage2 saveDiscount(DiscountVO discount) {
-		// TODO Auto-generated method stub
-		if(discount!=null)return ResultMessage2.success;
-		else
-		return ResultMessage2.fail;
-	}
+//	
+//	public ResultMessage_strategy saveDiscount(DiscountVO_hotel disvo) {
+//		// TODO Auto-generated method stub
+//		if(disvo!=null)return ResultMessage_strategy.Success;
+//		else
+//		return ResultMessage_strategy.Conflict;
+//	}
 
 
 	/*public DiscountVO getAHotelDiscount(String Discount_id) {
@@ -78,11 +79,11 @@ public class Discount_stub implements DiscountWebService,DiscountHotelService{
 	}*/
 
 
-	public ResultMessage2 addWebDiscount(DiscountVO_web dis) {
+	public ResultMessage_strategy addWebDiscount(DiscountVO_web dis) {
 		// TODO Auto-generated method stub
-		if(dis!=null)return ResultMessage2.success;
+		if(dis!=null)return ResultMessage_strategy.Success;
 		else
-			return ResultMessage2.fail;
+			return ResultMessage_strategy.Existed;
 		
 	}
 
@@ -107,7 +108,21 @@ public class Discount_stub implements DiscountWebService,DiscountHotelService{
 	}
 
 
-	public ResultMessage2 addHotelDiscount(String hotel_id, DiscountVO_hotel discountVO_hotel) {
+
+
+	public ResultMessage_strategy addHotelDiscount(String hotel_id, DiscountVO_hotel discountVO_hotel) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public ResultMessage_strategy deleteDiscount(DiscountVO discount) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public ResultMessage_strategy deleteHotelDiscount(String hotel_id, String discount_id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

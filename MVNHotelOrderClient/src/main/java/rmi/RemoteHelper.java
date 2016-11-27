@@ -56,7 +56,6 @@ public class RemoteHelper {
 	/**
 	 * 
 	 * @return 供计算的有效策略
-	 *  （置顶）迟早要加的，每个类你都再加上去，又何苦呢！！！！！！！！！！！
 	 *  林文烨你不要管rmi!!!!!!!!
 	 */
 //	public StrategyGetService geStrategy(){
