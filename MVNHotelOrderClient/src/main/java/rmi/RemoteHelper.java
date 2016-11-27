@@ -3,9 +3,9 @@ package rmi;
 import java.rmi.Remote;
 
 import dataservice.AccountDataService;
+import dataservice.CustomerDataService;
 import dataservice.LoginCheckService;
 import dataservice.OrderDataService;
-import dataservice.StrategyGetService;
 
 /**
  * 
@@ -47,10 +47,18 @@ public class RemoteHelper {
 	}
 	
 	/**
+	 * 返回CustomerDataService RMI调用
+	 * @return CustomerDataService
+	 */
+	public CustomerDataService getCustomerDataService(){
+		return (CustomerDataService)remote;
+	}
+	/**
 	 * 
 	 * @return 供计算的有效策略
+	 *  林文烨你不要管rmi!!!!!!!!
 	 */
-	public StrategyGetService geStrategy(){
-		return (StrategyGetService)remote;
-	}
+//	public StrategyGetService geStrategy(){
+//		return (StrategyGetService)remote;
+//	}
 }

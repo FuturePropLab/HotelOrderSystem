@@ -1,10 +1,16 @@
 package po;
 
-import vo.MemberVO;
+import java.io.Serializable;
 
-public class CustomerPO {
+public class CustomerPO implements Serializable{
 
 
+	  /**
+	 * 序列化id
+	 */
+	private static final long serialVersionUID = -4620814777325515534L;
+	
+	
 	  private String customeID; 
 	  private String customerName; //客户姓名
 	  private String gender; //性别

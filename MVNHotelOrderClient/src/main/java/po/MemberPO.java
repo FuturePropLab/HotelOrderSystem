@@ -1,8 +1,19 @@
 package po;
 
+import java.io.Serializable;
+
 import tools.MemberType;
 
-public class MemberPO {
+/**
+ * 1127改
+ * @author wshwbluebird
+ *
+ */
+public class MemberPO implements Serializable {
+	
+	
+	private static final long serialVersionUID = 5615587847050855837L;
+	
 	private String customer_ID;
 	private MemberType memberType;
 	

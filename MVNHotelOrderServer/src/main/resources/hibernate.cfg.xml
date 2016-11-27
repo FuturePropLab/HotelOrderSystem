@@ -25,5 +25,6 @@ jdbc:mysql://localhost:3306/wsw
         <mapping class="testHibernate.Student"/>
         <mapping class="testHibernate.SC"/>
         <mapping class="po.AccountPO"/>
+         <mapping class="po.CustomerPO"/>
     </session-factory>
 </hibernate-configuration>

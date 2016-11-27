@@ -1,19 +1,25 @@
 package runner;
 
+import java.awt.Window.Type;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import businesslogic.member.Member;
 import businesslogicservice.AccountCustomerService;
 import businesslogicservice.AccountHotelService;
 import businesslogicservice.AccountWebService;
 import businesslogicservice.LoginService;
 import dataservice.AccountDataService;
+import dataservice.CustomerDataService;
 import po.AccountPO;
+import po.CustomerPO;
+import po.MemberPO;
 import rmi.RemoteHelper;
 import serviceFactory.LoginServiceUtil;
 import tools.AccountType;
+import tools.MemberType;
 
 public class ClientRunner {
 	private RemoteHelper remoteHelper;
@@ -54,6 +60,15 @@ public class ClientRunner {
 //		System.out.println(accountHotelService.addAccount("teddybear", "teddybear"));
 //		AccountWebService accountWebService  = serviceFactory.AccountContollerUtil.getAccountWebDesignerServiceUtil();
 //		System.out.println(accountWebService.addAccount("manager", "manager"));
+		
+		CustomerDataService customerDataService = RemoteHelper.getInstance().getCustomerDataService();
+		MemberType memberType = new MemberType("CS001");
+		memberType.setCompanyName("开心");
+		MemberPO memberPO = new MemberPO("CS001", memberType);
+		//memberType.setType();
+		
+		CustomerPO customerPO = new CustomerPO("CS0001", "wsws", "male", "138383438", memberPO, 20);
+		customerDataService.add(customerPO);
 		
 	}
 	

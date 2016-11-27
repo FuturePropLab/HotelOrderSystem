@@ -14,6 +14,7 @@ import tools.AccountType;
 
 @Entity
 public class AccountPO implements Serializable{
+	
 	private static final long serialVersionUID = -3068966912083464632L;
 		private String userid;
 		private String password;

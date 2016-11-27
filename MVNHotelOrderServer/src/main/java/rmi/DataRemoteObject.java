@@ -2,27 +2,35 @@ package rmi;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.List;
 
 import dataservice.AccountDataService;
+import dataservice.CustomerDataService;
 import dataservice.LoginCheckService;
 import dataservice.impl.AccountDataServiceImpl;
+import dataservice.impl.CustomerDataServiceImpl;
 import dataservice.impl.LoginCheckServiceImpl;
 import po.AccountPO;
+import po.CustomerPO;
 import tools.AccountType;
 import tools.ResultMessage_Account;
 import tools.ResultMessage_LoginCheck;
+import tools.ResultMessage_Modify;
+import tools.ResultMessage_signUp;
 
-public class DataRemoteObject extends UnicastRemoteObject implements  LoginCheckService ,AccountDataService{
+public class DataRemoteObject extends UnicastRemoteObject implements  LoginCheckService ,AccountDataService,CustomerDataService{
 	/**
 	 *  RMI 接口
 	 */
 	private static final long serialVersionUID = 4029039744279087114L;
 	private LoginCheckService loginCheckService;
 	private AccountDataService accountDataService;
+	private CustomerDataService customerDataService;
 	protected DataRemoteObject() throws RemoteException {
 		//用loginCheckServiceIMPL 实现
 		loginCheckService = new LoginCheckServiceImpl();
 		accountDataService = new AccountDataServiceImpl();
+		customerDataService = new CustomerDataServiceImpl();
 
 	}
 	/**
@@ -55,5 +63,17 @@ public class DataRemoteObject extends UnicastRemoteObject implements  LoginCheck
 	}
 	public ResultMessage_Account deleteAccount(String userid) throws RemoteException {
 		return accountDataService.deleteAccount(userid);
+	}
+	public ResultMessage_signUp add(CustomerPO customerInfo) throws RemoteException {
+		return customerDataService.add(customerInfo);
+	}
+	public CustomerPO find(String customer_id) throws RemoteException {
+		return customerDataService.find(customer_id);
+	}
+	public ResultMessage_Modify modify(CustomerPO customerInfo) throws RemoteException {
+		return customerDataService.modify(customerInfo);
+	}
+	public List<CustomerPO> searchCustomer() throws RemoteException {
+		return customerDataService.searchCustomer();
 	}
 }

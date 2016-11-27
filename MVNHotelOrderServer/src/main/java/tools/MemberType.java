@@ -3,8 +3,6 @@ package tools;
 import java.io.Serializable;
 import java.util.Date;
 
-import Exception.OutOfBoundsException;
-
 /**
  *  会员类型，包含会员的类型和会员类型信息，客户ID
  *  @author zjy
