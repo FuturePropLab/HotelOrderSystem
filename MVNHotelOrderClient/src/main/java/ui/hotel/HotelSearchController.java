@@ -74,7 +74,7 @@ public class HotelSearchController extends DetailsController{
 					getRoomType(), getPriceRange(), 
 					new DateRange(getDate(checkInDate),getDate(checkOutDate)), getStar(), orderedBefore.isSelected());
 			List<HotelInfoVO> hotelList=hotelDealService.SearchHotel(searchHotelVO);
-			System.out.println(hotelList.get(0).hotelID);
+			//TODO
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -18,7 +18,7 @@ public class DateRange {
 	 *  @exception OutOfBoundsException  结束日期在开始日期之后
 	 */
 	public DateRange(Date earliest,Date latest) throws OutOfBoundsException{
-		if(earliest.after(latest)){
+		if(earliest!=null && earliest.after(latest)){
 			throw new OutOfBoundsException();
 		}
 		
