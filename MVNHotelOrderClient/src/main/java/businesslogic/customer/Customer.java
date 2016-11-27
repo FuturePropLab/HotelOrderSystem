@@ -34,7 +34,7 @@ public class Customer {
 		ResultMessage_signUp re=ResultMessage_signUp.Success;
 		//输入数据是否合法
 		for(int i=0;i<customerInput.telephone.length();i++){
-			if(customerInput.telephone.charAt(i)>'9'&&customerInput.telephone.charAt(i)<'0'){
+			if(customerInput.telephone.charAt(i)>'9'||customerInput.telephone.charAt(i)<'0'){
 				re=ResultMessage_signUp.Wrong;
 			}
 		}
@@ -144,4 +144,20 @@ public class Customer {
 		return customerVO;
 		
 	}
+/*	public static void main(String[]args){
+		Customer testt = new Customer();
+		CustomerInputVO test2=new CustomerInputVO("xx","xxx",
+				"xxx", "1234567A", "xx");
+		boolean re = true;
+		for(int i=0;i<test2.telephone.length();i++){
+			if(test2.telephone.charAt(i)>'9'||test2.telephone.charAt(i)<'0'){
+				re=false;
+				System.out.println(re);
+			}
+		
+		
+		
+	}
+		
+}*/
 }

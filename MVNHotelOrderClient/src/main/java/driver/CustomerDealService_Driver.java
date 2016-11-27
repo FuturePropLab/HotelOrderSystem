@@ -1,5 +1,7 @@
 package driver;
 
+import java.rmi.RemoteException;
+
 import businesslogicservice.CustomerDealService;
 import tools.ResultMessage;
 import tools.ResultMessage2;
@@ -7,7 +9,7 @@ import tools.ResultMessage_Modify;
 import vo.CustomerVO;
 
 public class CustomerDealService_Driver {
-	public void drive(CustomerDealService customerDealService){
+	public void drive(CustomerDealService customerDealService) throws Exception, Exception{
 		CustomerVO customerVO= customerDealService.getCustomerInfo("1234");
 		System.out.println("Name:" +customerVO.customerName);
 		
