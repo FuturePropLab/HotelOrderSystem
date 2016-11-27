@@ -22,7 +22,7 @@ public class DiscountGet implements StrategyGetService {
 
 	private dataservice.StrategyGetService dataService;
 	public DiscountGet() {
-		dataService=RemoteHelper.getInstance().geStrategy();
+//		dataService=RemoteHelper.getInstance().getStrategy();
 	}
 	public List<StrategyVO_hotel> getSuitableDiscount_hotel(OrderInputCalVO orderInput) {
 		// TODO Auto-generated method stub

@@ -9,12 +9,13 @@ import vo.DiscountSearchVO;
 import vo.DiscountVO;
 import vo.DiscountVO_hotel;
 import vo.OrderInputCalVO;
+import vo.OrderInputVO;
 import vo.StrategyVO_hotel;
 import vo.StrategyVO_web;
 
 public class DiscountCal_stub implements StrategyGetService{
 
-	public List<DiscountVO> getSuitableDiscount(OrderInputCalVO orderInput) {
+	public List<DiscountVO> getSuitableDiscount(OrderInputVO orderInput) {
 		// TODO Auto-generated method stub
 		List<DiscountVO> dis=new ArrayList();
 		Date t1=new Date(2016,9,1);

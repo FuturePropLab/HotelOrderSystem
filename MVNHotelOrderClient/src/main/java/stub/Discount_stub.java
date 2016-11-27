@@ -47,13 +47,13 @@ public class Discount_stub implements DiscountWebService,DiscountHotelService{
 
 
 	
-	public DiscountVO_hotel editHotelDiscount(String discount_id) {
+	public ResultMessage2 editHotelDiscount(String discount_id,DiscountVO_hotel dis) {
 		// TODO Auto-generated method stub
 		Date t1=new Date(2016,9,1);
 		Date t2=new Date(2016,9,2);
 		DiscountVO_hotel dvo= new DiscountVO_hotel("0000",9.9,t1,t2);
 		dvo.Discount_id=discount_id;
-		return dvo;
+		return ResultMessage2.success;
 	}
 
 	
@@ -104,6 +104,12 @@ public class Discount_stub implements DiscountWebService,DiscountHotelService{
 		Date t2=new Date(2016,9,2);
 		DiscountVO_web dis=new DiscountVO_web(10,"新街口",9.9,t1,t2,10);
 		return dis;
+	}
+
+
+	public ResultMessage2 addHotelDiscount(String hotel_id, DiscountVO_hotel discountVO_hotel) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

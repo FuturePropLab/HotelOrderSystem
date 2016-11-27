@@ -8,16 +8,20 @@ import vo.DiscountVO_web;
 
 public class DiscountWebController implements DiscountWebService {
 
+	private WebDiscount web;
+	
+	public DiscountWebController (){
+		web=new WebDiscount();
+	}
+	
 	public ResultMessage2 addWebDiscount(DiscountVO_web dis) {
 		// TODO Auto-generated method stub
-		WebDiscount web=new WebDiscount();
 		
 		return web.addWebDiscount(dis);
 	}
 
 	public DiscountVO_web editWebDiscount(String Discount_id) {
 		// TODO Auto-generated method stub
-		WebDiscount web=new WebDiscount();
 		
 		return web.editWebDiscount(Discount_id);
 		
@@ -25,7 +29,6 @@ public class DiscountWebController implements DiscountWebService {
 
 	public ResultMessage2 saveDiscount(DiscountVO discount) {
 		// TODO Auto-generated method stub
-		WebDiscount web=new WebDiscount();
 		
 		return web.saveDiscount(discount);
 		
@@ -33,7 +36,6 @@ public class DiscountWebController implements DiscountWebService {
 
 	public DiscountVO_web getWebDiscount(String Discount_id) {
 		// TODO Auto-generated method stub
-		WebDiscount web=new WebDiscount();
 		return web.getWebDiscount(Discount_id);
 	}
 

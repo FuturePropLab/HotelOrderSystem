@@ -7,7 +7,8 @@ import vo.DiscountVO_web;
 
 public class WebDiscount extends Discount{
 
-	
+private dataservice.WebDiscountDataService dataService;
+
 
 public ResultMessage2 addWebDiscount(DiscountVO_web dis) {
 	// TODO Auto-generated method stub

@@ -9,8 +9,8 @@ import vo.DiscountVO_hotel;
 
 public interface DiscountHotelService {
 	
-	public ResultMessage2 addHotelDiscount(String hotel_id);
-	public DiscountVO_hotel editHotelDiscount (String Discount_id);
-	public DiscountVO_hotel getSingleHotelDiscount (String Discount_id);
+	public ResultMessage2 addHotelDiscount(String hotel_id,DiscountVO_hotel discountVO_hotel);
+	public ResultMessage2 editHotelDiscount (String discount_id,DiscountVO_hotel discountVO_hotel);
+//	public DiscountVO_hotel getSingleHotelDiscount (String discount_id);
 	public List<DiscountVO_hotel>getHotelDiscount (String hotel_id);
 }
