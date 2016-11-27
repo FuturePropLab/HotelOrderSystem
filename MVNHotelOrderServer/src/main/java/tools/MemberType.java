@@ -12,7 +12,7 @@ public class MemberType  implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 5318461208984318873L;
-	Type type=Type.None;
+	MemberBelongType type=MemberBelongType.None;
 	Date birthday;
 	String companyName;
 	String customer_ID;
@@ -24,11 +24,11 @@ public class MemberType  implements Serializable{
 		this.customer_ID=customer_ID;
 	}
 	
-	public Type getType() {
+	public MemberBelongType getType() {
 		return type;
 	}
 
-	public void setType(Type type) {
+	public void setType(MemberBelongType type) {
 		this.type = type;
 	}
 
@@ -56,13 +56,5 @@ public class MemberType  implements Serializable{
 		this.customer_ID = customer_ID;
 	}
 
-	/**
-	 *  会员的类型
-	 *  @author zjy
-	 */
-	public enum Type{
-		Ordinary,
-		Enterprise,
-		None
-	}
+
 }

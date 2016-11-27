@@ -3,8 +3,8 @@ package dataservice.impl;
 import java.util.List;
 
 import dataservice.CustomerDataService;
+import dataservice.datahelper.CustomerDataHelper;
 import po.CustomerPO;
-import po.MemberPO;
 import tools.ResultMessage_Modify;
 import tools.ResultMessage_signUp;
 
@@ -15,15 +15,14 @@ import tools.ResultMessage_signUp;
  */
 public class CustomerDataServiceImpl implements CustomerDataService {
 	
+	
+	private CustomerDataHelper customerDataHelper;
+	
+	public CustomerDataServiceImpl(){
+		this.customerDataHelper =  DataFactory.DataHelperUtils.getCustomerDataHelper();
+	}
 	public ResultMessage_signUp add(CustomerPO customerInfo) {
-		System.out.println(customerInfo.getCustomeID());
-		System.out.println(customerInfo.getCredit());
-		MemberPO memberPO = customerInfo.getMemberpo();
-		if(memberPO!=null){
-			System.out.println(memberPO.getCustomer_ID());
-			System.out.println(memberPO.getMemberType().getCompanyName());
-		}
-		return null;
+		return customerDataHelper.add(customerInfo);
 	}
 
 	public CustomerPO find(String customer_id) {

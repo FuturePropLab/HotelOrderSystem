@@ -11,7 +11,7 @@ public class CustomerPO implements Serializable{
 	private static final long serialVersionUID = -4620814777325515534L;
 	
 	
-	  private String customeID; 
+	  private String customerID; 
 	  private String customerName; //客户姓名
 	  private String gender; //性别
 	  private String telephone; //电话
@@ -20,9 +20,9 @@ public class CustomerPO implements Serializable{
 	  
 	  
 	  
-	 public CustomerPO( String customeID, String customerName,
+	 public CustomerPO( String customerID, String customerName,
       String gender, String telephone, MemberPO memberpo,int credit){
-		   this.customeID = customeID;
+		   this.customerID = customerID;
 		   this.customerName = customerName;
 		   this.gender = gender;
 		   this.memberpo = memberpo;
@@ -43,7 +43,7 @@ public class CustomerPO implements Serializable{
 	
 	 
 	  public String getCustomeID() {
-		return customeID;
+		return customerID;
 	}
 
 	public String getCustomerName() {

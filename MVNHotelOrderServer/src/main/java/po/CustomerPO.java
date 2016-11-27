@@ -15,7 +15,7 @@ public class CustomerPO implements Serializable{
 	private static final long serialVersionUID = -4620814777325515534L;
 	
 	
-	  private String customeID; 
+	  private String customerID; 
 	  private String customerName; //客户姓名
 	  private String gender; //性别
 	  private String telephone; //电话
@@ -24,67 +24,86 @@ public class CustomerPO implements Serializable{
 	  
 	  
 	  
-	 public CustomerPO( String customeID, String customerName,
+	 public CustomerPO( String customerID, String customerName,
       String gender, String telephone, MemberPO memberpo,int credit){
-		   this.customeID = customeID;
+		   this.customerID = customerID;
 		   this.customerName = customerName;
 		   this.gender = gender;
 		   this.memberpo = memberpo;
 		   this.telephone =telephone;
 		   this.credit = credit;
 	  }
-	 
-	/* public CustomerPO(String username,String password,
-				String customerName, String telephone, String gender){
-				   //this.customeID = customeID;
-				   this.customerName = username;
-				   this.gender = gender;
-				    this.userName=username;
-				    this.password=password;
-				   this.telephone =telephone;
-				   
-			  }*/
-	
+
+
 	 @Id
-	  public String getCustomeID() {
-		return customeID;
+	public String getCustomerID() {
+		return customerID;
 	}
+
+
+
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
+	}
+
+
 
 	public String getCustomerName() {
 		return customerName;
 	}
 
+
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+
+
+
 	public String getGender() {
 		return gender;
 	}
 
-	public String getTelephone() {
-		return telephone;
-	}
 
-	public MemberPO getMemberpo() {
-		return memberpo;
-	}
-	
-	
-	  public void setCustomerName(String customerName) {
-		this.customerName = customerName;
-	}
 
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
-	public void setMembervo(MemberPO memberpo) {
+
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+
+
+
+	public MemberPO getMemberpo() {
+		return memberpo;
+	}
+
+
+
+	public void setMemberpo(MemberPO memberpo) {
 		this.memberpo = memberpo;
 	}
+
+
 
 	public int getCredit() {
 		return credit;
 	}
 
+
+
 	public void setCredit(int credit) {
 		this.credit = credit;
 	}
-	
+
 }

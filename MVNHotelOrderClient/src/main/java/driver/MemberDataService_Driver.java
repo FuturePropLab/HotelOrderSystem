@@ -2,16 +2,14 @@ package driver;
 
 import java.util.List;
 
-import org.w3c.dom.ls.LSInput;
-
 import dataservice.MemberDataService;
 import po.ApplyPO;
 import po.BackPO;
 import po.MemberPO;
 import tools.ApplyResult;
+import tools.MemberBelongType;
 import tools.MemberType;
 import tools.ResultMessage;
-import tools.MemberType.Type;
 
 public class MemberDataService_Driver {
 	private static final String customer_ID_test="000000002";
@@ -34,7 +32,7 @@ public class MemberDataService_Driver {
 			return false;
 		}
 		
-		result=memberService.addApply(new ApplyPO(customer_ID_test, Type.Ordinary));
+		result=memberService.addApply(new ApplyPO(customer_ID_test, MemberBelongType.Ordinary));
 		if(result.equals(ResultMessage.NotExist)){
 			return false;
 		}
@@ -44,7 +42,7 @@ public class MemberDataService_Driver {
 			return false;
 		}
 		
-		result=memberService.modifyApply(new ApplyPO(customer_ID_test, Type.Ordinary));
+		result=memberService.modifyApply(new ApplyPO(customer_ID_test, MemberBelongType.Ordinary));
 		if(result.equals(ResultMessage.NotExist)){
 			return false;
 		}

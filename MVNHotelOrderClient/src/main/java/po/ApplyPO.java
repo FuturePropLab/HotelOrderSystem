@@ -2,7 +2,7 @@ package po;
 
 import java.util.Date;
 
-import tools.MemberType.Type;
+import tools.MemberBelongType;
 
 public class ApplyPO {
 	private String customer_ID;
@@ -11,11 +11,11 @@ public class ApplyPO {
 		return apply_id;
 	}
 
-	private Type type=Type.None;
+	private MemberBelongType type=MemberBelongType.None;
 	private Date birthday;
 	private String companyName;
 	
-	public void setType(Type type) {
+	public void setType(MemberBelongType type) {
 		this.type = type;
 	}
 
@@ -31,7 +31,7 @@ public class ApplyPO {
 		return customer_ID;
 	}
 
-	public Type getType() {
+	public MemberBelongType getType() {
 		return type;
 	}
 
@@ -43,7 +43,7 @@ public class ApplyPO {
 		return companyName;
 	}
 
-	public ApplyPO(String customer_ID, Type type) {
+	public ApplyPO(String customer_ID, MemberBelongType type) {
 		super();
 		this.customer_ID = customer_ID;
 		this.type = type;

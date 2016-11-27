@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.Date;
 
 import businesslogic.member.Member;
 import businesslogicservice.AccountCustomerService;
@@ -19,6 +20,7 @@ import po.MemberPO;
 import rmi.RemoteHelper;
 import serviceFactory.LoginServiceUtil;
 import tools.AccountType;
+import tools.MemberBelongType;
 import tools.MemberType;
 
 public class ClientRunner {
@@ -62,13 +64,22 @@ public class ClientRunner {
 //		System.out.println(accountWebService.addAccount("manager", "manager"));
 		
 		CustomerDataService customerDataService = RemoteHelper.getInstance().getCustomerDataService();
-		MemberType memberType = new MemberType("CS001");
-		memberType.setCompanyName("开心");
-		MemberPO memberPO = new MemberPO("CS001", memberType);
+//		MemberType memberType = new MemberType("CS001");
+//		memberType.setCompanyName("开心大酒店");
+//		memberType.setType(MemberBelongType.Enterprise);
+//		MemberPO memberPO = new MemberPO("CS001", memberType);
+//		//memberType.setType();
+//		
+//		CustomerPO customerPO = new CustomerPO("CS001", "朱俊逸", "男", "1323383438", memberPO, 1000);
+//		System.out.println(customerDataService.add(customerPO));
+		MemberType memberType = new MemberType("CS002");
+		memberType.setBirthday(new Date(1996-1900, 11, 25));
+		memberType.setType(MemberBelongType.Ordinary);
+		MemberPO memberPO = new MemberPO("CS002", memberType);
 		//memberType.setType();
 		
-		CustomerPO customerPO = new CustomerPO("CS0001", "wsws", "male", "138383438", memberPO, 20);
-		customerDataService.add(customerPO);
+		CustomerPO customerPO = new CustomerPO("CS002", "王帅惟", "男", "1505052205", memberPO, -20);
+		System.out.println(customerDataService.add(customerPO));
 		
 	}
 	

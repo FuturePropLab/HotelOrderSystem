@@ -8,8 +8,8 @@ import po.ApplyPO;
 import po.BackPO;
 import po.MemberPO;
 import tools.ApplyResult;
+import tools.MemberBelongType;
 import tools.MemberType;
-import tools.MemberType.Type;
 import tools.ResultMessage;
 
 public class MemberData_Stub implements MemberDataService{
@@ -81,7 +81,7 @@ public class MemberData_Stub implements MemberDataService{
 	
 	public ApplyPO getApply(String apply_id) {
 		if(apply_id.equals(this.apply_id)){
-			return new ApplyPO(customer_ID_test, Type.Ordinary);
+			return new ApplyPO(customer_ID_test, MemberBelongType.Ordinary);
 		}
 		return null;
 	}

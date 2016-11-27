@@ -3,9 +3,8 @@ package driver;
 import java.util.List;
 
 import businesslogicservice.MemberService;
-import businesslogicservice.OrderService;
-import tools.MemberType.Type;
 import tools.ApplyResult;
+import tools.MemberBelongType;
 import tools.ResultMessage;
 import vo.ApplyVO;
 import vo.BackVO;
@@ -20,7 +19,7 @@ public class MemberBLService_Driver {
 			return false;
 		}
 		
-		ResultMessage result=memberService.addApply(new ApplyVO(customer_ID_test, Type.Ordinary));
+		ResultMessage result=memberService.addApply(new ApplyVO(customer_ID_test, MemberBelongType.Ordinary));
 		if(result.equals(ResultMessage.NotExist)){
 			return false;
 		}

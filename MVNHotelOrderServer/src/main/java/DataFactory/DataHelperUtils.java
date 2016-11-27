@@ -1,8 +1,10 @@
 package DataFactory;
 
 import dataservice.datahelper.AccountDataHelper;
+import dataservice.datahelper.CustomerDataHelper;
 import dataservice.datahelper.LoginCheckDatahelper;
 import dataservice.datahelper.impl.AccountDataHelperImpl;
+import dataservice.datahelper.impl.CustomerDataHelperImpl;
 import dataservice.datahelper.impl.LoginCheckDatahelperImpl;
 
 /**
@@ -26,6 +28,10 @@ public  class DataHelperUtils {
 	 */
 	public static AccountDataHelper getAccountDataHelper(){
 		return AccountDataHelperImpl.getInstance();
+	}
+	
+	public static CustomerDataHelper getCustomerDataHelper(){
+		return CustomerDataHelperImpl.getInstance();
 	}
 	
 }
