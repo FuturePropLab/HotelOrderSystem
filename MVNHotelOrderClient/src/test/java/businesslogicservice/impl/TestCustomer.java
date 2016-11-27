@@ -2,6 +2,8 @@ package businesslogicservice.impl;
 
 import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
+
 import org.junit.Test;
 
 import businesslogic.customer.Customer;
@@ -18,7 +20,7 @@ import vo.MemberVO;
 public class TestCustomer {
 
 	@Test
-	public void test() {
+	public void test() throws Exception {
 		Customer cu=new Customer();
 		
 		CustomerInputVO test=new CustomerInputVO("xx","xxx",
