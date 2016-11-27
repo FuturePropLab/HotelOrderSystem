@@ -1,5 +1,6 @@
 package businesslogic.customer;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class Customer {
 	 * @return 添加客户
 	 */
 	private  CustomerDataService customerdata; 
-	public ResultMessage_signUp addCustomer(CustomerInputVO customerInput){
+	public ResultMessage_signUp addCustomer(CustomerInputVO customerInput) throws RemoteException{
 		CustomerSignup_Stub test=new CustomerSignup_Stub();
 		ResultMessage_signUp re=ResultMessage_signUp.Success;
 		//输入数据是否合法
@@ -65,8 +66,9 @@ public class Customer {
 	 * 获得客户信息
 	 * @param customer_id
 	 * @return 客户信息
+	 * @throws RemoteException 
 	 */
-	public CustomerVO getCustomerInfo(String customer_id){
+	public CustomerVO getCustomerInfo(String customer_id) throws RemoteException{
 		//CustomerDeal_Stub test=new CustomerDeal_Stub();
 		//MockMember test2=new MockMember();
 		//test2.customer_ID_test=customer_id;
@@ -81,8 +83,9 @@ public class Customer {
 	 * 修改客户信息
 	 * @param customerInfo
 	 * @return
+	 * @throws RemoteException 
 	 */
-	public ResultMessage_Modify changeCustomerInfo(CustomerVO customerInfo){
+	public ResultMessage_Modify changeCustomerInfo(CustomerVO customerInfo) throws RemoteException{
 		CustomerDeal_Stub test=new CustomerDeal_Stub();
 		MemberVO membervo = customerInfo.membervo;
 		MemberPO memberpo = new MemberPO(membervo.customer_ID,membervo.memberType);	
@@ -96,8 +99,9 @@ public class Customer {
 	 * 搜索客户
 	 * @param customerSearchVO
 	 * @return 符合条件的客户列表
+	 * @throws RemoteException 
 	 */
-	public List<CustomerVO> searchCustomer(CustomerSearchVO customerSearchVO){
+	public List<CustomerVO> searchCustomer(CustomerSearchVO customerSearchVO) throws RemoteException{
 		CustomerDeal_Stub test=new CustomerDeal_Stub();
 		List <CustomerPO> customerPO=new ArrayList<CustomerPO>();
 		

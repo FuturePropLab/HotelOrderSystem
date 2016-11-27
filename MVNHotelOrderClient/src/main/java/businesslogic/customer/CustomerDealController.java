@@ -1,5 +1,6 @@
 package businesslogic.customer;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 import businesslogicservice.CustomerDealService;
@@ -11,14 +12,14 @@ import vo.CustomerVO;
 
 public class CustomerDealController implements CustomerDealService {
 
-	public CustomerVO getCustomerInfo(String customer_id) {
+	public CustomerVO getCustomerInfo(String customer_id) throws Exception {
 		// TODO Auto-generated method stub
 		Customer cus=new Customer();
 		
 		return cus.getCustomerInfo(customer_id);
 	}
 
-	public ResultMessage_Modify changeCustomerInfo(CustomerVO customerInfo) {
+	public ResultMessage_Modify changeCustomerInfo(CustomerVO customerInfo) throws Exception {
 		// TODO Auto-generated method stub
 		Customer cus=new Customer();
 		return cus.changeCustomerInfo(customerInfo);
