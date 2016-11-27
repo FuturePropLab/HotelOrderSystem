@@ -15,12 +15,12 @@ public class DiscountDealController implements DiscountDealService{
 	}
 	public DiscountVO invalidDiscount(String discount_id) {
 		// TODO Auto-generated method stub
-		return null;
+		return discount.invalidDiscount(discount_id);
 	}
 
-	public List<DiscountVO> CheckDiscount(DiscountSearchVO dsvo) {
+	public List<DiscountVO> checkDiscount(DiscountSearchVO dsvo) {
 		// TODO Auto-generated method stub
-		return null;
+		return discount.CheckDiscount(dsvo);
 	}
 
 }

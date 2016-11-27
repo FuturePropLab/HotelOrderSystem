@@ -36,7 +36,7 @@ public class DiscountService_Driver {
 		list=dis.getHotelDiscount("001");
 		System.out.println(list.get(0).Discount_id);
 		
-		disvo = dis.editHotelDiscount("000");
+//		disvo = dis.editHotelDiscount("000", null);
 		System.out.println(disvo.Discount_id);
 		
 		ResultMessage2 res = dis.saveDiscount(disvo);

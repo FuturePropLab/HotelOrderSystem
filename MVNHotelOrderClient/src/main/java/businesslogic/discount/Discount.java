@@ -23,25 +23,25 @@ public class Discount {
 //		DiscountCal_stub test=new DiscountCal_stub();	
 //		return test.getSuitableDiscount(orderInput);
 //	}
-//	/**
-//	 * 
-//	 * @param discount_id
-//	 * @return 优惠策略设为无效
-//	 * @return 被设置为生效或失效的优惠策略 
-//	 */
-//	public DiscountVO invalidDiscount(String discount_id) {
-//		DiscountCal_stub test=new DiscountCal_stub();
-//		return test.invalidDiscount(discount_id);
-//		
-//}
-//	/**
+	/**
+	 * 
+	 * @param discount_id
+	 * @return 优惠策略设为无效
+	 * @return 被设置为生效或失效的优惠策略 
+	 */
+	public DiscountVO invalidDiscount(String discount_id) {
+		DiscountCal_stub test=new DiscountCal_stub();
+		return test.invalidDiscount(discount_id);
+		
+}
+	/**
 //	 * 
 //	 * @param dsvo
 //	 * @return 返回符合搜索条件的优惠 
 //	 * @return 所有优惠策略 
 //	 */
-//	public List<DiscountVO> CheckDiscount(DiscountSearchVO dsvo){
-//		DiscountCal_stub test=new DiscountCal_stub();
-//		return test.CheckDiscount(dsvo);
-//	}
+	public List<DiscountVO> CheckDiscount(DiscountSearchVO dsvo){
+		DiscountCal_stub test=new DiscountCal_stub();
+		return test.CheckDiscount(dsvo);
+	}
 }
