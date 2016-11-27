@@ -9,7 +9,7 @@ import vo.DiscountVO_hotel;
 
 public class HotelDiscount extends Discount{
 
-	private dataservice.HotelDiscountDataService dataService;
+	private dataservice.DiscountHotelDataService dataService;
 	
 	/**
 	 * 增加酒店优惠策略

@@ -10,7 +10,7 @@ public interface DiscountWebService {
 	public ResultMessage2 addWebDiscount (DiscountVO_web dis);
 	public DiscountVO_web editWebDiscount (String Discount_id);
 	public DiscountVO_web getWebDiscount (String Discount_id);
-	public ResultMessage2 saveDiscount (DiscountVO discount);
+	public ResultMessage2 deleteDiscount (DiscountVO discount);
 	
 	
 }

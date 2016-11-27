@@ -1,26 +1,34 @@
 package po;
-import java.util.Date;
+import java.util.Calendar;
 public class DiscountPO_web_period extends DiscountPO_web{
+	
 	private double discount;
-	private Date startdate;
-	private Date enddate;
-	public Date getEnddate() {
+	
+	private Calendar startdate;
+	
+	private Calendar enddate;
+	
+	public DiscountPO_web_period(double discount , Calendar startdate ,Calendar enddate ){
+		this.discount=discount;
+		this.startdate=startdate;
+		this.enddate=enddate;
+	}
+	public Calendar getEnddate() {
 		return enddate;
 	}
-	public void setEnddate(Date enddate) {
+	
+	public void setEnddate(Calendar enddate) {
 		this.enddate = enddate;
 	}
-	public Date getStartdate() {
+	
+	public Calendar getStartdate() {
 		return startdate;
 	}
-	public void setStartdate(Date startdate) {
+	
+	public void setStartdate(Calendar startdate) {
 		this.startdate = startdate;
 	}
-	public double getDiscount() {
-		return discount;
-	}
-	public void setDiscount(double discount) {
-		this.discount = discount;
-	}
+	
+
 	
 }	

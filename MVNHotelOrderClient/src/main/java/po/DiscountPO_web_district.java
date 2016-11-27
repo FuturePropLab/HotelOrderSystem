@@ -1,9 +1,20 @@
 package po;
 
+/**
+ * 
+ * @author LWY
+ *
+ */
 public class DiscountPO_web_district extends DiscountPO_web{
 
 	private int lv;
-	private String district;
+	private String district;//类型暂为String
+	private double discount;
+	public DiscountPO_web_district(int lv,String district,double discount){
+		this.lv=lv;
+		this.district=district;
+		this.discount=discount;
+	}
 	public String getDistrict() {
 		return district;
 	}
@@ -16,5 +27,6 @@ public class DiscountPO_web_district extends DiscountPO_web{
 	public void setLv(int lv) {
 		this.lv = lv;
 	}
+
 	
 }

@@ -2,7 +2,8 @@ package vo;
 
 import java.util.Date;
 
-public class DiscountVO_web extends DiscountVO {
+public class DiscountVO_web  {
+	public String discount_id;
 	public int lv;//会员等级
 	public String district;
 	public double discount;

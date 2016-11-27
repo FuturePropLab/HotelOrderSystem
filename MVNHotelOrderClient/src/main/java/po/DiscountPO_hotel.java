@@ -1,7 +1,9 @@
 package po;
 
+import java.util.Calendar;
 import java.util.Date;
 
+import tools.DiscountState;
 import tools.Strategy_hotelType;
 /**
  * 
@@ -10,15 +12,22 @@ import tools.Strategy_hotelType;
  */
 public class DiscountPO_hotel {
 	
+	private DiscountState discountState;
+
 	private Strategy_hotelType type;
+	
 	private String Discount_id;
+	
 	private double discount;
-	private Date startDate;
-	private Date EndDate;
-	public Date getStartDate() {
+	
+	private Calendar startDate;
+	
+	private Calendar EndDate;
+	
+	public Calendar getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(Date startDate) {
+	public void setStartDate(Calendar startDate) {
 		this.startDate = startDate;
 	}
 	public String getDiscount_id() {
@@ -27,10 +36,10 @@ public class DiscountPO_hotel {
 	public double getDiscount() {
 		return discount;
 	}
-	public Date getEndDate() {
+	public Calendar getEndDate() {
 		return EndDate;
 	}
-	public void setEndDate(Date endDate) {
+	public void setEndDate(Calendar endDate) {
 		EndDate = endDate;
 	}
 	public Strategy_hotelType getType() {
