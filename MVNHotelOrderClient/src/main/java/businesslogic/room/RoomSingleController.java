@@ -14,11 +14,11 @@ public class RoomSingleController implements RoomSingleService{
 		return roomsingle.getSingleRoom(hotel_id, room_id);
 	}
 
-	public ResultMessage addSingleRoom(String hotel_id) {
+	public ResultMessage addSingleRoom(String hotel_id,RoomVO room) {
 		// TODO Auto-generated method stub
 		RoomSingle roomsingle = new RoomSingle();
 		
-		return roomsingle.addSingleRoom(hotel_id);
+		return roomsingle.addSingleRoom(hotel_id,room);
 	}
 
 	public ResultMessage editSingleRoom(RoomVO room) {

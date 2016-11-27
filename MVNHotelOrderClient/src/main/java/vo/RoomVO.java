@@ -60,5 +60,16 @@ public class RoomVO {
 		
 		
 	}
-
+/**
+ *@author chenyuyan 11/27
+ *增加一个构造方法，为了添加房间是并不知道id，没有id的构造方法
+ */
+	public RoomVO (String hotelID,String hotelName, RoomType roomType,double price){
+		this.price = price;
+	
+		this.roomType = roomType;
+		this.hotelID = hotelID;
+		this.hotelName = hotelName;
+		state = RoomState.Available;
+	}
 }

@@ -27,4 +27,10 @@ public class RoomDeal_Stub implements RoomDealService {
 		return 0;
 	}
 
+
+	public int searchEmptyRoom(RoomType type, String hotel_Id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

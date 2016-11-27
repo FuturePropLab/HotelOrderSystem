@@ -38,4 +38,10 @@ public class RoomSingle_Stub implements RoomSingleService {
 				return ResultMessage.NotExist;
 	}
 
+
+	public ResultMessage addSingleRoom(String hotel_id, RoomVO room) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

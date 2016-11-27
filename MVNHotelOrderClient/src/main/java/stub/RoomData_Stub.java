@@ -76,4 +76,16 @@ public class RoomData_Stub implements RoomDataService {
 		return 0;
 	}
 
+
+	public int searchEmptyRoom(RoomType type, String hotel_id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public String getID(String hotel_id, RoomType type, Double pricce) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

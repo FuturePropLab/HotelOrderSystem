@@ -11,18 +11,20 @@ public interface RoomDataService {
 	
 	public ResultMessage addRoomInfo(HotelRoomInfoPO hotelRoomInfo);
 	
-	public HotelRoomInfoPO getRoomInfo(String hotel_id); //¾ÆµêÕûÌå¿Í·¿ĞÅÏ¢
+	public HotelRoomInfoPO getRoomInfo(String hotel_id); //é…’åº—æ•´ä½“å®¢æˆ¿ä¿¡æ¯
 	
 	public ResultMessage addRoom(RoomPO room);
 	
-	public RoomPO getRoom(String hotel_id,String room_id);//µ¥¸ö·¿¼äĞÅÏ¢
+	public RoomPO getRoom(String hotel_id,String room_id);//å®¢æˆ¿ä¿¡æ¯
 	
 	public ResultMessage  deleteRoom(String hotel_id, String room_id);
 	
-	public  ResultMessage_Modify modifyRoomState(RoomPO room);//ĞŞ¸Ä·¿¼ä×´Ì¬
+	public  ResultMessage_Modify modifyRoomState(RoomPO room);//ä¿®æ”¹å®¢æˆ¿çŠ¶æ€Ì¬
 	
-	public ResultMessage editHotelRoom(HotelRoomInfoPO roomInfopo);//±à¼­¾ÆµêÕûÌå¿Í·¿ĞÅÏ¢
+	public ResultMessage editHotelRoom(HotelRoomInfoPO roomInfopo);//ä¿®æ”¹é…’åº—æ•´ä½“å®¢æˆ¿ä¿¡æ¯
 	
-	public int searchEmptyRoom(RoomType type);//·µ»ØÄ³ÖÖÀà¿Õ·¿¼ä¸öÊı£¬ĞÂÔö·½·¨
+	public int searchEmptyRoom(RoomType type,String hotel_id);//æŸ¥æ‰¾é…’åº—æŸç±»å‹çš„ç©ºä½™æˆ¿é—´
+	
+	public String getID(String hotel_id,RoomType type,Double pricce);//æ·»åŠ æˆ¿é—´éœ€è¦è·å¾—ä¸€ä¸ªid
 	
 }

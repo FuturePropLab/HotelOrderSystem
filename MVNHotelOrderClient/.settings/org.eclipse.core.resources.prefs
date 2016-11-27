@@ -39,6 +39,7 @@ encoding//src/main/java/driver/CustomerDealService_Driver.java=UTF-8
 encoding//src/main/java/driver/CustomerSignupService_Driver.java=UTF-8
 encoding//src/main/java/driver/DiscountService_Driver.java=UTF-8
 encoding//src/main/java/driver/RoomDataService_Driver.java=UTF-8
+encoding//src/main/java/driver/RoomSingleService_Driver.java=UTF-8
 encoding//src/main/java/po/CustomerAccountPO.java=UTF-8
 encoding//src/main/java/po/CustomerPO.java=UTF-8
 encoding//src/main/java/po/RoomPO.java=UTF-8

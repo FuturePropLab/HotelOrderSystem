@@ -49,8 +49,8 @@ public class RoomDeal {
 	}
 	
 	
-     public int searchEmpty(RoomType type){
-		return roomDataService.searchEmptyRoom(type);
+     public int searchEmpty(RoomType type,String hotel_id){
+		return roomDataService.searchEmptyRoom(type,hotel_id);
     	 
 		
 		

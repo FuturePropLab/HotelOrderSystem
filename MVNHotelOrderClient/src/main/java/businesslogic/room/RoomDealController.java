@@ -28,12 +28,14 @@ public class RoomDealController implements RoomDealService{
 	 * 
 	 * 
 	 */
-	public int searchEmptyRoom(RoomType type){
+	public int searchEmptyRoom(RoomType type,String hotel_id){
 		
 		RoomDeal roomdeal = new RoomDeal();
-		return roomdeal.searchEmpty(type);
+		return roomdeal.searchEmpty(type,hotel_id);
 		
 	}
+
+	
 
 	
 	
