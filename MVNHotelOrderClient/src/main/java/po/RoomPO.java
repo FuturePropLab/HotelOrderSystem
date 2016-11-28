@@ -1,5 +1,6 @@
 package po;
 
+import businesslogic.room.RoomDescription;
 import tools.RoomState;
 import tools.RoomType;
 
@@ -11,14 +12,16 @@ public class RoomPO {
 	private RoomType roomType; //房间类型
 	private Double price; //房间价格
 	private  RoomState state;
+	private RoomDescription description;//房间描述
     
-	public RoomPO (String hotelID,String hotelName,String roomID, RoomType roomType,Double price){
+	public RoomPO (String hotelID,String hotelName,String roomID, RoomType roomType,Double price,RoomDescription description){
 		this.price = price;
 		this.roomID = roomID;
 		this.roomType = roomType;
 		this.hotelID = hotelID;
 		this.hotelName = hotelName;
 		state = RoomState.Available;
+		this.description = description;
 	}
 	/**
 	 * @author chenyuyan 11/24

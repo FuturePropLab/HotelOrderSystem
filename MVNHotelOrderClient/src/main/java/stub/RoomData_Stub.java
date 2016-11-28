@@ -3,11 +3,13 @@ package stub;
 import java.util.ArrayList;
 import java.util.List;
 
+import businesslogic.room.RoomDescription;
 import dataservice.RoomDataService;
 import po.HotelRoomInfoPO;
 import po.RoomPO;
 import tools.ResultMessage;
 import tools.ResultMessage_Modify;
+import tools.ResultMessage_delete;
 import tools.RoomType;
 import tools.TypeRoomInfo;
 
@@ -43,15 +45,15 @@ public class RoomData_Stub implements RoomDataService {
 
 	
 	public RoomPO getRoom(String hotel_id, String room_id) {
-		RoomPO roomPo = new RoomPO("2333",
-				"301", "鑽ｅ崕澶ч厭搴�", RoomType.Single, 180.00);
+		RoomPO roomPo = new RoomPO("2333","我的大酒店",
+				room_id, RoomType.Single, 180.00,new RoomDescription("卫生间"));
 		return roomPo;
 	}
 
 	
-	public ResultMessage deleteRoom(String hotel_id, String room_id) {
-		if(room_id!=null && hotel_id != null)  return ResultMessage.Exist;
-				return ResultMessage.NotExist;
+	public ResultMessage_delete deleteRoom(String hotel_id, String room_id) {
+		if(room_id!=null && hotel_id != null)  return ResultMessage_delete.Success;
+				return ResultMessage_delete.Failure;
 	}
 
 	

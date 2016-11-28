@@ -32,7 +32,8 @@ public class RoomSingle  {
 		//return roomSingle_Stub.addSingleRoom(hotel_id);
 		RoomSingle roomid = new RoomSingle();
 		String id = roomid.getID(room.hotelID, room.roomType, room.price);
-		RoomPO roompo = new RoomPO(room.hotelID,room.hotelName,id,room.roomType,room.price);
+		RoomPO roompo = new RoomPO(room.hotelID,room.hotelName,id,room.roomType,room.price,room.description);
+		
 		return roomDataService.addRoom(roompo);
 	}
 	public String getID(String hotel_id,RoomType type,Double pricce){
@@ -46,26 +47,29 @@ public class RoomSingle  {
 
 	public ResultMessage editSingleRoom(RoomVO room) {
 		// TODO Auto-generated method stub
-		RoomSingle_Stub roomSingle_Stub=new RoomSingle_Stub();
+		//RoomSingle_Stub roomSingle_Stub=new RoomSingle_Stub();
 		
-		RoomPO roompo = new RoomPO(room.hotelID,room.roomID,room.state);
-		
-		
-		return roomSingle_Stub.editSingleRoom(room);
+		//RoomPO roompo = new RoomPO(room.hotelID,room.roomID,room.state);
+		RoomPO roompo = new RoomPO(room.hotelID,room.hotelName,room.roomID,room.roomType,room.price,room.description);
+		//return roomSingle_Stub.editSingleRoom(room);
+		return roomDataService.editSingleRoom(roompo);
 		
 		
 	}
 
 	public ResultMessage_delete deleteSingleRoom(String hotel_id, String room_id) {
 		// TODO Auto-generated method stub
-		RoomSingle_Stub roomSingle_Stub=new RoomSingle_Stub();
-		return roomSingle_Stub.deleteSingleRoom(hotel_id, room_id);
+		//RoomSingle_Stub roomSingle_Stub=new RoomSingle_Stub();
+		//return roomSingle_Stub.deleteSingleRoom(hotel_id, room_id);
+		return roomDataService.deleteRoom(hotel_id, room_id);
 	}
 
 	public ResultMessage saveSingleRoom(RoomVO room) {
 		// TODO Auto-generated method stub
-		RoomSingle_Stub roomSingle_Stub=new RoomSingle_Stub();
-		return roomSingle_Stub.saveSingleRoom(room);
+		RoomPO roompo = new RoomPO(room.hotelID,room.hotelName,room.roomID,room.roomType,room.price,room.description);
+		return roomDataService.saveSingleRoom(roompo);
+		//RoomSingle_Stub roomSingle_Stub=new RoomSingle_Stub();
+		//return roomSingle_Stub.saveSingleRoom(room);
 	}
 
 }

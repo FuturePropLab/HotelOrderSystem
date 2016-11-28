@@ -4,7 +4,9 @@ import po.HotelRoomInfoPO;
 import po.RoomPO;
 import tools.ResultMessage;
 import tools.ResultMessage_Modify;
+import tools.ResultMessage_delete;
 import tools.RoomType;
+import vo.RoomVO;
 
 public interface RoomDataService {
 	public ResultMessage modifyRoomInfo(HotelRoomInfoPO hotelRoomInfo);
@@ -17,7 +19,7 @@ public interface RoomDataService {
 	
 	public RoomPO getRoom(String hotel_id,String room_id);//客房信息
 	
-	public ResultMessage  deleteRoom(String hotel_id, String room_id);
+	public ResultMessage_delete  deleteRoom(String hotel_id, String room_id);
 	
 	public  ResultMessage_Modify modifyRoomState(RoomPO room);//修改客房状态̬
 	
@@ -26,5 +28,9 @@ public interface RoomDataService {
 	public int searchEmptyRoom(RoomType type,String hotel_id);//查找酒店某类型的空余房间
 	
 	public String getID(String hotel_id,RoomType type,Double pricce);//添加房间需要获得一个id
+	
+	public ResultMessage saveSingleRoom(RoomPO room);//保存客房信息
+	
+	public ResultMessage editSingleRoom(RoomPO room);//编辑客房信息
 	
 }

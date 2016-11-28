@@ -1,5 +1,6 @@
 package stub;
 
+import businesslogic.room.RoomDescription;
 import businesslogicservice.RoomSingleService;
 import tools.ResultMessage;
 import tools.ResultMessage_delete;
@@ -10,8 +11,9 @@ public class RoomSingle_Stub implements RoomSingleService {
 
 
 	public RoomVO getSingleRoom(String hotel_id, String room_id) {
+		
 		RoomVO roomVo = new RoomVO(hotel_id,"我的大酒店",
-				room_id, RoomType.Single, 180.00);
+				room_id, RoomType.Single, 180.00,new RoomDescription("卫生间"));
 		return roomVo;
 	}
 

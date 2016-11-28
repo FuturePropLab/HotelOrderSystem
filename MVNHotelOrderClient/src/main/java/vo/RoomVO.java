@@ -1,5 +1,6 @@
 package vo;
 
+import businesslogic.room.RoomDescription;
 import po.RoomPO;
 import tools.RoomState;
 import tools.RoomType;
@@ -15,6 +16,7 @@ public class RoomVO {
 	public RoomType roomType; //房间类型
 	public double price; //房间价格
 	public  RoomState state;
+	public RoomDescription description;//房间描述
     
 	/**
 	 *  @param hotelID  酒店ID
@@ -23,7 +25,7 @@ public class RoomVO {
 	 *  @param roomType  房间类型
 	 *  @param price  房间原始价格
 	 */
-	public RoomVO (String hotelID,String hotelName,String roomID, RoomType roomType,double price){
+	public RoomVO (String hotelID,String hotelName,String roomID, RoomType roomType,double price,RoomDescription description){
 		this.price = price;
 		this.roomID = roomID;
 		this.roomType = roomType;

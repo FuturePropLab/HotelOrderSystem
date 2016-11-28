@@ -3,6 +3,7 @@ package driver;
 import java.util.ArrayList;
 import java.util.List;
 
+import businesslogic.room.RoomDescription;
 import dataservice.RoomDataService;
 import po.HotelRoomInfoPO;
 import po.RoomPO;
@@ -21,9 +22,10 @@ public class RoomDataService_Driver {
   				getTypeRoomInfo().get(0).getPrice());
   		System.out.println(roomDataService.modifyRoomInfo(hotelRoomInfoPO));
   		
+  		RoomDescription description = new RoomDescription("卫生间");
   		
 		RoomPO roomPo = new RoomPO("2333",
-				"301", "荣华大酒店", RoomType.Single, 180.00);
+				"301", "荣华大酒店", RoomType.Single, 180.00,description);
   		
   		System.out.println(roomDataService.addRoom(roomPo));
   		System.out.println(roomDataService.deleteRoom("233", "301"));
