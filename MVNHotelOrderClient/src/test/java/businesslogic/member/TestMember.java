@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import businesslogic.customer.MemberInfo;
 import tools.ApplyResult;
+import tools.MemberBelongType;
 import tools.MemberType;
 import tools.ResultMessage;
 import vo.ApplyVO;
@@ -19,7 +20,7 @@ public class TestMember {
 	Member member =new Member();
 	@Test
 	public void test() {
-		MemberType.Type type=MemberType.Type.Ordinary;
+		MemberBelongType type=MemberBelongType.Ordinary;
 		ApplyVO applyVO=new ApplyVO("001",type );
 		assertEquals(ResultMessage.NotExist, member.addApply(applyVO));
 	}
@@ -31,7 +32,7 @@ public class TestMember {
 	@Test
 	public void test3() {
 		
-		MemberType.Type type=MemberType.Type.Ordinary;
+		MemberBelongType type=MemberBelongType.Ordinary;
 		assertEquals(new BackVO("000000002", "reasion", ApplyResult.Succeed).customer_ID, member.getBack("000000002").customer_ID);
 	}
 	@Test

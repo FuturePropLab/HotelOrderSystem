@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<TitledPane alignment="CENTER" animated="false" prefHeight="520.0" prefWidth="771.0" text="微软公司" textOverrun="CLIP" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<TitledPane fx:id="title" alignment="CENTER" animated="false" prefHeight="388.0" prefWidth="766.0" text="微软公司" textOverrun="CLIP" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.hotelworker.CompanyItemController">
    <content>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0">
          <children>
@@ -25,7 +25,6 @@
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -47,11 +46,6 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label text="策略类型:" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
                   <Label prefHeight="46.0" prefWidth="202.0" text="开始时间:" GridPane.rowIndex="2">
                      <font>
                         <Font size="24.0" />
@@ -62,27 +56,27 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="46.0" prefWidth="202.0" text="可否合并:" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <Label prefHeight="46.0" prefWidth="202.0" text="与其它折扣叠加:" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="46.0" prefWidth="202.0" text="折扣数:" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                  <Label prefHeight="46.0" prefWidth="202.0" text="折扣数:" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <DatePicker prefHeight="48.0" prefWidth="184.0" promptText="2015-10-19" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <DatePicker fx:id="startTime" onAction="#handleStartTime" prefHeight="48.0" prefWidth="184.0" promptText="2015-10-19" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin>
                   </DatePicker>
-                  <DatePicker prefHeight="48.0" prefWidth="183.0" promptText="2018-10-19" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <DatePicker fx:id="endTime" onAction="#handleEndTime" prefHeight="48.0" prefWidth="183.0" promptText="2018-10-19" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin>
                   </DatePicker>
-                  <TextField prefHeight="31.0" prefWidth="129.0" text="微软公司" GridPane.columnIndex="1">
+                  <TextField fx:id="companyName" onAction="#handleCompanyName" prefHeight="31.0" prefWidth="129.0" text="微软公司" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin>
@@ -90,7 +84,7 @@
                         <Font size="24.0" />
                      </font>
                   </TextField>
-                  <TextField text="无" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="aditionalMessage" text="无" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin>
@@ -98,14 +92,7 @@
                         <Font size="24.0" />
                      </font>
                   </TextField>
-                  <ChoiceBox prefWidth="150.0" GridPane.columnIndex="3">
-                     <cursor>
-                        <Cursor fx:constant="S_RESIZE" />
-                     </cursor>
-                  </ChoiceBox>
-                  <ChoiceBox prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                  <ChoiceBox prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                  <TextField text="9.5" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                  <TextField fx:id="discount" onAction="#handleDiscount" text="9.5" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin>
@@ -113,6 +100,17 @@
                         <Font size="24.0" />
                      </font>
                   </TextField>
+                  <Label fx:id="state" text="未开始" textFill="#7c7878" GridPane.columnIndex="3">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+                  <CheckBox fx:id="superposition" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <Hyperlink fx:id="delete" onAction="#handleDelete" text="删 除" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Hyperlink>
                </children>
             </GridPane>
          </children>
