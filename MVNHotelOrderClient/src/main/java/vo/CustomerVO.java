@@ -25,7 +25,7 @@ public class CustomerVO {
 	  *
 	  */
 	 public CustomerVO(CustomerPO customerpo){
-		 this.customerID=customerpo.getCustomeID();
+		 this.customerID=customerpo.getCustomerID();
 		 this.customerName=customerpo.getCustomerName();
 		 this.gender=customerpo.getGender();
 		 this.membervo=new MemberVO(customerpo.getMemberpo().getCustomer_ID(),customerpo.getMemberpo().getMemberType());
