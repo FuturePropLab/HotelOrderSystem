@@ -1,4 +1,7 @@
 package businesslogic.room;
+import java.util.ArrayList;
+import java.util.Date;
+
 import businesslogicservice.RoomDealService;
 import dataservice.RoomDataService;
 import po.Order;
@@ -24,13 +27,20 @@ public class RoomDeal {
  * @param state
  * @return
  */
-	public ResultMessage_Modify ChangeState(String hotel_id, String room_id, RoomState state) {
+	public ResultMessage_Modify ChangeState(String hotel_id, String room_id, RoomState state,Date date) {
 		// TODO Auto-generated method stub
 		//RoomVO roomVO=new RoomVO(hotel_id,"" , room_id, RoomType.Double, 10);
 		RoomVO roomVO = new RoomVO(hotel_id,room_id,state);
 		//roomVO.state=state;
-
-		RoomPO roompo = new RoomPO(hotel_id,room_id,state);
+		ArrayList <Date> BookedDate = roomVO.BookedDate;
+		for(int i =0;i<BookedDate.size();i++){
+			if(BookedDate.get(i)==date){
+				BookedDate.remove(i);
+				break;
+			}
+		}
+		
+		RoomPO roompo = new RoomPO(hotel_id,room_id,state,BookedDate);
 		
 		//RoomSingle roomSingle=new RoomSingle();
 		return roomDataService.modifyRoomState(roompo);
@@ -49,9 +59,10 @@ public class RoomDeal {
 	}
 	
 	
-     public int searchEmpty(RoomType type,String hotel_id){
-		return roomDataService.searchEmptyRoom(type,hotel_id);
-    	 
+     public RoomVO searchEmpty(RoomType type,String hotel_id,Date date){
+		//return roomDataService.searchEmptyRoom(type,hotel_id, date);
+    	 RoomPO roompo = roomDataService.searchEmptyRoom(type,hotel_id, date);
+    	 return new RoomVO(roompo);
 		
 		
 	}

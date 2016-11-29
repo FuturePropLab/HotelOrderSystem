@@ -1,5 +1,8 @@
 package po;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 import businesslogic.room.RoomDescription;
 import tools.RoomState;
 import tools.RoomType;
@@ -13,6 +16,7 @@ public class RoomPO {
 	private Double price; //房间价格
 	private  RoomState state;
 	private RoomDescription description;//房间描述
+	private  ArrayList<Date> BookedDate;//客房的预定时间列表
     
 	public RoomPO (String hotelID,String hotelName,String roomID, RoomType roomType,Double price,RoomDescription description){
 		this.price = price;
@@ -28,10 +32,11 @@ public class RoomPO {
 	 * 增加一个构造方法，
 	 * @return
 	 */
-	public RoomPO(String hotelID,String roomID,RoomState roomstate){
+	public RoomPO(String hotelID,String roomID,RoomState roomstate,ArrayList<Date> BookedDate){
 		this.hotelID = hotelID;
 		this.roomID = roomID;
 		this.state = roomstate;
+		this.BookedDate = BookedDate;
 		
 		
 	}

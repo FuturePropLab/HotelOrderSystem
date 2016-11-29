@@ -9,7 +9,7 @@ import tools.ResultMessage_delete;
 import tools.RoomType;
 import vo.RoomVO;
 /**
- * ί����
+ * 客房处理
  * 
  * @author chenyuyan
  *
@@ -36,6 +36,13 @@ public class RoomSingle  {
 		
 		return roomDataService.addRoom(roompo);
 	}
+	/**
+	 * 新增客房时 分配一个id
+	 * @param hotel_id
+	 * @param type
+	 * @param pricce
+	 * @return
+	 */
 	public String getID(String hotel_id,RoomType type,Double pricce){
 		
 		

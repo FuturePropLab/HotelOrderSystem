@@ -1,5 +1,8 @@
 package vo;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 import businesslogic.room.RoomDescription;
 import po.RoomPO;
 import tools.RoomState;
@@ -15,8 +18,10 @@ public class RoomVO {
 	public String roomID;  //房间号
 	public RoomType roomType; //房间类型
 	public double price; //房间价格
-	public  RoomState state;
+	public  RoomState state;//客房当日状态，
 	public RoomDescription description;//房间描述
+	public ArrayList<Date> BookedDate;//客房的预定列表，如果没有预定的话则为空
+	
     
 	/**
 	 *  @param hotelID  酒店ID
@@ -57,7 +62,7 @@ public class RoomVO {
 		this.roomID = roompo.getRoomID();
 		this.roomType = roompo.getRoomType();
 		this.price = roompo.getPrice();
-		this.state = roompo.getState();
+		//this.state = roompo.getState();
 		
 		
 		
