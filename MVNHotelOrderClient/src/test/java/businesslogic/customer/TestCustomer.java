@@ -1,7 +1,11 @@
 package businesslogic.customer;
 
+import java.util.Iterator;
+import java.util.List;
+
 import businesslogicservice.CustomerDealService;
 import vo.CustomerSearchVO;
+import vo.CustomerVO;
 
 public class TestCustomer {
 
@@ -25,10 +29,21 @@ public class TestCustomer {
 //		//assertEquals(customerVO.customerName,cu.getCustomerInfo(customer_id).customerName);
 //
 //	}
+		/**
+		 * 非标准检验
+		 * @param args
+		 */
 		public static void main(String[] args) {
 			CustomerDealService customerDealService= new CustomerDealController();		
-			CustomerSearchVO searchvo = new CustomerSearchVO(null,"0000");
-			System.out.println(customerDealService.searchCustomer(searchvo).get(0).customerName);	
+			CustomerSearchVO searchvo = new CustomerSearchVO("15", null, "男");
+			List<CustomerVO> list = customerDealService.searchCustomer(searchvo);
+			Iterator<CustomerVO> it = list.iterator();
+			while(it.hasNext()){
+				CustomerVO customerVO  =it.next();
+				System.out.println(customerVO.customerID+"  "+customerVO.customerName+"  "+
+						customerVO.gender+"  "+customerVO.telephone);
+			}
+			
 		}
 		
 

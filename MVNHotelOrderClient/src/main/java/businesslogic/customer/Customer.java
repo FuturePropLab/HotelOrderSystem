@@ -10,6 +10,7 @@ import businesslogicservice.AccountCustomerService;
 import dataservice.CustomerDataService;
 import po.CustomerPO;
 import po.MemberPO;
+import stub.CustomerData_Stub;
 import stub.CustomerDeal_Stub;
 import stub.CustomerSignup_Stub;
 import tools.MemberBelongType;
@@ -27,8 +28,8 @@ public class Customer {
 	private  CustomerDataService customerdata;
 	
 	public Customer(){
-		this.customerdata = rmi.RemoteHelper.getInstance().getCustomerDataService();
-		//this.customerdata = new CustomerData_Stub();
+		//this.customerdata = rmi.RemoteHelper.getInstance().getCustomerDataService();
+		this.customerdata = new CustomerData_Stub();
 	}
 	
 	/**
@@ -108,7 +109,10 @@ public class Customer {
 		
 	}
 	/**
+	 * @author wshwbluebird
 	 * 搜索客户
+	 * 如果搜索信息包括id 则 精确查找
+	 * 如果搜索信息 不包括  则 模糊查找 
 	 * @param customerSearchVO
 	 * @return 符合条件的客户列表
 	 * @throws RemoteException 
@@ -116,60 +120,40 @@ public class Customer {
 	public List<CustomerVO> searchCustomer(CustomerSearchVO customerSearchVO) throws RemoteException{
 		CustomerDeal_Stub test=new CustomerDeal_Stub();
 		List <CustomerPO> customerPOlist = customerdata.searchCustomer();
+		
+		//show howmuch 
 		System.out.println(customerPOlist.size());
 		
+		List<CustomerVO> customerVOList = new ArrayList<CustomerVO>();
+		//如果是根据 id查找 则进行精确查找
+		if(customerSearchVO.userID!=null){
+			String id = customerSearchVO.userID;
+			Iterator<CustomerPO> it = customerPOlist.iterator();
+			while(it.hasNext()){
+				CustomerPO customerPO = it.next();
+				if(customerPO.getCustomerID().equals(id)){
+					//List<CustomerVO> customerVOList = new ArrayList<CustomerVO>();
+					CustomerVO customerVO = new CustomerVO(customerPO);
+					customerVOList.add(customerVO);
+					return customerVOList;
+				}				
+			}
+			return customerVOList;
+		}
+		
 		Iterator<CustomerPO> it = customerPOlist.iterator();
+		FuzzyCheck fuzzyCheck = new FuzzyCheck(customerSearchVO);
 		while(it.hasNext()){
 			CustomerPO customerPO = it.next();
-			System.out.println(customerPO.getCustomerID());
-			System.out.println(customerPO.getCustomerName());
-			System.out.println(customerPO.getGender());
-			System.out.println(customerPO.getTelephone());
-			System.out.println();
+			if(fuzzyCheck.isPattern(customerPO)){
+				CustomerVO customerVO = new CustomerVO(customerPO);
+				customerVOList.add(customerVO);
+			}			
 		}
-		
-		//test
-		
-		
-	    List <CustomerVO> customerVolist =  new ArrayList<CustomerVO>() ;
-		
-		int flag=0;//一个标志，用来判断是否已经筛选过啦
-		String id = customerSearchVO.userID;
-		
-		String telephone = customerSearchVO.telephone;
-		
-		
-		
-		if(id!=null){
-			flag=1;
-			for (int i=0;i<customerPOlist.size();i++){
-				if(customerPOlist.get(i).getCustomerID()==id){
-					customerVolist.add(new CustomerVO(customerPOlist.get(i)));
-					
-				}
-			}
-		}
-		if(telephone!=null){
-			if(flag==0){
-				for(int i=0;i<customerPOlist.size();i++){
-					if(customerPOlist.get(i).getTelephone()==telephone){
-						customerVolist.add(new CustomerVO(customerPOlist.get(i)));
-					}
-				}
-			}else{
-				for(int i2=0;i2<customerVolist.size();i2++){
-					if(customerVolist.get(i2).telephone!=telephone){
-						customerVolist.remove(customerVolist.get(i2));
-						i2--;
-					}
-				}
-			}
-		}
-		
-		//return  test.searchCustomer(customerSearchVO);
-		return customerVolist;
-		
+		return customerVOList;
 	}
+	
+	
 /*	public static void main(String[]args){
 		Customer testt = new Customer();
 		CustomerInputVO test2=new CustomerInputVO("xx","xxx",

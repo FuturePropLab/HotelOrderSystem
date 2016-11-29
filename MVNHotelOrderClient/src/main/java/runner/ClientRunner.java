@@ -4,12 +4,14 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.List;
 
 import businesslogic.customer.CustomerDealController;
 import businesslogicservice.CustomerDealService;
 import dataservice.CustomerDataService;
 import rmi.RemoteHelper;
 import vo.CustomerSearchVO;
+import vo.CustomerVO;
 
 public class ClientRunner {
 	private RemoteHelper remoteHelper;
@@ -108,7 +110,9 @@ public class ClientRunner {
 		CustomerDealService customerDealService= new CustomerDealController();
 		
 		CustomerSearchVO searchvo = new CustomerSearchVO(null,"CS001");
-		System.out.println(customerDealService.searchCustomer(searchvo).get(0).customerName);
+		List<CustomerVO> customerVOs = customerDealService.searchCustomer(searchvo);
+		System.out.println(customerVOs.size());
+		System.out.println(customerVOs.get(0).customerName);
 		
 		
 	}

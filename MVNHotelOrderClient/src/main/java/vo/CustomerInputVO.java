@@ -6,6 +6,7 @@ public class CustomerInputVO {
 		public String customerName;	//客户输入的客户姓名
 		public String telephone;	//客户输入的电话
 		public String gender;	//客户输入的性别
+	
 		
 		public CustomerInputVO(String username,String password,
 		String customerName, String telephone, String gender){
