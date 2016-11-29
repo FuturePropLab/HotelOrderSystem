@@ -100,6 +100,9 @@ public class Order {
 	 * @return 修改成功返回true，失败返回false
 	 */
 	public boolean modifyCheckInInfo(ExecutionInfoVO executionInfo){
+		if(executionInfo==null){
+			return false;
+		}
 		if(!executionInfo.orderID.equals(this.orderID)){
 			return false;
 		}
@@ -124,6 +127,9 @@ public class Order {
 	 * @return 修改成功返回true，失败返回false
 	 */
 	public boolean modifyCheckOutInfo(ExecutionInfoVO executionInfo){
+		if(executionInfo==null){
+			return false;
+		}
 		if(!executionInfo.orderID.equals(this.orderID)){
 			return false;
 		}
