@@ -23,7 +23,22 @@ public class CustomerPO implements Serializable{
 	  private int credit;
 	  
 	  
-	  
+	  /**
+	   * hibernate use this do not delete 
+	   */
+	 public CustomerPO(){
+		 
+	 }
+	 
+	 /**
+	  * i use this consrtuct
+	  * @param customerID
+	  * @param customerName
+	  * @param gender
+	  * @param telephone
+	  * @param memberpo
+	  * @param credit
+	  */
 	 public CustomerPO( String customerID, String customerName,
       String gender, String telephone, MemberPO memberpo,int credit){
 		   this.customerID = customerID;

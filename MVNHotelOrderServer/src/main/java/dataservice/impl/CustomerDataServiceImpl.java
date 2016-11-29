@@ -26,8 +26,7 @@ public class CustomerDataServiceImpl implements CustomerDataService {
 	}
 
 	public CustomerPO find(String customer_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return customerDataHelper.find(customer_id);
 	}
 
 	public ResultMessage_Modify modify(CustomerPO customerInfo) {

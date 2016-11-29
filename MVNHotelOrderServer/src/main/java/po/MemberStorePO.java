@@ -17,6 +17,11 @@ public class MemberStorePO {
 	private String companyName;
 	
 	
+	//hiberbate use this constructor  do not delete
+	public MemberStorePO(){
+		
+	}
+	
 	//默认的构造方法
 	public MemberStorePO(String customerID ,MemberBelongType memberBelongType,	Date birthday,
 	String companyName ){

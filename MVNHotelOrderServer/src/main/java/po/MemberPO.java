@@ -47,5 +47,6 @@ public class MemberPO implements Serializable{
 		memberType.setBirthday(memberStorePO.getBirthday());
 		memberType.setCompanyName(memberStorePO.getCompanyName());
 		memberType.setType(memberStorePO.getMemberBelongType());
+		this.memberType = memberType;
 	}
 }
