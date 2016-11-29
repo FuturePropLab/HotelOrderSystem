@@ -2,7 +2,7 @@ package vo;
 
 import java.util.Calendar;
 
-import po.StrategyPO_hotel;
+import po.DiscountPO_hotel;
 import tools.Strategy_hotelType;
 
 /**
@@ -24,7 +24,7 @@ public class StrategyVO_hotel {
 //	
 //	public double roomPrice;
 
-	public StrategyVO_hotel(StrategyPO_hotel strategyPO_hotel) {
+	public StrategyVO_hotel(DiscountPO_hotel strategyPO_hotel) {
 		this.discount = strategyPO_hotel.getDiscount();
 		this.type = strategyPO_hotel.getType();
 		startDate = strategyPO_hotel.getStartDate();

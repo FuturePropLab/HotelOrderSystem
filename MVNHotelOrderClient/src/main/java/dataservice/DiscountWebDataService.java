@@ -24,7 +24,7 @@ public interface DiscountWebDataService {
 	 * 
 	 * @return 一次性拿网站的所有促销策略
 	 */
-	public List<DiscountVO_web> getWebDiscount ();
+	public List<DiscountPO_web> getWebDiscount ();
 	
 	public ResultMessage_strategy deleteWebDiscount (String discount_id);
 }

@@ -1,6 +1,6 @@
 package vo;
 
-import po.StrategyPO_web;
+import po.DiscountPO_web;
 import tools.Strategy_webType;
 
 /**
@@ -14,7 +14,7 @@ public class StrategyVO_web {
 
 	public double discount;
 
-	public StrategyVO_web(StrategyPO_web strategyPO_web) {
+	public StrategyVO_web(DiscountPO_web strategyPO_web) {
 
 		this.discount =strategyPO_web. getDiscount();
 		this.type = strategyPO_web.getType();

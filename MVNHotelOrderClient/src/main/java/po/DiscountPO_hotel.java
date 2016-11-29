@@ -45,6 +45,12 @@ public class DiscountPO_hotel {
 	public Strategy_hotelType getType() {
 		return type;
 	}
+	public DiscountState getDiscountState() {
+		return discountState;
+	}
+	public void setDiscountState(DiscountState discountState) {
+		this.discountState = discountState;
+	}
 
 
 }
