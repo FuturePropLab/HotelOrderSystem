@@ -18,6 +18,7 @@ public class OrderInputVO {
 	public int numberOfRooms;
 	public int planedPeopleNumber;//预计入住人数
 	public boolean child;//有无儿童
+	public double price;
 	
 	/**
 	 *  @param customer_ID  客户ID
@@ -29,9 +30,10 @@ public class OrderInputVO {
 	 *  @param numberOfRooms  预订的房间数量
 	 *  @param planedPeopleNumber  预计入住人数
 	 *  @param child  是否有儿童
+	 *  @param price 房间单价
 	 */
 	public OrderInputVO(String customerID, String hotelID, Time startTime, Time latestTime, Time planedLeaveTime,
-			RoomType roomType, int numberOfRooms, int planedPeopleNumber, boolean child) {
+			RoomType roomType, int numberOfRooms, int planedPeopleNumber, boolean child,double price) {
 		super();
 		this.customerID = customerID;
 		this.hotelID = hotelID;
@@ -42,5 +44,6 @@ public class OrderInputVO {
 		this.numberOfRooms = numberOfRooms;
 		this.planedPeopleNumber = planedPeopleNumber;
 		this.child = child;
+		this.price=price;
 	}
 }

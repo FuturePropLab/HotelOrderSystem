@@ -4,6 +4,7 @@ import java.rmi.Remote;
 import java.util.ArrayList;
 import java.util.List;
 
+import businesslogic.login.LoginController;
 import businesslogicservice.OrderService;
 import dataservice.OrderDataService;
 import po.OrderPO;
@@ -23,6 +24,7 @@ import vo.SearchOrderInfoVO;
  *
  */
 public class OrderController implements OrderService{
+	private static OrderController orderController;
 	private OrderDataService orderDataService;
 
 	/**
@@ -41,6 +43,16 @@ public class OrderController implements OrderService{
 	public OrderController() {
 		super();
 		this.orderDataService = RemoteHelper.getInstance().getOrderDataService();
+	}
+	
+	/**
+	 * 单件模式，通过静态方法得到实例化的对象
+	 * @return 实例化的OrderController
+	 */
+	public OrderController getInstance(){
+		if(orderController==null)
+			orderController = new OrderController();
+		return orderController;
 	}
 	
 	private OrderVO getOrderVO(Order order) {
@@ -94,7 +106,7 @@ public class OrderController implements OrderService{
 	 * @return 订单信息
 	 */
 	public OrderVO createOrders(OrderInputVO orderInput) {
-		Order order=new Order(orderInput, new MockCustomerInfo(), new MockHotelInfo(), orderDataService);//暂时先用Mock代替
+		Order order=new Order(orderInput, new MockCustomerInfo(), new MockHotelInfo(), orderDataService);//TODO: 暂时先用Mock代替
 		return getOrderVO(order);
 	}
 	/**
@@ -105,7 +117,7 @@ public class OrderController implements OrderService{
 	 * @return 调用成功则返回Exist，失败返回NotExist
 	 */
 	public ResultMessage saveOrder(OrderVO preorder) {
-		Order order=new Order(orderDataService.findOrder(preorder.orderID), new MockCustomerInfo(), //暂时先用Mock代替
+		Order order=new Order(orderDataService.findOrder(preorder.orderID), new MockCustomerInfo(), //TODO: 暂时先用Mock代替
 				new MockHotelInfo(), orderDataService);
 		if(order.saveOrder()){
 			return ResultMessage.Exist;
@@ -142,7 +154,7 @@ public class OrderController implements OrderService{
 	 */
 	public ResultMessage revokeCurrentOrder(OrderVO order) {
 		Order order2=new Order(orderDataService.findOrder(order.orderID),  new MockCustomerInfo(),
-				new MockHotelInfo(), orderDataService); //暂时先用Mock代替
+				new MockHotelInfo(), orderDataService); //TODO: 暂时先用Mock代替
 		if(order2.getState().equals(OrderState.Unexecuted)){
 			order2.changeState(OrderState.Revoked);
 			return ResultMessage.Exist;
@@ -156,7 +168,7 @@ public class OrderController implements OrderService{
 	 */
 	public int calculateCreditLose(OrderVO order) {
 		Order order2=new Order(orderDataService.findOrder(order.orderID),  new MockCustomerInfo(),
-				new MockHotelInfo(), orderDataService); //暂时先用Mock代替
+				new MockHotelInfo(), orderDataService); //TODO: 暂时先用Mock代替
 		return order2.getOrderValue();
 	}
 	/**
@@ -166,7 +178,7 @@ public class OrderController implements OrderService{
 	 */
 	public ResultMessage executionModify(ExecutionInfoVO executionInfo) {
 		Order order=new Order(orderDataService.findOrder(executionInfo.orderID),  new MockCustomerInfo(),
-				new MockHotelInfo(), orderDataService); //暂时先用Mock代替
+				new MockHotelInfo(), orderDataService); //TODO: 暂时先用Mock代替
 		boolean checkIn=order.modifyCheckInInfo(executionInfo);
 		boolean checkOut=order.modifyCheckOutInfo(executionInfo);
 		if(checkIn&&checkOut){
@@ -182,7 +194,7 @@ public class OrderController implements OrderService{
 	 */
 	public ResultMessage AutoToBad(OrderVO Order) {
 		Order order2=new Order(orderDataService.findOrder(Order.orderID),  new MockCustomerInfo(),
-				new MockHotelInfo(), orderDataService); //暂时先用Mock代替
+				new MockHotelInfo(), orderDataService); //TODO: 暂时先用Mock代替
 		return ResultMessage.Exist;
 	}
 	/**
@@ -192,7 +204,7 @@ public class OrderController implements OrderService{
 	 */
 	public ResultMessage revokeBadOrderr(OrderVO badOrder) {
 		Order order=new Order(orderDataService.findOrder(badOrder.orderID),  new MockCustomerInfo(),
-				new MockHotelInfo(), orderDataService); //暂时先用Mock代替
+				new MockHotelInfo(), orderDataService); //TODO: 暂时先用Mock代替
 		if(order.getState().equals(OrderState.Exception)){
 			order.changeState(OrderState.Unexecuted);
 			return ResultMessage.Exist;

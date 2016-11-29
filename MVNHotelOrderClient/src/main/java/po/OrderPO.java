@@ -31,6 +31,7 @@ public class OrderPO {
 	private OrderState orderState;
 	private Mark mark;
 	private String assessment;
+	private double price;
 	
 	public OrderPO() {
 		super();
@@ -64,7 +65,7 @@ public class OrderPO {
 	public OrderPO(String orderID, String customerID, String hotelID, ArrayList<String> roomNumber, Time startTime,
 			Time latestTime, Time planedLeaveTime, Time checkInTime, Time checkOutTime, Time revokeTime,
 			RoomType roomType, int numberOfRooms, int value, int planedPeopleNumber, boolean child,
-			OrderState orderState, Mark mark, String assessment) {
+			OrderState orderState, Mark mark, String assessment,double price) {
 		super();
 		this.orderID = orderID;
 		this.customerID = customerID;
@@ -84,6 +85,7 @@ public class OrderPO {
 		this.orderState = orderState;
 		this.mark = mark;
 		this.assessment = assessment;
+		this.price=price;
 	}
 	
 	/**
@@ -192,6 +194,9 @@ public class OrderPO {
 	public String getAssessment() {
 		return assessment;
 	}
+	public double getPrice() {
+		return price;
+	}
 	public void setCustomerID(String customerID) {
 		this.customerID = customerID;
 	}
@@ -243,5 +248,7 @@ public class OrderPO {
 	public void setAssessment(String assessment) {
 		this.assessment = assessment;
 	}
-	
+	public void setPrice(double price) {
+		this.price = price;
+	}
 }

@@ -29,7 +29,7 @@ public class TestOrderController {
 	public void init() {
 		orderController=new OrderController(new OrderDate_Stub());
 		orderInputVO=new OrderInputVO("customerID", "hotelID", new Time(0), new Time(0), new Time(0), 
-				RoomType.EluxeSuite, 1, 1, false);
+				RoomType.EluxeSuite, 1, 1, false,100);
 		orderVO=new OrderVO();
 		orderVO.orderID="orderID";
 		orderVO.customerID="customerID";

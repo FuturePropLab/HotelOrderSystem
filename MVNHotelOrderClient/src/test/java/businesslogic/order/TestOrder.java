@@ -24,7 +24,7 @@ public class TestOrder {
 	
 	@Before
 	public void init() {
-		order=new Order(new OrderInputVO("customerID", "hotelID", new Time(0), new Time(0), new Time(0), RoomType.EluxeSuite, 1, 1, false), 
+		order=new Order(new OrderInputVO("customerID", "hotelID", new Time(0), new Time(0), new Time(0), RoomType.EluxeSuite, 1, 1, false,100), 
 				new MockCustomerInfo(), new MockHotelInfo(), new OrderDate_Stub());
 	}
 

@@ -21,6 +21,7 @@ public class PlacingOrderInfo {
 	public Time planedLeaveTime;//预计离开时间
 	public int planedPeopleNumber;//预计入住人数
 	public boolean child;//有无儿童
+	public double price;
 	/**
 	 * 
 	 * @param customerID 客户ID
@@ -33,10 +34,11 @@ public class PlacingOrderInfo {
 	 * @param planedLeaveTime 预计离开时间
 	 * @param planedPeopleNumber 预计入住人数
 	 * @param child 有无儿童
+	 * @param price 房间单价
 	 */
 	public PlacingOrderInfo(String customerID, RoomType roomType, int numberOfRooms, ArrayList<String> roomNumber,
 			String hotelID, Time startTime, Time latestTime, Time planedLeaveTime, int planedPeopleNumber,
-			boolean child) {
+			boolean child,double price) {
 		super();
 		this.customerID = customerID;
 		this.roomType = roomType;
@@ -48,5 +50,6 @@ public class PlacingOrderInfo {
 		this.planedLeaveTime = planedLeaveTime;
 		this.planedPeopleNumber = planedPeopleNumber;
 		this.child = child;
+		this.price=price;
 	}
 }
