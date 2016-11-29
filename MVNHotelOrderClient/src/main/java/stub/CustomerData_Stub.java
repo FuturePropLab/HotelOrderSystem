@@ -1,14 +1,17 @@
 package stub;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dataservice.CustomerDataService;
 import po.CustomerPO;
 import po.MemberPO;
+import tools.MemberBelongType;
 import tools.MemberType;
 import tools.ResultMessage;
 import tools.ResultMessage_Modify;
 import tools.ResultMessage_signUp;
+import vo.CustomerVO;
 import vo.MemberVO;
 
 public class CustomerData_Stub implements CustomerDataService {
@@ -38,8 +41,13 @@ public class CustomerData_Stub implements CustomerDataService {
 
 
 	public List<CustomerPO> searchCustomer() {
-		// TODO Auto-generated method stub
-		return null;
+		MemberType memberType = new MemberType("0000");
+		 memberType.setType(MemberBelongType.None);
+		MemberPO memberpo  = new MemberPO("0000", memberType);
+		CustomerPO customerPO  = new CustomerPO("0000", "王帅惟", "男", "15050522805", memberpo,34);
+		List<CustomerPO> list= new ArrayList();
+		list.add(customerPO);
+		return list;
 	}
 
 }

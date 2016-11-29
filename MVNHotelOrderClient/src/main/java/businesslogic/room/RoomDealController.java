@@ -27,7 +27,7 @@ public class RoomDealController implements RoomDealService{
 	
 	/**
 	 * @author chenyuyan 11/26
-	 * 增加一个方法，选择房间类型后返回剩余间数
+	 * 增加一个方法，查看空余房间
 	 * 
 	 * 
 	 */

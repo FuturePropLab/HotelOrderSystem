@@ -2,9 +2,9 @@ package businesslogic.customer;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-import businesslogic.account.Account;
 import businesslogic.account.CustomerAccountController;
 import businesslogicservice.AccountCustomerService;
 import dataservice.CustomerDataService;
@@ -12,8 +12,8 @@ import po.CustomerPO;
 import po.MemberPO;
 import stub.CustomerDeal_Stub;
 import stub.CustomerSignup_Stub;
-import tools.ResultMessage;
-import tools.ResultMessage2;
+import tools.MemberBelongType;
+import tools.MemberType;
 import tools.ResultMessage_Account;
 import tools.ResultMessage_Modify;
 import tools.ResultMessage_signUp;
@@ -23,16 +23,27 @@ import vo.CustomerVO;
 import vo.MemberVO;
 
 public class Customer {
+	
+	private  CustomerDataService customerdata;
+	
+	public Customer(){
+		this.customerdata = rmi.RemoteHelper.getInstance().getCustomerDataService();
+		//this.customerdata = new CustomerData_Stub();
+	}
+	
 	/**
 	 * 
 	 * @param customerInput
 	 * @return 添加客户
 	 */
-	private  CustomerDataService customerdata; 
+	 
 	public ResultMessage_signUp addCustomer(CustomerInputVO customerInput) throws RemoteException{
 		CustomerSignup_Stub test=new CustomerSignup_Stub();
+		
+	
+		
 		ResultMessage_signUp re=ResultMessage_signUp.Success;
-		//输入数据是否合法
+		//输入数据是否合法,
 		for(int i=0;i<customerInput.telephone.length();i++){
 			if(customerInput.telephone.charAt(i)>'9'||customerInput.telephone.charAt(i)<'0'){
 				re=ResultMessage_signUp.Wrong;
@@ -45,8 +56,9 @@ public class Customer {
 			 if(result==ResultMessage_Account.Success){
 			 String id = account.getAccountID(customerInput.username);
 			 
-			
-			 MemberPO memberpo=null;
+			 MemberType memberType = new MemberType(id);
+			 memberType.setType(MemberBelongType.None);
+			 MemberPO memberpo=new MemberPO(id, memberType);
 			 int credit = 0;
 			 
 			 CustomerPO customerinfo = new CustomerPO(id,customerInput.customerName,customerInput.gender,customerInput.telephone,memberpo,credit);
@@ -103,37 +115,51 @@ public class Customer {
 	 */
 	public List<CustomerVO> searchCustomer(CustomerSearchVO customerSearchVO) throws RemoteException{
 		CustomerDeal_Stub test=new CustomerDeal_Stub();
-		List <CustomerPO> customerPO=new ArrayList<CustomerPO>();
+		List <CustomerPO> customerPOlist = customerdata.searchCustomer();
+		System.out.println(customerPOlist.size());
 		
-		customerPO=customerdata.searchCustomer();
+		Iterator<CustomerPO> it = customerPOlist.iterator();
+		while(it.hasNext()){
+			CustomerPO customerPO = it.next();
+			System.out.println(customerPO.getCustomeID());
+			System.out.println(customerPO.getCustomerName());
+			System.out.println(customerPO.getGender());
+			System.out.println(customerPO.getTelephone());
+			System.out.println();
+		}
 		
-		List <CustomerVO> customerVO = new ArrayList<CustomerVO>();
+		//test
+		
+		
+	    List <CustomerVO> customerVolist =  new ArrayList<CustomerVO>() ;
 		
 		int flag=0;//一个标志，用来判断是否已经筛选过啦
 		String id = customerSearchVO.userID;
 		
 		String telephone = customerSearchVO.telephone;
 		
+		
+		
 		if(id!=null){
 			flag=1;
-			for (int i=0;i<customerPO.size();i++){
-				if(customerPO.get(i).getCustomeID()==id){
-					customerVO.add(new CustomerVO(customerPO.get(i)));
+			for (int i=0;i<customerPOlist.size();i++){
+				if(customerPOlist.get(i).getCustomeID()==id){
+					customerVolist.add(new CustomerVO(customerPOlist.get(i)));
 					
 				}
 			}
 		}
 		if(telephone!=null){
 			if(flag==0){
-				for(int i=0;i<customerPO.size();i++){
-					if(customerPO.get(i).getTelephone()==telephone){
-						customerVO.add(new CustomerVO(customerPO.get(i)));
+				for(int i=0;i<customerPOlist.size();i++){
+					if(customerPOlist.get(i).getTelephone()==telephone){
+						customerVolist.add(new CustomerVO(customerPOlist.get(i)));
 					}
 				}
 			}else{
-				for(int i2=0;i2<customerVO.size();i2++){
-					if(customerVO.get(i2).telephone!=telephone){
-						customerVO.remove(customerVO.get(i2));
+				for(int i2=0;i2<customerVolist.size();i2++){
+					if(customerVolist.get(i2).telephone!=telephone){
+						customerVolist.remove(customerVolist.get(i2));
 						i2--;
 					}
 				}
@@ -141,7 +167,7 @@ public class Customer {
 		}
 		
 		//return  test.searchCustomer(customerSearchVO);
-		return customerVO;
+		return customerVolist;
 		
 	}
 /*	public static void main(String[]args){

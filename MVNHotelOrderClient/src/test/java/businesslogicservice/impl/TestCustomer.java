@@ -1,17 +1,11 @@
 package businesslogicservice.impl;
 
-import static org.junit.Assert.*;
-
-import java.rmi.RemoteException;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
 import businesslogic.customer.Customer;
-import businesslogic.customer.MockMember;
-import stub.CustomerDeal_Stub;
-import stub.CustomerSignup_Stub;
 import tools.MemberType;
-import tools.ResultMessage;
 import tools.ResultMessage2;
 import vo.CustomerInputVO;
 import vo.CustomerVO;

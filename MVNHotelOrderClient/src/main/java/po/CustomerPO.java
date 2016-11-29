@@ -2,6 +2,8 @@ package po;
 
 import java.io.Serializable;
 
+import vo.CustomerVO;
+
 public class CustomerPO implements Serializable{
 
 
@@ -40,6 +42,12 @@ public class CustomerPO implements Serializable{
 				   this.telephone =telephone;
 				   
 			  }*/
+	 //测试用的，用完删系列
+	 public CustomerPO(CustomerVO customervo){
+		 this.customerID = customervo.customerID;
+		 this.customerName = customervo.customerName;
+		 this.gender = customervo.gender;
+	 }
 	
 	 
 	  public String getCustomeID() {
