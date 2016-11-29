@@ -30,13 +30,12 @@ public class CustomerDataServiceImpl implements CustomerDataService {
 	}
 
 	public ResultMessage_Modify modify(CustomerPO customerInfo) {
-		// TODO Auto-generated method stub
-		return null;
+		if(customerInfo.getMemberpo()!=null)  return ResultMessage_Modify.Failure;
+		return customerDataHelper.modify(customerInfo);
 	}
 
 	public List<CustomerPO> searchCustomer() {
-		// TODO Auto-generated method stub
-		return null;
+		return customerDataHelper.searchCustomer();
 	}
 
 }

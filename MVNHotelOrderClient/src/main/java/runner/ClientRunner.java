@@ -6,6 +6,8 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 import businesslogic.member.Member;
 import businesslogicservice.AccountCustomerService;
@@ -72,14 +74,33 @@ public class ClientRunner {
 //		
 //		CustomerPO customerPO = new CustomerPO("CS001", "朱俊逸", "男", "1323383438", memberPO, 1000);
 //		System.out.println(customerDataService.add(customerPO));
-		MemberType memberType = new MemberType("CS002");
-		memberType.setBirthday(new Date(1996-1900, 11, 25));
-		memberType.setType(MemberBelongType.Ordinary);
-		MemberPO memberPO = new MemberPO("CS002", memberType);
-		//memberType.setType();
+//		MemberType memberType = new MemberType("CS002");
+//		memberType.setBirthday(new Date(1996-1900, 11, 25));
+//		memberType.setType(MemberBelongType.Ordinary);
+//		MemberPO memberPO = new MemberPO("CS002", memberType);
+//		//memberType.setType();
+//		
+//		CustomerPO customerPO = new CustomerPO("CS002", "王帅惟", "男", "1505052205", memberPO, -20);
+//		System.out.println(customerDataService.add(customerPO));
 		
-		CustomerPO customerPO = new CustomerPO("CS002", "王帅惟", "男", "1505052205", memberPO, -20);
-		System.out.println(customerDataService.add(customerPO));
+		List<CustomerPO> customerlist = customerDataService.searchCustomer();
+		if(customerlist==null){
+			System.out.println("null");
+		}else{
+			Iterator<CustomerPO> it = customerlist.iterator();
+			while(it.hasNext()){
+				CustomerPO customerPO = it.next();
+				System.out.println(customerPO.getCustomerID());
+				System.out.println(customerPO.getCustomerName());
+				System.out.println(customerPO.getGender());
+				System.out.println(customerPO.getCredit());
+				MemberPO memberPO = customerPO.getMemberpo();
+				System.out.println(memberPO.getMemberType().getType());
+				//customerPO.setMemberpo(memberPO);
+				System.out.println();
+			}
+		}
+		
 		
 	}
 	

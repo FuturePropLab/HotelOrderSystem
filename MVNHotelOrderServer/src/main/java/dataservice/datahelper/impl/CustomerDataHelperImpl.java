@@ -1,6 +1,9 @@
 package dataservice.datahelper.impl;
 
+import java.util.Iterator;
 import java.util.List;
+
+import javax.swing.plaf.synth.SynthSpinnerUI;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -14,6 +17,7 @@ import po.AccountPO;
 import po.CustomerPO;
 import po.MemberPO;
 import po.MemberStorePO;
+import tools.ResultMessage_Account;
 import tools.ResultMessage_Modify;
 import tools.ResultMessage_signUp;
 
@@ -61,7 +65,7 @@ public class CustomerDataHelperImpl implements CustomerDataHelper {
 		CustomerPO customerPO;
 		MemberStorePO memberStorePO;
 		
-		//try{			
+		try{			
 			
 			// find id in table customerpo
 			Criteria crCustomer = s.createCriteria(CustomerPO.class);
@@ -78,12 +82,12 @@ public class CustomerDataHelperImpl implements CustomerDataHelper {
 			if(memberStorePOs.isEmpty()) return null;
 			memberStorePO = memberStorePOs.get(0);
 			
-//		}catch(Exception e){
-//			System.out.println("wrong");
-//			return null;
-//		}finally {
+		}catch(Exception e){
+			System.out.println("wrong");
+			return null;
+		}finally {
 			s.close();
-		//}
+		}
 		System.out.println("id was found");
 		MemberPO memberPO = new MemberPO(memberStorePO);
 		//System.out.println(memberStorePO.getMemberBelongType());
@@ -92,13 +96,52 @@ public class CustomerDataHelperImpl implements CustomerDataHelper {
 	}
 
 	public ResultMessage_Modify modify(CustomerPO customerInfo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		//Session s = Hibernateutils.getSessionFactory().openSession();
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		try{
+			Transaction t =s.beginTransaction();
+//			CustomerPO customerPO = (CustomerPO)s.load(CustomerPO.class, customerInfo.getCustomerID());  //加载id为 userid的accountPO
+//			if(customerPO==null){
+//				s.close();
+//				return ResultMessage_Modify.Failure;
+//			}			
+			s.update(customerInfo);;
+			t.commit();
+			return ResultMessage_Modify.Success;
+		}catch(Exception e){
+			return ResultMessage_Modify.Failure;
+		}finally {
+			s.close();
+		}
 
+	}
+	
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.datahelper.CustomerDataHelper#searchCustomer()
+	 */
 	public List<CustomerPO> searchCustomer() {
-		// TODO Auto-generated method stub
-		return null;
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		List<CustomerPO> customerlist;
+//		try{
+			customerlist = s.createSQLQuery("select * from customerpo").addEntity(CustomerPO.class).list();
+			System.out.println(customerlist.size());
+			Iterator<CustomerPO> it = customerlist.iterator();
+			while(it.hasNext()){
+				CustomerPO customerPO = it.next();
+				Criteria crMember = s.createCriteria(MemberStorePO.class);
+				crMember.add(Restrictions.eq("customerID", customerPO.getCustomerID()));
+				MemberStorePO memberStorePO = (MemberStorePO) crMember.list().get(0);
+				MemberPO memberPO = new MemberPO(memberStorePO);
+				customerPO.setMemberpo(memberPO);
+			}
+	
+//		}catch(Exception e){
+//			return null;
+//		}finally {
+//			s.close();
+//		}
+		return customerlist;
 	}
 
 }

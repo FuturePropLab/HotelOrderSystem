@@ -42,7 +42,7 @@ public class CustomerPO implements Serializable{
 			  }*/
 	
 	 
-	  public String getCustomeID() {
+	  public String getCustomerID() {
 		return customerID;
 	}
 
