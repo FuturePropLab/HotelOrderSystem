@@ -1,8 +1,8 @@
 package businesslogic.customer;
 
+import java.rmi.RemoteException;
+
 import businesslogicservice.CustomerSignupService;
-import tools.ResultMessage;
-import tools.ResultMessage2;
 import tools.ResultMessage_signUp;
 import vo.CustomerInputVO;
 
@@ -12,7 +12,12 @@ public class CustomerSignupController implements CustomerSignupService{
 		// TODO Auto-generated method stub
 		Customer cus=new Customer();
 		
-		return ((CustomerSignupService) cus).addCustomer(customerInput);
+		try {
+			return cus.addCustomer(customerInput);
+		} catch (RemoteException e) {
+			System.out.println("it is wrong");
+			return ResultMessage_signUp.Wrong;
+		}
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import businesslogicservice.CustomerDealService;
+import tools.MemberBelongType;
 import tools.MemberType;
 import tools.ResultMessage;
 import tools.ResultMessage2;
@@ -28,8 +29,9 @@ public class CustomerDeal_Stub implements CustomerDealService {
 				return ResultMessage_Modify.Failure;
 	}
 	public List<CustomerVO> searchCustomer(CustomerSearchVO customerSearchVO){
-		MemberType memberType = new MemberType("123");
-		MemberVO membervo  = new MemberVO("123", memberType);
+		MemberType memberType = new MemberType("0000");
+		 memberType.setType(MemberBelongType.None);
+		MemberVO membervo  = new MemberVO("0000", memberType);
 		CustomerVO customerVO  = new CustomerVO("0000", "王帅惟", "男", "15050522805", membervo,34);
 		List<CustomerVO> list=new ArrayList();
 		list.add(customerVO);

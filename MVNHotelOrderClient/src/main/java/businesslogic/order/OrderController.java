@@ -1,6 +1,5 @@
 package businesslogic.order;
 
-import java.rmi.Remote;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +10,6 @@ import po.SearchOrderInfo;
 import rmi.RemoteHelper;
 import tools.OrderState;
 import tools.ResultMessage;
-import ui.main.MainApp;
 import vo.ExecutionInfoVO;
 import vo.OrderInputVO;
 import vo.OrderVO;
@@ -23,6 +21,7 @@ import vo.SearchOrderInfoVO;
  *
  */
 public class OrderController implements OrderService{
+	private static OrderController orderController;
 	private OrderDataService orderDataService;
 
 	/**
@@ -43,7 +42,20 @@ public class OrderController implements OrderService{
 		this.orderDataService = RemoteHelper.getInstance().getOrderDataService();
 	}
 	
+	/**
+	 * 单件模式，通过静态方法得到实例化的对象
+	 * @return 实例化的OrderController
+	 */
+	public OrderController getInstance(){
+		if(orderController==null)
+			orderController = new OrderController();
+		return orderController;
+	}
+	
 	private OrderVO getOrderVO(Order order) {
+		if(order==null){
+			return null;
+		}
 		OrderVO orderVO=new OrderVO();
 		orderVO.orderID=order.getOrderID();
 		orderVO.customerID=order.getCustomer().customerID;
@@ -66,6 +78,9 @@ public class OrderController implements OrderService{
 		return orderVO;
 	}
 	private OrderVO getOrderVO(OrderPO orderPO) {
+		if(orderPO==null){
+			return null;
+		}
 		OrderVO orderVO=new OrderVO();
 		orderVO.orderID=orderPO.getOrderID();
 		orderVO.customerID=orderPO.getCustomerID();
@@ -94,7 +109,10 @@ public class OrderController implements OrderService{
 	 * @return 订单信息
 	 */
 	public OrderVO createOrders(OrderInputVO orderInput) {
-		Order order=new Order(orderInput, new MockCustomerInfo(), new MockHotelInfo(), orderDataService);//暂时先用Mock代替
+		if(orderInput==null){
+			return null;
+		}
+		Order order=new Order(orderInput, new MockCustomerInfo(), new MockHotelInfo(), orderDataService);//TODO: 暂时先用Mock代替
 		return getOrderVO(order);
 	}
 	/**
@@ -105,7 +123,10 @@ public class OrderController implements OrderService{
 	 * @return 调用成功则返回Exist，失败返回NotExist
 	 */
 	public ResultMessage saveOrder(OrderVO preorder) {
-		Order order=new Order(orderDataService.findOrder(preorder.orderID), new MockCustomerInfo(), //暂时先用Mock代替
+		if(preorder==null){
+			return ResultMessage.NotExist;
+		}
+		Order order=new Order(orderDataService.findOrder(preorder.orderID), new MockCustomerInfo(), //TODO: 暂时先用Mock代替
 				new MockHotelInfo(), orderDataService);
 		if(order.saveOrder()){
 			return ResultMessage.Exist;
@@ -118,6 +139,9 @@ public class OrderController implements OrderService{
 	 * @return 符合条件的订单列表
 	 */
 	public List<OrderVO> CheckOrderList(SearchOrderInfoVO searchOrderInfo) {
+		if(searchOrderInfo==null){
+			return null;
+		}
 		List<OrderPO> poList=orderDataService.searchOrder(new SearchOrderInfo(searchOrderInfo.orderID, 
 				searchOrderInfo.customerID, searchOrderInfo.hotelID, searchOrderInfo.startTime, 
 				searchOrderInfo.orderState));
@@ -133,6 +157,9 @@ public class OrderController implements OrderService{
 	 * @return 订单的信息
 	 */
 	public OrderVO checkSingleOrder(String order_id) {
+		if(order_id==null){
+			return null;
+		}
 		return getOrderVO(orderDataService.findOrder(order_id));
 	}
 	/**
@@ -141,22 +168,33 @@ public class OrderController implements OrderService{
 	 * @return 调用成功则返回Exist，失败返回NotExist
 	 */
 	public ResultMessage revokeCurrentOrder(OrderVO order) {
-		Order order2=new Order(orderDataService.findOrder(order.orderID),  new MockCustomerInfo(),
-				new MockHotelInfo(), orderDataService); //暂时先用Mock代替
+		if(order==null){
+			return ResultMessage.NotExist;
+		}
+		OrderPO orderPO=orderDataService.findOrder(order.orderID);
+		if(orderPO==null){
+			return ResultMessage.NotExist;
+		}
+		Order order2=new Order(orderPO,  new MockCustomerInfo(),new MockHotelInfo(), orderDataService); //TODO: 暂时先用Mock代替
 		if(order2.getState().equals(OrderState.Unexecuted)){
-			order2.changeState(OrderState.Revoked);
-			return ResultMessage.Exist;
+			return order2.changeState(OrderState.Revoked)? ResultMessage.Exist:ResultMessage.NotExist;
 		}
 		return ResultMessage.NotExist;
 	}
 	/**
 	 * 计算撤销订单将要损失的信用值
 	 * @param order 订单的信息
-	 * @return 预计损失的信用值
+	 * @return 预计损失的信用值，如果order为null，则返回-1
 	 */
 	public int calculateCreditLose(OrderVO order) {
-		Order order2=new Order(orderDataService.findOrder(order.orderID),  new MockCustomerInfo(),
-				new MockHotelInfo(), orderDataService); //暂时先用Mock代替
+		if(order==null){
+			return -1;
+		}
+		OrderPO orderPO=orderDataService.findOrder(order.orderID);
+		if(orderPO==null){
+			return -1;
+		}
+		Order order2=new Order(orderPO,  new MockCustomerInfo(),new MockHotelInfo(), orderDataService); //TODO: 暂时先用Mock代替
 		return order2.getOrderValue();
 	}
 	/**
@@ -165,8 +203,14 @@ public class OrderController implements OrderService{
 	 * @return 调用成功则返回Exist，失败返回NotExist
 	 */
 	public ResultMessage executionModify(ExecutionInfoVO executionInfo) {
-		Order order=new Order(orderDataService.findOrder(executionInfo.orderID),  new MockCustomerInfo(),
-				new MockHotelInfo(), orderDataService); //暂时先用Mock代替
+		if(executionInfo==null){
+			return ResultMessage.NotExist;
+		}
+		OrderPO orderPO=orderDataService.findOrder(executionInfo.orderID);
+		if(orderPO==null){
+			return ResultMessage.NotExist;
+		}
+		Order order=new Order(orderPO,  new MockCustomerInfo(),new MockHotelInfo(), orderDataService); //TODO: 暂时先用Mock代替
 		boolean checkIn=order.modifyCheckInInfo(executionInfo);
 		boolean checkOut=order.modifyCheckOutInfo(executionInfo);
 		if(checkIn&&checkOut){
@@ -181,8 +225,14 @@ public class OrderController implements OrderService{
 	 * @return 调用成功则返回Exist，失败返回NotExist
 	 */
 	public ResultMessage AutoToBad(OrderVO Order) {
-		Order order2=new Order(orderDataService.findOrder(Order.orderID),  new MockCustomerInfo(),
-				new MockHotelInfo(), orderDataService); //暂时先用Mock代替
+		if(Order==null){
+			return ResultMessage.NotExist;
+		}
+		OrderPO orderPO=orderDataService.findOrder(Order.orderID);
+		if(orderPO==null){
+			return ResultMessage.NotExist;
+		}
+		Order order2=new Order(orderPO,  new MockCustomerInfo(),new MockHotelInfo(), orderDataService); //TODO: 暂时先用Mock代替
 		return ResultMessage.Exist;
 	}
 	/**
@@ -191,11 +241,16 @@ public class OrderController implements OrderService{
 	 * @return 调用成功则返回Exist，失败返回NotExist
 	 */
 	public ResultMessage revokeBadOrderr(OrderVO badOrder) {
-		Order order=new Order(orderDataService.findOrder(badOrder.orderID),  new MockCustomerInfo(),
-				new MockHotelInfo(), orderDataService); //暂时先用Mock代替
+		if(badOrder==null){
+			return ResultMessage.NotExist;
+		}
+		OrderPO orderPO=orderDataService.findOrder(badOrder.orderID);
+		if(orderPO==null){
+			return ResultMessage.NotExist;
+		}
+		Order order=new Order(orderPO,  new MockCustomerInfo(),new MockHotelInfo(), orderDataService); //TODO: 暂时先用Mock代替
 		if(order.getState().equals(OrderState.Exception)){
-			order.changeState(OrderState.Unexecuted);
-			return ResultMessage.Exist;
+			return order.changeState(OrderState.Unexecuted)? ResultMessage.Exist:ResultMessage.NotExist;
 		}
 		return ResultMessage.NotExist;
 	}

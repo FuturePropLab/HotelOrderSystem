@@ -2,13 +2,16 @@ package businesslogic.order;
 
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.List;
 
 import dataservice.OrderDataService;
 import po.OrderPO;
 import tools.Mark;
+import tools.MemberBelongType;
 import tools.OrderState;
 import tools.ResultMessage;
 import tools.RoomType;
+import tools.TypeRoomInfo;
 import vo.AssessVO;
 import vo.CustomerVO;
 import vo.ExecutionInfoVO;
@@ -19,7 +22,6 @@ import vo.OrderVO;
 /**
  * 订单的领域类
  * orderID应该由data层决定，初始化order对象的时候应该没有orderID
- * order对象调用saveOrder()时，返回值应该是orderID，这一点还有待讨论
  * @author zjy
  *
  */
@@ -46,7 +48,7 @@ public class Order {
 	 */
 	public Order(OrderInputVO orderInput,CustomerInfo customerInfo,HotelInfo hotelInfo,OrderDataService orderDataService){
 		super();
-		if(orderInput.equals(null)){
+		if(orderInput==null){
 			return;
 		}
 		this.customerInfo=customerInfo;
@@ -54,6 +56,7 @@ public class Order {
 		this.orderDataService=orderDataService;
 		init(orderInput);
 		saveOrder();
+		sync();
 	}
 	/**
 	 * 订单的构造方法，通过从data层得到的OrderPO创建出的Order
@@ -64,13 +67,14 @@ public class Order {
 	 */
 	public Order(OrderPO orderPO,CustomerInfo customerInfo,HotelInfo hotelInfo,OrderDataService orderDataService){
 		super();
-		if(orderPO.equals(null)){
+		if(orderPO==null){
 			return;
 		}
 		this.customerInfo=customerInfo;
 		this.hotelInfo=hotelInfo;
 		this.orderDataService=orderDataService;
 		init(orderPO);
+		sync();
 	}
 	/**
 	 * @deprecated
@@ -78,10 +82,6 @@ public class Order {
 	 * @return  成功则返回true，失败返回false
 	 */
 	public boolean saveOrder(){
-		orderID="orderID";//目前尚未有生成订单ID的方法
-		value=1;//目前尚未有生成订单价值的方法
-		placingOrderInfo.roomNumber=new ArrayList<String>();//目前尚未有生成房间号码的方法
-		placingOrderInfo.roomNumber.add("8888");
 		return orderDataService.add(getOrderPO()).equals(ResultMessage.Exist);
 	}
 	/**
@@ -100,6 +100,9 @@ public class Order {
 	 * @return 修改成功返回true，失败返回false
 	 */
 	public boolean modifyCheckInInfo(ExecutionInfoVO executionInfo){
+		if(executionInfo==null){
+			return false;
+		}
 		if(!executionInfo.orderID.equals(this.orderID)){
 			return false;
 		}
@@ -124,6 +127,9 @@ public class Order {
 	 * @return 修改成功返回true，失败返回false
 	 */
 	public boolean modifyCheckOutInfo(ExecutionInfoVO executionInfo){
+		if(executionInfo==null){
+			return false;
+		}
 		if(!executionInfo.orderID.equals(this.orderID)){
 			return false;
 		}
@@ -169,7 +175,8 @@ public class Order {
 	public OrderInputVO getPlacingOrderInfo(){
 		return new OrderInputVO(placingOrderInfo.customerID, placingOrderInfo.hotelID, placingOrderInfo.startTime, 
 				placingOrderInfo.latestTime, placingOrderInfo.planedLeaveTime, placingOrderInfo.roomType, 
-				placingOrderInfo.numberOfRooms, placingOrderInfo.planedPeopleNumber, placingOrderInfo.child);
+				placingOrderInfo.numberOfRooms, placingOrderInfo.planedPeopleNumber, placingOrderInfo.child,
+				placingOrderInfo.price);
 	}
 	/**
 	 * 
@@ -203,7 +210,7 @@ public class Order {
 				placingOrderInfo.startTime, placingOrderInfo.latestTime, placingOrderInfo.planedLeaveTime, 
 				checkInInfo.checkInTime, checkOutInfo.checkOutTime, revokeTime, placingOrderInfo.roomType, 
 				placingOrderInfo.numberOfRooms, value, placingOrderInfo.planedPeopleNumber, placingOrderInfo.child, 
-				orderState, assessInfo.mark, assessInfo.assessment);
+				orderState, assessInfo.mark, assessInfo.assessment,placingOrderInfo.price);
 	}
 	/**
 	 * 
@@ -225,12 +232,15 @@ public class Order {
 	 */
 	private void init(OrderInputVO orderInput) {
 		this.orderState=OrderState.Unexecuted;
-		this.placingOrderInfo=new PlacingOrderInfo(orderInput.customerID, orderInput.roomType, 
-				orderInput.numberOfRooms, null, orderInput.hotelID, orderInput.startTime, 
-				orderInput.latestTime, orderInput.planedLeaveTime, orderInput.planedPeopleNumber, orderInput.child);
+		this.placingOrderInfo=new PlacingOrderInfo(orderInput.customerID, orderInput.roomType, orderInput.numberOfRooms, 
+				null, orderInput.hotelID, orderInput.startTime, orderInput.latestTime, orderInput.planedLeaveTime, 
+				orderInput.planedPeopleNumber, orderInput.child,orderInput.price);
 		this.checkInInfo=new CheckInInfo(null, null);
 		this.checkOutInfo=new CheckOutInfo(null);
 		this.assessInfo=new AssessInfo(null, null);
+		
+		orderID="orderID";//生成订单ID应该由data层决定
+		value=createValue();
 	}
 	/**
 	 * 订单的初始化
@@ -242,7 +252,8 @@ public class Order {
 		this.revokeTime=orderPO.getRevokeTime();
 		this.placingOrderInfo=new PlacingOrderInfo(orderPO.getCustomerID(), orderPO.getRoomType(), 
 				orderPO.getNumberOfRooms(), orderPO.getRoomNumber(), orderPO.getHotelID(), orderPO.getStartTime(), 
-				orderPO.getLatestTime(), orderPO.getPlanedLeaveTime(), orderPO.getPlanedPeopleNumber(), orderPO.isChild());
+				orderPO.getLatestTime(), orderPO.getPlanedLeaveTime(), orderPO.getPlanedPeopleNumber(), 
+				orderPO.isChild(),orderPO.getPrice());
 		this.checkInInfo=new CheckInInfo(orderPO.getPlanedLeaveTime(), orderPO.getCheckInTime());
 		this.checkOutInfo=new CheckOutInfo(orderPO.getCheckOutTime());
 		this.assessInfo=new AssessInfo(orderPO.getMark(), orderPO.getAssessment());
@@ -251,6 +262,42 @@ public class Order {
 	 * 定时从data层更新订单的信息
 	 */
 	private void sync() {
-		
+		Thread syncThread=new Thread(new SyncHandeler());
+		syncThread.start();
+	}
+	/**
+	 * 生成订单价值
+	 * 算法：订单价值=订单总价+酒店评分*100，如果客户是会员再加1000
+	 * @return
+	 */
+	private int createValue() {
+		int newValue=0;
+		newValue+=placingOrderInfo.price*placingOrderInfo.numberOfRooms;
+		newValue+=hotelInfo.getHotelInfo(placingOrderInfo.hotelID).mark.getValue()*100;
+		newValue+=customerInfo.getCustomer(placingOrderInfo.customerID).membervo.memberType.getType()
+				.equals(MemberBelongType.None)?0:1000;
+		return newValue;
+	}
+	
+	/**
+	 * 刷新器线程，定时从data层更新Order的信息
+	 * @author asus-a
+	 *
+	 */
+	private class SyncHandeler implements Runnable {
+		public void run() {
+			try {
+				while (true) {
+					OrderPO orderPO=orderDataService.findOrder(orderID);
+					if(orderPO==null){
+						return;
+					}
+					init(orderPO);
+					Thread.sleep(1000);//1s刷新一次
+				}
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

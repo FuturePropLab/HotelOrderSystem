@@ -7,7 +7,7 @@ import Exception.OutOfBoundsException;
  *  @author zjy
  */
 public class Mark {
-	double mark;
+	private double mark;
 	
 	/**
 	 *  @param mark  评分，只能在0.0-5.0之间
@@ -18,5 +18,13 @@ public class Mark {
 			throw new OutOfBoundsException();
 		}
 		this.mark=mark;
+	}
+	
+	/**
+	 * 
+	 * @return 评分的值
+	 */
+	public double getValue() {
+		return mark;
 	}
 }

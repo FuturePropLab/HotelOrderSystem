@@ -1,29 +1,15 @@
 package runner;
 
-import java.awt.Window.Type;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 
-import businesslogic.member.Member;
-import businesslogicservice.AccountCustomerService;
-import businesslogicservice.AccountHotelService;
-import businesslogicservice.AccountWebService;
-import businesslogicservice.LoginService;
-import dataservice.AccountDataService;
+import businesslogic.customer.CustomerDealController;
+import businesslogicservice.CustomerDealService;
 import dataservice.CustomerDataService;
-import po.AccountPO;
-import po.CustomerPO;
-import po.MemberPO;
 import rmi.RemoteHelper;
-import serviceFactory.LoginServiceUtil;
-import tools.AccountType;
-import tools.MemberBelongType;
-import tools.MemberType;
+import vo.CustomerSearchVO;
 
 public class ClientRunner {
 	private RemoteHelper remoteHelper;
@@ -51,7 +37,7 @@ public class ClientRunner {
 	}
 	
 	
-	public void test() throws RemoteException{
+	public void test(){
 //		AccountCustomerService accountCustomerService = serviceFactory.AccountContollerUtil.getAccountCustomerServiceUtil();
 //		System.out.println(accountCustomerService.getUsername("zhujusnyi"));
 //		System.out.println(accountCustomerService.addAccount("wangshuaiwei", "zhujunyi"));
@@ -65,7 +51,10 @@ public class ClientRunner {
 //		AccountWebService accountWebService  = serviceFactory.AccountContollerUtil.getAccountWebDesignerServiceUtil();
 //		System.out.println(accountWebService.addAccount("manager", "manager"));
 		
+	
 		CustomerDataService customerDataService = RemoteHelper.getInstance().getCustomerDataService();
+		
+		//CustomerDataService customerDataService = RemoteHelper.getInstance().getCustomerDataService();
 //		MemberType memberType = new MemberType("CS001");
 //		memberType.setCompanyName("开心大酒店");
 //		memberType.setType(MemberBelongType.Enterprise);
@@ -83,23 +72,43 @@ public class ClientRunner {
 //		CustomerPO customerPO = new CustomerPO("CS002", "王帅惟", "男", "1505052205", memberPO, -20);
 //		System.out.println(customerDataService.add(customerPO));
 		
-		List<CustomerPO> customerlist = customerDataService.searchCustomer();
-		if(customerlist==null){
-			System.out.println("null");
-		}else{
-			Iterator<CustomerPO> it = customerlist.iterator();
-			while(it.hasNext()){
-				CustomerPO customerPO = it.next();
-				System.out.println(customerPO.getCustomerID());
-				System.out.println(customerPO.getCustomerName());
-				System.out.println(customerPO.getGender());
-				System.out.println(customerPO.getCredit());
-				MemberPO memberPO = customerPO.getMemberpo();
-				System.out.println(memberPO.getMemberType().getType());
-				//customerPO.setMemberpo(memberPO);
-				System.out.println();
-			}
-		}
+//		List<CustomerPO> customerlist = customerDataService.searchCustomer();
+//		if(customerlist==null){
+//			System.out.println("null");
+//		}else{
+//			Iterator<CustomerPO> it = customerlist.iterator();
+//			while(it.hasNext()){
+//				CustomerPO customerPO = it.next();
+//				System.out.println(customerPO.getCustomerID());
+//				System.out.println(customerPO.getCustomerName());
+//				System.out.println(customerPO.getGender());
+//				System.out.println(customerPO.getCredit());
+//				MemberPO memberPO = customerPO.getMemberpo();
+//				System.out.println(memberPO.getMemberType().getType());
+//				//customerPO.setMemberpo(memberPO);
+//				System.out.println();
+//			}
+//		}
+
+		
+	/*	CustomerInputVO customerInputVO =new CustomerInputVO("chenyuyan", "123456", "陈语嫣", "13962753208", "女");
+		String id = "CS001";
+		CustomerDealService customerDealService= new CustomerDealController();
+		CustomerSignupService customerSignupService = new CustomerSignupController();
+		System.out.println(customerSignupService.addCustomer(customerInputVO));
+		try {
+			System.out.print(customerDealService.getCustomerInfo(id).customerName);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		CustomerDealService customerDealService= new CustomerDealController();
+		
+		CustomerSearchVO searchvo = new CustomerSearchVO(null,"CS001");
+		System.out.println(customerDealService.searchCustomer(searchvo).get(0).customerName);
 		
 		
 	}

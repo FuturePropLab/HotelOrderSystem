@@ -39,6 +39,10 @@ public class LoginController implements LoginService{
 		this.loginw = new Login();
 	}
 	
+	/**
+	 * 单件模式，通过静态方法得到实例化的对象
+	 * @return 实例化的LoginController
+	 */
 	public static LoginController getInstance(){
 		if(loginController==null)
 			loginController = new LoginController();
