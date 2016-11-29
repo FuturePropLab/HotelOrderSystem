@@ -38,7 +38,7 @@ public class HotelDiscountController extends DetailsController{
         	
         	companyList.getPanes().addAll(titledPanes);
 		} catch (IOException e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
     }
 }

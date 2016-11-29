@@ -108,7 +108,7 @@ public class TestHotel {
 		CommentVO c=new CommentVO("GOOD");
 		clist.add(c);
 		
-		MockOrder co=new MockOrder(new OrderInputVO("customerID", "hotelID", new Time(0), new Time(0), new Time(0), RoomType.EluxeSuite, 1, 1, false), 
+		MockOrder co=new MockOrder(new OrderInputVO("customerID", "hotelID", new Time(0), new Time(0), new Time(0), RoomType.EluxeSuite, 1, 1, false,100), 
 				new MockCustomerInfo(), new MockHotelInfo(), new OrderDate_Stub());
 		
 		

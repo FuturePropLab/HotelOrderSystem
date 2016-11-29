@@ -22,7 +22,7 @@ import vo.SearchOrderInfoVO;
 public class OrderBLService_Driver {
 	public boolean drive(OrderService orderService) {
 		OrderInputVO orderInput=new OrderInputVO("001", "002", new Time(0), new Time(0), 
-				new Time(0), RoomType.Single, 1, 1, false);
+				new Time(0), RoomType.Single, 1, 1, false,100);
 		OrderVO order=orderService.createOrders(orderInput);
 		if(order==null){
 			return false;
