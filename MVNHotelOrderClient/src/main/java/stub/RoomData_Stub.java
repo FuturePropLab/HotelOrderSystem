@@ -1,6 +1,7 @@
 package stub;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import businesslogic.room.RoomDescription;
@@ -86,6 +87,24 @@ public class RoomData_Stub implements RoomDataService {
 
 
 	public String getID(String hotel_id, RoomType type, Double pricce) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public RoomPO searchEmptyRoom(RoomType type, String hotel_id, Date Sartdate, Date Enddate) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public ResultMessage saveSingleRoom(RoomPO room) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public ResultMessage editSingleRoom(RoomPO room) {
 		// TODO Auto-generated method stub
 		return null;
 	}

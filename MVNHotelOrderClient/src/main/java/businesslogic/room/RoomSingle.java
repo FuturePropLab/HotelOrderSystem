@@ -23,7 +23,9 @@ public class RoomSingle  {
 		
 		//RoomSingle_Stub roomSingle_Stub=new RoomSingle_Stub();
 		//return roomSingle_Stub.getSingleRoom("", "");
-		return new RoomVO(roompo);
+		if(roompo!=null){return new RoomVO(roompo);}else{
+			return null;
+		}
 	}
 
 	public ResultMessage addSingleRoom(String hotel_id,RoomVO room) {
@@ -36,7 +38,7 @@ public class RoomSingle  {
 		
 		
 		
-		RoomPO roompo = new RoomPO(hotel_id,room.hotelName,room.hotelID,room.roomType,room.price,room.description);
+		RoomPO roompo = new RoomPO(hotel_id,room.hotelName,room.hotelID,room.roomType,room.price,room.description,room.roomNumber);
 		
 		
 		return roomDataService.addRoom(roompo);
@@ -47,7 +49,7 @@ public class RoomSingle  {
 		//RoomSingle_Stub roomSingle_Stub=new RoomSingle_Stub();
 		
 		//RoomPO roompo = new RoomPO(room.hotelID,room.roomID,room.state);
-		RoomPO roompo = new RoomPO(room.hotelID,room.hotelName,room.roomID,room.roomType,room.price,room.description);
+		RoomPO roompo = new RoomPO(room.hotelID,room.hotelName,room.roomID,room.roomType,room.price,room.description,room.roomNumber);
 		//return roomSingle_Stub.editSingleRoom(room);
 		return roomDataService.editSingleRoom(roompo);
 		
@@ -64,7 +66,7 @@ public class RoomSingle  {
 
 	public ResultMessage saveSingleRoom(RoomVO room) {
 		// TODO Auto-generated method stub
-		RoomPO roompo = new RoomPO(room.hotelID,room.hotelName,room.roomID,room.roomType,room.price,room.description);
+		RoomPO roompo = new RoomPO(room.hotelID,room.hotelName,room.roomID,room.roomType,room.price,room.description,room.roomNumber);
 		return roomDataService.saveSingleRoom(roompo);
 		//RoomSingle_Stub roomSingle_Stub=new RoomSingle_Stub();
 		//return roomSingle_Stub.saveSingleRoom(room);

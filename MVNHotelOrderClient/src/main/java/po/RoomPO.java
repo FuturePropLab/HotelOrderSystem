@@ -17,8 +17,9 @@ public class RoomPO {
 	private  RoomState state;
 	private RoomDescription description;//房间描述
 	private  ArrayList<Date> BookedDate;//客房的预定时间列表
+	private String RoomNumber;//房间号
     
-	public RoomPO (String hotelID,String hotelName,String roomID, RoomType roomType,Double price,RoomDescription description){
+	public RoomPO (String hotelID,String hotelName,String roomID, RoomType roomType,Double price,RoomDescription description,String roomNumber){
 		this.price = price;
 		this.roomID = roomID;
 		this.roomType = roomType;
@@ -26,6 +27,7 @@ public class RoomPO {
 		this.hotelName = hotelName;
 		state = RoomState.Available;
 		this.description = description;
+		this.RoomNumber = roomNumber;
 	}
 	/**
 	 * @author chenyuyan 11/24
@@ -64,7 +66,12 @@ public class RoomPO {
 	public RoomState getState() {
 		return state;
 	}
-
+	public String getRoomNumber(){
+		return RoomNumber;
+	}
+	public void setRoomNumber(String roomNumber){
+		this.RoomNumber = roomNumber;
+	}
 	public void setRoomID(String roomID) {
 		this.roomID = roomID;
 	}

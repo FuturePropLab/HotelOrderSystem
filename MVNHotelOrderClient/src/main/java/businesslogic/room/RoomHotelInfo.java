@@ -21,9 +21,16 @@ public class RoomHotelInfo {
 	public HotelRoomInfoVO getRoomInfo(String hotel_id) {
 		// TODO Auto-generated method stub
 		HotelRoomInfoPO roomInfopo = roomData.getRoomInfo(hotel_id);
+		if(roomInfopo!=null){
 		HotelRoomInfoVO roomInfovo = new HotelRoomInfoVO(roomInfopo.getHotelID(),roomInfopo.getHotelName(),roomInfopo.getTypeRoomInfo());
-		//return new RoomHotelInfo_Stub().getRoomInfo(hotel_id);
 		return roomInfovo;
+		}else{
+			return null;
+		}
+
+		
+		//return new RoomHotelInfo_Stub().getRoomInfo(hotel_id);
+		
 	}
 
 	public HotelRoomInfoVO editRoomInfo(HotelRoomInfoVO hotelRoomInfo) {

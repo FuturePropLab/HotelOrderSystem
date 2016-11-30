@@ -15,7 +15,8 @@ import tools.RoomType;
 public class RoomVO {
 	public String hotelID; //酒店ID
 	public String hotelName;//酒店名称
-	public String roomID;  //房间号
+	public String roomID;  //房间id
+	public String roomNumber;//房间号
 	public RoomType roomType; //房间类型
 	public double price; //房间价格
 	public  RoomState state;//客房当日状态，
