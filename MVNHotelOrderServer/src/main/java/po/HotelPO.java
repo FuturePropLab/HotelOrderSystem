@@ -1,10 +1,16 @@
 package po;
 
-import businesslogic.hotel.HotelAddress;
-import businesslogic.hotel.HotelFacility;
-import businesslogic.hotel.HotelInfo;
+import tools.HotelAddress;
+import tools.HotelFacility;
+import tools.HotelInfo;
+import tools.HotelRoomInfo;
 import tools.Star;
 
+/**
+ * 传过来的 HotelPO
+ * @author wshwbluebird
+ *
+ */
 public class HotelPO {	
 	private String hotelID;
 	private String hotelName;

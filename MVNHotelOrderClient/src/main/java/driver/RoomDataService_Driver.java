@@ -5,7 +5,7 @@ import java.util.List;
 
 import businesslogic.room.RoomDescription;
 import dataservice.RoomDataService;
-import po.HotelRoomInfoPO;
+import po.HotelRoomInfo;
 import po.RoomPO;
 import tools.RoomType;
 import tools.TypeRoomInfo;
@@ -16,7 +16,7 @@ public class RoomDataService_Driver {
   	 	TypeRoomInfo typeRoomInfo1= new TypeRoomInfo("23333","荣华大酒店",
   				RoomType.Single,5,180.0);
   		typeList.add(typeRoomInfo1);
-  		HotelRoomInfoPO hotelRoomInfoPO = new HotelRoomInfoPO("23333","荣华大酒店",typeList);
+  		HotelRoomInfo hotelRoomInfoPO = new HotelRoomInfo("23333","荣华大酒店",typeList);
   		System.out.println(roomDataService.addRoomInfo(hotelRoomInfoPO));
   		System.out.println(roomDataService.getRoomInfo("asd").
   				getTypeRoomInfo().get(0).getPrice());

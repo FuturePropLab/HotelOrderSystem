@@ -1,7 +1,13 @@
 package tools;
 
-public class TypeRoomInfo {
-	  private String hotelID;
+import java.io.Serializable;
+
+public class TypeRoomInfo implements Serializable{
+	
+	 
+	private static final long serialVersionUID = 6650204031779388668L;
+
+	private String hotelID;
 		
 	  private String hotelName;//酒店名称
 	  

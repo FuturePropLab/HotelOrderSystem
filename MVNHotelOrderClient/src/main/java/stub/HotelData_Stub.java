@@ -6,7 +6,7 @@ import java.util.List;
 
 import dataservice.HotelDataService;
 import po.HotelPO;
-import po.HotelRoomInfoPO;
+import po.HotelRoomInfo;
 import tools.ResultMessage_Hotel;
 import tools.SearchHotel;
 import tools.Star;
@@ -37,7 +37,7 @@ public class HotelData_Stub implements HotelDataService{
 		hotelinfo.setHotelName("ronghua");
 		
 		
-		HotelRoomInfoPO hotelroom=new HotelRoomInfoPO();
+		HotelRoomInfo hotelroom=new HotelRoomInfo();
 		hotelroom.setHotelID("100");
 		hotelroom.setHotelName("ronghua");
 		
@@ -61,7 +61,7 @@ public class HotelData_Stub implements HotelDataService{
 		hotelinfo.setHotelName("ronghua");
 		
 		
-		HotelRoomInfoPO hotelroom=new HotelRoomInfoPO();
+		HotelRoomInfo hotelroom=new HotelRoomInfo();
 		hotelroom.setHotelID("100");
 		hotelroom.setHotelName("ronghua");
 		

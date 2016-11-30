@@ -1,20 +1,20 @@
-package po;
+package businesslogic.hotel;
 
 import java.util.List;
 
 import tools.TypeRoomInfo;
 
-public class HotelRoomInfoPO {
+public class HotelRoomInfo {
 	private String hotelID;
 	private String hotelName;
 	private List<TypeRoomInfo> typeRoomInfo;
 	
-	public HotelRoomInfoPO(String string, String string2, List<TypeRoomInfo> typeList) {
+	public HotelRoomInfo(String hotelID, String hotelName, List<TypeRoomInfo> typeRoomInfo) {
 		this.hotelID = hotelID;
 		this.hotelName = hotelName;
 		this.typeRoomInfo= typeRoomInfo;
 	}
-	public HotelRoomInfoPO() {
+	public HotelRoomInfo() {
 		super();
 	}
 	public String getHotelID() {

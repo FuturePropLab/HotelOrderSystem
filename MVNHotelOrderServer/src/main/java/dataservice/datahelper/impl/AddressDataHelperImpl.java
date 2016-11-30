@@ -6,7 +6,6 @@ import org.hibernate.Session;
 
 import DataFactory.Hibernateutils;
 import dataservice.datahelper.AddressDataHelper;
-import po.CustomerPO;
 
 public class AddressDataHelperImpl implements AddressDataHelper {
 	

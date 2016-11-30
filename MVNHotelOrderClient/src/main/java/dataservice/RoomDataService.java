@@ -2,7 +2,7 @@ package dataservice;
 
 import java.util.Date;
 
-import po.HotelRoomInfoPO;
+import po.HotelRoomInfo;
 import po.RoomPO;
 import tools.ResultMessage;
 import tools.ResultMessage_Modify;
@@ -11,11 +11,11 @@ import tools.RoomType;
 import vo.RoomVO;
 
 public interface RoomDataService {
-	public ResultMessage modifyRoomInfo(HotelRoomInfoPO hotelRoomInfo);
+	public ResultMessage modifyRoomInfo(HotelRoomInfo hotelRoomInfo);
 	
-	public ResultMessage addRoomInfo(HotelRoomInfoPO hotelRoomInfo);
+	public ResultMessage addRoomInfo(HotelRoomInfo hotelRoomInfo);
 	
-	public HotelRoomInfoPO getRoomInfo(String hotel_id); //酒店整体客房信息
+	public HotelRoomInfo getRoomInfo(String hotel_id); //酒店整体客房信息
 	
 	public ResultMessage addRoom(RoomPO room);
 	
@@ -25,7 +25,7 @@ public interface RoomDataService {
 	
 	public  ResultMessage_Modify modifyRoomState(RoomPO room);//修改客房状态̬
 	
-	public ResultMessage editHotelRoom(HotelRoomInfoPO roomInfopo);//修改酒店整体客房信息
+	public ResultMessage editHotelRoom(HotelRoomInfo roomInfopo);//修改酒店整体客房信息
 	
 	public RoomPO searchEmptyRoom(RoomType type,String hotel_id,Date Sartdate,Date Enddate);//查找酒店某类型的空余房间
 	

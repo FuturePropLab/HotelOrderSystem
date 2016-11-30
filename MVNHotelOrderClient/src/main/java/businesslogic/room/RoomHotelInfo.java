@@ -1,7 +1,7 @@
 package businesslogic.room;
 import businesslogicservice.RoomHotelInfoService;
 import dataservice.RoomDataService;
-import po.HotelRoomInfoPO;
+import po.HotelRoomInfo;
 import stub.RoomHotelInfo_Stub;
 import tools.ResultMessage;
 import vo.HotelRoomInfoVO;
@@ -20,7 +20,7 @@ public class RoomHotelInfo {
 	private RoomDataService roomData;
 	public HotelRoomInfoVO getRoomInfo(String hotel_id) {
 		// TODO Auto-generated method stub
-		HotelRoomInfoPO roomInfopo = roomData.getRoomInfo(hotel_id);
+		HotelRoomInfo roomInfopo = roomData.getRoomInfo(hotel_id);
 		if(roomInfopo!=null){
 		HotelRoomInfoVO roomInfovo = new HotelRoomInfoVO(roomInfopo.getHotelID(),roomInfopo.getHotelName(),roomInfopo.getTypeRoomInfo());
 		return roomInfovo;
@@ -44,7 +44,7 @@ public class RoomHotelInfo {
 
 	public ResultMessage saveRoomInfo(HotelRoomInfoVO hotelRoomInfo) {
 		// TODO Auto-generated method stub
-		HotelRoomInfoPO roomInfopo = new HotelRoomInfoPO(hotelRoomInfo.hotelID,hotelRoomInfo.hotelName,hotelRoomInfo.typeRoomInfo);
+		HotelRoomInfo roomInfopo = new HotelRoomInfo(hotelRoomInfo.hotelID,hotelRoomInfo.hotelName,hotelRoomInfo.typeRoomInfo);
 		//return new RoomHotelInfo_Stub().saveRoomInfo(hotelRoomInfo);
 		return roomData.editHotelRoom(roomInfopo);
 	}

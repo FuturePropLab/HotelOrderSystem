@@ -6,7 +6,7 @@ import java.util.List;
 
 import businesslogic.room.RoomDescription;
 import dataservice.RoomDataService;
-import po.HotelRoomInfoPO;
+import po.HotelRoomInfo;
 import po.RoomPO;
 import tools.ResultMessage;
 import tools.ResultMessage_Modify;
@@ -17,24 +17,24 @@ import tools.TypeRoomInfo;
 public class RoomData_Stub implements RoomDataService {
 
 	
-	public ResultMessage modifyRoomInfo(HotelRoomInfoPO hotelRoomInfo) {
+	public ResultMessage modifyRoomInfo(HotelRoomInfo hotelRoomInfo) {
 		if(hotelRoomInfo!=null)  return ResultMessage.Exist;
 				return ResultMessage.NotExist;
 	}
 
 
-	public ResultMessage addRoomInfo(HotelRoomInfoPO hotelRoomInfo) {
+	public ResultMessage addRoomInfo(HotelRoomInfo hotelRoomInfo) {
 		if(hotelRoomInfo!=null)  return ResultMessage.Exist;
 				return ResultMessage.NotExist;
 	}
 
 
-	public HotelRoomInfoPO getRoomInfo(String hotel_id) {
+	public HotelRoomInfo getRoomInfo(String hotel_id) {
 		List<TypeRoomInfo> typeList = new ArrayList<TypeRoomInfo>();
 		TypeRoomInfo typeRoomInfo1= new TypeRoomInfo(hotel_id,"鑽ｅ崕澶ч厭搴�",
 				RoomType.Single,5,180.0);
 		typeList.add(typeRoomInfo1);
-		HotelRoomInfoPO hotelRoomInfoPO = new HotelRoomInfoPO(hotel_id,"鑽ｅ崕澶ч厭搴�",typeList);
+		HotelRoomInfo hotelRoomInfoPO = new HotelRoomInfo(hotel_id,"鑽ｅ崕澶ч厭搴�",typeList);
 		return hotelRoomInfoPO;
 	}
 
@@ -68,7 +68,7 @@ public class RoomData_Stub implements RoomDataService {
 	}
 
 
-	public ResultMessage editHotelRoom(HotelRoomInfoPO roomInfopo) {
+	public ResultMessage editHotelRoom(HotelRoomInfo roomInfopo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
