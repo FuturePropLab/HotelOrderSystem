@@ -64,6 +64,9 @@ public class DataRemoteObject extends UnicastRemoteObject implements  LoginCheck
 	public ResultMessage_Account deleteAccount(String userid) throws RemoteException {
 		return accountDataService.deleteAccount(userid);
 	}
+	public List<AccountPO> getAccountList(List<String> idList,AccountType accountType) throws RemoteException {
+		return accountDataService.getAccountList(idList,accountType);
+	}
 	
 	/**
 	 * customer 类的数据相关内容
@@ -80,4 +83,5 @@ public class DataRemoteObject extends UnicastRemoteObject implements  LoginCheck
 	public List<CustomerPO> searchCustomer() throws RemoteException {
 		return customerDataService.searchCustomer();
 	}
+
 }

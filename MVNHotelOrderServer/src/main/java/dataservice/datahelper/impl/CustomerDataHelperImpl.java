@@ -123,7 +123,7 @@ public class CustomerDataHelperImpl implements CustomerDataHelper {
 	public List<CustomerPO> searchCustomer() {
 		Session s = Hibernateutils.getSessionFactory().openSession();
 		List<CustomerPO> customerlist;
-//		try{
+		try{
 			customerlist = s.createSQLQuery("select * from customerpo").addEntity(CustomerPO.class).list();
 			System.out.println(customerlist.size());
 			Iterator<CustomerPO> it = customerlist.iterator();
@@ -136,11 +136,11 @@ public class CustomerDataHelperImpl implements CustomerDataHelper {
 				customerPO.setMemberpo(memberPO);
 			}
 	
-//		}catch(Exception e){
-//			return null;
-//		}finally {
-//			s.close();
-//		}
+		}catch(Exception e){
+			return null;
+		}finally {
+			s.close();
+		}
 		return customerlist;
 	}
 

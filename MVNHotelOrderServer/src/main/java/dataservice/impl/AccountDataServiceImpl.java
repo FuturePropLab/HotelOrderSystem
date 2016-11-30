@@ -1,9 +1,17 @@
 package dataservice.impl;
 
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.swing.plaf.synth.SynthSpinnerUI;
+
 import DataFactory.DataHelperUtils;
 import dataservice.AccountDataService;
 import dataservice.datahelper.AccountDataHelper;
 import po.AccountPO;
+import tools.AccountType;
 import tools.ResultMessage_Account;
 
 /**
@@ -90,6 +98,30 @@ public class AccountDataServiceImpl implements AccountDataService {
 //		AccountDataServiceImpl impl = new AccountDataServiceImpl();
 //		System.out.println(impl.addAccount(new AccountPO("CR002","wswwsw","zhujunyi",AccountType.Customer)));
 //		System.out.println(impl.getAccountByID("CR002").getUsername());
+	}
+	
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.AccountDataService#getAccountList(java.util.List)
+	 */
+	public List<AccountPO> getAccountList(List<String> idList,AccountType accountType) throws RemoteException {
+		AccountDataHelper accountDataHelper = DataHelperUtils.getAccountDataHelper();
+		List<AccountPO> accountList = accountDataHelper.getAccountList(accountType);
+		List<AccountPO> accountListReturn = new ArrayList<AccountPO>();
+		Iterator<AccountPO> accountIt = accountList.iterator();
+		while(accountIt.hasNext()){
+			AccountPO accountPO = accountIt.next();
+			String userid = accountPO.getUserid();
+			System.out.println(userid);
+			Iterator<String> it =  idList.iterator();
+			while(it.hasNext()){
+				if(it.next().equals(userid)){
+					accountListReturn.add(accountPO);
+					break;
+				}
+			}			
+		}
+		return accountListReturn;
 	}
 
 }

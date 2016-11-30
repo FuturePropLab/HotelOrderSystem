@@ -2,8 +2,10 @@ package dataservice;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.List;
 
 import po.AccountPO;
+import tools.AccountType;
 import tools.ResultMessage_Account;
 
 public interface AccountDataService extends Remote{
@@ -46,5 +48,11 @@ public interface AccountDataService extends Remote{
 	 */
 	public ResultMessage_Account deleteAccount(String userid)throws RemoteException;
 
-	
+	/**
+	 * 通过客户id列表 获取 AccountPO列表
+	 * @param idList
+	 * @return AccountPO
+	 * @throws RemoteException
+	 */
+	public List<AccountPO> getAccountList(List<String> idList,AccountType accountType) throws RemoteException;
 }

@@ -30,8 +30,8 @@ public class FuzzyCheck {
 			this.telephone = customerSearchVO.telephone;
 			this.customerName = customerSearchVO.customerName;
 			
-			reTelephone = "";
-			reCustomerName = "";
+			reTelephone = ".*";
+			reCustomerName = ".*";
 			
 			//书写正则表达式
 			if(telephone!=null){

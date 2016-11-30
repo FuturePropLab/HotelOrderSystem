@@ -1,4 +1,13 @@
-//package businesslogic.account;
+package businesslogic.account;
+
+import java.rmi.RemoteException;
+import java.util.Iterator;
+import java.util.List;
+
+import businesslogicservice.AccountCustomerService;
+import vo.AccountVO;
+import vo.CustomerSearchVO;
+
 //
 //import static org.junit.Assert.*;
 //
@@ -19,7 +28,7 @@
 // * @author wshwbluebird
 // *
 // */
-//public class TestAccountCustomer {
+public class TestAccountCustomer {
 //	
 //	 businesslogic.account.Account account;
 //	@Before
@@ -68,5 +77,11 @@
 //		  
 //	}
 //
-//
-//}
+// 
+	public static void main(String[] args) throws RemoteException {
+		
+		
+	}
+}
+
+		

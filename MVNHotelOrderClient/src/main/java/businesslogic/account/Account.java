@@ -3,8 +3,11 @@ package businesslogic.account;
 import java.rmi.RemoteException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import businesslogic.customer.CustomerInfoImp;
 import dataservice.AccountDataService;
 import po.AccountPO;
 import rmi.RemoteHelper;
@@ -173,10 +176,11 @@ public class Account {
 	 * 通过客户的id 返回客户的个人基本信息
 	 * @param customer_id
 	 * @return 
+	 * @throws RemoteException 
 	 */
-	public CustomerVO getCustomerDetail(String customer_id){
-		//TODO
-		return null;
+	public CustomerVO getCustomerDetail(String customer_id) throws RemoteException{
+		CustomerInfo customerInfo = CustomerInfoImp.getInstance();
+		return customerInfo.getCustomerDetail(customer_id);
 	}
 	
 	
@@ -184,10 +188,22 @@ public class Account {
 	 * 通过客户的搜索信息值 返回符合条件的AccountVO 列表
 	 * @param customerSearchVO
 	 * @return 符合条件的客户账户VO 列表
+	 * @throws RemoteException 
 	 */
-	public List<AccountVO> searchCustomerAccount(CustomerSearchVO customerSearchVO){
-		//TODO
-		return null;
+	public List<AccountVO> searchCustomerAccount(CustomerSearchVO customerSearchVO) throws RemoteException{
+		CustomerInfo customerInfo = CustomerInfoImp.getInstance();
+		List<String>idList = customerInfo.searchCustomer(customerSearchVO);
+		List<AccountPO> accountPOs = accountDataService.getAccountList(idList, AccountType.Customer);
+		Iterator<AccountPO> it = accountPOs.iterator();
+		List<AccountVO> accountVOs = new ArrayList<AccountVO>();
+		while(it.hasNext()){
+			AccountPO accountPO = it.next();
+			AccountVO accountVO = new AccountVO(accountPO.getUserid(), accountPO.getUsername(),
+					accountPO.getAccountType());;
+			accountVOs.add(accountVO);
+		}
+		
+		return accountVOs;
 	}
 	
 	/**

@@ -1,5 +1,6 @@
 package businesslogic.account;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 import businesslogicservice.AccountCustomerService;
@@ -51,11 +52,11 @@ public class CustomerAccountController implements AccountCustomerService{
 		return account.getUsername(userId);
 	}
 
-	public CustomerVO getCustomerDetail(String customer_id) {
+	public CustomerVO getCustomerDetail(String customer_id) throws RemoteException {
 		return account.getCustomerDetail(customer_id);
 	}
 
-	public List<AccountVO> searchCustomerAccount(CustomerSearchVO customerSearchVO) {
+	public List<AccountVO> searchCustomerAccount(CustomerSearchVO customerSearchVO) throws RemoteException {
 		return account.searchCustomerAccount(customerSearchVO);
 	}
 

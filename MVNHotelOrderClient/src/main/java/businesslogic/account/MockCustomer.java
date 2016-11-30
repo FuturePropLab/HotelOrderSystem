@@ -11,20 +11,20 @@ import vo.CustomerVO;
   * @author wshwbluebird
   *
   */
-public class MockCustomer extends Customer implements CustomerInfo{
-	private List<CustomerVO> customerList;
+public class MockCustomer  implements CustomerInfo{
+	private List<String> customerList;
 	private CustomerVO customerVO;
 	
 	/**
 	 * 实现接口
 	 */
-	public List<CustomerVO> searchCustomer(CustomerSearchVO customerSearchVO) {
+	public List<String> searchCustomer(CustomerSearchVO customerSearchVO){
 		return customerList;
 	}
 	/**
 	 * 初始化
 	 */
-	public MockCustomer( List<CustomerVO> customerList,CustomerVO customerVO){
+	public MockCustomer( List<String> customerList,CustomerVO customerVO){
 		this.customerList = customerList;
 		this.customerVO = customerVO;
 	}

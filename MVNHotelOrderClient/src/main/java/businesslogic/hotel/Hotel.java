@@ -2,13 +2,11 @@ package businesslogic.hotel;
 
 import java.util.List;
 
-import stub.HotelData_Stub;
 import stub.HotelDeal_Stub;
 import stub.ManageHotelInfo_Stub;
 import tools.ResultMessage2;
 import tools.SortType;
 import vo.CommentVO;
-import vo.DiscountVO;
 import vo.DiscountVO_hotel;
 import vo.HotelInfoVO;
 import vo.HotelInputVO;

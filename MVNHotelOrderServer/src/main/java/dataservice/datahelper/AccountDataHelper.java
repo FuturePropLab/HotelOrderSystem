@@ -1,6 +1,9 @@
 package dataservice.datahelper;
 
+import java.util.List;
+
 import po.AccountPO;
+import tools.AccountType;
 import tools.ResultMessage_Account;
 
 /**
@@ -47,4 +50,11 @@ public interface AccountDataHelper{
 	 * @return 删除是否成功
 	 */
 	public ResultMessage_Account deleteAccount(String userid);
+	
+	/**
+	 * 获取accountPO列表
+	 * @param 
+	 * @return List<AccountPO>
+	 */
+	public List<AccountPO> getAccountList(AccountType accountType);
 }

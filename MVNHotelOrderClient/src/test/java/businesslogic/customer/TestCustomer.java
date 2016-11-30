@@ -35,7 +35,7 @@ public class TestCustomer {
 		 */
 		public static void main(String[] args) {
 			CustomerDealService customerDealService= new CustomerDealController();		
-			CustomerSearchVO searchvo = new CustomerSearchVO("15", null, "男");
+			CustomerSearchVO searchvo = new CustomerSearchVO("23", null, "女");
 			List<CustomerVO> list = customerDealService.searchCustomer(searchvo);
 			Iterator<CustomerVO> it = list.iterator();
 			while(it.hasNext()){

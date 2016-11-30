@@ -28,8 +28,8 @@ public class Customer {
 	private  CustomerDataService customerdata;
 	
 	public Customer(){
-		//this.customerdata = rmi.RemoteHelper.getInstance().getCustomerDataService();
-		this.customerdata = new CustomerData_Stub();
+		this.customerdata = rmi.RemoteHelper.getInstance().getCustomerDataService();
+	//	this.customerdata = new CustomerData_Stub();
 	}
 	
 	/**
@@ -108,6 +108,9 @@ public class Customer {
 		return  customerdata.modify(newcustomerInfo);
 		
 	}
+	
+	
+	
 	/**
 	 * @author wshwbluebird
 	 * 搜索客户
@@ -122,9 +125,11 @@ public class Customer {
 		List <CustomerPO> customerPOlist = customerdata.searchCustomer();
 		
 		//show howmuch 
-		System.out.println(customerPOlist.size());
+		System.out.println("in Customer.sesearchCustomer output: "+customerPOlist.size());
 		
 		List<CustomerVO> customerVOList = new ArrayList<CustomerVO>();
+		
+		
 		//如果是根据 id查找 则进行精确查找
 		if(customerSearchVO.userID!=null){
 			String id = customerSearchVO.userID;
@@ -143,6 +148,8 @@ public class Customer {
 		
 		Iterator<CustomerPO> it = customerPOlist.iterator();
 		FuzzyCheck fuzzyCheck = new FuzzyCheck(customerSearchVO);
+		
+		//PO to VOs if available
 		while(it.hasNext()){
 			CustomerPO customerPO = it.next();
 			if(fuzzyCheck.isPattern(customerPO)){
@@ -152,22 +159,5 @@ public class Customer {
 		}
 		return customerVOList;
 	}
-	
-	
-/*	public static void main(String[]args){
-		Customer testt = new Customer();
-		CustomerInputVO test2=new CustomerInputVO("xx","xxx",
-				"xxx", "1234567A", "xx");
-		boolean re = true;
-		for(int i=0;i<test2.telephone.length();i++){
-			if(test2.telephone.charAt(i)>'9'||test2.telephone.charAt(i)<'0'){
-				re=false;
-				System.out.println(re);
-			}
-		
-		
-		
-	}
-		
-}*/
+
 }

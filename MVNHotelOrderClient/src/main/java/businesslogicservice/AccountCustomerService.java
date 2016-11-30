@@ -1,5 +1,6 @@
 package businesslogicservice;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 import tools.ResultMessage_Account;
@@ -52,16 +53,18 @@ public interface AccountCustomerService {
 	 * 通过客户的id 返回客户的个人基本信息
 	 * @param customer_id
 	 * @return CustomerVO
+	 * @throws RemoteException 
 	 */
-	public CustomerVO getCustomerDetail(String customer_id);
+	public CustomerVO getCustomerDetail(String customer_id) throws RemoteException;
 	
 	
 	/**
 	 * 通过客户的搜索信息值 返回符合条件的AccountVO 列表
 	 * @param customerSearchVO
 	 * @return 符合条件的客户账户VO 列表
+	 * @throws RemoteException 
 	 */
-	public List<AccountVO> searchCustomerAccount(CustomerSearchVO customerSearchVO);
+	public List<AccountVO> searchCustomerAccount(CustomerSearchVO customerSearchVO) throws RemoteException;
 	
 
 }

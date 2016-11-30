@@ -1,5 +1,6 @@
 package dataservice.datahelper.impl;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -14,6 +15,9 @@ import dataservice.datahelper.AccountDataHelper;
 import passwordtool.DESUtil;
 import passwordtool.ShaUtil;
 import po.AccountPO;
+import po.CustomerPO;
+import po.MemberPO;
+import po.MemberStorePO;
 import tools.AccountType;
 import tools.ResultMessage;
 import tools.ResultMessage_Account;
@@ -196,6 +200,26 @@ public class AccountDataHelperImpl implements AccountDataHelper{
 			s.close();
 		}
 	
+	}
+	public List<AccountPO> getAccountList(AccountType accountType) {
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		List<AccountPO> accountlist;
+		try{
+			accountlist = s.createSQLQuery("select * from accountpo where accounttype = '"+accountType+"'").addEntity(AccountPO.class).list();
+			System.out.println(accountlist.size());
+			Iterator<AccountPO> it = accountlist.iterator();
+			while(it.hasNext()){
+				AccountPO accountPO = it.next();
+				accountPO.setPassword(null);
+				String encodeUsername = accountPO.getUsername();
+				accountPO.setUsername(DESUtil.decode(encodeUsername));
+			}	
+		}catch(Exception e){
+			return null;
+		}finally {
+			s.close();
+		}
+		return accountlist;
 	}
 
 }
