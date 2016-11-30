@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<TitledPane fx:id="title" alignment="CENTER" animated="false" prefHeight="388.0" prefWidth="766.0" text="8折" textOverrun="CLIP" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.discount.OverThreeRoomsItemController">
+   <content>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0">
+         <children>
+            <GridPane layoutX="139.0" layoutY="55.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label prefHeight="46.0" prefWidth="202.0" text="打折方式:">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label text="当前状态:" GridPane.columnIndex="2">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="46.0" prefWidth="202.0" text="备注信息:" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="46.0" prefWidth="202.0" text="开始时间:" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="46.0" prefWidth="202.0" text="结束时间:" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="46.0" prefWidth="202.0" text="与其它折扣叠加:" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="46.0" prefWidth="202.0" text="折扣数:" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="startTime" onAction="#handleStartTime" prefHeight="48.0" prefWidth="184.0" promptText="2015-10-19" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin>
+                  </DatePicker>
+                  <DatePicker fx:id="endTime" onAction="#handleEndTime" prefHeight="48.0" prefWidth="183.0" promptText="2018-10-19" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin>
+                  </DatePicker>
+                  <TextField fx:id="aditionalMessage" text="无" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="discount" onAction="#handleDiscount" text="9.5" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </TextField>
+                  <Label fx:id="state" text="未开始" textFill="#7c7878" GridPane.columnIndex="3">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+                  <CheckBox fx:id="superposition" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <Hyperlink fx:id="delete" onAction="#handleDelete" text="删 除" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Hyperlink>
+                  <Label text="客户预定至少三间房" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+   </content>
+   <font>
+      <Font size="24.0" />
+   </font>
+</TitledPane>

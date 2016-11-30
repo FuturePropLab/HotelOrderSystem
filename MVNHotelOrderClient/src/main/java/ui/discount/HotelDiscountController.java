@@ -16,7 +16,13 @@ import ui.main.DetailsController;
 public class HotelDiscountController extends DetailsController{
 
 	@FXML 
+	private Accordion birthdayList;
+	@FXML 
+	private Accordion overThreeRoomsList;
+	@FXML 
 	private Accordion companyList;
+	@FXML 
+	private Accordion double11List;
 	
 	/**
      * Initializes the controller class. This method is automatically called
@@ -24,21 +30,30 @@ public class HotelDiscountController extends DetailsController{
      */
     @FXML
     private void initialize() {
+    	initAccordions(birthdayList,"BirthdayItem.fxml");
+    	initAccordions(overThreeRoomsList,"OverThreeRoomsItem.fxml");
+    	initAccordions(companyList,"CompanyItem.fxml");
+    	initAccordions(double11List,"Double11Item.fxml");
+    }
+    
+    
+    private void initAccordions(Accordion accordion,String fxml) {
     	try {
         	ArrayList<TitledPane> titledPanes = new ArrayList<TitledPane>();
-        	ArrayList<CompanyItemController> companyItemControllers = new ArrayList<CompanyItemController>();
+        	ArrayList<ItemController> itemControllers = new ArrayList<ItemController>();
+        	
         	FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("CompanyItem.fxml"));
+            loader.setLocation(getClass().getResource(fxml));
         	TitledPane titledPane = (TitledPane) loader.load();
-        	System.out.println(1);//test
-        	CompanyItemController companyItemController=loader.getController();
+        	ItemController itemController=loader.getController();
         	titledPanes.add(titledPane);
-        	companyItemControllers.add(companyItemController);
+        	itemControllers.add(itemController);
+        	
         	//TODO: 调用blservice查询该优惠策略的信息然后将组建的值设置好
         	
-        	companyList.getPanes().addAll(titledPanes);
+        	accordion.getPanes().addAll(titledPanes);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    }
+	}
 }

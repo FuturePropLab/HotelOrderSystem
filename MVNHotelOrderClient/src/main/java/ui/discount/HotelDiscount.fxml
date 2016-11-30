@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Accordion?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.discount.HotelDiscountController">
    <children>
@@ -22,356 +11,35 @@
         <tabs>
           <Tab text="生日特惠  ">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Accordion fx:id="birthdayList" prefHeight="489.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children></AnchorPane>
             </content>
           </Tab>
             <Tab text="三间房以上优惠">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Accordion fx:id="overThreeRoomsList" prefHeight="489.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children></AnchorPane>
                </content>
             </Tab>
             <Tab text="合作企业客户优惠">
                <content>
                   <AnchorPane>
                      <children>
-                        <Accordion fx:id="companyList" layoutX="146.0" layoutY="173.0" prefHeight="489.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                          <panes>
-                            <TitledPane alignment="CENTER" animated="false" text="微软公司" textOverrun="CLIP">
-                              <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0">
-                                       <children>
-                                          <GridPane layoutX="139.0" layoutY="55.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                            <columnConstraints>
-                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                             <children>
-                                                <Label prefHeight="46.0" prefWidth="202.0" text="企业名称:">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="当前状态:" GridPane.columnIndex="2">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label prefHeight="46.0" prefWidth="202.0" text="备注信息:" GridPane.rowIndex="1">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="策略类型:" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label prefHeight="46.0" prefWidth="202.0" text="开始时间:" GridPane.rowIndex="2">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label prefHeight="46.0" prefWidth="202.0" text="结束时间:" GridPane.rowIndex="3">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label prefHeight="46.0" prefWidth="202.0" text="可否合并:" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label prefHeight="46.0" prefWidth="202.0" text="折扣数:" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <DatePicker prefHeight="48.0" prefWidth="184.0" promptText="2015-10-19" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                                   <GridPane.margin>
-                                                      <Insets right="5.0" />
-                                                   </GridPane.margin>
-                                                </DatePicker>
-                                                <DatePicker prefHeight="48.0" prefWidth="183.0" promptText="2018-10-19" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                                   <GridPane.margin>
-                                                      <Insets right="5.0" />
-                                                   </GridPane.margin>
-                                                </DatePicker>
-                                                <TextField prefHeight="31.0" prefWidth="129.0" text="微软公司" GridPane.columnIndex="1">
-                                                   <GridPane.margin>
-                                                      <Insets right="5.0" />
-                                                   </GridPane.margin>
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </TextField>
-                                                <TextField text="无" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                                   <GridPane.margin>
-                                                      <Insets right="5.0" />
-                                                   </GridPane.margin>
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </TextField>
-                                                <ChoiceBox prefWidth="150.0" GridPane.columnIndex="3">
-                                                   <cursor>
-                                                      <Cursor fx:constant="S_RESIZE" />
-                                                   </cursor>
-                                                </ChoiceBox>
-                                                <ChoiceBox prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                                                <ChoiceBox prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                                <TextField text="9.5" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                                                   <GridPane.margin>
-                                                      <Insets right="5.0" />
-                                                   </GridPane.margin>
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </TextField>
-                                             </children>
-                                          </GridPane>
-                                       </children>
-                                    </AnchorPane>
-                              </content>
-                                 <font>
-                                    <Font size="25.0" />
-                                 </font>
-                            </TitledPane>
-                              <TitledPane alignment="CENTER" animated="false" text="方正集团" textOverrun="CLIP">
-                                 <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0">
-                                       <children>
-                                          <GridPane layoutX="139.0" layoutY="55.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <Label prefHeight="46.0" prefWidth="202.0" text="企业名称:">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="当前状态:" GridPane.columnIndex="2">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label prefHeight="46.0" prefWidth="202.0" text="备注信息:" GridPane.rowIndex="1">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="策略类型:" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label prefHeight="46.0" prefWidth="202.0" text="开始时间:" GridPane.rowIndex="2">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label prefHeight="46.0" prefWidth="202.0" text="结束时间:" GridPane.rowIndex="3">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label prefHeight="46.0" prefWidth="202.0" text="可否合并:" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label prefHeight="46.0" prefWidth="202.0" text="折扣数:" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <DatePicker prefHeight="48.0" prefWidth="184.0" promptText="2015-10-19" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                                   <GridPane.margin>
-                                                      <Insets right="5.0" />
-                                                   </GridPane.margin>
-                                                </DatePicker>
-                                                <DatePicker prefHeight="48.0" prefWidth="183.0" promptText="2018-10-19" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                                   <GridPane.margin>
-                                                      <Insets right="5.0" />
-                                                   </GridPane.margin>
-                                                </DatePicker>
-                                                <TextField prefHeight="31.0" prefWidth="129.0" text="方正集团" GridPane.columnIndex="1">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                   <GridPane.margin>
-                                                      <Insets right="5.0" />
-                                                   </GridPane.margin>
-                                                </TextField>
-                                                <TextField text="无" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                   <GridPane.margin>
-                                                      <Insets right="5.0" />
-                                                   </GridPane.margin>
-                                                </TextField>
-                                                <ChoiceBox prefWidth="150.0" GridPane.columnIndex="3">
-                                                   <cursor>
-                                                      <Cursor fx:constant="S_RESIZE" />
-                                                   </cursor>
-                                                </ChoiceBox>
-                                                <ChoiceBox prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                                                <ChoiceBox prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                                <TextField text="9.5" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                   <GridPane.margin>
-                                                      <Insets right="5.0" />
-                                                   </GridPane.margin>
-                                                </TextField>
-                                             </children>
-                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                          </GridPane>
-                                       </children>
-                                    </AnchorPane>
-                                 </content>
-                                 <font>
-                                    <Font size="25.0" />
-                                 </font>
-                              </TitledPane>
-                              <TitledPane alignment="CENTER" animated="false" text="南京大学" textOverrun="CLIP">
-                                 <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0">
-                                       <children>
-                                          <GridPane layoutX="139.0" layoutY="55.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <Label prefHeight="46.0" prefWidth="202.0" text="企业名称:">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="当前状态:" GridPane.columnIndex="2">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label prefHeight="46.0" prefWidth="202.0" text="备注信息:" GridPane.rowIndex="1">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="策略类型:" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label prefHeight="46.0" prefWidth="202.0" text="开始时间:" GridPane.rowIndex="2">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label prefHeight="46.0" prefWidth="202.0" text="结束时间:" GridPane.rowIndex="3">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label prefHeight="46.0" prefWidth="202.0" text="可否合并:" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label prefHeight="46.0" prefWidth="202.0" text="折扣数:" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <DatePicker prefHeight="48.0" prefWidth="184.0" promptText="2015-10-19" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                                   <GridPane.margin>
-                                                      <Insets right="5.0" />
-                                                   </GridPane.margin>
-                                                </DatePicker>
-                                                <DatePicker prefHeight="48.0" prefWidth="183.0" promptText="2018-10-19" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                                   <GridPane.margin>
-                                                      <Insets right="5.0" />
-                                                   </GridPane.margin>
-                                                </DatePicker>
-                                                <TextField prefHeight="31.0" prefWidth="129.0" text="南京大学" GridPane.columnIndex="1">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                   <GridPane.margin>
-                                                      <Insets right="5.0" />
-                                                   </GridPane.margin>
-                                                </TextField>
-                                                <TextField text="无" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                   <GridPane.margin>
-                                                      <Insets right="5.0" />
-                                                   </GridPane.margin>
-                                                </TextField>
-                                                <ChoiceBox prefWidth="150.0" GridPane.columnIndex="3">
-                                                   <cursor>
-                                                      <Cursor fx:constant="S_RESIZE" />
-                                                   </cursor>
-                                                </ChoiceBox>
-                                                <ChoiceBox prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                                                <ChoiceBox prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                                <TextField text="9.5" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                   <GridPane.margin>
-                                                      <Insets right="5.0" />
-                                                   </GridPane.margin>
-                                                </TextField>
-                                             </children>
-                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                          </GridPane>
-                                       </children>
-                                    </AnchorPane>
-                                 </content>
-                                 <font>
-                                    <Font size="25.0" />
-                                 </font>
-                              </TitledPane>
-                          </panes>
-                        </Accordion>
+                        <Accordion fx:id="companyList" layoutX="146.0" layoutY="173.0" prefHeight="489.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                </content>
             </Tab>
             <Tab text="双十一优惠">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Accordion fx:id="double11List" prefHeight="489.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children></AnchorPane>
                </content>
             </Tab>
         </tabs>
