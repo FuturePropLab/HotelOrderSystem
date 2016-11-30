@@ -1,6 +1,8 @@
 package businesslogic.credit;
 
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import dataservice.CreditDataService;
@@ -22,7 +24,7 @@ import vo.OrderVO;
 public class Credit {
 	private CreditDataService creditDataService;
 	private CustomerInfo customerInfo;
-	
+	private String customer_id;
 	/**
 	 * 获取订单信息后 增加一条信用记录
 	 * @param order
@@ -31,10 +33,32 @@ public class Credit {
 	 * @return ResultMessage
 	 */
 	public ResultMessage addlog(Order order, ActionType type, int result) {
+		int creditchange =0;
 		if(order==null && type!=ActionType.Charge)  return ResultMessage.NotExist;
 		if(type == ActionType.Charge)  return ResultMessage.NotExist;
 		OrderPO orderPO  =new OrderPO(order);
+		CustomerVO customerVO = customerInfo.getCustomerInfo(customer_id);
+		
+		int credit = customerVO.credit;
 		CreditLogPO creditLogPO = new CreditLogPO(type, orderPO, result);
+		
+		//撤销订单信用值－30，延迟入住信用值减25,延迟退房超过30分钟减25,没有异常的话，完成一个订单增加50信用值
+		Time revoketime = order.getRevokeTime();
+		if(revoketime !=null){
+			creditchange = -30;
+		}
+			Date latestTime = order.getLatestTime();
+			Date checkIntime = order.getCheckInTime();
+			Date planedLeaveTime =order.getPlanedLeaveTime();
+			Date checkOutTime = order.getCheckOutTime();
+			if(checkIntime.after(latestTime)){
+				creditchange = -20;
+			
+			
+		}
+			long between=(checkOutTime.getTime()-planedLeaveTime.getTime())/1000;
+			
+			
 		return creditDataService.add(creditLogPO);
 	}
 	
@@ -85,6 +109,13 @@ public class Credit {
 	 */
 	public Credit(CustomerInfo customerInfo){
 		this.customerInfo = customerInfo;
+		this.creditDataService = new  CreditData_Stub();
+	}
+	/**
+	 * 添加构造方法
+	 * @author chenyuyan
+	 */
+	public Credit(String customer_id){
 		this.creditDataService = new  CreditData_Stub();
 	}
 }

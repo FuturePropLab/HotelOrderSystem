@@ -2,6 +2,7 @@ package businesslogic.credit;
 
 import java.util.List;
 
+import businesslogic.customer.CustomerInfoImp;
 import businesslogicservice.CreditLogDealService;
 import po.Order;
 import tools.ActionType;
@@ -10,7 +11,7 @@ import vo.CreditlogVO;
 
 
 /**
- * 实现CreditLogDealService的接口
+ * 瀹炵幇CreditLogDealService鐨勬帴鍙�
  * @author wshwbluebird
  *
  */
@@ -18,17 +19,23 @@ public class CreditController implements CreditLogDealService{
 
 	public ResultMessage addlog(Order order, ActionType type, int result) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		Credit credit = new Credit(order.getCustomerID());
+		
+		return credit.addlog(order, type, result);
 	}
 
 	public List<CreditlogVO> getLogList(String customer_id) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		Credit credit = new Credit(customer_id);
+		return credit.getLogList(customer_id);
 	}
 
 	public ResultMessage charge(String customer_id, int ChargeMoney) {
 		// TODO Auto-generated method stub
-		return null;
+		Credit credit = new Credit(customer_id);
+		return credit.charge(customer_id, ChargeMoney);
 	}
 
 }
