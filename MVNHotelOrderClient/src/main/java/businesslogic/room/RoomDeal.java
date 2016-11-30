@@ -19,14 +19,14 @@ import vo.RoomVO;
  */
 public class RoomDeal {
 	private RoomDataService roomDataService;
-/**
- * @author chenyuyan
- * 修改酒店状态 
- * @param hotel_id
- * @param room_id
- * @param state
- * @return
- */
+	/**
+	 * @author chenyuyan
+	 * 修改酒店状态 
+	 * @param hotel_id
+	 * @param room_id	
+	 * @param state
+	 * @return
+	 */
 	public ResultMessage_Modify ChangeState(String hotel_id, String room_id, RoomState state,Date date) {
 		// TODO Auto-generated method stub
 		//RoomVO roomVO=new RoomVO(hotel_id,"" , room_id, RoomType.Double, 10);

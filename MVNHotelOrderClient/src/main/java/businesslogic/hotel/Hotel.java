@@ -29,16 +29,7 @@ public class Hotel {
 		return test.addHotel(vo);
 	}
 	
-	/**
-	 * 编辑酒店信息
-	 * @param hotel_id
-	 * @return 酒店信息
-	 */
-	public HotelInfoVO editHotelInfo(String hotel_id) {
-		// TODO Auto-generated method stub
-		ManageHotelInfo_Stub test=new ManageHotelInfo_Stub();
-		return test.editHotelInfo(hotel_id);
-	}
+
 	/**
 	 *保存酒店信息
 	 * @param hotelInfo

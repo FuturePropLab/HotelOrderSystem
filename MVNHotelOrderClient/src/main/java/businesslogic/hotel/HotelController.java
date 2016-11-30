@@ -25,11 +25,6 @@ public class HotelController implements HotelDealService,ManageHotelInfoService{
 		return hotel.addHotel(vo);
 	}
 
-	public HotelInfoVO editHotelInfo(String hotel_id) {
-		// TODO Auto-generated method stub
-		
-		return hotel.editHotelInfo(hotel_id);
-	}
 
 	public ResultMessage_Hotel saveHotelInfo(HotelInfoVO hotelInfo) {
 		// TODO Auto-generated method stub
