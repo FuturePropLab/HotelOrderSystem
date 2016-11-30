@@ -3,7 +3,9 @@ package businesslogic.strategy;
 import java.util.LinkedList;
 import java.util.List;
 
-import businesslogicservice.StrategyGetService;
+import businesslogicservice.DiscountHotelService;
+import tools.ResultMessage_strategy;
+import vo.DiscountVO_hotel;
 import vo.OrderInputCalVO;
 import vo.StrategyVO_hotel;
 import vo.StrategyVO_web;
@@ -13,7 +15,7 @@ import vo.StrategyVO_web;
  * @author LWY
  *
  */
-public class MockDiscount implements StrategyGetService{
+public class MockDiscount implements DiscountHotelService{
 	private String type;
 
 	// constructor
@@ -39,6 +41,26 @@ public class MockDiscount implements StrategyGetService{
 		dv.discount = 0.9;
 		res.add((StrategyVO_web) dv);
 		return res;
+	}
+
+	public ResultMessage_strategy addHotelDiscount(String hotel_id, DiscountVO_hotel discountVO_hotel) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ResultMessage_strategy editHotelDiscount(String discount_id, DiscountVO_hotel discountVO_hotel) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ResultMessage_strategy deleteHotelDiscount(String hotel_id, String discount_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<DiscountVO_hotel> getHotelDiscount(String hotel_id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

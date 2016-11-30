@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import businesslogicservice.StrategyGetService;
+import businesslogic.strategy.StrategyGetService;
 import po.DiscountPO_hotel;
 import po.DiscountPO_web;
 import vo.OrderInputCalVO;

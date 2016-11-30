@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import businesslogicservice.StrategyGetService;
+import businesslogic.strategy.StrategyGetService;
 import vo.DiscountSearchVO;
 import vo.DiscountVO;
 import vo.DiscountVO_hotel;

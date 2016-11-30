@@ -1,4 +1,4 @@
-package businesslogicservice;
+package businesslogic.strategy;
 
 import java.util.List;
 
