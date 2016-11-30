@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dataservice.HotelDataService;
-import po.HotelInfoPO;
+import po.HotelPO;
 import po.HotelRoomInfoPO;
 import tools.ResultMessage_Hotel;
 import tools.SearchHotel;
@@ -14,21 +14,21 @@ import tools.Star;
 public class HotelData_Stub implements HotelDataService{
 
 	
-	public ResultMessage_Hotel addHotelInfo(HotelInfoPO hotelInfo) {
+	public ResultMessage_Hotel addHotelInfo(HotelPO hotelInfo) {
 		// TODO Auto-generated method stub
 		return ResultMessage_Hotel.fail;
 	}
 
 	
-	public ResultMessage_Hotel modifyHotelInfo(HotelInfoPO hotelInfoPO) {
+	public ResultMessage_Hotel modifyHotelInfo(HotelPO hotelInfoPO) {
 		// TODO Auto-generated method stub
 		return ResultMessage_Hotel.fail;
 	}
 
 	
-	public HotelInfoPO getHotelInfo(String hotel_id) {
+	public HotelPO getHotelInfo(String hotel_id) {
 		// TODO Auto-generated method stub
-		HotelInfoPO hotelinfo=new HotelInfoPO();
+		HotelPO hotelinfo=new HotelPO();
 		hotelinfo.setComeAddr("xinjiekou");
 		hotelinfo.setFacility("room1");
 		hotelinfo.setGrade("good");
@@ -50,9 +50,9 @@ public class HotelData_Stub implements HotelDataService{
 	}
 
 	
-	public List<HotelInfoPO> searchHotelList(SearchHotel searchhotel) {
+	public List<HotelPO> searchHotelList(SearchHotel searchhotel) {
 		// TODO Auto-generated method stub
-		HotelInfoPO hotelinfo=new HotelInfoPO();
+		HotelPO hotelinfo=new HotelPO();
 		hotelinfo.setComeAddr("xinjiekou");
 		hotelinfo.setFacility("room1");
 		hotelinfo.setGrade("good");
@@ -71,7 +71,7 @@ public class HotelData_Stub implements HotelDataService{
 		hotelinfo.setIntroduction("good");
 		hotelinfo.setStar(Star.five);
 		
-		List<HotelInfoPO> hotellist=new ArrayList<HotelInfoPO>();
+		List<HotelPO> hotellist=new ArrayList<HotelPO>();
 		 hotellist.add(hotelinfo);
 		
 		return  hotellist;

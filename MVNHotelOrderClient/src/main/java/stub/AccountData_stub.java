@@ -1,5 +1,6 @@
 package stub;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import po.CustomerAccountPO;
 import po.HotelAccountPO;
 import po.SearchCondition;
 import po.WebAccountPO;
+import tools.AccountType;
 import tools.ResultMessage;
 import tools.ResultMessage2;
 import tools.ResultMessage_Account;
@@ -114,6 +116,11 @@ public class AccountData_stub implements AccountDataService{
 	}
 
 	public ResultMessage_Account deleteAccount(String userid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<AccountPO> getAccountList(List<String> idList, AccountType accountType) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
