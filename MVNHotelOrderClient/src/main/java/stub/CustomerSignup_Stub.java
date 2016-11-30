@@ -1,8 +1,6 @@
 package stub;
 
 import businesslogicservice.CustomerSignupService;
-import tools.ResultMessage;
-import tools.ResultMessage2;
 import tools.ResultMessage_signUp;
 import vo.CustomerInputVO;
 

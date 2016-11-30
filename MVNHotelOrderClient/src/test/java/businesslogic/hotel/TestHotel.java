@@ -24,6 +24,7 @@ import stub.OrderDate_Stub;
 import tools.DateRange;
 import tools.PriceRange;
 import tools.ResultMessage2;
+import tools.ResultMessage_Hotel;
 import tools.RoomType;
 import tools.SortType;
 import tools.Star;
@@ -42,7 +43,7 @@ public class TestHotel {
 	@Test
 	public void test() throws OutOfBoundsException {
 		Hotel test=new Hotel();
-		ResultMessage2 re=ResultMessage2.success
+		ResultMessage_Hotel re=ResultMessage_Hotel.success
 				;
 		HotelInputVO t=new HotelInputVO("JINLINGDAJIUDIAN","xinjiekou","good",Star.five);
 		//List<TypeRoomInfo> typeList = new ArrayList<TypeRoomInfo>();

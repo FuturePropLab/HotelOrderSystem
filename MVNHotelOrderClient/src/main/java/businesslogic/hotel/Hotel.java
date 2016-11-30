@@ -5,7 +5,7 @@ import java.util.List;
 import dataservice.HotelDataService;
 import stub.HotelDeal_Stub;
 import stub.ManageHotelInfo_Stub;
-import tools.ResultMessage2;
+import tools.ResultMessage_Hotel;
 import tools.SortType;
 import vo.CommentVO;
 import vo.DiscountVO_hotel;
@@ -23,7 +23,7 @@ public class Hotel {
 	 * @param vo
 	 * @return 添加成功
 	 */
-	public ResultMessage2 addHotel(HotelInputVO vo) {
+	public ResultMessage_Hotel addHotel(HotelInputVO vo) {
 		// TODO Auto-generated method stub
 		ManageHotelInfo_Stub test=new ManageHotelInfo_Stub();
 		return test.addHotel(vo);
@@ -44,7 +44,7 @@ public class Hotel {
 	 * @param hotelInfo
 	 * @return 成功
 	 */
-	public ResultMessage2 saveHotelInfo(HotelInfoVO hotelInfo) {
+	public ResultMessage_Hotel saveHotelInfo(HotelInfoVO hotelInfo) {
 		// TODO Auto-generated method stub
 		ManageHotelInfo_Stub test=new ManageHotelInfo_Stub();
 		return test.saveHotelInfo(hotelInfo);

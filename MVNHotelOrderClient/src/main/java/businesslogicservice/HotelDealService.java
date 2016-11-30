@@ -10,6 +10,7 @@ import vo.HotelInfoVO;
 import vo.SearchHotelVO;
 
 public interface HotelDealService {
+	
 	public List<HotelInfoVO> SearchHotel (SearchHotelVO searchhotel);
 	public List<HotelInfoVO> SortHotel (List<HotelInfoVO>hotelInfo ,SortType sortType);
 	public HotelInfoVO getHotelInfo (String hotel_id);

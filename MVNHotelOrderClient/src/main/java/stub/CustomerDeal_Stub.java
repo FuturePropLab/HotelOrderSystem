@@ -6,8 +6,6 @@ import java.util.List;
 import businesslogicservice.CustomerDealService;
 import tools.MemberBelongType;
 import tools.MemberType;
-import tools.ResultMessage;
-import tools.ResultMessage2;
 import tools.ResultMessage_Modify;
 import vo.CustomerSearchVO;
 import vo.CustomerVO;

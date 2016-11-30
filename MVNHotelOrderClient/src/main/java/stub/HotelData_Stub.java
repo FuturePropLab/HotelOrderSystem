@@ -7,22 +7,22 @@ import java.util.List;
 import dataservice.HotelDataService;
 import po.HotelInfoPO;
 import po.HotelRoomInfoPO;
-import tools.ResultMessage2;
+import tools.ResultMessage_Hotel;
 import tools.SearchHotel;
 import tools.Star;
 
 public class HotelData_Stub implements HotelDataService{
 
 	
-	public ResultMessage2 addHotelInfo(HotelInfoPO hotelInfo) {
+	public ResultMessage_Hotel addHotelInfo(HotelInfoPO hotelInfo) {
 		// TODO Auto-generated method stub
-		return ResultMessage2.fail;
+		return ResultMessage_Hotel.fail;
 	}
 
 	
-	public ResultMessage2 modifyHotelInfo(HotelInfoPO hotelInfoPO) {
+	public ResultMessage_Hotel modifyHotelInfo(HotelInfoPO hotelInfoPO) {
 		// TODO Auto-generated method stub
-		return ResultMessage2.fail;
+		return ResultMessage_Hotel.fail;
 	}
 
 	
