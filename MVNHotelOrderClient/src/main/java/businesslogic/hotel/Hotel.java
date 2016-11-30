@@ -2,6 +2,7 @@ package businesslogic.hotel;
 
 import java.util.List;
 
+import dataservice.HotelDataService;
 import stub.HotelData_Stub;
 import stub.HotelDeal_Stub;
 import stub.ManageHotelInfo_Stub;
@@ -15,6 +16,10 @@ import vo.HotelInputVO;
 import vo.SearchHotelVO;
 
 public class Hotel {
+	private HotelDataService hotelDataService;
+	public Hotel(){
+		
+	}
 	/**
 	 * 添加酒店
 	 * @param vo
@@ -100,5 +105,5 @@ public class Hotel {
 		MockOrder test=new MockOrder(null, null, null, null);
 		return test.getComment();
 	}
-
+	
 }

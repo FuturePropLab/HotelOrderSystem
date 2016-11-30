@@ -32,15 +32,16 @@ public class RoomDeal {
 		//RoomVO roomVO=new RoomVO(hotel_id,"" , room_id, RoomType.Double, 10);
 		RoomVO roomVO = new RoomVO(hotel_id,room_id,state);
 		//roomVO.state=state;
-		ArrayList <Date> BookedDate = roomVO.BookedDate;
+		
+		/*ArrayList <Date> BookedDate = roomVO.BookedDate;
 		for(int i =0;i<BookedDate.size();i++){
 			if(BookedDate.get(i)==date){
 				BookedDate.remove(i);
 				break;
 			}
-		}
+		}*/
 		
-		RoomPO roompo = new RoomPO(hotel_id,room_id,state,BookedDate);
+		RoomPO roompo = new RoomPO(hotel_id,room_id,state);
 		
 		//RoomSingle roomSingle=new RoomSingle();
 		return roomDataService.modifyRoomState(roompo);
@@ -53,15 +54,16 @@ public class RoomDeal {
 	public ResultMessage arrangeRoom(Order order) {
 		// TODO Auto-generated method stub
 		RoomDeal_Stub roomDeal_Stub=new RoomDeal_Stub();
+		String hotel_id = order.getHotelID();
 		
 		
 		return roomDeal_Stub.arrangeRoom(order);
 	}
 	
 	
-     public RoomVO searchEmpty(RoomType type,String hotel_id,Date date){
+     public RoomVO searchEmpty(RoomType type,String hotel_id,Date Startdate,Date EndDate){
 		//return roomDataService.searchEmptyRoom(type,hotel_id, date);
-    	 RoomPO roompo = roomDataService.searchEmptyRoom(type,hotel_id, date);
+    	 RoomPO roompo = roomDataService.searchEmptyRoom(type,hotel_id, Startdate,EndDate);
     	 return new RoomVO(roompo);
 		
 		
