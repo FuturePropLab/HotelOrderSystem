@@ -1,5 +1,6 @@
 package businesslogic.room;
 
+import businesslogic.hotel.Hotel;
 import businesslogicservice.RoomSingleService;
 import dataservice.RoomDataService;
 import po.RoomPO;
@@ -30,26 +31,15 @@ public class RoomSingle  {
 		
 		//RoomSingle_Stub roomSingle_Stub=new RoomSingle_Stub();
 		//return roomSingle_Stub.addSingleRoom(hotel_id);
-		RoomSingle roomid = new RoomSingle();
-		String id = roomid.getID(room.hotelID, room.roomType, room.price);
-		RoomPO roompo = new RoomPO(room.hotelID,room.hotelName,id,room.roomType,room.price,room.description);
+		//RoomSingle roomid = new RoomSingle();
+		//String id = roomid.getID(room.hotelID, room.roomType, room.price);
+		
+		
+		
+		RoomPO roompo = new RoomPO(hotel_id,room.hotelName,room.hotelID,room.roomType,room.price,room.description);
+		
 		
 		return roomDataService.addRoom(roompo);
-	}
-	/**
-	 * 新增客房时 分配一个id
-	 * @param hotel_id
-	 * @param type
-	 * @param pricce
-	 * @return
-	 */
-	public String getID(String hotel_id,RoomType type,Double pricce){
-		
-		
-		return roomDataService.getID(hotel_id, type, pricce);
-		
-		
-		
 	}
 
 	public ResultMessage editSingleRoom(RoomVO room) {
@@ -63,6 +53,7 @@ public class RoomSingle  {
 		
 		
 	}
+
 
 	public ResultMessage_delete deleteSingleRoom(String hotel_id, String room_id) {
 		// TODO Auto-generated method stub

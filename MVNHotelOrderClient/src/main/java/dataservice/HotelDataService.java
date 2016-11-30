@@ -12,4 +12,5 @@ public interface HotelDataService {
 	public HotelInfoPO getHotelInfo (String hotel_id);
 	public List<HotelInfoPO> searchHotelList(SearchHotel searchhotel);
 	
+	
 }

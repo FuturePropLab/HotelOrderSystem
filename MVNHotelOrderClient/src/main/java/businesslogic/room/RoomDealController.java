@@ -31,10 +31,10 @@ public class RoomDealController implements RoomDealService{
 	 * 
 	 * 
 	 */
-	public RoomVO searchEmptyRoom(RoomType type,String hotel_id,Date date){
+	public RoomVO searchEmptyRoom(RoomType type,String hotel_id,Date Startdate,Date Enddate){
 		
 		RoomDeal roomdeal = new RoomDeal();
-		return roomdeal.searchEmpty(type,hotel_id,date);
+		return roomdeal.searchEmpty(type,hotel_id,Startdate,Enddate);
 		
 	}
 

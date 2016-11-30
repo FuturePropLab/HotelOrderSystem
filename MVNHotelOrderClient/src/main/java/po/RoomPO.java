@@ -32,11 +32,11 @@ public class RoomPO {
 	 * 增加一个构造方法，
 	 * @return
 	 */
-	public RoomPO(String hotelID,String roomID,RoomState roomstate,ArrayList<Date> BookedDate){
+	public RoomPO(String hotelID,String roomID,RoomState roomstate){
 		this.hotelID = hotelID;
 		this.roomID = roomID;
 		this.state = roomstate;
-		this.BookedDate = BookedDate;
+		//this.BookedDate = BookedDate;
 		
 		
 	}
