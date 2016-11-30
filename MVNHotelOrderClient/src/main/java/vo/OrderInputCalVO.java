@@ -1,7 +1,5 @@
 package vo;
 
-import java.util.Calendar;
-
 import tools.RoomType;
 
 /**
@@ -13,8 +11,7 @@ public class OrderInputCalVO {
 	public double price;//订房单价
 	public String customerID;
 	public String hotelID;
-	public Calendar startTime;
-	public Calendar planedLeaveTime;// 预计离开时间
+	public int days;//根据input得到天数
 	public RoomType roomType;
 	public int numberOfRooms;
 
@@ -40,15 +37,13 @@ public class OrderInputCalVO {
 	 * @param child
 	 *            是否有儿童
 	 */
-	public OrderInputCalVO(double price,String customerID, String hotelID, Calendar startTime, Calendar planedLeaveTime,
-			RoomType roomType, int numberOfRooms) {
+	public OrderInputCalVO(OrderInputVO orderInputVO,int days) {
 		super();
-		this.price=price;
-		this.customerID = customerID;
-		this.hotelID = hotelID;
-		this.startTime = startTime;
-		this.planedLeaveTime = planedLeaveTime;
-		this.roomType = roomType;
-		this.numberOfRooms = numberOfRooms;
+		this.price=orderInputVO.price;
+		this.customerID = orderInputVO.customerID;
+		this.hotelID = orderInputVO.hotelID;
+		this.days=days;
+		this.roomType = orderInputVO.roomType;
+		this.numberOfRooms = orderInputVO.numberOfRooms;
 	}
 }

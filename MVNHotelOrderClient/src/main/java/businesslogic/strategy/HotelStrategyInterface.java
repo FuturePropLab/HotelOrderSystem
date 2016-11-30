@@ -1,9 +1,13 @@
 package businesslogic.strategy;
 
 import vo.OrderInputCalVO;
-import vo.StrategyVO;
 
 public interface HotelStrategyInterface {
-	public StrategyVO Calculate(OrderInputCalVO orderInputCalVO) ;
+	/**
+	 * 
+	 * @param orderInputCalVO
+	 * @return 不同策略计算的结果
+	 */
+	public double calculate(OrderInputCalVO orderInputCalVO , double discount) ;
 
 }
