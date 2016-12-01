@@ -12,7 +12,7 @@ public class CreditLogPO {
 			this.changeValue = changeValue;
 			this.orderPO = orderPO;
 		}
-
+		
 		public ActionType getActionType() {
 			return actionType;
 		}

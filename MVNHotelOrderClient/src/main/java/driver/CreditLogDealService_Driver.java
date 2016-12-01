@@ -12,8 +12,7 @@ public class CreditLogDealService_Driver {
     	 order.setOrderState(OrderState.Executed);
     	 order.setValue(100);
     	 
-    	 System.out.println(creditLogDealService.addlog(order, 
-    			 ActionType.RightOrder, order.getValue()));
+    	 
     	 
     	 System.out.println(creditLogDealService.getLogList("asd").get(0).changeValue);
     	 

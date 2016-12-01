@@ -17,14 +17,18 @@ import vo.CreditlogVO;
  */
 public class CreditController implements CreditLogDealService{
 
-	public ResultMessage addlog(Order order, ActionType type, int result) {
+	/*public ResultMessage addlog(Order order, ActionType type, int result) {
 		// TODO Auto-generated method stub
 		
 		Credit credit = new Credit(order.getCustomerID());
 		
 		return credit.addlog(order, type, result);
+	}*/
+	public ResultMessage CreditChangeAboutOrder(Order order,ActionType type){
+		Credit credit = new Credit(order.getCustomerID());
+		
+		return credit.CreditChangeAboutOrder(order, type);
 	}
-
 	public List<CreditlogVO> getLogList(String customer_id) {
 		// TODO Auto-generated method stub
 		

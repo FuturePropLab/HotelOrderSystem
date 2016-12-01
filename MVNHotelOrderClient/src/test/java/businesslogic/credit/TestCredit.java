@@ -59,10 +59,17 @@ public class TestCredit {
 		Order order = new Order("O1234567");
 		SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		Date date1= df.parse("2004-01-02 11:30:24");
-		Date date2 = df.parse("2004-01-02 12:30:24");
+		Date date2 = df.parse("2004-01-02 11:30:24");
+		Date date3 = df.parse("2004-01-03 11:30:24");
+		Date date4 = df.parse("2004-01-03 11:30:24");
+		Date date5 = df.parse("2004-01-03 11:30:24");
 		order.setLatestTime(date1);
 		order.setCheckInTime(date2);
+		order.setPlanedLeaveTime(date3);
+		order.setCheckOutTime(date4);
+		order.setRevokeTime(date5);
 		Credit test = new Credit("0000");
+			
 		test.addlog(order, ActionType.BadOrder, 50);
 	}
 

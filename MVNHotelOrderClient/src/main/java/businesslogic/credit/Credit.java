@@ -25,20 +25,79 @@ public class Credit {
 	private CreditDataService creditDataService;
 	private CustomerInfo customerInfo;
 	private String customer_id;
+	
 	/**
-	 * 获取订单信息后 增加一条信用记录
+	 * @author chenyuyan 12/1
+	 * 
+	 * 获取订单信息，计算信用变化 ，并调用addlog增加记录
+	 */
+	public ResultMessage CreditChangeAboutOrder (Order order,ActionType type){
+		int creditchange = 0;
+		int result;
+		OrderPO orderPO  =new OrderPO(order);
+		CustomerVO customerVO = customerInfo.getCustomerInfo(customer_id);
+		int credit = customerVO.credit;
+		switch (type){
+		
+		case RightOrder:creditchange = 50;//完成一个订单增加50信用值
+		case RevokeOrder:creditchange = -30;//撤销订单信用值－30，
+		case BadOrder:
+			
+			
+			
+			
+			//延迟入住信用值减25,延迟退房超过30分钟减25,
+				Date latestTime = order.getLatestTime();
+				Date checkIntime = order.getCheckInTime();
+				Date planedLeaveTime =order.getPlanedLeaveTime();
+				Date checkOutTime = order.getCheckOutTime();
+				if(checkIntime.before(latestTime)){
+					creditchange = creditchange-25;
+					
+				
+			}
+				long between=(checkOutTime.getTime()-planedLeaveTime.getTime())/1000/60;
+				if(between>=30){
+					creditchange -=30;
+				}
+				//System.out.println(between);
+				
+				
+				
+		
+		
+		}
+		result = credit+creditchange;
+		ResultMessage resultMessage = creditDataService.changeCredit(order.getCustomerID(), result);
+		if(resultMessage == ResultMessage.Exist){
+		return addlog(order, type, creditchange);}else{return ResultMessage.NotExist;}
+		
+	}
+	
+	
+	
+	
+	/**
+	 *  增加一条信用记录
 	 * @param order
 	 * @param type
 	 * @param result
 	 * @return ResultMessage
 	 */
-	public ResultMessage addlog(Order order, ActionType type, int result) {
+	public ResultMessage addlog(Order order, ActionType type, int changeValue) {
 		int creditchange =0;
-		if(order==null && type!=ActionType.Charge)  return ResultMessage.NotExist;
-		if(type == ActionType.Charge)  return ResultMessage.NotExist;
-		OrderPO orderPO  =new OrderPO(order);
-		CustomerVO customerVO = customerInfo.getCustomerInfo(customer_id);
 		
+		if(order==null && type!=ActionType.Charge)  return ResultMessage.NotExist;
+		if(type == ActionType.Charge)  {
+			CreditLogPO creditpo = new CreditLogPO(type,null,changeValue);
+			
+			return creditDataService.add(creditpo);}
+		
+		else{
+		OrderPO orderPO  =new OrderPO(order);
+		//CustomerVO customerVO = customerInfo.getCustomerInfo(customer_id);
+		/*CustomerVO  customerVO  = new CustomerVO
+				("ppd", "wsw", "male", "15251124223", null, 20);
 		int credit = customerVO.credit;
 		
 		
@@ -51,25 +110,28 @@ public class Credit {
 			Date checkIntime = order.getCheckInTime();
 			Date planedLeaveTime =order.getPlanedLeaveTime();
 			Date checkOutTime = order.getCheckOutTime();
-			if(checkIntime.after(latestTime)){
+			if(checkIntime.before(latestTime)){
 				creditchange = creditchange-25;
-			
+				
 			
 		}
 			long between=(checkOutTime.getTime()-planedLeaveTime.getTime())/1000/60;
 			if(between>=30){
 				creditchange -=30;
 			}
+			//System.out.println(between);
 			if(creditchange==0) creditchange =50;
 			result = credit+creditchange;
 			
+			System.out.println(creditchange);
 			ResultMessage resultMessage = creditDataService.changeCredit(customer_id, result);
 			
-			CreditLogPO creditLogPO = new CreditLogPO(type, orderPO, result);
+			CreditLogPO creditLogPO = new CreditLogPO(type, orderPO, result);*/
+		CreditLogPO creditLogPO = new CreditLogPO(type, orderPO, changeValue);
 			
 		return creditDataService.add(creditLogPO);
 	}
-	
+	}
 	/**
 	 * 根据客户的ID 返回该客户所有信用记录
 	 * @param customer_id
