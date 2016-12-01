@@ -9,14 +9,14 @@ import java.util.List;
 import org.junit.Test;
 
 import stub.Discount_stub;
-import tools.ResultMessage2;
+import tools.ResultMessageDiscount;
 import vo.DiscountVO_hotel;
 
 public class TestHotelDiscount {
 
 	@Test
 	public void test() {
-		ResultMessage2 re=ResultMessage2.Success;
+		ResultMessageDiscount re=ResultMessageDiscount.Success;
 		HotelDiscount test=new HotelDiscount();
 		String hotel_id="0000";
 		String discount_id="0000";

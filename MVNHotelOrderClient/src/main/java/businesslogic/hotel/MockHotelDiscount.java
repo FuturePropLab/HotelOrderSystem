@@ -6,7 +6,7 @@ import java.util.List;
 
 import businesslogic.discount.Discount;
 import businesslogic.discount.HotelDiscount;
-import tools.ResultMessage2;
+import tools.ResultMessageDiscount;
 import vo.DiscountVO_hotel;
 
 
@@ -16,7 +16,7 @@ public class MockHotelDiscount extends Discount implements getDiscountInfo{
 		// TODO Auto-generated method stub
 		Date t1=new Date(2016,9,1);
 		Date t2=new Date(2016,9,2);
-		ResultMessage2 expect=ResultMessage2.Fail;
+		ResultMessageDiscount expect=ResultMessageDiscount.Fail;
 		
 		String discountid="0001";
 		HotelDiscount temp=new HotelDiscount();

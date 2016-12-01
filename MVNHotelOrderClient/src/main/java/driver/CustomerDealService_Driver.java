@@ -4,7 +4,7 @@ import java.rmi.RemoteException;
 
 import businesslogicservice.CustomerDealService;
 import tools.ResultMessage;
-import tools.ResultMessage2;
+import tools.ResultMessageDiscount;
 import tools.ResultMessage_Modify;
 import vo.CustomerVO;
 

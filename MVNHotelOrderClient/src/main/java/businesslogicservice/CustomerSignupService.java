@@ -1,7 +1,7 @@
 package businesslogicservice;
 
 import tools.ResultMessage;
-import tools.ResultMessage2;
+import tools.ResultMessageDiscount;
 import tools.ResultMessage_signUp;
 import vo.CustomerInputVO;
 

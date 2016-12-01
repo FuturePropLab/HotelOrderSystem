@@ -1,7 +1,7 @@
 package businesslogic.discount;
 
 import dataservice.DiscountDealDataService;
-import tools.ResultMessage2;
+import tools.ResultMessageDiscount;
 
 public class Discount {
 	
@@ -28,7 +28,7 @@ public class Discount {
 	 * @param discount_id
 	 * @return 优惠策略设为无效
 	 */
-	public ResultMessage2 invalidDiscount(String discount_id) {
+	public ResultMessageDiscount invalidDiscount(String discount_id) {
 //		DiscountCal_stub test=new DiscountCal_stub();
 //		return test.invalidDiscount(discount_id);
 		return discountDealDataService.invalidDiscount(discount_id);

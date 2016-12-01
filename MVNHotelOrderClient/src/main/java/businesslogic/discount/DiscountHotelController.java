@@ -3,7 +3,7 @@ package businesslogic.discount;
 import java.util.List;
 
 import businesslogicservice.DiscountHotelService;
-import tools.ResultMessage2;
+import tools.ResultMessageDiscount;
 import tools.ResultMessage_strategy;
 import vo.DiscountVO_hotel;
 /**
@@ -25,7 +25,7 @@ public class DiscountHotelController implements DiscountHotelService  {
 		return hotelDiscount.addHotelDiscount(hotel_id, dis);
 	}
 
-	public ResultMessage2 editHotelDiscount(String discount_id, DiscountVO_hotel discountVO_hotel) {
+	public ResultMessageDiscount editHotelDiscount(String discount_id, DiscountVO_hotel discountVO_hotel) {
 		// TODO Auto-generated method stub
 		return hotelDiscount.editHotelDiscount(discount_id,discountVO_hotel);
 	}

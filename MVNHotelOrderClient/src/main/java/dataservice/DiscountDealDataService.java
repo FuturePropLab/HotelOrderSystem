@@ -1,6 +1,6 @@
 package dataservice;
 
-import tools.ResultMessage2;
+import tools.ResultMessageDiscount;
 /**
  * 
  * @author LWY
@@ -12,7 +12,7 @@ public interface DiscountDealDataService {
 	 * @param discount_id
 	 * @return 将过期的策略更改状态
 	 */
-	ResultMessage2 invalidDiscount(String discount_id);
+	ResultMessageDiscount invalidDiscount(String discount_id);
 	
 //	public List<DiscountPO> checkDiscount(DiscountSearchPO dsvo);
 }

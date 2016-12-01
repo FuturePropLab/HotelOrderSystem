@@ -4,7 +4,7 @@ import java.sql.Time;
 import java.util.LinkedList;
 import java.util.List;
 
-import tools.ResultMessage2;
+import tools.ResultMessageDiscount;
 import tools.ResultMessage_strategy;
 import vo.DiscountVO;
 import vo.DiscountVO_hotel;
@@ -23,7 +23,7 @@ public class DiscountService_Driver {
 		disvo.Discount_id = "0050";
 		
 		
-		ResultMessage2 re;
+		ResultMessageDiscount re;
 		re=dis.addHotelDiscount("005");
 		System.out.println(disvo.discount);
 		

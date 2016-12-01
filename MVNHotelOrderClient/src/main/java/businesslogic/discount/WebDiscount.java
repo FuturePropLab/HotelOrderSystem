@@ -1,7 +1,7 @@
 package businesslogic.discount;
 
 import stub.Discount_stub;
-import tools.ResultMessage2;
+import tools.ResultMessageDiscount;
 import tools.ResultMessage_strategy;
 import vo.DiscountVO;
 import vo.DiscountVO_web;
@@ -18,7 +18,7 @@ public ResultMessage_strategy addWebDiscount(DiscountVO_web dis) {
 	
 }
 
-public ResultMessage2 editWebDiscount(String Discount_id) {
+public ResultMessageDiscount editWebDiscount(String Discount_id) {
 	Discount_stub test=new Discount_stub();
 	
 	

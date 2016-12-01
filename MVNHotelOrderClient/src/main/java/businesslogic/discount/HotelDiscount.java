@@ -5,7 +5,7 @@ import java.util.List;
 import po.DiscountPO_hotel;
 import stub.Discount_stub;
 import tools.DiscountState;
-import tools.ResultMessage2;
+import tools.ResultMessageDiscount;
 import tools.ResultMessage_strategy;
 import vo.DiscountVO_hotel;
 
@@ -32,7 +32,7 @@ public class HotelDiscount extends Discount{
 	 * @return 修改后信息
 	 */
 	
-	public ResultMessage2 editHotelDiscount(String Discount_id,DiscountVO_hotel dis){
+	public ResultMessageDiscount editHotelDiscount(String Discount_id,DiscountVO_hotel dis){
 		
 		Discount_stub test=new Discount_stub();
 		return test.editHotelDiscount(Discount_id, dis);
