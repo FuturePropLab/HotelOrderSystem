@@ -1,6 +1,10 @@
 package ui.discount;
 
+import java.util.Date;
+
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
@@ -8,13 +12,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.paint.Color;
+import ui.discount.HotelDiscountController.ItemType;
 
 /**
  * 单个优惠item的界面的控制器
  * @author zjy
  *
  */
-public class ItemController {
+public abstract class ItemController {
 
 	@FXML
 	protected TitledPane title;
@@ -31,17 +36,12 @@ public class ItemController {
 	@FXML
 	protected CheckBox superposition;
 	@FXML
-	protected Hyperlink delete;
-	
-	/**
-     * Initializes the controller class. This method is automatically called
-     * after the fxml file has been loaded.
-     */
-    @FXML
-    protected void initialize() {
-    	//TODO: 将组建的值设置好
-    }
+	protected Hyperlink delete;//确认和删除合一的按钮，名字叫delete
+	protected HotelDiscountController hotelDiscountController;
 
+	protected void setHotelDiscountController(HotelDiscountController hotelDiscountController) {
+		this.hotelDiscountController = hotelDiscountController;
+	}
 	@FXML
 	protected void handleDiscount(){
 		double num = 0;
@@ -62,17 +62,66 @@ public class ItemController {
 	protected void handleEndTime(){
 		//TODO: 开始时间在结束时间之后时处理
 	}
+	
 	@FXML
 	protected void handleDelete(){
-		state.setText("已删除");
-		state.setTextFill(Color.GRAY);
-		title.setTextFill(Color.GRAY);
-		aditionalMessage.setEditable(false);
-		discount.setEditable(false);
-		startTime.setEditable(false);
-		endTime.setEditable(false);
-		superposition.setDisable(true);
-		delete.setDisable(true);
-		//TODO: 调用blservice删除策略
+		if(state.getText().equals("填写中")){
+			if(isFinished()){
+				setTitle();
+				state.setText("未开始");
+				
+				//TODO: 调用blservice增加策略
+				delete.setText("删 除");//字中间有空格
+				hotelDiscountController.addNewItem(getType());
+			}
+			else {
+				System.out.println("the discount is not finished");//TODO:弹窗提示未完成
+			}
+		}
+		else {
+			state.setText("已删除");
+			state.setTextFill(Color.GRAY);
+			title.setTextFill(Color.GRAY);
+			aditionalMessage.setEditable(false);
+			discount.setEditable(false);
+			startTime.setEditable(false);
+			endTime.setEditable(false);
+			superposition.setDisable(true);
+			delete.setDisable(true);
+			//TODO: 调用blservice删除策略
+		}
+	}
+	
+	protected abstract ItemType getType() ;
+	protected abstract void setTitle() ;
+	
+	/**
+	 * 检查是否填写完毕
+	 * @return
+	 */
+	protected boolean isFinished() {
+		return startTime.getValue()!=null && endTime.getValue()!=null;
+	}
+	
+	/**
+	 * 
+	 * @param title 标题
+	 * @param state 状态
+	 * @param aditionalMessage 备注
+	 * @param discount 折扣
+	 * @param startTime 开始时间
+	 * @param endTime 结束时间
+	 * @param superposition 能否与其它折扣叠加
+	 */
+	public void setValue(String title,String state,String aditionalMessage,double discount,Date startTime,
+			Date endTime,boolean superposition) {
+		this.title.setText(title);
+		this.state.setText(state);
+		this.aditionalMessage.setText(aditionalMessage);
+		this.discount.setText(discount+"");
+		this.startTime.setPromptText(startTime.getYear()+"-"+startTime.getMonth()+"-"+startTime.getDate());
+		this.endTime.setPromptText(endTime.getYear()+"-"+endTime.getMonth()+"-"+endTime.getDate());
+		this.superposition.setSelected(superposition);
+		this.delete.setText("删 除");//字中间有空格
 	}
 }

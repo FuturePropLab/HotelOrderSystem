@@ -1,24 +1,18 @@
 package businesslogic.order;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import dataservice.OrderDataService;
 import po.OrderPO;
-import tools.Mark;
 import tools.MemberBelongType;
 import tools.OrderState;
 import tools.ResultMessage;
-import tools.RoomType;
-import tools.TypeRoomInfo;
 import vo.AssessVO;
 import vo.CustomerVO;
 import vo.ExecutionInfoVO;
 import vo.HotelInfoVO;
 import vo.OrderInputVO;
-import vo.OrderVO;
 
 /**
  * 订单的领域类
@@ -282,7 +276,7 @@ public class Order {
 	
 	/**
 	 * 刷新器线程，定时从data层更新Order的信息
-	 * @author asus-a
+	 * @author zjy
 	 *
 	 */
 	private class SyncHandeler implements Runnable {
