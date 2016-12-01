@@ -1,8 +1,6 @@
 package businesslogic.room;
-import businesslogicservice.RoomHotelInfoService;
 import dataservice.RoomDataService;
-import po.HotelRoomInfo;
-import stub.RoomHotelInfo_Stub;
+import tools.HotelRoomInfo;
 import tools.ResultMessage;
 import vo.HotelRoomInfoVO;
 /**

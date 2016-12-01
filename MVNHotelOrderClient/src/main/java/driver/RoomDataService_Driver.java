@@ -5,8 +5,8 @@ import java.util.List;
 
 import businesslogic.room.RoomDescription;
 import dataservice.RoomDataService;
-import po.HotelRoomInfo;
 import po.RoomPO;
+import tools.HotelRoomInfo;
 import tools.RoomType;
 import tools.TypeRoomInfo;
 

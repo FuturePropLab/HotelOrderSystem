@@ -2,13 +2,12 @@ package dataservice;
 
 import java.util.Date;
 
-import po.HotelRoomInfo;
 import po.RoomPO;
+import tools.HotelRoomInfo;
 import tools.ResultMessage;
 import tools.ResultMessage_Modify;
 import tools.ResultMessage_delete;
 import tools.RoomType;
-import vo.RoomVO;
 
 public interface RoomDataService {
 	public ResultMessage modifyRoomInfo(HotelRoomInfo hotelRoomInfo);

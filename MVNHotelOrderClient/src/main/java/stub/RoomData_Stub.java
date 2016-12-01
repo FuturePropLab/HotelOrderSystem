@@ -6,8 +6,8 @@ import java.util.List;
 
 import businesslogic.room.RoomDescription;
 import dataservice.RoomDataService;
-import po.HotelRoomInfo;
 import po.RoomPO;
+import tools.HotelRoomInfo;
 import tools.ResultMessage;
 import tools.ResultMessage_Modify;
 import tools.ResultMessage_delete;
@@ -47,7 +47,7 @@ public class RoomData_Stub implements RoomDataService {
 	
 	public RoomPO getRoom(String hotel_id, String room_id) {
 		RoomPO roomPo = new RoomPO("2333","我的大酒店",
-				room_id, RoomType.Single, 180.00,new RoomDescription("卫生间"));
+				room_id, RoomType.Single, 180.00,new RoomDescription("卫生间"), room_id);
 		return roomPo;
 	}
 
