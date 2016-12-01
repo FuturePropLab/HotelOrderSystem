@@ -50,7 +50,7 @@ public class HotelDiscountController extends DetailsController{
     	companyItemController.setCompanyName("companyName");
     	Double11ItemController double11ItemController=(Double11ItemController)addTitlePane(double11List,"Double11Item.fxml");
     	double11ItemController.setValue("title", "未开始", "无", 9.5, new Date(2015, 10, 19), new Date(2015, 10, 20), true);
-    	double11ItemController.setFestivalDate(new Date(2015, 10, 19));
+    	double11ItemController.setFestivalDate(new Date(2015, 10, 19),new Date(2015, 10, 19));
     	//上面是一个例子
     	
     	addTitlePane(birthdayList,"BirthdayItem.fxml");

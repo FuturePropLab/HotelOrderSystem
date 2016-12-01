@@ -3,6 +3,7 @@ package businesslogic.order;
 import java.util.ArrayList;
 import java.util.Date;
 
+import Exception.CustomerCreditNotEnoughException;
 import dataservice.OrderDataService;
 import po.OrderPO;
 import tools.MemberBelongType;
@@ -40,18 +41,25 @@ public class Order {
 	 * @param customerInfo 实现客户信息接口的对象
 	 * @param hotelInfo 实现酒店信息接口的对象
 	 * @param OrderDataService 实现OrderDataService接口的对象
+	 * @throws CustomerCreditNotEnoughException 客户信用值为负
 	 */
-	public Order(OrderInputVO orderInput,CustomerInfo customerInfo,HotelInfo hotelInfo,OrderDataService orderDataService){
+	public Order(OrderInputVO orderInput,CustomerInfo customerInfo,HotelInfo hotelInfo,OrderDataService orderDataService) 
+			throws CustomerCreditNotEnoughException{
 		super();
 		if(orderInput==null){
 			return;
 		}
-		this.customerInfo=customerInfo;
-		this.hotelInfo=hotelInfo;
-		this.orderDataService=orderDataService;
-		init(orderInput);
-		saveOrder();
-		sync();
+		if(customerInfo.getCustomer(placingOrderInfo.customerID).credit<0){
+			throw new CustomerCreditNotEnoughException();
+		}
+		else {
+			this.customerInfo=customerInfo;
+			this.hotelInfo=hotelInfo;
+			this.orderDataService=orderDataService;
+			init(orderInput);
+			saveOrder();
+			sync();
+		}
 	}
 	/**
 	 * 订单的构造方法，通过从data层得到的OrderPO创建出的Order
@@ -267,7 +275,7 @@ public class Order {
 	 */
 	private int createValue() {
 		int newValue=0;
-		newValue+=placingOrderInfo.price*placingOrderInfo.numberOfRooms;
+		newValue+=placingOrderInfo.price;
 		newValue+=hotelInfo.getHotelInfo(placingOrderInfo.hotelID).mark.getValue()*100;
 		newValue+=customerInfo.getCustomer(placingOrderInfo.customerID).membervo.memberType.getType()
 				.equals(MemberBelongType.None)?0:1000;

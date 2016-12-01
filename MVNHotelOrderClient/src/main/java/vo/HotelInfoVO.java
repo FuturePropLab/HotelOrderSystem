@@ -1,9 +1,15 @@
 package vo;
 
+import javafx.scene.image.Image;
 import tools.Mark;
 import tools.Star;
 
 public class HotelInfoVO {
+	
+//  下面这些属性是要加上去，但暂时先不加 by zjy
+//	public Image image;
+//	public double price_frome;
+//	public double price_to;
 	
 	public String hotelID;
 	public String hotelName;

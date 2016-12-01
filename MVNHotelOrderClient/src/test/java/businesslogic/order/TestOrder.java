@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import Exception.CustomerCreditNotEnoughException;
 import po.OrderPO;
 import stub.OrderDate_Stub;
 import tools.OrderState;
@@ -24,8 +25,12 @@ public class TestOrder {
 	
 	@Before
 	public void init() {
-		order=new Order(new OrderInputVO("customerID", "hotelID", new Time(0), new Time(0), new Time(0), RoomType.EluxeSuite, 1, 1, false,100), 
-				new MockCustomerInfo(), new MockHotelInfo(), new OrderDate_Stub());
+		try {
+			order=new Order(new OrderInputVO("customerID", "hotelID", new Time(0), new Time(0), new Time(0), RoomType.EluxeSuite, 1, 1, false,100), 
+					new MockCustomerInfo(), new MockHotelInfo(), new OrderDate_Stub());
+		} catch (CustomerCreditNotEnoughException e) {
+			System.out.println("客户信用值为负");
+		}
 	}
 
 	@Test

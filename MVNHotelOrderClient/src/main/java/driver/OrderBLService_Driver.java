@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import Exception.CustomerCreditNotEnoughException;
 import Exception.OutOfBoundsException;
 import businesslogicservice.OrderService;
 import tools.DateRange;
@@ -23,7 +24,12 @@ public class OrderBLService_Driver {
 	public boolean drive(OrderService orderService) {
 		OrderInputVO orderInput=new OrderInputVO("001", "002", new Time(0), new Time(0), 
 				new Time(0), RoomType.Single, 1, 1, false,100);
-		OrderVO order=orderService.createOrders(orderInput);
+		OrderVO order = null;
+		try {
+			order = orderService.createOrders(orderInput);
+		} catch (CustomerCreditNotEnoughException e) {
+			System.out.println("客户信用值为负");
+		}
 		if(order==null){
 			return false;
 		}

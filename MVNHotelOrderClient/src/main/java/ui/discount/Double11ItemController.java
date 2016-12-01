@@ -13,11 +13,16 @@ import ui.discount.HotelDiscountController.ItemType;
  */
 public class Double11ItemController extends ItemController{
 	@FXML
-	private DatePicker festivalDate;
+	private DatePicker festivalDate_from;
+	@FXML
+	private DatePicker festivalDate_to;
 	
 	@FXML
 	protected void handleFestivalDate(){
-		title.setText(festivalDate.getValue().getMonthValue()+"月"+festivalDate.getValue().getDayOfMonth()+"日");
+		if(festivalDate_from.getValue()!=null && festivalDate_to.getValue()!=null){
+			title.setText(festivalDate_from.getValue().getMonthValue()+"月"+festivalDate_from.getValue().getDayOfMonth()+"日"
+					+"-"+festivalDate_to.getValue().getMonthValue()+"月"+festivalDate_to.getValue().getDayOfMonth()+"日");
+		}
 	}
 	
 	@Override
@@ -32,15 +37,26 @@ public class Double11ItemController extends ItemController{
 	
 	@Override
 	protected boolean isFinished() {
-		return startTime.getValue()!=null && endTime.getValue()!=null && festivalDate.getValue()!=null;
+		return startTime.getValue()!=null && endTime.getValue()!=null && festivalDate_from.getValue()!=null 
+				&& festivalDate_to.getValue()!=null;
+	}
+	
+	@Override
+	protected void disableControls() {
+		super.disableControls();
+		festivalDate_from.setEditable(false);
+		festivalDate_to.setEditable(false);
 	}
 	
 	/**
 	 * 设置节日日期
 	 * @param endTime 节日日期
 	 */
-	public void setFestivalDate(Date festivalDate) {
-		this.festivalDate.setPromptText(festivalDate.getYear()+"-"+festivalDate.getMonth()+"-"+festivalDate.getDate());
+	public void setFestivalDate(Date festivalDate_from,Date festivalDate_to) {
+		this.festivalDate_from.setPromptText(festivalDate_from.getYear()+"-"+festivalDate_from.getMonth()+
+				"-"+festivalDate_from.getDate());
+		this.festivalDate_to.setPromptText(festivalDate_to.getYear()+"-"+festivalDate_to.getMonth()+
+				"-"+festivalDate_to.getDate());
 	}
 
 }

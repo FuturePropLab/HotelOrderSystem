@@ -41,6 +41,12 @@ public class CompanyItemController extends ItemController{
 				&& companyName.getText().length()>0;
 	}
 	
+	@Override
+	protected void disableControls() {
+		super.disableControls();
+		companyName.setEditable(false);
+	}
+	
 	/**
 	 * 设置公司名称
 	 * @param companyName 公司名称

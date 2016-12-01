@@ -2,6 +2,7 @@ package businesslogicservice;
 
 import java.util.List;
 
+import Exception.CustomerCreditNotEnoughException;
 import tools.ResultMessage;
 import vo.ExecutionInfoVO;
 import vo.OrderInputVO;
@@ -18,8 +19,9 @@ public interface OrderService {
 	 * 创建订单
 	 * @param orderInput 下单信息
 	 * @return 订单信息
+	 * @throws CustomerCreditNotEnoughException 客户信用值为负
 	 */
-	public OrderVO createOrders(OrderInputVO orderInput);
+	public OrderVO createOrders(OrderInputVO orderInput) throws CustomerCreditNotEnoughException;
 	/**
 	 * 持久化保存订单
 	 * @param preorder 订单信息

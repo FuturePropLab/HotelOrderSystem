@@ -79,15 +79,7 @@ public abstract class ItemController {
 			}
 		}
 		else {
-			state.setText("已删除");
-			state.setTextFill(Color.GRAY);
-			title.setTextFill(Color.GRAY);
-			aditionalMessage.setEditable(false);
-			discount.setEditable(false);
-			startTime.setEditable(false);
-			endTime.setEditable(false);
-			superposition.setDisable(true);
-			delete.setDisable(true);
+			disableControls();
 			//TODO: 调用blservice删除策略
 		}
 	}
@@ -101,6 +93,18 @@ public abstract class ItemController {
 	 */
 	protected boolean isFinished() {
 		return startTime.getValue()!=null && endTime.getValue()!=null;
+	}
+	
+	protected void disableControls() {
+		state.setText("已删除");
+		state.setTextFill(Color.GRAY);
+		title.setTextFill(Color.GRAY);
+		aditionalMessage.setEditable(false);
+		discount.setEditable(false);
+		startTime.setEditable(false);
+		endTime.setEditable(false);
+		superposition.setDisable(true);
+		delete.setDisable(true);
 	}
 	
 	/**

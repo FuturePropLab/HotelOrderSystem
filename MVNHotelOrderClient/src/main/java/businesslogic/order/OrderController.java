@@ -3,6 +3,7 @@ package businesslogic.order;
 import java.util.ArrayList;
 import java.util.List;
 
+import Exception.CustomerCreditNotEnoughException;
 import businesslogicservice.OrderService;
 import dataservice.OrderDataService;
 import po.OrderPO;
@@ -107,8 +108,9 @@ public class OrderController implements OrderService{
 	 * 创建订单
 	 * @param orderInput 下单信息
 	 * @return 订单信息
+	 * @throws CustomerCreditNotEnoughException 客户信用值为负
 	 */
-	public OrderVO createOrders(OrderInputVO orderInput) {
+	public OrderVO createOrders(OrderInputVO orderInput) throws CustomerCreditNotEnoughException {
 		if(orderInput==null){
 			return null;
 		}

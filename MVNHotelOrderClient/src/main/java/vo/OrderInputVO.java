@@ -31,7 +31,7 @@ public class OrderInputVO {
 	 *  @param numberOfRooms  预订的房间数量
 	 *  @param planedPeopleNumber  预计入住人数
 	 *  @param child  是否有儿童
-	 *  @param price 房间单价
+	 *  @param price 订单总价
 	 */
 	public OrderInputVO(String customerID, String hotelID, Date startTime, Date latestTime, Date planedLeaveTime,
 			RoomType roomType, int numberOfRooms, int planedPeopleNumber, boolean child,double price) {

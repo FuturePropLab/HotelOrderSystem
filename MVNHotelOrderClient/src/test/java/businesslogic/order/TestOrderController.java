@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import Exception.CustomerCreditNotEnoughException;
 import stub.OrderDate_Stub;
 import tools.Mark;
 import tools.OrderState;
@@ -56,7 +57,12 @@ public class TestOrderController {
 
 	@Test
 	public void testCreateOrders() {
-		OrderVO newOrderVO=orderController.createOrders(orderInputVO);
+		OrderVO newOrderVO = null;
+		try {
+			newOrderVO = orderController.createOrders(orderInputVO);
+		} catch (CustomerCreditNotEnoughException e) {
+			System.out.println("客户信用值为负");
+		}
 		assertNotNull(newOrderVO);
 		assertEquals(newOrderVO.customerID, "customerID");
 	}

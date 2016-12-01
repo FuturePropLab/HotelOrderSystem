@@ -2,6 +2,7 @@ package businesslogic.hotel;
 
 import java.util.List;
 
+import Exception.CustomerCreditNotEnoughException;
 import dataservice.HotelDataService;
 import stub.HotelDeal_Stub;
 import stub.ManageHotelInfo_Stub;
@@ -91,7 +92,12 @@ public class Hotel {
 	 */
 	public List<CommentVO> getComment(String hotel_id) {
 		// TODO Auto-generated method stub
-		MockOrder test=new MockOrder(null, null, null, null);
+		MockOrder test = null;
+		try {
+			test = new MockOrder(null, null, null, null);
+		} catch (CustomerCreditNotEnoughException e) {
+			System.out.println("客户信用值不足");
+		}
 		return test.getComment();
 	}
 	

@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import Exception.OutOfBoundsException;
 import businesslogicservice.HotelDealService;
+import tools.Mark;
 import tools.RoomType;
 import tools.SortType;
 import tools.Star;
@@ -27,8 +29,13 @@ public class HotelDeal_Stub implements HotelDealService {
 		typeList.add(typeRoomInfo1);
 		HotelRoomInfoVO hotelRoomInfoVO = new HotelRoomInfoVO("001","�ٻ���Ƶ�",typeList);
 		
-		HotelInfoVO hotelinfo=new HotelInfoVO("001","�ٻ���Ƶ�", "nanjing","xinjiekou",null,"good","room",hotelRoomInfoVO,Star.five);
-		hotelInfolist.add(hotelinfo);
+		try {
+			HotelInfoVO hotelinfo = new HotelInfoVO("001","�ٻ���Ƶ�", "nanjing","xinjiekou",new Mark(4.5),
+					"good","room",hotelRoomInfoVO,Star.five);
+			hotelInfolist.add(hotelinfo);
+		} catch (OutOfBoundsException e) {
+			e.printStackTrace();
+		}
 
 		return hotelInfolist;
 		

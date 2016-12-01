@@ -31,12 +31,12 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Label prefHeight="46.0" prefWidth="202.0" text="节日日期:">
+                  <Label prefHeight="46.0" prefWidth="202.0" text="节日时间段:">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label text="当前状态:" GridPane.columnIndex="2">
+                  <Label text="当前状态:" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -56,12 +56,12 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="46.0" prefWidth="202.0" text="与其它折扣叠加:" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <Label prefHeight="46.0" prefWidth="202.0" text="与其它折扣叠加:" GridPane.columnIndex="2" GridPane.rowIndex="3">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="46.0" prefWidth="202.0" text="折扣数:" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <Label prefHeight="46.0" prefWidth="202.0" text="折扣数:" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -84,7 +84,7 @@
                         <Font size="24.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="discount" onAction="#handleDiscount" text="9.5" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                  <TextField fx:id="discount" onAction="#handleDiscount" text="9.5" GridPane.columnIndex="3" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin>
@@ -92,18 +92,19 @@
                         <Font size="24.0" />
                      </font>
                   </TextField>
-                  <Label fx:id="state" text="填写中" textFill="#7c7878" GridPane.columnIndex="3">
+                  <Label fx:id="state" text="填写中" textFill="#7c7878" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <font>
                         <Font size="27.0" />
                      </font>
                   </Label>
-                  <CheckBox fx:id="superposition" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                  <Hyperlink fx:id="delete" onAction="#handleDelete" text="确 定" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                  <CheckBox fx:id="superposition" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <Hyperlink fx:id="delete" onAction="#handleDelete" text="确 定" GridPane.columnIndex="3">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Hyperlink>
-                  <DatePicker fx:id="festivalDate" onAction="#handleFestivalDate" onKeyReleased="#handleFestivalDate" prefHeight="48.0" prefWidth="184.0" promptText="2015-10-19" GridPane.columnIndex="1" />
+                  <DatePicker fx:id="festivalDate_from" onAction="#handleFestivalDate" onKeyReleased="#handleFestivalDate" prefHeight="48.0" prefWidth="184.0" promptText="2015-10-19" GridPane.columnIndex="1" />
+                  <DatePicker fx:id="festivalDate_to" onAction="#handleFestivalDate" onKeyReleased="#handleFestivalDate" prefHeight="48.0" prefWidth="184.0" promptText="2015-10-19" GridPane.columnIndex="2" />
                </children>
             </GridPane>
          </children>

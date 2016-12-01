@@ -34,7 +34,7 @@ public class PlacingOrderInfo {
 	 * @param planedLeaveTime 预计离开时间
 	 * @param planedPeopleNumber 预计入住人数
 	 * @param child 有无儿童
-	 * @param price 房间单价
+	 * @param price 订单总价
 	 */
 	public PlacingOrderInfo(String customerID, RoomType roomType, int numberOfRooms, ArrayList<String> roomNumber,
 			String hotelID, Date startTime, Date latestTime, Date planedLeaveTime, int planedPeopleNumber,
