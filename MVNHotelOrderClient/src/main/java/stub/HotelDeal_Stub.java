@@ -70,7 +70,7 @@ public class HotelDeal_Stub implements HotelDealService {
 		Date date1 = new Date(2016, 9, 23);
 		Date date2 = new Date(2016,9,24);
 		
-		DiscountVO_hotel discount1=new DiscountVO_hotel("001",8,date1,date2);
+		DiscountVO_hotel discount1=new DiscountVO_hotel(hotel_id, 0, null, null);
 		discountList.add(discount1);
 		
 		return discountList;

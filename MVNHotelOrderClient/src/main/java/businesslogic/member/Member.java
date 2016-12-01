@@ -12,8 +12,12 @@ import vo.MemberVO;
  *
  */
 public class Member {
+	/**
+	 * 分别委托给会员申请及回复 和 会员管理
+	 */
 	private MemberApply memberApply;
 	private MemberManage memberManage;
+	
 	public Member() {
 		memberApply=new MemberApply();
 		memberManage=new MemberManage();

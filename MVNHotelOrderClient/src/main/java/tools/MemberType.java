@@ -1,9 +1,8 @@
 package tools;
 
 import java.io.Serializable;
-import java.util.Date;
-
-import Exception.OutOfBoundsException;
+import java.time.LocalDate;
+import java.util.Calendar;
 
 /**
  *  会员类型，包含会员的类型和会员类型信息，客户ID
@@ -15,7 +14,7 @@ public class MemberType  implements Serializable{
 	 */
 	private static final long serialVersionUID = 5318461208984318873L;
 	MemberBelongType type=MemberBelongType.None;
-	Date birthday;
+	LocalDate birthday;
 	String companyName;
 	String customer_ID;
 	
@@ -34,11 +33,11 @@ public class MemberType  implements Serializable{
 		this.type = type;
 	}
 
-	public Date getBirthday() {
+	public LocalDate getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(LocalDate birthday) {
 		this.birthday = birthday;
 	}
 
@@ -58,9 +57,5 @@ public class MemberType  implements Serializable{
 		this.customer_ID = customer_ID;
 	}
 
-	/**
-	 *  会员的类型
-	 *  @author zjy
-	 */
 
 }

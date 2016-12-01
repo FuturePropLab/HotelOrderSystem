@@ -21,13 +21,13 @@ public class TestHotelDiscount {
 	public void test() {
 		Date t1=new Date(2016,9,1);
 		Date t2=new Date(2016,9,2);
-		ResultMessage2 expect=ResultMessage2.fail;
+		ResultMessage2 expect=ResultMessage2.Fail;
 		String hotelid="0000";
 		String discountid="0001";
 		HotelDiscount test=new HotelDiscount();
-		DiscountVO_hotel expect2=new DiscountVO_hotel("0000",9.9,t1,t2);
+//		DiscountVO_hotel expect2=new DiscountVO_hotel("0000",9.9,t1,t2);
 		List<DiscountVO_hotel> list=new LinkedList();
-		list.add(expect2);
+//		list.add(expect2);
 		assertEquals(t1,test.getHotelDiscount(hotelid).get(0).startDate);
 //		assertEquals(t1,test.getSingleHotelDiscount(discountid).startDate);
 //		assertEquals(t2,test.editHotelDiscount(hotelid).EndDate);

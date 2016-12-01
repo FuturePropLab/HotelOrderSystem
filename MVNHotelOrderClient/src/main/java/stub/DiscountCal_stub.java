@@ -20,7 +20,7 @@ public class DiscountCal_stub implements StrategyGetService{
 		List<DiscountVO> dis=new ArrayList();
 		Date t1=new Date(2016,9,1);
 		Date t2=new Date(2016,9,2);
-		DiscountVO_hotel dvo=new DiscountVO_hotel("0000",9.9,t1,t2);
+		DiscountVO_hotel dvo=new DiscountVO_hotel(null, 0, null, null);
 		dis.add(dvo);
 		
 		return dis;

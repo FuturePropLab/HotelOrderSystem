@@ -25,7 +25,7 @@ public class DiscountHotelController implements DiscountHotelService  {
 		return hotelDiscount.addHotelDiscount(hotel_id, dis);
 	}
 
-	public ResultMessage_strategy editHotelDiscount(String discount_id, DiscountVO_hotel discountVO_hotel) {
+	public ResultMessage2 editHotelDiscount(String discount_id, DiscountVO_hotel discountVO_hotel) {
 		// TODO Auto-generated method stub
 		return hotelDiscount.editHotelDiscount(discount_id,discountVO_hotel);
 	}

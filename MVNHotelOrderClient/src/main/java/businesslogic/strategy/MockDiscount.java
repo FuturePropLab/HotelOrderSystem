@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import businesslogicservice.DiscountHotelService;
+import tools.ResultMessage2;
 import tools.ResultMessage_strategy;
 import vo.DiscountVO_hotel;
 import vo.OrderInputCalVO;
@@ -48,10 +49,6 @@ public class MockDiscount implements DiscountHotelService{
 		return null;
 	}
 
-	public ResultMessage_strategy editHotelDiscount(String discount_id, DiscountVO_hotel discountVO_hotel) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	public ResultMessage_strategy deleteHotelDiscount(String hotel_id, String discount_id) {
 		// TODO Auto-generated method stub
@@ -59,6 +56,11 @@ public class MockDiscount implements DiscountHotelService{
 	}
 
 	public List<DiscountVO_hotel> getHotelDiscount(String hotel_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ResultMessage2 editHotelDiscount(String discount_id, DiscountVO_hotel discountVO_hotel) {
 		// TODO Auto-generated method stub
 		return null;
 	}

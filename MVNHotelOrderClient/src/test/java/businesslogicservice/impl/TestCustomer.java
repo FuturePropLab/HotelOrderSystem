@@ -19,7 +19,7 @@ public class TestCustomer {
 		
 		CustomerInputVO test=new CustomerInputVO("xx","xxx",
 				"xxx", "123456789", "xx");
-		ResultMessage2 expect= ResultMessage2.success;
+		ResultMessage2 expect= ResultMessage2.Success;
 		String customer_id="0000";
 		MemberType memberType = new MemberType("123");
 		MemberVO membervo  = new MemberVO("123", memberType);

@@ -1,6 +1,6 @@
 package businesslogic.strategy;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.List;
 
@@ -42,40 +42,40 @@ public class HotelStrategy {
 	 * 
 	 * @return 最优酒店策略
 	 */
-	public StrategyVO_hotel calBest() {
+	public List<StrategyVO_hotel> calBest() {
 
-		StrategyVO_hotel res = null;
+		List<StrategyVO_hotel> res = null;
 
-		Calendar end = orderInput.planedLeaveTime;
-		Calendar start = orderInput.startTime;
-
-		long s1 = start.getTimeInMillis();
-		long e1 = end.getTimeInMillis();
-		long days = (e1 - s1) / (1000 * 60 * 60 * 24);
+		LocalDate end = orderInput.endDate;
+		LocalDate start = orderInput.startDate;
+//
+//		long s1 = start.getTimeInMillis();
+//		long e1 = end.getTimeInMillis();
+//		long days = (e1 - s1) / (1000 * 60 * 60 * 24);
 
 		Iterator iter = strategyList.iterator();
 		
 		while (iter.hasNext()) {
 			StrategyVO_hotel discountVO_hotel = (StrategyVO_hotel) iter.next();
 
-			long s = discountVO_hotel.startDate.getTimeInMillis();
-			long e = discountVO_hotel.endDate.getTimeInMillis();
-			long daysWithHotelDiscount = (e - s) / (1000 * 60 * 60 * 24);
+//			long s = discountVO_hotel.startDate.getTimeInMillis();
+//			long e = discountVO_hotel.endDate.getTimeInMillis();
+//			long daysWithHotelDiscount = (e - s) / (1000 * 60 * 60 * 24);
 
-			double price = orderInput.price * orderInput.numberOfRooms
-					* (daysWithHotelDiscount * discountVO_hotel.discount + days - daysWithHotelDiscount);
-
-			if (this.price < 0) {
-
-				res = discountVO_hotel;
-				this.price = price;
-
-			} else if (price < this.price) {
-
-				this.price = price;
-
-				res = discountVO_hotel;
-			}
+//			double price = orderInput.price * orderInput.numberOfRooms
+//					* (daysWithHotelDiscount * discountVO_hotel.discount + days - daysWithHotelDiscount);
+//
+//			if (this.price < 0) {
+//
+//				res = discountVO_hotel;
+//				this.price = price;
+//
+//			} else if (price < this.price) {
+//
+//				this.price = price;
+//
+//				res = discountVO_hotel;
+//			}
 		}
 		return res;
 	}

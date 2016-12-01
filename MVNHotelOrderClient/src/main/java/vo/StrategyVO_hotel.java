@@ -1,6 +1,6 @@
 package vo;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 
 import po.DiscountPO_hotel;
 import tools.Strategy_hotelType;
@@ -12,9 +12,9 @@ import tools.Strategy_hotelType;
  */
 
 public class StrategyVO_hotel {
-	public Calendar startDate;// 折扣开始时间
+	public LocalDate startDate;// 折扣开始时间
 
-	public Calendar endDate;
+	public LocalDate endDate;
 
 	public Strategy_hotelType type;
 

@@ -18,7 +18,7 @@ public ResultMessage_strategy addWebDiscount(DiscountVO_web dis) {
 	
 }
 
-public DiscountVO_web editWebDiscount(String Discount_id) {
+public ResultMessage2 editWebDiscount(String Discount_id) {
 	Discount_stub test=new Discount_stub();
 	
 	

@@ -34,7 +34,7 @@ public class TestHotel {
 	@Test
 	public void test() throws OutOfBoundsException {
 		Hotel test=new Hotel();
-		ResultMessage2 re=ResultMessage2.success
+		ResultMessage2 re=ResultMessage2.Success
 				;
 		HotelInputVO t=new HotelInputVO("JINLINGDAJIUDIAN","xinjiekou","good",Star.five);
 		List<TypeRoomInfo> typeList = new ArrayList<TypeRoomInfo>();
@@ -66,11 +66,11 @@ public class TestHotel {
 		
 		//Date t1=new Date(2016,9,1);
 		//Date t2=new Date(2016,9,2);
-		ResultMessage2 expect=ResultMessage2.fail;
+		ResultMessage2 expect=ResultMessage2.Fail;
 		
 		String discountid="0001";
 		HotelDiscount temp=new HotelDiscount();
-		DiscountVO_hotel expect2=new DiscountVO_hotel("0000",9.9,t1,t2);
+		DiscountVO_hotel expect2=new DiscountVO_hotel(discountid, 0, null, null);
 		List<DiscountVO_hotel> list=new LinkedList();
 		
 		List<CommentVO> clist=new ArrayList();

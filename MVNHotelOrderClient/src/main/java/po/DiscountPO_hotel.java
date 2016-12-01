@@ -1,10 +1,10 @@
 package po;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
 
 import tools.DiscountState;
 import tools.Strategy_hotelType;
+import vo.DiscountVO_hotel;
 /**
  * 
  * @author LWY
@@ -16,31 +16,47 @@ public class DiscountPO_hotel {
 
 	private Strategy_hotelType type;
 	
-	private String Discount_id;
+	private String discountID;
 	
 	private double discount;
 	
-	private Calendar startDate;
+	private LocalDate startDate;
 	
-	private Calendar EndDate;
+	private LocalDate endDate;
 	
-	public Calendar getStartDate() {
+	public DiscountPO_hotel(DiscountState discountState,Strategy_hotelType type,String discountID,double discount,LocalDate startDate,LocalDate enDate){
+		this.discountState=discountState;
+		this.type=type;
+		this.discountID=discountID;
+		this.discount=discount;
+		this.startDate=startDate;
+		this.endDate=enDate;
+		
+	}
+	public DiscountPO_hotel(DiscountVO_hotel discountVO_hotel){
+		this.type=discountVO_hotel.type;
+		this.discountID=discountVO_hotel.discountID;
+		this.discount=discountVO_hotel.discount;
+		this.startDate=discountVO_hotel.startDate;
+		this.endDate=discountVO_hotel.endDate;
+	}
+	public LocalDate getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(Calendar startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 	public String getDiscount_id() {
-		return Discount_id;
+		return discountID;
 	}
 	public double getDiscount() {
 		return discount;
 	}
-	public Calendar getEndDate() {
-		return EndDate;
+	public LocalDate getEndDate() {
+		return endDate;
 	}
-	public void setEndDate(Calendar endDate) {
-		EndDate = endDate;
+	public void setEndDate(LocalDate endDate) {
+		this.endDate = endDate;
 	}
 	public Strategy_hotelType getType() {
 		return type;

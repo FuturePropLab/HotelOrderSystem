@@ -1,11 +1,7 @@
 package businesslogic.discount;
 
-import java.util.List;
-
 import businesslogicservice.DiscountDealService;
 import tools.ResultMessage2;
-import vo.DiscountSearchVO;
-import vo.DiscountVO;
 
 public class DiscountDealController implements DiscountDealService{
 
@@ -19,9 +15,9 @@ public class DiscountDealController implements DiscountDealService{
 		return discount.invalidDiscount(discount_id);
 	}
 
-	public List<DiscountVO> checkDiscount(DiscountSearchVO dsvo) {
-		// TODO Auto-generated method stub
-		return discount.CheckDiscount(dsvo);
-	}
+//	public List<DiscountVO> checkDiscount(DiscountSearchVO dsvo) {
+//		// TODO Auto-generated method stub
+//		return discount.CheckDiscount(dsvo);
+//	}
 
 }

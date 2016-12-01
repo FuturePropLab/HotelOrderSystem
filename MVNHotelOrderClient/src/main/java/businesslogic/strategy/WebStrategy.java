@@ -1,6 +1,7 @@
 package businesslogic.strategy;
 
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import businesslogic.discount.DiscountGet;
@@ -13,6 +14,7 @@ import vo.StrategyVO_web;
  */
 
 public class WebStrategy {
+	
 	private List<StrategyVO_web> strategyList;
 
 	public WebStrategy(OrderInputCalVO orderInput) {
@@ -28,21 +30,21 @@ public class WebStrategy {
  * 计算得到最优
  * @return 最优策略
  */
-	public StrategyVO_web calBest() {
+	public List<StrategyVO_web> calBest() {
 
 		double min = 1.0;
-		StrategyVO_web res = new StrategyVO_web(null);
+		List<StrategyVO_web> res = new LinkedList<StrategyVO_web>(null);
 		
 		Iterator iter = strategyList.iterator();
 	
 		while (iter.hasNext()) {
-			StrategyVO_web discountVO_web = (StrategyVO_web) iter.next();
-			if (discountVO_web.discount < min) {
-
-				min = discountVO_web.discount;
-				res=discountVO_web;
-				
-			}
+//			StrategyVO_web discountVO_web = (StrategyVO_web) iter.next();
+//			if (discountVO_web.discount < min) {
+//
+//				min = discountVO_web.discount;
+//				res=discountVO_web;
+//				
+//			}
 		}
 		return res;
 		

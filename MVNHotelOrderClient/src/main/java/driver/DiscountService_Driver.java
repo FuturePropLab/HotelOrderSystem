@@ -27,7 +27,7 @@ public class DiscountService_Driver {
 		re=dis.addHotelDiscount("005");
 		System.out.println(disvo.discount);
 		
-		disvo = dis.getSingleHotelDiscount("001");
+//		disvo = dis.getSingleHotelDiscount("001");
 		System.out.println(disvo.Discount_id);
 		
 		List<DiscountVO_hotel> list = new LinkedList<DiscountVO_hotel>();

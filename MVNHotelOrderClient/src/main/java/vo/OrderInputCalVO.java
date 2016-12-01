@@ -1,5 +1,9 @@
 package vo;
 
+import java.time.LocalDate;
+
+import businesslogic.member.MemberController;
+import tools.MemberBelongType;
 import tools.RoomType;
 
 /**
@@ -8,42 +12,90 @@ import tools.RoomType;
  * @author LWY
  */
 public class OrderInputCalVO {
-	public double price;//订房单价
-	public String customerID;
-	public String hotelID;
-	public int days;//根据input得到天数
-	public RoomType roomType;
-	public int numberOfRooms;
-
 	/**
+	 * 
 	 * @param price
 	 *            订房的单价
-	 * @param customer_ID
+	 * @param customerID
 	 *            客户ID
 	 * @param hotelID
 	 *            酒店ID
-	 * @param startTime
+	 * @param startDate
 	 *            订单开始时间
-	 * @param latestTime
-	 *            最晚订单执行时间
-	 * @param planedLeaveTime
+	 * @param endDate
 	 *            预计离开时间
 	 * @param roomType
 	 *            房间类型
 	 * @param numberOfRooms
 	 *            预订的房间数量
-	 * @param planedPeopleNumber
-	 *            预计入住人数
-	 * @param child
-	 *            是否有儿童
 	 */
-	public OrderInputCalVO(OrderInputVO orderInputVO,int days) {
+	public OrderInputCalVO(double price, String customerID, String hotelID, LocalDate startDate, LocalDate endDate,
+			RoomType roomType, int numberOfRooms) {
 		super();
-		this.price=orderInputVO.price;
-		this.customerID = orderInputVO.customerID;
-		this.hotelID = orderInputVO.hotelID;
-		this.days=days;
-		this.roomType = orderInputVO.roomType;
-		this.numberOfRooms = orderInputVO.numberOfRooms;
+		this.price = price;
+		this.customerID = customerID;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.hotelID = hotelID;
+		this.roomType = roomType;
+		this.numberOfRooms = numberOfRooms;
+
+		setMemberBelongType(customerID);
+		setDays(startDate, endDate);
+		if (memberBelongType == MemberBelongType.Ordinary) {
+			setBirthday(customerID);
+		} else if (memberBelongType == MemberBelongType.Enterprise) {
+
+		}
+	}
+
+	public double price;// 订房单价
+	public String customerID;
+	public String hotelID;
+	public LocalDate startDate;
+	public LocalDate endDate;
+	public RoomType roomType;
+	public int numberOfRooms;
+
+	public int days;// 计算需要,为订多少天
+	public MemberBelongType memberBelongType;
+	public LocalDate birthday;
+	public String enterprise;
+
+	/**
+	 * @param price
+	 * 
+	 * @param customer_ID
+	 * 
+	 * @param hotelID
+	 * 
+	 * @param startDate
+	 * @param endDate
+	 * 
+	 * @param roomType
+	 * 
+	 * @param hotelID
+	 * @param numberOfRooms
+	 * 
+	 */
+
+	public void setDays(LocalDate start, LocalDate end) {
+		this.days = (int)(end.toEpochDay()-start.toEpochDay());
+
+	}
+
+	public void setBirthday(String customerID) {
+		MemberController member = new MemberController();
+		this.birthday = member.getMemberInfo(customerID).memberType.getBirthday();
+	}
+
+	public void setMemberBelongType(String customerID) {
+		MemberController memberController = new MemberController();
+		memberBelongType = memberController.getMemberInfo(customerID).memberType.getType();
+	}
+
+	public void setEnterprise(String customerID) {
+		MemberController memberController = new MemberController();
+		enterprise = memberController.getMemberInfo(customerID).memberType.getCompanyName();
 	}
 }
