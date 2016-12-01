@@ -9,15 +9,20 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
 
+import businesslogic.account.HotelAccountController;
+import businesslogic.hotel.ManageHotelController;
+import businesslogicservice.ManageHotelInfoService;
 import dataservice.HotelDataService;
 import po.HotelPO;
 import rmi.RemoteHelper;
-import tools.HotelAddress;
+import tools.HotelFacility;
 import tools.HotelRoomInfo;
+import tools.RoomType;
 import tools.TypeRoomInfo;
+import vo.HotelInputVO;
 
 public class ClientRunner {
 	private RemoteHelper remoteHelper;
@@ -56,35 +61,9 @@ public class ClientRunner {
 	
 	
 	public void test() throws RemoteException{		
-//		AccountCustomerService accountCustomerService = serviceFactory.AccountContollerUtil.getAccountCustomerServiceUtil();
-//		CustomerSearchVO customerSearchVO = new CustomerSearchVO(null,"李",null);
-//		List<AccountVO> cAccountVOs = accountCustomerService.searchCustomerAccount(customerSearchVO);
-//		Iterator<AccountVO> it = cAccountVOs.iterator();
-//		while(it.hasNext()){
-//			AccountVO accountVO = it.next();
-//			System.out.println(accountVO.userid+"  "+accountVO.username+"  "+accountVO.accountType);
-//		}
-//		CustomerVO customerVO = accountCustomerService.getCustomerDetail("CS002");
-//		System.out.println(customerVO.customerName+" "+customerVO.telephone);
-		
-		HotelDataService hotelDataService  =RemoteHelper.getInstance().getHotelDataService();
-		HotelPO hotelPO = hotelDataService.getHotel("HT001");
-		System.out.println(hotelPO.getHotelName());//sdf
-		System.out.println(hotelPO.getStar());
-		
-		 
-		HotelAddress hotelAddress =  hotelPO.getHotelAddress();
-		System.out.println(hotelAddress.toString());
-		
-		HotelRoomInfo hotelRoomInfo = hotelPO.getHotelRoom();
-		List<TypeRoomInfo> list = hotelRoomInfo.getTypeRoomInfo();
-		Iterator<TypeRoomInfo> it = list.iterator();
-		while(it.hasNext()){
-			TypeRoomInfo typeRoomInfo  = it.next();
-			System.out.println(typeRoomInfo.getRoomtype() + "  "+ typeRoomInfo.getPrice());
-		}
-		
-		
+		  ManageHotelInfoService manageHotelInfoService = ManageHotelController.getInstance();
+		  HotelInputVO hotelInputVO =new HotelInputVO("lanniao", "zhujunyi");
+		  System.out.println(manageHotelInfoService.addHotel(hotelInputVO));
 	}
 	
 	public static void main(String[] args) throws RemoteException{

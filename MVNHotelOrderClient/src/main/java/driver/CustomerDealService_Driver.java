@@ -1,10 +1,6 @@
 package driver;
 
-import java.rmi.RemoteException;
-
 import businesslogicservice.CustomerDealService;
-import tools.ResultMessage;
-import tools.ResultMessageDiscount;
 import tools.ResultMessage_Modify;
 import vo.CustomerVO;
 

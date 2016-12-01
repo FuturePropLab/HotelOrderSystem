@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import businesslogicservice.ManageHotelInfoService;
-import tools.ResultMessageDiscount;
 import tools.RoomType;
 import tools.Star;
 import tools.TypeRoomInfo;
@@ -18,14 +17,14 @@ public class ManageHotelInfoService_Driver {
 		/*public ResultMessage2 addHotel( HotelInputVO vo);
 		public HotelInfoVO editHotelInfo (String hotel_id);
 		public ResultMessage2 saveHotelInfo (HotelInfoVO hotelInfo);*/
-		HotelInputVO vo=new HotelInputVO("ronghua","nanjing","xinjiekou",Star.four);
+		HotelInputVO vo=new HotelInputVO("ronghua",null,null, Star.four);
 		
 		List<TypeRoomInfo> typeList = new ArrayList<TypeRoomInfo>();
 		TypeRoomInfo typeRoomInfo1= new TypeRoomInfo("002","�ٻ���Ƶ�",RoomType.Single,5,180.0);
 		typeList.add(typeRoomInfo1);
 		HotelRoomInfoVO hotelRoomInfoVO = new HotelRoomInfoVO("002","�ٻ���Ƶ�",typeList);
 		
-		HotelInfoVO hotelinfo=new HotelInfoVO("002","�ٻ���Ƶ�", "nanjing","xinjiekou",null,"good","room",hotelRoomInfoVO,Star.five);
+		HotelInputVO hotelinfo=new HotelInputVO("002","", "nanjing",null);
 		
 		
 		System.out.println(manageHotelInfoService.addHotel(vo));

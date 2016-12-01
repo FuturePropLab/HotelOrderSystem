@@ -39,7 +39,7 @@ public class HotelFacility  implements Serializable{
     	this.swimmingPool = false;
     	this.broadband = false;
     	this.parking = false;
-    	this.elseFacility = elseFacility;  	
+    	this.elseFacility = "";  	
      }
      
      public HotelFacility(){

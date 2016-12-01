@@ -18,6 +18,7 @@ import po.HotelFacilityPO;
 import po.TypeRoomInfoPO;
 import tools.HotelRoomInfo;
 import tools.ResultMessage_Hotel;
+import tools.Star;
 import tools.TypeRoomInfo;
 
 public class HotelDataHelperImpl implements HotelDataHelper {
@@ -181,10 +182,29 @@ public class HotelDataHelperImpl implements HotelDataHelper {
 	 * @see dataservice.datahelper.HotelDataHelper#modifyHotelBasePO(po.HotelBasePO)
 	 */
 	public ResultMessage_Hotel modifyHotelBasePO(HotelBasePO hotelBasePO) {
+		String hotelID = hotelBasePO.getHotelID();
+		HotelBasePO hotelBasePO2 = getHotelBasePO(hotelID);
+		if(hotelBasePO2==null)  return ResultMessage_Hotel.fail;
+		
+		String hotelName = hotelBasePO.getHotelName();		
+		if(hotelName!=null && "".equals(hotelName)){
+			 hotelBasePO2.setHotelName(hotelName);
+		}
+		
+		if(hotelBasePO.getGrade()!=0){
+			hotelBasePO2.setGrade(hotelBasePO.getGrade());
+		}
+		
+		Star star = hotelBasePO.getStar();
+		if(star != null){
+			hotelBasePO2.setStar(star);
+		}
+		
+		
 		Session s = Hibernateutils.getSessionFactory().openSession();
 		try{
 			Transaction t = s.beginTransaction();
-			s.update(hotelBasePO);
+			s.update(hotelBasePO2);
 			t.commit();
 			return ResultMessage_Hotel.success;
 		}catch(Exception e){
@@ -279,10 +299,14 @@ public class HotelDataHelperImpl implements HotelDataHelper {
 	 */
 	public ResultMessage_Hotel modifyHotelRoomInfo(HotelRoomInfo hotelRoomInfo) {
 		List<TypeRoomInfo> typeRoomInfos = hotelRoomInfo.getTypeRoomInfo();
+		if(typeRoomInfos == null) return ResultMessage_Hotel.success;
+		String hotelName = getHotelName(hotelRoomInfo.getHotelID());
+		if(hotelName==null || "".equals(hotelName))  return ResultMessage_Hotel.fail;
 		Iterator<TypeRoomInfo> it = typeRoomInfos.iterator();
 		while(it.hasNext()){
 			TypeRoomInfo typeRoomInfo = it.next();
 			if(hotelRoomInfo.getHotelID().equals(typeRoomInfo.getHotelID())){
+				typeRoomInfo.setHotelName(hotelName);
 				ResultMessage_Hotel rs = addTypeRoomInfo(typeRoomInfo);
 				if(rs.equals(ResultMessage_Hotel.fail)){
 					rs = modifyTypeRoomInfo(typeRoomInfo);
@@ -308,7 +332,7 @@ public class HotelDataHelperImpl implements HotelDataHelper {
 	}
 	
 
-	private String getHotelName(String hotelID){
+	public String getHotelName(String hotelID){
 		Session s = Hibernateutils.getSessionFactory().openSession();
 		//check if the userid or username already exits
 		try {	

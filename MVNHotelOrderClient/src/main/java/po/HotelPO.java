@@ -7,6 +7,7 @@ import tools.HotelAddress;
 import tools.HotelFacility;
 import tools.HotelRoomInfo;
 import tools.Star;
+import vo.HotelInputVO;
 
 public class HotelPO implements Serializable{
 	private static final long serialVersionUID = -7655858599343856811L;
@@ -18,6 +19,36 @@ public class HotelPO implements Serializable{
 	private HotelFacility facility;
 	private HotelRoomInfo hotelRoom;
 	private Star star;
+	
+	public HotelPO(HotelInputVO hotelInputVO){
+		super();
+		this.hotelID = hotelInputVO.hotelID;
+		this.hotelName = hotelInputVO.HotelName;
+		this.facility =hotelInputVO.hotelFacility;
+		this.hotelRoom =hotelInputVO.hotelRoomInfo;
+		this.introduction =hotelInputVO.hotelInfo;
+		this.hotelAddress = hotelInputVO.hotelAddress;
+		this.star = hotelInputVO.star;
+	}
+	
+	/**
+	 * 
+	 * @param hotelID
+	 * @param hotelName
+	 */
+	public HotelPO(String hotelID , String hotelName){
+		this.hotelID = hotelID;
+		this.hotelName = hotelName;
+	}
+	
+	/**
+	 * 
+	 * @param hotelID
+	 */
+	public HotelPO(String hotelID){
+		this.hotelID = hotelID;
+	}
+	
 	
 	public String getHotelID() {
 		return hotelID;

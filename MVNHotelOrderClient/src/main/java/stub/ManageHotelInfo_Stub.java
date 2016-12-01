@@ -46,4 +46,11 @@ public class ManageHotelInfo_Stub implements ManageHotelInfoService {
 		return ResultMessage_Hotel.success;
 	}
 
+
+
+	public ResultMessage_Hotel saveHotelInfo(HotelInputVO hotelInputVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

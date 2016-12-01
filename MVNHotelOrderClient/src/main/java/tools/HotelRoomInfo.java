@@ -9,9 +9,25 @@ public class HotelRoomInfo implements Serializable {
 	private String hotelName;
 	private List<TypeRoomInfo> typeRoomInfo;
 	
+	/**
+	 * 
+	 * @param hotelID
+	 * @param hotelName
+	 * @param typeRoomInfo
+	 */
 	public HotelRoomInfo(String hotelID, String hotelName, List<TypeRoomInfo> typeRoomInfo) {
 		this.hotelID = hotelID;
 		this.hotelName = hotelName;
+		this.typeRoomInfo= typeRoomInfo;
+	}
+	/**
+	 * 推荐使用
+	 * @param hotelID
+	 * @param typeRoomInfo
+	 */
+	public HotelRoomInfo(String hotelID, List<TypeRoomInfo> typeRoomInfo) {
+		this.hotelID = hotelID;
+		this.hotelName = null;
 		this.typeRoomInfo= typeRoomInfo;
 	}
 	public HotelRoomInfo() {

@@ -19,6 +19,14 @@ public class TypeRoomInfo implements Serializable{
     
 	  private  Double price; //房间价格
 	  
+	  /**
+	   * 
+	   * @param hotelID
+	   * @param hotelName
+	   * @param roomtype
+	   * @param availableCount
+	   * @param price
+	   */
 	  public TypeRoomInfo (String hotelID,String hotelName,RoomType roomtype,
     int availableCount,Double price){
 		  this.availableCount = availableCount;
@@ -27,7 +35,21 @@ public class TypeRoomInfo implements Serializable{
 		  this.price = price;
 		  this.roomtype = roomtype;
 	  }
-
+	  /**
+	   * 
+	   * @param hotelID
+	   * @param roomtype
+	   * @param availableCount
+	   * @param price
+	   */
+	  public TypeRoomInfo (String hotelID,RoomType roomtype, int availableCount,Double price){
+			 this.availableCount = availableCount;
+			 this.hotelID = hotelID;
+			 this.hotelName = null;
+			 this.price = price;
+			 this.roomtype = roomtype;
+	 }
+	  
 	public String getHotelID() {
 		return hotelID;
 	}

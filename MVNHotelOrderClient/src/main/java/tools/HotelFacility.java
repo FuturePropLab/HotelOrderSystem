@@ -23,6 +23,7 @@ public class HotelFacility  implements Serializable{
 
      
      public HotelFacility(){
+    	super();
     	this.airCondition = false;
     	this.gym = false;
     	this.healthHub = false;

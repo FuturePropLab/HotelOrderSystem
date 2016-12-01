@@ -28,6 +28,10 @@ public class HotelPO implements Serializable{
 	private HotelRoomInfo hotelRoom;
 	private Star star;
 	
+	
+	public HotelPO(){
+		super();
+	}
 	public HotelPO(HotelBasePO hotelBasePO , HotelAddressPO hotelAddressPO,  HotelInfo introduction
 			      ,  HotelRoomInfo hotelRoomInfo, HotelFacilityPO facilityPO){
 			this.hotelID = hotelBasePO.getHotelID();

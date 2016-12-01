@@ -10,6 +10,8 @@ import po.HotelAddressPO;
 import po.HotelBasePO;
 import po.HotelFacilityPO;
 import po.HotelPO;
+import tools.HotelAddress;
+import tools.HotelFacility;
 import tools.HotelRoomInfo;
 import tools.ResultMessage_Hotel;
 import tools.SearchHotel;
@@ -23,13 +25,88 @@ public class HotelDataServiceImpl implements HotelDataService {
 	}
 	
 	public ResultMessage_Hotel addHotel(HotelPO hotelPO) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		String hotelID = hotelPO.getHotelID();
+		if(hotelID==null || "".equals(hotelID))
+			return ResultMessage_Hotel.fail;
+		
+		//base
+		HotelBasePO hotelBasePO = new HotelBasePO(hotelPO);		
+		if(hotelBasePO.getHotelName()==null && "".equals(hotelBasePO.getHotelName())){
+			hotelBasePO.setHotelName(null);
+		}
+		hotelDataHelper.addHotelBasePO(hotelBasePO);
+		
+		//facility
+		HotelFacility hotelFacility;
+		String elString = null;
+		if(hotelPO.getFacility()!=null){
+			hotelFacility  = hotelPO.getFacility();	
+		
+		}else{
+			hotelFacility = new HotelFacility(elString);
+		}
+		HotelFacilityPO hotelFacilityPO = new HotelFacilityPO(hotelID , hotelFacility);
+		hotelDataHelper.addHotelFacilityPO(hotelFacilityPO);
+
+		//TODO
+		//info
+		if(hotelPO.getIntroduction()!=null){
+			
+		}
+		//roominfo same to modify
+		if(hotelPO.getHotelRoom()!=null){
+			HotelRoomInfo RoomInfo = hotelPO.getHotelRoom();
+			hotelDataHelper.modifyHotelRoomInfo(RoomInfo);		
+		}
+		//address
+		HotelAddress hotelAddress;
+		if(hotelPO.getHotelAddress()!=null){
+			hotelAddress = hotelPO.getHotelAddress();
+		}else{
+			hotelAddress = new HotelAddress(null, null, null, null);
+		}
+		HotelAddressPO hotelAddressPO = new HotelAddressPO(hotelID, hotelAddress);		
+		hotelDataHelper.addHotelAddressPO(hotelAddressPO);				
+		return ResultMessage_Hotel.success;
+		
 	}
 
 	public ResultMessage_Hotel modifyHotel(HotelPO hotelPO) throws RemoteException  {
-		// TODO Auto-generated method stub
-		return null;
+		String hotelID = hotelPO.getHotelID();
+		//System.out.println("2344: "+hotelPO.getHotelID());
+		if(hotelID==null || "".equals(hotelID))
+			return ResultMessage_Hotel.fail;
+		HotelBasePO hotelBasePO = new HotelBasePO(hotelPO);
+		
+		
+		//whether update base
+		hotelDataHelper.modifyHotelBasePO(hotelBasePO);
+		
+		
+		
+		//whether update facility
+		if(hotelPO.getFacility()!=null){
+			HotelFacility hotelFacility = hotelPO.getFacility();
+			HotelFacilityPO hotelFacilityPO  = new HotelFacilityPO(hotelID , hotelFacility);
+			hotelDataHelper.modifyHotelFacilityPO(hotelFacilityPO);
+		}
+		//TODO
+		if(hotelPO.getIntroduction()!=null){
+			
+		}
+		
+		if(hotelPO.getHotelRoom()!=null&&hotelPO.getHotelRoom().getTypeRoomInfo()!=null){
+			System.out.println("here");
+			HotelRoomInfo RoomInfo = hotelPO.getHotelRoom();
+			hotelDataHelper.modifyHotelRoomInfo(RoomInfo);		
+		}
+		
+		if(hotelPO.getHotelAddress()!=null){
+			HotelAddress hotelAddress = hotelPO.getHotelAddress();
+			HotelAddressPO hotelAddressPO = new HotelAddressPO(hotelID, hotelAddress);		
+			hotelDataHelper.modifyHotelAddressPO(hotelAddressPO);			
+		}		
+		return ResultMessage_Hotel.success;
 	}
 
 	public HotelPO getHotel(String hotel_id) throws RemoteException  {

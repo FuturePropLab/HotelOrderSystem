@@ -25,11 +25,7 @@ public class HotelController implements HotelDealService,ManageHotelInfoService{
 	}
 
 
-	public ResultMessage_Hotel saveHotelInfo(HotelInfoVO hotelInfo) {
-		// TODO Auto-generated method stub
-		
-		return hotel.saveHotelInfo(hotelInfo);
-	}
+
 
 	public List<HotelInfoVO> SearchHotel(SearchHotelVO searchhotel) {
 		// TODO Auto-generated method stub
@@ -54,6 +50,12 @@ public class HotelController implements HotelDealService,ManageHotelInfoService{
 	public List<CommentVO> getComment(String hotel_id) {
 		// TODO Auto-generated method stub
 		return hotel.getComment(hotel_id);
+	}
+
+
+	public ResultMessage_Hotel saveHotelInfo(HotelInputVO hotelInputVO) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
