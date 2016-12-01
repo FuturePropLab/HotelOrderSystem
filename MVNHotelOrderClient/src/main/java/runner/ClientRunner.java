@@ -56,7 +56,7 @@ public class ClientRunner {
 		
 		HotelDataService hotelDataService  =RemoteHelper.getInstance().getHotelDataService();
 		HotelPO hotelPO = hotelDataService.getHotel("HT001");
-		System.out.println(hotelPO.getHotelName());
+		System.out.println(hotelPO.getHotelName());//sdf
 		System.out.println(hotelPO.getStar());
 		
 		HotelAddress hotelAddress =  hotelPO.getHotelAddress();
