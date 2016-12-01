@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import businesslogic.discount.HotelDiscount;
 import stub.Discount_stub;
-import tools.ResultMessage2;
+import tools.ResultMessageDiscount;
 import vo.DiscountVO_hotel;
 
 public class TestHotelDiscount {
@@ -21,7 +21,7 @@ public class TestHotelDiscount {
 	public void test() {
 		Date t1=new Date(2016,9,1);
 		Date t2=new Date(2016,9,2);
-		ResultMessage2 expect=ResultMessage2.Fail;
+		ResultMessageDiscount expect=ResultMessageDiscount.Fail;
 		String hotelid="0000";
 		String discountid="0001";
 		HotelDiscount test=new HotelDiscount();

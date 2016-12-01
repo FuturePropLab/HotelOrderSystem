@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import businesslogic.discount.WebDiscount;
 import stub.Discount_stub;
-import tools.ResultMessage2;
+import tools.ResultMessageDiscount;
 import vo.DiscountVO;
 import vo.DiscountVO_web;
 
@@ -16,7 +16,7 @@ public class TestWebDiscount {
 
 	@Test
 	public void test() {
-		ResultMessage2 expect=ResultMessage2.Success;
+		ResultMessageDiscount expect=ResultMessageDiscount.Success;
 		WebDiscount test=new WebDiscount();
 		Date t1=new Date(2016,9,1);
 		Date t2=new Date(2016,9,2);

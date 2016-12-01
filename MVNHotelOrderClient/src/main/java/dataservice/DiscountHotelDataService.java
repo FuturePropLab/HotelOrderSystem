@@ -3,7 +3,7 @@ package dataservice;
 import java.util.List;
 
 import po.DiscountPO_hotel;
-import tools.ResultMessage2;
+import tools.ResultMessageDiscount;
 import tools.ResultMessage_strategy;
 import vo.DiscountVO_hotel;
 /**

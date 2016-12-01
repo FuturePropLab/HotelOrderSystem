@@ -12,13 +12,13 @@ import vo.DiscountVO_hotel;
  */
 public class DiscountPO_hotel {
 	
-	private DiscountState discountState;
+	private DiscountState discountState;//订单状态
 
-	private Strategy_hotelType type;
+	private Strategy_hotelType type;//促销策略类型
 	
 	private String discountID;
 	
-	private double discount;
+	private double discount;//折扣
 	
 	private LocalDate startDate;
 	

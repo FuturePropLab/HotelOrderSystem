@@ -7,7 +7,7 @@ public class DiscountPO_web {
 	
 	private Strategy_webType type;
 	
-	private DiscountState discountState;
+	private DiscountState discountState;//策略状态
 	
 	private double discount;
 	

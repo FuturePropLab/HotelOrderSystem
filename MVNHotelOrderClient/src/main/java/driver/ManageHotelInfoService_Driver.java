@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import businesslogicservice.ManageHotelInfoService;
-import tools.ResultMessage2;
+import tools.ResultMessageDiscount;
 import tools.RoomType;
 import tools.Star;
 import tools.TypeRoomInfo;

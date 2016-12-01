@@ -7,7 +7,7 @@ import java.util.List;
 
 import businesslogicservice.DiscountHotelService;
 import businesslogicservice.DiscountWebService;
-import tools.ResultMessage2;
+import tools.ResultMessageDiscount;
 import tools.ResultMessage_strategy;
 import vo.DiscountVO;
 import vo.DiscountVO_hotel;
@@ -16,11 +16,11 @@ import vo.DiscountVO_web;
 public class Discount_stub implements DiscountWebService,DiscountHotelService{
 
 	
-	public ResultMessage2 addHotelDiscount(String hotel_id) {
+	public ResultMessageDiscount addHotelDiscount(String hotel_id) {
 		// TODO Auto-generated method stub
 		DiscountVO dvo=new DiscountVO();
 		dvo.Discount_id=hotel_id;
-		return ResultMessage2.Success;
+		return ResultMessageDiscount.Success;
 	}
 
 	
@@ -48,13 +48,13 @@ public class Discount_stub implements DiscountWebService,DiscountHotelService{
 
 
 	
-	public ResultMessage2 editHotelDiscount(String discount_id,DiscountVO_hotel dis) {
+	public ResultMessageDiscount editHotelDiscount(String discount_id,DiscountVO_hotel dis) {
 		// TODO Auto-generated method stub
 		LocalDate t1=LocalDate.of(2016,9,01);
 		LocalDate t2=LocalDate.of(2016,9,02);
 		DiscountVO_hotel dvo= new DiscountVO_hotel("0000",9.9,t1,t2);
 		dvo.Discount_id=discount_id;
-		return ResultMessage2.Success;
+		return ResultMessageDiscount.Success;
 	}
 
 //	
@@ -89,13 +89,13 @@ public class Discount_stub implements DiscountWebService,DiscountHotelService{
 
 
 
-	public ResultMessage2 editWebDiscount(String Discount_id) {
+	public ResultMessageDiscount editWebDiscount(String Discount_id) {
 		// TODO Auto-generated method stub
 //		Date t1=new Date(2016,9,1);
 //		Date t2=new Date(2016,9,2);
 //		DiscountVO_web dis=new DiscountVO_web(10,"新街口",9.9,t1,t2,10);
 		
-		return ResultMessage2.Success;
+		return ResultMessageDiscount.Success;
 	}
 
 

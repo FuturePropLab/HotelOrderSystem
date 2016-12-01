@@ -6,23 +6,23 @@ package po;
  */
 public class DiscountPO_web_lv extends DiscountPO_web{
 	
-	private double discount;
+	private double discount;//折扣
 	
-	private int lv;
+	private int level;//会员等级
 	
-	private int levelUpCredit;
+	private int levelUpCredit;//升级所需信用
 	
 	public DiscountPO_web_lv(double discount,int lv,int levelUpCredit){
 		this.discount=discount;
-		this.lv=lv;
+		this.level=lv;
 		this.levelUpCredit=levelUpCredit;
 	}
 	public int getLv() {
-		return lv;
+		return level;
 	}
 	
 	public void setLv(int lv) {
-		this.lv = lv;
+		this.level = lv;
 	}
 	
 	public int getLevelUpCredit() {

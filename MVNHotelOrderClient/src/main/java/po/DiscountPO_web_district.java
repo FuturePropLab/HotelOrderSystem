@@ -7,13 +7,13 @@ package po;
  */
 public class DiscountPO_web_district extends DiscountPO_web{
 
-	private int lv;
+	private int level;//会员等级
 	private String city;
 	private String district;
 	private String businessCircle;
 	private double discount;
 	public DiscountPO_web_district(int lv,String city,String district,String businessCircle,double discount){
-		this.lv=lv;
+		this.level=lv;
 		this.setCity(city);
 		this.setDistrict(district);
 		this.setBusinessCircle(businessCircle);
@@ -22,11 +22,11 @@ public class DiscountPO_web_district extends DiscountPO_web{
 
 
 	public int getLv() {
-		return lv;
+		return level;
 	}
 	
 	public void setLv(int lv) {
-		this.lv = lv;
+		this.level = lv;
 	}
 
 

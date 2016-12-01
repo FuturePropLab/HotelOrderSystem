@@ -1,7 +1,7 @@
 package businesslogic.discount;
 
 import businesslogicservice.DiscountWebService;
-import tools.ResultMessage2;
+import tools.ResultMessageDiscount;
 import tools.ResultMessage_strategy;
 import vo.DiscountVO;
 import vo.DiscountVO_web;
@@ -20,7 +20,7 @@ public class DiscountWebController implements DiscountWebService {
 		return web.addWebDiscount(dis);
 	}
 
-	public ResultMessage2 editWebDiscount(String Discount_id) {
+	public ResultMessageDiscount editWebDiscount(String Discount_id) {
 		// TODO Auto-generated method stub
 		
 		return web.editWebDiscount(Discount_id);

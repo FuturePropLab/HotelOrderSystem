@@ -1,7 +1,7 @@
 package businesslogic.discount;
 
 import businesslogicservice.DiscountDealService;
-import tools.ResultMessage2;
+import tools.ResultMessageDiscount;
 
 public class DiscountDealController implements DiscountDealService{
 
@@ -10,7 +10,7 @@ public class DiscountDealController implements DiscountDealService{
 	public DiscountDealController(){
 		discount = new Discount();
 	}
-	public ResultMessage2 invalidDiscount(String discount_id) {
+	public ResultMessageDiscount invalidDiscount(String discount_id) {
 		// TODO Auto-generated method stub
 		return discount.invalidDiscount(discount_id);
 	}

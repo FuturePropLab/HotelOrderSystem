@@ -4,7 +4,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import tools.ResultMessage;
-import tools.ResultMessage2;
+import tools.ResultMessageDiscount;
 import tools.ResultMessage_Modify;
 import vo.CustomerSearchVO;
 import vo.CustomerVO;

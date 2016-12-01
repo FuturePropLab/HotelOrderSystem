@@ -17,7 +17,7 @@ import businesslogic.hotel.MockHotelDiscount;
 import businesslogic.hotel.MockOrder;
 import tools.DateRange;
 import tools.PriceRange;
-import tools.ResultMessage2;
+import tools.ResultMessageDiscount;
 import tools.RoomType;
 import tools.SortType;
 import tools.Star;
@@ -34,7 +34,7 @@ public class TestHotel {
 	@Test
 	public void test() throws OutOfBoundsException {
 		Hotel test=new Hotel();
-		ResultMessage2 re=ResultMessage2.Success
+		ResultMessageDiscount re=ResultMessageDiscount.Success
 				;
 		HotelInputVO t=new HotelInputVO("JINLINGDAJIUDIAN","xinjiekou","good",Star.five);
 		List<TypeRoomInfo> typeList = new ArrayList<TypeRoomInfo>();
@@ -66,7 +66,7 @@ public class TestHotel {
 		
 		//Date t1=new Date(2016,9,1);
 		//Date t2=new Date(2016,9,2);
-		ResultMessage2 expect=ResultMessage2.Fail;
+		ResultMessageDiscount expect=ResultMessageDiscount.Fail;
 		
 		String discountid="0001";
 		HotelDiscount temp=new HotelDiscount();
