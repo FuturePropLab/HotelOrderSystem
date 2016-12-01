@@ -2,8 +2,6 @@ package tools;
 
 import java.util.List;
 
-import tools.TypeRoomInfo;
-
 public class HotelRoomInfo {
 	private String hotelID;
 	private String hotelName;

@@ -2,6 +2,8 @@ package tools;
 
 import javax.persistence.Id;
 
+import po.HotelAddressPO;
+
 /**
  * 酒店的地址信息类
  * @author wshwbluebird
@@ -13,12 +15,28 @@ public class HotelAddress {
 	 String businessCircle; // 所在商圈
 	 String addressDetail; //  地址
 	 
+	 /**
+	  * 
+	  * @param city
+	  * @param district
+	  * @param businessCircle
+	  * @param addressDetail
+	  */
 	 public HotelAddress(String city , String district,String businessCircle,String addressDetail){
 		 this.city = city;
 		 this.district = district;
 		 this.businessCircle = businessCircle;
 		 this.addressDetail = addressDetail;
 	 }
+	 
+	
+	 public HotelAddress(HotelAddressPO hotelAddressPO){
+		 this.city = hotelAddressPO.getCity();
+		 this.district = hotelAddressPO.getDistrict();
+		 this.businessCircle = hotelAddressPO.getBusinessCircle();
+		 this.addressDetail = hotelAddressPO.getAddressDetail();
+	 }
+	 
 
 	public String getCity() {
 		return city;

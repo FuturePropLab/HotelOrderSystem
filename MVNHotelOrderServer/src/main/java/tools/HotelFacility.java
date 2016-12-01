@@ -1,5 +1,10 @@
 package tools;
 
+import javax.persistence.Entity;
+
+import po.HotelFacilityPO;
+
+
 public class HotelFacility {
      boolean swimmingPool;
      boolean healthHub;
@@ -13,7 +18,7 @@ public class HotelFacility {
      boolean TV;
      boolean computer;
      String elseFacility;
-     
+ 
      public HotelFacility(){
     	this.airCondition = false;
     	this.gym = false;
@@ -27,6 +32,20 @@ public class HotelFacility {
     	this.parking = false;
     	this.elseFacility = "";  	
      }
+     
+     public HotelFacility(HotelFacilityPO hotelFacilityPO){
+     	this.airCondition = hotelFacilityPO.isAirCondition();
+     	this.gym = hotelFacilityPO.isGym();
+     	this.healthHub = hotelFacilityPO.isHealthHub();
+     	this.TV = hotelFacilityPO.isTV();
+     	this.hotWater = hotelFacilityPO.isHotWater();
+     	this.computer = hotelFacilityPO.isComputer();	
+     	this.wifi = hotelFacilityPO.isWifi();
+     	this.swimmingPool = hotelFacilityPO.isSwimmingPool();
+     	this.broadband = hotelFacilityPO.isBroadband();
+     	this.parking = hotelFacilityPO.isParking();
+     	this.elseFacility = hotelFacilityPO.getElseFacility();  	
+      }
 
 	public boolean isSwimmingPool() {
 		return swimmingPool;

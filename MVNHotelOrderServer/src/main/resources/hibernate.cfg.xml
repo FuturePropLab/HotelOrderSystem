@@ -22,12 +22,14 @@ jdbc:mysql://localhost:3306/wsw
         <!-- Show and print nice SQL on stdout -->
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>  
-        <mapping class="testHibernate.Student"/>
-        <mapping class="testHibernate.SC"/>
         <mapping class="po.AccountPO"/>
         <mapping class="po.CustomerPO"/>
         <mapping class="po.MemberStorePO"/>
         <mapping class="po.DistributeCommercialPO"/>
-        <mapping class="po.CityDistributePO"/>
+        <mapping class="po.TypeRoomInfoPO"/>
+        <mapping class="po.HotelAddressPO"/>
+        <mapping class="po.HotelBasePO"/>
+        <mapping class="po.HotelFacilityPO"/>
+        
     </session-factory>
 </hibernate-configuration>

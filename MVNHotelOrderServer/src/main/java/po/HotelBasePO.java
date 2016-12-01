@@ -30,6 +30,13 @@ public class HotelBasePO {
 			this.grade = hotelPO.getGrade();
 			this.star = hotelPO.getStar();
 		}
+		
+		public HotelBasePO(String hotelID , String hotelName , double grade , Star star){
+			this.grade = grade;
+			this.hotelID = hotelID;
+			this.hotelName = hotelName;
+			this.star = star;
+		}
 		@Id
 		public String getHotelID() {
 			return hotelID;

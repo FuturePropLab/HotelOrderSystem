@@ -2,6 +2,8 @@ package tools;
 
 import java.io.Serializable;
 
+
+
 public class TypeRoomInfo implements Serializable{
 	
 	 
@@ -13,7 +15,7 @@ public class TypeRoomInfo implements Serializable{
 	  
 	  private RoomType roomtype;
     
-	  private int availableCount;
+	  private int availableCount; //!!!房间总数量 !!!!
     
 	  private  Double price; //房间价格
 	  

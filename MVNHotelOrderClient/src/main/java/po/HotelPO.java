@@ -1,11 +1,14 @@
 package po;
 
+import java.io.Serializable;
+
 import businesslogic.hotel.HotelAddress;
 import businesslogic.hotel.HotelFacility;
 import businesslogic.hotel.HotelInfo;
 import tools.Star;
 
-public class HotelPO {	
+public class HotelPO implements Serializable{
+	private static final long serialVersionUID = -7655858599343856811L;
 	private String hotelID;
 	private String hotelName;
 	private HotelAddress hotelAddress; //地址类 ，已经包括商圈的东西
