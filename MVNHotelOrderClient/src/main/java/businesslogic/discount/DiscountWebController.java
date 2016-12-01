@@ -10,8 +10,14 @@ public class DiscountWebController implements DiscountWebService {
 
 	private WebDiscount web;
 	
-	public DiscountWebController (){
+	private static DiscountWebController discountWebController;
+	
+	private DiscountWebController (){
 		web=new WebDiscount();
+	}
+	public static DiscountWebController getInstance(){
+		if(discountWebController==null) discountWebController=new DiscountWebController();
+		return discountWebController;
 	}
 	
 	public ResultMessage_strategy addWebDiscount(DiscountVO_web dis) {

@@ -7,8 +7,15 @@ public class DiscountDealController implements DiscountDealService{
 
 	private Discount discount;
 	
-	public DiscountDealController(){
+	private static DiscountDealController dealController;
+	
+	private DiscountDealController(){
 		discount = new Discount();
+	}
+	
+	public static DiscountDealController getInstance(){
+		if(dealController==null) dealController=new DiscountDealController();
+		return dealController;
 	}
 	public ResultMessageDiscount invalidDiscount(String discount_id) {
 		// TODO Auto-generated method stub

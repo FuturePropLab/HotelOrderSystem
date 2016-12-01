@@ -12,12 +12,20 @@ import vo.DiscountVO_hotel;
  *
  */
 public class DiscountHotelController implements DiscountHotelService  {
-
-	private HotelDiscount hotelDiscount;
+	private static DiscountHotelController discountHotelController;
 	
-	public DiscountHotelController(){
-		hotelDiscount= new HotelDiscount();
+	private DiscountHotelController(){
+		hotelDiscount=new HotelDiscount();
 	}
+	
+	public static DiscountHotelController getInstance(){
+		if(discountHotelController==null) {
+			discountHotelController=new DiscountHotelController();
+		}
+			return discountHotelController;
+	}
+	
+	private HotelDiscount hotelDiscount;
 	
 	public ResultMessage_strategy addHotelDiscount(String hotel_id,DiscountVO_hotel dis) {
 		// TODO Auto-generated method stub

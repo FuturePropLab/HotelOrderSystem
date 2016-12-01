@@ -24,13 +24,19 @@ public class DiscountPO_hotel {
 	
 	private LocalDate endDate;
 	
-	public DiscountPO_hotel(DiscountState discountState,Strategy_hotelType type,String discountID,double discount,LocalDate startDate,LocalDate enDate){
+	private String remarks;//备注
+	
+	private boolean superimpose;
+	
+	public DiscountPO_hotel(DiscountState discountState,Strategy_hotelType type,String discountID,double discount,LocalDate startDate,LocalDate enDate,String remarks,boolean superimpose){
 		this.discountState=discountState;
 		this.type=type;
 		this.discountID=discountID;
 		this.discount=discount;
 		this.startDate=startDate;
 		this.endDate=enDate;
+		this.setRemarks(remarks);
+		this.setSuperimpose(superimpose);
 		
 	}
 	public DiscountPO_hotel(DiscountVO_hotel discountVO_hotel){
@@ -39,6 +45,8 @@ public class DiscountPO_hotel {
 		this.discount=discountVO_hotel.discount;
 		this.startDate=discountVO_hotel.startDate;
 		this.endDate=discountVO_hotel.endDate;
+		this.setRemarks(discountVO_hotel.remarks);//备注
+		this.setSuperimpose(discountVO_hotel.superimpose);//是否可叠加
 	}
 	public LocalDate getStartDate() {
 		return startDate;
@@ -66,6 +74,18 @@ public class DiscountPO_hotel {
 	}
 	public void setDiscountState(DiscountState discountState) {
 		this.discountState = discountState;
+	}
+	public boolean isSuperimpose() {
+		return superimpose;
+	}
+	public void setSuperimpose(boolean superimpose) {
+		this.superimpose = superimpose;
+	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 
 
