@@ -10,6 +10,11 @@ import java.util.List;
 import dataservice.HotelDataService;
 import po.HotelPO;
 import rmi.RemoteHelper;
+<<<<<<< Updated upstream
+=======
+import tools.HotelAddress;
+import tools.HotelRoomInfo;
+>>>>>>> Stashed changes
 import tools.TypeRoomInfo;
 
 public class ClientRunner {
@@ -55,6 +60,7 @@ public class ClientRunner {
 		System.out.println(hotelPO.getHotelName());//sdf
 		System.out.println(hotelPO.getStar());
 		
+		 
 		HotelAddress hotelAddress =  hotelPO.getHotelAddress();
 		System.out.println(hotelAddress.toString());
 		
