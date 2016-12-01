@@ -10,10 +10,6 @@ import java.util.List;
 import dataservice.HotelDataService;
 import po.HotelPO;
 import rmi.RemoteHelper;
-import tools.HotelAddress;
-import tools.HotelFacility;
-import tools.HotelRoomInfo;
-import tools.RoomType;
 import tools.TypeRoomInfo;
 
 public class ClientRunner {
