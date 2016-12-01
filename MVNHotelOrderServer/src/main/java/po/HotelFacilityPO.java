@@ -1,14 +1,20 @@
 package po;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import tools.HotelFacility;
 
 @Entity
-public class HotelFacilityPO {
+public class HotelFacilityPO implements Serializable{
 	
-		 String hotelID;
+		 /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8412278370429311327L;
+		String hotelID;
 	  	 boolean swimmingPool;
 	     boolean healthHub;
 	     boolean gym;
@@ -36,7 +42,7 @@ public class HotelFacilityPO {
 	    	 this.wifi = hotelFacility.isWifi();
 	    	 this.hotWater = hotelFacility.isHotWater();
 	    	 this.computer = hotelFacility.isComputer();
-	    	 this.TV = hotelFacility.isTV();
+	    	 this.TV = hotelFacility.isTv();
 	    	 this.elseFacility = hotelFacility.getElseFacility();
 	     }
 

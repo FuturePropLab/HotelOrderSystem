@@ -1,11 +1,10 @@
-package businesslogic.hotel;
+package tools;
 
 import java.util.List;
 
+import businesslogic.hotel.Hotel;
 import businesslogicservice.HotelDealService;
 import businesslogicservice.ManageHotelInfoService;
-import tools.ResultMessage_Hotel;
-import tools.SortType;
 import vo.CommentVO;
 import vo.DiscountVO_hotel;
 import vo.HotelInfoVO;

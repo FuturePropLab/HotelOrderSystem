@@ -6,19 +6,24 @@ import java.util.List;
 
 import dataservice.AccountDataService;
 import dataservice.CustomerDataService;
+import dataservice.HotelDataService;
 import dataservice.LoginCheckService;
 import dataservice.impl.AccountDataServiceImpl;
 import dataservice.impl.CustomerDataServiceImpl;
+import dataservice.impl.HotelDataServiceImpl;
 import dataservice.impl.LoginCheckServiceImpl;
 import po.AccountPO;
 import po.CustomerPO;
+import po.HotelPO;
 import tools.AccountType;
 import tools.ResultMessage_Account;
+import tools.ResultMessage_Hotel;
 import tools.ResultMessage_LoginCheck;
 import tools.ResultMessage_Modify;
 import tools.ResultMessage_signUp;
+import tools.SearchHotel;
 
-public class DataRemoteObject extends UnicastRemoteObject implements  LoginCheckService ,AccountDataService,CustomerDataService{
+public class DataRemoteObject extends UnicastRemoteObject implements  LoginCheckService ,AccountDataService,CustomerDataService,HotelDataService{
 	/**
 	 *  RMI 接口
 	 */
@@ -26,11 +31,13 @@ public class DataRemoteObject extends UnicastRemoteObject implements  LoginCheck
 	private LoginCheckService loginCheckService;
 	private AccountDataService accountDataService;
 	private CustomerDataService customerDataService;
+	private HotelDataService hotelDataService;
 	protected DataRemoteObject() throws RemoteException {
 		//用loginCheckServiceIMPL 实现
 		loginCheckService = new LoginCheckServiceImpl();
 		accountDataService = new AccountDataServiceImpl();
 		customerDataService = new CustomerDataServiceImpl();
+		hotelDataService = new HotelDataServiceImpl();
 
 	}
 	/**
@@ -82,6 +89,25 @@ public class DataRemoteObject extends UnicastRemoteObject implements  LoginCheck
 	}
 	public List<CustomerPO> searchCustomer() throws RemoteException {
 		return customerDataService.searchCustomer();
+	}
+	
+	/**
+	 * Hoteldata related 
+	 */
+	public ResultMessage_Hotel addHotel(HotelPO hotelPO) throws RemoteException {
+		// TODO Auto-generated method stub
+		return hotelDataService.addHotel(hotelPO);
+	}
+	public ResultMessage_Hotel modifyHotel(HotelPO hotelPO) throws RemoteException {
+		// TODO Auto-generated method stub
+		return hotelDataService.modifyHotel(hotelPO);
+	}
+	public HotelPO getHotel(String hotel_id) throws RemoteException {
+		return hotelDataService.getHotel(hotel_id);
+	}
+	public List<HotelPO> searchHotelList(SearchHotel searchhotel) throws RemoteException {
+		// TODO Auto-generated method stub
+		return hotelDataService.searchHotelList(searchhotel);
 	}
 
 }

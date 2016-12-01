@@ -7,11 +7,14 @@ import java.rmi.RemoteException;
 import java.util.Iterator;
 import java.util.List;
 
-import businesslogicservice.AccountCustomerService;
+import dataservice.HotelDataService;
+import po.HotelPO;
 import rmi.RemoteHelper;
-import vo.AccountVO;
-import vo.CustomerSearchVO;
-import vo.CustomerVO;
+import tools.HotelAddress;
+import tools.HotelFacility;
+import tools.HotelRoomInfo;
+import tools.RoomType;
+import tools.TypeRoomInfo;
 
 public class ClientRunner {
 	private RemoteHelper remoteHelper;
@@ -40,16 +43,32 @@ public class ClientRunner {
 	
 	
 	public void test() throws RemoteException{		
-		AccountCustomerService accountCustomerService = serviceFactory.AccountContollerUtil.getAccountCustomerServiceUtil();
-		CustomerSearchVO customerSearchVO = new CustomerSearchVO(null,"李",null);
-		List<AccountVO> cAccountVOs = accountCustomerService.searchCustomerAccount(customerSearchVO);
-		Iterator<AccountVO> it = cAccountVOs.iterator();
+//		AccountCustomerService accountCustomerService = serviceFactory.AccountContollerUtil.getAccountCustomerServiceUtil();
+//		CustomerSearchVO customerSearchVO = new CustomerSearchVO(null,"李",null);
+//		List<AccountVO> cAccountVOs = accountCustomerService.searchCustomerAccount(customerSearchVO);
+//		Iterator<AccountVO> it = cAccountVOs.iterator();
+//		while(it.hasNext()){
+//			AccountVO accountVO = it.next();
+//			System.out.println(accountVO.userid+"  "+accountVO.username+"  "+accountVO.accountType);
+//		}
+//		CustomerVO customerVO = accountCustomerService.getCustomerDetail("CS002");
+//		System.out.println(customerVO.customerName+" "+customerVO.telephone);
+		
+		HotelDataService hotelDataService  =RemoteHelper.getInstance().getHotelDataService();
+		HotelPO hotelPO = hotelDataService.getHotel("HT001");
+		System.out.println(hotelPO.getHotelName());
+		System.out.println(hotelPO.getStar());
+		
+		HotelAddress hotelAddress =  hotelPO.getHotelAddress();
+		System.out.println(hotelAddress.toString());
+		
+		HotelRoomInfo hotelRoomInfo = hotelPO.getHotelRoom();
+		List<TypeRoomInfo> list = hotelRoomInfo.getTypeRoomInfo();
+		Iterator<TypeRoomInfo> it = list.iterator();
 		while(it.hasNext()){
-			AccountVO accountVO = it.next();
-			System.out.println(accountVO.userid+"  "+accountVO.username+"  "+accountVO.accountType);
+			TypeRoomInfo typeRoomInfo  = it.next();
+			System.out.println(typeRoomInfo.getRoomtype() + "  "+ typeRoomInfo.getPrice());
 		}
-		CustomerVO customerVO = accountCustomerService.getCustomerDetail("CS002");
-		System.out.println(customerVO.customerName+" "+customerVO.telephone);
 		
 		
 	}

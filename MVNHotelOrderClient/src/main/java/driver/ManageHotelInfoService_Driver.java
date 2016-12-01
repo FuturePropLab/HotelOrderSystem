@@ -29,7 +29,6 @@ public class ManageHotelInfoService_Driver {
 		
 		
 		System.out.println(manageHotelInfoService.addHotel(vo));
-		System.out.println(manageHotelInfoService.editHotelInfo(null).facility);
 		System.out.println(manageHotelInfoService.saveHotelInfo(hotelinfo));
 		
 		

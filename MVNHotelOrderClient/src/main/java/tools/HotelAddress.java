@@ -1,11 +1,14 @@
-package businesslogic.hotel;
+package tools;
+
+import java.io.Serializable;
 
 /**
  * 酒店的地址信息类
  * @author wshwbluebird
  *
  */
-public class HotelAddress {
+public class HotelAddress implements Serializable{
+	private static final long serialVersionUID = 3740034410193502363L;
 	 String city;   // 城市
 	 String district;  // 街区
 	 String businessCircle; // 所在商圈
@@ -56,8 +59,8 @@ public class HotelAddress {
 	 */
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+		String ans = city+"市"+district+"区"+addressDetail;
+		return ans;
 	}
 	 
 }

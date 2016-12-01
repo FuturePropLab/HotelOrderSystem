@@ -2,9 +2,10 @@ package po;
 
 import java.io.Serializable;
 
-import businesslogic.hotel.HotelAddress;
-import businesslogic.hotel.HotelFacility;
 import businesslogic.hotel.HotelInfo;
+import tools.HotelAddress;
+import tools.HotelFacility;
+import tools.HotelRoomInfo;
 import tools.Star;
 
 public class HotelPO implements Serializable{

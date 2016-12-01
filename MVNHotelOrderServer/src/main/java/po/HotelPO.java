@@ -35,6 +35,7 @@ public class HotelPO implements Serializable{
 			this.hotelName = hotelBasePO.getHotelName();
 			this.star = hotelBasePO.getStar();
 			
+			//TODO
 			this.facility = new HotelFacility(facilityPO);
 			
 			this.hotelAddress = new HotelAddress(hotelAddressPO);

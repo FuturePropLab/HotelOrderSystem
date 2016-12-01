@@ -1,10 +1,10 @@
-package businesslogic.hotel;
+package tools;
 
+import java.io.Serializable;
 import java.util.List;
 
-import tools.TypeRoomInfo;
-
-public class HotelRoomInfo {
+public class HotelRoomInfo implements Serializable {
+	private static final long serialVersionUID = 7235643209883289946L;;
 	private String hotelID;
 	private String hotelName;
 	private List<TypeRoomInfo> typeRoomInfo;

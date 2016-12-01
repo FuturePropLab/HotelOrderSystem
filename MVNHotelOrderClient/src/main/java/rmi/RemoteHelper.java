@@ -4,6 +4,7 @@ import java.rmi.Remote;
 
 import dataservice.AccountDataService;
 import dataservice.CustomerDataService;
+import dataservice.HotelDataService;
 import dataservice.LoginCheckService;
 import dataservice.OrderDataService;
 
@@ -53,12 +54,12 @@ public class RemoteHelper {
 	public CustomerDataService getCustomerDataService(){
 		return (CustomerDataService)remote;
 	}
+
 	/**
 	 * 
-	 * @return 供计算的有效策略
-	 *  林文烨你不要管rmi!!!!!!!!
+	 * @return
 	 */
-//	public StrategyGetService geStrategy(){
-//		return (StrategyGetService)remote;
-//	}
+	public HotelDataService getHotelDataService(){
+		return (HotelDataService)remote;
+	}
 }

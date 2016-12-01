@@ -1,24 +1,32 @@
-package businesslogic.hotel;
+package tools;
 
-public class HotelFacility {
-     boolean swimmingPool;
-     boolean healthHub;
-     boolean gym;
-     boolean parking;
-     
-     boolean airCondition;
-     boolean wifi;
-     boolean hotWater;
-     boolean broadband;
-     boolean TV;
-     boolean computer;
-     String elseFacility;
+import java.io.Serializable;
+
+public class HotelFacility  implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7380253760906799517L;
+
+    private boolean swimmingPool;
+    private boolean healthHub;
+    private boolean gym;
+    private boolean parking;
+    
+    private boolean airCondition;
+    private boolean wifi;
+    private boolean hotWater;
+    private boolean broadband;
+    private boolean tv;
+    private boolean computer;
+    private String elseFacility;
+
      
      public HotelFacility(){
     	this.airCondition = false;
     	this.gym = false;
     	this.healthHub = false;
-    	this.TV = false;
+    	this.tv = false;
     	this.hotWater = false;
     	this.computer = false;  	
     	this.wifi = false;
@@ -93,11 +101,11 @@ public class HotelFacility {
 	}
 
 	public boolean isTV() {
-		return TV;
+		return tv;
 	}
 
 	public void setTV(boolean tV) {
-		TV = tV;
+		this.tv = tV;
 	}
 
 	public boolean isComputer() {

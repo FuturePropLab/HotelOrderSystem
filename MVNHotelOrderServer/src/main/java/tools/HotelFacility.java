@@ -1,43 +1,57 @@
 package tools;
 
-import javax.persistence.Entity;
+import java.io.Serializable;
 
 import po.HotelFacilityPO;
 
 
-public class HotelFacility {
-     boolean swimmingPool;
-     boolean healthHub;
-     boolean gym;
-     boolean parking;
-     
-     boolean airCondition;
-     boolean wifi;
-     boolean hotWater;
-     boolean broadband;
-     boolean TV;
-     boolean computer;
-     String elseFacility;
+public class HotelFacility  implements Serializable{
+     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7380253760906799517L;
+	/**
+	 * 
+	 */
+
+	     private boolean swimmingPool;
+	     private boolean healthHub;
+	     private boolean gym;
+	     private boolean parking;
+	     
+	     private boolean airCondition;
+	     private boolean wifi;
+	     private boolean hotWater;
+	     private boolean broadband;
+	     private boolean tv;
+	     private boolean computer;
+	     private String elseFacility;
  
-     public HotelFacility(){
+     public HotelFacility(String elseFacility){
+    	 super();
     	this.airCondition = false;
     	this.gym = false;
     	this.healthHub = false;
-    	this.TV = false;
+    	this.tv = false;
     	this.hotWater = false;
     	this.computer = false;  	
     	this.wifi = false;
     	this.swimmingPool = false;
     	this.broadband = false;
     	this.parking = false;
-    	this.elseFacility = "";  	
+    	this.elseFacility = elseFacility;  	
+     }
+     
+     public HotelFacility(){
+    	 super();
      }
      
      public HotelFacility(HotelFacilityPO hotelFacilityPO){
+    	 super();
      	this.airCondition = hotelFacilityPO.isAirCondition();
      	this.gym = hotelFacilityPO.isGym();
      	this.healthHub = hotelFacilityPO.isHealthHub();
-     	this.TV = hotelFacilityPO.isTV();
+     	this.tv = hotelFacilityPO.isTV();
      	this.hotWater = hotelFacilityPO.isHotWater();
      	this.computer = hotelFacilityPO.isComputer();	
      	this.wifi = hotelFacilityPO.isWifi();
@@ -111,12 +125,14 @@ public class HotelFacility {
 		this.broadband = broadband;
 	}
 
-	public boolean isTV() {
-		return TV;
+
+
+	public boolean isTv() {
+		return tv;
 	}
 
-	public void setTV(boolean tV) {
-		TV = tV;
+	public void setTv(boolean tv) {
+		this.tv = tv;
 	}
 
 	public boolean isComputer() {
