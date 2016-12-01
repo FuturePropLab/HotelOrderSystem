@@ -1,6 +1,7 @@
 package businesslogic.order;
 
 import java.sql.Time;
+import java.util.Date;
 
 /**
  * 订单的入住信息
@@ -8,17 +9,17 @@ import java.sql.Time;
  *
  */
 public class CheckInInfo {
-	public Time planedLeaveTime;//预计离开时间
-	public Time checkInTime;//实际入住时间
+	public Date planedLeaveTime;//预计离开时间
+	public Date checkInTime;//实际入住时间
 	/**
 	 * 
-	 * @param planedLeaveTime 预计离开时间
-	 * @param checkInTime 实际入住时间
+	 * @param date 预计离开时间
+	 * @param date2 实际入住时间
 	 */
-	public CheckInInfo(Time planedLeaveTime, Time checkInTime) {
+	public CheckInInfo(Date date, Date date2) {
 		super();
-		this.planedLeaveTime = planedLeaveTime;
-		this.checkInTime = checkInTime;
+		this.planedLeaveTime = date;
+		this.checkInTime = date2;
 	}
 
 	/**

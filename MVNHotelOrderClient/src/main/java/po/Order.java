@@ -2,6 +2,7 @@ package po;
 
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 
 import tools.Mark;
 import tools.OrderState;
@@ -12,12 +13,12 @@ public class Order {
 	private String customerID;
 	private String hotelID;
 	private ArrayList<String> roomNumber;//房间号
-	private Time startTime;//未定time用什么类
-	private Time latestTime;//最晚订单执行时间
-	private Time planedLeaveTime;//预计离开时间
-	private Time checkInTime;//实际入住时间
-	private Time checkOutTime;//实际离开时间
-	private Time revokeTime;//实际撤销时间
+	private Date startTime;//未定time用什么类
+	private Date latestTime;//最晚订单执行时间
+	private Date planedLeaveTime;//预计离开时间
+	private Date checkInTime;//实际入住时间
+	private Date checkOutTime;//实际离开时间
+	private Date revokeTime;//实际撤销时间
 	private RoomType roomType;
 	private int numberOfRooms;//房间数量
 	private int value;//订单的价值
@@ -44,22 +45,22 @@ public class Order {
 	public ArrayList<String> getRoomNumber() {
 		return roomNumber;
 	}
-	public Time getStartTime() {
+	public Date getStartTime() {
 		return startTime;
 	}
-	public Time getLatestTime() {
+	public Date getLatestTime() {
 		return latestTime;
 	}
-	public Time getPlanedLeaveTime() {
+	public Date getPlanedLeaveTime() {
 		return planedLeaveTime;
 	}
-	public Time getCheckInTime() {
+	public Date getCheckInTime() {
 		return checkInTime;
 	}
-	public Time getCheckOutTime() {
+	public Date getCheckOutTime() {
 		return checkOutTime;
 	}
-	public Time getRevokeTime() {
+	public Date getRevokeTime() {
 		return revokeTime;
 	}
 	public RoomType getRoomType() {
@@ -95,22 +96,22 @@ public class Order {
 	public void setRoomNumber(ArrayList<String> roomNumber) {
 		this.roomNumber = roomNumber;
 	}
-	public void setStartTime(Time startTime) {
+	public void setStartTime(Date startTime) {
 		this.startTime = startTime;
 	}
-	public void setLatestTime(Time latestTime) {
+	public void setLatestTime(Date latestTime) {
 		this.latestTime = latestTime;
 	}
-	public void setPlanedLeaveTime(Time planedLeaveTime) {
+	public void setPlanedLeaveTime(Date planedLeaveTime) {
 		this.planedLeaveTime = planedLeaveTime;
 	}
-	public void setCheckInTime(Time checkInTime) {
+	public void setCheckInTime(Date checkInTime) {
 		this.checkInTime = checkInTime;
 	}
-	public void setCheckOutTime(Time checkOutTime) {
+	public void setCheckOutTime(Date checkOutTime) {
 		this.checkOutTime = checkOutTime;
 	}
-	public void setRevokeTime(Time revokeTime) {
+	public void setRevokeTime(Date revokeTime) {
 		this.revokeTime = revokeTime;
 	}
 	public void setRoomType(RoomType roomType) {

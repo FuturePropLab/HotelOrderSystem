@@ -2,6 +2,7 @@ package businesslogic.order;
 
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import dataservice.OrderDataService;
@@ -27,7 +28,7 @@ import vo.OrderVO;
  */
 public class Order {
 	private String orderID;
-	private Time revokeTime;//实际撤销时间
+	private Date revokeTime;//实际撤销时间
 	private int value;//订单的价值
 	private OrderState orderState;
 	private PlacingOrderInfo placingOrderInfo;
@@ -223,7 +224,7 @@ public class Order {
 	 * 
 	 * @return 撤销时间
 	 */
-	public Time getRevokeTime(){
+	public Date getRevokeTime(){
 		return revokeTime;
 	}
 	

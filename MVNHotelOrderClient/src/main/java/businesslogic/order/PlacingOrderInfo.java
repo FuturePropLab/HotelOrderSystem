@@ -2,6 +2,7 @@ package businesslogic.order;
 
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 
 import tools.RoomType;
 
@@ -16,9 +17,9 @@ public class PlacingOrderInfo {
 	public int numberOfRooms;//房间数量
 	public ArrayList<String> roomNumber;//房间号
 	public String hotelID;
-	public Time startTime;//未定time用什么类,下单时间
-	public Time latestTime;//最晚订单执行时间
-	public Time planedLeaveTime;//预计离开时间
+	public Date startTime;//未定time用什么类,下单时间
+	public Date latestTime;//最晚订单执行时间
+	public Date planedLeaveTime;//预计离开时间
 	public int planedPeopleNumber;//预计入住人数
 	public boolean child;//有无儿童
 	public double price;
@@ -37,7 +38,7 @@ public class PlacingOrderInfo {
 	 * @param price 房间单价
 	 */
 	public PlacingOrderInfo(String customerID, RoomType roomType, int numberOfRooms, ArrayList<String> roomNumber,
-			String hotelID, Time startTime, Time latestTime, Time planedLeaveTime, int planedPeopleNumber,
+			String hotelID, Date startTime, Date latestTime, Date planedLeaveTime, int planedPeopleNumber,
 			boolean child,double price) {
 		super();
 		this.customerID = customerID;

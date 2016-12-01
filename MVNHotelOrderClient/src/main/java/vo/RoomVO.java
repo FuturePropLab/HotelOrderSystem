@@ -63,6 +63,7 @@ public class RoomVO {
 		this.roomID = roompo.getRoomID();
 		this.roomType = roompo.getRoomType();
 		this.price = roompo.getPrice();
+		this.roomNumber = 
 		//this.state = roompo.getState();
 		
 		

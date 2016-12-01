@@ -40,24 +40,32 @@ public class Credit {
 		CustomerVO customerVO = customerInfo.getCustomerInfo(customer_id);
 		
 		int credit = customerVO.credit;
-		CreditLogPO creditLogPO = new CreditLogPO(type, orderPO, result);
+		
 		
 		//撤销订单信用值－30，延迟入住信用值减25,延迟退房超过30分钟减25,没有异常的话，完成一个订单增加50信用值
-		Time revoketime = order.getRevokeTime();
+		Date revoketime = order.getRevokeTime();
 		if(revoketime !=null){
-			creditchange = -30;
+			creditchange =creditchange -30;
 		}
 			Date latestTime = order.getLatestTime();
 			Date checkIntime = order.getCheckInTime();
 			Date planedLeaveTime =order.getPlanedLeaveTime();
 			Date checkOutTime = order.getCheckOutTime();
 			if(checkIntime.after(latestTime)){
-				creditchange = -20;
+				creditchange = creditchange-25;
 			
 			
 		}
-			long between=(checkOutTime.getTime()-planedLeaveTime.getTime())/1000;
+			long between=(checkOutTime.getTime()-planedLeaveTime.getTime())/1000/60;
+			if(between>=30){
+				creditchange -=30;
+			}
+			if(creditchange==0) creditchange =50;
+			result = credit+creditchange;
 			
+			ResultMessage resultMessage = creditDataService.changeCredit(customer_id, result);
+			
+			CreditLogPO creditLogPO = new CreditLogPO(type, orderPO, result);
 			
 		return creditDataService.add(creditLogPO);
 	}

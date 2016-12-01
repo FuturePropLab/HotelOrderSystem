@@ -2,6 +2,9 @@ package businesslogic.credit;
 
 import static org.junit.Assert.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
@@ -51,6 +54,16 @@ public class TestCredit {
 	@Test
 	public void testCharge() {
 		assertEquals(ResultMessage.NotExist, credit.charge("wsw", 100));
+	}
+	public static void main(String args[]) throws ParseException{
+		Order order = new Order("O1234567");
+		SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		Date date1= df.parse("2004-01-02 11:30:24");
+		Date date2 = df.parse("2004-01-02 12:30:24");
+		order.setLatestTime(date1);
+		order.setCheckInTime(date2);
+		Credit test = new Credit("0000");
+		test.addlog(order, ActionType.BadOrder, 50);
 	}
 
 }

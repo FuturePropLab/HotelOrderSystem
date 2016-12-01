@@ -31,4 +31,10 @@ public class CreditData_Stub implements CreditDataService {
 		return creditLogPOList;
 	}
 
+
+	public ResultMessage changeCredit(String customer_id, int resultCredit) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

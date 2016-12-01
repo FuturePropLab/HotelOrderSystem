@@ -1,6 +1,7 @@
 package vo;
 
 import java.sql.Time;
+import java.util.Date;
 
 import tools.RoomType;
 
@@ -11,9 +12,9 @@ import tools.RoomType;
 public class OrderInputVO {
 	public String customerID;
 	public String hotelID;
-	public Time startTime;//未定time用什么类
-	public Time latestTime;//最晚订单执行时间
-	public Time planedLeaveTime;//预计离开时间
+	public Date startTime;//未定time用什么类
+	public Date latestTime;//最晚订单执行时间
+	public Date planedLeaveTime;//预计离开时间
 	public RoomType roomType;
 	public int numberOfRooms;
 	public int planedPeopleNumber;//预计入住人数
@@ -32,7 +33,7 @@ public class OrderInputVO {
 	 *  @param child  是否有儿童
 	 *  @param price 房间单价
 	 */
-	public OrderInputVO(String customerID, String hotelID, Time startTime, Time latestTime, Time planedLeaveTime,
+	public OrderInputVO(String customerID, String hotelID, Date startTime, Date latestTime, Date planedLeaveTime,
 			RoomType roomType, int numberOfRooms, int planedPeopleNumber, boolean child,double price) {
 		super();
 		this.customerID = customerID;

@@ -1,22 +1,23 @@
 package businesslogic.order;
 
 import java.sql.Time;
+import java.util.Date;
 
 /**
- * 订单的退房信息
+ *订单的退房信息
  * @author zjy
  *
  */
 public class CheckOutInfo {
-	public Time checkOutTime;//实际离开时间
+	public Date checkOutTime;//实际离开时间
 	
 	/**
 	 * 
-	 * @param checkOutTime 实际离开时间
+	 * @param date 实际离开时间
 	 */
-	public CheckOutInfo(Time checkOutTime) {
+	public CheckOutInfo(Date date) {
 		super();
-		this.checkOutTime = checkOutTime;
+		this.checkOutTime = date;
 	}
 
 
