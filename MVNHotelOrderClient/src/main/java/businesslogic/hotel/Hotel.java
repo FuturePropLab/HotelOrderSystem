@@ -3,11 +3,8 @@ package businesslogic.hotel;
 import java.rmi.RemoteException;
 import java.util.List;
 
-<<<<<<< Updated upstream
 import Exception.CustomerCreditNotEnoughException;
-=======
 import businesslogic.account.HotelAccountController;
->>>>>>> Stashed changes
 import dataservice.HotelDataService;
 import po.HotelPO;
 import rmi.RemoteHelper;

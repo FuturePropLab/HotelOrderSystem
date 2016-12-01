@@ -6,4 +6,9 @@ package Exception;
  */
 public class CustomerCreditNotEnoughException extends Exception{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2918895173194321774L;
+	
 }
