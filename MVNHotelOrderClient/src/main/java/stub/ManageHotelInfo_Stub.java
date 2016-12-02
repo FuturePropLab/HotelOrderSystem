@@ -1,5 +1,6 @@
 package stub;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,9 +9,9 @@ import tools.ResultMessage_Hotel;
 import tools.RoomType;
 import tools.Star;
 import tools.TypeRoomInfo;
-import vo.HotelbriefVO;
 import vo.HotelInputVO;
 import vo.HotelRoomInfoVO;
+import vo.HotelbriefVO;
 
 public class ManageHotelInfo_Stub implements ManageHotelInfoService {
 
@@ -34,7 +35,7 @@ public class ManageHotelInfo_Stub implements ManageHotelInfoService {
 		typeList.add(typeRoomInfo1);
 		HotelRoomInfoVO hotelRoomInfoVO = new HotelRoomInfoVO("001","�ٻ���Ƶ�",typeList);
 		
-		HotelbriefVO hotelinfo=new HotelbriefVO("001","�ٻ���Ƶ�", "nanjing","xinjiekou",null,"good","room",hotelRoomInfoVO,Star.five);
+		HotelbriefVO hotelinfo=new HotelbriefVO(null, null, "001","�ٻ���Ƶ�", "nanjing","xinjiekou",null,"good","room",hotelRoomInfoVO,Star.five);
 		
 		return hotelinfo;
 	}
@@ -49,6 +50,13 @@ public class ManageHotelInfo_Stub implements ManageHotelInfoService {
 
 
 	public ResultMessage_Hotel saveHotelInfo(HotelInputVO hotelInputVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	public ResultMessage_Hotel modifyHotelPicture(String hotelID, URI uri) {
 		// TODO Auto-generated method stub
 		return null;
 	}

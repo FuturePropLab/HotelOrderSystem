@@ -24,7 +24,6 @@ public class HotelPO implements Serializable{
 	private String hotelName;
 	private HotelAddress hotelAddress; //地址类 ，已经包括商圈的东西
 	private double grade;
-	private HotelInfo introduction; //包含排版等一系列信息
 	private HotelFacility facility;
 	private HotelRoomInfo hotelRoom;
 	private Star star;
@@ -45,8 +44,6 @@ public class HotelPO implements Serializable{
 			
 			this.hotelAddress = new HotelAddress(hotelAddressPO);
 			
-			//TODO
-			this.introduction  =null;
 			this.hotelRoom = hotelRoomInfo;
 			
 	}
@@ -90,12 +87,7 @@ public class HotelPO implements Serializable{
 	public void setStar(Star star) {
 		this.star = star;
 	}
-	public HotelInfo getIntroduction() {
-		return introduction;
-	}
-	public void setIntroduction(HotelInfo introduction) {
-		this.introduction = introduction;
-	}
+
 	public double getGrade() {
 		return grade;
 	}

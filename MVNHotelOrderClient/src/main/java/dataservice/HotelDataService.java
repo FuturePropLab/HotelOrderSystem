@@ -57,5 +57,16 @@ public interface HotelDataService extends Remote{
 	 * @param file
 	 * @throws RemoteException
 	 */
-	public void upload(String filename, byte[] file) throws RemoteException; 
+	public ResultMessage_Hotel upload(String filename, byte[] file) throws RemoteException; 
+	
+	/**
+	 * 
+	 * @param filename
+	 * @param file
+	 * @return
+	 * @throws RemoteException
+	 */
+	public byte[] download(String filename) throws RemoteException; 
 }
+
+

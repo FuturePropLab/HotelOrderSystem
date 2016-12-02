@@ -7,14 +7,12 @@ import java.util.List;
 import Exception.OutOfBoundsException;
 import businesslogicservice.HotelDealService;
 import tools.DateRange;
-import tools.Mark;
 import tools.PriceRange;
 import tools.RoomType;
-import tools.SortType;
 import tools.Star;
 import tools.TypeRoomInfo;
-import vo.HotelbriefVO;
 import vo.HotelRoomInfoVO;
+import vo.HotelbriefVO;
 import vo.SearchHotelVO;
 
 public class HotelDealblService_Driver {
@@ -25,7 +23,7 @@ public void drive(HotelDealService hotelDealService) throws OutOfBoundsException
 	typeList.add(typeRoomInfo1);
 	HotelRoomInfoVO hotelRoomInfoVO = new HotelRoomInfoVO("002","�ٻ���Ƶ�",typeList);
 	
-	HotelbriefVO hotelinfo=new HotelbriefVO("002","�ٻ���Ƶ�", "nanjing","xinjiekou",null, "good","room",hotelRoomInfoVO,Star.five);
+	HotelbriefVO hotelinfo=new HotelbriefVO(null, null, "002","�ٻ���Ƶ�", "nanjing","xinjiekou",null, "good","room",hotelRoomInfoVO,Star.five);
 	hotelInfolist.add(hotelinfo);
 	
 	PriceRange range=new PriceRange(10,20);

@@ -1,14 +1,10 @@
 package driver;
 
-import java.sql.Time;
 import java.util.LinkedList;
 import java.util.List;
 
 import tools.ResultMessageDiscount;
-import tools.ResultMessage_strategy;
-import vo.DiscountVO;
 import vo.DiscountVO_hotel;
-import vo.DiscountVO_web;
 
 public class DiscountService_Driver {
 	public static void main(String[] args) {

@@ -24,11 +24,7 @@ public class testHotel {
 //			hotelPO.setStar(Star.one);
 //			hotelDataService.modifyHotel(hotelPO);
 //			
-//			
-//			Hibernateutils.shutdown();
-			ImageInfoPO imageInfoPO = hotelDataService.getImage("test");
-			
-			
+//						
 			Hibernateutils.shutdown();
 
 		}

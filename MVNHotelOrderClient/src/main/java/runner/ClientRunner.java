@@ -1,10 +1,8 @@
 package runner;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
@@ -12,8 +10,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-import dataservice.HotelDataService;
-import javafx.scene.image.Image;
+import businesslogic.hotel.PictureDeal;
 import rmi.RemoteHelper;
 
 public class ClientRunner {
@@ -53,27 +50,9 @@ public class ClientRunner {
 	
 	
 	public void test() throws RemoteException{		
-		  HotelDataService hotelInputVO = RemoteHelper.getInstance().getHotelDataService();
-		  Image image = new Image("file:./src/main/resources/images/room.png");
-		  File file = new File(image.impl_getUrl());
-		  //File file = (File) object;
-		  System.out.println(file.exists());
-		  byte[] b = null; 
-          try {  
-              b = new byte[(int) file.length()]; 
-              BufferedInputStream is = new BufferedInputStream(new FileInputStream(file)); 
-              is.read(b); 
-              is.close();
-          } catch (FileNotFoundException e) { 
-          // TODO Auto-generated catch block 
-              e.printStackTrace(); 
-          } catch (IOException e) { 
-              // TODO Auto-generated catch block 
-              e.printStackTrace(); 
-          }
-          
-          hotelInputVO.upload("room.png", b);
-//		 
+		  //HotelDataService hotelInputVO = RemoteHelper.getInstance().getHotelDataService();
+		  PictureDeal pictureDeal = new PictureDeal();
+		  System.out.println(pictureDeal.downloadFrontPicture("HT001"));
 		  
 	}
 	

@@ -3,7 +3,6 @@ package businesslogicservice;
 import java.net.URI;
 
 import tools.ResultMessage_Hotel;
-import vo.HotelbriefVO;
 import vo.HotelInputVO;
 
 /**

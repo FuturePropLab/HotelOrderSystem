@@ -3,9 +3,9 @@ package businesslogic.account;
 import java.util.List;
 
 import tools.ResultMessage;
-import vo.HotelbriefVO;
 import vo.HotelInputVO;
 import vo.HotelSearchVO;
+import vo.HotelbriefVO;
 
 /**
  * 酒店模块调用接口

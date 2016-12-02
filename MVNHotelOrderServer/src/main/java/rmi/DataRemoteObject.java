@@ -1,5 +1,6 @@
 package rmi;
 
+import java.io.FileNotFoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
@@ -113,8 +114,11 @@ public class DataRemoteObject extends UnicastRemoteObject implements  LoginCheck
 	public ImageInfoPO getImage(String filename) throws RemoteException {
 		return hotelDataService.getImage(filename);
 	}
-	public void upload(String filename, byte[] file) throws RemoteException {
-		hotelDataService.upload(filename, file);		
+	public ResultMessage_Hotel upload(String filename, byte[] file) throws RemoteException {
+		return hotelDataService.upload(filename, file);		
+	}
+	public byte[] download(String filename) throws RemoteException{
+		return hotelDataService.download(filename);
 	}
 
 }

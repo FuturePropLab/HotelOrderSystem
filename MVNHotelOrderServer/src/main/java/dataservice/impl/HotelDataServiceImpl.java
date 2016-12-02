@@ -1,7 +1,9 @@
 package dataservice.impl;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -53,12 +55,7 @@ public class HotelDataServiceImpl implements HotelDataService {
 		}
 		HotelFacilityPO hotelFacilityPO = new HotelFacilityPO(hotelID , hotelFacility);
 		hotelDataHelper.addHotelFacilityPO(hotelFacilityPO);
-
-		//TODO
-		//info
-		if(hotelPO.getIntroduction()!=null){
-			
-		}
+		
 		//roominfo same to modify
 		if(hotelPO.getHotelRoom()!=null){
 			HotelRoomInfo RoomInfo = hotelPO.getHotelRoom();
@@ -95,10 +92,6 @@ public class HotelDataServiceImpl implements HotelDataService {
 			HotelFacility hotelFacility = hotelPO.getFacility();
 			HotelFacilityPO hotelFacilityPO  = new HotelFacilityPO(hotelID , hotelFacility);
 			hotelDataHelper.modifyHotelFacilityPO(hotelFacilityPO);
-		}
-		//TODO
-		if(hotelPO.getIntroduction()!=null){
-			
 		}
 		
 		if(hotelPO.getHotelRoom()!=null&&hotelPO.getHotelRoom().getTypeRoomInfo()!=null){
@@ -140,7 +133,7 @@ public class HotelDataServiceImpl implements HotelDataService {
 		return imageInfoPO;
 	}
 
-	public void upload(String filename, byte[] fileContent) throws RemoteException {
+	public ResultMessage_Hotel upload(String filename, byte[] fileContent) throws RemoteException {
 		  File file = new File(filename); 
           try { 
               if (!file.exists()) 
@@ -156,7 +149,24 @@ public class HotelDataServiceImpl implements HotelDataService {
               // TODO Auto-generated catch block 
               e.printStackTrace(); 
           } 	
-	} 
+          return ResultMessage_Hotel.success;
+	}
+
+	public byte[] download(String filename) throws RemoteException {
+		  byte[] b = null; 
+          try { 
+              File file = new File(filename); 
+              b = new byte[(int) file.length()]; 
+              BufferedInputStream is = new BufferedInputStream(new FileInputStream(file)); 
+              is.read(b);
+              is.close();
+          } catch (FileNotFoundException e) { 
+               return null;
+          } catch (IOException e) { 
+              return null;
+          } 
+          return b; 
+      } 
 } 
 
 
