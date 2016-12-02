@@ -3,9 +3,9 @@ package businesslogic.account;
 import java.util.List;
 
 import tools.ResultMessage;
-import vo.HotelInfoVO;
 import vo.HotelInputVO;
 import vo.HotelSearchVO;
+import vo.HotelbriefVO;
 
 /**
  * MockHotel 模拟实现同层调用接口
@@ -14,8 +14,8 @@ import vo.HotelSearchVO;
  */
 public class MockHotel  implements HotelInfo {
 	
-	private List<HotelInfoVO> hotelList;
-	private HotelInfoVO hotelInfoVO;
+	private List<HotelbriefVO> hotelList;
+	private HotelbriefVO hotelInfoVO;
 	public ResultMessage addHotel(HotelInputVO hotelInputVO) {
 		if(hotelInputVO!=null)  
 			return ResultMessage.Exist;
@@ -23,7 +23,7 @@ public class MockHotel  implements HotelInfo {
 
 	}
 
-	public List<HotelInfoVO> searchHotel(HotelSearchVO hotelSearchVO) {	
+	public List<HotelbriefVO> searchHotel(HotelSearchVO hotelSearchVO) {	
 		return hotelList;
 	}
 	
@@ -32,12 +32,12 @@ public class MockHotel  implements HotelInfo {
 	 * @param hotelList
 	 * @param hotelInfoVO
 	 */
-	public MockHotel(List<HotelInfoVO> hotelList,HotelInfoVO hotelInfoVO){
+	public MockHotel(List<HotelbriefVO> hotelList,HotelbriefVO hotelInfoVO){
 		this.hotelList = hotelList;
 		this.hotelInfoVO = hotelInfoVO;
 	}
 
-	public HotelInfoVO getHotelDetail(String hotel_id) {
+	public HotelbriefVO getHotelDetail(String hotel_id) {
 		return hotelInfoVO;
 	}
 

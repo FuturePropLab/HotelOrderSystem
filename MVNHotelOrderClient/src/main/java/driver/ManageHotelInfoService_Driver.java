@@ -7,7 +7,6 @@ import businesslogicservice.ManageHotelInfoService;
 import tools.RoomType;
 import tools.Star;
 import tools.TypeRoomInfo;
-import vo.HotelInfoVO;
 import vo.HotelInputVO;
 import vo.HotelRoomInfoVO;
 

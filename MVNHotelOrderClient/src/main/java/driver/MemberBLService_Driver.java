@@ -6,6 +6,7 @@ import businesslogicservice.MemberService;
 import tools.ApplyResult;
 import tools.MemberBelongType;
 import tools.ResultMessage;
+import tools.ResultMessage_Member;
 import vo.ApplyVO;
 import vo.BackVO;
 import vo.MemberVO;
@@ -19,7 +20,7 @@ public class MemberBLService_Driver {
 			return false;
 		}
 		
-		ResultMessage result=memberService.addApply(new ApplyVO(customer_ID_test, MemberBelongType.Ordinary));
+		ResultMessage_Member result=memberService.addApply(new ApplyVO(customer_ID_test, MemberBelongType.Ordinary));
 		if(result.equals(ResultMessage.NotExist)){
 			return false;
 		}

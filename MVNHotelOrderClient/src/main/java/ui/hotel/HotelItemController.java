@@ -1,10 +1,8 @@
 package ui.hotel;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import tools.Mark;
@@ -16,6 +14,9 @@ import tools.Star;
  *
  */
 public class HotelItemController {
+	private static Image yellowStar=new Image("file:./target/resources/images/star__selected.png");
+	private static Image greyStar=new Image("file:./target/resources/images/star_unselected.png");
+	
 	@FXML
 	private ImageView imageView;
 	@FXML
@@ -77,7 +78,7 @@ public class HotelItemController {
 	 */
 	public void setValues(Image image,String hotelName,Star star,Mark mark,double price_from,double price_to,
 			String hotelID,HotelSearchController hotelSearchController) {	
-		this.imageView.setImage(image==null? new Image("../../../resources/images/picture.png"):image);
+		this.imageView.setImage(image==null? new Image("file:./target/resources/images/room.png"):image);
 		this.hotelName.setText(hotelName);
 		this.star.setText(star.ordinal()+"星");
 		this.mark.setText(mark.getValue()+"分");
@@ -85,6 +86,17 @@ public class HotelItemController {
 		this.price_to.setText("￥"+price_to);
 		this.hotelID=hotelID;
 		this.hotelSearchController=hotelSearchController;
+		
+		star_1.setImage(star.ordinal()>=1? yellowStar:greyStar);
+		star_2.setImage(star.ordinal()>=2? yellowStar:greyStar);
+		star_3.setImage(star.ordinal()>=3? yellowStar:greyStar);
+		star_4.setImage(star.ordinal()>=4? yellowStar:greyStar);
+		star_5.setImage(star.ordinal()>=5? yellowStar:greyStar);
+		mark_1.setImage(mark.getValue()>=1? yellowStar:greyStar);
+		mark_2.setImage(mark.getValue()>=2? yellowStar:greyStar);
+		mark_3.setImage(mark.getValue()>=3? yellowStar:greyStar);
+		mark_4.setImage(mark.getValue()>=4? yellowStar:greyStar);
+		mark_5.setImage(mark.getValue()>=5? yellowStar:greyStar);
 	}
 	
 }

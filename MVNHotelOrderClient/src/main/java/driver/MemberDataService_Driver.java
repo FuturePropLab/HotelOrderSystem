@@ -10,6 +10,7 @@ import tools.ApplyResult;
 import tools.MemberBelongType;
 import tools.MemberType;
 import tools.ResultMessage;
+import tools.ResultMessage_Member;
 
 public class MemberDataService_Driver {
 	private static final String customer_ID_test="000000002";
@@ -17,7 +18,7 @@ public class MemberDataService_Driver {
 	private static final String back_id="000000004";
 	
 	public boolean drive(MemberDataService memberService) {
-		ResultMessage result=memberService.addMember(customer_ID_test);
+		ResultMessage_Member result=memberService.addMember(customer_ID_test);
 		if(result.equals(ResultMessage.NotExist)){
 			return false;
 		}

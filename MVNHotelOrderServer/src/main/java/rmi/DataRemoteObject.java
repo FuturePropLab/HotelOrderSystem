@@ -15,6 +15,7 @@ import dataservice.impl.LoginCheckServiceImpl;
 import po.AccountPO;
 import po.CustomerPO;
 import po.HotelPO;
+import po.ImageInfoPO;
 import tools.AccountType;
 import tools.ResultMessage_Account;
 import tools.ResultMessage_Hotel;
@@ -108,6 +109,24 @@ public class DataRemoteObject extends UnicastRemoteObject implements  LoginCheck
 	public List<HotelPO> searchHotelList(SearchHotel searchhotel) throws RemoteException {
 		// TODO Auto-generated method stub
 		return hotelDataService.searchHotelList(searchhotel);
+	}
+	public ImageInfoPO getImage(String filename) throws RemoteException {
+		return hotelDataService.getImage(filename);
+	}
+	public ResultMessage_Hotel upload(String filename, byte[] file) throws RemoteException {
+		return hotelDataService.upload(filename, file);		
+	}
+	public byte[] download(String filename) throws RemoteException{
+		return hotelDataService.download(filename);
+	}
+	public ResultMessage_Hotel makeDir(String dir) throws RemoteException {
+		return hotelDataService.makeDir(dir);
+	}
+	public ResultMessage_Hotel modifyHotelInfoString(String hotelID, List<String> discribes) throws RemoteException {
+		return hotelDataService.modifyHotelInfoString(hotelID, discribes);
+	}
+	public List<String> getHotelInfoString(String hotelID) throws RemoteException {
+		return hotelDataService.getHotelInfoString(hotelID);
 	}
 
 }

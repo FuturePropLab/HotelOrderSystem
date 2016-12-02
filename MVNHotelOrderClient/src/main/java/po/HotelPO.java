@@ -10,12 +10,11 @@ import tools.Star;
 import vo.HotelInputVO;
 
 public class HotelPO implements Serializable{
-	private static final long serialVersionUID = -7655858599343856811L;
+	private static final long serialVersionUID = -132346433963059143L;
 	private String hotelID;
 	private String hotelName;
 	private HotelAddress hotelAddress; //地址类 ，已经包括商圈的东西
 	private double grade;
-	private HotelInfo introduction; //包含排版等一系列信息
 	private HotelFacility facility;
 	private HotelRoomInfo hotelRoom;
 	private Star star;
@@ -26,7 +25,6 @@ public class HotelPO implements Serializable{
 		this.hotelName = hotelInputVO.HotelName;
 		this.facility =hotelInputVO.hotelFacility;
 		this.hotelRoom =hotelInputVO.hotelRoomInfo;
-		this.introduction =hotelInputVO.hotelInfo;
 		this.hotelAddress = hotelInputVO.hotelAddress;
 		this.star = hotelInputVO.star;
 	}
@@ -89,19 +87,16 @@ public class HotelPO implements Serializable{
 	public void setStar(Star star) {
 		this.star = star;
 	}
-	public HotelInfo getIntroduction() {
-		return introduction;
-	}
-	public void setIntroduction(HotelInfo introduction) {
-		this.introduction = introduction;
-	}
+
 	public double getGrade() {
 		return grade;
 	}
 	public void setGrade(double grade) {
 		this.grade = grade;
 	}
-	
+
+
+
 	
 	
 	

@@ -7,6 +7,7 @@ import businesslogicservice.MemberService;
 import tools.ApplyResult;
 import tools.MemberType;
 import tools.ResultMessage;
+import tools.ResultMessage_Member;
 import vo.ApplyVO;
 import vo.BackVO;
 import vo.MemberVO;
@@ -24,19 +25,19 @@ public class MemberBL_Stub implements MemberService{
 	}
 
 
-	public ResultMessage addApply(ApplyVO apply) {
+	public ResultMessage_Member addApply(ApplyVO apply) {
 		if(apply.customer_ID.equals(customer_ID_test)){
-			return ResultMessage.Exist;
+			return ResultMessage_Member.Success;
 		}
-		return ResultMessage.NotExist;
+		return ResultMessage_Member.Failed;
 	}
 
 	
-	public ResultMessage addBack(BackVO back) {
+	public ResultMessage_Member addBack(BackVO back) {
 		if(back.customer_ID.equals(customer_ID_test)){
-			return ResultMessage.Exist;
+			return ResultMessage_Member.Success;
 		}
-		return ResultMessage.NotExist;
+		return ResultMessage_Member.Failed;
 	}
 
 	public List<ApplyVO> getApplyList() {
@@ -51,11 +52,11 @@ public class MemberBL_Stub implements MemberService{
 		return null;
 	}
 
-	public ResultMessage modifyMemberInfo(MemberVO memberInfo) {
+	public ResultMessage_Member modifyMemberInfo(MemberVO memberInfo) {
 		if(memberInfo.customer_ID.equals(customer_ID_test)){
-			return ResultMessage.Exist;
+			return ResultMessage_Member.Success;
 		}
-		return ResultMessage.NotExist;
+		return ResultMessage_Member.Failed;
 	}
 
 	

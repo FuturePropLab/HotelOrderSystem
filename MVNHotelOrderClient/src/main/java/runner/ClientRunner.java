@@ -6,22 +6,18 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
-import businesslogic.account.HotelAccountController;
 import businesslogic.hotel.ManageHotelController;
-import businesslogicservice.ManageHotelInfoService;
 import dataservice.HotelDataService;
-import po.HotelPO;
 import rmi.RemoteHelper;
 import tools.HotelFacility;
-import tools.HotelRoomInfo;
-import tools.RoomType;
-import tools.TypeRoomInfo;
+import vo.HotelDiscribtionsVO;
 import vo.HotelInputVO;
 
 public class ClientRunner {
@@ -41,6 +37,8 @@ public class ClientRunner {
 			BufferedReader br = new BufferedReader(reader);
 			String str = br.readLine();
 			String port = str.trim();
+			br.close();
+			reader.close();
 			System.out.println(port);
 			remoteHelper = RemoteHelper.getInstance();
 			System.out.println("ready to link");
@@ -61,9 +59,34 @@ public class ClientRunner {
 	
 	
 	public void test() throws RemoteException{		
-		  ManageHotelInfoService manageHotelInfoService = ManageHotelController.getInstance();
-		  HotelInputVO hotelInputVO =new HotelInputVO("lanniao", "zhujunyi");
-		  System.out.println(manageHotelInfoService.addHotel(hotelInputVO));
+		  ManageHotelController manageHotelController =  ManageHotelController.getInstance();
+		  File file1 = new File("/Users/wshwbluebird/Desktop/pc001.png");
+		  File file2 = new File("/Users/wshwbluebird//Desktop/pc002.png");
+		  File file3 = new File("/Users/wshwbluebird//Desktop/pc003.png");
+		  System.out.println(file1.exists());
+		  System.out.println(file2.exists());
+		  System.out.println(file3.exists());
+		  List<URI> list = new ArrayList<URI>();
+		  list.add(file1.toURI());
+		  list.add(file2.toURI());
+		  list.add(file3.toURI());
+//		  
+		  List<String> deList = new ArrayList<String>();;
+		  deList.add("朱俊毅最帅!!!!!");
+		  deList.add("wsw");
+		  HotelDiscribtionsVO hotelDiscribtionsVO = new HotelDiscribtionsVO();
+		  hotelDiscribtionsVO.discribes =deList;
+		  hotelDiscribtionsVO.pictureURI= list;
+		  
+		  HotelInputVO hotelInputVO = new HotelInputVO("HT001", new HotelFacility(), hotelDiscribtionsVO, null);
+		  hotelInputVO.hotePictureURI = file1.toURI();
+		 System.out.println(manageHotelController.saveHotelInfo(hotelInputVO));
+		  
+		  
+          
+
+		  
+		  
 	}
 	
 	public static void main(String[] args) throws RemoteException{

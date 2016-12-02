@@ -1,5 +1,6 @@
 package tools;
 
+import java.net.URI;
 import java.util.List;
 
 import businesslogic.hotel.Hotel;
@@ -7,8 +8,8 @@ import businesslogicservice.HotelDealService;
 import businesslogicservice.ManageHotelInfoService;
 import vo.CommentVO;
 import vo.DiscountVO_hotel;
-import vo.HotelInfoVO;
 import vo.HotelInputVO;
+import vo.HotelbriefVO;
 import vo.SearchHotelVO;
 /**
  * 
@@ -27,17 +28,17 @@ public class HotelController implements HotelDealService,ManageHotelInfoService{
 
 
 
-	public List<HotelInfoVO> SearchHotel(SearchHotelVO searchhotel) {
+	public List<HotelbriefVO> SearchHotel(SearchHotelVO searchhotel) {
 		// TODO Auto-generated method stub
 		return hotel.SearchHotel(searchhotel);
 	}
 
-	public List<HotelInfoVO> SortHotel(List<HotelInfoVO> hotelInfo, SortType sortType) {
+	public List<HotelbriefVO> SortHotel(List<HotelbriefVO> hotelInfo, SortType sortType) {
 		// TODO Auto-generated method stub
 		return hotel.SortHotel(hotelInfo, sortType);
 	}
 
-	public HotelInfoVO getHotelInfo(String hotel_id) {
+	public HotelbriefVO getHotelInfo(String hotel_id) {
 		// TODO Auto-generated method stub
 		return hotel.getHotelInfo(hotel_id);
 	}
@@ -54,6 +55,14 @@ public class HotelController implements HotelDealService,ManageHotelInfoService{
 
 
 	public ResultMessage_Hotel saveHotelInfo(HotelInputVO hotelInputVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+	public ResultMessage_Hotel modifyHotelPicture(String hotelID, URI uri) {
 		// TODO Auto-generated method stub
 		return null;
 	}

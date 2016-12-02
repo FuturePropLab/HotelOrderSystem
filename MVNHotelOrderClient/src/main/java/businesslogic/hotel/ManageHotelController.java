@@ -1,5 +1,7 @@
 package businesslogic.hotel;
 
+import java.net.URI;
+
 import businesslogicservice.ManageHotelInfoService;
 import tools.ResultMessage_Hotel;
 import vo.HotelInputVO;
@@ -39,5 +41,10 @@ public class ManageHotelController implements ManageHotelInfoService {
 	 public ResultMessage_Hotel saveHotelInfo(HotelInputVO hotelInputVO) {
 		 return hotel.saveHotelInfo(hotelInputVO);
 	 }
+
+	public ResultMessage_Hotel modifyHotelPicture(String hotelID, URI uri) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

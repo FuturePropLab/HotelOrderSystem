@@ -12,7 +12,7 @@ import tools.ResultMessage;
 import vo.AssessVO;
 import vo.CustomerVO;
 import vo.ExecutionInfoVO;
-import vo.HotelInfoVO;
+import vo.HotelbriefVO;
 import vo.OrderInputVO;
 
 /**
@@ -185,7 +185,7 @@ public class Order {
 	 * 
 	 * @return 订单相关的酒店信息
 	 */
-	public HotelInfoVO getHotelInfo(){
+	public HotelbriefVO getHotelInfo(){
 		return hotelInfo.getHotelInfo(placingOrderInfo.hotelID);
 	}
 	/**

@@ -9,7 +9,6 @@ import businesslogicservice.DiscountHotelService;
 import businesslogicservice.DiscountWebService;
 import tools.ResultMessageDiscount;
 import tools.ResultMessage_strategy;
-import vo.DiscountVO;
 import vo.DiscountVO_hotel;
 import vo.DiscountVO_web;
 
@@ -124,6 +123,24 @@ public class Discount_stub implements DiscountWebService,DiscountHotelService{
 
 
 	public ResultMessage_strategy deleteHotelDiscount(String hotel_id, String discount_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public ResultMessageDiscount editWebDiscount(DiscountVO_web dis) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public List<DiscountVO_web> getWebDiscount() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public ResultMessageDiscount deleteDiscount(String discountID) {
 		// TODO Auto-generated method stub
 		return null;
 	}

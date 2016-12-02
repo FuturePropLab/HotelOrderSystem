@@ -1,8 +1,6 @@
 package ui.hotel;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,23 +9,21 @@ import Exception.OutOfBoundsException;
 import businesslogicservice.HotelDealService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import stub.HotelDeal_Stub;
-import tools.DateRange;
 import tools.PriceRange;
 import tools.RoomType;
 import tools.Star;
 import ui.main.DetailsController;
-import vo.HotelInfoVO;
+import vo.HotelbriefVO;
 import vo.SearchHotelVO;
 
 /**
@@ -36,9 +32,13 @@ import vo.SearchHotelVO;
  */
 public class HotelSearchController extends DetailsController{
 	@FXML
+	private TextField keyWords;
+	@FXML
 	private ComboBox<String> city;
 	@FXML
-	private TextField district;
+	private ComboBox<String> district;//区，如栖霞区
+	@FXML
+	private ComboBox<String> businessCircle;//商圈
 	@FXML
 	private DatePicker checkInDate;
 	@FXML
@@ -60,7 +60,7 @@ public class HotelSearchController extends DetailsController{
 	@FXML
 	private Button search;
 	@FXML
-	private AnchorPane hotelList;
+	private FlowPane hotelList;
 	
 	/**
      * Initializes the controller class. This method is automatically called
@@ -79,31 +79,37 @@ public class HotelSearchController extends DetailsController{
 	private void handleSearch(){
 		HotelDealService hotelDealService=new HotelDeal_Stub();//TODO:stub换成实例化的service
 		try {
-			SearchHotelVO searchHotelVO=new SearchHotelVO(city.getValue(), district.getText(), hotelName.getText(), 
-					getRoomType(), getPriceRange(), 
-					new DateRange(getDate(checkInDate),getDate(checkOutDate)), getStar(), orderedBefore.isSelected());
-			List<HotelInfoVO> voList=hotelDealService.SearchHotel(searchHotelVO);
+			SearchHotelVO searchHotelVO=new SearchHotelVO(city.getValue(), district.getValue(), businessCircle.getValue(),
+					hotelName.getText(), getPriceRange(), getStar(), getRoomType(),orderedBefore.isSelected());
+			List<HotelbriefVO> voList=hotelDealService.SearchHotel(searchHotelVO);
 			initHotelItems(voList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	@FXML
+	private void handleCity(){
+		//TODO:调用blservice设置district的值
+	}
+	@FXML
+	private void handleDistrict(){
+		//TODO:调用blservice设置businessCircle的值
+	}
+	@FXML
+	private void handleKeyWords(){
+		//TODO:调用blservice模糊搜索
+	}
 	
-	private void initHotelItems(List<HotelInfoVO> voList) throws IOException {
-		for(HotelInfoVO hotelInfoVO:voList){
+	private void initHotelItems(List<HotelbriefVO> voList) throws IOException {
+    	hotelList.getChildren().clear();
+		for(HotelbriefVO hotelInfoVO:voList){
 	    	FXMLLoader loader = new FXMLLoader();
 	        loader.setLocation(getClass().getResource("HotelItem.fxml"));
 	    	SplitPane item = (SplitPane) loader.load();
-	    	hotelList.getChildren().clear();
 	    	hotelList.getChildren().addAll(item);
 	    	HotelItemController hotelItemController=loader.getController();
-	    	
-	    	//TODO:下面的数据要从blservice拿
-	    	Image image=null;
-	    	double price_frome=0;
-	    	double price_to=700;
-	    	hotelItemController.setValues(image, hotelInfoVO.hotelName, hotelInfoVO.star, hotelInfoVO.mark, 
-	    			price_frome, price_to, hotelInfoVO.hotelID, this);
+	    	hotelItemController.setValues(new Image(hotelInfoVO.imageuri.toString()), hotelInfoVO.hotelName, hotelInfoVO.star, hotelInfoVO.mark, 
+	    			hotelInfoVO.priceRange.lowest, hotelInfoVO.priceRange.higest, hotelInfoVO.hotelID, this);
 		}
 	}
 	

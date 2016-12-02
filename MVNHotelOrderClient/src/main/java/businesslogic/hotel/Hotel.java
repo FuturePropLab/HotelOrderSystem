@@ -1,5 +1,6 @@
 package businesslogic.hotel;
 
+import java.net.URI;
 import java.rmi.RemoteException;
 import java.util.List;
 
@@ -9,20 +10,22 @@ import dataservice.HotelDataService;
 import po.HotelPO;
 import rmi.RemoteHelper;
 import stub.HotelDeal_Stub;
-import stub.ManageHotelInfo_Stub;
 import tools.ResultMessage_Account;
 import tools.ResultMessage_Hotel;
 import tools.SortType;
 import vo.CommentVO;
 import vo.DiscountVO_hotel;
-import vo.HotelInfoVO;
+import vo.HotelDiscribtionsVO;
 import vo.HotelInputVO;
+import vo.HotelbriefVO;
 import vo.SearchHotelVO;
 
 public class Hotel {
 	private HotelDataService hotelDataService;
+	private PictureDeal pictureDeal;
 	public Hotel(){
 		hotelDataService = RemoteHelper.getInstance().getHotelDataService();
+		pictureDeal = new PictureDeal();
 	}
 	
 	/**
@@ -62,9 +65,28 @@ public class Hotel {
 	 * @return 成功
 	 */
 	public ResultMessage_Hotel saveHotelInfo(HotelInputVO hotelInputVO) {
-		// TODO Auto-generated method stub
-		ManageHotelInfo_Stub test=new ManageHotelInfo_Stub();
-		return test.saveHotelInfo(hotelInputVO);
+		if(hotelInputVO.hotelID==null || "".equals(hotelInputVO.hotelID));
+		ResultMessage_Hotel rs = ResultMessage_Hotel.success;
+		if(hotelInputVO.hotePictureURI!=null){
+			ResultMessage_Hotel r= pictureDeal.uploadFrontPicture(hotelInputVO.hotelID, hotelInputVO.hotePictureURI);
+			if(r == ResultMessage_Hotel.fail)
+				rs = ResultMessage_Hotel.fail;
+		}
+		if(hotelInputVO.hotelInfoVO!=null){
+			ResultMessage_Hotel r=modifyHotelDiscribtions(hotelInputVO.hotelID, hotelInputVO.hotelInfoVO);
+			if(r == ResultMessage_Hotel.fail)
+				rs = ResultMessage_Hotel.fail;
+		}	
+		HotelPO hotelPO = new HotelPO(hotelInputVO);
+		try {
+			ResultMessage_Hotel r = hotelDataService.modifyHotel(hotelPO);
+			if(r == ResultMessage_Hotel.fail)
+				rs = ResultMessage_Hotel.fail;
+		} catch (RemoteException e) {
+			System.out.println(e.getMessage());
+			return ResultMessage_Hotel.fail;
+		}
+		return rs;
 	}
 
 	/**
@@ -72,7 +94,7 @@ public class Hotel {
 	 * @param searchhotel
 	 * @return 酒店信息列表
 	 */
-	public List<HotelInfoVO> SearchHotel(SearchHotelVO searchhotel) {
+	public List<HotelbriefVO> SearchHotel(SearchHotelVO searchhotel) {
 		// TODO Auto-generated method stub
 		HotelDeal_Stub test=new HotelDeal_Stub();
 		return test.SearchHotel(searchhotel);
@@ -84,7 +106,7 @@ public class Hotel {
 	 * @param sortType
 	 * @return 排序列表
 	 */
-	public List<HotelInfoVO> SortHotel(List<HotelInfoVO> hotelInfo, SortType sortType) {
+	public List<HotelbriefVO> SortHotel(List<HotelbriefVO> hotelInfo, SortType sortType) {
 		// TODO Auto-generated method stub
 		HotelDeal_Stub test=new HotelDeal_Stub();
 		return test.SortHotel(hotelInfo, sortType);
@@ -94,7 +116,7 @@ public class Hotel {
 	 * @param hotel_id
 	 * @return 
 	 */
-	public HotelInfoVO getHotelInfo(String hotel_id) {
+	public HotelbriefVO getHotelInfo(String hotel_id) {
 		// TODO Auto-generated method stub
 		HotelDeal_Stub test=new HotelDeal_Stub();
 		
@@ -125,5 +147,39 @@ public class Hotel {
 		}
 		return test.getComment();
 	}
+	
+	public  ResultMessage_Hotel modifyHotelDiscribtions (String hotelID , HotelDiscribtionsVO hotelDiscribtionsVO){
+		ResultMessage_Hotel re = ResultMessage_Hotel.success;
+		List<URI> pictureURI  = hotelDiscribtionsVO.pictureURI;
+		if(pictureURI!=null){
+			ResultMessage_Hotel r = pictureDeal.uploadHotelInfoPic(hotelID, pictureURI);
+			if(r==ResultMessage_Hotel.fail) 
+				re = ResultMessage_Hotel.fail;		
+		}
+		List<String> discribes  = hotelDiscribtionsVO.discribes;
+		try {
+			ResultMessage_Hotel r =  hotelDataService.modifyHotelInfoString(hotelID, discribes);
+			if(r==ResultMessage_Hotel.fail) 
+				re = ResultMessage_Hotel.fail;	
+		} catch (RemoteException e) {
+			System.out.println(e.getMessage());
+			re = ResultMessage_Hotel.fail;
+		}
+		
+		return re;		
+	}
+	
+	  public HotelDiscribtionsVO  getHotelDiscribtionsVO(String hotelID){
+		  HotelDiscribtionsVO hotelDiscribtionsVO = new HotelDiscribtionsVO();
+		  hotelDiscribtionsVO.pictureURI= pictureDeal.downloadHotelInfoPic(hotelID);
+		  try {
+			hotelDiscribtionsVO.discribes = hotelDataService.getHotelInfoString(hotelID);
+		} catch (RemoteException e) {
+			System.out.println(e.getMessage());
+			hotelDiscribtionsVO.discribes = null;
+		}
+		  return hotelDiscribtionsVO;
+		  
+	  }
 	
 }

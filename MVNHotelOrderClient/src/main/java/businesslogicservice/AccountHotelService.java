@@ -4,7 +4,7 @@ import java.util.List;
 
 import tools.ResultMessage_Account;
 import vo.AccountVO;
-import vo.HotelInfoVO;
+import vo.HotelbriefVO;
 import vo.HotelSearchVO;
 
 public interface AccountHotelService {
@@ -60,5 +60,5 @@ public interface AccountHotelService {
 	 * @param hotel_id
 	 * @return HotelInfoPO 
 	 */
-	public HotelInfoVO getHotelDetail(String hotel_id);
+	public HotelbriefVO getHotelDetail(String hotel_id);
 }

@@ -1,20 +1,11 @@
 package businesslogic.discount;
-import static org.junit.Assert.*;
-
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
 
-import businesslogic.discount.Discount;
-import stub.DiscountCal_stub;
-import tools.RoomType;
 import vo.DiscountSearchVO;
-import vo.DiscountVO;
 import vo.OrderInputCalVO;
-import vo.OrderInputVO;
 
 public class TestDiscountCal {
 
