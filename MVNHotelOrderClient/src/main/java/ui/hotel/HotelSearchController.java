@@ -36,9 +36,13 @@ import vo.SearchHotelVO;
  */
 public class HotelSearchController extends DetailsController{
 	@FXML
+	private TextField keyWords;
+	@FXML
 	private ComboBox<String> city;
 	@FXML
-	private TextField district;
+	private ComboBox<String> district;//区，如栖霞区
+	@FXML
+	private ComboBox<String> businessCircle;//商圈
 	@FXML
 	private DatePicker checkInDate;
 	@FXML
@@ -79,14 +83,25 @@ public class HotelSearchController extends DetailsController{
 	private void handleSearch(){
 		HotelDealService hotelDealService=new HotelDeal_Stub();//TODO:stub换成实例化的service
 		try {
-			SearchHotelVO searchHotelVO=new SearchHotelVO(city.getValue(), district.getText(), hotelName.getText(), 
-					getRoomType(), getPriceRange(), 
-					new DateRange(getDate(checkInDate),getDate(checkOutDate)), getStar(), orderedBefore.isSelected());
+			SearchHotelVO searchHotelVO=new SearchHotelVO(city.getValue(), district.getValue(), businessCircle.getValue(),
+					hotelName.getText(), getPriceRange(), getStar(), getRoomType(),orderedBefore.isSelected());
 			List<HotelInfoVO> voList=hotelDealService.SearchHotel(searchHotelVO);
 			initHotelItems(voList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	@FXML
+	private void handleCity(){
+		//TODO:调用blservice设置district的值
+	}
+	@FXML
+	private void handleDistrict(){
+		//TODO:调用blservice设置businessCircle的值
+	}
+	@FXML
+	private void handleKeyWords(){
+		//TODO:调用blservice模糊搜索
 	}
 	
 	private void initHotelItems(List<HotelInfoVO> voList) throws IOException {
@@ -97,13 +112,8 @@ public class HotelSearchController extends DetailsController{
 	    	hotelList.getChildren().clear();
 	    	hotelList.getChildren().addAll(item);
 	    	HotelItemController hotelItemController=loader.getController();
-	    	
-	    	//TODO:下面的数据要从blservice拿
-	    	Image image=null;
-	    	double price_frome=0;
-	    	double price_to=700;
-	    	hotelItemController.setValues(image, hotelInfoVO.hotelName, hotelInfoVO.star, hotelInfoVO.mark, 
-	    			price_frome, price_to, hotelInfoVO.hotelID, this);
+	    	hotelItemController.setValues(hotelInfoVO.image, hotelInfoVO.hotelName, hotelInfoVO.star, hotelInfoVO.mark, 
+	    			hotelInfoVO.priceRange.lowest, hotelInfoVO.priceRange.higest, hotelInfoVO.hotelID, this);
 		}
 	}
 	

@@ -6,11 +6,8 @@ import tools.PriceRange;
 import tools.Star;
 
 public class HotelInfoVO {
-	
-//  下面这些属性是要加上去，但暂时先不加 by zjy
 	public Image image; //酒店首页图片 
 	public PriceRange priceRange;  //价格区间
-	
 	public String hotelID;
 	public String hotelName;
 	public  String hotelAddress;

@@ -7,8 +7,8 @@ import Exception.OutOfBoundsException;
  *  @author zjy
  */
 public class PriceRange {
-	double lowest;
-	double higest;
+	public double lowest;
+	public double higest;
 	
 	/**
 	 *  @param lowest  最低价
