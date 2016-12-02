@@ -67,4 +67,28 @@ public class HotelController implements HotelDealService,ManageHotelInfoService{
 		return null;
 	}
 
+
+
+
+	public List<String> getAllCity() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+	public List<String> getAllDistrictByCity(String city) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+	public List<String> getBusineeCircleByDistrict(String district) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -32,7 +32,9 @@ public class HotelbriefVO {
 	public  Star star;//星级
 	
 	
-
+	public HotelbriefVO(){
+		super();
+	}
 //	public HotelbriefVO(Image image,PriceRange priceRange,String hotelID,String hotelName, String hotelAddress,
 //			String district,Mark mark,String introduction,String facility,HotelRoomInfoVO hotelRoomVO,Star star){
 //	this.image=image;
@@ -65,12 +67,20 @@ public class HotelbriefVO {
 		this.facility = hotelPO.getFacility();
 		this.hotelRoom = hotelPO.getHotelRoom();
 		this.hotelAddress =hotelPO.getHotelAddress();
+		System.out.println(hotelPO.getHotelAddress().toString());
 		this.hotelID = hotelPO.getHotelID();
 		this.hotelName = hotelPO.getHotelName();
+		System.out.println("mark:  "+hotelPO.getGrade());
 		try {
 			this.mark = new Mark(hotelPO.getGrade());
 		} catch (OutOfBoundsException e1) {
 			System.out.println(e1.getMessage());
+			try {
+				this.mark = new Mark(0);
+			} catch (OutOfBoundsException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		this.star = hotelPO.getStar();
 		

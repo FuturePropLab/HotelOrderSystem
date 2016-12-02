@@ -7,7 +7,7 @@ import java.util.List;
 import po.HotelPO;
 import po.ImageInfoPO;
 import tools.ResultMessage_Hotel;
-import tools.SearchHotel;
+import tools.StandardSearch;
 
 public interface HotelDataService extends Remote{
 	/**
@@ -40,7 +40,7 @@ public interface HotelDataService extends Remote{
 	 * @return
 	 * @throws RemoteException 
 	 */
-	public List<HotelPO> searchHotelList(SearchHotel searchhotel) throws RemoteException;
+	public List<HotelPO> searchHotelList(StandardSearch standardSearch) throws RemoteException;
 	
 	/**
 	 * 
@@ -91,6 +91,20 @@ public interface HotelDataService extends Remote{
 	 * @throws RemoteException
 	 */
 	public List<String>   getHotelInfoString(String hotelID) throws RemoteException;
+	
+	/**
+	 * 
+	 * @param city
+	 * @return
+	 */
+	public List<String> getAllDistrictByCity(String city)throws RemoteException;
+	
+	/**
+	 * 
+	 * @param district
+	 * @return
+	 */
+	public List<String> getBusineeCircleByDistrict(String district)throws RemoteException;
 }
 
 

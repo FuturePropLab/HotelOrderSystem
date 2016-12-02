@@ -11,17 +11,17 @@ import vo.HotelInputVO;
  * @author wshwbluebird
  *
  */
-public class ManageHotelController implements ManageHotelInfoService {
+public class HotelManageController implements ManageHotelInfoService {
 	 private Hotel hotel;
 	 
-	 private static ManageHotelController manageHotelController = null;
-	 private ManageHotelController(){
+	 private static HotelManageController manageHotelController = null;
+	 private HotelManageController(){
 		 hotel = new Hotel();
 	 }
 
-     public static ManageHotelController getInstance(){
+     public static HotelManageController getInstance(){
 			if(manageHotelController==null)
-				manageHotelController  =new ManageHotelController();
+				manageHotelController  =new HotelManageController();
 			return manageHotelController;
 	  }
 	

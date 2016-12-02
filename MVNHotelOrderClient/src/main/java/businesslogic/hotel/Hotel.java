@@ -2,6 +2,8 @@ package businesslogic.hotel;
 
 import java.net.URI;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import Exception.CustomerCreditNotEnoughException;
@@ -13,6 +15,7 @@ import stub.HotelDeal_Stub;
 import tools.ResultMessage_Account;
 import tools.ResultMessage_Hotel;
 import tools.SortType;
+import tools.StandardSearch;
 import vo.CommentVO;
 import vo.DiscountVO_hotel;
 import vo.HotelDiscribtionsVO;
@@ -95,9 +98,27 @@ public class Hotel {
 	 * @return 酒店信息列表
 	 */
 	public List<HotelbriefVO> SearchHotel(SearchHotelVO searchhotel) {
-		// TODO Auto-generated method stub
-		HotelDeal_Stub test=new HotelDeal_Stub();
-		return test.SearchHotel(searchhotel);
+		if(searchhotel.city==null)  return null;
+		List<HotelPO> hotelPOs  = null;
+		try {
+			hotelPOs = hotelDataService.searchHotelList(new StandardSearch(searchhotel));
+		} catch (RemoteException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}	
+		
+		if(hotelPOs==null || hotelPOs.isEmpty())  return null;
+		List<HotelbriefVO> hotelbriefVOs = new ArrayList<HotelbriefVO>();
+		Iterator<HotelPO> it = hotelPOs.iterator();
+		while(it.hasNext()){
+			HotelPO hotelPO  =  it.next();
+			HotelbriefVO hotelbriefVO = new HotelbriefVO(hotelPO);
+			hotelbriefVO.imageuri = pictureDeal.downloadFrontPicture(hotelPO.getHotelID());
+			hotelbriefVOs.add(hotelbriefVO);
+		}
+		
+		return hotelbriefVOs;
+		
 	}
 
 	/**
@@ -181,5 +202,45 @@ public class Hotel {
 		  return hotelDiscribtionsVO;
 		  
 	  }
+	  /**
+	   * 
+	   * @return
+	   */
+	 public List<String> getAllCity() {
+		List<String> list = new ArrayList<String>();
+		list.add("北京");
+		list.add("南京");
+		list.add("上海");
+		return list;
+	 }
+	 
+	 /**
+	  * 
+	  * @param city
+	  * @return
+	  */
+	 public List<String> getAllDistrictByCity(String city){ 
+		try {
+			return hotelDataService.getAllDistrictByCity(city);
+		} catch (RemoteException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	 }
+	 
+	 /**
+	  * 
+	  * @param district
+	  * @return
+	  */
+	 public List<String> getBusineeCircleByDistrict(String district) {
+		try {
+			return hotelDataService.getBusineeCircleByDistrict(district);
+		} catch (RemoteException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+
 	
 }

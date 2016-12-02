@@ -1,10 +1,12 @@
 package DataFactory;
 
 import dataservice.datahelper.AccountDataHelper;
+import dataservice.datahelper.AddressDataHelper;
 import dataservice.datahelper.CustomerDataHelper;
 import dataservice.datahelper.HotelDataHelper;
 import dataservice.datahelper.LoginCheckDatahelper;
 import dataservice.datahelper.impl.AccountDataHelperImpl;
+import dataservice.datahelper.impl.AddressDataHelperImpl;
 import dataservice.datahelper.impl.CustomerDataHelperImpl;
 import dataservice.datahelper.impl.HotelDataHelperImpl;
 import dataservice.datahelper.impl.LoginCheckDatahelperImpl;
@@ -46,6 +48,14 @@ public  class DataHelperUtils {
 	 
 	public static HotelDataHelper getHotelDataHelper(){
 		return HotelDataHelperImpl.getInstance();
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public static AddressDataHelper geAddressDataHelper(){
+		return AddressDataHelperImpl.getInstance();
 	}
 	
 }

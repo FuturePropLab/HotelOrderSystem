@@ -23,6 +23,7 @@ import tools.ResultMessage_LoginCheck;
 import tools.ResultMessage_Modify;
 import tools.ResultMessage_signUp;
 import tools.SearchHotel;
+import tools.StandardSearch;
 
 public class DataRemoteObject extends UnicastRemoteObject implements  LoginCheckService ,AccountDataService,CustomerDataService,HotelDataService{
 	/**
@@ -96,19 +97,16 @@ public class DataRemoteObject extends UnicastRemoteObject implements  LoginCheck
 	 * Hoteldata related 
 	 */
 	public ResultMessage_Hotel addHotel(HotelPO hotelPO) throws RemoteException {
-		// TODO Auto-generated method stub
 		return hotelDataService.addHotel(hotelPO);
 	}
 	public ResultMessage_Hotel modifyHotel(HotelPO hotelPO) throws RemoteException {
-		// TODO Auto-generated method stub
 		return hotelDataService.modifyHotel(hotelPO);
 	}
 	public HotelPO getHotel(String hotel_id) throws RemoteException {
 		return hotelDataService.getHotel(hotel_id);
 	}
-	public List<HotelPO> searchHotelList(SearchHotel searchhotel) throws RemoteException {
-		// TODO Auto-generated method stub
-		return hotelDataService.searchHotelList(searchhotel);
+	public List<HotelPO> searchHotelList(StandardSearch standardSearch) throws RemoteException {
+		return hotelDataService.searchHotelList(standardSearch);
 	}
 	public ImageInfoPO getImage(String filename) throws RemoteException {
 		return hotelDataService.getImage(filename);
@@ -127,6 +125,12 @@ public class DataRemoteObject extends UnicastRemoteObject implements  LoginCheck
 	}
 	public List<String> getHotelInfoString(String hotelID) throws RemoteException {
 		return hotelDataService.getHotelInfoString(hotelID);
+	}
+	public List<String> getAllDistrictByCity(String city) throws RemoteException  {
+		return hotelDataService.getAllDistrictByCity(city);
+	}
+	public List<String> getBusineeCircleByDistrict(String district) throws RemoteException {
+		return hotelDataService.getBusineeCircleByDistrict(district);
 	}
 
 }

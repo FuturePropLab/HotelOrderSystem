@@ -9,6 +9,17 @@ import dataservice.datahelper.AddressDataHelper;
 
 public class AddressDataHelperImpl implements AddressDataHelper {
 	
+	private static AddressDataHelperImpl addressDataHelperImpl = null;
+	
+	private AddressDataHelperImpl(){
+		
+	}
+	public static AddressDataHelperImpl getInstance(){
+		if(addressDataHelperImpl == null)
+			addressDataHelperImpl = new AddressDataHelperImpl();
+		return addressDataHelperImpl;
+	}
+	
 	/*@
 	 * (non-Javadoc)
 	 * @see dataservice.datahelper.AddressDataHelper#getDistributeList(java.lang.String)

@@ -2,16 +2,14 @@ package testHibernate;
 
 import java.rmi.RemoteException;
 
-import DataFactory.Hibernateutils;
 import dataservice.HotelDataService;
 import dataservice.impl.HotelDataServiceImpl;
-import po.ImageInfoPO;
 
 
 public class testHotel {
 		public static void main(String[] args) throws RemoteException {
 			HotelDataService hotelDataService = new HotelDataServiceImpl();
-			System.out.println(hotelDataService.makeDir("./ImageData/test/test"));
+			//System.out.println(hotelDataService.makeDir("./ImageData/test/test"));
 //			String id  = "HT0410";
 //			HotelFacility hotelFacility = new HotelFacility();
 //			hotelFacility.setElseFacility("学习桌");
@@ -25,8 +23,20 @@ public class testHotel {
 //			hotelPO.setStar(Star.one);
 //			hotelDataService.modifyHotel(hotelPO);
 //			
-//						
-			Hibernateutils.shutdown();
+//					
+//			StandardSearch search = new StandardSearch();
+//			search.setHotelAddress(new 
+//					HotelAddress("北京", "西城", null, null));
+			//search.setStar(Star.one);
+//			search.setHigh(1000);
+//			search.setRoomType(RoomType.Double);
+//			search.setHotelName("皇家");
+//			List<HotelPO> list = hotelDataService.searchHotelList(search);
+//			for (int i = 0; i < list.size(); i++) {
+//				System.out.println(list.get(i).getHotelName());
+//				System.out.println(list.get(i).getStar());
+//			}
+//			Hibernateutils.shutdown();
 
 		}
 }

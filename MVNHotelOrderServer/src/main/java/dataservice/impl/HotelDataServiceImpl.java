@@ -18,6 +18,7 @@ import java.util.List;
 
 import DataFactory.DataHelperUtils;
 import dataservice.HotelDataService;
+import dataservice.datahelper.AddressDataHelper;
 import dataservice.datahelper.HotelDataHelper;
 import po.HotelAddressPO;
 import po.HotelBasePO;
@@ -29,13 +30,16 @@ import tools.HotelFacility;
 import tools.HotelRoomInfo;
 import tools.ResultMessage_Hotel;
 import tools.SearchHotel;
+import tools.StandardSearch;
 
 public class HotelDataServiceImpl implements HotelDataService {
 	
 	private HotelDataHelper hotelDataHelper;
+	private AddressDataHelper addressDataHelper;
 	
 	public HotelDataServiceImpl(){
 		this.hotelDataHelper = DataHelperUtils.getHotelDataHelper();
+		this.addressDataHelper = DataHelperUtils.geAddressDataHelper();
 	}
 	
 	public ResultMessage_Hotel addHotel(HotelPO hotelPO) throws RemoteException {
@@ -125,10 +129,38 @@ public class HotelDataServiceImpl implements HotelDataService {
 				null, hotelRoomInfo, hotelFacilityPO);		
 		return hotelPO;
 	}
-
-	public List<HotelPO> searchHotelList(SearchHotel searchhotel) throws RemoteException  {
-		// TODO Auto-generated method stub
-		return null;
+	
+	//TODO
+	public List<HotelPO> searchHotelList(StandardSearch standardSearchs) throws RemoteException  {
+		List<HotelPO> hotelPOs = new ArrayList<HotelPO>();
+		//get all id by address
+		List<String> hotelIDList = hotelDataHelper.getHotelIDListByAddress(standardSearchs.getHotelAddress());
+		if(hotelIDList==null || hotelIDList.isEmpty())  return hotelPOs;
+		
+		//name regex 
+		Iterator<String> it = hotelIDList.iterator();
+		System.out.println("by address   " +hotelIDList.size() );
+		String regex = null;
+		String name = standardSearchs.getHotelName();
+		if(name!=null){
+			regex = new String(".*");
+			for (int i = 0; i < name.length(); i++) {
+				regex = regex + name.charAt(i)+".*";
+			}
+		}	
+		
+		List<String> newList = new ArrayList<String>();
+		while(it.hasNext()){
+			String hotelID = it.next();
+			if(hotelDataHelper.isvalidBase(hotelID, standardSearchs.getStar(), regex) &&
+			   hotelDataHelper.isvalidRoomType(hotelID, standardSearchs.getRoomType()) &&
+			   hotelDataHelper.isvalidRoomType(hotelID, standardSearchs.getRoomType(),
+					   standardSearchs.getLow(),standardSearchs.getHigh() )  ){
+				newList.add(hotelID);
+			}
+				
+		}
+		return getPOsbyList(newList);
 	}
 
 	public ImageInfoPO getImage(String filename) throws RemoteException {
@@ -246,8 +278,28 @@ public class HotelDataServiceImpl implements HotelDataService {
 			return null;
 		}
 
+	}
+
+	public List<String> getAllDistrictByCity(String city)throws RemoteException {
+		System.out.println(city);
+		System.out.println("wait.....");
+		return addressDataHelper.getDistributeList(city);
+	}
+
+	public List<String> getBusineeCircleByDistrict(String district)throws RemoteException {
+		return addressDataHelper.getBusinessCircleList(district);
 	} 
 	
-} 
+	public List<HotelPO> getPOsbyList(List<String>  idList) throws RemoteException{
+		 List<HotelPO> hotelPOs = new ArrayList<HotelPO>();
+		Iterator<String> it = idList.iterator();
+		while(it.hasNext()){
+			HotelPO hotelPO  = getHotel(it.next());
+			hotelPOs.add(hotelPO);
+		}
+		return hotelPOs;
+	}
+	
+}  
 
 

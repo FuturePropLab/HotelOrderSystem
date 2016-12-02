@@ -3,6 +3,10 @@ package dataservice.datahelper.impl;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.swing.plaf.synth.SynthSpinnerUI;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -15,9 +19,12 @@ import dataservice.datahelper.HotelDataHelper;
 import po.HotelAddressPO;
 import po.HotelBasePO;
 import po.HotelFacilityPO;
+import po.RoomPK;
 import po.TypeRoomInfoPO;
+import tools.HotelAddress;
 import tools.HotelRoomInfo;
 import tools.ResultMessage_Hotel;
+import tools.RoomType;
 import tools.Star;
 import tools.TypeRoomInfo;
 
@@ -350,5 +357,80 @@ public class HotelDataHelperImpl implements HotelDataHelper {
 		}
 
 	}
+
+	public List<String> getHotelIDListByAddress(HotelAddress hotelAddress) {
+		String city = hotelAddress.getCity();
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		Criteria cr = s.createCriteria(HotelAddressPO.class);
+		cr.add(Restrictions.eq("city", city));
+		String district = hotelAddress.getDistrict();
+		if(district!=null && !"".equals(district))
+				cr.add(Restrictions.eq("district", district));
+		String BusinessCircle = hotelAddress.getBusinessCircle();
+		
+		if(BusinessCircle!=null && !"".equals(BusinessCircle))
+			cr.add(Restrictions.eq("BusinessCircle", BusinessCircle));
+		
+		List<HotelAddressPO> hotelAddresss = cr.list();
+		System.out.println(hotelAddresss.size());
+		List<String> hotelIDList = new ArrayList<String>();
+		if(hotelAddress==null)  return hotelIDList;
+		Iterator<HotelAddressPO> it = hotelAddresss.iterator();
+		while(it.hasNext()){
+			hotelIDList.add(it.next().getHotelID());
+		}
+		s.close();
+		return hotelIDList;
+	}
+
+	public boolean isvalidBase(String hotelID, Star star, String regex) {
+		if(star == null && regex == null) return true;
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		Criteria cr = s.createCriteria(HotelBasePO.class);
+		cr.add(Restrictions.eq("hotelID", hotelID));
+		HotelBasePO hotelBasePO = (HotelBasePO) cr.list().get(0);
+		s.close();
+		if(star!=null && star != hotelBasePO.getStar())  return false;
+		if(!"".equals(regex) && regex!=null){
+			Pattern pattern = Pattern.compile(regex);
+	    	Matcher matcher = pattern.matcher(hotelBasePO.getHotelName());
+	    	return matcher.matches();
+		}			
+		return true;
+		
+	}
+
+	public boolean isvalidRoomType(String hotelID, RoomType roomType) {
+		if(roomType==null)  return true;
+		RoomPK roomPK = new RoomPK(hotelID, roomType);
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		Criteria cr = s.createCriteria(TypeRoomInfoPO.class);
+		cr.add(Restrictions.eq("roomPK", roomPK));
+		try{
+			List<TypeRoomInfoPO>  list = cr.list();	
+			s.close();
+			return list.size()!=0;
+		}catch(Exception e){
+			return false;
+		}
+
+	}
+
+	public boolean isvalidRoomType(String hotelID, RoomType roomType, double low, double high) {
+		if(low==0 && high == 0)  return true;
+		System.out.println("high: "+high);
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		Criteria cr = s.createCriteria(TypeRoomInfoPO.class);
+		RoomPK roomPK = new RoomPK(hotelID, roomType);
+		cr.add(Restrictions.eq("roomPK", roomPK));
+		cr.add(Restrictions.le("price", high));
+		cr.add(Restrictions.ge("price",low));
+		
+		List<TypeRoomInfoPO>  list = cr.list();	
+		s.close();
+		return list.size()!=0;
+	}
+
+
 
 }

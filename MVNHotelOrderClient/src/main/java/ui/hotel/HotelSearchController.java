@@ -6,6 +6,7 @@ import java.util.List;
 
 import Exception.NoSuchValueException;
 import Exception.OutOfBoundsException;
+import businesslogic.hotel.HotelDealController;
 import businesslogicservice.HotelDealService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -68,7 +69,8 @@ public class HotelSearchController extends DetailsController{
      */
     @FXML
     private void initialize() {
-    	city.getItems().addAll("南京","Option 1","Option 2");
+    	HotelDealService hotelDealService= HotelDealController.getInstance();
+    	city.getItems().addAll(hotelDealService.getAllCity());
     	star.getItems().addAll("1星","2星","3星","4星","5星");
     	roomType.getItems().addAll("标准间","单人间","双人间","豪华套房","总统套房");
     	theWayOfOrder.getItems().addAll("Option 1","Option 2","Option 3");
@@ -77,11 +79,14 @@ public class HotelSearchController extends DetailsController{
 	
 	@FXML
 	private void handleSearch(){
-		HotelDealService hotelDealService=new HotelDeal_Stub();//TODO:stub换成实例化的service
+		HotelDealService hotelDealService= HotelDealController.getInstance();//TODO:stub换成实例化的service
 		try {
 			SearchHotelVO searchHotelVO=new SearchHotelVO(city.getValue(), district.getValue(), businessCircle.getValue(),
 					hotelName.getText(), getPriceRange(), getStar(), getRoomType(),orderedBefore.isSelected());
+			System.out.println("ok????");
 			List<HotelbriefVO> voList=hotelDealService.SearchHotel(searchHotelVO);
+			System.out.println(voList==null);
+			if(voList!=null && !voList.isEmpty())
 			initHotelItems(voList);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -89,10 +94,16 @@ public class HotelSearchController extends DetailsController{
 	}
 	@FXML
 	private void handleCity(){
+		HotelDealService hotelDealService= HotelDealController.getInstance();
+		city.getItems().addAll(hotelDealService.getAllCity());
 		//TODO:调用blservice设置district的值
 	}
 	@FXML
 	private void handleDistrict(){
+		HotelDealService hotelDealService= HotelDealController.getInstance();
+		if(city.getValue()!=null && !"".equals(city.getValue())){
+			district.getItems().addAll(hotelDealService.getAllDistrictByCity(city.getValue()));
+		}
 		//TODO:调用blservice设置businessCircle的值
 	}
 	@FXML
@@ -108,7 +119,12 @@ public class HotelSearchController extends DetailsController{
 	    	SplitPane item = (SplitPane) loader.load();
 	    	hotelList.getChildren().addAll(item);
 	    	HotelItemController hotelItemController=loader.getController();
-	    	hotelItemController.setValues(new Image(hotelInfoVO.imageuri.toString()), hotelInfoVO.hotelName, hotelInfoVO.star, hotelInfoVO.mark, 
+	    	//defense  by wsw
+	    	Image image = null;
+	    	if(hotelInfoVO.imageuri!=null)
+	    		image = new Image(hotelInfoVO.imageuri.toString());
+	    
+	    	hotelItemController.setValues(image, hotelInfoVO.hotelName, hotelInfoVO.star, hotelInfoVO.mark, 
 	    			hotelInfoVO.priceRange.lowest, hotelInfoVO.priceRange.higest, hotelInfoVO.hotelID, this);
 		}
 	}
