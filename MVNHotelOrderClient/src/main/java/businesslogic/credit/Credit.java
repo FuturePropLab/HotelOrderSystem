@@ -23,7 +23,7 @@ import vo.OrderVO;
  */
 public class Credit {
 	private CreditDataService creditDataService;
-	private CustomerInfo customerInfo;
+	private CustomerInfoforCredit customerInfo;
 	private String customer_id;
 	
 	/**
@@ -177,7 +177,7 @@ public class Credit {
 	/**
 	 * 初始化
 	 */
-	public Credit(CustomerInfo customerInfo){
+	public Credit(CustomerInfoforCredit customerInfo){
 		this.customerInfo = customerInfo;
 		this.creditDataService = new  CreditData_Stub();
 	}

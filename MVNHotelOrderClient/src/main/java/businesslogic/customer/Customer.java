@@ -15,6 +15,7 @@ import stub.CustomerDeal_Stub;
 import stub.CustomerSignup_Stub;
 import tools.MemberBelongType;
 import tools.MemberType;
+import tools.ResultMessage;
 import tools.ResultMessage_Account;
 import tools.ResultMessage_Modify;
 import tools.ResultMessage_signUp;
@@ -158,6 +159,18 @@ public class Customer {
 			}			
 		}
 		return customerVOList;
+	}
+	/**
+	 * @author chenyuyan
+	 * 为了修改信用
+	 * @param customerInfo
+	 * @return
+	 */
+	public ResultMessage changeCustomerInfoAboutCredit(CustomerVO customerInfo) {
+		// TODO Auto-generated method stub
+		
+		
+		return customerdata.changeCustomerInfoAboutCredit(customerInfo);
 	}
 
 }

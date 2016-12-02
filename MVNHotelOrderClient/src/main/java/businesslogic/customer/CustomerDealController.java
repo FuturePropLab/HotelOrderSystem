@@ -10,22 +10,37 @@ import vo.CustomerVO;
 
 public class CustomerDealController implements CustomerDealService {
 
+	private Customer customer;
+	private static CustomerDealController dealController;
+	private CustomerDealController (){
+		customer = new Customer();
+	
+	}
+	
+	public static CustomerDealController getInstance(){
+		if(dealController==null) dealController=new CustomerDealController();
+		return dealController;
+	}
+	
+	
+	
+	
 	public CustomerVO getCustomerInfo(String customer_id) throws Exception {
 		// TODO Auto-generated method stub
-		Customer cus=new Customer();
+		//Customer cus=new Customer();
 		
-		return cus.getCustomerInfo(customer_id);
+		return customer.getCustomerInfo(customer_id);
 	}
 
 	public ResultMessage_Modify changeCustomerInfo(CustomerVO customerInfo) throws Exception {
 		// TODO Auto-generated method stub
-		Customer cus=new Customer();
-		return cus.changeCustomerInfo(customerInfo);
+		//Customer cus=new Customer();
+		return customer.changeCustomerInfo(customerInfo);
 	}
 	public List<CustomerVO> searchCustomer(CustomerSearchVO customerSearchVO){
-		Customer cus=new Customer();
+		//Customer cus=new Customer();
 		try {
-			return cus.searchCustomer(customerSearchVO);
+			return customer.searchCustomer(customerSearchVO);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

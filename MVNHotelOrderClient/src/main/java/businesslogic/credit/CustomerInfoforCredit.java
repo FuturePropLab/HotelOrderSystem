@@ -8,7 +8,7 @@ import vo.CustomerVO;
  * @author wshwbluebird
  *
  */
-public interface CustomerInfo {
+public interface CustomerInfoforCredit {
 	/**
 	 * 调用客户模块 获取客户信息
 	 * @param customer_id

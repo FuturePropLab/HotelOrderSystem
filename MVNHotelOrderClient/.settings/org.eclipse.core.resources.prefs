@@ -4,6 +4,7 @@
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/java/businesslogic/account/Account.java=UTF-8
+encoding//src/main/java/businesslogic/account/Certificate.java=UTF-8
 encoding//src/main/java/businesslogic/account/CustomerAccountController.java=UTF-8
 encoding//src/main/java/businesslogic/account/CustomerInfo.java=UTF-8
 encoding//src/main/java/businesslogic/account/HotelAccountController.java=UTF-8
@@ -12,7 +13,8 @@ encoding//src/main/java/businesslogic/account/MockCustomer.java=UTF-8
 encoding//src/main/java/businesslogic/account/MockHotel.java=UTF-8
 encoding//src/main/java/businesslogic/credit/Credit.java=UTF-8
 encoding//src/main/java/businesslogic/credit/CreditController.java=UTF-8
-encoding//src/main/java/businesslogic/credit/CustomerInfo.java=UTF-8
+encoding//src/main/java/businesslogic/credit/CustomerInfoforCredit.java=UTF-8
+encoding//src/main/java/businesslogic/credit/MockCustomer.java=UTF-8
 encoding//src/main/java/businesslogic/customer/Customer.java=UTF-8
 encoding//src/main/java/businesslogic/customer/CustomerDealController.java=UTF-8
 encoding//src/main/java/businesslogic/customer/CustomerInfoImp.java=UTF-8

@@ -5,8 +5,10 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import po.CustomerPO;
+import tools.ResultMessage;
 import tools.ResultMessage_Modify;
 import tools.ResultMessage_signUp;
+import vo.CustomerVO;
 
 public interface CustomerDataService extends Remote{
 	
@@ -23,6 +25,6 @@ public interface CustomerDataService extends Remote{
 	public List<CustomerPO> searchCustomer()throws RemoteException;
 	
 	
-	
+	public ResultMessage changeCustomerInfoAboutCredit(CustomerVO customerInfo);
 	
 }
