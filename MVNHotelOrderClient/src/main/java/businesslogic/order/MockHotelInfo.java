@@ -14,13 +14,7 @@ public class MockHotelInfo implements HotelInfo{
 
 	public HotelbriefVO getHotelInfo(String hotelID) {
 		HotelbriefVO hotelInfoVO = null;
-		try {
-			hotelInfoVO=new HotelbriefVO(null, null, hotelID, "hotelName", "hotelAddress", "district", new Mark(5.0), 
-					"introduction", "facility", new HotelRoomInfoVO(hotelID, "hotelName", null), Star.five);
-		} catch (OutOfBoundsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		hotelInfoVO=new HotelbriefVO(null);
 		return hotelInfoVO;
 	}
 

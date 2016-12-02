@@ -9,6 +9,7 @@ import po.HotelPO;
 import tools.HotelAddress;
 import tools.HotelFacility;
 import tools.HotelRoomInfo;
+import tools.Mark;
 import tools.PriceRange;
 import tools.Star;
 import tools.TypeRoomInfo;
@@ -24,7 +25,7 @@ public class HotelbriefVO {
 	public String hotelID;
 	public String hotelName;
 	public HotelAddress hotelAddress;
-	public  double  mark;//评分  zjy改 2016.11.6
+	public  Mark mark;//评分  zjy改 2016.11.6
 //	public  String introduction;//简介   wsw:我删了 因为没必要 搜索界面不显示酒店详情!!!!!!!!!
 	public  HotelFacility facility;//设备
 	public  HotelRoomInfo hotelRoom;//客房信息
@@ -66,7 +67,11 @@ public class HotelbriefVO {
 		this.hotelAddress =hotelPO.getHotelAddress();
 		this.hotelID = hotelPO.getHotelID();
 		this.hotelName = hotelPO.getHotelName();
-		this.mark = hotelPO.getGrade();
+		try {
+			this.mark = new Mark(hotelPO.getGrade());
+		} catch (OutOfBoundsException e1) {
+			System.out.println(e1.getMessage());
+		}
 		this.star = hotelPO.getStar();
 		
 		List<TypeRoomInfo> typeRoomInfos =hotelRoom.getTypeRoomInfo();
