@@ -24,7 +24,7 @@ public class HotelInputVO {
 	public Star star; 
 	public HotelAddress hotelAddress; //酒店地址
 	public HotelFacility hotelFacility;//酒店的设施信息
-	public HotelInfoVO hotelInfoVO ; //酒店详情 介绍 图片 或者包括排版
+	public HotelDiscribtionsVO hotelInfoVO ; //酒店详情 介绍 图片 或者包括排版
 	public HotelRoomInfo hotelRoomInfo; //酒店的房间信息
 	
 	/**
@@ -103,7 +103,7 @@ public class HotelInputVO {
 	 * @param hotelRoomInfo
 	 */
 	public HotelInputVO(String hotelID,  HotelFacility hotelFacility,
-			HotelInfoVO hotelInfoVO , HotelRoomInfo hotelRoomInfo){
+			HotelDiscribtionsVO hotelInfoVO , HotelRoomInfo hotelRoomInfo){
 		super();
 		this.hotelID =  hotelID;
 		this.hotelFacility = hotelFacility;

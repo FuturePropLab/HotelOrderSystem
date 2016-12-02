@@ -13,6 +13,11 @@ import tools.PriceRange;
 import tools.Star;
 import tools.TypeRoomInfo;
 
+/**
+ * 
+ * @author wshwbluebird
+ *
+ */
 public class HotelbriefVO {
 	public URI imageuri; //酒店首页图片 
 	public PriceRange priceRange;  //价格区间

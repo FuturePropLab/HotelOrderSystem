@@ -10,7 +10,9 @@ import ui.customer.BookHotelController;
 import ui.main.DetailsController;
 import ui.main.RootLayoutController;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 
 /**
  * 酒店详情界面的控制器
@@ -20,15 +22,15 @@ public class HotelDetailController extends DetailsController{
 	@FXML
 	private ImageView hotelImage;
 	@FXML
-	private Label EluxeSuite;
+	private Hyperlink EluxeSuite;
 	@FXML
-	private Label Suites;
+	private Hyperlink Suites;
 	@FXML
-	private Label Standard;
+	private Hyperlink Standard;
 	@FXML
-	private Label Double;
+	private Hyperlink Double;
 	@FXML
-	private Label Single;
+	private Hyperlink Single;
 	@FXML
 	private Button bookEluxeSuite;
 	@FXML
@@ -40,61 +42,109 @@ public class HotelDetailController extends DetailsController{
 	@FXML
 	private Button bookSingle;
 	@FXML
-	private AnchorPane introduction;
+	private Label hotelName;
 	@FXML
-	private AnchorPane facilities;
+	private TextArea describtion;
 	@FXML
-	private AnchorPane assessment;
+	private ImageView star_1;
+	@FXML
+	private ImageView star_2;
+	@FXML
+	private ImageView star_3;
+	@FXML
+	private ImageView star_4;
+	@FXML
+	private ImageView star_5;
+	@FXML
+	private Label star;
+	@FXML
+	private ImageView mark_1;
+	@FXML
+	private ImageView mark_2;
+	@FXML
+	private ImageView mark_3;
+	@FXML
+	private ImageView mark_4;
+	@FXML
+	private ImageView mark_5;
+	@FXML
+	private Label mark;
+	@FXML
+	private Hyperlink facilities;
+	@FXML
+	private Hyperlink assess;
+	@FXML
+	private Label address;
 	
 	/**
 	 * bookEluxeSuite被单击时调用
 	 */
 	@FXML
 	private void handleBookEluxeSuite() {
-		toBookHotelView();
-		BookHotelController bookHotelController=(BookHotelController)rootLayoutController.getDetailsController();
-		bookHotelController.setRoomType(RoomType.EluxeSuite);
+		toBookHotelView(RoomType.EluxeSuite);
 	}
 	/**
 	 * bookSuites被单击时调用
 	 */
 	@FXML
 	private void handleBookSuites() {
-		toBookHotelView();
-		BookHotelController bookHotelController=(BookHotelController)rootLayoutController.getDetailsController();
-		bookHotelController.setRoomType(RoomType.Suites);
+		toBookHotelView(RoomType.Suites);
 	}
 	/**
 	 * bookStandard被单击时调用
 	 */
 	@FXML
 	private void handleBookStandard() {
-		toBookHotelView();
-		BookHotelController bookHotelController=(BookHotelController)rootLayoutController.getDetailsController();
-		bookHotelController.setRoomType(RoomType.Standard);
+		toBookHotelView(RoomType.Standard);
 	}
 	/**
 	 * bookDouble被单击时调用
 	 */
 	@FXML
 	private void handleBookDouble() {
-		toBookHotelView();
-		BookHotelController bookHotelController=(BookHotelController)rootLayoutController.getDetailsController();
-		bookHotelController.setRoomType(RoomType.Double);
+		toBookHotelView(RoomType.Double);
 	}
 	/**
 	 * bookSingle被单击时调用
 	 */
 	@FXML
 	private void handleBookSingle() {
-		toBookHotelView();
-		BookHotelController bookHotelController=(BookHotelController)rootLayoutController.getDetailsController();
-		bookHotelController.setRoomType(RoomType.Single);
+		toBookHotelView(RoomType.Single);
+	}
+	@FXML
+	private void handleHotelImage() {
+		//TODO
+	}
+	@FXML
+	private void handleHotelName() {
+		//TODO
+	}
+	@FXML
+	private void handleDescribtion() {
+		//TODO
+	}
+	@FXML
+	private void handleStar() {
+		//TODO
+	}
+	@FXML
+	private void handleFacilities() {
+		//TODO
+	}
+	@FXML
+	private void handleAssess() {
+		//TODO
+	}
+	@FXML
+	private void handleAddress() {
+		//TODO
 	}
 	
-	private void toBookHotelView() {
+	private void toBookHotelView(RoomType roomType) {
 		try {
 			rootLayoutController.changeDetails("../customer/BookHotel.fxml");
+			BookHotelController bookHotelController=(BookHotelController)rootLayoutController.getDetailsController();
+			bookHotelController.setRoomType(roomType);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
