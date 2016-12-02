@@ -13,6 +13,7 @@ public class DiscountPO_web {
 	
 	private String discountID;
 	
+	private String remarks;
 	
 	public Strategy_webType getType() {
 		return type;
@@ -40,6 +41,14 @@ public class DiscountPO_web {
 
 	public String getDiscountID() {
 		return discountID;
+	}
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 
 

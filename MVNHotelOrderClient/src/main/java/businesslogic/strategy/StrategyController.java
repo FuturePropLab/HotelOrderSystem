@@ -9,6 +9,17 @@ import vo.StrategyVO;
 public class StrategyController implements StrategyService{
 
 	private Strategy strategy;
+	
+	private StrategyController strategyController;
+	
+	private StrategyController() {	
+		strategy=new Strategy();
+	}
+	
+	public StrategyController getInstance(){
+		if(strategyController==null)strategyController=new StrategyController();
+		return strategyController;
+	}
 	public StrategyVO CalculateBestStrategy(OrderInputCalVO orderInputCalVO) {
 		// TODO Auto-generated method stub
 		return strategy.CalculateBestStrategy(orderInputCalVO);

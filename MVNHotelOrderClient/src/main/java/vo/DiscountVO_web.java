@@ -14,4 +14,9 @@ public class DiscountVO_web {
 
 	public String discountID;
 	
+//	public DiscountVO_web(Strategy_webType type, DiscountState state,double discount){
+//		this.type = type;
+//		this.discountState=state;
+//		this.discount=discount;
+//	}
 }

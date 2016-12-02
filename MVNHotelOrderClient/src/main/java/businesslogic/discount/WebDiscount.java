@@ -14,7 +14,7 @@ public class WebDiscount {
 
 	private dataservice.DiscountWebDataService dataService;
 
-	private Factory factory= new Factory();
+	private FactoryDiscount factory= new FactoryDiscount();
 	
 	public ResultMessage_strategy addWebDiscount(DiscountVO_web dis) {
 		// TODO Auto-generated method stub

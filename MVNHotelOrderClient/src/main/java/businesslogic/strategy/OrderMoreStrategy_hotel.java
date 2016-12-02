@@ -10,7 +10,7 @@ import vo.StrategyVO_hotel;
  */
 public class OrderMoreStrategy_hotel implements HotelStrategyInterface {
 
-	public double calculate(OrderInputCalVO orderInputCalVO, StrategyVO_hotel strategyVO_hotel) {
+	public double calculate(OrderInputCalVO orderInputCalVO, StrategyVO_hotel strategyVO_hotel,long day) {
 
 		double res = -1;
 

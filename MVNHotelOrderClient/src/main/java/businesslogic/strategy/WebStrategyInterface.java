@@ -5,6 +5,6 @@ import vo.StrategyVO_web;
 
 public interface WebStrategyInterface {
 	
-	public double calculate(OrderInputCalVO orderInputCalVO,StrategyVO_web strategyVO_web) ;
+	public double calculate(OrderInputCalVO orderInputCalVO,StrategyVO_web strategyVO_web,long day) ;
 
 }
