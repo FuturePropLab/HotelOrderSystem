@@ -66,10 +66,22 @@ public class Hotel {
 	 */
 	public ResultMessage_Hotel saveHotelInfo(HotelInputVO hotelInputVO) {
 		if(hotelInputVO.hotelID==null || "".equals(hotelInputVO.hotelID));
+		ResultMessage_Hotel rs = ResultMessage_Hotel.success;
+		if(hotelInputVO.hotePictureURI!=null){
+			ResultMessage_Hotel r= pictureDeal.uploadFrontPicture(hotelInputVO.hotelID, hotelInputVO.hotePictureURI);
+			if(r == ResultMessage_Hotel.fail)
+				rs = ResultMessage_Hotel.fail;
+		}
+		if(hotelInputVO.hotelInfoVO!=null){
+			ResultMessage_Hotel r=modifyHotelDiscribtions(hotelInputVO.hotelID, hotelInputVO.hotelInfoVO);
+			if(r == ResultMessage_Hotel.fail)
+				rs = ResultMessage_Hotel.fail;
+		}	
 		HotelPO hotelPO = new HotelPO(hotelInputVO);
-		ResultMessage_Hotel rs;
 		try {
-			rs = hotelDataService.modifyHotel(hotelPO);
+			ResultMessage_Hotel r = hotelDataService.modifyHotel(hotelPO);
+			if(r == ResultMessage_Hotel.fail)
+				rs = ResultMessage_Hotel.fail;
 		} catch (RemoteException e) {
 			System.out.println(e.getMessage());
 			return ResultMessage_Hotel.fail;

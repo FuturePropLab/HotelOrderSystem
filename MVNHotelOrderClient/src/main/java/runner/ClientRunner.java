@@ -11,14 +11,14 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import businesslogic.hotel.Hotel;
-import businesslogic.hotel.PictureDeal;
+import businesslogic.hotel.ManageHotelController;
 import dataservice.HotelDataService;
 import rmi.RemoteHelper;
+import tools.HotelFacility;
 import vo.HotelDiscribtionsVO;
+import vo.HotelInputVO;
 
 public class ClientRunner {
 	private RemoteHelper remoteHelper;
@@ -59,37 +59,32 @@ public class ClientRunner {
 	
 	
 	public void test() throws RemoteException{		
-		  HotelDataService hotelInputVO = RemoteHelper.getInstance().getHotelDataService();
-//		  File file1 = new File("/Users/wshwbluebird/Desktop/pc001.png");
-//		  File file2 = new File("/Users/wshwbluebird//Desktop/pc002.png");
-//		  //File file3 = new File("/Users/wshwbluebird//Desktop/pc003.png");
-//		  System.out.println(file1.exists());
-//		  System.out.println(file2.exists());
-//		  //System.out.println(file3.exists());
-//		  List<URI> list = new ArrayList<URI>();
-//		  list.add(file1.toURI());
-//		  list.add(file2.toURI());
-//		 // list.add(file3.toURI());
+		  ManageHotelController manageHotelController =  ManageHotelController.getInstance();
+		  File file1 = new File("/Users/wshwbluebird/Desktop/pc001.png");
+		  File file2 = new File("/Users/wshwbluebird//Desktop/pc002.png");
+		  File file3 = new File("/Users/wshwbluebird//Desktop/pc003.png");
+		  System.out.println(file1.exists());
+		  System.out.println(file2.exists());
+		  System.out.println(file3.exists());
+		  List<URI> list = new ArrayList<URI>();
+		  list.add(file1.toURI());
+		  list.add(file2.toURI());
+		  list.add(file3.toURI());
 //		  
-//		  List<String> deList = new ArrayList<String>();;
-//		  deList.add("sadas");
-//		  deList.add("wsw");
-//		  Hotel hotel = new Hotel();
-//		  HotelDiscribtionsVO hotelDiscribtionsVO = hotel.getHotelDiscribtionsVO("HT002");
-//		  List<URI> list = hotelDiscribtionsVO.pictureURI; 
-//		  List<String> deList = hotelDiscribtionsVO.discribes ;
-//		  System.out.println(list==null);
-//		  System.out.println(deList==null);
-//		  System.out.println(list.size());
-//		  Iterator<URI> it = list.iterator();
-//		  while(it.hasNext()){
-//			  System.out.println(it.next());
-//		  }
-//		  Iterator<String> it2 = deList.iterator();
-//		  while(it2.hasNext()){
-//			  System.out.println(it2.next());
-//		  }
+		  List<String> deList = new ArrayList<String>();;
+		  deList.add("朱俊毅最帅!!!!!");
+		  deList.add("wsw");
+		  HotelDiscribtionsVO hotelDiscribtionsVO = new HotelDiscribtionsVO();
+		  hotelDiscribtionsVO.discribes =deList;
+		  hotelDiscribtionsVO.pictureURI= list;
 		  
+		  HotelInputVO hotelInputVO = new HotelInputVO("HT001", new HotelFacility(), hotelDiscribtionsVO, null);
+		  hotelInputVO.hotePictureURI = file1.toURI();
+		 System.out.println(manageHotelController.saveHotelInfo(hotelInputVO));
+		  
+		  
+          
+
 		  
 		  
 	}
