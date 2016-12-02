@@ -1,16 +1,11 @@
 package businesslogicservice.impl;
 
-import static org.junit.Assert.*;
-
 import java.util.Date;
 
 import org.junit.Test;
 
 import businesslogic.discount.WebDiscount;
-import stub.Discount_stub;
 import tools.ResultMessageDiscount;
-import vo.DiscountVO;
-import vo.DiscountVO_web;
 
 public class TestWebDiscount {
 

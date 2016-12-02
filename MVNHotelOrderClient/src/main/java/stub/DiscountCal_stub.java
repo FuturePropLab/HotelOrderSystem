@@ -14,38 +14,38 @@ import vo.StrategyVO_web;
 
 public class DiscountCal_stub implements StrategyGetService{
 
-	public List<DiscountVO> getSuitableDiscount(OrderInputVO orderInput) {
+	public List<DiscountVO_hotel> getSuitableDiscount(OrderInputVO orderInput) {
 		// TODO Auto-generated method stub
-		List<DiscountVO> dis=new ArrayList();
+		List<DiscountVO_hotel> dis=new ArrayList();
 		Date t1=new Date(2016,9,1);
 		Date t2=new Date(2016,9,2);
-		DiscountVO_hotel dvo=new DiscountVO_hotel(null, 0, null, null);
+		DiscountVO_hotel dvo=new DiscountVO_hotel(null);
 		dis.add(dvo);
 		
 		return dis;
 	}
 
-	public DiscountVO invalidDiscount(String discount_id) {
+	public DiscountVO_hotel invalidDiscount(String discount_id) {
 		// TODO Auto-generated method stub
 		
-		DiscountVO dvo=new DiscountVO();
+		DiscountVO_hotel dvo=new DiscountVO_hotel(null);
 		dvo.discount=9;
-		dvo.Discount_id="0000";
+		dvo.discountID="0000";
 		return dvo;
 	}
 
-	public List<DiscountVO> CheckDiscount(DiscountSearchVO dsvo) {
-		// TODO Auto-generated method stub
-		List<DiscountVO> dis=new ArrayList();
-		Date t1=new Date(2016,9,1);
-		Date t2=new Date(2016,9,2);
-		DiscountVO dvo=new DiscountVO();
-		dvo.discount=9;
-		dvo.Discount_id="0000";
-		dis.add(dvo);
-		
-		return dis;
-	}
+//	public List<DiscountVO> CheckDiscount(DiscountSearchVO dsvo) {
+//		// TODO Auto-generated method stub
+//		List<DiscountVO> dis=new ArrayList();
+//		Date t1=new Date(2016,9,1);
+//		Date t2=new Date(2016,9,2);
+//		DiscountVO dvo=new DiscountVO();
+//		dvo.discount=9;
+//		dvo.Discount_id="0000";
+//		dis.add(dvo);
+//		
+//		return dis;
+//	}
 
 	public List<StrategyVO_hotel> getSuitableDiscount_hotel(OrderInputCalVO orderInput) {
 		// TODO Auto-generated method stub

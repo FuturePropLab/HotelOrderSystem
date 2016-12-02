@@ -14,9 +14,9 @@ public class DiscountService_Driver {
 	}
 
 	public void drive(stub.Discount_stub dis) {
-		DiscountVO_hotel disvo = new DiscountVO_hotel(null, 0, null, null);
+		DiscountVO_hotel disvo = new DiscountVO_hotel(null);
 		disvo.discount = 7;
-		disvo.Discount_id = "0050";
+		disvo.discountID = "0050";
 		
 		
 		ResultMessageDiscount re;
@@ -24,15 +24,15 @@ public class DiscountService_Driver {
 		System.out.println(disvo.discount);
 		
 //		disvo = dis.getSingleHotelDiscount("001");
-		System.out.println(disvo.Discount_id);
+		System.out.println(disvo.discountID);
 		
 		List<DiscountVO_hotel> list = new LinkedList<DiscountVO_hotel>();
 		
 		list=dis.getHotelDiscount("001");
-		System.out.println(list.get(0).Discount_id);
+		System.out.println(list.get(0).discountID);
 		
 //		disvo = dis.editHotelDiscount("000", null);
-		System.out.println(disvo.Discount_id);
+		System.out.println(disvo.discountID);
 		
 //		ResultMessage_strategy res = dis.saveDiscount(disvo);
 //		if (res != ResultMessage_strategy.Success)

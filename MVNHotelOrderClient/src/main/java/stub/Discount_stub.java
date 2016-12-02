@@ -17,8 +17,8 @@ public class Discount_stub implements DiscountWebService,DiscountHotelService{
 	
 	public ResultMessageDiscount addHotelDiscount(String hotel_id) {
 		// TODO Auto-generated method stub
-		DiscountVO dvo=new DiscountVO();
-		dvo.Discount_id=hotel_id;
+//		DiscountVO dvo=new DiscountVO();
+//		dvo.Discount_id=hotel_id;
 		return ResultMessageDiscount.Success;
 	}
 
@@ -38,7 +38,7 @@ public class Discount_stub implements DiscountWebService,DiscountHotelService{
 		
 		Date t1=new Date(2016,9,1);
 		Date t2=new Date(2016,9,2);
-		DiscountVO_hotel dvo=new DiscountVO_hotel(hotel_id, 0, null, null);
+		DiscountVO_hotel dvo=new DiscountVO_hotel(null);
 		List<DiscountVO_hotel> list=new LinkedList();
 		list.add(dvo);
 		return list;
@@ -51,8 +51,8 @@ public class Discount_stub implements DiscountWebService,DiscountHotelService{
 		// TODO Auto-generated method stub
 		LocalDate t1=LocalDate.of(2016,9,01);
 		LocalDate t2=LocalDate.of(2016,9,02);
-		DiscountVO_hotel dvo= new DiscountVO_hotel("0000",9.9,t1,t2);
-		dvo.Discount_id=discount_id;
+		DiscountVO_hotel dvo= new DiscountVO_hotel(null);
+		dvo.discountID=discount_id;
 		return ResultMessageDiscount.Success;
 	}
 
@@ -103,7 +103,7 @@ public class Discount_stub implements DiscountWebService,DiscountHotelService{
 		Date t1=new Date(2016,9,1);
 		Date t2=new Date(2016,9,2);
 //		DiscountVO_web dis=new DiscountVO_web(10,"新街口",9.9,t1,t2,10);
-		DiscountVO_web dis = new DiscountVO_web(0, null, null, null, 0, null, null, 0);
+		DiscountVO_web dis = new DiscountVO_web();
 		return dis;
 	}
 
@@ -116,10 +116,10 @@ public class Discount_stub implements DiscountWebService,DiscountHotelService{
 	}
 
 
-	public ResultMessage_strategy deleteDiscount(DiscountVO discount) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	public ResultMessage_strategy deleteDiscount(DiscountVO discount) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 
 	public ResultMessage_strategy deleteHotelDiscount(String hotel_id, String discount_id) {
