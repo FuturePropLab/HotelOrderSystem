@@ -1,28 +1,20 @@
 package runner;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.List;
 
-import businesslogic.account.HotelAccountController;
-import businesslogic.hotel.ManageHotelController;
-import businesslogicservice.ManageHotelInfoService;
 import dataservice.HotelDataService;
-import po.HotelPO;
+import javafx.scene.image.Image;
 import rmi.RemoteHelper;
-import tools.HotelFacility;
-import tools.HotelRoomInfo;
-import tools.RoomType;
-import tools.TypeRoomInfo;
-import vo.HotelInputVO;
 
 public class ClientRunner {
 	private RemoteHelper remoteHelper;
@@ -61,9 +53,28 @@ public class ClientRunner {
 	
 	
 	public void test() throws RemoteException{		
-		  ManageHotelInfoService manageHotelInfoService = ManageHotelController.getInstance();
-		  HotelInputVO hotelInputVO =new HotelInputVO("lanniao", "zhujunyi");
-		  System.out.println(manageHotelInfoService.addHotel(hotelInputVO));
+		  HotelDataService hotelInputVO = RemoteHelper.getInstance().getHotelDataService();
+		  Image image = new Image("file:./src/main/resources/images/room.png");
+		  File file = new File(image.impl_getUrl());
+		  //File file = (File) object;
+		  System.out.println(file.exists());
+		  byte[] b = null; 
+          try {  
+              b = new byte[(int) file.length()]; 
+              BufferedInputStream is = new BufferedInputStream(new FileInputStream(file)); 
+              is.read(b); 
+              is.close();
+          } catch (FileNotFoundException e) { 
+          // TODO Auto-generated catch block 
+              e.printStackTrace(); 
+          } catch (IOException e) { 
+              // TODO Auto-generated catch block 
+              e.printStackTrace(); 
+          }
+          
+          hotelInputVO.upload("room.png", b);
+//		 
+		  
 	}
 	
 	public static void main(String[] args) throws RemoteException{

@@ -1,5 +1,10 @@
 package dataservice.impl;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.List;
 
@@ -10,6 +15,7 @@ import po.HotelAddressPO;
 import po.HotelBasePO;
 import po.HotelFacilityPO;
 import po.HotelPO;
+import po.ImageInfoPO;
 import tools.HotelAddress;
 import tools.HotelFacility;
 import tools.HotelRoomInfo;
@@ -126,4 +132,31 @@ public class HotelDataServiceImpl implements HotelDataService {
 		return null;
 	}
 
-}
+	public ImageInfoPO getImage(String filename) throws RemoteException {
+		ImageInfoPO imageInfoPO = new ImageInfoPO();
+	    imageInfoPO.setPictureName(filename);
+	    File file = new File("./ImageData/image/test.png");
+	    imageInfoPO.setPicture(file);
+		return imageInfoPO;
+	}
+
+	public void upload(String filename, byte[] fileContent) throws RemoteException {
+		  File file = new File(filename); 
+          try { 
+              if (!file.exists()) 
+                  file.createNewFile(); 
+              BufferedOutputStream os = new BufferedOutputStream(new FileOutputStream(file)); 
+              os.write(fileContent); 
+              os.flush();
+              os.close();
+          } catch (FileNotFoundException e) { 
+              // TODO Auto-generated catch block 
+              e.printStackTrace(); 
+          } catch (IOException e) { 
+              // TODO Auto-generated catch block 
+              e.printStackTrace(); 
+          } 	
+	} 
+} 
+
+

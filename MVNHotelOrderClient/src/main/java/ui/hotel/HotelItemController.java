@@ -1,7 +1,5 @@
 package ui.hotel;
 
-import java.io.File;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;

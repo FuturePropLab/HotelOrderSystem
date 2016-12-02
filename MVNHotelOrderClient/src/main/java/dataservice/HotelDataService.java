@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import po.HotelPO;
+import po.ImageInfoPO;
 import tools.ResultMessage_Hotel;
 import tools.SearchHotel;
 
@@ -41,5 +42,20 @@ public interface HotelDataService extends Remote{
 	 */
 	public List<HotelPO> searchHotelList(SearchHotel searchhotel) throws RemoteException;
 	
+	/**
+	 * 
+	 * @param filename
+	 * @return
+	 * @throws RemoteException
+	 */
+	public  ImageInfoPO getImage(String filename) throws RemoteException; 
 	
+	
+	/**
+	 * 
+	 * @param filename
+	 * @param file
+	 * @throws RemoteException
+	 */
+	public void upload(String filename, byte[] file) throws RemoteException; 
 }
