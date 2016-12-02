@@ -15,7 +15,7 @@ public interface DiscountHotelDataService {
 	
 	public ResultMessage_strategy addHotelDiscount(String hotel_id,DiscountPO_hotel dis);
 	
-	public ResultMessage_strategy editHotelDiscount(String hotel_id,String discount_id, DiscountPO_hotel dis);
+	public ResultMessageDiscount editHotelDiscount(String hotel_id,DiscountPO_hotel dis);
 	
 	public List<DiscountPO_hotel> getHotelDiscount(String hotel_id) ;
 	

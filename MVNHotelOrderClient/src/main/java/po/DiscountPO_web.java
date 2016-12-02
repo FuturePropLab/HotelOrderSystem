@@ -11,6 +11,9 @@ public class DiscountPO_web {
 	
 	private double discount;
 	
+	private String discountID;
+	
+	
 	public Strategy_webType getType() {
 		return type;
 	}
@@ -34,5 +37,10 @@ public class DiscountPO_web {
 	public void setDiscount(double discount) {
 		this.discount = discount;
 	}
+
+	public String getDiscountID() {
+		return discountID;
+	}
+
 
 }

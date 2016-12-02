@@ -5,7 +5,7 @@ package tools;
  *
  */
 public enum Strategy_webType {
-	OrderMore,
+	Period,
 	VIP_district,
 	Level
 }

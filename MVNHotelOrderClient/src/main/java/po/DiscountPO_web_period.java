@@ -1,6 +1,7 @@
 package po;
 import java.time.LocalDate;
-import java.util.Calendar;
+
+import vo.DiscountVO_web_period;
 public class DiscountPO_web_period extends DiscountPO_web{
 	
 	private double discount;
@@ -13,6 +14,12 @@ public class DiscountPO_web_period extends DiscountPO_web{
 		this.discount=discount;
 		this.startdate=startdate;
 		this.enddate=enddate;
+	}
+	public DiscountPO_web_period(DiscountVO_web_period discountVO_web) {
+		// TODO Auto-generated constructor stub
+		this.discount=discountVO_web.discount;
+		this.startdate=discountVO_web.startdate;
+		this.enddate=discountVO_web.enddate;
 	}
 	public LocalDate getEnddate() {
 		return enddate;

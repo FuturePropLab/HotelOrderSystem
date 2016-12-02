@@ -3,6 +3,7 @@ package dataservice;
 import java.util.List;
 
 import po.DiscountPO_web;
+import tools.ResultMessageDiscount;
 import tools.ResultMessage_strategy;
 import vo.DiscountVO_web;
 /**
@@ -18,7 +19,7 @@ public interface DiscountWebDataService {
 	 */
 	public ResultMessage_strategy addWebDiscount (DiscountPO_web dis);
 	
-	public ResultMessage_strategy editWebDiscount (String discount_id);
+	public ResultMessageDiscount editWebDiscount (DiscountPO_web discountPO_web);
 	
 	/**
 	 * 
@@ -26,5 +27,5 @@ public interface DiscountWebDataService {
 	 */
 	public List<DiscountPO_web> getWebDiscount ();
 	
-	public ResultMessage_strategy deleteWebDiscount (String discount_id);
+	public ResultMessageDiscount deleteWebDiscount (String discount_id);
 }

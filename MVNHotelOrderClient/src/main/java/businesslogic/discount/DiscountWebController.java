@@ -1,9 +1,10 @@
 package businesslogic.discount;
 
+import java.util.List;
+
 import businesslogicservice.DiscountWebService;
 import tools.ResultMessageDiscount;
 import tools.ResultMessage_strategy;
-import vo.DiscountVO;
 import vo.DiscountVO_web;
 
 public class DiscountWebController implements DiscountWebService {
@@ -26,10 +27,10 @@ public class DiscountWebController implements DiscountWebService {
 		return web.addWebDiscount(dis);
 	}
 
-	public ResultMessageDiscount editWebDiscount(String Discount_id) {
+	public ResultMessageDiscount editWebDiscount(DiscountVO_web dis) {
 		// TODO Auto-generated method stub
 		
-		return web.editWebDiscount(Discount_id);
+		return web.editWebDiscount(dis);
 		
 	}
 
@@ -40,15 +41,17 @@ public class DiscountWebController implements DiscountWebService {
 //		
 //	}
 
-	public DiscountVO_web getWebDiscount(String Discount_id) {
+	public List<DiscountVO_web> getWebDiscount() {
 		// TODO Auto-generated method stub
-		return web.getWebDiscount(Discount_id);
+		return web.getWebDiscount();
 	}
 
-	public ResultMessage_strategy deleteDiscount(DiscountVO discount) {
+	public ResultMessageDiscount deleteDiscount(String discountID) {
 		// TODO Auto-generated method stub
-		return null;
+		return web.deleteDiscount(discountID);
 	}
+
+
 
 
 }
