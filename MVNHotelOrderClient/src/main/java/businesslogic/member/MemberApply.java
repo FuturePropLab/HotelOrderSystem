@@ -41,8 +41,8 @@ public class MemberApply {
 		
 		
 			
-			
-			return new MemberBL_Stub().addApply(apply);
+			return memberDataService.addApply(applypo);
+			//return new MemberBL_Stub().addApply(apply);
 
 	}
 
