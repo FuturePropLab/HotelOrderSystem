@@ -6,7 +6,6 @@ import java.util.List;
 
 import businesslogic.strategy.StrategyGetService;
 import vo.DiscountSearchVO;
-import vo.DiscountVO;
 import vo.DiscountVO_hotel;
 import vo.OrderInputCalVO;
 import vo.OrderInputVO;

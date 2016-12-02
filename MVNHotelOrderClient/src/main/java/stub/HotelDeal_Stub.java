@@ -12,7 +12,6 @@ import tools.SortType;
 import tools.Star;
 import tools.TypeRoomInfo;
 import vo.CommentVO;
-import vo.DiscountVO;
 import vo.DiscountVO_hotel;
 import vo.HotelInfoVO;
 import vo.HotelRoomInfoVO;
@@ -77,7 +76,7 @@ public class HotelDeal_Stub implements HotelDealService {
 		Date date1 = new Date(2016, 9, 23);
 		Date date2 = new Date(2016,9,24);
 		
-		DiscountVO_hotel discount1=new DiscountVO_hotel(hotel_id, 0, null, null);
+		DiscountVO_hotel discount1=new DiscountVO_hotel(null);
 		discountList.add(discount1);
 		
 		return discountList;

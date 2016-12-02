@@ -20,7 +20,7 @@ public class MockHotelDiscount extends Discount implements getDiscountInfo{
 		
 		String discountid="0001";
 		HotelDiscount temp=new HotelDiscount();
-		DiscountVO_hotel expect2=new DiscountVO_hotel("0000",9.9, null, null);
+		DiscountVO_hotel expect2=new DiscountVO_hotel(null);
 		List<DiscountVO_hotel> list=new LinkedList();
 		list.add(expect2);
 		return list;
