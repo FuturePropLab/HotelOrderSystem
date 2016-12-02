@@ -9,7 +9,6 @@ import businesslogicservice.HotelDealService;
 import tools.DateRange;
 import tools.PriceRange;
 import tools.RoomType;
-import tools.Star;
 import tools.TypeRoomInfo;
 import vo.HotelRoomInfoVO;
 import vo.HotelbriefVO;
@@ -23,14 +22,14 @@ public void drive(HotelDealService hotelDealService) throws OutOfBoundsException
 	typeList.add(typeRoomInfo1);
 	HotelRoomInfoVO hotelRoomInfoVO = new HotelRoomInfoVO("002","�ٻ���Ƶ�",typeList);
 	
-	HotelbriefVO hotelinfo=new HotelbriefVO(null, null, "002","�ٻ���Ƶ�", "nanjing","xinjiekou",null, "good","room",hotelRoomInfoVO,Star.five);
+	HotelbriefVO hotelinfo=new HotelbriefVO(null);
 	hotelInfolist.add(hotelinfo);
 	
 	PriceRange range=new PriceRange(10,20);
 	Date d1=new Date(2016,9,1);
 	Date d2=new Date(2016,9,2);
 	DateRange daterange=new DateRange(d1,d2);
-	SearchHotelVO searchhotel=new SearchHotelVO("nanjing", "xinjiekou", "ronghua", RoomType.Single,range, daterange, Star.five, true);
+	SearchHotelVO searchhotel=new SearchHotelVO(null, null, null, null, null, null, null, true);
 	
 	
 	
@@ -39,7 +38,7 @@ public void drive(HotelDealService hotelDealService) throws OutOfBoundsException
 	
 	System.out.println(hotelDealService.getHotelInfo("123123").hotelAddress);
 	
-	System.out.println(hotelDealService.getHotelDiscount("2321").get(0).Discount_id);
+	System.out.println(hotelDealService.getHotelDiscount("2321").get(0).discountID);
 	
 	System.out.println(hotelDealService.getComment("123").size());
 	

@@ -1,6 +1,5 @@
 package vo;
 
-import tools.DateRange;
 import tools.PriceRange;
 import tools.RoomType;
 import tools.Star;

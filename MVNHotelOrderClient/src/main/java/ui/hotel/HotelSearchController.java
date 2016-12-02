@@ -15,6 +15,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import stub.HotelDeal_Stub;
@@ -107,7 +108,7 @@ public class HotelSearchController extends DetailsController{
 	    	SplitPane item = (SplitPane) loader.load();
 	    	hotelList.getChildren().addAll(item);
 	    	HotelItemController hotelItemController=loader.getController();
-	    	hotelItemController.setValues(hotelInfoVO.image, hotelInfoVO.hotelName, hotelInfoVO.star, hotelInfoVO.mark, 
+	    	hotelItemController.setValues(new Image(hotelInfoVO.imageuri.toString()), hotelInfoVO.hotelName, hotelInfoVO.star, hotelInfoVO.mark, 
 	    			hotelInfoVO.priceRange.lowest, hotelInfoVO.priceRange.higest, hotelInfoVO.hotelID, this);
 		}
 	}

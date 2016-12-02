@@ -29,21 +29,15 @@ public class HotelDeal_Stub implements HotelDealService {
 		typeList.add(typeRoomInfo1);
 		HotelRoomInfoVO hotelRoomInfoVO = new HotelRoomInfoVO("001","�ٻ���Ƶ�",typeList);
 		
-		try {
-			HotelbriefVO hotelinfo = new HotelbriefVO(null, new PriceRange(1, 666), "001","WSW的金屋藏娇大酒店", "南京",
-					"仙林中心",new Mark(4.5),"good","room",hotelRoomInfoVO,Star.five);
-			HotelbriefVO hotelinfo2 = new HotelbriefVO(null, new PriceRange(1, 888), "002","WSW的内部酒店", "南京",
-					"仙林中心",new Mark(5.0),"good","room",hotelRoomInfoVO,Star.five);
-			hotelInfolist.add(hotelinfo);
-			hotelInfolist.add(hotelinfo2);
-			hotelInfolist.add(hotelinfo2);
-			hotelInfolist.add(hotelinfo2);
-			hotelInfolist.add(hotelinfo2);
-			hotelInfolist.add(hotelinfo2);
-			hotelInfolist.add(hotelinfo2);
-		} catch (OutOfBoundsException e) {
-			e.printStackTrace();
-		}
+		HotelbriefVO hotelinfo = new HotelbriefVO(null);
+		HotelbriefVO hotelinfo2 = new HotelbriefVO(null);
+		hotelInfolist.add(hotelinfo);
+		hotelInfolist.add(hotelinfo2);
+		hotelInfolist.add(hotelinfo2);
+		hotelInfolist.add(hotelinfo2);
+		hotelInfolist.add(hotelinfo2);
+		hotelInfolist.add(hotelinfo2);
+		hotelInfolist.add(hotelinfo2);
 
 		return hotelInfolist;
 		
@@ -58,13 +52,8 @@ public class HotelDeal_Stub implements HotelDealService {
 		TypeRoomInfo typeRoomInfo1= new TypeRoomInfo("001","�ٻ���Ƶ�",RoomType.Single,5,180.0);
 		typeList.add(typeRoomInfo1);
 		HotelRoomInfoVO hotelRoomInfoVO = new HotelRoomInfoVO("001","�ٻ���Ƶ�",typeList);
-		try {
-			HotelbriefVO hotelinfo = new HotelbriefVO(null, new PriceRange(1, 666), "001","WSW的金屋藏娇大酒店", "南京",
-					"仙林中心",new Mark(4.5),"good","room",hotelRoomInfoVO,Star.five);
-			hotelInfolist.add(hotelinfo);
-		} catch (OutOfBoundsException e) {
-			e.printStackTrace();
-		}
+		HotelbriefVO hotelinfo = new HotelbriefVO(null);
+		hotelInfolist.add(hotelinfo);
 
 		return hotelInfolist;
 	}
@@ -77,12 +66,7 @@ public class HotelDeal_Stub implements HotelDealService {
 		typeList.add(typeRoomInfo1);
 		HotelRoomInfoVO hotelRoomInfoVO = new HotelRoomInfoVO("001","�ٻ���Ƶ�",typeList);	
 		HotelbriefVO hotelinfo = null;
-		try {
-			hotelinfo = new HotelbriefVO(null, new PriceRange(1, 666), "001","WSW的金屋藏娇大酒店", "南京",
-					"仙林中心",new Mark(4.5),"good","room",hotelRoomInfoVO,Star.five);
-		} catch (OutOfBoundsException e) {
-			e.printStackTrace();
-		}
+		hotelinfo = new HotelbriefVO(null);
 		
 		return hotelinfo;
 	}
