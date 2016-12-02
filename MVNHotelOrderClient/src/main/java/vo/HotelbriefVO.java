@@ -4,7 +4,11 @@ import javafx.scene.image.Image;
 import tools.Mark;
 import tools.PriceRange;
 import tools.Star;
-
+/**
+ * 酒店简要信息，用于作为酒店搜索的返回信息
+ * @author zjy
+ *
+ */
 public class HotelbriefVO {
 	public Image image; //酒店首页图片 
 	public PriceRange priceRange;  //价格区间
