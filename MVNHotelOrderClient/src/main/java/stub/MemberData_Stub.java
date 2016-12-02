@@ -11,6 +11,7 @@ import tools.ApplyResult;
 import tools.MemberBelongType;
 import tools.MemberType;
 import tools.ResultMessage;
+import tools.ResultMessage_Member;
 
 public class MemberData_Stub implements MemberDataService{
 	private static final String customer_ID_test="000000002";
@@ -18,19 +19,19 @@ public class MemberData_Stub implements MemberDataService{
 	private static final String back_id="000000004";
 
 	
-	public ResultMessage addMember(String customer_id) {
+	public ResultMessage_Member addMember(String customer_id) {
 		if(customer_id.equals(customer_ID_test)){
-			return ResultMessage.Exist;
+			return ResultMessage_Member.Success;
 		}
-		return ResultMessage.NotExist;
+		return ResultMessage_Member.Failed;
 	}
 
 	
-	public ResultMessage modifyMember(MemberPO member) {
+	public ResultMessage_Member modifyMember(MemberPO member) {
 		if(member.getCustomer_ID().equals(customer_ID_test)){
-			return ResultMessage.Exist;
+			return ResultMessage_Member.Success;
 		}
-		return ResultMessage.NotExist;
+		return ResultMessage_Member.Failed;
 	}
 
 	
@@ -42,35 +43,35 @@ public class MemberData_Stub implements MemberDataService{
 	}
 
 	
-	public ResultMessage addApply(ApplyPO po) {
+	public ResultMessage_Member addApply(ApplyPO po) {
 		if(po.getApply_id().equals(apply_id)){
-			return ResultMessage.Exist;
+			return ResultMessage_Member.Success;
 		}
-		return ResultMessage.NotExist;
+		return ResultMessage_Member.Failed;
 	}
 
 
-	public ResultMessage addBack(BackPO po) {
+	public ResultMessage_Member addBack(BackPO po) {
 		if(po.getBack_id().equals(back_id)){
-			return ResultMessage.Exist;
+			return ResultMessage_Member.Success;
 		}
-		return ResultMessage.NotExist;
+		return ResultMessage_Member.Failed;
 	}
 
 	
-	public ResultMessage modifyApply(ApplyPO po) {
+	public ResultMessage_Member modifyApply(ApplyPO po) {
 		if(po.getApply_id().equals(apply_id)){
-			return ResultMessage.Exist;
+			return ResultMessage_Member.Success;
 		}
-		return ResultMessage.NotExist;
+		return ResultMessage_Member.Failed;
 	}
 
 	
-	public ResultMessage modifyBack(BackPO po) {
+	public ResultMessage_Member modifyBack(BackPO po) {
 		if(po.getBack_id().equals(back_id)){
-			return ResultMessage.Exist;
+			return ResultMessage_Member.Success;
 		}
-		return ResultMessage.NotExist;
+		return ResultMessage_Member.Failed;
 	}
 
 	
@@ -95,19 +96,19 @@ public class MemberData_Stub implements MemberDataService{
 	}
 
 	
-	public ResultMessage deleteApply(String apply_id) {
+	public ResultMessage_Member deleteApply(String apply_id) {
 		if(apply_id.equals(this.apply_id)){
-			return ResultMessage.Exist;
+			return ResultMessage_Member.Success;
 		}
-		return ResultMessage.NotExist;
+		return ResultMessage_Member.Failed;
 	}
 
 	
-	public ResultMessage deleteBack(String back_id) {
+	public ResultMessage_Member deleteBack(String back_id) {
 		if(back_id.equals(this.back_id)){
-			return ResultMessage.Exist;
+			return ResultMessage_Member.Success;
 		}
-		return ResultMessage.NotExist;
+		return ResultMessage_Member.Failed;
 	}
 
 	

@@ -4,6 +4,7 @@ import po.MemberPO;
 import stub.MemberBL_Stub;
 import stub.MemberData_Stub;
 import tools.ResultMessage;
+import tools.ResultMessage_Member;
 import vo.MemberVO;
 
 /**
@@ -17,7 +18,7 @@ public class MemberManage {
 		else return null;
 	}
 
-	public ResultMessage modifyMemberInfo(MemberVO memberInfo) {
+	public ResultMessage_Member modifyMemberInfo(MemberVO memberInfo) {
 		MemberPO memberPO = new MemberPO(memberInfo.customer_ID,memberInfo.memberType);
 		
 		return new MemberBL_Stub().modifyMemberInfo(memberInfo);

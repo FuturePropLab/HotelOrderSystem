@@ -1,5 +1,6 @@
 package po;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import tools.MemberBelongType;
@@ -12,14 +13,14 @@ public class ApplyPO {
 	}
 
 	private MemberBelongType type=MemberBelongType.None;
-	private Date birthday;
+	private LocalDate birthday;
 	private String companyName;
 	
 	public void setType(MemberBelongType type) {
 		this.type = type;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(LocalDate birthday) {
 		this.birthday = birthday;
 	}
 
@@ -35,7 +36,7 @@ public class ApplyPO {
 		return type;
 	}
 
-	public Date getBirthday() {
+	public LocalDate getBirthday() {
 		return birthday;
 	}
 

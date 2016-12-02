@@ -3,6 +3,7 @@ package businesslogicservice;
 import java.util.List;
 
 import tools.ResultMessage;
+import tools.ResultMessage_Member;
 import vo.ApplyVO;
 import vo.BackVO;
 import vo.MemberVO;
@@ -23,13 +24,13 @@ public interface MemberService {
 	 * @param apply 申请的信息
 	 * @return 调用成功则返回Exist，失败返回NotExist
 	 */
-	public ResultMessage addApply(ApplyVO apply);
+	public ResultMessage_Member addApply(ApplyVO apply);
 	/**
 	 * 返回申请会员的结果，这是给网站管理人员的ui调用的
 	 * @param back 申请结果的信息
 	 * @return 调用成功则返回Exist，失败返回NotExist
 	 */
-	public ResultMessage addBack(BackVO back);
+	public ResultMessage_Member addBack(BackVO back);
 	/**
 	 * 获取申请会员的列表
 	 * @return 申请列表
@@ -46,5 +47,5 @@ public interface MemberService {
 	 * @param memberInfo 修改的信息
 	 * @return 调用成功则返回Exist，失败返回NotExist
 	 */
-	public ResultMessage modifyMemberInfo (MemberVO memberInfo);
+	public ResultMessage_Member modifyMemberInfo (MemberVO memberInfo);
 }

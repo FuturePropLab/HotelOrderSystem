@@ -1,5 +1,6 @@
 package vo;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import tools.MemberBelongType;
@@ -11,7 +12,7 @@ import tools.MemberBelongType;
 public class ApplyVO {
 	public String customer_ID;
 	public MemberBelongType type=MemberBelongType.None;
-	public Date birthday;
+	public LocalDate birthday;
 	public String companyName;
 	
 	/**
