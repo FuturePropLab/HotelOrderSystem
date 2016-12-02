@@ -15,10 +15,11 @@ import tools.Star;
  */
 public class HotelPO implements Serializable{	
 	
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7655858599343856811L;
+	private static final long serialVersionUID = -132346433963059143L;
 	private String hotelID;
 	private String hotelName;
 	private HotelAddress hotelAddress; //地址类 ，已经包括商圈的东西
@@ -101,7 +102,7 @@ public class HotelPO implements Serializable{
 	public void setGrade(double grade) {
 		this.grade = grade;
 	}
-	
+
 	
 	
 	

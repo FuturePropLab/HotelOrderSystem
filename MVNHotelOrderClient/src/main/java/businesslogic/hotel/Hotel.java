@@ -9,7 +9,6 @@ import dataservice.HotelDataService;
 import po.HotelPO;
 import rmi.RemoteHelper;
 import stub.HotelDeal_Stub;
-import stub.ManageHotelInfo_Stub;
 import tools.ResultMessage_Account;
 import tools.ResultMessage_Hotel;
 import tools.SortType;
@@ -62,9 +61,16 @@ public class Hotel {
 	 * @return 成功
 	 */
 	public ResultMessage_Hotel saveHotelInfo(HotelInputVO hotelInputVO) {
-		// TODO Auto-generated method stub
-		ManageHotelInfo_Stub test=new ManageHotelInfo_Stub();
-		return test.saveHotelInfo(hotelInputVO);
+		if(hotelInputVO.hotelID==null || "".equals(hotelInputVO.hotelID));
+		HotelPO hotelPO = new HotelPO(hotelInputVO);
+		ResultMessage_Hotel rs;
+		try {
+			rs = hotelDataService.modifyHotel(hotelPO);
+		} catch (RemoteException e) {
+			System.out.println(e.getMessage());
+			return ResultMessage_Hotel.fail;
+		}
+		return rs;
 	}
 
 	/**

@@ -1,4 +1,6 @@
-package tools;
+﻿package tools;
+
+import java.io.Serializable;
 
 import Exception.OutOfBoundsException;
 
@@ -6,7 +8,11 @@ import Exception.OutOfBoundsException;
  *  价格的范围，从x到y
  *  @author zjy
  */
-public class PriceRange {
+public class PriceRange implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7441593943480401110L;
 	public double lowest;
 	public double higest;
 	
@@ -23,4 +29,22 @@ public class PriceRange {
 		this.lowest=lowest;
 		this.higest=higest;
 	}
+
+	public double getLowest() {
+		return lowest;
+	}
+
+	public void setLowest(double lowest) {
+		this.lowest = lowest;
+	}
+
+	public double getHigest() {
+		return higest;
+	}
+
+	public void setHigest(double higest) {
+		this.higest = higest;
+	}
+	
+	
 }
