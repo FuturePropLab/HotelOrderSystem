@@ -7,6 +7,7 @@ import java.util.List;
 import Exception.OutOfBoundsException;
 import businesslogicservice.HotelDealService;
 import tools.Mark;
+import tools.PriceRange;
 import tools.RoomType;
 import tools.SortType;
 import tools.Star;
@@ -29,8 +30,8 @@ public class HotelDeal_Stub implements HotelDealService {
 		HotelRoomInfoVO hotelRoomInfoVO = new HotelRoomInfoVO("001","�ٻ���Ƶ�",typeList);
 		
 		try {
-			HotelInfoVO hotelinfo = new HotelInfoVO("001","�ٻ���Ƶ�", "nanjing","xinjiekou",new Mark(4.5),
-					"good","room",hotelRoomInfoVO,Star.five);
+			HotelInfoVO hotelinfo = new HotelInfoVO(null, new PriceRange(1, 666), "001","WSW的金屋藏娇大酒店", "南京",
+					"仙林中心",new Mark(4.5),"good","room",hotelRoomInfoVO,Star.five);
 			hotelInfolist.add(hotelinfo);
 		} catch (OutOfBoundsException e) {
 			e.printStackTrace();

@@ -19,7 +19,10 @@ public class HotelInfoVO {
 	public Star star;//星级
 	
 
-	public HotelInfoVO(String hotelID,String hotelName, String hotelAddress,String district,Mark mark,String introduction,String facility,HotelRoomInfoVO hotelRoomVO,Star star){
+	public HotelInfoVO(Image image,PriceRange priceRange,String hotelID,String hotelName, String hotelAddress,
+			String district,Mark mark,String introduction,String facility,HotelRoomInfoVO hotelRoomVO,Star star){
+	this.image=image;
+	this.priceRange=priceRange;
 	this.hotelID=hotelID;
 	this.hotelName=hotelName;
 	this.hotelAddress=hotelAddress;
