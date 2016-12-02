@@ -11,12 +11,14 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import businesslogic.hotel.PictureDeal;
+import businesslogic.hotel.ManageHotelController;
+import dataservice.HotelDataService;
 import rmi.RemoteHelper;
-import tools.ResultMessage_Hotel;
+import tools.HotelFacility;
+import vo.HotelDiscribtionsVO;
+import vo.HotelInputVO;
 
 public class ClientRunner {
 	private RemoteHelper remoteHelper;
@@ -35,6 +37,8 @@ public class ClientRunner {
 			BufferedReader br = new BufferedReader(reader);
 			String str = br.readLine();
 			String port = str.trim();
+			br.close();
+			reader.close();
 			System.out.println(port);
 			remoteHelper = RemoteHelper.getInstance();
 			System.out.println("ready to link");
@@ -55,25 +59,32 @@ public class ClientRunner {
 	
 	
 	public void test() throws RemoteException{		
-		  //HotelDataService hotelInputVO = RemoteHelper.getInstance().getHotelDataService();
-		  PictureDeal pictureDeal = new PictureDeal();
-//		  File file1 = new File("./src/main/resources/images/room.png");
-//		  File file2 = new File("./src/main/resources/images/asiahotel.jpg");
-//		  File file3 = new File("./src/main/resources/images/images.jpg");
-//		  System.out.println(file1.exists());
-//		  System.out.println(file2.exists());
-//		  System.out.println(file3.exists());
-//		  List<URI> list = new ArrayList<URI>();
-//		  list.add(file1.toURI());
-//		  list.add(file2.toURI());
-//		  list.add(file3.toURI());
-		  List<URI> list = pictureDeal.downloadHotelInfoPic("HT002");
-		  System.out.println(list.size());
-		  Iterator<URI> it = list.iterator();
-		  while(it.hasNext()){			
-			System.out.println(it.next().toString());
-		 }	 
+		  ManageHotelController manageHotelController =  ManageHotelController.getInstance();
+		  File file1 = new File("/Users/wshwbluebird/Desktop/pc001.png");
+		  File file2 = new File("/Users/wshwbluebird//Desktop/pc002.png");
+		  File file3 = new File("/Users/wshwbluebird//Desktop/pc003.png");
+		  System.out.println(file1.exists());
+		  System.out.println(file2.exists());
+		  System.out.println(file3.exists());
+		  List<URI> list = new ArrayList<URI>();
+		  list.add(file1.toURI());
+		  list.add(file2.toURI());
+		  list.add(file3.toURI());
+//		  
+		  List<String> deList = new ArrayList<String>();;
+		  deList.add("朱俊毅最帅!!!!!");
+		  deList.add("wsw");
+		  HotelDiscribtionsVO hotelDiscribtionsVO = new HotelDiscribtionsVO();
+		  hotelDiscribtionsVO.discribes =deList;
+		  hotelDiscribtionsVO.pictureURI= list;
 		  
+		  HotelInputVO hotelInputVO = new HotelInputVO("HT001", new HotelFacility(), hotelDiscribtionsVO, null);
+		  hotelInputVO.hotePictureURI = file1.toURI();
+		 System.out.println(manageHotelController.saveHotelInfo(hotelInputVO));
+		  
+		  
+          
+
 		  
 		  
 	}

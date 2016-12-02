@@ -2,9 +2,6 @@ package vo;
 
 import java.net.URI;
 
-import javax.swing.DefaultListCellRenderer.UIResource;
-
-import businesslogic.hotel.HotelInfo;
 import tools.HotelAddress;
 import tools.HotelFacility;
 import tools.HotelRoomInfo;

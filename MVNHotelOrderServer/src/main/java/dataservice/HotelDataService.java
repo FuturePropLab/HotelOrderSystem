@@ -77,4 +77,20 @@ public interface HotelDataService extends Remote{
 	 */
 	public ResultMessage_Hotel makeDir(String dir)throws RemoteException;
 	
+	/**
+	 * 
+	 * @param strs
+	 * @return
+	 * @throws RemoteException
+	 */
+	public ResultMessage_Hotel modifyHotelInfoString(String hotelID , List<String> discribes)throws RemoteException;
+	
+	/**
+	 * 
+	 * @param hotelID
+	 * @return
+	 * @throws RemoteException
+	 */
+	public List<String>   getHotelInfoString(String hotelID) throws RemoteException;
+	
 }

@@ -1,6 +1,5 @@
 package rmi;
 
-import java.io.FileNotFoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
@@ -122,6 +121,12 @@ public class DataRemoteObject extends UnicastRemoteObject implements  LoginCheck
 	}
 	public ResultMessage_Hotel makeDir(String dir) throws RemoteException {
 		return hotelDataService.makeDir(dir);
+	}
+	public ResultMessage_Hotel modifyHotelInfoString(String hotelID, List<String> discribes) throws RemoteException {
+		return hotelDataService.modifyHotelInfoString(hotelID, discribes);
+	}
+	public List<String> getHotelInfoString(String hotelID) throws RemoteException {
+		return hotelDataService.getHotelInfoString(hotelID);
 	}
 
 }

@@ -9,7 +9,6 @@ import java.util.List;
  *
  */
 public class HotelDiscribtionsVO {
-	
 	public List<String> discribes;
 	public List<URI> pictureURI;
 }
