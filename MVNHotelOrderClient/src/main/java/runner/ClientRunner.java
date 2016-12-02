@@ -14,9 +14,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import businesslogic.hotel.Hotel;
 import businesslogic.hotel.PictureDeal;
+import dataservice.HotelDataService;
 import rmi.RemoteHelper;
-import tools.ResultMessage_Hotel;
+import vo.HotelDiscribtionsVO;
 
 public class ClientRunner {
 	private RemoteHelper remoteHelper;
@@ -35,6 +37,8 @@ public class ClientRunner {
 			BufferedReader br = new BufferedReader(reader);
 			String str = br.readLine();
 			String port = str.trim();
+			br.close();
+			reader.close();
 			System.out.println(port);
 			remoteHelper = RemoteHelper.getInstance();
 			System.out.println("ready to link");
@@ -55,24 +59,36 @@ public class ClientRunner {
 	
 	
 	public void test() throws RemoteException{		
-		  //HotelDataService hotelInputVO = RemoteHelper.getInstance().getHotelDataService();
-		  PictureDeal pictureDeal = new PictureDeal();
-//		  File file1 = new File("./src/main/resources/images/room.png");
-//		  File file2 = new File("./src/main/resources/images/asiahotel.jpg");
-//		  File file3 = new File("./src/main/resources/images/images.jpg");
+		  HotelDataService hotelInputVO = RemoteHelper.getInstance().getHotelDataService();
+//		  File file1 = new File("/Users/wshwbluebird/Desktop/pc001.png");
+//		  File file2 = new File("/Users/wshwbluebird//Desktop/pc002.png");
+//		  //File file3 = new File("/Users/wshwbluebird//Desktop/pc003.png");
 //		  System.out.println(file1.exists());
 //		  System.out.println(file2.exists());
-//		  System.out.println(file3.exists());
+//		  //System.out.println(file3.exists());
 //		  List<URI> list = new ArrayList<URI>();
 //		  list.add(file1.toURI());
 //		  list.add(file2.toURI());
-//		  list.add(file3.toURI());
-		  List<URI> list = pictureDeal.downloadHotelInfoPic("HT002");
-		  System.out.println(list.size());
-		  Iterator<URI> it = list.iterator();
-		  while(it.hasNext()){			
-			System.out.println(it.next().toString());
-		 }	 
+//		 // list.add(file3.toURI());
+//		  
+//		  List<String> deList = new ArrayList<String>();;
+//		  deList.add("sadas");
+//		  deList.add("wsw");
+//		  Hotel hotel = new Hotel();
+//		  HotelDiscribtionsVO hotelDiscribtionsVO = hotel.getHotelDiscribtionsVO("HT002");
+//		  List<URI> list = hotelDiscribtionsVO.pictureURI; 
+//		  List<String> deList = hotelDiscribtionsVO.discribes ;
+//		  System.out.println(list==null);
+//		  System.out.println(deList==null);
+//		  System.out.println(list.size());
+//		  Iterator<URI> it = list.iterator();
+//		  while(it.hasNext()){
+//			  System.out.println(it.next());
+//		  }
+//		  Iterator<String> it2 = deList.iterator();
+//		  while(it2.hasNext()){
+//			  System.out.println(it2.next());
+//		  }
 		  
 		  
 		  
