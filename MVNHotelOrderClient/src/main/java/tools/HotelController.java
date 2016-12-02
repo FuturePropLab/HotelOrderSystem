@@ -7,7 +7,7 @@ import businesslogicservice.HotelDealService;
 import businesslogicservice.ManageHotelInfoService;
 import vo.CommentVO;
 import vo.DiscountVO_hotel;
-import vo.HotelInfoVO;
+import vo.HotelbriefVO;
 import vo.HotelInputVO;
 import vo.SearchHotelVO;
 /**
@@ -27,17 +27,17 @@ public class HotelController implements HotelDealService,ManageHotelInfoService{
 
 
 
-	public List<HotelInfoVO> SearchHotel(SearchHotelVO searchhotel) {
+	public List<HotelbriefVO> SearchHotel(SearchHotelVO searchhotel) {
 		// TODO Auto-generated method stub
 		return hotel.SearchHotel(searchhotel);
 	}
 
-	public List<HotelInfoVO> SortHotel(List<HotelInfoVO> hotelInfo, SortType sortType) {
+	public List<HotelbriefVO> SortHotel(List<HotelbriefVO> hotelInfo, SortType sortType) {
 		// TODO Auto-generated method stub
 		return hotel.SortHotel(hotelInfo, sortType);
 	}
 
-	public HotelInfoVO getHotelInfo(String hotel_id) {
+	public HotelbriefVO getHotelInfo(String hotel_id) {
 		// TODO Auto-generated method stub
 		return hotel.getHotelInfo(hotel_id);
 	}

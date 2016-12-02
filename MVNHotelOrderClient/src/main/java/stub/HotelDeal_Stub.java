@@ -14,25 +14,25 @@ import tools.Star;
 import tools.TypeRoomInfo;
 import vo.CommentVO;
 import vo.DiscountVO_hotel;
-import vo.HotelInfoVO;
+import vo.HotelbriefVO;
 import vo.HotelRoomInfoVO;
 import vo.SearchHotelVO;
 
 public class HotelDeal_Stub implements HotelDealService {
 
 	
-	public List<HotelInfoVO> SearchHotel(SearchHotelVO searchhotel) {
+	public List<HotelbriefVO> SearchHotel(SearchHotelVO searchhotel) {
 		// TODO Auto-generated method stub
-		List<HotelInfoVO> hotelInfolist = new ArrayList<HotelInfoVO>();
+		List<HotelbriefVO> hotelInfolist = new ArrayList<HotelbriefVO>();
 		List<TypeRoomInfo> typeList = new ArrayList<TypeRoomInfo>();
 		TypeRoomInfo typeRoomInfo1= new TypeRoomInfo("001","�ٻ���Ƶ�",RoomType.Single,5,180.0);
 		typeList.add(typeRoomInfo1);
 		HotelRoomInfoVO hotelRoomInfoVO = new HotelRoomInfoVO("001","�ٻ���Ƶ�",typeList);
 		
 		try {
-			HotelInfoVO hotelinfo = new HotelInfoVO(null, new PriceRange(1, 666), "001","WSW的金屋藏娇大酒店", "南京",
+			HotelbriefVO hotelinfo = new HotelbriefVO(null, new PriceRange(1, 666), "001","WSW的金屋藏娇大酒店", "南京",
 					"仙林中心",new Mark(4.5),"good","room",hotelRoomInfoVO,Star.five);
-			HotelInfoVO hotelinfo2 = new HotelInfoVO(null, new PriceRange(1, 888), "002","WSW的内部酒店", "南京",
+			HotelbriefVO hotelinfo2 = new HotelbriefVO(null, new PriceRange(1, 888), "002","WSW的内部酒店", "南京",
 					"仙林中心",new Mark(5.0),"good","room",hotelRoomInfoVO,Star.five);
 			hotelInfolist.add(hotelinfo);
 			hotelInfolist.add(hotelinfo2);
@@ -50,16 +50,16 @@ public class HotelDeal_Stub implements HotelDealService {
 	}
 
 	
-	public List<HotelInfoVO> SortHotel(List<HotelInfoVO> hotelInfo, SortType sortType) {
+	public List<HotelbriefVO> SortHotel(List<HotelbriefVO> hotelInfo, SortType sortType) {
 		// TODO Auto-generated method stub
 		
-		List<HotelInfoVO> hotelInfolist = new ArrayList<HotelInfoVO>();
+		List<HotelbriefVO> hotelInfolist = new ArrayList<HotelbriefVO>();
 		List<TypeRoomInfo> typeList = new ArrayList<TypeRoomInfo>();
 		TypeRoomInfo typeRoomInfo1= new TypeRoomInfo("001","�ٻ���Ƶ�",RoomType.Single,5,180.0);
 		typeList.add(typeRoomInfo1);
 		HotelRoomInfoVO hotelRoomInfoVO = new HotelRoomInfoVO("001","�ٻ���Ƶ�",typeList);
 		try {
-			HotelInfoVO hotelinfo = new HotelInfoVO(null, new PriceRange(1, 666), "001","WSW的金屋藏娇大酒店", "南京",
+			HotelbriefVO hotelinfo = new HotelbriefVO(null, new PriceRange(1, 666), "001","WSW的金屋藏娇大酒店", "南京",
 					"仙林中心",new Mark(4.5),"good","room",hotelRoomInfoVO,Star.five);
 			hotelInfolist.add(hotelinfo);
 		} catch (OutOfBoundsException e) {
@@ -70,15 +70,15 @@ public class HotelDeal_Stub implements HotelDealService {
 	}
 
 	
-	public HotelInfoVO getHotelInfo(String hotel_id) {
+	public HotelbriefVO getHotelInfo(String hotel_id) {
 		// TODO Auto-generated method stub
 		List<TypeRoomInfo> typeList = new ArrayList<TypeRoomInfo>();
 		TypeRoomInfo typeRoomInfo1= new TypeRoomInfo("001","�ٻ���Ƶ�",RoomType.Single,5,180.0);
 		typeList.add(typeRoomInfo1);
 		HotelRoomInfoVO hotelRoomInfoVO = new HotelRoomInfoVO("001","�ٻ���Ƶ�",typeList);	
-		HotelInfoVO hotelinfo = null;
+		HotelbriefVO hotelinfo = null;
 		try {
-			hotelinfo = new HotelInfoVO(null, new PriceRange(1, 666), "001","WSW的金屋藏娇大酒店", "南京",
+			hotelinfo = new HotelbriefVO(null, new PriceRange(1, 666), "001","WSW的金屋藏娇大酒店", "南京",
 					"仙林中心",new Mark(4.5),"good","room",hotelRoomInfoVO,Star.five);
 		} catch (OutOfBoundsException e) {
 			e.printStackTrace();

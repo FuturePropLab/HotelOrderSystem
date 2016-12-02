@@ -6,7 +6,7 @@ import businesslogicservice.AccountHotelService;
 import tools.AccountType;
 import tools.ResultMessage_Account;
 import vo.AccountVO;
-import vo.HotelInfoVO;
+import vo.HotelbriefVO;
 import vo.HotelSearchVO;
 
 /**
@@ -59,7 +59,7 @@ public class HotelAccountController implements AccountHotelService {
 	}
 
 
-	public HotelInfoVO getHotelDetail(String hotel_id) {
+	public HotelbriefVO getHotelDetail(String hotel_id) {
 		return account.getHotelDetail(hotel_id);
 	}
 

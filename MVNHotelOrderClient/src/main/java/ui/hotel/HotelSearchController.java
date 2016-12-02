@@ -24,7 +24,7 @@ import tools.PriceRange;
 import tools.RoomType;
 import tools.Star;
 import ui.main.DetailsController;
-import vo.HotelInfoVO;
+import vo.HotelbriefVO;
 import vo.SearchHotelVO;
 
 /**
@@ -82,7 +82,7 @@ public class HotelSearchController extends DetailsController{
 		try {
 			SearchHotelVO searchHotelVO=new SearchHotelVO(city.getValue(), district.getValue(), businessCircle.getValue(),
 					hotelName.getText(), getPriceRange(), getStar(), getRoomType(),orderedBefore.isSelected());
-			List<HotelInfoVO> voList=hotelDealService.SearchHotel(searchHotelVO);
+			List<HotelbriefVO> voList=hotelDealService.SearchHotel(searchHotelVO);
 			initHotelItems(voList);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -101,9 +101,9 @@ public class HotelSearchController extends DetailsController{
 		//TODO:调用blservice模糊搜索
 	}
 	
-	private void initHotelItems(List<HotelInfoVO> voList) throws IOException {
+	private void initHotelItems(List<HotelbriefVO> voList) throws IOException {
     	hotelList.getChildren().clear();
-		for(HotelInfoVO hotelInfoVO:voList){
+		for(HotelbriefVO hotelInfoVO:voList){
 	    	FXMLLoader loader = new FXMLLoader();
 	        loader.setLocation(getClass().getResource("HotelItem.fxml"));
 	    	SplitPane item = (SplitPane) loader.load();

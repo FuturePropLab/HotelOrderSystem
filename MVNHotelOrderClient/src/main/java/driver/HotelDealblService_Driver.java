@@ -13,19 +13,19 @@ import tools.RoomType;
 import tools.SortType;
 import tools.Star;
 import tools.TypeRoomInfo;
-import vo.HotelInfoVO;
+import vo.HotelbriefVO;
 import vo.HotelRoomInfoVO;
 import vo.SearchHotelVO;
 
 public class HotelDealblService_Driver {
 public void drive(HotelDealService hotelDealService) throws OutOfBoundsException{
-	List<HotelInfoVO> hotelInfolist = new ArrayList<HotelInfoVO>();
+	List<HotelbriefVO> hotelInfolist = new ArrayList<HotelbriefVO>();
 	List<TypeRoomInfo> typeList = new ArrayList<TypeRoomInfo>();
 	TypeRoomInfo typeRoomInfo1= new TypeRoomInfo("002","�ٻ���Ƶ�",RoomType.Single,5,180.0);
 	typeList.add(typeRoomInfo1);
 	HotelRoomInfoVO hotelRoomInfoVO = new HotelRoomInfoVO("002","�ٻ���Ƶ�",typeList);
 	
-	HotelInfoVO hotelinfo=new HotelInfoVO("002","�ٻ���Ƶ�", "nanjing","xinjiekou",null, "good","room",hotelRoomInfoVO,Star.five);
+	HotelbriefVO hotelinfo=new HotelbriefVO("002","�ٻ���Ƶ�", "nanjing","xinjiekou",null, "good","room",hotelRoomInfoVO,Star.five);
 	hotelInfolist.add(hotelinfo);
 	
 	PriceRange range=new PriceRange(10,20);

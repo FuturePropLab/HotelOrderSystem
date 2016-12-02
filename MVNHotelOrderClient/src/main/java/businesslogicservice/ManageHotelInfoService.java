@@ -1,7 +1,9 @@
 package businesslogicservice;
 
+import java.net.URI;
+
 import tools.ResultMessage_Hotel;
-import vo.HotelInfoVO;
+import vo.HotelbriefVO;
 import vo.HotelInputVO;
 
 /**
@@ -25,5 +27,7 @@ public interface ManageHotelInfoService {
 	 */
 	public ResultMessage_Hotel saveHotelInfo (HotelInputVO hotelInputVO);
 	
+	
+	public ResultMessage_Hotel modifyHotelPicture(String hotelID,URI uri);
 	
 }

@@ -14,7 +14,7 @@ import tools.ResultMessage_Hotel;
 import tools.SortType;
 import vo.CommentVO;
 import vo.DiscountVO_hotel;
-import vo.HotelInfoVO;
+import vo.HotelbriefVO;
 import vo.HotelInputVO;
 import vo.SearchHotelVO;
 
@@ -78,7 +78,7 @@ public class Hotel {
 	 * @param searchhotel
 	 * @return 酒店信息列表
 	 */
-	public List<HotelInfoVO> SearchHotel(SearchHotelVO searchhotel) {
+	public List<HotelbriefVO> SearchHotel(SearchHotelVO searchhotel) {
 		// TODO Auto-generated method stub
 		HotelDeal_Stub test=new HotelDeal_Stub();
 		return test.SearchHotel(searchhotel);
@@ -90,7 +90,7 @@ public class Hotel {
 	 * @param sortType
 	 * @return 排序列表
 	 */
-	public List<HotelInfoVO> SortHotel(List<HotelInfoVO> hotelInfo, SortType sortType) {
+	public List<HotelbriefVO> SortHotel(List<HotelbriefVO> hotelInfo, SortType sortType) {
 		// TODO Auto-generated method stub
 		HotelDeal_Stub test=new HotelDeal_Stub();
 		return test.SortHotel(hotelInfo, sortType);
@@ -100,7 +100,7 @@ public class Hotel {
 	 * @param hotel_id
 	 * @return 
 	 */
-	public HotelInfoVO getHotelInfo(String hotel_id) {
+	public HotelbriefVO getHotelInfo(String hotel_id) {
 		// TODO Auto-generated method stub
 		HotelDeal_Stub test=new HotelDeal_Stub();
 		
