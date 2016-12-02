@@ -1,5 +1,6 @@
 package businesslogic.hotel;
 
+import java.net.URI;
 import java.rmi.RemoteException;
 import java.util.List;
 
@@ -14,14 +15,17 @@ import tools.ResultMessage_Hotel;
 import tools.SortType;
 import vo.CommentVO;
 import vo.DiscountVO_hotel;
+import vo.HotelDiscribtionsVO;
 import vo.HotelInputVO;
 import vo.HotelbriefVO;
 import vo.SearchHotelVO;
 
 public class Hotel {
 	private HotelDataService hotelDataService;
+	private PictureDeal pictureDeal;
 	public Hotel(){
 		hotelDataService = RemoteHelper.getInstance().getHotelDataService();
+		pictureDeal = new PictureDeal();
 	}
 	
 	/**
@@ -131,5 +135,39 @@ public class Hotel {
 		}
 		return test.getComment();
 	}
+	
+	public  ResultMessage_Hotel modifyHotelDiscribtions (String hotelID , HotelDiscribtionsVO hotelDiscribtionsVO){
+		ResultMessage_Hotel re = ResultMessage_Hotel.success;
+		List<URI> pictureURI  = hotelDiscribtionsVO.pictureURI;
+		if(pictureURI!=null){
+			ResultMessage_Hotel r = pictureDeal.uploadHotelInfoPic(hotelID, pictureURI);
+			if(r==ResultMessage_Hotel.fail) 
+				re = ResultMessage_Hotel.fail;		
+		}
+		List<String> discribes  = hotelDiscribtionsVO.discribes;
+		try {
+			ResultMessage_Hotel r =  hotelDataService.modifyHotelInfoString(hotelID, discribes);
+			if(r==ResultMessage_Hotel.fail) 
+				re = ResultMessage_Hotel.fail;	
+		} catch (RemoteException e) {
+			System.out.println(e.getMessage());
+			re = ResultMessage_Hotel.fail;
+		}
+		
+		return re;		
+	}
+	
+	  public HotelDiscribtionsVO  getHotelDiscribtionsVO(String hotelID){
+		  HotelDiscribtionsVO hotelDiscribtionsVO = new HotelDiscribtionsVO();
+		  hotelDiscribtionsVO.pictureURI= pictureDeal.downloadHotelInfoPic(hotelID);
+		  try {
+			hotelDiscribtionsVO.discribes = hotelDataService.getHotelInfoString(hotelID);
+		} catch (RemoteException e) {
+			System.out.println(e.getMessage());
+			hotelDiscribtionsVO.discribes = null;
+		}
+		  return hotelDiscribtionsVO;
+		  
+	  }
 	
 }

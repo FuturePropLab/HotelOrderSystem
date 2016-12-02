@@ -20,6 +20,7 @@ import tools.ResultMessage_Hotel;
 public class PictureDeal {
 	
 	private HotelDataService hotelDataService;
+	
 	public PictureDeal(){
 		this.hotelDataService = RemoteHelper.getInstance().getHotelDataService();
 	}

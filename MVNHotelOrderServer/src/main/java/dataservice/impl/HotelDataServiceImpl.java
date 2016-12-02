@@ -2,12 +2,18 @@ package dataservice.impl;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import DataFactory.DataHelperUtils;
@@ -173,10 +179,75 @@ public class HotelDataServiceImpl implements HotelDataService {
 		File file = new File(dir);
 		//System.out.println(dir);
 		System.out.println(file.isDirectory());
-		if(file.isDirectory()) return ResultMessage_Hotel.success;
-		else file.mkdirs();
+		if(file.isDirectory()) {
+			 File[] files = file.listFiles();//声明目录下所有的文件 files[];
+		       for (int i = 0;i < files.length;i ++) {//遍历目录下所有的文件
+		             files[i].delete();//把每个文件用这个方法进行迭代
+		       }
+		}
+		file.mkdirs();
 		return ResultMessage_Hotel.success;
+	}
+
+	public ResultMessage_Hotel modifyHotelInfoString(String hotelID, List<String> discribes) throws RemoteException {
+		if(discribes==null)  return ResultMessage_Hotel.success;
+		String baseurl = "./ImageData/info/"+hotelID+".txt";
+		File file = new File(baseurl);
+		if(!file.exists())
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				return ResultMessage_Hotel.fail;
+			}
+		FileWriter writer;
+        try {
+            writer = new FileWriter(file);
+            Iterator<String> it = discribes.iterator();
+            while(it.hasNext()){
+            	writer.write(it.next());
+            	writer.write('\n');
+            }          
+            writer.flush();
+            writer.close();
+            return ResultMessage_Hotel.success;
+        } catch (IOException e) {
+        	System.out.println(e.getMessage());
+        	return ResultMessage_Hotel.success;
+        }
+
+	}
+
+	public List<String> getHotelInfoString(String hotelID) throws RemoteException {
+		String baseurl = "./ImageData/info/"+hotelID+".txt";
+		File file = new File(baseurl);
+		if(!file.exists())  return null;
+		List<String> list = new ArrayList<String>();
+		InputStreamReader reader;
+		try {
+			reader = new InputStreamReader(new FileInputStream(
+					file), "UTF-8");
+			BufferedReader br = new BufferedReader(reader);
+			String str ;
+			while((str=br.readLine())!=null){
+				list.add(str.trim());
+			}
+			
+			br.close();
+			reader.close();
+			return list;
+		} catch (UnsupportedEncodingException e) {
+			System.out.println(e.getMessage());
+			return null;
+		} catch (FileNotFoundException e) {
+			System.out.println(e.getMessage());
+			return null;
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+
 	} 
+	
 } 
 
 
