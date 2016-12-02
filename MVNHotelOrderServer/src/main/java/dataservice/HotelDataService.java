@@ -69,4 +69,12 @@ public interface HotelDataService extends Remote{
 	 */
 	public byte[] download(String filename) throws RemoteException; 
 	
+	/**
+	 * 
+	 * @param dir
+	 * @return
+	 * @throws RemoteException
+	 */
+	public ResultMessage_Hotel makeDir(String dir)throws RemoteException;
+	
 }

@@ -166,7 +166,17 @@ public class HotelDataServiceImpl implements HotelDataService {
               return null;
           } 
           return b; 
-      } 
+      }
+
+	public ResultMessage_Hotel makeDir(String dir) throws RemoteException {
+		System.out.println(dir);
+		File file = new File(dir);
+		//System.out.println(dir);
+		System.out.println(file.isDirectory());
+		if(file.isDirectory()) return ResultMessage_Hotel.success;
+		else file.mkdirs();
+		return ResultMessage_Hotel.success;
+	} 
 } 
 
 

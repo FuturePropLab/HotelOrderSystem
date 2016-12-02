@@ -6,12 +6,17 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import businesslogic.hotel.PictureDeal;
 import rmi.RemoteHelper;
+import tools.ResultMessage_Hotel;
 
 public class ClientRunner {
 	private RemoteHelper remoteHelper;
@@ -52,7 +57,24 @@ public class ClientRunner {
 	public void test() throws RemoteException{		
 		  //HotelDataService hotelInputVO = RemoteHelper.getInstance().getHotelDataService();
 		  PictureDeal pictureDeal = new PictureDeal();
-		  System.out.println(pictureDeal.downloadFrontPicture("HT001"));
+//		  File file1 = new File("./src/main/resources/images/room.png");
+//		  File file2 = new File("./src/main/resources/images/asiahotel.jpg");
+//		  File file3 = new File("./src/main/resources/images/images.jpg");
+//		  System.out.println(file1.exists());
+//		  System.out.println(file2.exists());
+//		  System.out.println(file3.exists());
+//		  List<URI> list = new ArrayList<URI>();
+//		  list.add(file1.toURI());
+//		  list.add(file2.toURI());
+//		  list.add(file3.toURI());
+		  List<URI> list = pictureDeal.downloadHotelInfoPic("HT002");
+		  System.out.println(list.size());
+		  Iterator<URI> it = list.iterator();
+		  while(it.hasNext()){			
+			System.out.println(it.next().toString());
+		 }	 
+		  
+		  
 		  
 	}
 	

@@ -120,5 +120,8 @@ public class DataRemoteObject extends UnicastRemoteObject implements  LoginCheck
 	public byte[] download(String filename) throws RemoteException{
 		return hotelDataService.download(filename);
 	}
+	public ResultMessage_Hotel makeDir(String dir) throws RemoteException {
+		return hotelDataService.makeDir(dir);
+	}
 
 }

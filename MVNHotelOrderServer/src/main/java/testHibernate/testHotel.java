@@ -11,6 +11,7 @@ import po.ImageInfoPO;
 public class testHotel {
 		public static void main(String[] args) throws RemoteException {
 			HotelDataService hotelDataService = new HotelDataServiceImpl();
+			System.out.println(hotelDataService.makeDir("./ImageData/test/test"));
 //			String id  = "HT0410";
 //			HotelFacility hotelFacility = new HotelFacility();
 //			hotelFacility.setElseFacility("学习桌");
