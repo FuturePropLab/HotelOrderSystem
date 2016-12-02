@@ -17,6 +17,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import stub.HotelDeal_Stub;
 import tools.DateRange;
 import tools.PriceRange;
@@ -60,7 +61,7 @@ public class HotelSearchController extends DetailsController{
 	@FXML
 	private Button search;
 	@FXML
-	private AnchorPane hotelList;
+	private FlowPane hotelList;
 	
 	/**
      * Initializes the controller class. This method is automatically called
@@ -101,11 +102,11 @@ public class HotelSearchController extends DetailsController{
 	}
 	
 	private void initHotelItems(List<HotelInfoVO> voList) throws IOException {
+    	hotelList.getChildren().clear();
 		for(HotelInfoVO hotelInfoVO:voList){
 	    	FXMLLoader loader = new FXMLLoader();
 	        loader.setLocation(getClass().getResource("HotelItem.fxml"));
 	    	SplitPane item = (SplitPane) loader.load();
-	    	hotelList.getChildren().clear();
 	    	hotelList.getChildren().addAll(item);
 	    	HotelItemController hotelItemController=loader.getController();
 	    	hotelItemController.setValues(hotelInfoVO.image, hotelInfoVO.hotelName, hotelInfoVO.star, hotelInfoVO.mark, 

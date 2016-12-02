@@ -32,7 +32,15 @@ public class HotelDeal_Stub implements HotelDealService {
 		try {
 			HotelInfoVO hotelinfo = new HotelInfoVO(null, new PriceRange(1, 666), "001","WSW的金屋藏娇大酒店", "南京",
 					"仙林中心",new Mark(4.5),"good","room",hotelRoomInfoVO,Star.five);
+			HotelInfoVO hotelinfo2 = new HotelInfoVO(null, new PriceRange(1, 888), "002","WSW的内部酒店", "南京",
+					"仙林中心",new Mark(5.0),"good","room",hotelRoomInfoVO,Star.five);
 			hotelInfolist.add(hotelinfo);
+			hotelInfolist.add(hotelinfo2);
+			hotelInfolist.add(hotelinfo2);
+			hotelInfolist.add(hotelinfo2);
+			hotelInfolist.add(hotelinfo2);
+			hotelInfolist.add(hotelinfo2);
+			hotelInfolist.add(hotelinfo2);
 		} catch (OutOfBoundsException e) {
 			e.printStackTrace();
 		}
@@ -50,9 +58,13 @@ public class HotelDeal_Stub implements HotelDealService {
 		TypeRoomInfo typeRoomInfo1= new TypeRoomInfo("001","�ٻ���Ƶ�",RoomType.Single,5,180.0);
 		typeList.add(typeRoomInfo1);
 		HotelRoomInfoVO hotelRoomInfoVO = new HotelRoomInfoVO("001","�ٻ���Ƶ�",typeList);
-		
-		HotelInfoVO hotelinfo=new HotelInfoVO("001","�ٻ���Ƶ�", "nanjing","xinjiekou",null,"good","room",hotelRoomInfoVO,Star.five);
-		hotelInfolist.add(hotelinfo);
+		try {
+			HotelInfoVO hotelinfo = new HotelInfoVO(null, new PriceRange(1, 666), "001","WSW的金屋藏娇大酒店", "南京",
+					"仙林中心",new Mark(4.5),"good","room",hotelRoomInfoVO,Star.five);
+			hotelInfolist.add(hotelinfo);
+		} catch (OutOfBoundsException e) {
+			e.printStackTrace();
+		}
 
 		return hotelInfolist;
 	}
@@ -63,9 +75,14 @@ public class HotelDeal_Stub implements HotelDealService {
 		List<TypeRoomInfo> typeList = new ArrayList<TypeRoomInfo>();
 		TypeRoomInfo typeRoomInfo1= new TypeRoomInfo("001","�ٻ���Ƶ�",RoomType.Single,5,180.0);
 		typeList.add(typeRoomInfo1);
-		HotelRoomInfoVO hotelRoomInfoVO = new HotelRoomInfoVO("001","�ٻ���Ƶ�",typeList);
-		
-		HotelInfoVO hotelinfo=new HotelInfoVO("001","�ٻ���Ƶ�", "nanjing","xinjiekou",null,"good","room",hotelRoomInfoVO,Star.five);
+		HotelRoomInfoVO hotelRoomInfoVO = new HotelRoomInfoVO("001","�ٻ���Ƶ�",typeList);	
+		HotelInfoVO hotelinfo = null;
+		try {
+			hotelinfo = new HotelInfoVO(null, new PriceRange(1, 666), "001","WSW的金屋藏娇大酒店", "南京",
+					"仙林中心",new Mark(4.5),"good","room",hotelRoomInfoVO,Star.five);
+		} catch (OutOfBoundsException e) {
+			e.printStackTrace();
+		}
 		
 		return hotelinfo;
 	}

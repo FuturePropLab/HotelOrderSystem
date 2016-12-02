@@ -1,13 +1,12 @@
 package testHibernate;
 
+import java.nio.channels.NonWritableChannelException;
 import java.rmi.RemoteException;
 
-import DataFactory.DataHelperUtils;
 import DataFactory.Hibernateutils;
 import dataservice.HotelDataService;
-import dataservice.datahelper.HotelDataHelper;
 import dataservice.impl.HotelDataServiceImpl;
-import po.HotelBasePO;
+import javafx.scene.image.Image;
 import po.HotelFacilityPO;
 import po.HotelPO;
 import tools.HotelFacility;
@@ -28,6 +27,8 @@ public class testHotel {
 			hotelPO.setHotelID(id);
 			hotelPO.setStar(Star.one);
 			hotelDataService.modifyHotel(hotelPO);
+			
+			Image image = new Image(url)
 			
 			
 			Hibernateutils.shutdown();

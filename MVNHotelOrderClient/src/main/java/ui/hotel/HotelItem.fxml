@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.3" prefHeight="196.0" prefWidth="906.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.hotel.HotelItemController">
+<SplitPane dividerPositions="0.3" maxWidth="898.0" prefHeight="196.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.hotel.HotelItemController">
    <items>
       <AnchorPane>
          <children>
