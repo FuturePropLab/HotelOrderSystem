@@ -20,21 +20,15 @@ public class HotelController implements HotelDealService,ManageHotelInfoService{
 	Hotel hotel=new Hotel();
 	
 	public ResultMessage_Hotel addHotel(HotelInputVO vo) {
-		// TODO Auto-generated method stub
-		
 		return hotel.addHotel(vo);
 	}
 
 
-
-
 	public List<HotelbriefVO> SearchHotel(SearchHotelVO searchhotel) {
-		// TODO Auto-generated method stub
 		return hotel.SearchHotel(searchhotel);
 	}
 
 	public List<HotelbriefVO> SortHotel(List<HotelbriefVO> hotelInfo, SortType sortType) {
-		// TODO Auto-generated method stub
 		return hotel.SortHotel(hotelInfo, sortType);
 	}
 
@@ -87,6 +81,14 @@ public class HotelController implements HotelDealService,ManageHotelInfoService{
 
 
 	public List<String> getBusineeCircleByDistrict(String district) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+	public List<HotelbriefVO> searchHotelListFuzzy(String input) {
 		// TODO Auto-generated method stub
 		return null;
 	}

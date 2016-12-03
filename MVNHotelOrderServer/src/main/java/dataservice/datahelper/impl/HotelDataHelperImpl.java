@@ -99,7 +99,7 @@ public class HotelDataHelperImpl implements HotelDataHelper {
 		Criteria cr = s.createCriteria(TypeRoomInfoPO.class);
 		cr.add(Restrictions.eq("hotelName", hotelName));
 		List<TypeRoomInfoPO> typeRoomInfoPOs = cr.list();
-		System.out.println(typeRoomInfoPOs.size());
+		System.out.println(hotelName+"  "+typeRoomInfoPOs.size());
 		if(typeRoomInfoPOs.isEmpty()) return null;
 		List<TypeRoomInfo> typeRoomInfos = new ArrayList<TypeRoomInfo>();
 		Iterator<TypeRoomInfoPO> it = typeRoomInfoPOs.iterator();
@@ -329,7 +329,11 @@ public class HotelDataHelperImpl implements HotelDataHelper {
 	 */
 	public HotelRoomInfo getHotelRoomInfo(String hotelID) {
 		String hotelName = getHotelName(hotelID);
-		if("FAIL".equals(hotelName) || "NOT_EXITS".equals(hotelName))  return null;
+		if("FAIL".equals(hotelName) || "NOT_EXITS".equals(hotelName)) {
+			System.out.println("HotelRoomInfo: "+hotelName);
+			return null;
+		}
+		System.out.println("HotelRoomInfo: "+hotelName);
 		List<TypeRoomInfo> typeRoomInfos = getTypeRoomInfoList(hotelName);
 		HotelRoomInfo hotelRoomInfo = new HotelRoomInfo(hotelID, hotelName, typeRoomInfos);
 	
@@ -367,7 +371,7 @@ public class HotelDataHelperImpl implements HotelDataHelper {
 		String BusinessCircle = hotelAddress.getBusinessCircle();
 		
 		if(BusinessCircle!=null && !"".equals(BusinessCircle))
-			cr.add(Restrictions.eq("BusinessCircle", BusinessCircle));
+			cr.add(Restrictions.eq("businessCircle", BusinessCircle));
 		
 		List<HotelAddressPO> hotelAddresss = cr.list();
 		System.out.println(hotelAddresss.size());

@@ -30,7 +30,7 @@ public class HotelbriefVO {
 	public  HotelFacility facility;//设备
 	public  HotelRoomInfo hotelRoom;//客房信息
 	public  Star star;//星级
-	
+	public double averagePrice;
 	
 	public HotelbriefVO(){
 		super();
@@ -91,14 +91,19 @@ public class HotelbriefVO {
 		if(typeRoomInfos!=null  && typeRoomInfos.size()!=0){
 			double least = typeRoomInfos.get(0).getPrice();
 			double high = typeRoomInfos.get(0).getPrice();
+			System.out.println("first price:    "+least);
 			Iterator<TypeRoomInfo> it = typeRoomInfos.iterator();
+			double allprice = 0;
 			while(it.hasNext()){
 				double price = it.next().getPrice();
+				allprice += price;
 				if(least > price)  least = price;
 				if(high < price) high = price;
 			}
 			try {
 				this.priceRange = new PriceRange(least, high);
+				this.averagePrice = allprice/typeRoomInfos.size();
+				
 			} catch (OutOfBoundsException e) {
 				System.out.println(e.getMessage());
 			}
@@ -106,6 +111,7 @@ public class HotelbriefVO {
 		}else{
 			try {
 				this.priceRange = new PriceRange(0.0, 0.0);
+				this.averagePrice = 99999;
 			} catch (OutOfBoundsException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

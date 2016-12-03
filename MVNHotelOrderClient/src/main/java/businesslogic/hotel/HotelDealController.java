@@ -40,8 +40,7 @@ public class HotelDealController implements HotelDealService {
 	}
 
 	public List<HotelbriefVO> SortHotel(List<HotelbriefVO> hotelInfo, SortType sortType) {
-		// TODO Auto-generated method stub
-		return null;
+		return hotel.SortHotel(hotelInfo, sortType);
 	}
 
 	public HotelbriefVO getHotelInfo(String hotel_id) {

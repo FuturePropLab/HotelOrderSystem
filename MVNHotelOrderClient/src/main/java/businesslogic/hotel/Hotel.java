@@ -3,6 +3,8 @@ package businesslogic.hotel;
 import java.net.URI;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -129,9 +131,21 @@ public class Hotel {
 	 */
 	public List<HotelbriefVO> SortHotel(List<HotelbriefVO> hotelInfo, SortType sortType) {
 		// TODO Auto-generated method stub
-		HotelDeal_Stub test=new HotelDeal_Stub();
-		return test.SortHotel(hotelInfo, sortType);
+		if(hotelInfo == null)  return null;
+		Comparator comparator;
+		if(sortType.equals(SortType.Price))
+				comparator  =new ComparatorHotelbyPrice();
+		else if(sortType.equals(SortType.grade))
+				comparator  =new ComparatorHotelbymark();
+		else 
+				comparator = new ComparatorHotelbyStar();
+	   Collections.sort(hotelInfo, comparator);
+		return hotelInfo;
 	}
+	
+	
+	
+	
 	/**
 	 * 获取酒店信息
 	 * @param hotel_id
@@ -263,6 +277,48 @@ public class Hotel {
 			return hotelbriefVOs;
 		 
 	 }
+	 
+	 class ComparatorHotelbyPrice implements Comparator{
+		 public int compare(Object arg0, Object arg1) {
+		  HotelbriefVO hotel0=(HotelbriefVO)arg0;
+		  HotelbriefVO hotel1=(HotelbriefVO)arg1;
 
+		  if(hotel0.averagePrice<hotel1.averagePrice)
+			  return -1;
+		  if(hotel0.averagePrice>hotel1.averagePrice)
+			  return 1;
+		  else{
+			  if(hotel0.priceRange.lowest<hotel1.priceRange.lowest)
+				  return -1;
+			  if(hotel0.priceRange.lowest>hotel1.priceRange.lowest)
+				  return 1;
+			  else
+				  return 0;
+		  }
+		}
+		 
+	}
+	 
+	 class ComparatorHotelbymark implements Comparator{
+		 public int compare(Object arg0, Object arg1) {
+		  HotelbriefVO hotel0=(HotelbriefVO)arg0;
+		  HotelbriefVO hotel1=(HotelbriefVO)arg1;
+
+		  if(hotel0.mark.getValue()<hotel1.mark.getValue())
+			  return 1;
+		  if(hotel0.mark.getValue()>hotel1.mark.getValue())
+			  return -1;
+		  else return 0;			 
+		 }
+	 }
+	 
+	 class ComparatorHotelbyStar implements Comparator{
+		 public int compare(Object arg0, Object arg1) {
+		  HotelbriefVO hotel0=(HotelbriefVO)arg0;
+		  HotelbriefVO hotel1=(HotelbriefVO)arg1;
+
+		  return -hotel0.star.compareTo(hotel1.star);			 
+		 }
+	 }
 	
 }
