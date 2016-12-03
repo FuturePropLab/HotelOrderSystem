@@ -72,21 +72,20 @@ public class HotelSearchController extends DetailsController{
     	HotelDealService hotelDealService= HotelDealController.getInstance();
     	city.getItems().addAll(hotelDealService.getAllCity());
     	star.getItems().addAll("所有","1星","2星","3星","4星","5星");
-    	roomType.getItems().addAll("标准间","单人间","双人间","豪华套房","总统套房");
+    	roomType.getItems().addAll("所有","标准间","单人间","双人间","豪华套房","总统套房");
     	theWayOfOrder.getItems().addAll("Option 1","Option 2","Option 3");
     	handleSearch();
     }
 	
 	@FXML
 	private void handleSearch(){
-		HotelDealService hotelDealService= HotelDealController.getInstance();//TODO:stub换成实例化的service
+		HotelDealService hotelDealService= HotelDealController.getInstance();
 		try {
 			SearchHotelVO searchHotelVO=new SearchHotelVO(city.getValue(), district.getValue(), businessCircle.getValue(),
 					hotelName.getText(), getPriceRange(), getStar(), getRoomType(),orderedBefore.isSelected());
 			System.out.println("ok????");
 			List<HotelbriefVO> voList=hotelDealService.SearchHotel(searchHotelVO);
 			System.out.println(voList==null);
-			//if(voList!=null && !voList.isEmpty())
 			initHotelItems(voList);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -108,7 +107,6 @@ public class HotelSearchController extends DetailsController{
 		if(district.getValue()!=null && !"".equals(district.getValue())){
 			businessCircle.getItems().addAll(hotelDealService.getBusineeCircleByDistrict(district.getValue()));
 		}
-		//TODO:调用blservice设置businessCircle的值
 	}
 	@FXML
 	private void handleKeyWords(){
@@ -117,32 +115,33 @@ public class HotelSearchController extends DetailsController{
 	
 	private void initHotelItems(List<HotelbriefVO> voList) throws IOException {
     	hotelList.getChildren().clear();
-    	if(voList!=null && !voList.isEmpty())
-		for(HotelbriefVO hotelInfoVO:voList){
-			System.out.println(hotelInfoVO.hotelName);
-			System.out.println(hotelInfoVO.priceRange.lowest);
-			System.out.println(hotelInfoVO.priceRange.higest);
-	    	FXMLLoader loader = new FXMLLoader();
-	        loader.setLocation(getClass().getResource("HotelItem.fxml"));
-	    	SplitPane item = (SplitPane) loader.load();
-	    	hotelList.getChildren().addAll(item);
-	    	HotelItemController hotelItemController=loader.getController();
-	    	//defense  by wsw
-	    	Image image = null;
-	    	if(hotelInfoVO.imageuri!=null)
-	    		image = new Image(hotelInfoVO.imageuri.toString());
-	    
-	    	hotelItemController.setValues(image, hotelInfoVO.hotelName, hotelInfoVO.star, hotelInfoVO.mark, 
-	    			hotelInfoVO.priceRange.lowest, hotelInfoVO.priceRange.higest, hotelInfoVO.hotelID, this);
-		}
+    	if(voList!=null && !voList.isEmpty()){
+    		for(HotelbriefVO hotelInfoVO:voList){
+    			System.out.println(hotelInfoVO.hotelName);
+    			System.out.println(hotelInfoVO.priceRange.lowest);
+    			System.out.println(hotelInfoVO.priceRange.higest);
+    	    	FXMLLoader loader = new FXMLLoader();
+    	        loader.setLocation(getClass().getResource("HotelItem.fxml"));
+    	    	SplitPane item = (SplitPane) loader.load();
+    	    	hotelList.getChildren().addAll(item);
+    	    	HotelItemController hotelItemController=loader.getController();
+    	    	//defense  by wsw
+    	    	Image image = null;
+    	    	if(hotelInfoVO.imageuri!=null)
+    	    		image = new Image(hotelInfoVO.imageuri.toString());
+    	    
+    	    	hotelItemController.setValues(image, hotelInfoVO.hotelName, hotelInfoVO.star, hotelInfoVO.mark, 
+    	    			hotelInfoVO.priceRange.lowest, hotelInfoVO.priceRange.higest, hotelInfoVO.hotelID, this);
+    		}
+    	}
 	}
 	
 	private RoomType getRoomType() throws NoSuchValueException{
 		if(roomType.getValue()==null){
 			return null;
 		}
-		RoomType[] types={RoomType.Standard,RoomType.Single,RoomType.Double,RoomType.Suites,RoomType.EluxeSuite};
-		String[] texts={"标准间","单人间","双人间","豪华套房","总统套房"};
+		RoomType[] types={null,RoomType.Standard,RoomType.Single,RoomType.Double,RoomType.Suites,RoomType.EluxeSuite};
+		String[] texts={"所有","标准间","单人间","双人间","豪华套房","总统套房"};
 		int index;
 		for(index=0;index<texts.length;index++){
 			if(roomType.getValue().equals(texts[index])){
