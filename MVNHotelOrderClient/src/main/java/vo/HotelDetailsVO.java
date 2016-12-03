@@ -3,7 +3,6 @@ package vo;
 import java.net.URI;
 
 import tools.HotelAddress;
-import tools.HotelFacility;
 import tools.Star;
 
 /**
@@ -20,8 +19,8 @@ public class HotelDetailsVO {
 	public HotelAddress hotelAddress;
 	public HotelDiscribtionsVO hotelDiscribtionsVO;
 	public HotelRoomInfoVO hotelRoomInfoVO;
-	public HotelFacility hotelFacility;  //mod bt wsw
-	public HotelAddress  hotelAssess;  //mod by wsw
+	public HotelFacilityVO hotelFacilityVO;  //
+	public HotelAssressVO  hotelAssessVO;  //
 	
 	/**
 	 * 
@@ -36,8 +35,8 @@ public class HotelDetailsVO {
 	 * @param hotelAssessVO 酒店评价信息
 	 */
 	public HotelDetailsVO(String hotelID, String hotelName, URI hotelImage, Star star, HotelAddress hotelAddress,
-			HotelDiscribtionsVO hotelDiscribtionsVO, HotelRoomInfoVO hotelRoomInfoVO, HotelFacility hotelFacilityVO,
-			HotelAddress hotelAssessVO) {
+			HotelDiscribtionsVO hotelDiscribtionsVO, HotelRoomInfoVO hotelRoomInfoVO, HotelFacilityVO hotelFacilityVO,
+			HotelAssressVO hotelAssessVO) {
 		super();
 		this.hotelID = hotelID;
 		this.hotelName = hotelName;
