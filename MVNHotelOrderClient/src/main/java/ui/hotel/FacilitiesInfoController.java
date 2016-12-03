@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import ui.main.DetailsController;
+import vo.HotelFacilityVO;
 
 /**
  * 酒店详情界面的控制器
