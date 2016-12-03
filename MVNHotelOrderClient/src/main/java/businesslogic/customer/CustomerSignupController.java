@@ -2,7 +2,7 @@ package businesslogic.customer;
 
 import java.rmi.RemoteException;
 
-import businesslogic.discount.DiscountDealController;
+//import businesslogic.discount.DiscountDealController;
 import businesslogicservice.CustomerSignupService;
 import tools.ResultMessage_signUp;
 import vo.CustomerInputVO;

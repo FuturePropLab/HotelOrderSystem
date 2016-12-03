@@ -19,8 +19,8 @@ public class HotelDetailsVO {
 	public HotelAddress hotelAddress;
 	public HotelDiscribtionsVO hotelDiscribtionsVO;
 	public HotelRoomInfoVO hotelRoomInfoVO;
-	public HotelFacilityVO hotelFacilityVO;
-	public HotelAssessVO hotelAssessVO;
+	public HotelFacilityVO hotelFacilityVO;  //
+	public HotelAssressVO  hotelAssessVO;  //
 	
 	/**
 	 * 
@@ -36,7 +36,7 @@ public class HotelDetailsVO {
 	 */
 	public HotelDetailsVO(String hotelID, String hotelName, URI hotelImage, Star star, HotelAddress hotelAddress,
 			HotelDiscribtionsVO hotelDiscribtionsVO, HotelRoomInfoVO hotelRoomInfoVO, HotelFacilityVO hotelFacilityVO,
-			HotelAssessVO hotelAssessVO) {
+			HotelAssressVO hotelAssessVO) {
 		super();
 		this.hotelID = hotelID;
 		this.hotelName = hotelName;
@@ -45,8 +45,7 @@ public class HotelDetailsVO {
 		this.hotelAddress = hotelAddress;
 		this.hotelDiscribtionsVO = hotelDiscribtionsVO;
 		this.hotelRoomInfoVO = hotelRoomInfoVO;
-		this.hotelFacilityVO = hotelFacilityVO;
-		this.hotelAssessVO = hotelAssessVO;
+		this.hotelFacility = hotelFacilityVO;
+		this.hotelAssess = hotelAssessVO;
 	}
-	
 }

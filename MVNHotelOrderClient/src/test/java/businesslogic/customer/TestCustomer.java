@@ -33,7 +33,7 @@ public class TestCustomer {
 		 * 非标准检验
 		 * @param args
 		 */
-		public static void main(String[] args) {
+		/*public static void main(String[] args) {
 			CustomerDealService customerDealService= new CustomerDealController();		
 			CustomerSearchVO searchvo = new CustomerSearchVO("23", null, "女");
 			List<CustomerVO> list = customerDealService.searchCustomer(searchvo);
@@ -44,7 +44,7 @@ public class TestCustomer {
 						customerVO.gender+"  "+customerVO.telephone);
 			}
 			
-		}
+		}*/
 		
 
 

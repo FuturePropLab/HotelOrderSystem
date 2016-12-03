@@ -28,8 +28,8 @@ public class TestCredit {
 		
 		CustomerVO  customerVO  = new CustomerVO
 				("ppd", "wsw", "male", "15251124223", null, 34);		
-		CustomerInfo customerInfo  = new MockCustomer(ResultMessage.Exist,customerVO );
-		credit = new Credit(customerInfo);
+		//CustomerInfo customerInfo  = new MockCustomer(ResultMessage.Exist,customerVO );
+		credit = new Credit();
 	}
 	
 	 
@@ -68,7 +68,7 @@ public class TestCredit {
 		order.setPlanedLeaveTime(date3);
 		order.setCheckOutTime(date4);
 		order.setRevokeTime(date5);
-		Credit test = new Credit("0000");
+		Credit test = new Credit();
 			
 		test.addlog(order, ActionType.BadOrder, 50);
 	}

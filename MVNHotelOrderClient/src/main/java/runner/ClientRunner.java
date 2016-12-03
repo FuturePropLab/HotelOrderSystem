@@ -20,6 +20,7 @@ import tools.HotelAddress;
 import tools.RoomType;
 import tools.StandardSearch;
 import tools.Star;
+import tools.TypeRoomInfo;
 import ui.hotel.HotelDetailController;
 import vo.HotelbriefVO;
 import vo.SearchHotelVO;
@@ -92,20 +93,19 @@ public class ClientRunner {
 //		  for (int i = 0; i < list.size(); i++) {
 //			System.out.println(list.get(i));
 //		}
+//		
+//		
+//		HotelDealService hotelDealService  = HotelDealController.getInstance();
+//		SearchHotelVO searchHotelVO = new SearchHotelVO
+//				("北京", "西城", "大悦城", null, null, null, null, false);
+//		HotelDataService hotelDataService  =RemoteHelper.getInstance().getHotelDataService();
+//		List<HotelPO> hotelPOs= hotelDataService.searchHotelList(new StandardSearch(searchHotelVO));
+//		System.out.println(hotelPOs==null);
+//		System.out.println(hotelPOs.get(0).);
 		
-		
-		HotelDealService hotelDealService  = HotelDealController.getInstance();
-		SearchHotelVO searchHotelVO = new SearchHotelVO
-				("北京", null, null, null, null, null, null, false);
-		//search.setStar(Star.one);
-		//search.setHigh(1000);
-		//search.setRoomType(RoomType.Double);
 
-		List<HotelbriefVO> list = hotelDealService.SearchHotel(searchHotelVO) ;
-		for (int i = 0; i < list.size(); i++) {
-			System.out.println(list.get(i).hotelName);
-			System.out.println(list.get(i).imageuri.toString());
-		}
+//	   TypeRoomInfo typeRoomInfo = hotelPO.getHotelRoom().getTypeRoomInfo().get(0);
+//	   System.out.println(typeRoomInfo==null);
 				  
           
 

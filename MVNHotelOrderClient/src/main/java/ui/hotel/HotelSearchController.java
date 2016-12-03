@@ -17,11 +17,10 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import stub.HotelDeal_Stub;
 import tools.PriceRange;
 import tools.RoomType;
+import tools.SortType;
 import tools.Star;
 import ui.main.DetailsController;
 import vo.HotelbriefVO;
@@ -72,8 +71,8 @@ public class HotelSearchController extends DetailsController{
     	HotelDealService hotelDealService= HotelDealController.getInstance();
     	city.getItems().addAll(hotelDealService.getAllCity());
     	star.getItems().addAll("所有","1星","2星","3星","4星","5星");
-    	roomType.getItems().addAll("所有","标准间","单人间","双人间","豪华套房","总统套房");
-    	theWayOfOrder.getItems().addAll("Option 1","Option 2","Option 3");
+    	roomType.getItems().addAll("标准间","单人间","双人间","豪华套房","总统套房");
+    	theWayOfOrder.getItems().addAll("价格","星级","评分");
     	handleSearch();
     }
 	
@@ -81,24 +80,36 @@ public class HotelSearchController extends DetailsController{
 	private void handleSearch(){
 		HotelDealService hotelDealService= HotelDealController.getInstance();
 		try {
+			System.out.println("DO SEARCH:   "+city.getValue() );
 			SearchHotelVO searchHotelVO=new SearchHotelVO(city.getValue(), district.getValue(), businessCircle.getValue(),
 					hotelName.getText(), getPriceRange(), getStar(), getRoomType(),orderedBefore.isSelected());
 			System.out.println("ok????");
 			List<HotelbriefVO> voList=hotelDealService.SearchHotel(searchHotelVO);
 			System.out.println(voList==null);
-			initHotelItems(voList);
+			//SortType sortType = 
+			System.out.println(getSortType());
+			List<HotelbriefVO> voListsort = hotelDealService.SortHotel(voList, getSortType());
+			//if(voList!=null && !voList.isEmpty())
+			initHotelItems(voListsort);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	@FXML
 	private void handleCity(){
+		//System.out.println("Before CLEAR:   "+city.getValue());
 		district.getItems().clear();
+		//System.out.println("AFTER CLEAR:   "+city.getValue());
 		businessCircle.getItems().clear();
 		HotelDealService hotelDealService= HotelDealController.getInstance();
 		if(city.getValue()!=null && !"".equals(city.getValue())){
 			district.getItems().addAll(hotelDealService.getAllDistrictByCity(city.getValue()));
 		}
+		
+		
+		handleSearch();
+		
 	}
 	@FXML
 	private void handleDistrict(){
@@ -107,33 +118,67 @@ public class HotelSearchController extends DetailsController{
 		if(district.getValue()!=null && !"".equals(district.getValue())){
 			businessCircle.getItems().addAll(hotelDealService.getBusineeCircleByDistrict(district.getValue()));
 		}
+		handleSearch();
+
 	}
 	@FXML
 	private void handleKeyWords(){
+		HotelDealService hotelDealService= HotelDealController.getInstance();
+		List<HotelbriefVO> voList=hotelDealService.searchHotelListFuzzy(keyWords.getText());
+		System.out.println(voList==null);
+		System.out.println(getSortType());
+		List<HotelbriefVO> voListsort = hotelDealService.SortHotel(voList, getSortType());
+		if(voList!=null && !voList.isEmpty());
+		//if(voList!=null && !voList.isEmpty())
+		try {
+			initHotelItems(voListsort);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//TODO:调用blservice模糊搜索
 	}
 	
+	@FXML
+	private void handleSort(){
+		System.out.println("handleSort()");
+		String citystr = city.getValue();
+		String keystr = keyWords.getText();
+		if(citystr!=null && !"".equals(citystr)){
+			handleSearch();
+		}else if(keystr!=null && !"".equals(keystr)){
+			handleKeyWords();
+		}
+	}
+	
+	@FXML
+	private void handleBusiness(){
+		handleSearch();
+		//
+	}
+	
+	
 	private void initHotelItems(List<HotelbriefVO> voList) throws IOException {
     	hotelList.getChildren().clear();
-    	if(voList!=null && !voList.isEmpty()){
-    		for(HotelbriefVO hotelInfoVO:voList){
-    			System.out.println(hotelInfoVO.hotelName);
-    			System.out.println(hotelInfoVO.priceRange.lowest);
-    			System.out.println(hotelInfoVO.priceRange.higest);
-    	    	FXMLLoader loader = new FXMLLoader();
-    	        loader.setLocation(getClass().getResource("HotelItem.fxml"));
-    	    	SplitPane item = (SplitPane) loader.load();
-    	    	hotelList.getChildren().addAll(item);
-    	    	HotelItemController hotelItemController=loader.getController();
-    	    	//defense  by wsw
-    	    	Image image = null;
-    	    	if(hotelInfoVO.imageuri!=null)
-    	    		image = new Image(hotelInfoVO.imageuri.toString());
-    	    
-    	    	hotelItemController.setValues(image, hotelInfoVO.hotelName, hotelInfoVO.star, hotelInfoVO.mark, 
-    	    			hotelInfoVO.priceRange.lowest, hotelInfoVO.priceRange.higest, hotelInfoVO.hotelID, this);
-    		}
-    	}
+    	System.out.println("after clear!!!!!");
+    	if(voList!=null && !voList.isEmpty())
+		for(HotelbriefVO hotelInfoVO:voList){
+			System.out.println(hotelInfoVO.hotelName);
+			System.out.println(hotelInfoVO.priceRange.lowest);
+			System.out.println(hotelInfoVO.priceRange.higest);
+	    	FXMLLoader loader = new FXMLLoader();
+	        loader.setLocation(getClass().getResource("HotelItem.fxml"));
+	    	SplitPane item = (SplitPane) loader.load();
+	    	hotelList.getChildren().addAll(item);
+	    	HotelItemController hotelItemController=loader.getController();
+	    	//defense  by wsw
+	    	Image image = null;
+	    	if(hotelInfoVO.imageuri!=null)
+	    		image = new Image(hotelInfoVO.imageuri.toString());
+	    
+	    	hotelItemController.setValues(image, hotelInfoVO.hotelName, hotelInfoVO.star, hotelInfoVO.mark, 
+	    			hotelInfoVO.priceRange.lowest, hotelInfoVO.priceRange.higest, hotelInfoVO.hotelID, this);
+		}
 	}
 	
 	private RoomType getRoomType() throws NoSuchValueException{
@@ -182,6 +227,20 @@ public class HotelSearchController extends DetailsController{
 			return null;
 		}
 		return new PriceRange(Integer.parseInt(price_from.getText()), Integer.parseInt(price_to.getText()));
+	}
+	
+	private SortType getSortType(){
+		if(theWayOfOrder.getValue()==null) 
+			return SortType.Price;
+		SortType[] types={SortType.Price,SortType.Star,SortType.grade};
+		String[] texts={"价格","星级","评分"};
+		int index;
+		for(index=0;index<texts.length;index++){
+			if(theWayOfOrder.getValue().equals(texts[index])){
+				return types[index];
+			}
+		}
+		return SortType.Price;
 	}
 	
 	/**

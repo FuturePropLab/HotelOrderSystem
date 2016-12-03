@@ -57,5 +57,12 @@ public class HotelAddressPO {
 		this.addressDetail = addressDetail;
 	}
        
-       
+    public String toAllString(){
+    	String ans = "";
+    	if(city!=null)  ans+=city;
+    	if(district!=null) ans+=district;
+    	if(businessCircle!=null) ans+=businessCircle;
+		return ans; 
+    	
+    }
 }

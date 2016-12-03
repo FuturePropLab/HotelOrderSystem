@@ -24,7 +24,7 @@ import vo.OrderVO;
 public class Credit {
 	private CreditDataService creditDataService;
 	private CustomerInfoforCredit customerInfo;
-	private String customer_id;
+	//private String customer_id;
 	
 	/**
 	 * @author chenyuyan 12/1
@@ -35,7 +35,7 @@ public class Credit {
 		int creditchange = 0;
 		int result;
 		OrderPO orderPO  =new OrderPO(order);
-		CustomerVO customerVO = customerInfo.getCustomerInfo(customer_id);
+		CustomerVO customerVO = customerInfo.getCustomerInfo(order.getCustomerID());
 		int credit = customerVO.credit;
 		switch (type){
 		
@@ -177,7 +177,7 @@ public class Credit {
 	/**
 	 * 初始化
 	 */
-	public Credit(CustomerInfoforCredit customerInfo){
+	/*public Credit(CustomerInfoforCredit customerInfo){
 		this.customerInfo = customerInfo;
 		this.creditDataService = new  CreditData_Stub();
 	}
@@ -185,7 +185,10 @@ public class Credit {
 	 * 添加构造方法
 	 * @author chenyuyan
 	 */
-	public Credit(String customer_id){
+	/*public Credit(String customer_id){
+		this.creditDataService = new  CreditData_Stub();
+	}*/
+	public Credit(){
 		this.creditDataService = new  CreditData_Stub();
 	}
 }

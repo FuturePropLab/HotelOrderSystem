@@ -1,14 +1,24 @@
 package testHibernate;
 
 import java.rmi.RemoteException;
+import java.util.List;
 
 import dataservice.HotelDataService;
 import dataservice.impl.HotelDataServiceImpl;
+import po.HotelPO;
 
 
 public class testHotel {
 		public static void main(String[] args) throws RemoteException {
 			HotelDataService hotelDataService = new HotelDataServiceImpl();
+			List<HotelPO> pos = hotelDataService.searchHotelListFuzzy("蓝鸟");
+			
+			System.out.println(pos.size());
+			for (int i = 0; i < pos.size(); i++) {
+				System.out.println(pos.get(i).getHotelName());
+			}
+			
+			
 			//System.out.println(hotelDataService.makeDir("./ImageData/test/test"));
 //			String id  = "HT0410";
 //			HotelFacility hotelFacility = new HotelFacility();
@@ -36,7 +46,7 @@ public class testHotel {
 //				System.out.println(list.get(i).getHotelName());
 //				System.out.println(list.get(i).getStar());
 //			}
-//			Hibernateutils.shutdown();
+			Hibernateutils.shutdown();
 
 		}
 }

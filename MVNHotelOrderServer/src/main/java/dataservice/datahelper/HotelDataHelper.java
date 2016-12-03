@@ -132,6 +132,8 @@ public interface HotelDataHelper {
 	  public boolean isvalidRoomType(String hotelID, RoomType roomType);
 	  
 	  public boolean isvalidRoomType(String hotelID,RoomType roomType, double low , double high);
+	  
+	  public List<String> getIDListByFuzzy(String regex);
 
 	  
 	  

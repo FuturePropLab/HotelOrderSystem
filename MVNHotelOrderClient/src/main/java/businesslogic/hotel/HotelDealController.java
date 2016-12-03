@@ -40,8 +40,7 @@ public class HotelDealController implements HotelDealService {
 	}
 
 	public List<HotelbriefVO> SortHotel(List<HotelbriefVO> hotelInfo, SortType sortType) {
-		// TODO Auto-generated method stub
-		return null;
+		return hotel.SortHotel(hotelInfo, sortType);
 	}
 
 	public HotelbriefVO getHotelInfo(String hotel_id) {
@@ -57,6 +56,10 @@ public class HotelDealController implements HotelDealService {
 	public List<CommentVO> getComment(String hotel_id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public List<HotelbriefVO> searchHotelListFuzzy(String input) {
+		return hotel.searchHotelListFuzzy(input);
 	}
 		
 }

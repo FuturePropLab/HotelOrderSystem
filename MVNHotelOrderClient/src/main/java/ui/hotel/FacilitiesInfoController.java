@@ -1,14 +1,13 @@
 package ui.hotel;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.CheckBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import ui.main.DetailsController;
-import vo.HotelFacilityVO;
 
 /**
  * 酒店详情界面的控制器
