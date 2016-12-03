@@ -95,16 +95,17 @@ public class ClientRunner {
 		
 		
 		HotelDealService hotelDealService  = HotelDealController.getInstance();
-		SearchHotelVO searchHotelVO = new SearchHotelVO
-				("北京", null, null, null, null, null, null, false);
+//		SearchHotelVO searchHotelVO = new SearchHotelVO
+//				("北京", null, null, null, null, null, null, false);
 		//search.setStar(Star.one);
 		//search.setHigh(1000);
 		//search.setRoomType(RoomType.Double);
 
-		List<HotelbriefVO> list = hotelDealService.SearchHotel(searchHotelVO) ;
+		List<HotelbriefVO> list = hotelDealService.searchHotelListFuzzy("蓝");
+		System.out.println(list==null);
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println(list.get(i).hotelName);
-			System.out.println(list.get(i).imageuri.toString());
+			//System.out.println(list.get(i).imageuri.toString());
 		}
 				  
           

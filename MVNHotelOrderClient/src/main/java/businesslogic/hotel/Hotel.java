@@ -241,6 +241,28 @@ public class Hotel {
 			return null;
 		}
 	}
+	 
+	 public List<HotelbriefVO> searchHotelListFuzzy(String input){
+		 List<HotelPO> hotelPOs  = null;
+		 if(input != null &&!"".equals(input))
+			try {
+				hotelPOs = hotelDataService.searchHotelListFuzzy(input);
+			} catch (RemoteException e) {
+				System.out.println(e.getMessage());
+				return null;
+			}				
+			if(hotelPOs==null || hotelPOs.isEmpty())  return null;
+			List<HotelbriefVO> hotelbriefVOs = new ArrayList<HotelbriefVO>();
+			Iterator<HotelPO> it = hotelPOs.iterator();
+			while(it.hasNext()){
+				HotelPO hotelPO  =  it.next();
+				HotelbriefVO hotelbriefVO = new HotelbriefVO(hotelPO);
+				hotelbriefVO.imageuri = pictureDeal.downloadFrontPicture(hotelPO.getHotelID());
+				hotelbriefVOs.add(hotelbriefVO);
+			}			
+			return hotelbriefVOs;
+		 
+	 }
 
 	
 }

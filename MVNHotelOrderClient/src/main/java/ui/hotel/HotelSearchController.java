@@ -17,9 +17,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import stub.HotelDeal_Stub;
 import tools.PriceRange;
 import tools.RoomType;
 import tools.Star;
@@ -112,6 +110,16 @@ public class HotelSearchController extends DetailsController{
 	}
 	@FXML
 	private void handleKeyWords(){
+		HotelDealService hotelDealService= HotelDealController.getInstance();
+		List<HotelbriefVO> voList=hotelDealService.searchHotelListFuzzy(keyWords.getText());
+		System.out.println(voList==null);
+		//if(voList!=null && !voList.isEmpty())
+		try {
+			initHotelItems(voList);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//TODO:调用blservice模糊搜索
 	}
 	

@@ -58,5 +58,9 @@ public class HotelDealController implements HotelDealService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public List<HotelbriefVO> searchHotelListFuzzy(String input) {
+		return hotel.searchHotelListFuzzy(input);
+	}
 		
 }

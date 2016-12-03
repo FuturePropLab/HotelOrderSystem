@@ -83,6 +83,9 @@ public class HotelbriefVO {
 			}
 		}
 		this.star = hotelPO.getStar();
+		if(star==null){
+			this.star = Star.one;
+		}
 		
 		List<TypeRoomInfo> typeRoomInfos =hotelRoom.getTypeRoomInfo();
 		if(typeRoomInfos!=null  && typeRoomInfos.size()!=0){

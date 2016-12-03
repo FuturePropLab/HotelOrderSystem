@@ -41,7 +41,10 @@ public class HotelDataServiceImpl implements HotelDataService {
 		this.hotelDataHelper = DataHelperUtils.getHotelDataHelper();
 		this.addressDataHelper = DataHelperUtils.geAddressDataHelper();
 	}
-	
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.HotelDataService#addHotel(po.HotelPO)
+	 */
 	public ResultMessage_Hotel addHotel(HotelPO hotelPO) throws RemoteException {
 		String hotelID = hotelPO.getHotelID();
 		if(hotelID==null || "".equals(hotelID))
@@ -131,6 +134,10 @@ public class HotelDataServiceImpl implements HotelDataService {
 	}
 	
 	//TODO
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.HotelDataService#searchHotelList(tools.StandardSearch)
+	 */
 	public List<HotelPO> searchHotelList(StandardSearch standardSearchs) throws RemoteException  {
 		List<HotelPO> hotelPOs = new ArrayList<HotelPO>();
 		//get all id by address
@@ -298,6 +305,20 @@ public class HotelDataServiceImpl implements HotelDataService {
 			hotelPOs.add(hotelPO);
 		}
 		return hotelPOs;
+	}
+
+	public List<HotelPO> searchHotelListFuzzy(String input) throws RemoteException {
+		System.out.println("searchHotelListFuzzy");
+		if(input == null  || "".equals(input)) return null;
+		String regex = null;
+		if(input!=null){
+			regex = new String(".*");
+			for (int i = 0; i < input.length(); i++) {
+				regex = regex + input.charAt(i)+".*";
+			}
+		}	
+		List<String> idList = hotelDataHelper.getIDListByFuzzy(regex);
+		return  getPOsbyList(idList); 
 	}
 	
 }  

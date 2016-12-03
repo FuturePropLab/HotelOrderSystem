@@ -132,5 +132,8 @@ public class DataRemoteObject extends UnicastRemoteObject implements  LoginCheck
 	public List<String> getBusineeCircleByDistrict(String district) throws RemoteException {
 		return hotelDataService.getBusineeCircleByDistrict(district);
 	}
+	public List<HotelPO> searchHotelListFuzzy(String input) throws RemoteException {
+		return hotelDataService.searchHotelListFuzzy(input);
+	}
 
 }

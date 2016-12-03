@@ -105,6 +105,14 @@ public interface HotelDataService extends Remote{
 	 * @return
 	 */
 	public List<String> getBusineeCircleByDistrict(String district)throws RemoteException;
+	
+	/**
+	 * 
+	 * @param input
+	 * @return
+	 * @throws RemoteException
+	 */
+	public List<HotelPO> searchHotelListFuzzy(String input) throws RemoteException;
 }
 
 

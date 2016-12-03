@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.swing.plaf.synth.SynthSpinnerUI;
-
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -429,6 +427,25 @@ public class HotelDataHelperImpl implements HotelDataHelper {
 		List<TypeRoomInfoPO>  list = cr.list();	
 		s.close();
 		return list.size()!=0;
+	}
+
+	public List<String> getIDListByFuzzy(String regex) {
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		Criteria cr = s.createCriteria(HotelAddressPO.class);
+		List<HotelAddressPO> hotelAddressPOs = cr.list();
+		if(hotelAddressPOs == null)  return null;
+		Iterator<HotelAddressPO>  it = hotelAddressPOs.iterator();
+		
+		List<String> idList = new ArrayList<String>();
+		while(it.hasNext()){
+			HotelAddressPO hotelAddressPO = it.next();
+			String id = hotelAddressPO.getHotelID();
+			String allInfo = hotelAddressPO.toAllString() + getHotelName(id);
+			Pattern pattern = Pattern.compile(regex);
+	    	Matcher matcher = pattern.matcher(allInfo);
+	    	if(matcher.matches())   idList.add(id);
+		}
+		return idList;
 	}
 
 
