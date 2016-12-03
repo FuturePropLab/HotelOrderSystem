@@ -5,18 +5,22 @@ import java.util.List;
 import businesslogicservice.StrategyService;
 import vo.OrderInputCalVO;
 import vo.StrategyVO;
-
+/**
+ * 
+ * @author LWY
+ *
+ */
 public class StrategyController implements StrategyService{
 
 	private Strategy strategy;
 	
-	private StrategyController strategyController;
+	private static StrategyController strategyController;
 	
 	private StrategyController() {	
 		strategy=new Strategy();
 	}
 	
-	public StrategyController getInstance(){
+	public static StrategyController getInstance(){
 		if(strategyController==null)strategyController=new StrategyController();
 		return strategyController;
 	}

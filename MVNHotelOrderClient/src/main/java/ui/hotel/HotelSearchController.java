@@ -73,13 +73,12 @@ public class HotelSearchController extends DetailsController{
     	star.getItems().addAll("所有","1星","2星","3星","4星","5星");
     	roomType.getItems().addAll("标准间","单人间","双人间","豪华套房","总统套房");
     	theWayOfOrder.getItems().addAll("价格","星级","评分");
-    	theWayOfOrder.setAccessibleText("价格");
     	handleSearch();
     }
 	
 	@FXML
 	private void handleSearch(){
-		HotelDealService hotelDealService= HotelDealController.getInstance();//TODO:stub换成实例化的service
+		HotelDealService hotelDealService= HotelDealController.getInstance();
 		try {
 			System.out.println("DO SEARCH:   "+city.getValue() );
 			SearchHotelVO searchHotelVO=new SearchHotelVO(city.getValue(), district.getValue(), businessCircle.getValue(),
@@ -92,6 +91,7 @@ public class HotelSearchController extends DetailsController{
 			List<HotelbriefVO> voListsort = hotelDealService.SortHotel(voList, getSortType());
 			//if(voList!=null && !voList.isEmpty())
 			initHotelItems(voListsort);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -119,6 +119,7 @@ public class HotelSearchController extends DetailsController{
 			businessCircle.getItems().addAll(hotelDealService.getBusineeCircleByDistrict(district.getValue()));
 		}
 		handleSearch();
+
 	}
 	@FXML
 	private void handleKeyWords(){
@@ -184,8 +185,8 @@ public class HotelSearchController extends DetailsController{
 		if(roomType.getValue()==null){
 			return null;
 		}
-		RoomType[] types={RoomType.Standard,RoomType.Single,RoomType.Double,RoomType.Suites,RoomType.EluxeSuite};
-		String[] texts={"标准间","单人间","双人间","豪华套房","总统套房"};
+		RoomType[] types={null,RoomType.Standard,RoomType.Single,RoomType.Double,RoomType.Suites,RoomType.EluxeSuite};
+		String[] texts={"所有","标准间","单人间","双人间","豪华套房","总统套房"};
 		int index;
 		for(index=0;index<texts.length;index++){
 			if(roomType.getValue().equals(texts[index])){

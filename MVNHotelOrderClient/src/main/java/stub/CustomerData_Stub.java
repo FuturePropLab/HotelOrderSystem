@@ -75,4 +75,10 @@ public class CustomerData_Stub implements CustomerDataService {
 		return list;
 	}
 
+
+public ResultMessage changeCustomerInfoAboutCredit(CustomerVO customerInfo) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
 }

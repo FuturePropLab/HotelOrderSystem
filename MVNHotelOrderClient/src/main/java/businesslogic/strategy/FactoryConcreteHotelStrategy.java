@@ -1,7 +1,11 @@
 package businesslogic.strategy;
 
 import vo.StrategyVO_hotel;
-
+/**
+ * 工厂模式，生成不同的算法对象
+ * @author LWY
+ *
+ */
 public class FactoryConcreteHotelStrategy {
 	public HotelStrategyInterface getConcreteInstance(StrategyVO_hotel strategyVO_hotel) {
 

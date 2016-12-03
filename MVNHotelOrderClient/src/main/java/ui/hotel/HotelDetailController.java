@@ -16,6 +16,7 @@ import tools.RoomType;
 import ui.customer.BookHotelController;
 import ui.main.DetailsController;
 import ui.room.RoomInfoController;
+import vo.HotelDetailsVO;
 
 /**
  * 酒店详情界面的控制器
@@ -104,14 +105,14 @@ public class HotelDetailController extends DetailsController{
 	private TextField addressTextField;//只有酒店工作人员可见
 	@FXML
 	private Hyperlink save;//只有酒店工作人员可见
-	private String hotelID;//TODO:initialize()里设置
+	private HotelDetailsVO hotelDetailsVO;//TODO:initialize()里设置
 	
 	/**
      * Initializes the controller class. This method is automatically called
      * after the fxml file has been loaded.
      */
     @FXML
-    private void initialize() {
+    private void initialize() {//TODO:这个方法的内容先别动，要大改
     	//TODO:从blservice获取数据设置好值
     	if(false){//TODO:如果是客户
     		
@@ -226,7 +227,14 @@ public class HotelDetailController extends DetailsController{
 	}
 	@FXML
 	private void handleFacilities() {
-		//TODO:跳转到设施服务界面
+		try {
+			rootLayoutController.changeDetails("../hotel/FacilitiesInfo.fxml");
+			FacilitiesInfoController facilitiesInfoController=
+					(FacilitiesInfoController)rootLayoutController.getDetailsController();
+			facilitiesInfoController.setValues(hotelDetailsVO.hotelFacilityVO);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	private void handleAssess() {

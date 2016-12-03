@@ -2,7 +2,11 @@ package businesslogic.strategy;
 
 import vo.OrderInputCalVO;
 import vo.StrategyVO_hotel;
-
+/**
+ * 
+ * @author LWY
+ *
+ */
 public interface HotelStrategyInterface {
 	/**
 	 * 

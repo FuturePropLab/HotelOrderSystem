@@ -14,7 +14,7 @@ public class TestDiscountCal {
 	public void test() {
 		
 		String discountid="0001";
-		Discount test=new Discount();
+		DiscountVO_hotel test=new DiscountVO_hotel(null);
 		DiscountVO_hotel expect=new DiscountVO_hotel(null);
 		expect.discountID="0000";
 		expect.discount=9.9;

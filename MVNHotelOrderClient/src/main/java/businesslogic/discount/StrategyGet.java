@@ -15,18 +15,20 @@ import vo.StrategyVO_web;
 /**
  * 
  * @author LWY
- *
+ * 分别得到供计算的网站和酒店优惠策略，Strategy模块调用
  */
 
-public class DiscountGet implements StrategyGetService {
+public class StrategyGet implements StrategyGetService {
 
 	private dataservice.DiscountHotelDataService hotelDataService;
 	private dataservice.DiscountWebDataService webDataService;
-	public DiscountGet() {
+	
+	public StrategyGet() {
 //		dataService=RemoteHelper.getInstance().getStrategy();
 	}
+	
 	public List<StrategyVO_hotel> getSuitableDiscount_hotel(OrderInputCalVO orderInput) {
-		// TODO Auto-generated method stub
+		
 		List<DiscountPO_hotel> list= hotelDataService.getHotelDiscount(orderInput.hotelID);
 		List<StrategyVO_hotel> res = new LinkedList<StrategyVO_hotel>();
 		Iterator iterator = list.iterator();
@@ -39,7 +41,7 @@ public class DiscountGet implements StrategyGetService {
 	}
 
 	public List<StrategyVO_web> getSuitableDiscount_web(OrderInputCalVO orderInput) {
-		// TODO Auto-generated method stub
+		
 		List<DiscountPO_web> list= webDataService.getWebDiscount();
 		List<StrategyVO_web> res = new LinkedList<StrategyVO_web>();
 		Iterator iterator = list.iterator();

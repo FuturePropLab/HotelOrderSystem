@@ -9,7 +9,11 @@ import tools.DiscountState;
 import tools.ResultMessageDiscount;
 import tools.ResultMessage_strategy;
 import vo.DiscountVO_hotel;
-
+/**
+ * 
+ * @author LWY
+ * 酒店工作人员对酒店促销策略的增删改查
+ */
 public class HotelDiscount {
 
 	private dataservice.DiscountHotelDataService dataService;
@@ -36,15 +40,9 @@ public class HotelDiscount {
 	public ResultMessageDiscount editHotelDiscount(String hotel_id,DiscountVO_hotel dis){
 		DiscountPO_hotel discountPO_hotel = new DiscountPO_hotel(dis);
 		return dataService.editHotelDiscount(hotel_id, discountPO_hotel);
-//		Discount_stub test=new Discount_stub();
-//		return test.editHotelDiscount(Discount_id, dis);
 		
 	}
-	/**
-	 * 获取酒店优惠策略
-	 * @param Discount_id
-	 * @return
-	 */
+
 	/**
 	 * 获取酒店全部优惠策略
 	 * @param hotel_id
@@ -52,8 +50,6 @@ public class HotelDiscount {
 	 */
 	public List<DiscountVO_hotel> getHotelDiscount(String hotel_id){
 		
-//		Discount_stub test=new Discount_stub();
-//		return test.getHotelDiscount(hotel_id);
 		List<DiscountPO_hotel> get = dataService.getHotelDiscount(hotel_id);
 		List<DiscountVO_hotel> res = new LinkedList<DiscountVO_hotel>();
 		Iterator<DiscountPO_hotel> iterator = get.iterator();
@@ -63,12 +59,17 @@ public class HotelDiscount {
 		return res;
 	}
 	
-	
-//	public DiscountVO_hotel getSingleHotelDiscount(String Discount_id){
-//		Discount_stub test=new Discount_stub();
-//		return test.getSingleHotelDiscount(Discount_id);
-//				
-//		
-//	}
+	public ResultMessageDiscount deleteHotelDiscount(String hotelID, String discountID) {
+		// TODO Auto-generated method stub
+		return dataService.deleteHotelDiscount(hotelID, discountID);
+	}
+ 
+	/**
+	 * 将策略设为无效
+	 */
+	public ResultMessageDiscount invalidDiscount(String hotelID, String discountID) {
+		// TODO Auto-generated method stubS
+		return dataService.invalidDiscount(discountID);
+	}
 	
 }

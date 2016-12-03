@@ -27,5 +27,12 @@ public interface DiscountWebDataService {
 	 */
 	public List<DiscountPO_web> getWebDiscount ();
 	
-	public ResultMessageDiscount deleteWebDiscount (String discount_id);
+	public ResultMessageDiscount deleteWebDiscount (String discountID);
+	
+	/**
+	 * 
+	 * @param discountID
+	 * @return 是否成功，已为无效的不可重复设置无效
+	 */
+	public ResultMessageDiscount invalidDiscount(String discountID);
 }

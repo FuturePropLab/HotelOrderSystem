@@ -12,7 +12,7 @@ public class MainApp extends Application{
 
 	@Override
 	public void start(Stage primaryStage){
-		ClientRunner cr = new ClientRunner();
+//		ClientRunner cr = new ClientRunner();
 		MainUI mainUI=new MainUI(primaryStage);
 	}
 
