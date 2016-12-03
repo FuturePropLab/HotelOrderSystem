@@ -1,4 +1,7 @@
 package vo;
+
+import java.net.URI;
+
 /**
  * 酒店设施服务信息
  * @author zjy
@@ -7,6 +10,8 @@ package vo;
 public class HotelFacilityVO {
 	
 	public String hotelID;
+	public String hotelName;
+	public URI facilityImage;
 	public boolean wifi;
 	public boolean noneSmoke;//无烟房
 	public boolean diningHall;//餐厅
@@ -22,6 +27,8 @@ public class HotelFacilityVO {
 	/**
 	 * 
 	 * @param hotelID 酒店ID
+	 * @param hotelName 酒店名称
+	 * @param facilityImage 设施服务的图片
 	 * @param wifi 是否有wifi
 	 * @param noneSmoke 无烟房
 	 * @param diningHall 餐厅
@@ -34,11 +41,13 @@ public class HotelFacilityVO {
 	 * @param breakfast 供应早餐
 	 * @param other 其它
 	 */
-	public HotelFacilityVO(String hotelID, boolean wifi, boolean noneSmoke, boolean diningHall, boolean parkingLot,
-			boolean elevator, boolean conferenceHall, boolean morningCall, boolean frontdeskservice,
-			boolean luggageStorage, boolean breakfast, String other) {
+	public HotelFacilityVO(String hotelID, String hotelName, URI facilityImage, boolean wifi, boolean noneSmoke,
+			boolean diningHall, boolean parkingLot, boolean elevator, boolean conferenceHall, boolean morningCall,
+			boolean frontdeskservice, boolean luggageStorage, boolean breakfast, String other) {
 		super();
 		this.hotelID = hotelID;
+		this.hotelName = hotelName;
+		this.facilityImage = facilityImage;
 		this.wifi = wifi;
 		this.noneSmoke = noneSmoke;
 		this.diningHall = diningHall;
