@@ -13,6 +13,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.FileChooser;
@@ -86,10 +87,8 @@ public class RoomInfoController extends DetailsController{
 			roomList.getChildren().clear();
 			//TODO:调用blservice获取房间号码和状态，设置avaliableRoom totalRoom roomList的值，下面是一个例子
 			Hyperlink room=new Hyperlink("8887");
-//			room.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e) -> {
-//			    if (e.getButton() == MouseButton.SECONDARY)
-//			       cm.show(pic, e.getScreenX(), e.getScreenY());
-//			});
+			room.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e) -> {
+			});
 			roomList.getChildren().add(room);
 		}
 	}
