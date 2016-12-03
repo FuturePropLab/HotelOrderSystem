@@ -1,6 +1,7 @@
 package businesslogic.member;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import dataservice.MemberDataService;
@@ -68,10 +69,12 @@ public class MemberApply {
 	public List<ApplyVO> getApplyList() {
 		List <ApplyPO> applypoList = memberDataService.getApplyList();
 		List <ApplyVO> applyvoList = new ArrayList<ApplyVO>();
-		for(int i=0;i<applypoList.size();i++){
-			ApplyPO apply = applypoList.get(i);
-			ApplyVO applyvo = new ApplyVO(apply.getCustomer_ID(),apply.getType());
+		Iterator<ApplyPO> it = applypoList.iterator();
+		while(it.hasNext()){
+			ApplyPO applyPO = it.next();
+			ApplyVO applyvo = new ApplyVO(applyPO.getCustomer_ID(),applyPO.getType());
 			applyvoList.add(applyvo);
+			
 			
 		}
 		
