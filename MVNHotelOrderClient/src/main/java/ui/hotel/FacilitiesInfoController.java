@@ -1,22 +1,19 @@
 package ui.hotel;
 
-import java.awt.Checkbox;
-import java.net.URI;
-
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.CheckBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import tools.HotelFacility;
 import ui.main.DetailsController;
 import vo.HotelFacilityVO;
 
 /**
  * 酒店详情界面的控制器
- * 目前没有任何要控制的内容
+ * @Attention
+ * 创建这个对象的时候必须要执行setValues
  * @author zjy
  */
 public class FacilitiesInfoController extends DetailsController{
@@ -25,25 +22,25 @@ public class FacilitiesInfoController extends DetailsController{
 	@FXML
 	private Label hotelName;
 	@FXML
-	private Checkbox wifi;
+	private CheckBox wifi;
 	@FXML
-	private Checkbox noneSmoke;//无烟房
+	private CheckBox noneSmoke;//无烟房
 	@FXML
-	private Checkbox diningHall;//餐厅
+	private CheckBox diningHall;//餐厅
 	@FXML
-	private Checkbox parkingLot;//免费停车场
+	private CheckBox parkingLot;//免费停车场
 	@FXML
-	private Checkbox elevator;//电梯
+	private CheckBox elevator;//电梯
 	@FXML
-	private Checkbox conferenceHall;//会议厅
+	private CheckBox conferenceHall;//会议厅
 	@FXML
-	private Checkbox morningCall;//叫醒服务
+	private CheckBox morningCall;//叫醒服务
 	@FXML
-	private Checkbox frontdeskservice;//24小时前台服务
+	private CheckBox frontdeskservice;//24小时前台服务
 	@FXML
-	private Checkbox luggageStorage;//行李寄存
+	private CheckBox luggageStorage;//行李寄存
 	@FXML
-	private Checkbox breakfast;//供应早餐
+	private CheckBox breakfast;//供应早餐
 	@FXML
 	private TextField other;
 	@FXML
@@ -70,15 +67,27 @@ public class FacilitiesInfoController extends DetailsController{
 	private Label service5;
 	@FXML
 	private Label service6;	
-	private HotelFacilityVO hotelFacilityVO;
 	
-	
-	/**
-     * Initializes the controller class. This method is automatically called
-     * after the fxml file has been loaded.
-     */
     @FXML
     private void initialize() {
+    	setValues(new HotelFacilityVO("hotelID", "hotelName", null, true, true, true, true, true, true, true, true, 
+    			true, true, "other"));
+    }
+    
+    @FXML
+    private void handleSave() {
+    	//TODO:调用blservice保存信息
+    }
+    @FXML
+    private void handleFacilitiesImage() {
+    	//TODO:如果是酒店工作人员，就弹出文件选择器更换图片
+    }
+    
+    public void setValues(HotelFacilityVO hotelFacilityVO) {
+    	if(hotelFacilityVO==null){
+    		System.out.println("HotelFacilityVO is null. At FacilitiesInfoController.setValues(HotelFacilityVO)");
+    		return;
+    	}
     	if(hotelFacilityVO.facilityImage!=null){
     		facilitiesImage.setImage(new Image(hotelFacilityVO.facilityImage.toString()));
     	}
@@ -86,7 +95,7 @@ public class FacilitiesInfoController extends DetailsController{
     	
 		Label[] facilities={facility1,facility2,facility3,facility4,facility5,service1,service2,service3,
 				service4,service5,service6};
-		Checkbox[] facilitiesCheckbox={wifi,noneSmoke,diningHall,parkingLot,elevator,conferenceHall,morningCall,
+		CheckBox[] facilitiesCheckbox={wifi,noneSmoke,diningHall,parkingLot,elevator,conferenceHall,morningCall,
 				frontdeskservice,luggageStorage,breakfast};
 		boolean[] AllFacilities={hotelFacilityVO.wifi,hotelFacilityVO.noneSmoke,hotelFacilityVO.diningHall,
 				hotelFacilityVO.parkingLot,hotelFacilityVO.elevator,hotelFacilityVO.conferenceHall,
@@ -95,7 +104,7 @@ public class FacilitiesInfoController extends DetailsController{
 		String[] texts={"wifi无线上网","无烟房","餐厅","免费停车场","电梯","会议厅","叫醒服务","24小时前台服务","行李寄存",
 				"供应早餐"};
 		
-    	if(true){//TODO:如果不是酒店工作人员
+    	if(false){//TODO:如果不是酒店工作人员
     		for(Label label:facilities){//先把Lable清空
     			label.setText(null);
     		}
@@ -113,24 +122,17 @@ public class FacilitiesInfoController extends DetailsController{
     		}
     		
     	}
-    	else if (true) {//TODO:如果是酒店工作人员
+    	else {//TODO:如果是酒店工作人员
 			for(Label label:facilities){
 				label.setVisible(false);
 			}
-			for(Checkbox checkbox:facilitiesCheckbox){
-				checkbox.setVisible(true);
+			for(int i=0;i<facilitiesCheckbox.length;i++){
+				facilitiesCheckbox[i].setVisible(true);
+				facilitiesCheckbox[i].setSelected(AllFacilities[i]);
 			}
 			other.setVisible(true);
+			other.setText(hotelFacilityVO.other);
 			save.setVisible(true);
 		}
-    }
-    
-    @FXML
-    private void handleSave() {
-    	//TODO:调用blservice保存信息
-    }
-    @FXML
-    private void handleFacilitiesImage() {
-    	//TODO:如果是酒店工作人员，就弹出文件选择器更换图片
     }
 }

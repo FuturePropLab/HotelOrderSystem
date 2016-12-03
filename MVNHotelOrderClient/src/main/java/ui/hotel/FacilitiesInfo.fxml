@@ -20,7 +20,7 @@
             <Image url="@../../../resources/images/room.png" />
          </image>
       </ImageView>
-      <Label fx:id="hotelName" layoutX="458.0" layoutY="106.0" prefHeight="45.0" prefWidth="179.0" text="xx大酒店" textFill="#b5440b">
+      <Label fx:id="hotelName" layoutX="458.0" layoutY="106.0" text="xx大酒店" textFill="#b5440b">
          <font>
             <Font size="40.0" />
          </font>
