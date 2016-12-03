@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
@@ -11,19 +13,20 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.hotel.FacilitiesInfoController">
    <children>
-      <ImageView fitHeight="200.0" fitWidth="229.0" layoutX="101.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="facilitiesImage" fitHeight="200.0" fitWidth="229.0" layoutX="101.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../resources/images/room.png" />
          </image>
       </ImageView>
-      <Label layoutX="458.0" layoutY="106.0" prefHeight="45.0" prefWidth="179.0" text="xx大酒店">
+      <Label fx:id="hotelName" layoutX="458.0" layoutY="106.0" prefHeight="45.0" prefWidth="179.0" text="xx大酒店" textFill="#b5440b">
          <font>
             <Font size="40.0" />
          </font>
       </Label>
-      <GridPane layoutY="230.0" prefHeight="500.0" prefWidth="900.0">
+      <Separator layoutY="218.0" prefWidth="900.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <GridPane layoutY="230.0" prefHeight="439.0" prefWidth="814.0" AnchorPane.leftAnchor="50.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -36,72 +39,134 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="          通用设施" textFill="#6b0a0a">
+            <Label text="通用设施" textFill="#6b0a0a">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label text="            wifi无线上网" GridPane.rowIndex="1">
+            <Label fx:id="facility1" text="设施" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label text="无烟房" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <CheckBox fx:id="wifi" mnemonicParsing="false" text="wifi无线上网" visible="false" GridPane.rowIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </CheckBox>
+            <Label fx:id="facility2" text="设施" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label text="餐厅" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <CheckBox fx:id="noneSmoke" mnemonicParsing="false" text="无烟房" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </CheckBox>
+            <Label fx:id="facility3" text="设施" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label text="            免费停车场" GridPane.rowIndex="2">
+            <CheckBox fx:id="diningHall" mnemonicParsing="false" text="餐厅" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </CheckBox>
+            <Label fx:id="facility4" text="设施" GridPane.rowIndex="2">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label text="电梯" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <CheckBox fx:id="parkingLot" mnemonicParsing="false" text="免费停车场" visible="false" GridPane.rowIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </CheckBox>
+            <Label fx:id="facility5" text="设施" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label text="         服务项目" textFill="#651313" GridPane.rowIndex="3">
+            <CheckBox fx:id="elevator" mnemonicParsing="false" text="电梯" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </CheckBox>
+            <Label text="服务项目" textFill="#651313" GridPane.rowIndex="3">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label text="             会议厅" GridPane.rowIndex="4">
+            <Label fx:id="service1" text="服务" GridPane.rowIndex="4">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label text="叫醒服务" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <CheckBox fx:id="conferenceHall" mnemonicParsing="false" text="会议厅" visible="false" GridPane.rowIndex="4">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </CheckBox>
+            <Label fx:id="service2" text="服务" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label text="24小时前台服务" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <CheckBox fx:id="morningCall" mnemonicParsing="false" text="叫醒服务" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </CheckBox>
+            <Label fx:id="service3" text="服务" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label text="             行李寄存" GridPane.rowIndex="5">
+            <CheckBox fx:id="frontdeskservice" mnemonicParsing="false" text="24小时前台服务" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </CheckBox>
+            <Label fx:id="service4" text="服务" GridPane.rowIndex="5">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label text="供应早餐" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <CheckBox fx:id="luggageStorage" mnemonicParsing="false" text="行李寄存" visible="false" GridPane.rowIndex="5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </CheckBox>
+            <Label fx:id="service5" text="服务" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <TextField prefHeight="30.0" prefWidth="222.0" promptText="其它" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <CheckBox fx:id="breakfast" mnemonicParsing="false" text="供应早餐" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </CheckBox>
+            <Label fx:id="service6" text="服务" GridPane.columnIndex="2" GridPane.rowIndex="5">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="other" prefHeight="30.0" prefWidth="222.0" promptText="其它" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
          </children>
       </GridPane>
-      <Separator layoutY="218.0" prefWidth="900.0" />
+      <Hyperlink fx:id="save" layoutX="647.0" layoutY="684.0" text="保存信息" visible="false">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Hyperlink>
    </children>
 </AnchorPane>
