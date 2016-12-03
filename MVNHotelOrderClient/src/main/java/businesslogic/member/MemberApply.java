@@ -45,7 +45,7 @@ public class MemberApply {
 			//return new MemberBL_Stub().addApply(apply);
 
 	}
-
+	
 	public ResultMessage_Member addBack(BackVO back) {
 		
 		
@@ -57,7 +57,7 @@ public class MemberApply {
 			return memberDataService.addBack(backpo);
 			
 		}else{
-			return ResultMessage_Member.ReasionNotFound;
+			return ResultMessage_Member.ReasionNotFound;//如果拒绝通过，则一定要有拒绝原因
 		}
 		
 		
