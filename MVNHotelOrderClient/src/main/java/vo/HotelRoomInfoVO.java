@@ -2,7 +2,7 @@ package vo;
 
 import java.util.List;
 
-import tools.RoomType;
+import tools.HotelRoomInfo;
 import tools.TypeRoomInfo;
 
 public class HotelRoomInfoVO {
@@ -21,5 +21,11 @@ public class HotelRoomInfoVO {
 			this.hotelID = hotelID;
 			this.hotelName = hotelName;
 			this.typeRoomInfo = typeRoomInfo;
+		}
+		
+		public HotelRoomInfoVO(HotelRoomInfo hotelRoomInfo){
+			this.hotelID= hotelRoomInfo.getHotelID();
+			this.hotelName = hotelRoomInfo.getHotelName();
+			this.typeRoomInfo = hotelRoomInfo.getTypeRoomInfo();
 		}
 }

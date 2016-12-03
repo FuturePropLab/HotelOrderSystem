@@ -6,6 +6,9 @@ import businesslogicservice.HotelDealService;
 import tools.SortType;
 import vo.CommentVO;
 import vo.DiscountVO_hotel;
+import vo.HotelAssessVO;
+import vo.HotelDetailsVO;
+import vo.HotelFacilityVO;
 import vo.HotelbriefVO;
 import vo.SearchHotelVO;
 
@@ -60,6 +63,20 @@ public class HotelDealController implements HotelDealService {
 
 	public List<HotelbriefVO> searchHotelListFuzzy(String input) {
 		return hotel.searchHotelListFuzzy(input);
+	}
+
+	public HotelAssessVO gethotelAssessVO(String hotelID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public HotelFacilityVO gethotelFacilityVO(String hotelID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public HotelDetailsVO getHotelDetailsVO(String hotelID) {
+		return hotel.getHotelDetailsVO(hotelID);
 	}
 		
 }

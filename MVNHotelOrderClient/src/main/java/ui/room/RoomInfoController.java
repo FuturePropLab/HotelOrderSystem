@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import tools.RoomType;
 import tools.TypeRoomInfo;
 import ui.main.DetailsController;
 
@@ -114,6 +115,10 @@ public class RoomInfoController extends DetailsController{
 			save.setVisible(false);
 			roomManage.setVisible(false);
 		}
+	}
+	public void setRoomType(RoomType roomType) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

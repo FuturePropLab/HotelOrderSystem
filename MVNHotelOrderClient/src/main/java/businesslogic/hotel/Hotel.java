@@ -20,6 +20,7 @@ import tools.SortType;
 import tools.StandardSearch;
 import vo.CommentVO;
 import vo.DiscountVO_hotel;
+import vo.HotelDetailsVO;
 import vo.HotelDiscribtionsVO;
 import vo.HotelInputVO;
 import vo.HotelbriefVO;
@@ -320,5 +321,26 @@ public class Hotel {
 		  return -hotel0.star.compareTo(hotel1.star);			 
 		 }
 	 }
+	 
+	 /**
+	  * 
+	  * @param hotelID
+	  * @return
+	  */
+	 public HotelDetailsVO getHotelDetailsVO(String hotelID) {
+		 HotelDetailsVO hotelDetailsVO = null	;
+		 try {
+			 hotelDetailsVO =  new HotelDetailsVO(hotelDataService.getHotel(hotelID));
+			 hotelDetailsVO.hotelImage = pictureDeal.downloadFrontPicture(hotelID);
+			 HotelDiscribtionsVO hotelDiscribtionsVO = new HotelDiscribtionsVO();
+			 hotelDiscribtionsVO.discribes = hotelDataService.getHotelInfoString(hotelID);
+			 hotelDetailsVO.hotelDiscribtionsVO = hotelDiscribtionsVO;
+			 
+			 } catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
 	
 }

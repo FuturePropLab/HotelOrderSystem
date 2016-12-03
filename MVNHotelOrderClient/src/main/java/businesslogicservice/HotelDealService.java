@@ -3,10 +3,12 @@ package businesslogicservice;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import po.HotelPO;
 import tools.SortType;
 import vo.CommentVO;
 import vo.DiscountVO_hotel;
+import vo.HotelAssessVO;
+import vo.HotelDetailsVO;
+import vo.HotelFacilityVO;
 import vo.HotelbriefVO;
 import vo.SearchHotelVO;
 
@@ -79,5 +81,25 @@ public interface HotelDealService {
 	public List<HotelbriefVO> searchHotelListFuzzy(String input);
 	
 	
+	/**
+	 * 
+	 * @param hotelID
+	 * @return
+	 */
+	public HotelAssessVO gethotelAssessVO(String hotelID);
+	
+	/**
+	 * 
+	 * @param hotelID
+	 * @return
+	 */
+	public HotelFacilityVO  gethotelFacilityVO(String hotelID);
+	
+	/**
+	 * 
+	 * @param hotelID
+	 * @return
+	 */
+	public HotelDetailsVO  getHotelDetailsVO(String hotelID);
 	
 }

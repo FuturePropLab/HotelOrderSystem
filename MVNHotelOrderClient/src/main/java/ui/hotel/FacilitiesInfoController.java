@@ -70,7 +70,7 @@ public class FacilitiesInfoController extends DetailsController{
 	
     @FXML
     private void initialize() {
-    	setValues(new HotelFacility("hotelID", "hotelName", null, true, true, true, true, true, true, true, true, 
+    	setValues(new HotelFacilityVO("hotelID", "hotelName", null, true, true, true, true, true, true, true, true, 
     			true, true, "other"));
     }
     

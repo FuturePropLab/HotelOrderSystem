@@ -15,6 +15,9 @@ import tools.Star;
 import tools.TypeRoomInfo;
 import vo.CommentVO;
 import vo.DiscountVO_hotel;
+import vo.HotelAssessVO;
+import vo.HotelDetailsVO;
+import vo.HotelFacilityVO;
 import vo.HotelbriefVO;
 import vo.HotelRoomInfoVO;
 import vo.SearchHotelVO;
@@ -115,6 +118,24 @@ public class HotelDeal_Stub implements HotelDealService {
 
 
 	public List<HotelbriefVO> searchHotelListFuzzy(String input) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public HotelAssessVO gethotelAssessVO(String hotelID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public HotelFacilityVO gethotelFacilityVO(String hotelID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public HotelDetailsVO getHotelDetailsVO(String hotelID) {
 		// TODO Auto-generated method stub
 		return null;
 	}

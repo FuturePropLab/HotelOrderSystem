@@ -2,6 +2,7 @@ package vo;
 
 import java.net.URI;
 
+import po.HotelPO;
 import tools.HotelAddress;
 import tools.Star;
 import vo.HotelAssessVO;
@@ -20,8 +21,8 @@ public class HotelDetailsVO {
 	public HotelAddress hotelAddress;
 	public HotelDiscribtionsVO hotelDiscribtionsVO;
 	public HotelRoomInfoVO hotelRoomInfoVO;
-	public HotelFacilityVO hotelFacilityVO;  //
-	public HotelAssessVO  hotelAssessVO;  //
+	//public HotelFacilityVO hotelFacilityVO;  //
+	//public HotelAssessVO  hotelAssessVO;  //
 	
 	/**
 	 * 
@@ -32,12 +33,9 @@ public class HotelDetailsVO {
 	 * @param hotelAddress 酒店地址
 	 * @param hotelDiscribtionsVO 酒店简介信息
 	 * @param hotelRoomInfoVO 酒店房间信息
-	 * @param hotelFacilityVO 酒店设施服务信息
-	 * @param hotelAssessVO 酒店评价信息
 	 */
 	public HotelDetailsVO(String hotelID, String hotelName, URI hotelImage, Star star, HotelAddress hotelAddress,
-			HotelDiscribtionsVO hotelDiscribtionsVO, HotelRoomInfoVO hotelRoomInfoVO, HotelFacilityVO hotelFacilityVO,
-			HotelAssessVO hotelAssessVO) {
+			HotelDiscribtionsVO hotelDiscribtionsVO, HotelRoomInfoVO hotelRoomInfoVO) {
 		super();
 		this.hotelID = hotelID;
 		this.hotelName = hotelName;
@@ -46,7 +44,16 @@ public class HotelDetailsVO {
 		this.hotelAddress = hotelAddress;
 		this.hotelDiscribtionsVO = hotelDiscribtionsVO;
 		this.hotelRoomInfoVO = hotelRoomInfoVO;
-		this.hotelFacilityVO = hotelFacilityVO;
-		this.hotelAssessVO = hotelAssessVO;
+		//this.hotelFacilityVO = hotelFacilityVO;
+		//this.hotelAssessVO = hotelAssessVO;
+	}
+	
+	public HotelDetailsVO(HotelPO hotelPO){
+		super();
+		this.hotelID = hotelPO.getHotelID();
+		this.hotelName = hotelPO.getHotelName();
+		this.star = hotelPO.getStar();
+		this.hotelAddress = hotelPO.getHotelAddress();
+		this.hotelRoomInfoVO = new HotelRoomInfoVO(hotelPO.getHotelRoom());
 	}
 }

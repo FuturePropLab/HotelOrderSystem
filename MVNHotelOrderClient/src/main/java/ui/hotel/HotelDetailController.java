@@ -2,6 +2,7 @@ package ui.hotel;
 
 import java.io.IOException;
 
+import businesslogic.hotel.HotelDealController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -106,6 +107,7 @@ public class HotelDetailController extends DetailsController{
 	@FXML
 	private Hyperlink save;//只有酒店工作人员可见
 	private HotelDetailsVO hotelDetailsVO;//TODO:initialize()里设置
+	private String HotelID = "HT001"; //TODO:initialize()里设置
 	
 	/**
      * Initializes the controller class. This method is automatically called
@@ -231,7 +233,7 @@ public class HotelDetailController extends DetailsController{
 			rootLayoutController.changeDetails("../hotel/FacilitiesInfo.fxml");
 			FacilitiesInfoController facilitiesInfoController=
 					(FacilitiesInfoController)rootLayoutController.getDetailsController();
-			facilitiesInfoController.setValues(hotelDetailsVO.hotelFacilityVO);
+			facilitiesInfoController.setValues(HotelDealController.getInstance().gethotelFacilityVO(HotelID));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
