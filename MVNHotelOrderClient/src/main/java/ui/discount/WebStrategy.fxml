@@ -5,11 +5,11 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.discount.HotelDiscountController">
+<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.discount.WebStrategyController">
    <children>
       <TabPane layoutX="231.0" layoutY="208.0" prefHeight="750.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE" tabMinHeight="50.0" tabMinWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
-          <Tab text="生日特惠  ">
+          <Tab text="特定期间预订折扣">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -17,7 +17,7 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-            <Tab text="三间房以上优惠">
+            <Tab text="VIP会员特定商圈专属折扣">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -25,21 +25,13 @@
                      </children></AnchorPane>
                </content>
             </Tab>
-            <Tab text="合作企业客户优惠">
+            <Tab text="制定会员等级及其折扣">
                <content>
                   <AnchorPane>
                      <children>
                         <Accordion fx:id="companyList" layoutX="146.0" layoutY="173.0" prefHeight="489.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
-               </content>
-            </Tab>
-            <Tab text="双十一优惠">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Accordion fx:id="double11List" prefHeight="489.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children></AnchorPane>
                </content>
             </Tab>
         </tabs>
