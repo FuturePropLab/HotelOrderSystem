@@ -11,7 +11,12 @@ import tools.ResultMessage_strategy;
  *
  */
 public interface DiscountHotelDataService {
-	
+	/**
+	 * 
+	 * @param hotelID
+	 * @param dis
+	 * @return 增加酒店促銷策略，數據庫生成ID，傳過去的ID為空
+	 */
 	public ResultMessage_strategy addHotelDiscount(String hotelID,DiscountPO_hotel dis);
 	
 	public ResultMessageDiscount editHotelDiscount(String hotelID,DiscountPO_hotel dis);

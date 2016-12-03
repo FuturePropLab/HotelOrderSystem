@@ -7,8 +7,11 @@ import java.util.List;
 
 import businesslogicservice.DiscountHotelService;
 import businesslogicservice.DiscountWebService;
+import tools.DiscountState;
 import tools.ResultMessageDiscount;
 import tools.ResultMessage_strategy;
+import tools.Strategy_hotelType;
+import tools.Strategy_webType;
 import vo.DiscountVO_hotel;
 import vo.DiscountVO_web;
 
@@ -122,12 +125,6 @@ public class Discount_stub implements DiscountWebService,DiscountHotelService{
 //	}
 
 
-	public ResultMessage_strategy deleteHotelDiscount(String hotel_id, String discount_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
 	public ResultMessageDiscount editWebDiscount(DiscountVO_web dis) {
 		// TODO Auto-generated method stub
 		return null;
@@ -141,6 +138,43 @@ public class Discount_stub implements DiscountWebService,DiscountHotelService{
 
 
 	public ResultMessageDiscount deleteDiscount(String discountID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public ResultMessageDiscount deleteHotelDiscount(String hotelID, String discountID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public List<DiscountVO_hotel> getHotelDiscountByType(String hotelID, Strategy_hotelType type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public ResultMessageDiscount invalidDiscount(String hotelID, String discount_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public List<DiscountVO_hotel> getHotelDiscountByState(String hotelID, Strategy_hotelType type,
+			DiscountState discountState) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public List<DiscountVO_web> getWebDiscount(Strategy_webType type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public ResultMessageDiscount invalidDiscount(String discount_id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

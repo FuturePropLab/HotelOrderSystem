@@ -40,8 +40,6 @@ public class HotelDiscount {
 	public ResultMessageDiscount editHotelDiscount(String hotel_id,DiscountVO_hotel dis){
 		DiscountPO_hotel discountPO_hotel = new DiscountPO_hotel(dis);
 		return dataService.editHotelDiscount(hotel_id, discountPO_hotel);
-//		Discount_stub test=new Discount_stub();
-//		return test.editHotelDiscount(Discount_id, dis);
 		
 	}
 
@@ -52,8 +50,6 @@ public class HotelDiscount {
 	 */
 	public List<DiscountVO_hotel> getHotelDiscount(String hotel_id){
 		
-//		Discount_stub test=new Discount_stub();
-//		return test.getHotelDiscount(hotel_id);
 		List<DiscountPO_hotel> get = dataService.getHotelDiscount(hotel_id);
 		List<DiscountVO_hotel> res = new LinkedList<DiscountVO_hotel>();
 		Iterator<DiscountPO_hotel> iterator = get.iterator();
@@ -71,15 +67,9 @@ public class HotelDiscount {
 	/**
 	 * 将策略设为无效
 	 */
-	public ResultMessageDiscount invalidDiscount(String hotelID, String discount_id) {
+	public ResultMessageDiscount invalidDiscount(String hotelID, String discountID) {
 		// TODO Auto-generated method stubS
-		return dataService.invalidDiscount(discount_id);
+		return dataService.invalidDiscount(discountID);
 	}
-//	public DiscountVO_hotel getSingleHotelDiscount(String Discount_id){
-//		Discount_stub test=new Discount_stub();
-//		return test.getSingleHotelDiscount(Discount_id);
-//				
-//		
-//	}
 	
 }

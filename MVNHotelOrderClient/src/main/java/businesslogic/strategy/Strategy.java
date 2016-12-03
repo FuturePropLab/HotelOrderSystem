@@ -15,15 +15,15 @@ import vo.StrategyVO_web;
  */
 public class Strategy {
 
-	private HotelStrategyCalculate hotelStrategy;
-	private WebStrategyCalculate webStrategy;
+	private CalculateHotelStrategy hotelStrategy;
+	private CalculateWebStrategy webStrategy;
 
 	public StrategyVO CalculateBestStrategy(OrderInputCalVO orderInput) {
 
-		hotelStrategy = new HotelStrategyCalculate(orderInput);
+		hotelStrategy = new CalculateHotelStrategy(orderInput);
 		List<StrategyVO_hotel> hotelBest = hotelStrategy.calBest();
 
-		webStrategy = new WebStrategyCalculate(orderInput);
+		webStrategy = new CalculateWebStrategy(orderInput);
 		List<StrategyVO_web> webBest = webStrategy.calBest();
 
 		StrategyVO res= new StrategyVO(hotelBest, webBest);

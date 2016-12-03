@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import businesslogicservice.DiscountHotelService;
+import tools.DiscountState;
 import tools.ResultMessageDiscount;
 import tools.ResultMessage_strategy;
 import tools.Strategy_hotelType;
@@ -20,6 +21,8 @@ public class DiscountHotelController implements DiscountHotelService {
 	private static DiscountHotelController discountHotelController;
 
 	private HotelDiscount hotelDiscount;
+	
+	private String hotelID;
 	
 	private List<DiscountVO_hotel> list;//缓存list，不需重复调用Data层
 	
@@ -38,29 +41,32 @@ public class DiscountHotelController implements DiscountHotelService {
 		return discountHotelController;
 	}
 
-
+/**
+ * 得到所有该酒店的促销策略，必须先被调用
+ */
+	public List<DiscountVO_hotel> getHotelDiscount(String hotelID) {
+		
+		return hotelDiscount.getHotelDiscount(hotelID);
+	}
+	
 	public ResultMessage_strategy addHotelDiscount(String hotelID, DiscountVO_hotel dis) {
-		// TODO Auto-generated method stub
 		
 		return hotelDiscount.addHotelDiscount(hotelID, dis);
 	}
 
 	public ResultMessageDiscount editHotelDiscount(String discountID, DiscountVO_hotel discountVO_hotel) {
-		// TODO Auto-generated method stub
+		
 		return hotelDiscount.editHotelDiscount(discountID, discountVO_hotel);
 	}
 
-	public List<DiscountVO_hotel> getHotelDiscount(String hotelID) {
-		// TODO Auto-generated method stub
-		return hotelDiscount.getHotelDiscount(hotelID);
-	}
 
 	public ResultMessageDiscount deleteHotelDiscount(String hotelID, String discountID) {
-		// TODO Auto-generated method stub
+		
 		return hotelDiscount.deleteHotelDiscount(hotelID, discountID);
 	}
 
-	public List<DiscountVO_hotel> getHotelDiscount(String hotelID,Strategy_hotelType type) {
+	public List<DiscountVO_hotel> getHotelDiscountByType(String hotelID,Strategy_hotelType type) {
+		
 		List<DiscountVO_hotel> res = new LinkedList<DiscountVO_hotel>();
 		Iterator<DiscountVO_hotel> iterator = list.iterator();
 		while (iterator.hasNext()) {
@@ -69,16 +75,33 @@ public class DiscountHotelController implements DiscountHotelService {
 		}
 		return res;
 	}
-
-	public ResultMessageDiscount invalidDiscount(String hotelID,String discountID) {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * 
+	 * @param hotelID
+	 * @param type
+	 * @param discountState
+	 * @return 根据策略状态和策略类型来得到符合条件的
+	 */
+	public List<DiscountVO_hotel> getHotelDiscountByState(String hotelID,Strategy_hotelType type,DiscountState discountState){
+		List<DiscountVO_hotel> res = new LinkedList<DiscountVO_hotel>();
+		Iterator<DiscountVO_hotel> iterator = list.iterator();
+		while (iterator.hasNext()) {
+			DiscountVO_hotel discountVO_hotel =  iterator.next();
+			if(discountVO_hotel.type==type&&discountVO_hotel.discountState==discountState) res.add(discountVO_hotel);
+		}
+		return res;
 	}
-
-//	public DiscountVO_hotel getSingleHotelDiscount(String DiscountID) {
-//		// TODO Auto-generated method stub
-//		return hotelDiscount.getSingleHotelDiscount(DiscountID);
-//	}
+	
+	public ResultMessageDiscount invalidDiscount(String hotelID,String discountID) {
+		Iterator<DiscountVO_hotel> iterator = list.iterator();
+		while (iterator.hasNext()) {
+			DiscountVO_hotel discountVO_hotel = (DiscountVO_hotel) iterator.next();
+			if(discountVO_hotel.discountID.equals(discountID)){
+				discountVO_hotel.discountState=DiscountState.invalid;
+			}
+		}
+		return hotelDiscount.invalidDiscount(hotelID, discountID);
+	}
 
 
 	

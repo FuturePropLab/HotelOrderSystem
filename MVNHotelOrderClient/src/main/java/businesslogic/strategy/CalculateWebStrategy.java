@@ -14,13 +14,13 @@ import vo.StrategyVO_web;
  *
  */
 
-public class WebStrategyCalculate {
+public class CalculateWebStrategy {
 	// private WebStrategyInterface
 
 	private List<StrategyVO_web> strategyList;
 	private OrderInputCalVO orderInputCalVO;
 
-	public WebStrategyCalculate(OrderInputCalVO orderInput) {
+	public CalculateWebStrategy(OrderInputCalVO orderInput) {
 
 		StrategyGetService discount = new StrategyGet();
 		strategyList = discount.getSuitableDiscount_web(orderInput);

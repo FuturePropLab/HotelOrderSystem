@@ -2,6 +2,7 @@ package businesslogicservice;
 
 import java.util.List;
 
+import tools.DiscountState;
 import tools.ResultMessageDiscount;
 import tools.ResultMessage_strategy;
 import tools.Strategy_hotelType;
@@ -45,7 +46,7 @@ public interface DiscountHotelService {
 	 * @param type
 	 * @return 根據類型得到酒店促銷策略
 	 */
-	public List<DiscountVO_hotel> getHotelDiscount(String hotelID,Strategy_hotelType type) ;
+	public List<DiscountVO_hotel> getHotelDiscountByType(String hotelID,Strategy_hotelType type) ;
 	
 	/**
 	 * 
@@ -53,6 +54,15 @@ public interface DiscountHotelService {
 	 * @return 将策略设置为无效
 	 */
 	public ResultMessageDiscount invalidDiscount(String hotelID,String discount_id);
+	
+	/**
+	 * 
+	 * @param hotelID
+	 * @param type
+	 * @param discountState
+	 * @return 根据策略状态和策略类型来得到符合条件的
+	 */
+	public List<DiscountVO_hotel> getHotelDiscountByState(String hotelID,Strategy_hotelType type,DiscountState discountState);
 	
 //	public DiscountVO_hotel getSingleHotelDiscount (String discountID);
 }

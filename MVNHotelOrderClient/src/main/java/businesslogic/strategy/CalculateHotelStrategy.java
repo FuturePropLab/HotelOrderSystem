@@ -14,7 +14,7 @@ import vo.StrategyVO_web;
  * @author LinWenye
  */
 
-public class HotelStrategyCalculate {
+public class CalculateHotelStrategy {
 
 	private List<StrategyVO_hotel> strategyList;
 	private OrderInputCalVO orderInputCalVO;
@@ -33,7 +33,7 @@ public class HotelStrategyCalculate {
 	 * @param orderInput
 	 *            构造方法
 	 */
-	public HotelStrategyCalculate(OrderInputCalVO orderInput) {
+	public CalculateHotelStrategy(OrderInputCalVO orderInput) {
 		StrategyGetService discount = new StrategyGet();
 		strategyList = discount.getSuitableDiscount_hotel(orderInput);
 		this.orderInputCalVO = orderInput;

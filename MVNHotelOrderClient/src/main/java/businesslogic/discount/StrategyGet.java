@@ -28,7 +28,7 @@ public class StrategyGet implements StrategyGetService {
 	}
 	
 	public List<StrategyVO_hotel> getSuitableDiscount_hotel(OrderInputCalVO orderInput) {
-		// TODO Auto-generated method stub
+		
 		List<DiscountPO_hotel> list= hotelDataService.getHotelDiscount(orderInput.hotelID);
 		List<StrategyVO_hotel> res = new LinkedList<StrategyVO_hotel>();
 		Iterator iterator = list.iterator();
@@ -41,7 +41,7 @@ public class StrategyGet implements StrategyGetService {
 	}
 
 	public List<StrategyVO_web> getSuitableDiscount_web(OrderInputCalVO orderInput) {
-		// TODO Auto-generated method stub
+		
 		List<DiscountPO_web> list= webDataService.getWebDiscount();
 		List<StrategyVO_web> res = new LinkedList<StrategyVO_web>();
 		Iterator iterator = list.iterator();

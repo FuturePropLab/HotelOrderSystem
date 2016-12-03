@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import businesslogicservice.DiscountHotelService;
+import tools.DiscountState;
 import tools.ResultMessageDiscount;
 import tools.ResultMessage_strategy;
 import tools.Strategy_hotelType;
@@ -71,6 +72,17 @@ public class MockDiscount implements DiscountHotelService{
 	}
 
 	public ResultMessageDiscount invalidDiscount(String hotelID, String discount_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<DiscountVO_hotel> getHotelDiscountByType(String hotelID, Strategy_hotelType type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<DiscountVO_hotel> getHotelDiscountByState(String hotelID, Strategy_hotelType type,
+			DiscountState discountState) {
 		// TODO Auto-generated method stub
 		return null;
 	}
