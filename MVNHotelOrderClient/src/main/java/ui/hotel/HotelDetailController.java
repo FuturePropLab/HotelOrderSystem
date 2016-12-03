@@ -267,7 +267,11 @@ public class HotelDetailController extends DetailsController{
 		try {
 			rootLayoutController.changeDetails("../room/RoomInfo.fxml");
 			RoomInfoController roomInfoController=(RoomInfoController)rootLayoutController.getDetailsController();
-			roomInfoController.setRoomType(roomType);
+			for(int i=1;i<RoomType.values().length;i++){
+				if(roomType.equals(hotelDetailsVO.hotelRoomInfoVO.typeRoomInfo.get(i).getRoomtype())){
+					roomInfoController.setValue(hotelDetailsVO.hotelRoomInfoVO.typeRoomInfo.get(i));
+				}
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
