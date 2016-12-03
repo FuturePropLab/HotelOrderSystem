@@ -1,17 +1,22 @@
 package ui.room;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import tools.TypeRoomInfo;
 import ui.main.DetailsController;
 
@@ -49,8 +54,14 @@ public class RoomInfoController extends DetailsController{
 	
 	@FXML
 	private void handleRoomImage(){
-		if(true){//TODO:如果是酒店工作人员，调出文件选择器替换图片
-			
+		if(true){
+			FileChooser fileChooser = new FileChooser();
+			fileChooser.setTitle("选择一张图片");
+			fileChooser.getExtensionFilters().addAll(new ExtensionFilter("图片", "*.png", "*.jpg", "*.gif"));
+			File selectedFile = fileChooser.showOpenDialog(rootLayoutController.getPrimaryStage());
+			if (selectedFile != null) {
+				roomImage.setImage(new Image(selectedFile.toURI().toString()));
+			}
 		}
 	}
 	@FXML
@@ -73,7 +84,13 @@ public class RoomInfoController extends DetailsController{
 		LocalDate to=date_to.getValue();
 		if(from!=null && to!=null && to.isAfter(from)){
 			roomList.getChildren().clear();
-			//TODO:调用blservice获取房间号码和状态，设置avaliableRoom totalRoom roomList的值
+			//TODO:调用blservice获取房间号码和状态，设置avaliableRoom totalRoom roomList的值，下面是一个例子
+			Hyperlink room=new Hyperlink("8887");
+//			room.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e) -> {
+//			    if (e.getButton() == MouseButton.SECONDARY)
+//			       cm.show(pic, e.getScreenX(), e.getScreenY());
+//			});
+			roomList.getChildren().add(room);
 		}
 	}
 	@FXML

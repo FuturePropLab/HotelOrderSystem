@@ -1,5 +1,7 @@
 package ui.hotel;
 
+import java.io.File;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Hyperlink;
@@ -7,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import ui.main.DetailsController;
 import vo.HotelFacilityVO;
 
@@ -80,7 +84,13 @@ public class FacilitiesInfoController extends DetailsController{
     }
     @FXML
     private void handleFacilitiesImage() {
-    	//TODO:如果是酒店工作人员，就弹出文件选择器更换图片
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("选择一张图片");
+		fileChooser.getExtensionFilters().addAll(new ExtensionFilter("图片", "*.png", "*.jpg", "*.gif"));
+		File selectedFile = fileChooser.showOpenDialog(rootLayoutController.getPrimaryStage());
+		if (selectedFile != null) {
+			facilitiesImage.setImage(new Image(selectedFile.toURI().toString()));
+		}
     }
     
     public void setValues(HotelFacilityVO hotelFacilityVO) {
