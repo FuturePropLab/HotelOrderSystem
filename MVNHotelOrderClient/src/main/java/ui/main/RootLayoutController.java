@@ -58,7 +58,7 @@ public class RootLayoutController {
     private void initialize() {
         try {
 //        	changeFullLayout("../login/Login.fxml");
-			changeDetails("../hotel/HotelDetail.fxml");
+			changeDetails("../hotel/HotelSearch.fxml");
         	changeGuid("GuideUI.fxml");
 		} catch (IOException e) {
 			e.printStackTrace();

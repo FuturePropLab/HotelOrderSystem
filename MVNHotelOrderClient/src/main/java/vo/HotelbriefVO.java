@@ -100,7 +100,14 @@ public class HotelbriefVO {
 				System.out.println(e.getMessage());
 			}
 			
-		}		
+		}else{
+			try {
+				this.priceRange = new PriceRange(0.0, 0.0);
+			} catch (OutOfBoundsException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	

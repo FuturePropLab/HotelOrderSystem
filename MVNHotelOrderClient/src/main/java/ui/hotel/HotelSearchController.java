@@ -71,7 +71,7 @@ public class HotelSearchController extends DetailsController{
     private void initialize() {
     	HotelDealService hotelDealService= HotelDealController.getInstance();
     	city.getItems().addAll(hotelDealService.getAllCity());
-    	star.getItems().addAll("1星","2星","3星","4星","5星");
+    	star.getItems().addAll("所有","1星","2星","3星","4星","5星");
     	roomType.getItems().addAll("标准间","单人间","双人间","豪华套房","总统套房");
     	theWayOfOrder.getItems().addAll("Option 1","Option 2","Option 3");
     	handleSearch();
@@ -86,7 +86,7 @@ public class HotelSearchController extends DetailsController{
 			System.out.println("ok????");
 			List<HotelbriefVO> voList=hotelDealService.SearchHotel(searchHotelVO);
 			System.out.println(voList==null);
-			if(voList!=null && !voList.isEmpty())
+			//if(voList!=null && !voList.isEmpty())
 			initHotelItems(voList);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -94,15 +94,19 @@ public class HotelSearchController extends DetailsController{
 	}
 	@FXML
 	private void handleCity(){
-		HotelDealService hotelDealService= HotelDealController.getInstance();
-		city.getItems().addAll(hotelDealService.getAllCity());
-		//TODO:调用blservice设置district的值
-	}
-	@FXML
-	private void handleDistrict(){
+		district.getItems().clear();
+		businessCircle.getItems().clear();
 		HotelDealService hotelDealService= HotelDealController.getInstance();
 		if(city.getValue()!=null && !"".equals(city.getValue())){
 			district.getItems().addAll(hotelDealService.getAllDistrictByCity(city.getValue()));
+		}
+	}
+	@FXML
+	private void handleDistrict(){
+		businessCircle.getItems().clear();
+		HotelDealService hotelDealService= HotelDealController.getInstance();
+		if(district.getValue()!=null && !"".equals(district.getValue())){
+			businessCircle.getItems().addAll(hotelDealService.getBusineeCircleByDistrict(district.getValue()));
 		}
 		//TODO:调用blservice设置businessCircle的值
 	}
@@ -113,7 +117,11 @@ public class HotelSearchController extends DetailsController{
 	
 	private void initHotelItems(List<HotelbriefVO> voList) throws IOException {
     	hotelList.getChildren().clear();
+    	if(voList!=null && !voList.isEmpty())
 		for(HotelbriefVO hotelInfoVO:voList){
+			System.out.println(hotelInfoVO.hotelName);
+			System.out.println(hotelInfoVO.priceRange.lowest);
+			System.out.println(hotelInfoVO.priceRange.higest);
 	    	FXMLLoader loader = new FXMLLoader();
 	        loader.setLocation(getClass().getResource("HotelItem.fxml"));
 	    	SplitPane item = (SplitPane) loader.load();
@@ -148,8 +156,8 @@ public class HotelSearchController extends DetailsController{
 		if(star.getValue()==null){
 			return null;
 		}
-		Star[] types={Star.one,Star.two,Star.three,Star.four,Star.five};
-		String[] texts={"1星","2星","3星","4星","5星"};
+		Star[] types={null,Star.one,Star.two,Star.three,Star.four,Star.five};
+		String[] texts={"所有","1星","2星","3星","4星","5星"};
 		int index;
 		for(index=0;index<texts.length;index++){
 			if(star.getValue().equals(texts[index])){
