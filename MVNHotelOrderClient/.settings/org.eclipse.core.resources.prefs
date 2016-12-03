@@ -21,7 +21,6 @@ encoding//src/main/java/businesslogic/customer/CustomerInfoImp.java=UTF-8
 encoding//src/main/java/businesslogic/customer/CustomerSignupController.java=UTF-8
 encoding//src/main/java/businesslogic/customer/MemberInfo.java=UTF-8
 encoding//src/main/java/businesslogic/customer/MockMember.java=UTF-8
-encoding//src/main/java/businesslogic/discount/Discount.java=UTF-8
 encoding//src/main/java/businesslogic/discount/DiscountHotelController.java=UTF-8
 encoding//src/main/java/businesslogic/discount/DiscountWebController.java=UTF-8
 encoding//src/main/java/businesslogic/discount/HotelDiscount.java=UTF-8

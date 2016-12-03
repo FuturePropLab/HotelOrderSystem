@@ -9,7 +9,11 @@ import stub.Discount_stub;
 import tools.ResultMessageDiscount;
 import tools.ResultMessage_strategy;
 import vo.DiscountVO_web;
-
+/**
+ * 
+ * @author LWY
+ * 网站营销人员制作网站策略，增删改查
+ */
 public class WebDiscount {
 
 	private dataservice.DiscountWebDataService dataService;
@@ -55,5 +59,13 @@ public class WebDiscount {
 		}
 		return res;
 	}
-
+	
+	/**
+	 * 
+	 * @param discount_id
+	 * @return 将策略设置为无效
+	 */
+	public ResultMessageDiscount invalidDiscount(String discountID){
+		return dataService.invalidDiscount(discountID);
+	}
 }

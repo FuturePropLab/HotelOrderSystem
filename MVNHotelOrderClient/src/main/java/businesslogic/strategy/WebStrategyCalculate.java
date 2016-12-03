@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import businesslogic.discount.DiscountGet;
+import businesslogic.discount.StrategyGet;
 import vo.OrderInputCalVO;
 import vo.StrategyVO_web;
 
@@ -22,7 +22,7 @@ public class WebStrategyCalculate {
 
 	public WebStrategyCalculate(OrderInputCalVO orderInput) {
 
-		StrategyGetService discount = new DiscountGet();
+		StrategyGetService discount = new StrategyGet();
 		strategyList = discount.getSuitableDiscount_web(orderInput);
 		this.orderInputCalVO = orderInput;
 		// DiscountGetService disDealService = new MockDiscount("web");//桩程序

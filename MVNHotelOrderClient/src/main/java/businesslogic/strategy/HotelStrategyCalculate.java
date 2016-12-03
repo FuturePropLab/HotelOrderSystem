@@ -4,13 +4,13 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import businesslogic.discount.DiscountGet;
+import businesslogic.discount.StrategyGet;
 import vo.OrderInputCalVO;
 import vo.StrategyVO_hotel;
 import vo.StrategyVO_web;
 
 /**
- * 
+ * 酒店优惠策略具体计算
  * @author LinWenye
  */
 
@@ -34,7 +34,7 @@ public class HotelStrategyCalculate {
 	 *            构造方法
 	 */
 	public HotelStrategyCalculate(OrderInputCalVO orderInput) {
-		StrategyGetService discount = new DiscountGet();
+		StrategyGetService discount = new StrategyGet();
 		strategyList = discount.getSuitableDiscount_hotel(orderInput);
 		this.orderInputCalVO = orderInput;
 	}

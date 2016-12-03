@@ -8,8 +8,18 @@ import vo.DiscountVO_web;
 import vo.DiscountVO_web_district;
 import vo.DiscountVO_web_level;
 import vo.DiscountVO_web_period;
-
+/**
+ * 
+ * @author LWY
+ *  工厂模式 根据折扣类型生成对象
+ *
+ */
 public class FactoryDiscount {
+	/**
+	 * 
+	 * @param discountVO_web
+	 * @return VO转PO
+	 */
 	public DiscountPO_web conversion (DiscountVO_web discountVO_web){
 		
 		DiscountPO_web res = null;
@@ -31,7 +41,11 @@ public class FactoryDiscount {
 		return res;
 		
 	}
-	
+	/**
+	 * 
+	 * @param discountPO_web
+	 * @return  PO转VO
+	 */
 	public DiscountVO_web converToVO (DiscountPO_web discountPO_web){
 		
 		DiscountVO_web res = null;

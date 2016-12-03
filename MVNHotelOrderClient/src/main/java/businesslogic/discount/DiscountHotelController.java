@@ -1,57 +1,83 @@
 package businesslogic.discount;
 
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import businesslogicservice.DiscountHotelService;
 import tools.ResultMessageDiscount;
 import tools.ResultMessage_strategy;
+import tools.Strategy_hotelType;
 import vo.DiscountVO_hotel;
+
 /**
  * 
  * @author LWY
  *
  */
-public class DiscountHotelController implements DiscountHotelService  {
+public class DiscountHotelController implements DiscountHotelService {
+	
 	private static DiscountHotelController discountHotelController;
-	
-	private DiscountHotelController(){
-		hotelDiscount=new HotelDiscount();
-	}
-	
-	public static DiscountHotelController getInstance(){
-		if(discountHotelController==null) {
-			discountHotelController=new DiscountHotelController();
-		}
-			return discountHotelController;
-	}
-	
+
 	private HotelDiscount hotelDiscount;
 	
-	public ResultMessage_strategy addHotelDiscount(String hotel_id,DiscountVO_hotel dis) {
-		// TODO Auto-generated method stub
-		 
-		return hotelDiscount.addHotelDiscount(hotel_id, dis);
+	private List<DiscountVO_hotel> list;//缓存list，不需重复调用Data层
+	
+	private DiscountHotelController() {
+		hotelDiscount = new HotelDiscount();
+	}
+	
+	/**
+	 * 单件
+	 * @return
+	 */
+	public static DiscountHotelController getInstance() {
+		if (discountHotelController == null) {
+			discountHotelController = new DiscountHotelController();
+		}
+		return discountHotelController;
 	}
 
-	public ResultMessageDiscount editHotelDiscount(String discount_id, DiscountVO_hotel discountVO_hotel) {
+
+	public ResultMessage_strategy addHotelDiscount(String hotelID, DiscountVO_hotel dis) {
 		// TODO Auto-generated method stub
-		return hotelDiscount.editHotelDiscount(discount_id,discountVO_hotel);
+		
+		return hotelDiscount.addHotelDiscount(hotelID, dis);
 	}
 
-
-	public List<DiscountVO_hotel> getHotelDiscount(String hotel_id) {
+	public ResultMessageDiscount editHotelDiscount(String discountID, DiscountVO_hotel discountVO_hotel) {
 		// TODO Auto-generated method stub
-		return hotelDiscount.getHotelDiscount(hotel_id);
+		return hotelDiscount.editHotelDiscount(discountID, discountVO_hotel);
 	}
 
-	public ResultMessage_strategy deleteHotelDiscount(String hotel_id, String discount_id) {
+	public List<DiscountVO_hotel> getHotelDiscount(String hotelID) {
+		// TODO Auto-generated method stub
+		return hotelDiscount.getHotelDiscount(hotelID);
+	}
+
+	public ResultMessageDiscount deleteHotelDiscount(String hotelID, String discountID) {
+		// TODO Auto-generated method stub
+		return hotelDiscount.deleteHotelDiscount(hotelID, discountID);
+	}
+
+	public List<DiscountVO_hotel> getHotelDiscount(String hotelID,Strategy_hotelType type) {
+		List<DiscountVO_hotel> res = new LinkedList<DiscountVO_hotel>();
+		Iterator<DiscountVO_hotel> iterator = list.iterator();
+		while (iterator.hasNext()) {
+			DiscountVO_hotel discountVO_hotel =  iterator.next();
+			if(discountVO_hotel.type==type) res.add(discountVO_hotel);
+		}
+		return res;
+	}
+
+	public ResultMessageDiscount invalidDiscount(String hotelID,String discountID) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-//	public DiscountVO_hotel getSingleHotelDiscount(String Discount_id) {
+//	public DiscountVO_hotel getSingleHotelDiscount(String DiscountID) {
 //		// TODO Auto-generated method stub
-//		return hotelDiscount.getSingleHotelDiscount(Discount_id);
+//		return hotelDiscount.getSingleHotelDiscount(DiscountID);
 //	}
 
 

@@ -2,7 +2,11 @@ package po;
 
 import tools.DiscountState;
 import tools.Strategy_webType;
-
+/**
+ * 
+ * @author LWY
+ *
+ */
 public class DiscountPO_web {
 	
 	private Strategy_webType type;
@@ -13,7 +17,7 @@ public class DiscountPO_web {
 	
 	private String discountID;
 	
-	private String remarks;
+	private String remarks;//备注
 	
 	public Strategy_webType getType() {
 		return type;

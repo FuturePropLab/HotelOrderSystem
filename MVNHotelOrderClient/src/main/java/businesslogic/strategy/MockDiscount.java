@@ -6,6 +6,7 @@ import java.util.List;
 import businesslogicservice.DiscountHotelService;
 import tools.ResultMessageDiscount;
 import tools.ResultMessage_strategy;
+import tools.Strategy_hotelType;
 import vo.DiscountVO_hotel;
 import vo.OrderInputCalVO;
 import vo.StrategyVO_hotel;
@@ -49,18 +50,27 @@ public class MockDiscount implements DiscountHotelService{
 		return null;
 	}
 
-
-	public ResultMessage_strategy deleteHotelDiscount(String hotel_id, String discount_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public List<DiscountVO_hotel> getHotelDiscount(String hotel_id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public ResultMessageDiscount editHotelDiscount(String discount_id, DiscountVO_hotel discountVO_hotel) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ResultMessageDiscount deleteHotelDiscount(String hotelID, String discountID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<DiscountVO_hotel> getHotelDiscount(String hotelID, Strategy_hotelType type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ResultMessageDiscount invalidDiscount(String hotelID, String discount_id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -5,7 +5,8 @@ import vo.StrategyVO_hotel;
 
 /**
  * 
- * @author 三间及以上预定的策略：第三间及以上的房间享有折扣
+ * @author LWY
+ * 三间及以上预定的策略：第三间及以上的房间享有折扣
  *
  */
 public class OrderMoreStrategy_hotel implements HotelStrategyInterface {
