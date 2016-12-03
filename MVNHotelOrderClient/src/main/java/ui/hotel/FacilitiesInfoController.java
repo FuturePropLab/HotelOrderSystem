@@ -1,5 +1,8 @@
 package ui.hotel;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import ui.main.DetailsController;
 
 /**
@@ -8,5 +11,9 @@ import ui.main.DetailsController;
  * @author zjy
  */
 public class FacilitiesInfoController extends DetailsController{
-
+	@FXML
+	private ImageView facilitiesImage;
+	@FXML
+	private Label hotelNameLabel;
+	
 }

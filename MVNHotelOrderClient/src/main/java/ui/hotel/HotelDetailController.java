@@ -51,13 +51,13 @@ public class HotelDetailController extends DetailsController{
 	@FXML
 	private Button bookSingle;
 	@FXML
-	private Label hotelNameLabel;
+	private Label hotelNameLabel;//除了酒店工作人员，其他用户可见
 	@FXML
-	private TextField hotelNameTextField;
+	private TextField hotelNameTextField;//只有酒店工作人员可见
 	@FXML
-	private TextArea describtionTextArea;
+	private TextArea describtionTextArea;//只有酒店工作人员可见
 	@FXML
-	private Text describtionText;
+	private Text describtionText;//除了酒店工作人员，其他用户可见
 	@FXML
 	private ImageView star_1;
 	@FXML
@@ -69,9 +69,9 @@ public class HotelDetailController extends DetailsController{
 	@FXML
 	private ImageView star_5;
 	@FXML
-	private Label starLabel;
+	private Label starLabel;//除了酒店工作人员，其他用户可见
 	@FXML
-	private ComboBox<String> starComboBox;
+	private ComboBox<String> starComboBox;//只有酒店工作人员可见
 	@FXML
 	private ImageView mark_1;
 	@FXML
@@ -89,23 +89,24 @@ public class HotelDetailController extends DetailsController{
 	@FXML
 	private Hyperlink assess;
 	@FXML
-	private Label cityLabel;
+	private Label cityLabel;//除了酒店工作人员，其他用户可见
 	@FXML
-	private Label districtLabel;
+	private Label districtLabel;//除了酒店工作人员，其他用户可见
 	@FXML
-	private Label businessCircleLabel;
+	private Label businessCircleLabel;//除了酒店工作人员，其他用户可见
 	@FXML
-	private ComboBox<String> cityComboBox;
+	private ComboBox<String> cityComboBox;//只有酒店工作人员可见
 	@FXML
-	private ComboBox<String> districtComboBox;
+	private ComboBox<String> districtComboBox;//只有酒店工作人员可见
 	@FXML
-	private ComboBox<String> businessCircleComboBox;
+	private ComboBox<String> businessCircleComboBox;//只有酒店工作人员可见
 	@FXML
-	private Label addressLabel;
+	private Label addressLabel;//除了酒店工作人员，其他用户可见
 	@FXML
-	private TextField addressTextField;
+	private TextField addressTextField;//只有酒店工作人员可见
 	@FXML
-	private Hyperlink save;
+	private Hyperlink save;//只有酒店工作人员可见
+	private String hotelID;//TODO:initialize()里设置
 	
 	/**
      * Initializes the controller class. This method is automatically called
@@ -133,12 +134,21 @@ public class HotelDetailController extends DetailsController{
 			addressLabel.setVisible(false);
 			addressTextField.setVisible(true);
 			save.setVisible(true);
+			bookEluxeSuite.setDisable(true);
+			bookSuites.setDisable(true);
+			bookStandard.setDisable(true);
+			bookDouble.setDisable(true);
+			bookSingle.setDisable(true);
 			
 			starComboBox.getItems().addAll(starArray);
 			cityComboBox.getItems().addAll("南京","Option 1","Option 2");
 		}
     	else {
-			
+    		bookEluxeSuite.setDisable(true);
+			bookSuites.setDisable(true);
+			bookStandard.setDisable(true);
+			bookDouble.setDisable(true);
+			bookSingle.setDisable(true);
 		}
     }
 	
