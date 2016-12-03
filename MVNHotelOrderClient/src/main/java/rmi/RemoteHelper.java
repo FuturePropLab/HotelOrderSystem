@@ -7,6 +7,7 @@ import dataservice.CustomerDataService;
 import dataservice.HotelDataService;
 import dataservice.LoginCheckService;
 import dataservice.OrderDataService;
+import dataservice.RoomDataService;
 
 /**
  * 
@@ -61,5 +62,9 @@ public class RemoteHelper {
 	 */
 	public HotelDataService getHotelDataService(){
 		return (HotelDataService)remote;
+	}
+	
+	public RoomDataService getRoomDataService(){
+		return (RoomDataService)remote;
 	}
 }

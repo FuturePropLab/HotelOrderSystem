@@ -2,16 +2,20 @@ package rmi;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.Date;
 import java.util.List;
 
 import dataservice.AccountDataService;
 import dataservice.CustomerDataService;
 import dataservice.HotelDataService;
 import dataservice.LoginCheckService;
+import dataservice.RoomDataService;
+import dataservice.datahelper.RoomDateHelper;
 import dataservice.impl.AccountDataServiceImpl;
 import dataservice.impl.CustomerDataServiceImpl;
 import dataservice.impl.HotelDataServiceImpl;
 import dataservice.impl.LoginCheckServiceImpl;
+import dataservice.impl.RoomDataServiceImpl;
 import po.AccountPO;
 import po.CustomerPO;
 import po.HotelPO;
@@ -21,11 +25,15 @@ import tools.ResultMessage_Account;
 import tools.ResultMessage_Hotel;
 import tools.ResultMessage_LoginCheck;
 import tools.ResultMessage_Modify;
+import tools.ResultMessage_Room;
 import tools.ResultMessage_signUp;
+import tools.RoomType;
 import tools.SearchHotel;
 import tools.StandardSearch;
 
-public class DataRemoteObject extends UnicastRemoteObject implements  LoginCheckService ,AccountDataService,CustomerDataService,HotelDataService{
+public class DataRemoteObject extends UnicastRemoteObject implements
+LoginCheckService ,AccountDataService,CustomerDataService,
+HotelDataService,RoomDataService{
 	/**
 	 *  RMI 接口
 	 */
@@ -34,12 +42,14 @@ public class DataRemoteObject extends UnicastRemoteObject implements  LoginCheck
 	private AccountDataService accountDataService;
 	private CustomerDataService customerDataService;
 	private HotelDataService hotelDataService;
+	private RoomDataService roomDataService;
 	protected DataRemoteObject() throws RemoteException {
 		//用loginCheckServiceIMPL 实现
 		loginCheckService = new LoginCheckServiceImpl();
 		accountDataService = new AccountDataServiceImpl();
 		customerDataService = new CustomerDataServiceImpl();
 		hotelDataService = new HotelDataServiceImpl();
+		roomDataService = new RoomDataServiceImpl();
 
 	}
 	/**
@@ -134,6 +144,33 @@ public class DataRemoteObject extends UnicastRemoteObject implements  LoginCheck
 	}
 	public List<HotelPO> searchHotelListFuzzy(String input) throws RemoteException {
 		return hotelDataService.searchHotelListFuzzy(input);
+	}
+	
+	/**
+	 * room
+	 */
+	public ResultMessage_Room addRoom(String hotelID, String RoomNO, RoomType roomtype) throws RemoteException {
+		return roomDataService.addRoom(hotelID, RoomNO, roomtype);
+	}
+	public ResultMessage_Room deleteRoom(String hotelID, String RoomNO) throws RemoteException {
+		return roomDataService.deleteRoom(hotelID, RoomNO);
+	}
+	public ResultMessage_Room addRecord(String hotelID, String RoomNO, Date begin, Date end) throws RemoteException {
+		return roomDataService.addRecord(hotelID, RoomNO, begin, end);
+	}
+	public ResultMessage_Room deleteRecord(String hotelID, String RoomNO, Date begin) throws RemoteException {
+		return roomDataService.deleteRecord(hotelID, RoomNO, begin);
+	}
+	public List<String> getAvailbleRoomNoByType(String hotelID, RoomType roomType, Date begin, Date end)
+			throws RemoteException {
+		return roomDataService.getAvailbleRoomNoByType(hotelID, roomType, begin, end);
+	}
+	public int getTotalNumberRoomByType(String hotelID, RoomType roomType) throws RemoteException {
+		return roomDataService.getTotalNumberRoomByType(hotelID, roomType);
+	}
+	public int getAvaiableNumberRoomByType(String hotelID, RoomType roomType, Date begin, Date end)
+			throws RemoteException {
+		return roomDataService.getAvaiableNumberRoomByType(hotelID, roomType, begin, end);
 	}
 
 }

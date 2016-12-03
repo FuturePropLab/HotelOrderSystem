@@ -30,6 +30,9 @@ jdbc:mysql://localhost:3306/wsw
         <mapping class="po.HotelAddressPO"/>
         <mapping class="po.HotelBasePO"/>
         <mapping class="po.HotelFacilityPO"/>
+        <mapping class="po.RoomDisablePO"/>      
+        <mapping class="po.SingleRoomPO"/>
+        
         
     </session-factory>
 </hibernate-configuration>

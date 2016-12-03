@@ -9,11 +9,13 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.Date;
 import java.util.List;
 
 import businesslogic.hotel.HotelDealController;
 import businesslogicservice.HotelDealService;
 import dataservice.HotelDataService;
+import dataservice.RoomDataService;
 import po.HotelPO;
 import rmi.RemoteHelper;
 import tools.HotelAddress;
@@ -108,7 +110,11 @@ public class ClientRunner {
 //	   System.out.println(typeRoomInfo==null);
 				  
           
-
+//		RoomDataService roomDataService = RemoteHelper.getInstance().getRoomDataService();
+//		System.out.println(roomDataService.getTotalNumberRoomByType("HT001", RoomType.Double));
+//
+//		System.out.println(roomDataService.getAvaiableNumberRoomByType("HT001", RoomType.Double,
+//				new Date(), new Date(2017-1900, 11, 23)));
 		  
 		  
 	}

@@ -94,6 +94,30 @@ public class HotelDeal_Stub implements HotelDealService {
 		
 		return commentlist;
 	}
+
+
+	public List<String> getAllCity() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public List<String> getAllDistrictByCity(String city) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public List<String> getBusineeCircleByDistrict(String district) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public List<HotelbriefVO> searchHotelListFuzzy(String input) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }

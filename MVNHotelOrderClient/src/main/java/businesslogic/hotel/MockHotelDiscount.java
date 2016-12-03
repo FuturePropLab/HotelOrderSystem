@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import businesslogic.discount.Discount;
 import businesslogic.discount.HotelDiscount;
 import tools.ResultMessageDiscount;
 import vo.DiscountVO_hotel;

@@ -41,10 +41,10 @@ public class RoomDeal {
 			}
 		}*/
 		
-		RoomPO roompo = new RoomPO(hotel_id,room_id,state);
+		//oomPO roompo = new RoomPO(hotel_id,room_id,state);
 		
 		//RoomSingle roomSingle=new RoomSingle();
-		return roomDataService.modifyRoomState(roompo);
+		return null;
 		
 	}
 	
@@ -63,8 +63,8 @@ public class RoomDeal {
 	
      public RoomVO searchEmpty(RoomType type,String hotel_id,Date Startdate,Date EndDate){
 		//return roomDataService.searchEmptyRoom(type,hotel_id, date);
-    	 RoomPO roompo = roomDataService.searchEmptyRoom(type,hotel_id, Startdate,EndDate);
-    	 return new RoomVO(roompo);
+    	 //RoomPO roompo = roomDataService.searchEmptyRoom(type,hotel_id, Startdate,EndDate);
+    	 return null;
 		
 		
 	}
