@@ -1,5 +1,6 @@
 package stub;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,6 +11,7 @@ import po.RoomPO;
 import tools.HotelRoomInfo;
 import tools.ResultMessage;
 import tools.ResultMessage_Modify;
+import tools.ResultMessage_Room;
 import tools.ResultMessage_delete;
 import tools.RoomType;
 import tools.TypeRoomInfo;
@@ -52,7 +54,7 @@ public class RoomData_Stub implements RoomDataService {
 	}
 
 	
-	public ResultMessage_delete deleteRoom(String hotel_id, String room_id) {
+	public ResultMessage_delete deleteRoom1(String hotel_id, String room_id) {
 		if(room_id!=null && hotel_id != null)  return ResultMessage_delete.Success;
 				return ResultMessage_delete.Failure;
 	}
@@ -107,6 +109,50 @@ public class RoomData_Stub implements RoomDataService {
 	public ResultMessage editSingleRoom(RoomPO room) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	public ResultMessage_Room addRoom(String hotelID, String RoomNO, RoomType roomtype) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public ResultMessage_Room deleteRoom(String hotelID, String RoomNO) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public ResultMessage_Room addRecord(String hotelID, String RoomNO, Date begin, Date end) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public ResultMessage_Room deleteRecord(String hotelID, String RoomNO, Date begin) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public List<String> getAvailbleRoomNoByType(String hotelID, RoomType roomType, Date begin, Date end)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public int getTotalNumberRoomByType(String hotelID, RoomType roomType) throws RemoteException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int getAvaiableNumberRoomByType(String hotelID, RoomType roomType, Date begin, Date end)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

@@ -5,11 +5,13 @@ import dataservice.datahelper.AddressDataHelper;
 import dataservice.datahelper.CustomerDataHelper;
 import dataservice.datahelper.HotelDataHelper;
 import dataservice.datahelper.LoginCheckDatahelper;
+import dataservice.datahelper.RoomDateHelper;
 import dataservice.datahelper.impl.AccountDataHelperImpl;
 import dataservice.datahelper.impl.AddressDataHelperImpl;
 import dataservice.datahelper.impl.CustomerDataHelperImpl;
 import dataservice.datahelper.impl.HotelDataHelperImpl;
 import dataservice.datahelper.impl.LoginCheckDatahelperImpl;
+import dataservice.datahelper.impl.RoomDateHelperImpl;
 
 /**
  * 数据助手类抽象工厂
@@ -56,6 +58,14 @@ public  class DataHelperUtils {
 	 */
 	public static AddressDataHelper geAddressDataHelper(){
 		return AddressDataHelperImpl.getInstance();
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public static RoomDateHelper getRoomDateHelper(){
+		return  RoomDateHelperImpl.getInstantce();
 	}
 	
 }

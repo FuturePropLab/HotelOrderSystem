@@ -1,5 +1,6 @@
 package dataservice.impl;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 import dataservice.CustomerDataService;
@@ -25,16 +26,16 @@ public class CustomerDataServiceImpl implements CustomerDataService {
 		return customerDataHelper.add(customerInfo);
 	}
 
-	public CustomerPO find(String customer_id) {
+	public CustomerPO find(String customer_id) throws RemoteException{
 		return customerDataHelper.find(customer_id);
 	}
 
-	public ResultMessage_Modify modify(CustomerPO customerInfo) {
+	public ResultMessage_Modify modify(CustomerPO customerInfo) throws RemoteException{
 		if(customerInfo.getMemberpo()!=null)  return ResultMessage_Modify.Failure;
 		return customerDataHelper.modify(customerInfo);
 	}
 
-	public List<CustomerPO> searchCustomer() {
+	public List<CustomerPO> searchCustomer() throws RemoteException{
 		return customerDataHelper.searchCustomer();
 	}
 

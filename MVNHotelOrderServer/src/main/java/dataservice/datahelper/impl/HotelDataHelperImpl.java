@@ -408,13 +408,10 @@ public class HotelDataHelperImpl implements HotelDataHelper {
 		Session s = Hibernateutils.getSessionFactory().openSession();
 		Criteria cr = s.createCriteria(TypeRoomInfoPO.class);
 		cr.add(Restrictions.eq("roomPK", roomPK));
-		try{
-			List<TypeRoomInfoPO>  list = cr.list();	
-			s.close();
-			return list.size()!=0;
-		}catch(Exception e){
-			return false;
-		}
+		cr.add(Restrictions.lt("availableCount", 0));
+		List<TypeRoomInfoPO>  list = cr.list();	
+		s.close();
+		return list.size()!=0;
 
 	}
 
