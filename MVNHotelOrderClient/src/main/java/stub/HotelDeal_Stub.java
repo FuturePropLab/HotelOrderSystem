@@ -94,6 +94,43 @@ public class HotelDeal_Stub implements HotelDealService {
 		
 		return commentlist;
 	}
+
+
+	public List<String> getAllCity() {
+		List<String> cities=new ArrayList<String>();
+		cities.add("nanjing");
+		cities.add("beijing");
+		return cities;
+	}
+
+
+	public List<String> getAllDistrictByCity(String city) {
+		List<String> districts=new ArrayList<String>();
+		districts.add("district1");
+		districts.add("district2");
+		return districts;
+	}
+
+
+	public List<String> getBusineeCircleByDistrict(String district) {
+		List<String> busineeCircles=new ArrayList<String>();
+		busineeCircles.add("busineeCircle1");
+		busineeCircles.add("busineeCircle2");
+		return busineeCircles;
+	}
+
+
+	public List<HotelbriefVO> searchHotelListFuzzy(String input) {
+		List<HotelbriefVO> hotelList=new ArrayList<HotelbriefVO>();
+		HotelPO hotelPO=new HotelPO("hotelID", "hotelName");
+		hotelPO.setGrade(2.2);
+		hotelPO.setStar(Star.two);
+		hotelList.add(new HotelbriefVO(hotelPO));
+		hotelPO.setGrade(2.4);
+		hotelPO.setStar(Star.three);
+		hotelList.add(new HotelbriefVO(hotelPO));
+		return hotelList;
+	}
 	
 
 }
