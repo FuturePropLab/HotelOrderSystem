@@ -88,7 +88,7 @@ public class RoomInfoController extends DetailsController{
 			//TODO:调用blservice获取房间号码和状态，设置avaliableRoom totalRoom roomList的值，下面是一个例子
 			Hyperlink room=new Hyperlink("8887");
 			room.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e) -> {
-				//TODO:调用blservice删除这个房间
+				//TODO:调用blservice删除这个房间，如果删除成功，更新相关组件的值，如果失败，弹窗提示原因
 			});
 			roomList.getChildren().add(room);
 		}

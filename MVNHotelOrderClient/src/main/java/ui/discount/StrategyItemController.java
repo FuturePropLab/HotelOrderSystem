@@ -12,14 +12,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.paint.Color;
-import ui.discount.HotelDiscountController.ItemType;
+import ui.discount.WebStrategyController.ItemType;
 
 /**
- * 单个酒店优惠item的界面的控制器
+ * 单个网站促销策略item的界面的控制器
+ * 还没写
  * @author zjy
  *
  */
-public abstract class ItemController {
+public abstract class StrategyItemController {
 
 	@FXML
 	protected TitledPane title;
@@ -37,10 +38,11 @@ public abstract class ItemController {
 	protected CheckBox superposition;
 	@FXML
 	protected Hyperlink delete;//确认和删除合一的按钮，名字叫delete
-	protected HotelDiscountController hotelDiscountController;
+	protected WebStrategyController webStrategyController;
 
-	public void setHotelDiscountController(HotelDiscountController hotelDiscountController) {
-		this.hotelDiscountController = hotelDiscountController;
+
+	public void setWebStrategyController(WebStrategyController webStrategyController) {
+		this.webStrategyController = webStrategyController;
 	}
 	@FXML
 	protected void handleDiscount(){
@@ -72,7 +74,7 @@ public abstract class ItemController {
 				
 				//TODO: 调用blservice增加策略
 				delete.setText("删 除");//字中间有空格
-				hotelDiscountController.addNewItem(getType());
+				webStrategyController.addNewItem(getType());
 			}
 			else {
 				System.out.println("the discount is not finished");//TODO:弹窗提示未完成
