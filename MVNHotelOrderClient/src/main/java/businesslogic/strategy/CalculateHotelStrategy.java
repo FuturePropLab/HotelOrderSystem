@@ -47,7 +47,7 @@ public class CalculateHotelStrategy {
 
 		List<StrategyVO_hotel> res = new LinkedList<StrategyVO_hotel>();
 		
-		for (long i = orderInputCalVO.startDate.toEpochDay(); i <= orderInputCalVO.endDate.toEpochDay(); i++) {
+		for (long i = orderInputCalVO.startDate.toEpochDay(); i < orderInputCalVO.endDate.toEpochDay(); i++) {
 			
 			StrategyVO_hotel single =null;
 			List<StrategyVO_hotel> temp = new LinkedList<StrategyVO_hotel>();

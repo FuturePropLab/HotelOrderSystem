@@ -69,12 +69,12 @@ public class CalculateWebStrategy {
 
 		List<StrategyVO_web> res = new LinkedList<StrategyVO_web>();
 
-		for (long i = orderInputCalVO.startDate.toEpochDay(); i <= orderInputCalVO.endDate.toEpochDay(); i++) {
+		for (long i = orderInputCalVO.startDate.toEpochDay(); i < orderInputCalVO.endDate.toEpochDay(); i++) {
 
 			StrategyVO_web single = null;
 
 			Iterator<StrategyVO_web> iter = strategyList.iterator();
-			double min = 0;// 策略减去的额度
+			double min = 0;// 策略减去的额度,为负数
 
 			while (iter.hasNext()) {
 

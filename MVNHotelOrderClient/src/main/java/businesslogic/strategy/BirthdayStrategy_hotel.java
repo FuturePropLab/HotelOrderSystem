@@ -11,8 +11,12 @@ public class BirthdayStrategy_hotel implements HotelStrategyInterface{
 
 	public double calculate(OrderInputCalVO orderInputCalVO, StrategyVO_hotel strategyVO_hotel,long day) {
 		// TODO Auto-generated method stub
-		
-		return orderInputCalVO.price*orderInputCalVO.numberOfRooms*strategyVO_hotel.discount;
+		if(orderInputCalVO.birthday.toEpochDay()>=orderInputCalVO.startDate.toEpochDay()
+				&&orderInputCalVO.birthday.toEpochDay()<orderInputCalVO.endDate.toEpochDay()){
+			
+			return orderInputCalVO.price*orderInputCalVO.numberOfRooms*(strategyVO_hotel.discount-1);
+		}
+		else return 0;
 	}
 
 }

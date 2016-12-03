@@ -12,6 +12,7 @@ import tools.Strategy_hotelType;
  */
 
 public class StrategyVO_hotel {
+	
 	public LocalDate startDate;// 折扣开始时间
 
 	public LocalDate endDate;
@@ -21,9 +22,9 @@ public class StrategyVO_hotel {
 	public Strategy_hotelType type;
 
 	public double discount;
-	//
+	
+	public String enterpriseName;
 	// public double orderPrice;
-	//
 	// public double roomPrice;
 	public double minusPrice;//折扣减去的价格
 
@@ -33,6 +34,7 @@ public class StrategyVO_hotel {
 		startDate = discountPO_hotel.getStartDate();
 		endDate = discountPO_hotel.getEndDate();
 		superimpose=discountPO_hotel.isSuperimpose();
+		this.enterpriseName = discountPO_hotel.getEnterpriseName();
 		// this.roomPrice=roomPrice;
 		// orderPrice=(end.getTimeInMillis()-start.getTimeInMillis())/(1000*60*60*24)*roomPrice*discount;
 	}

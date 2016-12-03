@@ -10,8 +10,11 @@ import vo.StrategyVO_hotel;
 public class EnterpriseStrategy_hotel implements HotelStrategyInterface{
 
 	public double calculate(OrderInputCalVO orderInputCalVO, StrategyVO_hotel strategyVO_hotel,long day) {
-		// TODO Auto-generated method stub
-		return orderInputCalVO.price*orderInputCalVO.numberOfRooms*strategyVO_hotel.discount;
+		
+		if(strategyVO_hotel.enterpriseName.equals(orderInputCalVO.enterprise))
+		return orderInputCalVO.price*orderInputCalVO.numberOfRooms*(strategyVO_hotel.discount-1);
+		
+		else return 0;
 	}
 
 }

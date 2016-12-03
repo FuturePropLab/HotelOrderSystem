@@ -19,35 +19,36 @@ import vo.DiscountVO_web;
 public class DiscountWebController implements DiscountWebService {
 
 	private WebDiscount web;
-	
+
 	private static DiscountWebController discountWebController;
-	
+
 	private List<DiscountVO_web> list;
-	
-	private DiscountWebController (){
-		web=new WebDiscount();
+
+	private DiscountWebController() {
+		web = new WebDiscount();
 	}
-	
+
 	/**
 	 * 單件
+	 * 
 	 * @return
 	 */
-	public static DiscountWebController getInstance(){
-		if(discountWebController==null) discountWebController=new DiscountWebController();
+	public static DiscountWebController getInstance() {
+		if (discountWebController == null)
+			discountWebController = new DiscountWebController();
 		return discountWebController;
 	}
-	
+
 	public ResultMessage_strategy addWebDiscount(DiscountVO_web dis) {
-		
+
 		return web.addWebDiscount(dis);
 	}
 
 	public ResultMessageDiscount editWebDiscount(DiscountVO_web dis) {
-		
-		return web.editWebDiscount(dis);
-		
-	}
 
+		return web.editWebDiscount(dis);
+
+	}
 
 	public List<DiscountVO_web> getWebDiscount() {
 		// TODO Auto-generated method stub
@@ -66,7 +67,7 @@ public class DiscountWebController implements DiscountWebService {
 		Iterator<DiscountVO_web> iterator = list.iterator();
 		while (iterator.hasNext()) {
 			DiscountVO_web discountVO_web = (DiscountVO_web) iterator.next();
-			if(discountVO_web.type==type){
+			if (discountVO_web.type == type) {
 				res.add(discountVO_web);
 			}
 		}
@@ -79,26 +80,22 @@ public class DiscountWebController implements DiscountWebService {
 	 * @param discountState
 	 * @return 根据策略状态和策略类型来得到符合条件的
 	 */
-	public List<DiscountVO_web> getWebDiscount(Strategy_webType type,DiscountState discountState) {
-		
+	public List<DiscountVO_web> getWebDiscount(Strategy_webType type, DiscountState discountState) {
+
 		List<DiscountVO_web> res = new LinkedList<DiscountVO_web>();
 		Iterator<DiscountVO_web> iterator = list.iterator();
 		while (iterator.hasNext()) {
 			DiscountVO_web discountVO_web = (DiscountVO_web) iterator.next();
-			if(discountVO_web.type==type&&discountVO_web.discountState==discountState){
+			if (discountVO_web.type == type && discountVO_web.discountState == discountState) {
 				res.add(discountVO_web);
 			}
 		}
 		return res;
 	}
-	
-	
+
 	public ResultMessageDiscount invalidDiscount(String discountID) {
-		
+
 		return web.invalidDiscount(discountID);
 	}
-
-
-
 
 }
