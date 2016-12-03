@@ -85,17 +85,17 @@ public class OrderInputCalVO {
 	}
 
 	public void setBirthday(String customerID) {
-		MemberController member = new MemberController();
+		MemberController member = MemberController.getInstance();
 		this.birthday = member.getMemberInfo(customerID).memberType.getBirthday();
 	}
 
 	public void setMemberBelongType(String customerID) {
-		MemberController memberController = new MemberController();
+		MemberController memberController = MemberController.getInstance();
 		memberBelongType = memberController.getMemberInfo(customerID).memberType.getType();
 	}
 
 	public void setEnterprise(String customerID) {
-		MemberController memberController = new MemberController();
+		MemberController memberController = MemberController.getInstance();
 		enterprise = memberController.getMemberInfo(customerID).memberType.getCompanyName();
 	}
 }

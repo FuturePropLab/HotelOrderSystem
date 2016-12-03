@@ -4,6 +4,7 @@ import java.net.URI;
 
 import tools.HotelAddress;
 import tools.Star;
+import vo.HotelAssessVO;
 
 /**
  * 酒店详细信息
@@ -20,7 +21,7 @@ public class HotelDetailsVO {
 	public HotelDiscribtionsVO hotelDiscribtionsVO;
 	public HotelRoomInfoVO hotelRoomInfoVO;
 	public HotelFacilityVO hotelFacilityVO;  //
-	public HotelAssressVO  hotelAssessVO;  //
+	public HotelAssessVO  hotelAssessVO;  //
 	
 	/**
 	 * 
@@ -36,7 +37,7 @@ public class HotelDetailsVO {
 	 */
 	public HotelDetailsVO(String hotelID, String hotelName, URI hotelImage, Star star, HotelAddress hotelAddress,
 			HotelDiscribtionsVO hotelDiscribtionsVO, HotelRoomInfoVO hotelRoomInfoVO, HotelFacilityVO hotelFacilityVO,
-			HotelAssressVO hotelAssessVO) {
+			HotelAssessVO hotelAssessVO) {
 		super();
 		this.hotelID = hotelID;
 		this.hotelName = hotelName;
@@ -45,7 +46,7 @@ public class HotelDetailsVO {
 		this.hotelAddress = hotelAddress;
 		this.hotelDiscribtionsVO = hotelDiscribtionsVO;
 		this.hotelRoomInfoVO = hotelRoomInfoVO;
-		this.hotelFacility = hotelFacilityVO;
-		this.hotelAssess = hotelAssessVO;
+		this.hotelFacilityVO = hotelFacilityVO;
+		this.hotelAssessVO = hotelAssessVO;
 	}
 }
