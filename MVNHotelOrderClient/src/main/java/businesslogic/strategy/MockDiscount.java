@@ -9,9 +9,9 @@ import tools.ResultMessageDiscount;
 import tools.ResultMessage_strategy;
 import tools.Strategy_hotelType;
 import vo.DiscountVO_hotel;
+import vo.DiscountVO_web;
 import vo.OrderInputCalVO;
 import vo.StrategyVO_hotel;
-import vo.StrategyVO_web;
 
 /**
  * 
@@ -36,13 +36,13 @@ public class MockDiscount implements DiscountHotelService{
 		return res;
 	}
 
-	public List<StrategyVO_web> getSuitableDiscount_web(OrderInputCalVO orderInput) {
+	public List<DiscountVO_web> getSuitableDiscount_web(OrderInputCalVO orderInput) {
 
 		// 应该根据type 和 orderInput来get
-		List<StrategyVO_web> res = new LinkedList<StrategyVO_web>();
-		StrategyVO_web dv = new StrategyVO_web(null);
+		List<DiscountVO_web> res = new LinkedList<DiscountVO_web>();
+		DiscountVO_web dv = new DiscountVO_web();
 		dv.discount = 0.9;
-		res.add((StrategyVO_web) dv);
+		res.add((DiscountVO_web) dv);
 		return res;
 	}
 

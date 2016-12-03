@@ -25,7 +25,7 @@ public class StrategyController implements StrategyService{
 		return strategyController;
 	}
 	public StrategyVO CalculateBestStrategy(OrderInputCalVO orderInputCalVO) {
-		// TODO Auto-generated method stub
+		
 		return strategy.CalculateBestStrategy(orderInputCalVO);
 	}
 

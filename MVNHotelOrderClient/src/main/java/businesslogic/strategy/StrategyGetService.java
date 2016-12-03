@@ -2,9 +2,9 @@ package businesslogic.strategy;
 
 import java.util.List;
 
+import vo.DiscountVO_web;
 import vo.OrderInputCalVO;
 import vo.StrategyVO_hotel;
-import vo.StrategyVO_web;
 /**
  * 
  * @author LWY
@@ -16,6 +16,6 @@ public interface StrategyGetService {
 		 * 供Strategy模块调用，由discount模块实现
 		 */
 		public List<StrategyVO_hotel> getSuitableDiscount_hotel(OrderInputCalVO orderInput);
-		public List<StrategyVO_web> getSuitableDiscount_web(OrderInputCalVO orderInput);
+		public List<DiscountVO_web> getSuitableDiscount_web(OrderInputCalVO orderInput);
 
 }

@@ -5,12 +5,11 @@ import java.util.Date;
 import java.util.List;
 
 import businesslogic.strategy.StrategyGetService;
-import vo.DiscountSearchVO;
 import vo.DiscountVO_hotel;
+import vo.DiscountVO_web;
 import vo.OrderInputCalVO;
 import vo.OrderInputVO;
 import vo.StrategyVO_hotel;
-import vo.StrategyVO_web;
 
 public class DiscountCal_stub implements StrategyGetService{
 
@@ -60,13 +59,13 @@ public class DiscountCal_stub implements StrategyGetService{
 		
 	}
 
-	public List<StrategyVO_web> getSuitableDiscount_web(OrderInputCalVO orderInput) {
+	public List<DiscountVO_web> getSuitableDiscount_web(OrderInputCalVO orderInput) {
 		// TODO Auto-generated method stub
-		List<StrategyVO_web> dis=new ArrayList();
+		List<DiscountVO_web> dis=new ArrayList();
 		Date t1=new Date(2016,9,1);
 		Date t2=new Date(2016,9,2);
 		
-		StrategyVO_web dvo=new StrategyVO_web(null);
+		DiscountVO_web dvo=new DiscountVO_web();
 		dis.add(dvo);
 		
 		return dis;

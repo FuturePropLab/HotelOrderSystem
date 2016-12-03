@@ -2,10 +2,10 @@ package businesslogic.strategy;
 
 import java.util.List;
 
+import vo.DiscountVO_web;
 import vo.OrderInputCalVO;
 import vo.StrategyVO;
 import vo.StrategyVO_hotel;
-import vo.StrategyVO_web;
 
 /**
  * 
@@ -24,24 +24,9 @@ public class Strategy {
 		List<StrategyVO_hotel> hotelBest = hotelStrategy.calBest();
 
 		webStrategy = new CalculateWebStrategy(orderInput);
-		List<StrategyVO_web> webBest = webStrategy.calBest();
+		List<DiscountVO_web> webBest = webStrategy.calBest();
 
 		StrategyVO res= new StrategyVO(hotelBest, webBest);
-		
-//	    long s=hotelBest.startDate.getTimeInMillis();  
-//	    long e=hotelBest.endDate.getTimeInMillis();  
-//	    long daysWithHotelDiscount = (e-s)/(1000*60*60*24);
-//	    
-//	    LocalDate end =orderInput.planedLeaveTime;
-//	    LocalDate start=orderInput.startTime;
-//	    
-//	    long s1=start.getTimeInMillis();  
-//	    long e1=end.getTimeInMillis();  
-//	    long days = (e1-s1)/(1000*60*60*24);
-	    
-	    
-//	    res.price=hotelStrategy.price*webBest.discount;
-		
 	    
 	    return res;
 	}

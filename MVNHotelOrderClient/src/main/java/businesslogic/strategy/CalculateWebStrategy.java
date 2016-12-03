@@ -5,8 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import businesslogic.discount.StrategyGet;
+import vo.DiscountVO_web;
 import vo.OrderInputCalVO;
-import vo.StrategyVO_web;
 
 /**
  * 
@@ -17,7 +17,7 @@ import vo.StrategyVO_web;
 public class CalculateWebStrategy {
 	// private WebStrategyInterface
 
-	private List<StrategyVO_web> strategyList;
+	private List<DiscountVO_web> strategyList;
 	private OrderInputCalVO orderInputCalVO;
 
 	public CalculateWebStrategy(OrderInputCalVO orderInput) {
@@ -35,16 +35,16 @@ public class CalculateWebStrategy {
 	 * 
 	 * @return 最优策略
 	 */
-	// public List<StrategyVO_web> calBest() {
+	// public List<DiscountVO_web> calBest() {
 	//
 	// double min = 1.0;
-	// List<StrategyVO_web> res = new LinkedList<StrategyVO_web>();
+	// List<DiscountVO_web> res = new LinkedList<DiscountVO_web>();
 	//
-	// Iterator<StrategyVO_web> iter = strategyList.iterator();
+	// Iterator<DiscountVO_web> iter = strategyList.iterator();
 	//
 	// while (iter.hasNext()) {
 	//
-	// StrategyVO_web strategyVO_web = iter.next();
+	// DiscountVO_web strategyVO_web = iter.next();
 	// FactoryConcreteWebStrategy factoryConcreteWebStrategy = new
 	// FactoryConcreteWebStrategy();
 	// WebStrategyInterface webStrategyInterface =
@@ -65,20 +65,20 @@ public class CalculateWebStrategy {
 	// // return (DiscountVO_web) strategyList.get(0);
 	// }
 
-	public List<StrategyVO_web> calBest() {
+	public List<DiscountVO_web> calBest() {
 
-		List<StrategyVO_web> res = new LinkedList<StrategyVO_web>();
+		List<DiscountVO_web> res = new LinkedList<DiscountVO_web>();
 
 		for (long i = orderInputCalVO.startDate.toEpochDay(); i < orderInputCalVO.endDate.toEpochDay(); i++) {
 
-			StrategyVO_web single = null;
+			DiscountVO_web single = null;
 
-			Iterator<StrategyVO_web> iter = strategyList.iterator();
+			Iterator<DiscountVO_web> iter = strategyList.iterator();
 			double min = 0;// 策略减去的额度,为负数
 
 			while (iter.hasNext()) {
 
-				StrategyVO_web strategyVO_web = iter.next();
+				DiscountVO_web strategyVO_web = iter.next();
 				FactoryConcreteWebStrategy factoryConcreteWebStrategy = new FactoryConcreteWebStrategy();
 				WebStrategyInterface webStrategyInterface = factoryConcreteWebStrategy
 						.getConcreteInstance(strategyVO_web);
@@ -95,9 +95,9 @@ public class CalculateWebStrategy {
 			// 不重复地添加进使用的优惠策略
 			
 					boolean exist = false;
-					Iterator<StrategyVO_web> iterator = res.iterator();
+					Iterator<DiscountVO_web> iterator = res.iterator();
 					while (iterator.hasNext()) {
-						StrategyVO_web compare2 = iterator.next();
+						DiscountVO_web compare2 = iterator.next();
 						if (compare2.discount == single.discount && compare2.type == single.type) {
 							exist = true;
 						}

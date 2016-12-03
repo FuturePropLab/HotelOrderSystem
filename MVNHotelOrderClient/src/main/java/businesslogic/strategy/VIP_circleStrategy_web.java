@@ -1,7 +1,8 @@
 package businesslogic.strategy;
 
+import vo.DiscountVO_web;
+import vo.DiscountVO_web_district;
 import vo.OrderInputCalVO;
-import vo.StrategyVO_web;
 
 /**
  * VIP特定商圈优惠算法
@@ -11,9 +12,16 @@ import vo.StrategyVO_web;
  */
 public class VIP_circleStrategy_web implements WebStrategyInterface {
 
-	public double calculate(OrderInputCalVO orderInputCalVO, StrategyVO_web strategyVO_web, long day) {
-		// TODO Auto-generated method stub
-		return 0;
+	public double calculate(OrderInputCalVO orderInputCalVO, DiscountVO_web strategyVO_web, long day) {
+		double res = 0;
+		DiscountVO_web_district discountVO_web_district = (DiscountVO_web_district)strategyVO_web;
+		if(orderInputCalVO.businessCircle.equals(discountVO_web_district.businessCircle)&&
+				orderInputCalVO.city.equals(discountVO_web_district.city)&&
+				orderInputCalVO.district.equals(discountVO_web_district.district)&&
+				orderInputCalVO.level==discountVO_web_district.level){
+			res=discountVO_web_district.discount*orderInputCalVO.numberOfRooms*orderInputCalVO.price;
+		}
+		return res;
 	}
 
 }

@@ -8,9 +8,9 @@ import businesslogic.strategy.StrategyGetService;
 import po.DiscountPO_hotel;
 import po.DiscountPO_web;
 import tools.DiscountState;
+import vo.DiscountVO_web;
 import vo.OrderInputCalVO;
 import vo.StrategyVO_hotel;
-import vo.StrategyVO_web;
 
 /**
  * 
@@ -40,15 +40,15 @@ public class StrategyGet implements StrategyGetService {
 		return res;
 	}
 
-	public List<StrategyVO_web> getSuitableDiscount_web(OrderInputCalVO orderInput) {
+	public List<DiscountVO_web> getSuitableDiscount_web(OrderInputCalVO orderInput) {
 		
 		List<DiscountPO_web> list= webDataService.getWebDiscount();
-		List<StrategyVO_web> res = new LinkedList<StrategyVO_web>();
+		List<DiscountVO_web> res = new LinkedList<DiscountVO_web>();
 		Iterator iterator = list.iterator();
 		while (iterator.hasNext()){
 			DiscountPO_web temp =((DiscountPO_web) iterator.next());
 			if(temp.getDiscountState()==DiscountState.valid)
-			res.add( new StrategyVO_web(temp));
+			res.add( new FactoryDiscount().converToVO(temp));
 		}
 		return res;
 	}

@@ -1,13 +1,13 @@
 package businesslogic.strategy;
 
-import vo.StrategyVO_web;
+import vo.DiscountVO_web;
 /**
  * 工厂模式，生成不同的网站优惠算法对象
  * @author LWY
  *
  */
 public class FactoryConcreteWebStrategy {
-	public WebStrategyInterface getConcreteInstance(StrategyVO_web strategyVO_web) {
+	public WebStrategyInterface getConcreteInstance(DiscountVO_web strategyVO_web) {
 
 		WebStrategyInterface res = null;
 		switch (strategyVO_web.type) {

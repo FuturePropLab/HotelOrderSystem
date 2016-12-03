@@ -6,35 +6,35 @@ public class DiscountPO_web_period extends DiscountPO_web{
 	
 	private double discount;
 	
-	private LocalDate startdate;
+	private LocalDate startDate;
 	
-	private LocalDate enddate;
+	private LocalDate endDate;
 	
-	public DiscountPO_web_period(double discount , LocalDate startdate ,LocalDate enddate ){
+	public DiscountPO_web_period(double discount , LocalDate startDate ,LocalDate endDate ){
 		this.discount=discount;
-		this.startdate=startdate;
-		this.enddate=enddate;
+		this.startDate=startDate;
+		this.endDate=endDate;
 	}
 	public DiscountPO_web_period(DiscountVO_web_period discountVO_web) {
 		// TODO Auto-generated constructor stub
 		this.discount=discountVO_web.discount;
-		this.startdate=discountVO_web.startdate;
-		this.enddate=discountVO_web.enddate;
+		this.startDate=discountVO_web.startDate;
+		this.endDate=discountVO_web.endDate;
 	}
 	public LocalDate getEnddate() {
-		return enddate;
+		return endDate;
 	}
 	
-	public void setEnddate(LocalDate enddate) {
-		this.enddate = enddate;
+	public void setEnddate(LocalDate endDate) {
+		this.endDate = endDate;
 	}
 	
 	public LocalDate getStartdate() {
-		return startdate;
+		return startDate;
 	}
 	
-	public void setStartdate(LocalDate startdate) {
-		this.startdate = startdate;
+	public void setStartdate(LocalDate startDate) {
+		this.startDate = startDate;
 	}
 	
 

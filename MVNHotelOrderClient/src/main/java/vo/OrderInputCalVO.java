@@ -2,7 +2,9 @@ package vo;
 
 import java.time.LocalDate;
 
+import businesslogic.hotel.HotelDealController;
 import businesslogic.member.MemberController;
+import businesslogicservice.HotelDealService;
 import tools.MemberBelongType;
 import tools.RoomType;
 
@@ -42,10 +44,13 @@ public class OrderInputCalVO {
 
 		setMemberBelongType(customerID);
 		setDays(startDate, endDate);
+		setLevel(customerID);
+		setCircle(hotelID);
 		if (memberBelongType == MemberBelongType.Ordinary) {
 			setBirthday(customerID);
+			
 		} else if (memberBelongType == MemberBelongType.Enterprise) {
-
+			setMemberBelongType(customerID);
 		}
 	}
 
@@ -56,34 +61,32 @@ public class OrderInputCalVO {
 	public LocalDate endDate;
 	public RoomType roomType;
 	public int numberOfRooms;
-
+	
+	/**
+	 * 以下为计算需要，初始化时生成
+	 */
 	public int days;// 计算需要,为订多少天
 	public MemberBelongType memberBelongType;
 	public LocalDate birthday;
 	public String enterprise;
-
-	/**
-	 * @param price
-	 * 
-	 * @param customer_ID
-	 * 
-	 * @param hotelID
-	 * 
-	 * @param startDate
-	 * @param endDate
-	 * 
-	 * @param roomType
-	 * 
-	 * @param hotelID
-	 * @param numberOfRooms
-	 * 
-	 */
-
+	public int level;
+	public String city;
+	public String district;
+	public String businessCircle;
+	
 	public void setDays(LocalDate start, LocalDate end) {
+		
 		this.days = (int)(end.toEpochDay()-start.toEpochDay());
 
 	}
 
+	public void setCircle(String hotelID){
+		HotelDealService hotelDealService = HotelDealController.getInstance();
+		city = hotelDealService.getHotelInfo(hotelID).hotelAddress.getCity();
+		district = hotelDealService.getHotelInfo(hotelID).hotelAddress.getDistrict();
+		businessCircle = hotelDealService.getHotelInfo(hotelID).hotelAddress.getBusinessCircle();
+	}
+	
 	public void setBirthday(String customerID) {
 		MemberController member = MemberController.getInstance();
 		this.birthday = member.getMemberInfo(customerID).memberType.getBirthday();
@@ -97,5 +100,10 @@ public class OrderInputCalVO {
 	public void setEnterprise(String customerID) {
 		MemberController memberController = MemberController.getInstance();
 		enterprise = memberController.getMemberInfo(customerID).memberType.getCompanyName();
+	}
+	
+	public void setLevel(String customerID){
+		MemberController memberController = MemberController.getInstance();
+		level = memberController.getMemberInfo(customerID).memberType.getLevel();
 	}
 }

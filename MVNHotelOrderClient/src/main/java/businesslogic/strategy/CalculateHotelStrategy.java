@@ -7,7 +7,6 @@ import java.util.List;
 import businesslogic.discount.StrategyGet;
 import vo.OrderInputCalVO;
 import vo.StrategyVO_hotel;
-import vo.StrategyVO_web;
 
 /**
  * 酒店优惠策略具体计算
