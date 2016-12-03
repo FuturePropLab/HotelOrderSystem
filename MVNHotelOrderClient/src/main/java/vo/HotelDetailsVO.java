@@ -3,6 +3,7 @@ package vo;
 import java.net.URI;
 
 import tools.HotelAddress;
+import tools.HotelFacility;
 import tools.Star;
 
 /**
@@ -19,6 +20,6 @@ public class HotelDetailsVO {
 	public HotelAddress hotelAddress;
 	public HotelDiscribtionsVO hotelDiscribtionsVO;
 	public HotelRoomInfoVO hotelRoomInfoVO;
-	public HotelFacilityVO hotelFacilityVO;
-	public HotelAssessVO hotelAssessVO;
+	public HotelFacility hotelFacility;  //mod bt wsw
+	public HotelAddress  hotelAssess;  //mod by wsw
 }
