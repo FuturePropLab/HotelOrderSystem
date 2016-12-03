@@ -9,7 +9,7 @@ import tools.MemberType;
 public class MemberVO {
 	public String customer_ID;
 	public MemberType memberType;
-	
+	public int level;
 	/**
 	 *  @param customer_ID  客户ID
 	 *  @param memberType  会员类型

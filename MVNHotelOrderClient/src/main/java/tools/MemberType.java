@@ -17,7 +17,7 @@ public class MemberType  implements Serializable{
 	LocalDate birthday;
 	String companyName;
 	String customer_ID;
-	
+	int level;
 	/**
 	 *  @param customer_ID  客户ID
 	 */
@@ -56,6 +56,11 @@ public class MemberType  implements Serializable{
 	public void setCustomer_ID(String customer_ID) {
 		this.customer_ID = customer_ID;
 	}
-
+	public int getLevel(){
+		return level;
+	}
+	public void setLevel(int level){
+		this.level = level;
+	}
 
 }
