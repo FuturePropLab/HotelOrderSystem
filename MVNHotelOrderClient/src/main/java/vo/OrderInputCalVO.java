@@ -26,10 +26,10 @@ public class OrderInputCalVO {
 	 *            订单开始时间
 	 * @param endDate
 	 *            预计离开时间
-	 * @param roomType
-	 *            房间类型
 	 * @param orderDate
 	 *            下单时间
+	 * @param roomType
+	 *            房间类型
 	 * @param numberOfRooms
 	 *            预订的房间数量
 	 */
