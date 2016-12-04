@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import businesslogic.discount.DiscountWebController;
+import businesslogicservice.DiscountWebService;
 import dataservice.CreditDataService;
 import po.CreditLogPO;
 import po.Order;
@@ -67,7 +69,9 @@ public class Credit {
 		
 		
 		}
+		Credit c= new Credit();
 		result = credit+creditchange;
+		ResultMessage updatelevel = c.levelUpdate(result, order.getCustomerID());
 		ResultMessage resultMessage = creditDataService.changeCredit(order.getCustomerID(), result);
 		if(resultMessage == ResultMessage.Exist){
 		return addlog(order, type, creditchange);}else{return ResultMessage.NotExist;}
@@ -167,9 +171,14 @@ public class Credit {
 		int value = ChargeMoney * 100;
 		CustomerVO customerVO = customerInfo.getCustomerInfo(customer_id);
 		customerVO.credit+= value;
+		int result = customerVO.credit;
+		Credit c= new Credit();
+		ResultMessage ret = c.levelUpdate(result, customer_id);
+		
+		
 		ResultMessage rm = customerInfo.changeCustomerInfo(customerVO);
 		
-		if(rm==ResultMessage.NotExist) return rm;
+		if(rm==ResultMessage.NotExist||ret==ResultMessage.NotExist) return rm;
 		
 		return addlog(null, ActionType.Charge, value);
 	}
@@ -188,6 +197,33 @@ public class Credit {
 	/*public Credit(String customer_id){
 		this.creditDataService = new  CreditData_Stub();
 	}*/
+	/**
+	 * @author chenyuyan
+	 * 每次信用值有所变化后，检验并根据网站营销人员的制定更改等级
+	 * level
+	 */
+	public ResultMessage levelUpdate(int result,String customer_id){
+		DiscountWebController discountWeb =  DiscountWebController.getInstance();
+		int [] uplevel =new int[4];
+		int level=0;
+		uplevel =discountWeb.getLevelCredit();
+		for(int i=0;i<4;i++){
+			if(result>=uplevel[i]&&result<uplevel[i+2]){
+				level = i+2;
+			}
+			
+			
+		}
+		
+		
+		
+		return creditDataService.setLevel(level, customer_id);
+		
+	
+	}
+	
+	
+	
 	public Credit(){
 		this.creditDataService = new  CreditData_Stub();
 	}

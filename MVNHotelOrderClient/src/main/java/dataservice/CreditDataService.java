@@ -19,4 +19,5 @@ public interface CreditDataService {
 	 * @return
 	 */
 	public ResultMessage changeCredit(String customer_id,int resultCredit);
+	public ResultMessage setLevel(int level,String customer_id);
 }
