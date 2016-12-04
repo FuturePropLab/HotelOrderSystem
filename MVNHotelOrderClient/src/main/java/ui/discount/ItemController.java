@@ -92,7 +92,7 @@ public abstract class ItemController {
 	 * @return
 	 */
 	protected boolean isFinished() {
-		return startTime.getValue()!=null && endTime.getValue()!=null;
+		return startTime.getValue()!=null && endTime.getValue()!=null && !"".equals(discount.getText());
 	}
 	
 	protected void disableControls() {
