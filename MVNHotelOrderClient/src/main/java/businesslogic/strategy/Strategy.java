@@ -24,10 +24,19 @@ public class Strategy {
 		List<StrategyVO_hotel> hotelBest = hotelStrategy.calBest();
 
 		webStrategy = new CalculateWebStrategy(orderInput);
-		List<DiscountVO_web> webBest = webStrategy.calBest();
+		DiscountVO_web webBest = webStrategy.calBest();
 
-		StrategyVO res= new StrategyVO(hotelBest, webBest);
-	    
-	    return res;
+		double price = orderInput.days * orderInput.numberOfRooms * orderInput.price;
+
+		double[] minus = hotelStrategy.minus;
+		for (int i = 0; i < orderInput.days; i++) {
+			price += minus[i];
+		}
+		price *= webBest.discount;
+
+		StrategyVO res = new StrategyVO(hotelBest, webBest);
+		res.price = price;
+		
+		return res;
 	}
 }

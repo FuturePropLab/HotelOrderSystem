@@ -10,6 +10,7 @@ import vo.StrategyVO_hotel;
 
 /**
  * 酒店优惠策略具体计算
+ * 
  * @author LinWenye
  */
 
@@ -18,8 +19,7 @@ public class CalculateHotelStrategy {
 	private List<StrategyVO_hotel> strategyList;
 	private OrderInputCalVO orderInputCalVO;
 
-	public double price = -1;
-
+	public double[] minus = new double[orderInputCalVO.days];
 	// public HotelStrategy(OrderInputVO orderInput) {
 	// 桩程序
 	// DiscountGetService disDealService = new MockDiscount("hotel");
@@ -45,54 +45,65 @@ public class CalculateHotelStrategy {
 	public List<StrategyVO_hotel> calBest() {
 
 		List<StrategyVO_hotel> res = new LinkedList<StrategyVO_hotel>();
-		
+
 		for (long i = orderInputCalVO.startDate.toEpochDay(); i < orderInputCalVO.endDate.toEpochDay(); i++) {
-			
-			StrategyVO_hotel single =null;
+
+			StrategyVO_hotel single = null;
 			List<StrategyVO_hotel> temp = new LinkedList<StrategyVO_hotel>();
-			
+
 			Iterator<StrategyVO_hotel> iter = strategyList.iterator();
-			double min = 0;//不可叠加的策略减去的额度
-			double all = 0;//可叠加的策略减去的总额
-			
+			double min = 0;// 不可叠加的策略减去的额度
+			double all = 0;// 可叠加的策略减去的总额
+
 			while (iter.hasNext()) {
-				
+
 				StrategyVO_hotel strategyVO_hotel = iter.next();
 				FactoryConcreteHotelStrategy factoryConcreteHotelStrategy = new FactoryConcreteHotelStrategy();
-				HotelStrategyInterface hotelStrategyInterface = factoryConcreteHotelStrategy.getConcreteInstance(strategyVO_hotel);
-				
-				double calculate = hotelStrategyInterface.calculate(orderInputCalVO, strategyVO_hotel,i);
-				
+				HotelStrategyInterface hotelStrategyInterface = factoryConcreteHotelStrategy
+						.getConcreteInstance(strategyVO_hotel);
+
+				double calculate = hotelStrategyInterface.calculate(orderInputCalVO, strategyVO_hotel, i);
+
 				strategyVO_hotel.minusPrice = calculate;
-				
-				if(strategyVO_hotel.superimpose==true){
+
+				if (strategyVO_hotel.superimpose == true) {
 					temp.add(strategyVO_hotel);
-					all+=strategyVO_hotel.minusPrice;
-				}
-				else if (calculate < min) {
+					all += strategyVO_hotel.minusPrice;
+				} else if (calculate < min) {
 					min = calculate;
 					single = strategyVO_hotel;
 				}
 
 			}
-			
-			//不重复地添加进使用的优惠策略
-			if(all<=min){
+
+			// 不重复地添加进使用的优惠策略
+			if (all <= min) {
+
 				Iterator<StrategyVO_hotel> iterator1 = temp.iterator();
-				while (iterator1.hasNext()){
+				double discountMultiply = 1;
+
+				while (iterator1.hasNext()) {
+
 					boolean exist = false;
 					StrategyVO_hotel compare = iterator1.next();
+
+					discountMultiply *= compare.discount;
+
 					Iterator<StrategyVO_hotel> iterator2 = res.iterator();
 					while (iterator2.hasNext()) {
 						StrategyVO_hotel compare2 = iterator2.next();
-						if(compare2.discount==compare.discount&&compare2.type==compare.type){
-							exist=true;
+						if (compare2.discount == compare.discount && compare2.type == compare.type) {
+							exist = true;
 						}
 					}
-					if(!exist) res.add(compare);
+
+					if (!exist)
+						res.add(compare);
 				}
-			}
-			else{
+				minus[(int) i]=(discountMultiply-1)*orderInputCalVO.numberOfRooms*orderInputCalVO.price;
+				
+			} else {
+				minus[(int) i]=(single.discount-1)*orderInputCalVO.numberOfRooms*orderInputCalVO.price;
 				boolean exist = false;
 				Iterator<StrategyVO_hotel> iterator = res.iterator();
 				while (iterator.hasNext()) {

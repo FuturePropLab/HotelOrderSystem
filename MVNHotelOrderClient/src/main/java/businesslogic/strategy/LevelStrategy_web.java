@@ -12,7 +12,7 @@ import vo.OrderInputCalVO;
  */
 public class LevelStrategy_web implements WebStrategyInterface {
 
-	public double calculate(OrderInputCalVO orderInputCalVO, DiscountVO_web discountVO_web, long day) {
+	public double calculate(OrderInputCalVO orderInputCalVO, DiscountVO_web discountVO_web) {
 		
 		DiscountVO_web_level discountVO_web_level = (DiscountVO_web_level) discountVO_web;
 		

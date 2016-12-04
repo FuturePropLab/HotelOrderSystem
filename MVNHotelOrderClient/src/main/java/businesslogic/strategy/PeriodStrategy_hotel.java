@@ -17,7 +17,7 @@ public class PeriodStrategy_hotel implements HotelStrategyInterface {
 
 		if (day < strategyVO_hotel.endDate.toEpochDay() && day >= strategyVO_hotel.startDate.toEpochDay()) {
 
-			res = strategyVO_hotel.discount * orderInputCalVO.numberOfRooms * orderInputCalVO.price;
+			res = (strategyVO_hotel.discount-1) * orderInputCalVO.numberOfRooms * orderInputCalVO.price;
 
 		}
 

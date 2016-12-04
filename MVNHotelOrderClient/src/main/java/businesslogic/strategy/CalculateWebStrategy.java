@@ -65,11 +65,7 @@ public class CalculateWebStrategy {
 	// // return (DiscountVO_web) strategyList.get(0);
 	// }
 
-	public List<DiscountVO_web> calBest() {
-
-		List<DiscountVO_web> res = new LinkedList<DiscountVO_web>();
-
-		for (long i = orderInputCalVO.startDate.toEpochDay(); i < orderInputCalVO.endDate.toEpochDay(); i++) {
+	public DiscountVO_web calBest() {
 
 			DiscountVO_web single = null;
 
@@ -83,7 +79,7 @@ public class CalculateWebStrategy {
 				WebStrategyInterface webStrategyInterface = factoryConcreteWebStrategy
 						.getConcreteInstance(strategyVO_web);
 
-				double calculate = webStrategyInterface.calculate(orderInputCalVO, strategyVO_web, i);
+				double calculate = webStrategyInterface.calculate(orderInputCalVO, strategyVO_web);
 
 				if (calculate < min) {
 					min = calculate;
@@ -91,22 +87,7 @@ public class CalculateWebStrategy {
 				}
 
 			}
-
-			// 不重复地添加进使用的优惠策略
 			
-					boolean exist = false;
-					Iterator<DiscountVO_web> iterator = res.iterator();
-					while (iterator.hasNext()) {
-						DiscountVO_web compare2 = iterator.next();
-						if (compare2.discount == single.discount && compare2.type == single.type) {
-							exist = true;
-						}
-					}
-					if (!exist)
-						res.add(single);
-			
-			
-		}
-		return res;
+		return single;
 	}
 }
