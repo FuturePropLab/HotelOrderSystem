@@ -1,7 +1,7 @@
 package ui.discount;
 
 import javafx.fxml.FXML;
-import ui.discount.HotelDiscountController.ItemType;
+import ui.discount.WebStrategyController.ItemType;
 
 /**
  * 制定会员等级及其折扣的单个item的界面的控制器
@@ -19,7 +19,7 @@ public class VIPLevelAndDiscountItemController extends StrategyItemController{
 
 	@Override
 	protected ItemType getType() {
-		return ItemType.BIRTHDAY;
+		return ItemType.VIPLevelAndDiscount;
 	}
 
 	@Override
