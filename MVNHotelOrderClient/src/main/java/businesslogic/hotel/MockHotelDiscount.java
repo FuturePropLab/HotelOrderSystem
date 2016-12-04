@@ -9,7 +9,7 @@ import tools.ResultMessageDiscount;
 import vo.DiscountVO_hotel;
 
 
-public class MockHotelDiscount extends Discount implements getDiscountInfo{
+public class MockHotelDiscount extends HotelDiscount implements getDiscountInfo{
 
 	public List<DiscountVO_hotel> getHotelDiscount(String hotel_id) {
 		// TODO Auto-generated method stub
