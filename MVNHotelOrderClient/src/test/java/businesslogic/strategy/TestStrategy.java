@@ -22,7 +22,7 @@ public class TestStrategy {
 	public void test() {
 		
 		//LocalDateTime time= LocalDateTime.now();原定用LocalDateTime,由于与朱俊毅的冲突，暂改
-		OrderInputCalVO orderInput = new OrderInputCalVO(0, "0001", "00", null, null, null, 0);
+		OrderInputCalVO orderInput = new OrderInputCalVO(0, "0001", "00", null, null, null, null, 0);
 		Strategy str=new Strategy();
 		
 //		MockDiscount disW = new MockDiscount("web");

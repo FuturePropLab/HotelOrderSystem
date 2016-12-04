@@ -7,6 +7,7 @@ import dataservice.RoomDataService;
 import rmi.RemoteHelper;
 import tools.ResultMessage_Room;
 import tools.RoomType;
+import vo.RoomVO;
 
 /**
  * 处理单独房间的委托类
@@ -54,6 +55,17 @@ public class RoomSingle  {
 			return ResultMessage_Room.fail;
 		}
 
+	}
+	
+	
+	/**
+	 * 没有 只是为了  不报错
+	 * @param roomVO
+	 * @return
+	 */
+	public Object editSingleRoom(RoomVO roomVO) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -14,10 +14,9 @@ public class TestRoomSingle {
 	public void test() {
 		
 		RoomSingle roomSingle=new RoomSingle();
-		RoomDescription description = new RoomDescription("卫生间");
 		
-		RoomVO expected=new RoomVO("", "","", RoomType.Double, 3.0,description);
-		assertEquals(expected.hotelID, roomSingle.getSingleRoom("", "").hotelID);
+		RoomVO expected=new RoomVO("", "","", RoomType.Double, 3.0);
+		assertEquals(expected.hotelID, roomSingle.deleteSingleRoom("", ""));
 	}
 	@Test
 	public void test2() {
@@ -27,11 +26,11 @@ public class TestRoomSingle {
 	@Test
 	public void test3() {
 		RoomSingle roomSingle=new RoomSingle();
-		assertEquals(ResultMessage.Exist, roomSingle.editSingleRoom(new RoomVO("", "", "", RoomType.Double, 3.0,new RoomDescription("卫生间"))));
+		assertEquals(ResultMessage.Exist, roomSingle.editSingleRoom(new RoomVO("", "", "", RoomType.Double, 3.0)));
 	}
 	@Test
 	public void test4() {
 		RoomSingle roomSingle=new RoomSingle();
-		assertEquals(ResultMessage.Exist, roomSingle.saveSingleRoom(new RoomVO("", "", "", RoomType.Double, 3.0,new RoomDescription("卫生间"))));
+		assertEquals(ResultMessage.Exist, roomSingle.editSingleRoom(new RoomVO("", "", "", RoomType.Double, 3.0)));
 	}
 }
