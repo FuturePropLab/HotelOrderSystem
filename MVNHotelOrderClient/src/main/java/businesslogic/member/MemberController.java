@@ -2,6 +2,8 @@ package businesslogic.member;
 
 import java.util.List;
 
+import businesslogic.credit.Credit;
+import businesslogic.credit.CreditController;
 import businesslogicservice.MemberService;
 import tools.ResultMessage;
 import tools.ResultMessage_Member;
@@ -17,6 +19,19 @@ import vo.MemberVO;
 public class MemberController implements MemberService{
 
 	private Member member;
+	private static MemberController memberController;
+	private MemberController() {
+		// TODO Auto-generated constructor stub
+		Member member = new Member();
+	} 
+	
+	
+	
+	public static MemberController getInstance(){
+		if(memberController==null) memberController=new MemberController();
+		return memberController;
+	}
+	
 	
 	public MemberVO getMemberInfo(String customer_id) {
 		// TODO Auto-generated method stub

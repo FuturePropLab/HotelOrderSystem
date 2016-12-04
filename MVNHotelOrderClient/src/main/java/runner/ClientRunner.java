@@ -9,19 +9,12 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
-import businesslogic.hotel.HotelDealController;
-import businesslogic.hotel.HotelManageController;
 import businesslogic.room.RoomManageController;
-import dataservice.RoomDataService;
+import businesslogic.room.RoomSingleController;
 import rmi.RemoteHelper;
-import tools.HotelFacility;
 import tools.RoomType;
-import vo.HotelFacilityVO;
-import vo.HotelInputVO;
-import vo.RoomDescriptionVO;
 
 public class ClientRunner {
 	private RemoteHelper remoteHelper;
@@ -130,6 +123,19 @@ public class ClientRunner {
 //		RoomDescriptionVO roomDescriptionVO=RoomManageController.getInstance().getRoomInfo("HT001", RoomType.Single);
 //		System.out.println(roomDescriptionVO.typeimage==null);
 //		System.out.println(roomDescriptionVO.description);
+		Date date1 = new Date(2016-1900, 11, 17);
+		Date date2 = new Date(2016-1900, 11, 12);
+		Date date3 = new Date(2016-1900, 11, 14);
+		Date date4 = new Date(2016-1900, 11, 16);
+		
+		RoomSingleController roomSingleController  =RoomSingleController.getInstance();
+		RoomManageController roomManageController = RoomManageController.getInstance();
+//		System.out.println(roomSingleController.addDisable("HT001", "307", date2, date1));
+//		System.out.println(roomSingleController.addDisable("HT001", "401", date3, date1));
+//		System.out.println(roomSingleController.addDisable("HT001", "302", date2, date1));
+		System.out.println(roomManageController.getAllRoomByType("HT001", RoomType.Double));
+		System.out.println(roomManageController.getAvaiableRoomBytime
+				("HT001", RoomType.Double, date2, date1));
 	}
 	
 	public static void main(String[] args) throws RemoteException{

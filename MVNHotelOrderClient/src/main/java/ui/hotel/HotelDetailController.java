@@ -1,5 +1,6 @@
 package ui.hotel;
 
+import java.io.File;
 import java.io.IOException;
 
 import businesslogic.hotel.HotelDealController;
@@ -13,6 +14,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import tools.RoomType;
 import ui.customer.BookHotelController;
 import ui.main.DetailsController;
@@ -210,7 +213,13 @@ public class HotelDetailController extends DetailsController{
 	}
 	@FXML
 	private void handleHotelImage() {
-		//TODO:如果是酒店工作人员就允许他上传图片更换图片，如果是其它用户就不做任何事
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("选择一张图片");
+		fileChooser.getExtensionFilters().addAll(new ExtensionFilter("图片", "*.png", "*.jpg", "*.gif"));
+		File selectedFile = fileChooser.showOpenDialog(rootLayoutController.getPrimaryStage());
+		if (selectedFile != null) {
+			hotelImage.setImage(new Image(selectedFile.toURI().toString()));
+		}
 	}
 	@FXML
 	private void handleStarComboBox() {
@@ -269,7 +278,11 @@ public class HotelDetailController extends DetailsController{
 		try {
 			rootLayoutController.changeDetails("../room/RoomInfo.fxml");
 			RoomInfoController roomInfoController=(RoomInfoController)rootLayoutController.getDetailsController();
-			roomInfoController.setRoomType(roomType);
+			for(int i=0;i<hotelDetailsVO.hotelRoomInfoVO.typeRoomInfo.size();i++){
+				if(roomType.equals(hotelDetailsVO.hotelRoomInfoVO.typeRoomInfo.get(i).getRoomtype())){
+					roomInfoController.setValue(hotelDetailsVO.hotelRoomInfoVO.typeRoomInfo.get(i));;
+				}
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

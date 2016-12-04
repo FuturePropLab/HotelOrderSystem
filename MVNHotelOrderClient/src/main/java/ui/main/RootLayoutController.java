@@ -33,6 +33,10 @@ public class RootLayoutController {
 	public AnchorPane getGuid() {
 		return guid;
 	}
+	
+	public Stage getPrimaryStage() {
+		return primaryStage;
+	}
 
 	public DetailsController getDetailsController() {
 		return detailsController;
@@ -59,7 +63,8 @@ public class RootLayoutController {
         try {
 //        	changeFullLayout("../login/Login.fxml");
 //			changeDetails("../hotel/FacilitiesInfo.fxml");
-        	changeDetails("../hotel/HotelDetail.fxml");
+//        	changeDetails("../hotel/HotelDetail.fxml");
+			changeDetails("../room/RoomInfo.fxml");
         	changeGuid("GuideUI.fxml");
 		} catch (IOException e) {
 			e.printStackTrace();

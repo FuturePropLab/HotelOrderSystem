@@ -37,7 +37,7 @@ public class RoomManageController implements RoomManageService{
 	}
 
 	public List<String> getAvaiableRoomBytime(String hotelID, RoomType roomType, Date begin, Date end) {
-		return roomManager.getAllRoomByType(hotelID, roomType);
+		return roomManager.getAvaiableRoomBytime(hotelID, roomType, begin, end);
 	}
 
 	public int getAllNumberByType(String hotelID, RoomType roomType) {

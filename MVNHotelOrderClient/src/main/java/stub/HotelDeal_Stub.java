@@ -1,4 +1,4 @@
-package stub;
+﻿package stub;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -100,26 +100,39 @@ public class HotelDeal_Stub implements HotelDealService {
 
 
 	public List<String> getAllCity() {
-		// TODO Auto-generated method stub
-		return null;
+		List<String> cities=new ArrayList<String>();
+		cities.add("nanjing");
+		cities.add("beijing");
+		return cities;
 	}
 
 
 	public List<String> getAllDistrictByCity(String city) {
-		// TODO Auto-generated method stub
-		return null;
+		List<String> districts=new ArrayList<String>();
+		districts.add("district1");
+		districts.add("district2");
+		return districts;
 	}
 
 
 	public List<String> getBusineeCircleByDistrict(String district) {
-		// TODO Auto-generated method stub
-		return null;
+		List<String> busineeCircles=new ArrayList<String>();
+		busineeCircles.add("busineeCircle1");
+		busineeCircles.add("busineeCircle2");
+		return busineeCircles;
 	}
 
 
 	public List<HotelbriefVO> searchHotelListFuzzy(String input) {
-		// TODO Auto-generated method stub
-		return null;
+		List<HotelbriefVO> hotelList=new ArrayList<HotelbriefVO>();
+		HotelPO hotelPO=new HotelPO("hotelID", "hotelName");
+		hotelPO.setGrade(2.2);
+		hotelPO.setStar(Star.two);
+		hotelList.add(new HotelbriefVO(hotelPO));
+		hotelPO.setGrade(2.4);
+		hotelPO.setStar(Star.three);
+		hotelList.add(new HotelbriefVO(hotelPO));
+		return hotelList;
 	}
 
 
