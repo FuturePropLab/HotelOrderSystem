@@ -12,23 +12,23 @@ import vo.DiscountVO_hotel;
  */
 public class DiscountPO_hotel {
 	
-	private DiscountState discountState;//订单状态
+	private DiscountState discountState;//策略状态，valid ， invalid
 
 	private Strategy_hotelType type;//促销策略类型
 	
-	private String discountID;
+	private String discountID;//如果是增加新的折扣策略，则id应该由数据层生成
 	
 	private double discount;//折扣
 	
-	private LocalDate startDate;
+	private LocalDate startDate;//特定期间策略的期间开始时间
 	
 	private LocalDate endDate;
 	
 	private String remarks;//备注
 	
-	private boolean superimpose;
+	private boolean superimpose;//是否可叠加
 	
-	private String enterpriseName;
+	private String enterpriseName;//企业名称
 	
 	public DiscountPO_hotel(DiscountState discountState,Strategy_hotelType type,String discountID,double discount,LocalDate startDate,LocalDate enDate,String remarks,boolean superimpose,String enterpriseName){
 		this.discountState=discountState;

@@ -1,23 +1,26 @@
 package po;
 import java.time.LocalDate;
-
 import vo.DiscountVO_web_period;
+
+/**
+ * 
+ * @author LWY
+ * 特定期间网站促销策略PO
+ */
 public class DiscountPO_web_period extends DiscountPO_web{
 	
-	private double discount;
-	
-	private LocalDate startDate;
+	private LocalDate startDate;//特定期间折扣的开始时间
 	
 	private LocalDate endDate;
 	
 	public DiscountPO_web_period(double discount , LocalDate startDate ,LocalDate endDate ){
-		this.discount=discount;
+		super.setDiscount(discount);
 		this.startDate=startDate;
 		this.endDate=endDate;
 	}
 	public DiscountPO_web_period(DiscountVO_web_period discountVO_web) {
 		// TODO Auto-generated constructor stub
-		this.discount=discountVO_web.discount;
+		super.setDiscount(discountVO_web.discount);
 		this.startDate=discountVO_web.startDate;
 		this.endDate=discountVO_web.endDate;
 	}

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.junit.Test;
 
-import vo.DiscountSearchVO;
 import vo.DiscountVO_hotel;
 import vo.OrderInputCalVO;
 
@@ -18,7 +17,6 @@ public class TestDiscountCal {
 		DiscountVO_hotel expect=new DiscountVO_hotel(null);
 		expect.discountID="0000";
 		expect.discount=9.9;
-		DiscountSearchVO t=new DiscountSearchVO();
 		List<DiscountVO_hotel> expect2=new ArrayList();
 		expect2.add(expect);
 		OrderInputCalVO TE=new OrderInputCalVO(0, "0001", "00", null, null, null, null, 0);
