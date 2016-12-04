@@ -24,6 +24,17 @@ import vo.SearchOrderInfoVO;
 public class OrderController implements OrderService{
 	private static OrderController orderController;
 	private OrderDataService orderDataService;
+	
+	
+	/**
+	 * 单件模式，通过静态方法得到实例化的对象
+	 * @return 实例化的OrderController
+	 */
+	public static OrderController getInstance(){
+		if(orderController==null)
+			orderController = new OrderController();
+		return orderController;
+	}
 
 	/**
 	 * 
@@ -41,16 +52,6 @@ public class OrderController implements OrderService{
 	public OrderController() {
 		super();
 		this.orderDataService = RemoteHelper.getInstance().getOrderDataService();
-	}
-	
-	/**
-	 * 单件模式，通过静态方法得到实例化的对象
-	 * @return 实例化的OrderController
-	 */
-	public OrderController getInstance(){
-		if(orderController==null)
-			orderController = new OrderController();
-		return orderController;
 	}
 	
 	private OrderVO getOrderVO(Order order) {
@@ -144,9 +145,7 @@ public class OrderController implements OrderService{
 		if(searchOrderInfo==null){
 			return null;
 		}
-		List<OrderPO> poList=orderDataService.searchOrder(new SearchOrderInfo(searchOrderInfo.orderID, 
-				searchOrderInfo.customerID, searchOrderInfo.hotelID, searchOrderInfo.startTime, 
-				searchOrderInfo.orderState));
+		List<OrderPO> poList=orderDataService.searchOrder(null);//TODO：接口要改，先用null代替
 		List<OrderVO> voList=new ArrayList<OrderVO>();
 		for(OrderPO orderPO:poList){
 			voList.add(getOrderVO(orderPO));

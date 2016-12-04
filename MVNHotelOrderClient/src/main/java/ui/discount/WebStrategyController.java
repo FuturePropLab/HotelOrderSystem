@@ -7,6 +7,7 @@ import java.util.Date;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Accordion;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TitledPane;
 import ui.main.DetailsController;
 
@@ -16,6 +17,12 @@ import ui.main.DetailsController;
  */
 public class WebStrategyController extends DetailsController{
 
+	@FXML 
+	private CheckBox notStart;
+	@FXML 
+	private CheckBox ongoing;
+	@FXML 
+	private CheckBox deleted;
 	@FXML 
 	private Accordion specialDayList;
 	@FXML 
@@ -32,6 +39,10 @@ public class WebStrategyController extends DetailsController{
     @FXML
     private void initialize() {
     	initAccordions();
+    }
+    @FXML
+    private void handleFilter() {
+    	//TODO:将显示出来的项目按三个checkbox过滤掉不显示的
     }
     
     

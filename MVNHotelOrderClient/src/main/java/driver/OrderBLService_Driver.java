@@ -40,7 +40,8 @@ public class OrderBLService_Driver {
 		}
 		
 		SearchOrderInfoVO searchOrderInfo;
-		searchOrderInfo = new SearchOrderInfoVO("000000001", "000000001", "000000001", new Time(0), OrderState.Unexecuted);
+		searchOrderInfo = new SearchOrderInfoVO("orderID", "customerID", "hotelID", "customerName", "hotelName", 
+				new Date(), OrderState.Unexecuted);
 		List<OrderVO> list=orderService.CheckOrderList(searchOrderInfo);
 		if(list==null){
 			return false;
