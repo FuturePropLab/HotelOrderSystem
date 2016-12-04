@@ -39,6 +39,7 @@ public class Credit {
 		OrderPO orderPO  =new OrderPO(order);
 		CustomerVO customerVO = customerInfo.getCustomerInfo(order.getCustomerID());
 		int credit = customerVO.credit;
+		//int credit =80;
 		switch (type){
 		
 		case RightOrder:creditchange = 50;//完成一个订单增加50信用值
@@ -56,12 +57,13 @@ public class Credit {
 				if(checkIntime.before(latestTime)){
 					creditchange = creditchange-25;
 					
+				}
+	
 				
-			}
-				long between=(checkOutTime.getTime()-planedLeaveTime.getTime())/1000/60;
+				long between=((checkOutTime.getTime()-planedLeaveTime.getTime())/(1000*60));
 				if(between>=30){
 					creditchange -=30;
-				}
+									}
 				//System.out.println(between);
 				
 				
@@ -71,6 +73,8 @@ public class Credit {
 		}
 		Credit c= new Credit();
 		result = credit+creditchange;
+		
+		//System.out.print(result);
 		ResultMessage updatelevel = c.levelUpdate(result, order.getCustomerID());
 		ResultMessage resultMessage = creditDataService.changeCredit(order.getCustomerID(), result);
 		if(resultMessage == ResultMessage.Exist){
@@ -205,17 +209,18 @@ public class Credit {
 	public ResultMessage levelUpdate(int result,String customer_id){
 		DiscountWebController discountWeb =  DiscountWebController.getInstance();
 		int [] uplevel =new int[4];
+		
 		int level=0;
 		uplevel =discountWeb.getLevelCredit();
-		for(int i=0;i<4;i++){
-			if(result>=uplevel[i]&&result<uplevel[i+2]){
+		for(int i=0;i<3;i++){
+			if(result>=uplevel[i]&&result<uplevel[i+1]){
 				level = i+2;
 			}
 			
 			
 		}
 		
-		
+		//System.out.println(level);
 		
 		return creditDataService.setLevel(level, customer_id);
 		
