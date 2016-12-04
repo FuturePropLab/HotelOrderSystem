@@ -1,5 +1,6 @@
 package po;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 import tools.DiscountState;
@@ -57,6 +58,7 @@ public class DiscountPO_hotel {
 	}
 	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
+	
 	}
 	public String getDiscount_id() {
 		return discountID;
