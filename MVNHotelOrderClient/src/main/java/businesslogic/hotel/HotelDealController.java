@@ -71,8 +71,7 @@ public class HotelDealController implements HotelDealService {
 	}
 
 	public HotelFacilityVO gethotelFacilityVO(String hotelID) {
-		// TODO Auto-generated method stub
-		return null;
+		return hotel.gethotelFacilityVO(hotelID);
 	}
 
 	public HotelDetailsVO getHotelDetailsVO(String hotelID) {

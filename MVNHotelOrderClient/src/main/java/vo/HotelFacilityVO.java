@@ -2,13 +2,14 @@ package vo;
 
 import java.net.URI;
 
+import tools.HotelFacility;
+
 /**
  * 酒店设施服务信息
  * @author zjy
  *
  */
 public class HotelFacilityVO {
-	
 	public String hotelID;
 	public String hotelName;
 	public URI facilityImage;
@@ -59,5 +60,23 @@ public class HotelFacilityVO {
 		this.luggageStorage = luggageStorage;
 		this.breakfast = breakfast;
 		this.other = other;
+	}
+	
+	public  HotelFacilityVO(HotelFacility hotelFacility){
+		this.wifi = hotelFacility.isSwimmingPool() ;
+	    this.noneSmoke = hotelFacility.isHealthHub();//无烟房
+	    this.diningHall = hotelFacility.isGym();//餐厅
+	    this.parkingLot = hotelFacility.isParking();//免费停车场
+	    
+	    this.elevator= hotelFacility.isAirCondition();//电梯
+	    this.conferenceHall = hotelFacility.isWifi();//会议厅
+	    this.morningCall =hotelFacility.isHotWater();//叫醒服务
+	    this.frontdeskservice = hotelFacility.isBroadband();//24小时前台服务
+	    this.luggageStorage=hotelFacility.isTV();//行李寄存
+	    this.breakfast = hotelFacility.isComputer();//供应早餐
+	    this.other = hotelFacility.getElseFacility();
+	}
+	public HotelFacilityVO(){
+		
 	}
 }

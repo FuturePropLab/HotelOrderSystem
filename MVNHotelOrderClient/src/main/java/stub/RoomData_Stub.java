@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import businesslogic.room.RoomDescription;
 import dataservice.RoomDataService;
 import po.RoomPO;
 import tools.HotelRoomInfo;
@@ -49,7 +48,7 @@ public class RoomData_Stub implements RoomDataService {
 	
 	public RoomPO getRoom(String hotel_id, String room_id) {
 		RoomPO roomPo = new RoomPO("2333","我的大酒店",
-				room_id, RoomType.Single, 180.00,new RoomDescription("卫生间"), room_id);
+				room_id, RoomType.Single, 180.00, null, room_id);
 		return roomPo;
 	}
 
@@ -153,6 +152,19 @@ public class RoomData_Stub implements RoomDataService {
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+
+	public ResultMessage_Room modifyRoomInfoString(String hotelID, RoomType roomType, List<String> discribes)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public List<String> getRoomInfoString(String hotelID, RoomType roomType) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

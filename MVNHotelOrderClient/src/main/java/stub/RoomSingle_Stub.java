@@ -1,8 +1,10 @@
 package stub;
 
-import businesslogic.room.RoomDescription;
+import java.util.Date;
+
 import businesslogicservice.RoomSingleService;
 import tools.ResultMessage;
+import tools.ResultMessage_Room;
 import tools.ResultMessage_delete;
 import tools.RoomType;
 import vo.RoomVO;
@@ -12,8 +14,7 @@ public class RoomSingle_Stub implements RoomSingleService {
 
 	public RoomVO getSingleRoom(String hotel_id, String room_id) {
 		
-		RoomVO roomVo = new RoomVO(hotel_id,"我的大酒店",
-				room_id, RoomType.Single, 180.00,new RoomDescription("卫生间"));
+		RoomVO roomVo = new RoomVO(null);
 		return roomVo;
 	}
 
@@ -29,12 +30,6 @@ public class RoomSingle_Stub implements RoomSingleService {
 	}
 
 
-	public ResultMessage_delete deleteSingleRoom(String hotel_id, String room_id) {
-		if(hotel_id!=null&&room_id!=null)  return ResultMessage_delete.Success;
-				return ResultMessage_delete.Failure;
-	}
-
-
 	public ResultMessage saveSingleRoom(RoomVO room) {
 		if(room!=null)  return ResultMessage.Exist;
 				return ResultMessage.NotExist;
@@ -42,6 +37,36 @@ public class RoomSingle_Stub implements RoomSingleService {
 
 
 	public ResultMessage addSingleRoom(String hotel_id, RoomVO room) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public ResultMessage_Room addSingleRoom(String hotelID, String RoomNO, RoomType roomType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public ResultMessage_Room deleteSingleRoom1(String hotelID, String roomNO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public ResultMessage_Room addDisable(String hotelID, String roomNO, Date negin, Date end) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public ResultMessage_Room deleteDisable(String hotelID, String roomNO, Date negin) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public ResultMessage_Room deleteSingleRoom(String hotelID, String roomNO) {
 		// TODO Auto-generated method stub
 		return null;
 	}

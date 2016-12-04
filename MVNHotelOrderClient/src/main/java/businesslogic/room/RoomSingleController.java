@@ -1,45 +1,48 @@
 package businesslogic.room;
 
+import java.util.Date;
+
 import businesslogicservice.RoomSingleService;
-import tools.ResultMessage;
-import tools.ResultMessage_delete;
-import vo.RoomVO;
+import tools.ResultMessage_Room;
+import tools.RoomType;
 
+
+/**
+ * 控制单独的房间的增加删除  以及设置时间段的不可用
+ * @author wshwbluebird
+ *
+ */
 public class RoomSingleController implements RoomSingleService{
-
-	public RoomVO getSingleRoom(String hotel_id, String room_id) {
-		// TODO Auto-generated method stub
-		RoomSingle roomsingle = new RoomSingle();
-		
-		return roomsingle.getSingleRoom(hotel_id, room_id);
+	
+	private RoomSingle roomSingle;
+	
+	private static RoomSingleController roomSingleController = null;
+	
+	private RoomSingleController(){
+		roomSingle = new RoomSingle();
+	}
+	
+	public static RoomSingleController getInstance(){
+		if(roomSingleController == null)
+			roomSingleController = new RoomSingleController();
+		return roomSingleController;
 	}
 
-	public ResultMessage addSingleRoom(String hotel_id,RoomVO room) {
-		// TODO Auto-generated method stub
-		RoomSingle roomsingle = new RoomSingle();
-		
-		return roomsingle.addSingleRoom(hotel_id,room);
+	public ResultMessage_Room addSingleRoom(String hotelID, String RoomNO, RoomType roomType) {
+		return roomSingle.addSingleRoom(hotelID, RoomNO, roomType);
 	}
 
-	public ResultMessage editSingleRoom(RoomVO room) {
-		// TODO Auto-generated method stub
-		RoomSingle roomsingle = new RoomSingle();
-		
-		return roomsingle.editSingleRoom(room);
+	public ResultMessage_Room deleteSingleRoom(String hotelID, String roomNO) {
+		return roomSingle.deleteSingleRoom(hotelID, roomNO);
 	}
 
-	public ResultMessage_delete deleteSingleRoom(String hotel_id, String room_id) {
-		// TODO Auto-generated method stub
-		RoomSingle roomsingle = new RoomSingle();
-		
-		return roomsingle.deleteSingleRoom(hotel_id, room_id);
+	public ResultMessage_Room addDisable(String hotelID, String roomNO, Date begin, Date end) {
+		return roomSingle.addDisable(hotelID, roomNO, begin, end);
 	}
 
-	public ResultMessage saveSingleRoom(RoomVO room) {
-		// TODO Auto-generated method stub
-		RoomSingle roomsingle = new RoomSingle();
-		
-		return roomsingle.saveSingleRoom(room);
+	public ResultMessage_Room deleteDisable(String hotelID, String roomNO, Date begin) {
+		return roomSingle.deleteDisable(hotelID, roomNO, begin);
 	}
+
 
 }

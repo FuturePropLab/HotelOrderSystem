@@ -1,14 +1,6 @@
 package driver;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import businesslogic.room.RoomDescription;
 import dataservice.RoomDataService;
-import po.RoomPO;
-import tools.HotelRoomInfo;
-import tools.RoomType;
-import tools.TypeRoomInfo;
 
 public class RoomDataService_Driver {
       public void drive(RoomDataService roomDataService){

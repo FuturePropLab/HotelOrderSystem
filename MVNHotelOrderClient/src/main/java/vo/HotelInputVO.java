@@ -3,7 +3,6 @@ package vo;
 import java.net.URI;
 
 import tools.HotelAddress;
-import tools.HotelFacility;
 import tools.HotelRoomInfo;
 import tools.Star;
 
@@ -20,7 +19,7 @@ public class HotelInputVO {
 	public String HotelName;//酒店名字
 	public Star star; 
 	public HotelAddress hotelAddress; //酒店地址
-	public HotelFacility hotelFacility;//酒店的设施信息
+	public HotelFacilityVO hotelFacilityVO;//酒店的设施信息
 	public HotelDiscribtionsVO hotelInfoVO ; //酒店详情 介绍 图片 或者包括排版
 	public HotelRoomInfo hotelRoomInfo; //酒店的房间信息
 	
@@ -99,11 +98,11 @@ public class HotelInputVO {
 	 * @param hotelInfo
 	 * @param hotelRoomInfo
 	 */
-	public HotelInputVO(String hotelID,  HotelFacility hotelFacility,
+	public HotelInputVO(String hotelID,  HotelFacilityVO hotelFacilityVO,
 			HotelDiscribtionsVO hotelInfoVO , HotelRoomInfo hotelRoomInfo){
 		super();
 		this.hotelID =  hotelID;
-		this.hotelFacility = hotelFacility;
+		this.hotelFacilityVO = hotelFacilityVO;
 		this.hotelInfoVO = hotelInfoVO;
 		this.hotelRoomInfo = hotelRoomInfo;
 	}

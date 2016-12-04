@@ -15,7 +15,7 @@ public class TestHotelRoomInfo {
 
 	@Test
 	public void test() {
-		RoomHotelInfo hotelRoomInfo=new RoomHotelInfo();
+		RoomManager hotelRoomInfo=new RoomManager();
 		List<TypeRoomInfo> list =new LinkedList<TypeRoomInfo>();
 		TypeRoomInfo typeRoomInfo=new TypeRoomInfo("", "", RoomType.Double, 3, 3.0);
 		HotelRoomInfoVO hotelRoomInfoVO=new HotelRoomInfoVO("001", "",list);
@@ -23,7 +23,7 @@ public class TestHotelRoomInfo {
 	}
 	@Test
 	public void test2() {
-		RoomHotelInfo hotelRoomInfo=new RoomHotelInfo();
+		RoomManager hotelRoomInfo=new RoomManager();
 		List<TypeRoomInfo> list= new LinkedList<TypeRoomInfo>();
 		 list.add(new TypeRoomInfo("","", RoomType.Double, 3, 3.0));
 		 TypeRoomInfo typeRoomInfo=new TypeRoomInfo("", "", RoomType.Double, 3, 3.0);

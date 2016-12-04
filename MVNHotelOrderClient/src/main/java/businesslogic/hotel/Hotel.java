@@ -22,6 +22,7 @@ import vo.CommentVO;
 import vo.DiscountVO_hotel;
 import vo.HotelDetailsVO;
 import vo.HotelDiscribtionsVO;
+import vo.HotelFacilityVO;
 import vo.HotelInputVO;
 import vo.HotelbriefVO;
 import vo.SearchHotelVO;
@@ -52,6 +53,7 @@ public class Hotel {
 		String hotelID = hotelAccountController.getAccountID(username);
 		if("".equals(hotelID) || hotelID == null) return ResultMessage_Hotel.fail;
 		
+		//一般应该是空的
 		HotelPO hotelPO = new HotelPO(hotelInputVO);
 		hotelPO.setHotelID(hotelID);	
 		ResultMessage_Hotel result;
@@ -73,16 +75,28 @@ public class Hotel {
 	public ResultMessage_Hotel saveHotelInfo(HotelInputVO hotelInputVO) {
 		if(hotelInputVO.hotelID==null || "".equals(hotelInputVO.hotelID));
 		ResultMessage_Hotel rs = ResultMessage_Hotel.success;
+		
+		//更新酒店的图片
 		if(hotelInputVO.hotePictureURI!=null){
 			ResultMessage_Hotel r= pictureDeal.uploadFrontPicture(hotelInputVO.hotelID, hotelInputVO.hotePictureURI);
 			if(r == ResultMessage_Hotel.fail)
 				rs = ResultMessage_Hotel.fail;
 		}
+		//更新酒店详情界面
 		if(hotelInputVO.hotelInfoVO!=null){
 			ResultMessage_Hotel r=modifyHotelDiscribtions(hotelInputVO.hotelID, hotelInputVO.hotelInfoVO);
 			if(r == ResultMessage_Hotel.fail)
 				rs = ResultMessage_Hotel.fail;
 		}	
+		
+		//更新酒店的设施图片
+		if(hotelInputVO.hotelFacilityVO!=null  && hotelInputVO.hotelFacilityVO.facilityImage!=null){
+			URI uri = hotelInputVO.hotelFacilityVO.facilityImage;
+			ResultMessage_Hotel r = pictureDeal.uploadFacilttyPicture(hotelInputVO.hotelID, uri);
+			if(r == ResultMessage_Hotel.fail)
+				rs = ResultMessage_Hotel.fail;
+		}
+		//更新酒店的其他信息
 		HotelPO hotelPO = new HotelPO(hotelInputVO);
 		try {
 			ResultMessage_Hotel r = hotelDataService.modifyHotel(hotelPO);
@@ -332,15 +346,30 @@ public class Hotel {
 		 try {
 			 hotelDetailsVO =  new HotelDetailsVO(hotelDataService.getHotel(hotelID));
 			 hotelDetailsVO.hotelImage = pictureDeal.downloadFrontPicture(hotelID);
-			 HotelDiscribtionsVO hotelDiscribtionsVO = new HotelDiscribtionsVO();
-			 hotelDiscribtionsVO.discribes = hotelDataService.getHotelInfoString(hotelID);
-			 hotelDetailsVO.hotelDiscribtionsVO = hotelDiscribtionsVO;
-			 
+			 hotelDetailsVO.hotelDiscribtionsVO = getHotelDiscribtionsVO(hotelID);			 
 			 } catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return null;
 		}
+	 
+	 
+
+		public HotelFacilityVO gethotelFacilityVO(String hotelID) {
+			try {
+				HotelPO hotelPO  = hotelDataService.getHotel(hotelID);
+				HotelFacilityVO hotelFacilityVO = new HotelFacilityVO(hotelPO.getFacility());
+				hotelFacilityVO.hotelID = hotelID;
+				hotelFacilityVO.hotelName = hotelPO.getHotelName();
+				hotelFacilityVO.facilityImage = pictureDeal.downloadFacilttyPicture(hotelID);
+				return hotelFacilityVO;
+			} catch (RemoteException e) {
+				return null;
+			}
+			
+		
+		}
+		
 	
 }

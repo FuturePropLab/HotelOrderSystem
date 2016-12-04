@@ -59,10 +59,9 @@ public class HotelDataServiceImpl implements HotelDataService {
 		
 		//facility
 		HotelFacility hotelFacility;
-		String elString = null;
+		String elString = "";
 		if(hotelPO.getFacility()!=null){
-			hotelFacility  = hotelPO.getFacility();	
-		
+			hotelFacility  = hotelPO.getFacility();			
 		}else{
 			hotelFacility = new HotelFacility(elString);
 		}
@@ -81,8 +80,11 @@ public class HotelDataServiceImpl implements HotelDataService {
 		}else{
 			hotelAddress = new HotelAddress(null, null, null, null);
 		}
+				
 		HotelAddressPO hotelAddressPO = new HotelAddressPO(hotelID, hotelAddress);		
-		hotelDataHelper.addHotelAddressPO(hotelAddressPO);				
+		hotelDataHelper.addHotelAddressPO(hotelAddressPO);	
+		
+		
 		return ResultMessage_Hotel.success;
 		
 	}
@@ -96,6 +98,7 @@ public class HotelDataServiceImpl implements HotelDataService {
 		
 		
 		//whether update base
+		//目前是直接保存  空值保存过来直接覆盖
 		hotelDataHelper.modifyHotelBasePO(hotelBasePO);
 		
 		
@@ -107,12 +110,13 @@ public class HotelDataServiceImpl implements HotelDataService {
 			hotelDataHelper.modifyHotelFacilityPO(hotelFacilityPO);
 		}
 		
+		//推荐这个一般为空
 		if(hotelPO.getHotelRoom()!=null&&hotelPO.getHotelRoom().getTypeRoomInfo()!=null){
 			System.out.println("here");
 			HotelRoomInfo RoomInfo = hotelPO.getHotelRoom();
 			hotelDataHelper.modifyHotelRoomInfo(RoomInfo);		
 		}
-		
+		//覆盖式修改
 		if(hotelPO.getHotelAddress()!=null){
 			HotelAddress hotelAddress = hotelPO.getHotelAddress();
 			HotelAddressPO hotelAddressPO = new HotelAddressPO(hotelID, hotelAddress);		
@@ -126,6 +130,7 @@ public class HotelDataServiceImpl implements HotelDataService {
 		if(hotelBasePO == null )  return null;
 		HotelAddressPO hotelAddressPO = hotelDataHelper.getHotelAddressPO(hotel_id);
 		HotelFacilityPO hotelFacilityPO = hotelDataHelper.getHotelFacilityPO(hotel_id);
+		//这个未来可能注释调  因为需要的概率不大
 		HotelRoomInfo hotelRoomInfo = hotelDataHelper.getHotelRoomInfo(hotel_id);
 		
 		HotelPO hotelPO = new HotelPO(hotelBasePO, hotelAddressPO, 
@@ -306,7 +311,11 @@ public class HotelDataServiceImpl implements HotelDataService {
 		}
 		return hotelPOs;
 	}
-
+	
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.HotelDataService#searchHotelListFuzzy(java.lang.String)
+	 */
 	public List<HotelPO> searchHotelListFuzzy(String input) throws RemoteException {
 		System.out.println("searchHotelListFuzzy");
 		if(input == null  || "".equals(input)) return null;

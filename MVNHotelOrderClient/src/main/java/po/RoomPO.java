@@ -3,7 +3,7 @@ package po;
 import java.util.ArrayList;
 import java.util.Date;
 
-import businesslogic.room.RoomDescription;
+import tools.RoomDescription;
 import tools.RoomState;
 import tools.RoomType;
 
@@ -15,7 +15,7 @@ public class RoomPO {
 	private RoomType roomType; //房间类型
 	private Double price; //房间价格
 	private  RoomState state;
-	private RoomDescription description;//房间描述
+	//private RoomDescription description;//房间描述
 	private  ArrayList<Date> BookedDate;//客房的预定时间列表
 	private String RoomNumber;//房间号
     
@@ -26,7 +26,7 @@ public class RoomPO {
 		this.hotelID = hotelID;
 		this.hotelName = hotelName;
 		state = RoomState.Available;
-		this.description = description;
+		//this.description = description;
 		this.RoomNumber = roomNumber;
 	}
 	/**

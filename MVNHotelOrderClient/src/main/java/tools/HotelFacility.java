@@ -2,6 +2,8 @@ package tools;
 
 import java.io.Serializable;
 
+import vo.HotelFacilityVO;
+
 public class HotelFacility  implements Serializable{
 	/**
 	 * 
@@ -35,6 +37,21 @@ public class HotelFacility  implements Serializable{
     	this.broadband = false;
     	this.parking = false;
     	this.elseFacility = "";  	
+     }
+     
+     public HotelFacility(HotelFacilityVO hotelFacilityVO){
+    	 super();
+    	 this.swimmingPool = hotelFacilityVO.wifi;
+    	 this.healthHub = hotelFacilityVO.noneSmoke;
+    	 this.gym = hotelFacilityVO.diningHall;
+    	 this.parking = hotelFacilityVO.parkingLot;
+    	 this.airCondition = hotelFacilityVO.elevator;
+    	 this.wifi = hotelFacilityVO.conferenceHall;
+    	 this.hotWater  =hotelFacilityVO.morningCall;
+    	 this.broadband = hotelFacilityVO.frontdeskservice;
+    	 this.tv = hotelFacilityVO.luggageStorage;
+    	 this.computer=hotelFacilityVO.breakfast;
+    	 this.elseFacility =hotelFacilityVO.other;
      }
 
 	public boolean isSwimmingPool() {

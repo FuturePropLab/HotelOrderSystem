@@ -187,29 +187,29 @@ public class HotelDataHelperImpl implements HotelDataHelper {
 	 * @see dataservice.datahelper.HotelDataHelper#modifyHotelBasePO(po.HotelBasePO)
 	 */
 	public ResultMessage_Hotel modifyHotelBasePO(HotelBasePO hotelBasePO) {
-		String hotelID = hotelBasePO.getHotelID();
-		HotelBasePO hotelBasePO2 = getHotelBasePO(hotelID);
-		if(hotelBasePO2==null)  return ResultMessage_Hotel.fail;
-		
-		String hotelName = hotelBasePO.getHotelName();		
-		if(hotelName!=null && "".equals(hotelName)){
-			 hotelBasePO2.setHotelName(hotelName);
-		}
-		
-		if(hotelBasePO.getGrade()!=0){
-			hotelBasePO2.setGrade(hotelBasePO.getGrade());
-		}
-		
-		Star star = hotelBasePO.getStar();
-		if(star != null){
-			hotelBasePO2.setStar(star);
-		}
-		
+//		String hotelID = hotelBasePO.getHotelID();
+//		HotelBasePO hotelBasePO2 = getHotelBasePO(hotelID);
+//		if(hotelBasePO2==null)  return ResultMessage_Hotel.fail;
+//		
+//		String hotelName = hotelBasePO.getHotelName();		
+//		if(hotelName!=null && "".equals(hotelName)){
+//			 hotelBasePO2.setHotelName(hotelName);
+//		}
+//		
+//		if(hotelBasePO.getGrade()!=0){
+//			hotelBasePO2.setGrade(hotelBasePO.getGrade());
+//		}
+//		
+//		Star star = hotelBasePO.getStar();
+//		if(star != null){
+//			hotelBasePO2.setStar(star);
+//		}
+//		
 		
 		Session s = Hibernateutils.getSessionFactory().openSession();
 		try{
 			Transaction t = s.beginTransaction();
-			s.update(hotelBasePO2);
+			s.update(hotelBasePO);
 			t.commit();
 			return ResultMessage_Hotel.success;
 		}catch(Exception e){

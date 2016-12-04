@@ -172,5 +172,12 @@ HotelDataService,RoomDataService{
 			throws RemoteException {
 		return roomDataService.getAvaiableNumberRoomByType(hotelID, roomType, begin, end);
 	}
+	public ResultMessage_Room modifyRoomInfoString(String hotelID, RoomType roomType, List<String> discribes)
+			throws RemoteException {
+		return roomDataService.modifyRoomInfoString(hotelID, roomType, discribes);
+	}
+	public List<String> getRoomInfoString(String hotelID, RoomType roomType) throws RemoteException {
+		return roomDataService.getRoomInfoString(hotelID, roomType);
+	}
 
 }

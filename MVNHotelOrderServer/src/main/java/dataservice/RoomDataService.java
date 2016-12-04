@@ -70,5 +70,22 @@ public interface RoomDataService extends Remote{
 	 	
 	 	
 	 	public int getAvaiableNumberRoomByType(String hotelID , RoomType roomType,Date begin,Date end) throws RemoteException;
+	 	
+	 	
+	 	/**
+		 * 
+		 * @param strs
+		 * @return
+		 * @throws RemoteException
+		 */
+		public ResultMessage_Room modifyRoomInfoString(String hotelID ,RoomType roomType, List<String> discribes)throws RemoteException;
+		
+		/**
+		 * 
+		 * @param hotelID
+		 * @return
+		 * @throws RemoteException
+		 */
+		public List<String>   getRoomInfoString(String hotelID, RoomType roomType) throws RemoteException;
 
 }

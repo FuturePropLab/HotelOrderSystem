@@ -9,23 +9,19 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import businesslogic.hotel.HotelDealController;
-import businesslogicservice.HotelDealService;
-import dataservice.HotelDataService;
+import businesslogic.hotel.HotelManageController;
+import businesslogic.room.RoomManageController;
 import dataservice.RoomDataService;
-import po.HotelPO;
 import rmi.RemoteHelper;
-import tools.HotelAddress;
+import tools.HotelFacility;
 import tools.RoomType;
-import tools.StandardSearch;
-import tools.Star;
-import tools.TypeRoomInfo;
-import ui.hotel.HotelDetailController;
-import vo.HotelbriefVO;
-import vo.SearchHotelVO;
+import vo.HotelFacilityVO;
+import vo.HotelInputVO;
+import vo.RoomDescriptionVO;
 
 public class ClientRunner {
 	private RemoteHelper remoteHelper;
@@ -67,7 +63,7 @@ public class ClientRunner {
 	
 	public void test() throws RemoteException{		
 //		  HotelManageController manageHotelController =  HotelManageController.getInstance();
-//		  File file1 = new File("/Users/wshwbluebird/Desktop/pc001.png");
+//		  File file1 = new File("/Users/wshwbluebird/Desktop/pc004.png");
 //		  File file2 = new File("/Users/wshwbluebird//Desktop/pc002.png");
 //		  File file3 = new File("/Users/wshwbluebird//Desktop/pc003.png");
 //		  System.out.println(file1.exists());
@@ -84,11 +80,20 @@ public class ClientRunner {
 //		  HotelDiscribtionsVO hotelDiscribtionsVO = new HotelDiscribtionsVO();
 //		  hotelDiscribtionsVO.discribes =deList;
 //		  hotelDiscribtionsVO.pictureURI= list;
-//		  
-//		  HotelInputVO hotelInputVO = new HotelInputVO("HT001", new HotelFacility(), hotelDiscribtionsVO, null);
-//		  hotelInputVO.hotePictureURI = file1.toURI();
+		  
+		  
+//		 HotelFacilityVO hotelFacilityVO = new HotelFacilityVO();
+//		 hotelFacilityVO.hotelID = "HT001";
+//		 hotelFacilityVO.other = "王帅惟大笨蛋!!!";
+//		 hotelFacilityVO.facilityImage = file1.toURI();
+//		 HotelInputVO hotelInputVO = new HotelInputVO("HT001",  hotelFacilityVO ,null,null);
+//		// hotelInputVO.hotePictureURI = file1.toURI();
 //		 System.out.println(manageHotelController.saveHotelInfo(hotelInputVO));
 //		  
+//		  HotelFacilityVO hotelFacilityVO = HotelDealController.getInstance().gethotelFacilityVO("HT001");
+//		  System.out.println(hotelFacilityVO.other);
+//		  System.out.println(hotelFacilityVO.facilityImage.toString());
+		  
 //		  HotelDealService hotelDealService = HotelDealController.getInstance();
 //		  List<String> list = hotelDealService.getAllDistrictByCity("北京");
 //		  System.out.println(list==null);
@@ -116,7 +121,15 @@ public class ClientRunner {
 //		System.out.println(roomDataService.getAvaiableNumberRoomByType("HT001", RoomType.Double,
 //				new Date(), new Date(2017-1900, 11, 23)));
 		  
-		  
+//		  RoomDataService roomDataService
+//		List<String> list = new ArrayList<String>();
+//		list.add("good");
+//		list.add("very nice");
+//		File file3 = new File("/Users/wshwbluebird//Desktop/pc003.png");
+//		RoomDescriptionVO roomDescriptionVO = new RoomDescriptionVO(RoomType.Double, list, file3.toURI());
+//		RoomDescriptionVO roomDescriptionVO=RoomManageController.getInstance().getRoomInfo("HT001", RoomType.Single);
+//		System.out.println(roomDescriptionVO.typeimage==null);
+//		System.out.println(roomDescriptionVO.description);
 	}
 	
 	public static void main(String[] args) throws RemoteException{

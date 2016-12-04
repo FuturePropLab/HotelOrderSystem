@@ -17,7 +17,7 @@ import tools.TypeRoomInfo;
 /**
  * 
  * @author wshwbluebird
- *
+ * 酒店的简略信息
  */
 public class HotelbriefVO {
 	public URI imageuri; //酒店首页图片 

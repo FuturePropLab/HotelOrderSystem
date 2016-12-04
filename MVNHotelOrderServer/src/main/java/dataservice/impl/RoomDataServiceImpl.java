@@ -1,5 +1,13 @@
 package dataservice.impl;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -57,6 +65,65 @@ public class RoomDataServiceImpl implements RoomDataService {
 	public int getAvaiableNumberRoomByType(String hotelID, RoomType roomType, Date begin, Date end)
 			throws RemoteException {
 		return getAvailbleRoomNoByType(hotelID, roomType, begin, end).size();
+	}
+
+	public ResultMessage_Room modifyRoomInfoString(String hotelID, RoomType roomType, List<String> discribes)
+			throws RemoteException {
+		if(discribes==null)  return ResultMessage_Room.success;
+		String baseurl = "./ImageData/"+roomType.toString()+"/DES"+hotelID+".txt";
+		File file = new File(baseurl);
+		if(!file.exists())
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				return ResultMessage_Room.fail;
+			}
+		FileWriter writer;
+        try {
+            writer = new FileWriter(file);
+            Iterator<String> it = discribes.iterator();
+            while(it.hasNext()){
+            	writer.write(it.next());
+            	writer.write('\n');
+            }          
+            writer.flush();
+            writer.close();
+            return ResultMessage_Room.success;
+        } catch (IOException e) {
+        	System.out.println(e.getMessage());
+        	return ResultMessage_Room.success;
+        }
+
+	}
+
+	public List<String> getRoomInfoString(String hotelID, RoomType roomType) throws RemoteException {
+		String baseurl = "./ImageData/"+roomType.toString()+"/DES"+hotelID+".txt";
+		File file = new File(baseurl);
+		if(!file.exists())  return null;
+		List<String> list = new ArrayList<String>();
+		InputStreamReader reader;
+		try {
+			reader = new InputStreamReader(new FileInputStream(
+					file), "UTF-8");
+			BufferedReader br = new BufferedReader(reader);
+			String str ;
+			while((str=br.readLine())!=null){
+				list.add(str.trim());
+			}
+			
+			br.close();
+			reader.close();
+			return list;
+		} catch (UnsupportedEncodingException e) {
+			System.out.println(e.getMessage());
+			return null;
+		} catch (FileNotFoundException e) {
+			System.out.println(e.getMessage());
+			return null;
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
 	}
 
 	

@@ -1,18 +1,18 @@
 package businesslogicservice;
 
-import tools.ResultMessage;
-import tools.ResultMessage_delete;
-import vo.RoomVO;
+import java.util.Date;
+
+import tools.ResultMessage_Room;
+import tools.RoomType;
 
 public interface RoomSingleService {
-	public RoomVO getSingleRoom (String hotel_id, String room_id);
 	
-	public ResultMessage addSingleRoom(String hotel_id,RoomVO room);
+	public ResultMessage_Room addSingleRoom(String hotelID, String RoomNO, RoomType roomType);
 	
-	public ResultMessage editSingleRoom (RoomVO room);
+	public ResultMessage_Room deleteSingleRoom (String hotelID,String roomNO);
 	
-	public ResultMessage_delete deleteSingleRoom (String hotel_id,String room_id);
+	public ResultMessage_Room addDisable (String hotelID,String roomNO , Date negin , Date end);
 	
-	public ResultMessage saveSingleRoom (RoomVO room);
+	public ResultMessage_Room deleteDisable (String hotelID,String roomNO , Date negin);
 	
 }

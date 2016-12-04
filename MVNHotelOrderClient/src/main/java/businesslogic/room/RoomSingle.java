@@ -1,75 +1,59 @@
 package businesslogic.room;
 
-import businesslogic.hotel.Hotel;
-import businesslogicservice.RoomSingleService;
+import java.rmi.RemoteException;
+import java.util.Date;
+
 import dataservice.RoomDataService;
-import po.RoomPO;
-import stub.RoomSingle_Stub;
-import tools.ResultMessage;
-import tools.ResultMessage_delete;
+import rmi.RemoteHelper;
+import tools.ResultMessage_Room;
 import tools.RoomType;
-import vo.RoomVO;
+
 /**
- * 客房处理
- * 
- * @author chenyuyan
+ * 处理单独房间的委托类
+ * @author wshwbluebird
  *
  */
 public class RoomSingle  {
 	private RoomDataService roomDataService;
-	public RoomVO getSingleRoom(String hotel_id, String room_id) {
-		// TODO Auto-generated method stub
-		//RoomPO roompo = roomDataService.getRoom(hotel_id, room_id);
-		//
-		//RoomSingle_Stub roomSingle_Stub=new RoomSingle_Stub();
-		//return roomSingle_Stub.getSingleRoom("", "");
-		//if(roompo!=null){return new RoomVO(roompo);}else{
-			return null;
-		
+	
+	public RoomSingle(){
+		roomDataService = RemoteHelper.getInstance().getRoomDataService();
+	}
+	public ResultMessage_Room addSingleRoom(String hotelID, String RoomNO, RoomType roomType) {
+		try {
+			return roomDataService.addRoom(hotelID, RoomNO, roomType);
+		} catch (RemoteException e) {
+			System.out.println(e.getMessage());
+			return ResultMessage_Room.fail;
+		}
 	}
 
-	public ResultMessage addSingleRoom(String hotel_id,RoomVO room) {
-		// TODO Auto-generated method stub
-		
-		//RoomSingle_Stub roomSingle_Stub=new RoomSingle_Stub();
-		//return roomSingle_Stub.addSingleRoom(hotel_id);
-		//RoomSingle roomid = new RoomSingle();
-		//String id = roomid.getID(room.hotelID, room.roomType, room.price);
-		
-		
-		
-		RoomPO roompo = new RoomPO(hotel_id,room.hotelName,room.hotelID,room.roomType,room.price,room.description,room.roomNumber);
-		
-		
-		return null;
+	public ResultMessage_Room deleteSingleRoom(String hotelID, String roomNO) {
+		try {
+			return roomDataService.deleteRoom(hotelID, roomNO);
+		} catch (RemoteException e) {
+			System.out.println(e.getMessage());
+			return ResultMessage_Room.fail;
+		}
 	}
 
-	public ResultMessage editSingleRoom(RoomVO room) {
-		// TODO Auto-generated method stub
-		//RoomSingle_Stub roomSingle_Stub=new RoomSingle_Stub();
-		
-		//RoomPO roompo = new RoomPO(room.hotelID,room.roomID,room.state);
-		RoomPO roompo = new RoomPO(room.hotelID,room.hotelName,room.roomID,room.roomType,room.price,room.description,room.roomNumber);
-		//return roomSingle_Stub.editSingleRoom(room);
-		return null;
-		
-		
+	public ResultMessage_Room addDisable(String hotelID, String roomNO, Date begin, Date end) {
+		try {
+			return roomDataService.addRecord(hotelID, roomNO, begin, end);
+		} catch (RemoteException e) {
+			System.out.println(e.getMessage());
+			return ResultMessage_Room.fail;
+		}
 	}
 
+	public ResultMessage_Room deleteDisable(String hotelID, String roomNO, Date begin) {
+		try {
+			return roomDataService.deleteRecord(hotelID, roomNO, begin);
+		} catch (RemoteException e) {
+			System.out.println(e.getMessage());
+			return ResultMessage_Room.fail;
+		}
 
-	public ResultMessage_delete deleteSingleRoom(String hotel_id, String room_id) {
-		// TODO Auto-generated method stub
-		//RoomSingle_Stub roomSingle_Stub=new RoomSingle_Stub();
-		//return roomSingle_Stub.deleteSingleRoom(hotel_id, room_id);
-		return null;
-	}
-
-	public ResultMessage saveSingleRoom(RoomVO room) {
-		// TODO Auto-generated method stub
-		RoomPO roompo = new RoomPO(room.hotelID,room.hotelName,room.roomID,room.roomType,room.price,room.description,room.roomNumber);
-		return null;
-		//RoomSingle_Stub roomSingle_Stub=new RoomSingle_Stub();
-		//return roomSingle_Stub.saveSingleRoom(room);
 	}
 
 }

@@ -90,6 +90,21 @@ public class PictureDeal {
 		return rs;		  
 	 }
 	 
+	 
+	 
+	 
+	 public URI downloadFacilttyPicture(String hotelId){
+		 String pwd = "./ImageData/Fac/"+hotelId+".png";
+		 String cache = "./Cache/Fac"+hotelId+".png";
+		 return download(pwd, cache);
+	 }
+	 
+	 public ResultMessage_Hotel uploadFacilttyPicture(String hotelId , URI uri){
+		 String pwd = "./ImageData/Fac/"+hotelId+".png";
+		 return  upload(pwd, uri);
+	 }
+	 
+	 
 	 public List<URI> downloadHotelInfoPic(String hotelID){
 		String cachebase = "./Cache/";
 		String baseurl = "./ImageData/"+hotelID+"/";
