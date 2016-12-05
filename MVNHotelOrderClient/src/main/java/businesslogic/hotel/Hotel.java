@@ -362,6 +362,7 @@ public class Hotel {
 				HotelFacilityVO hotelFacilityVO = new HotelFacilityVO(hotelPO.getFacility());
 				hotelFacilityVO.hotelID = hotelID;
 				hotelFacilityVO.hotelName = hotelPO.getHotelName();
+				System.out.println(hotelFacilityVO.hotelName);
 				hotelFacilityVO.facilityImage = pictureDeal.downloadFacilttyPicture(hotelID);
 				return hotelFacilityVO;
 			} catch (RemoteException e) {

@@ -2,6 +2,7 @@ package ui.hotel;
 
 import java.io.File;
 
+import businesslogic.hotel.HotelDealController;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Hyperlink;
@@ -72,15 +73,22 @@ public class FacilitiesInfoController extends DetailsController{
 	@FXML
 	private Label service6;	
 	
+	private String hotelID = "HT001" ; //@author wsw  这个应该在初始化这个界面的时候就传过来的
+	
     @FXML
     private void initialize() {
+//    	HotelDealController hotelDealController = HotelDealController.getInstance();
+//    	HotelFacilityVO hotelFacilityVO = hotelDealController.gethotelFacilityVO(hotelID);
+    	//if(hotelFacilityVO!=null)
     	setValues(new HotelFacilityVO("hotelID", "hotelName", null, true, true, true, true, true, true, true, true, 
     			true, true, "other"));
+//    	setValues(hotelFacilityVO);
     }
     
     @FXML
     private void handleSave() {
-    	//TODO:调用blservice保存信息
+    	//HotelDealController hotelDealController = HotelDealController.getInstance();
+    	
     }
     @FXML
     private void handleFacilitiesImage() {
@@ -101,6 +109,7 @@ public class FacilitiesInfoController extends DetailsController{
     	if(hotelFacilityVO.facilityImage!=null){
     		facilitiesImage.setImage(new Image(hotelFacilityVO.facilityImage.toString()));
     	}
+    	System.out.println("Fac UI :  "+hotelFacilityVO.hotelName);
     	hotelName.setText(hotelFacilityVO.hotelName);
     	
 		Label[] facilities={facility1,facility2,facility3,facility4,facility5,service1,service2,service3,

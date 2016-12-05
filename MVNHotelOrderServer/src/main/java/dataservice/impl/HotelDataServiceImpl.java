@@ -132,7 +132,7 @@ public class HotelDataServiceImpl implements HotelDataService {
 		HotelFacilityPO hotelFacilityPO = hotelDataHelper.getHotelFacilityPO(hotel_id);
 		//这个未来可能注释调  因为需要的概率不大
 		HotelRoomInfo hotelRoomInfo = hotelDataHelper.getHotelRoomInfo(hotel_id);
-		
+		System.out.println("service IMPL:  "+hotelBasePO.getHotelName());
 		HotelPO hotelPO = new HotelPO(hotelBasePO, hotelAddressPO, 
 				null, hotelRoomInfo, hotelFacilityPO);		
 		return hotelPO;

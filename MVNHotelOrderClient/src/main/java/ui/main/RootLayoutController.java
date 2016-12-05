@@ -62,9 +62,9 @@ public class RootLayoutController {
     private void initialize() {
         try {
 //        	changeFullLayout("../login/Login.fxml");
-//			changeDetails("../hotel/FacilitiesInfo.fxml");
+			changeDetails("../hotel/FacilitiesInfo.fxml");
 //        	changeDetails("../hotel/HotelDetail.fxml");
-			changeDetails("../room/RoomInfo.fxml");
+//			changeDetails("../room/RoomInfo.fxml");
         	changeGuid("GuideUI.fxml");
 		} catch (IOException e) {
 			e.printStackTrace();
