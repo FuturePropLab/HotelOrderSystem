@@ -2,6 +2,7 @@ package businesslogic.credit;
 
 import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -50,12 +51,13 @@ public class TestCredit {
 	
 	/**
 	 * 这个方法测试 需要别的方法
+	 * @throws RemoteException 
 	 */
 	@Test
-	public void testCharge() {
+	public void testCharge() throws RemoteException {
 		assertEquals(ResultMessage.NotExist, credit.charge("wsw", 100));
 	}
-	public static void main(String args[]) throws ParseException{
+	public static void main(String args[]) throws ParseException, RemoteException{
 		Order order = new Order("O1234567");
 		SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		Date date1= df.parse("2004-01-02 11:30:24");
