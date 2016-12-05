@@ -3,7 +3,7 @@ package businesslogicservice;
 import java.util.List;
 
 import tools.ResultMessage_Discount;
-import tools.ResultMessage_strategy;
+import tools.ResultMessage_DiscountDetail;
 import tools.Strategy_webType;
 import vo.DiscountVO_web;
 /**
@@ -13,7 +13,7 @@ import vo.DiscountVO_web;
  */
 public interface DiscountWebService {
 
-	public ResultMessage_strategy addWebDiscount (DiscountVO_web dis);
+	public ResultMessage_DiscountDetail addWebDiscount (DiscountVO_web dis);
 	
 	public ResultMessage_Discount editWebDiscount (DiscountVO_web dis);
 	/**

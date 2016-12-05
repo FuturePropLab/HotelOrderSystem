@@ -6,5 +6,5 @@ package tools;
  *
  */
 public enum Strategy_hotelType {
-	Birthday, OrderMore, CooperateEnterprise, SpecificPeriod
+	Birthday, OrderMore, CooperateEnterprise, Period
 }

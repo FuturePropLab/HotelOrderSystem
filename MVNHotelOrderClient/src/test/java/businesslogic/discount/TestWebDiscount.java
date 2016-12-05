@@ -1,15 +1,10 @@
 package businesslogic.discount;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
-
 import java.util.Date;
 
 import org.junit.Test;
 
 import tools.ResultMessage_Discount;
-import tools.ResultMessage_strategy;
-import vo.DiscountVO_web;
 
 public class TestWebDiscount {
 

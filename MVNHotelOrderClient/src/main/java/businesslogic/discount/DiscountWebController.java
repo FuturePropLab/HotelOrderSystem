@@ -7,7 +7,7 @@ import java.util.List;
 import businesslogicservice.DiscountWebService;
 import tools.DiscountState;
 import tools.ResultMessage_Discount;
-import tools.ResultMessage_strategy;
+import tools.ResultMessage_DiscountDetail;
 import tools.Strategy_webType;
 import vo.DiscountVO_web;
 import vo.DiscountVO_web_level;
@@ -45,7 +45,7 @@ public class DiscountWebController implements DiscountWebService {
 	/**
 	 * 增加网站营销策略，写入数据库同时在逻辑层缓存
 	 */
-	public ResultMessage_strategy addWebDiscount(DiscountVO_web dis) {
+	public ResultMessage_DiscountDetail addWebDiscount(DiscountVO_web dis) {
 
 		if (dis.type == Strategy_webType.Level) {// 等级制定由低往高制定，否则失败
 
@@ -53,12 +53,12 @@ public class DiscountWebController implements DiscountWebService {
 
 			if (tempDis_web_lv.level >= 1 && tempDis_web_lv.level < 5) {
 				
-				if(discountVO_web_level[tempDis_web_lv.level - 1]!=null) return ResultMessage_strategy.Existed;
+				if(discountVO_web_level[tempDis_web_lv.level - 1]!=null) return ResultMessage_DiscountDetail.Existed;
 				
 				else {
 					
 					for(int i = 0 ;i <tempDis_web_lv.level-1;i++){
-						if(discountVO_web_level[i]==null) return ResultMessage_strategy.Conflict;
+						if(discountVO_web_level[i]==null) return ResultMessage_DiscountDetail.Conflict;
 					}
 					
 				}

@@ -6,7 +6,7 @@ import java.util.List;
 import businesslogicservice.DiscountHotelService;
 import tools.DiscountState;
 import tools.ResultMessage_Discount;
-import tools.ResultMessage_strategy;
+import tools.ResultMessage_DiscountDetail;
 import tools.Strategy_hotelType;
 import vo.DiscountVO_hotel;
 import vo.DiscountVO_web;
@@ -46,7 +46,7 @@ public class MockDiscount implements DiscountHotelService{
 		return res;
 	}
 
-	public ResultMessage_strategy addHotelDiscount(String hotel_id, DiscountVO_hotel discountVO_hotel) {
+	public ResultMessage_DiscountDetail addHotelDiscount(String hotel_id, DiscountVO_hotel discountVO_hotel) {
 		// TODO Auto-generated method stub
 		return null;
 	}

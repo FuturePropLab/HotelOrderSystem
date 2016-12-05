@@ -4,7 +4,7 @@ import java.util.List;
 
 import tools.DiscountState;
 import tools.ResultMessage_Discount;
-import tools.ResultMessage_strategy;
+import tools.ResultMessage_DiscountDetail;
 import tools.Strategy_hotelType;
 import vo.DiscountVO_hotel;
 
@@ -15,7 +15,7 @@ public interface DiscountHotelService {
 	 * @param discountVO_hotel
 	 * @return 增加酒店策略
 	 */
-	public ResultMessage_strategy addHotelDiscount(String hotelID,DiscountVO_hotel discountVO_hotel);
+	public ResultMessage_DiscountDetail addHotelDiscount(String hotelID,DiscountVO_hotel discountVO_hotel);
 	
 	/**
 	 * 

@@ -7,7 +7,7 @@ import java.util.List;
 import po.DiscountPO_hotel;
 import tools.DiscountState;
 import tools.ResultMessage_Discount;
-import tools.ResultMessage_strategy;
+import tools.ResultMessage_DiscountDetail;
 import vo.DiscountVO_hotel;
 /**
  * 
@@ -24,7 +24,7 @@ public class HotelDiscount {
 	 * @return 添加成功
 	 */
 	
-	public ResultMessage_strategy addHotelDiscount(String hotel_id,DiscountVO_hotel dis) {
+	public ResultMessage_DiscountDetail addHotelDiscount(String hotel_id,DiscountVO_hotel dis) {
 		
 		DiscountPO_hotel discountPO_hotel = new DiscountPO_hotel(dis);
 		discountPO_hotel.setDiscountState(DiscountState.valid);

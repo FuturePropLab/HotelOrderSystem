@@ -7,7 +7,7 @@ import java.util.List;
 import businesslogicservice.DiscountHotelService;
 import tools.DiscountState;
 import tools.ResultMessage_Discount;
-import tools.ResultMessage_strategy;
+import tools.ResultMessage_DiscountDetail;
 import tools.Strategy_hotelType;
 import vo.DiscountVO_hotel;
 
@@ -49,7 +49,7 @@ public class DiscountHotelController implements DiscountHotelService {
 		return hotelDiscount.getHotelDiscount(hotelID);
 	}
 	
-	public ResultMessage_strategy addHotelDiscount(String hotelID, DiscountVO_hotel dis) {
+	public ResultMessage_DiscountDetail addHotelDiscount(String hotelID, DiscountVO_hotel dis) {
 		
 		return hotelDiscount.addHotelDiscount(hotelID, dis);
 	}

@@ -5,9 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import po.DiscountPO_web;
-import stub.Discount_stub;
 import tools.ResultMessage_Discount;
-import tools.ResultMessage_strategy;
+import tools.ResultMessage_DiscountDetail;
 import vo.DiscountVO_web;
 /**
  * 
@@ -20,7 +19,7 @@ public class WebDiscount {
 
 	private FactoryDiscount factory= new FactoryDiscount();
 	
-	public ResultMessage_strategy addWebDiscount(DiscountVO_web dis) {
+	public ResultMessage_DiscountDetail addWebDiscount(DiscountVO_web dis) {
 		
 		return dataService.addWebDiscount(factory.conversion(dis));
 	}

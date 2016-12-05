@@ -9,7 +9,7 @@ import businesslogicservice.DiscountHotelService;
 import businesslogicservice.DiscountWebService;
 import tools.DiscountState;
 import tools.ResultMessage_Discount;
-import tools.ResultMessage_strategy;
+import tools.ResultMessage_DiscountDetail;
 import tools.Strategy_hotelType;
 import tools.Strategy_webType;
 import vo.DiscountVO_hotel;
@@ -81,11 +81,11 @@ public class Discount_stub implements DiscountWebService,DiscountHotelService{
 	}*/
 
 
-	public ResultMessage_strategy addWebDiscount(DiscountVO_web dis) {
+	public ResultMessage_DiscountDetail addWebDiscount(DiscountVO_web dis) {
 		// TODO Auto-generated method stub
-		if(dis!=null)return ResultMessage_strategy.Success;
+		if(dis!=null)return ResultMessage_DiscountDetail.Success;
 		else
-			return ResultMessage_strategy.Existed;
+			return ResultMessage_DiscountDetail.Existed;
 		
 	}
 
@@ -113,7 +113,7 @@ public class Discount_stub implements DiscountWebService,DiscountHotelService{
 
 
 
-	public ResultMessage_strategy addHotelDiscount(String hotel_id, DiscountVO_hotel discountVO_hotel) {
+	public ResultMessage_DiscountDetail addHotelDiscount(String hotel_id, DiscountVO_hotel discountVO_hotel) {
 		// TODO Auto-generated method stub
 		return null;
 	}
