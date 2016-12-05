@@ -1,5 +1,7 @@
 package po;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 
 import tools.DiscountState;
@@ -11,7 +13,8 @@ import tools.Strategy_webType;
  *
  */
 @Entity
-public class DiscountPO_web_level extends DiscountPO_web {
+public class DiscountPO_web_level extends DiscountPO_web implements Serializable{
+	private static final long serialVersionUID = 3590904834832537625L;
 
 	private int level;// 会员等级
 

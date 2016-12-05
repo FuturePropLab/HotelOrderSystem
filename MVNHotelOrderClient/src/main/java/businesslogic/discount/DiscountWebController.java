@@ -72,7 +72,7 @@ public class DiscountWebController implements DiscountWebService {
 
 			}
 		}
-
+		//wsw:  林文烨 你自己改处理一下rmi  的异常!!!!
 		return web.addWebDiscount(dis);
 	}
 

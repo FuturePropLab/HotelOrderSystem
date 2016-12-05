@@ -1,5 +1,6 @@
 package businesslogic.discount;
 
+import java.rmi.RemoteException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,12 +20,12 @@ public class WebDiscount {
 
 	private FactoryDiscount factory= new FactoryDiscount();
 	
-	public ResultMessage_DiscountDetail addWebDiscount(DiscountVO_web dis) {
+	public ResultMessage_DiscountDetail addWebDiscount(DiscountVO_web dis) throws RemoteException {
 		
 		return dataService.addWebDiscount(factory.conversion(dis));
 	}
 
-	public ResultMessage_Discount editWebDiscount(DiscountVO_web dis) {
+	public ResultMessage_Discount editWebDiscount(DiscountVO_web dis) throws RemoteException {
 		
 		return dataService.editWebDiscount(factory.conversion(dis));
 	}

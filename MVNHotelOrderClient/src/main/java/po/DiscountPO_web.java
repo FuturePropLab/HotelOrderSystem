@@ -1,5 +1,7 @@
 package po;
 
+import java.io.Serializable;
+
 import tools.DiscountState;
 import tools.Strategy_webType;
 /**
@@ -7,8 +9,13 @@ import tools.Strategy_webType;
  * @author LWY
  *
  */
-public class DiscountPO_web {
+public class DiscountPO_web implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4692890931780645810L;
+
 	private Strategy_webType type;
 	
 	private DiscountState discountState;//策略状态，valid，invalid

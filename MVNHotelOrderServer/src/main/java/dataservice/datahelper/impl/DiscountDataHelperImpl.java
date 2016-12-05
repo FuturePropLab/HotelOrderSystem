@@ -2,6 +2,7 @@ package dataservice.datahelper.impl;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -17,12 +18,23 @@ import po.DiscountPO_web_level;
 import po.DiscountPO_web_period;
 import tools.DiscountState;
 import tools.ResultMessage_Discount;
-import tools.ResultMessage_strategy;
+import tools.ResultMessage_DiscountDetail;
 import tools.Strategy_webType;
 
 public class DiscountDataHelperImpl implements DiscountDataHelper {
+	
+	
+	private static DiscountDataHelperImpl discountDataHelperImpl = null;
+	
+	private DiscountDataHelperImpl(){
+		
+	}
 
-
+	public static DiscountDataHelperImpl getInstance(){
+		if(discountDataHelperImpl == null)
+			 discountDataHelperImpl  = new DiscountDataHelperImpl();
+		return discountDataHelperImpl;
+	}
 	private String generateDiscountID(){
 			String generatedID = "DS";
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSS");
@@ -93,8 +105,11 @@ public class DiscountDataHelperImpl implements DiscountDataHelper {
 	 * @see dataservice.datahelper.DiscountDataHelper#getDiscountPOWebDistrictList()
 	 */
 	public List<DiscountPO_web_district> getDiscountPOWebDistrictList() {
-		// TODO Auto-generated method stub
-		return null;
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		Criteria cr = s.createCriteria(DiscountPO_web_district.class);
+		List<DiscountPO_web_district>  list = cr.list();
+		s.close();
+		return list;
 	}
 	
 	/*@
@@ -102,13 +117,21 @@ public class DiscountDataHelperImpl implements DiscountDataHelper {
 	 * @see dataservice.datahelper.DiscountDataHelper#getDiscountPOWebLevelList()
 	 */
 	public List<DiscountPO_web_level> getDiscountPOWebLevelList() {
-		// TODO Auto-generated method stub
-		return null;
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		Criteria cr = s.createCriteria(DiscountPO_web_level.class);
+		List<DiscountPO_web_level> list = cr.list();;
+		s.close();
+		return list;
+
 	}
 
 	public List<DiscountPO_web_period> getDiscountPOWebPeriodList() {
-		// TODO Auto-generated method stub
-		return null;
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		Criteria cr = s.createCriteria(DiscountPO_web_period.class);
+		List<DiscountPO_web_period> list = cr.list();
+		s.close();
+		return list;
+
 	}
 	
 	
@@ -117,15 +140,18 @@ public class DiscountDataHelperImpl implements DiscountDataHelper {
 	 * @see dataservice.datahelper.DiscountDataHelper#getALLDiscountPOList()
 	 */
 	public List<DiscountPO_web> getALLDiscountPOList() {
-		// TODO Auto-generated method stub
-		return null;
+		List<DiscountPO_web> list = new ArrayList<DiscountPO_web>();
+		list.addAll(getDiscountPOWebDistrictList());
+		list.addAll(getDiscountPOWebLevelList());
+		list.addAll(getDiscountPOWebPeriodList());
+		return list;
 	}
 	
 	/*@
 	 * (non-Javadoc)
 	 * @see dataservice.datahelper.DiscountDataHelper#addgetDiscountPO(po.DiscountPO_web)
 	 */
-	public ResultMessage_strategy addgetDiscountPO(DiscountPO_web discountPO_web) {
+	public ResultMessage_DiscountDetail addDiscountPO(DiscountPO_web discountPO_web) {
 		Session s = Hibernateutils.getSessionFactory().openSession();
 		String discountID = generateDiscountID();
 		discountPO_web.setDiscountID(discountID);
@@ -141,10 +167,10 @@ public class DiscountDataHelperImpl implements DiscountDataHelper {
 				Transaction t = s.beginTransaction();
 				s.save(discountPO_web_districts);
 				t.commit();
-				return ResultMessage_strategy.Success;
+				return ResultMessage_DiscountDetail.Success;
 			}catch(Exception e){
 				System.out.println(e.getMessage());
-				return ResultMessage_strategy.fail;
+				return ResultMessage_DiscountDetail.fail;
 			}finally {
 				s.close();
 			}
@@ -163,16 +189,16 @@ public class DiscountDataHelperImpl implements DiscountDataHelper {
 			}
 			//if not right or it means 
 			// if level 3 is to be saves  level 1 and level 2 must exsists
-			if(discountPO_web_level.getLv()!=levelNow+1)  return ResultMessage_strategy.Conflict;
+			if(discountPO_web_level.getLv()!=levelNow+1)  return ResultMessage_DiscountDetail.Conflict;
 			
 			try{
 				Transaction t = s.beginTransaction();
 				s.save(discountPO_web_level);
 				t.commit();
-				return ResultMessage_strategy.Success;
+				return ResultMessage_DiscountDetail.Success;
 			}catch(Exception e){
 				System.out.println(e.getMessage());
-				return ResultMessage_strategy.fail;
+				return ResultMessage_DiscountDetail.fail;
 			}finally {
 				s.close();
 			}			
@@ -183,16 +209,16 @@ public class DiscountDataHelperImpl implements DiscountDataHelper {
 				Transaction t = s.beginTransaction();
 				s.save(discountPO_web_period);
 				t.commit();
-				return ResultMessage_strategy.Success;
+				return ResultMessage_DiscountDetail.Success;
 			}catch(Exception e){
 				System.out.println(e.getMessage());
-				return ResultMessage_strategy.fail;
+				return ResultMessage_DiscountDetail.fail;
 			}finally {
 				s.close();
 			}
 		}
 		s.close();
-		return ResultMessage_strategy.fail;
+		return ResultMessage_DiscountDetail.fail;
 	}
 	
 	/*@
@@ -224,33 +250,32 @@ public class DiscountDataHelperImpl implements DiscountDataHelper {
 				s.close();
 			}
 		}else if(strategy_webType.equals(Strategy_webType.Level)){
-//			//force change to level 
-//			DiscountPO_web_level discountPO_web_level = (DiscountPO_web_level)discountPO_web;
-//			
-//			//add more exeam
-//			Criteria cr = s.createCriteria(DiscountPO_web_level.class);
-//			cr.add(Restrictions.eq("discountState", DiscountState.valid));
-//			List<DiscountPO_web_level> discountPO_web_levels = cr.list();
-//			
-//			int levelNow = 0;
-//			for (DiscountPO_web_level discount : discountPO_web_levels) {
-//				if(discount.getLv() > levelNow ) levelNow = discount.getLv();
-//			}
-//			//if not right or it means 
-//			// if level 3 is to be saves  level 1 and level 2 must exsists
-//			if(discountPO_web_level.getLv()!=levelNow+1)  return ResultMessage_Discount;
-//			
-//			try{
-//				Transaction t = s.beginTransaction();
-//				s.save(discountPO_web_level);
-//				t.commit();
-//				return ResultMessage_strategy.Success;
-//			}catch(Exception e){
-//				System.out.println(e.getMessage());
-//				return ResultMessage_strategy.fail;
-//			}finally {
-//				s.close();
-//			}			
+			//force change to level 
+			DiscountPO_web_level discountPO_web_level = (DiscountPO_web_level)discountPO_web;
+			
+			//add more exeam
+			Criteria cr = s.createCriteria(DiscountPO_web_level.class);
+			cr.add(Restrictions.eq("discountID", discountPO_web_level.getDiscountID()));
+			List<DiscountPO_web_level> discountPO_web_levels = cr.list();
+			
+			if(discountPO_web_levels.isEmpty()  ||
+					!(discountPO_web_levels.get(0).getLv()==discountPO_web_level.getLv()))
+					
+			return ResultMessage_Discount.Fail;
+			s.close();
+			s = Hibernateutils.getSessionFactory().openSession();
+				//be able to update 
+		try{
+				Transaction t = s.beginTransaction();
+				s.update(discountPO_web_level);
+				t.commit();
+				return ResultMessage_Discount.Success;
+			}catch(Exception e){
+				System.out.println(e.getMessage());
+				return ResultMessage_Discount.Fail;
+			}finally {
+				s.close();
+			}			
 		}else if(strategy_webType.equals(Strategy_webType.Period)){
 			//force chagnge 
 			DiscountPO_web_period discountPO_web_period = (DiscountPO_web_period)discountPO_web;

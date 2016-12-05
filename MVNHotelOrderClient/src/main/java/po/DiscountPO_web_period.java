@@ -1,4 +1,5 @@
 package po;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import tools.DiscountState;
@@ -10,8 +11,13 @@ import vo.DiscountVO_web_period;
  * @author LWY
  * 特定期间网站促销策略PO
  */
-public class DiscountPO_web_period extends DiscountPO_web{
+public class DiscountPO_web_period extends DiscountPO_web implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2472299328587709694L;
+
 	private LocalDate startDate;//特定期间折扣的开始时间
 	
 	private LocalDate endDate;

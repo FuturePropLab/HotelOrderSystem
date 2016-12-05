@@ -7,7 +7,7 @@ import po.DiscountPO_web_district;
 import po.DiscountPO_web_level;
 import po.DiscountPO_web_period;
 import tools.ResultMessage_Discount;
-import tools.ResultMessage_strategy;
+import tools.ResultMessage_DiscountDetail;
 
 public interface DiscountDataHelper {
 		
@@ -47,7 +47,7 @@ public interface DiscountDataHelper {
 		 * @param discountPO_web
 		 * @return
 		 */
-		public ResultMessage_strategy addgetDiscountPO(DiscountPO_web discountPO_web);
+		public ResultMessage_DiscountDetail addDiscountPO(DiscountPO_web discountPO_web);
 		
 		/**
 		 * 

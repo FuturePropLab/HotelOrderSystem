@@ -1,5 +1,7 @@
 package po;
 
+import java.io.Serializable;
+
 import tools.DiscountState;
 import tools.Strategy_webType;
 import vo.DiscountVO_web_district;
@@ -9,8 +11,11 @@ import vo.DiscountVO_web_district;
  * @author LWY
  *
  */
-public class DiscountPO_web_district extends DiscountPO_web{
+public class DiscountPO_web_district extends DiscountPO_web implements Serializable{
 
+	
+	private static final long serialVersionUID = 6748351274254288601L;
+	
 	private int level;//会员等级
 	private String city;
 	private String district;
