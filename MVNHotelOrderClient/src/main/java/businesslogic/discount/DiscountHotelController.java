@@ -6,8 +6,8 @@ import java.util.List;
 
 import businesslogicservice.DiscountHotelService;
 import tools.DiscountState;
-import tools.ResultMessageDiscount;
-import tools.ResultMessage_strategy;
+import tools.ResultMessage_Discount;
+import tools.ResultMessage_DiscountDetail;
 import tools.Strategy_hotelType;
 import vo.DiscountVO_hotel;
 
@@ -49,18 +49,18 @@ public class DiscountHotelController implements DiscountHotelService {
 		return hotelDiscount.getHotelDiscount(hotelID);
 	}
 	
-	public ResultMessage_strategy addHotelDiscount(String hotelID, DiscountVO_hotel dis) {
+	public ResultMessage_DiscountDetail addHotelDiscount(String hotelID, DiscountVO_hotel dis) {
 		
 		return hotelDiscount.addHotelDiscount(hotelID, dis);
 	}
 
-	public ResultMessageDiscount editHotelDiscount(String discountID, DiscountVO_hotel discountVO_hotel) {
+	public ResultMessage_Discount editHotelDiscount(String discountID, DiscountVO_hotel discountVO_hotel) {
 		
 		return hotelDiscount.editHotelDiscount(discountID, discountVO_hotel);
 	}
 
 
-	public ResultMessageDiscount deleteHotelDiscount(String hotelID, String discountID) {
+	public ResultMessage_Discount deleteHotelDiscount(String hotelID, String discountID) {
 		
 		return hotelDiscount.deleteHotelDiscount(hotelID, discountID);
 	}
@@ -92,7 +92,7 @@ public class DiscountHotelController implements DiscountHotelService {
 		return res;
 	}
 	
-	public ResultMessageDiscount invalidDiscount(String hotelID,String discountID) {
+	public ResultMessage_Discount invalidDiscount(String hotelID,String discountID) {
 		Iterator<DiscountVO_hotel> iterator = list.iterator();
 		while (iterator.hasNext()) {
 			DiscountVO_hotel discountVO_hotel = (DiscountVO_hotel) iterator.next();

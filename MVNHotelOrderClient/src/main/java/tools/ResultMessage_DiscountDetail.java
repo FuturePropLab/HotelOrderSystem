@@ -1,6 +1,6 @@
 package tools;
 
-public enum ResultMessage_strategy {
+public enum ResultMessage_DiscountDetail {
 	Success,
 	Existed,
 	Conflict,

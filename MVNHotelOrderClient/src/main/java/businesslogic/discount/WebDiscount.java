@@ -6,8 +6,8 @@ import java.util.List;
 
 import po.DiscountPO_web;
 import stub.Discount_stub;
-import tools.ResultMessageDiscount;
-import tools.ResultMessage_strategy;
+import tools.ResultMessage_Discount;
+import tools.ResultMessage_DiscountDetail;
 import vo.DiscountVO_web;
 /**
  * 
@@ -20,17 +20,17 @@ public class WebDiscount {
 
 	private FactoryDiscount factory= new FactoryDiscount();
 	
-	public ResultMessage_strategy addWebDiscount(DiscountVO_web dis) {
+	public ResultMessage_DiscountDetail addWebDiscount(DiscountVO_web dis) {
 		
 		return dataService.addWebDiscount(factory.conversion(dis));
 	}
 
-	public ResultMessageDiscount editWebDiscount(DiscountVO_web dis) {
+	public ResultMessage_Discount editWebDiscount(DiscountVO_web dis) {
 		
 		return dataService.editWebDiscount(factory.conversion(dis));
 	}
 
-	 public ResultMessageDiscount deleteDiscount(String  discountID) {
+	 public ResultMessage_Discount deleteDiscount(String  discountID) {
 		 
 		return dataService.deleteWebDiscount(discountID);
 	 }
@@ -53,7 +53,7 @@ public class WebDiscount {
 	 * @param discount_id
 	 * @return 将策略设置为无效
 	 */
-	public ResultMessageDiscount invalidDiscount(String discountID){
+	public ResultMessage_Discount invalidDiscount(String discountID){
 		return dataService.invalidDiscount(discountID);
 	}
 }

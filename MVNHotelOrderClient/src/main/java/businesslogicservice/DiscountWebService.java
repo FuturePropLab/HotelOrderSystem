@@ -2,8 +2,8 @@ package businesslogicservice;
 
 import java.util.List;
 
-import tools.ResultMessageDiscount;
-import tools.ResultMessage_strategy;
+import tools.ResultMessage_Discount;
+import tools.ResultMessage_DiscountDetail;
 import tools.Strategy_webType;
 import vo.DiscountVO_web;
 /**
@@ -13,9 +13,9 @@ import vo.DiscountVO_web;
  */
 public interface DiscountWebService {
 
-	public ResultMessage_strategy addWebDiscount (DiscountVO_web dis);
+	public ResultMessage_DiscountDetail addWebDiscount (DiscountVO_web dis);
 	
-	public ResultMessageDiscount editWebDiscount (DiscountVO_web dis);
+	public ResultMessage_Discount editWebDiscount (DiscountVO_web dis);
 	/**
 	 * 得到網站的所有促銷策略
 	 * @return
@@ -28,13 +28,13 @@ public interface DiscountWebService {
 	 */
 	public List<DiscountVO_web> getWebDiscount(Strategy_webType type) ;
 	
-	public ResultMessageDiscount deleteDiscount (String discountID);
+	public ResultMessage_Discount deleteDiscount (String discountID);
 	
 	/**
 	 * 
 	 * @param discount_id
 	 * @return 将策略设置为无效
 	 */
-	public ResultMessageDiscount invalidDiscount(String discount_id);
+	public ResultMessage_Discount invalidDiscount(String discount_id);
 	
 }

@@ -5,13 +5,13 @@ import java.util.Date;
 import org.junit.Test;
 
 import businesslogic.discount.WebDiscount;
-import tools.ResultMessageDiscount;
+import tools.ResultMessage_Discount;
 
 public class TestWebDiscount {
 
 	@Test
 	public void test() {
-		ResultMessageDiscount expect=ResultMessageDiscount.Success;
+		ResultMessage_Discount expect=ResultMessage_Discount.Success;
 		WebDiscount test=new WebDiscount();
 		Date t1=new Date(2016,9,1);
 		Date t2=new Date(2016,9,2);

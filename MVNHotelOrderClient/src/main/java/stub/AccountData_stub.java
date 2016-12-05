@@ -12,7 +12,7 @@ import po.SearchCondition;
 import po.WebAccountPO;
 import tools.AccountType;
 import tools.ResultMessage;
-import tools.ResultMessageDiscount;
+import tools.ResultMessage_Discount;
 import tools.ResultMessage_Account;
 import vo.CustomerInputVO;
 
@@ -90,7 +90,7 @@ public class AccountData_stub implements AccountDataService{
 		return accountPO;
 	}
 
-	public ResultMessageDiscount accountAdd(CustomerInputVO customerInfo) {
+	public ResultMessage_Discount accountAdd(CustomerInputVO customerInfo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
