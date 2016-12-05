@@ -7,18 +7,21 @@ import java.util.List;
 
 import dataservice.AccountDataService;
 import dataservice.CustomerDataService;
+import dataservice.DiscountHotelDataService;
 import dataservice.DiscountWebDataService;
 import dataservice.HotelDataService;
 import dataservice.LoginCheckService;
 import dataservice.RoomDataService;
 import dataservice.impl.AccountDataServiceImpl;
 import dataservice.impl.CustomerDataServiceImpl;
+import dataservice.impl.DiscountHotelDataServiceImpl;
 import dataservice.impl.DiscountWebServiceImpl;
 import dataservice.impl.HotelDataServiceImpl;
 import dataservice.impl.LoginCheckServiceImpl;
 import dataservice.impl.RoomDataServiceImpl;
 import po.AccountPO;
 import po.CustomerPO;
+import po.DiscountPO_hotel;
 import po.DiscountPO_web;
 import po.HotelPO;
 import po.ImageInfoPO;
@@ -36,7 +39,7 @@ import tools.StandardSearch;
 
 public class DataRemoteObject extends UnicastRemoteObject implements
 LoginCheckService ,AccountDataService,CustomerDataService,
-HotelDataService,RoomDataService, DiscountWebDataService{
+HotelDataService,RoomDataService, DiscountWebDataService,DiscountHotelDataService{
 	/**
 	 *  RMI 接口
 	 */
@@ -47,6 +50,7 @@ HotelDataService,RoomDataService, DiscountWebDataService{
 	private HotelDataService hotelDataService;
 	private RoomDataService roomDataService;
 	private DiscountWebDataService discountWebDataService;
+	private DiscountHotelDataService discountHotelDataService;
 	protected DataRemoteObject() throws RemoteException {
 		//用loginCheckServiceIMPL 实现
 		loginCheckService = new LoginCheckServiceImpl();
@@ -55,6 +59,7 @@ HotelDataService,RoomDataService, DiscountWebDataService{
 		hotelDataService = new HotelDataServiceImpl();
 		roomDataService = new RoomDataServiceImpl();
 		discountWebDataService = new DiscountWebServiceImpl();
+		discountHotelDataService = new DiscountHotelDataServiceImpl();
 
 	}
 	/**
@@ -203,6 +208,22 @@ HotelDataService,RoomDataService, DiscountWebDataService{
 	}
 	public ResultMessage_Discount invalidDiscount(String discountID) throws RemoteException {
 		return discountWebDataService.invalidDiscount(discountID);
+	}
+	
+	/**
+	 * discount hotel
+	 */
+	public ResultMessage_DiscountDetail addHotelDiscount(String hotelID, DiscountPO_hotel dis) throws RemoteException {
+		return discountHotelDataService.addHotelDiscount(hotelID, dis);
+	}
+	public ResultMessage_Discount editHotelDiscount(String hotelID, DiscountPO_hotel dis) throws RemoteException {
+		return discountHotelDataService.editHotelDiscount(hotelID, dis);
+	}
+	public List<DiscountPO_hotel> getHotelDiscount(String hotelID) throws RemoteException {
+		return discountHotelDataService.getHotelDiscount(hotelID);
+	}
+	public ResultMessage_Discount deleteHotelDiscount(String hotelID, String discountID) throws RemoteException {
+		return discountHotelDataService.invalidDiscount(discountID);
 	}
 
 }

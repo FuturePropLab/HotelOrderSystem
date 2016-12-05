@@ -3,14 +3,16 @@ package DataFactory;
 import dataservice.datahelper.AccountDataHelper;
 import dataservice.datahelper.AddressDataHelper;
 import dataservice.datahelper.CustomerDataHelper;
-import dataservice.datahelper.DiscountDataHelper;
+import dataservice.datahelper.DiscountHotelDataHelper;
+import dataservice.datahelper.DiscountWebDataHelper;
 import dataservice.datahelper.HotelDataHelper;
 import dataservice.datahelper.LoginCheckDatahelper;
 import dataservice.datahelper.RoomDateHelper;
 import dataservice.datahelper.impl.AccountDataHelperImpl;
 import dataservice.datahelper.impl.AddressDataHelperImpl;
 import dataservice.datahelper.impl.CustomerDataHelperImpl;
-import dataservice.datahelper.impl.DiscountDataHelperImpl;
+import dataservice.datahelper.impl.DiscountHotelDataHelperImpl;
+import dataservice.datahelper.impl.DiscountWebDataHelperImpl;
 import dataservice.datahelper.impl.HotelDataHelperImpl;
 import dataservice.datahelper.impl.LoginCheckDatahelperImpl;
 import dataservice.datahelper.impl.RoomDateHelperImpl;
@@ -70,8 +72,12 @@ public  class DataHelperUtils {
 		return  RoomDateHelperImpl.getInstantce();
 	}
 	
-	public static DiscountDataHelper getDiscountDataHelperImpl(){
-		return DiscountDataHelperImpl.getInstance();
+	public static DiscountWebDataHelper getDiscountWebDataHelper(){
+		return DiscountWebDataHelperImpl.getInstance();
+	}
+	
+	public static DiscountHotelDataHelper getDiscountHotelDataHelper(){
+		return DiscountHotelDataHelperImpl.getInstance();
 	}
 	
 }

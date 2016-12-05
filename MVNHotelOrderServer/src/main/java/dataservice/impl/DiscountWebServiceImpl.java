@@ -4,7 +4,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import dataservice.DiscountWebDataService;
-import dataservice.datahelper.DiscountDataHelper;
+import dataservice.datahelper.DiscountWebDataHelper;
 import po.DiscountPO_web;
 import tools.ResultMessage_Discount;
 import tools.ResultMessage_DiscountDetail;
@@ -16,11 +16,11 @@ import tools.ResultMessage_DiscountDetail;
  */
 public class DiscountWebServiceImpl implements DiscountWebDataService {
 	
-	private DiscountDataHelper discountDataHelper;
+	private DiscountWebDataHelper discountDataHelper;
 	
 	public DiscountWebServiceImpl(){
 		discountDataHelper = DataFactory.DataHelperUtils
-				.getDiscountDataHelperImpl();
+				.getDiscountWebDataHelper();
 	}
 	
 	public ResultMessage_DiscountDetail addWebDiscount(DiscountPO_web discountPO_web) throws RemoteException {

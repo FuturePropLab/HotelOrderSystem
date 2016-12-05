@@ -9,15 +9,14 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
-import businesslogic.room.RoomManageController;
-import businesslogic.room.RoomSingleController;
-import dataservice.DiscountWebDataService;
-import po.DiscountPO_web;
+import dataservice.DiscountHotelDataService;
+import javafx.util.converter.LocalDateStringConverter;
+import po.DiscountPO_hotel;
 import rmi.RemoteHelper;
-import tools.RoomType;
+import tools.DiscountState;
+import tools.Strategy_hotelType;
 
 public class ClientRunner {
 	private RemoteHelper remoteHelper;
@@ -58,13 +57,19 @@ public class ClientRunner {
 	
 	
 	public void test() throws RemoteException{		
-		 DiscountWebDataService discountWebDataService =
-				 RemoteHelper.getInstance().getDiscountWebDAteService();
-		 List<DiscountPO_web> list = discountWebDataService.getWebDiscount();
-		 for (int i = 0; i < list.size(); i++) {
-			System.out.println(list.get(i).getDiscountState());
-			System.out.println(list.get(i).getDiscount());
-		}
+//		 DiscountWebDataService discountWebDataService =
+//				 RemoteHelper.getInstance().getDiscountWebDAteService();
+//		 List<DiscountPO_web> list = discountWebDataService.getWebDiscount();
+//		 for (int i = 0; i < list.size(); i++) {
+//			System.out.println(list.get(i).getDiscountState());
+//			System.out.println(list.get(i).getDiscount());
+//		}
+		
+		DiscountHotelDataService discountHotelDataService = RemoteHelper.getInstance().getDiscountHotelDataService();
+		DiscountPO_hotel discountPO_hotel = new DiscountPO_hotel
+				(DiscountState.valid, Strategy_hotelType.CooperateEnterprise, null, 9.5,  LocalDate.now(),
+						LocalDate.of(2016, 12, 31), "王帅惟设计的", false, "朱俊毅粉丝后援团");
+		System.out.println(discountHotelDataService.getHotelDiscount("HT000").isEmpty());
 		 
 	}
 	

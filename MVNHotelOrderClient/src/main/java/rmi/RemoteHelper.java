@@ -1,15 +1,15 @@
 package rmi;
 
 import java.rmi.Remote;
-import businesslogic.room.RoomSingleController;
+
 import dataservice.AccountDataService;
 import dataservice.CustomerDataService;
+import dataservice.DiscountHotelDataService;
 import dataservice.DiscountWebDataService;
 import dataservice.HotelDataService;
 import dataservice.LoginCheckService;
 import dataservice.OrderDataService;
 import dataservice.RoomDataService;
-import tools.RoomType;
 
 /**
  * 
@@ -73,5 +73,9 @@ public class RemoteHelper {
 	
 	public DiscountWebDataService getDiscountWebDAteService(){
 		return (DiscountWebDataService)remote;
+	}
+	
+	public DiscountHotelDataService getDiscountHotelDataService(){
+		return (DiscountHotelDataService)remote;
 	}
 }

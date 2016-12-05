@@ -36,7 +36,7 @@ jdbc:mysql://localhost:3306/wsw
         <mapping class="po.DiscountPO_web_period"/>
         <mapping class="po.DiscountPO_web_level"/>
         <mapping class="po.DiscountPO_web_district"/>
-        
+        <mapping class="po.DiscountHotelPO"/>
         
     </session-factory>
 </hibernate-configuration>

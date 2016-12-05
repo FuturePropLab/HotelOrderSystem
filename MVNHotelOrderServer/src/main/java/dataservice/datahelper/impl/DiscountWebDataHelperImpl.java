@@ -11,7 +11,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import DataFactory.Hibernateutils;
-import dataservice.datahelper.DiscountDataHelper;
+import dataservice.datahelper.DiscountWebDataHelper;
 import po.DiscountPO_web;
 import po.DiscountPO_web_district;
 import po.DiscountPO_web_level;
@@ -21,18 +21,18 @@ import tools.ResultMessage_Discount;
 import tools.ResultMessage_DiscountDetail;
 import tools.Strategy_webType;
 
-public class DiscountDataHelperImpl implements DiscountDataHelper {
+public class DiscountWebDataHelperImpl implements DiscountWebDataHelper {
 	
 	
-	private static DiscountDataHelperImpl discountDataHelperImpl = null;
+	private static DiscountWebDataHelperImpl discountDataHelperImpl = null;
 	
-	private DiscountDataHelperImpl(){
+	private DiscountWebDataHelperImpl(){
 		
 	}
 
-	public static DiscountDataHelperImpl getInstance(){
+	public static DiscountWebDataHelperImpl getInstance(){
 		if(discountDataHelperImpl == null)
-			 discountDataHelperImpl  = new DiscountDataHelperImpl();
+			 discountDataHelperImpl  = new DiscountWebDataHelperImpl();
 		return discountDataHelperImpl;
 	}
 	private String generateDiscountID(){

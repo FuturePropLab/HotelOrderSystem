@@ -9,7 +9,7 @@ import po.DiscountPO_web_period;
 import tools.ResultMessage_Discount;
 import tools.ResultMessage_DiscountDetail;
 
-public interface DiscountDataHelper {
+public interface DiscountWebDataHelper {
 		
 		/**
 		 * 

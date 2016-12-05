@@ -1,7 +1,7 @@
 package testHibernate;
 
 import DataFactory.Hibernateutils;
-import dataservice.datahelper.impl.DiscountDataHelperImpl;
+import dataservice.datahelper.impl.DiscountWebDataHelperImpl;
 import po.DiscountPO_web;
 import po.DiscountPO_web_level;
 
