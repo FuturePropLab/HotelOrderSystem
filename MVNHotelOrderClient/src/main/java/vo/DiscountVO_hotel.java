@@ -5,7 +5,11 @@ import java.time.LocalDate;
 import po.DiscountPO_hotel;
 import tools.DiscountState;
 import tools.Strategy_hotelType;
-
+/**
+ * 
+ * @author LWY
+ *
+ */
 public class DiscountVO_hotel {
 	
 	public  Strategy_hotelType type;

@@ -37,4 +37,11 @@ public class CreditData_Stub implements CreditDataService {
 		return null;
 	}
 
+
+	@Override
+	public ResultMessage setLevel(int level, String customer_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

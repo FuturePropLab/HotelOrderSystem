@@ -27,15 +27,7 @@ public abstract class StrategyItemController {
 	@FXML
 	protected Label state;
 	@FXML
-	protected TextField aditionalMessage;
-	@FXML
 	protected TextField discount;
-	@FXML
-	protected DatePicker startTime;
-	@FXML
-	protected DatePicker endTime;
-	@FXML
-	protected CheckBox superposition;
 	@FXML
 	protected Hyperlink delete;//确认和删除合一的按钮，名字叫delete
 	protected WebStrategyController webStrategyController;
@@ -44,6 +36,7 @@ public abstract class StrategyItemController {
 	public void setWebStrategyController(WebStrategyController webStrategyController) {
 		this.webStrategyController = webStrategyController;
 	}
+	
 	@FXML
 	protected void handleDiscount(){
 		double num = 0;
@@ -55,14 +48,6 @@ public abstract class StrategyItemController {
 		if(num<0||num>10){
 			System.out.println("discount is not between 0 and 10");
 		}
-	}
-	@FXML
-	protected void handleStartTime(){
-		//TODO: 开始时间在结束时间之后时处理
-	}
-	@FXML
-	protected void handleEndTime(){
-		//TODO: 开始时间在结束时间之后时处理
 	}
 	
 	@FXML
@@ -77,7 +62,7 @@ public abstract class StrategyItemController {
 				webStrategyController.addNewItem(getType());
 			}
 			else {
-				System.out.println("the discount is not finished");//TODO:弹窗提示未完成
+				System.out.println("the strategy is not finished");//TODO:弹窗提示未完成
 			}
 		}
 		else {
@@ -94,40 +79,14 @@ public abstract class StrategyItemController {
 	 * @return
 	 */
 	protected boolean isFinished() {
-		return startTime.getValue()!=null && endTime.getValue()!=null;
+		return !"".equals(discount.getText());
 	}
 	
 	protected void disableControls() {
 		state.setText("已删除");
 		state.setTextFill(Color.GRAY);
 		title.setTextFill(Color.GRAY);
-		aditionalMessage.setEditable(false);
 		discount.setEditable(false);
-		startTime.setEditable(false);
-		endTime.setEditable(false);
-		superposition.setDisable(true);
 		delete.setDisable(true);
-	}
-	
-	/**
-	 * 
-	 * @param title 标题
-	 * @param state 状态
-	 * @param aditionalMessage 备注
-	 * @param discount 折扣
-	 * @param startTime 开始时间
-	 * @param endTime 结束时间
-	 * @param superposition 能否与其它折扣叠加
-	 */
-	public void setValue(String title,String state,String aditionalMessage,double discount,Date startTime,
-			Date endTime,boolean superposition) {
-		this.title.setText(title);
-		this.state.setText(state);
-		this.aditionalMessage.setText(aditionalMessage);
-		this.discount.setText(discount+"");
-		this.startTime.setPromptText(startTime.getYear()+"-"+startTime.getMonth()+"-"+startTime.getDate());
-		this.endTime.setPromptText(endTime.getYear()+"-"+endTime.getMonth()+"-"+endTime.getDate());
-		this.superposition.setSelected(superposition);
-		this.delete.setText("删 除");//字中间有空格
 	}
 }

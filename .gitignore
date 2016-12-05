@@ -95,3 +95,25 @@ MVNHotelOrderClient/target/classes/vo/HotelRoomInfoVO.class
 *.class
 
 MVNHotelOrderClient/target/classes/businesslogicservice/RoomHotelInfoService.class
+
+MVNHotelOrderClient/target/classes/businesslogicservice/HotelDealService.class
+
+MVNHotelOrderClient/target/classes/businesslogicservice/RoomHotelInfoService.class
+
+*.class
+
+MVNHotelOrderClient/target/classes/dataservice/RoomDataService.class
+
+*.class
+
+MVNHotelOrderClient/target/classes/dataservice/RoomDataService.class
+
+MVNHotelOrderClient/target/classes/driver/RoomDataService_Driver.class
+
+MVNHotelOrderClient/target/classes/vo/RoomVO.class
+
+MVNHotelOrderClient/target/classes/vo/HotelRoomInfoVO.class
+
+MVNHotelOrderClient/target/classes/vo/HotelInputVO.class
+
+MVNHotelOrderClient/target/classes/vo/RoomVO.class

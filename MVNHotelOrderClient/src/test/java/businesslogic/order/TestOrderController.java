@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -51,7 +52,8 @@ public class TestOrderController {
 		orderVO.orderState=OrderState.Unexecuted;
 		orderVO.mark=null;
 		orderVO.assessment=null;
-		searchOrderInfo=new SearchOrderInfoVO(null, null,null, null, OrderState.Unexecuted);
+		searchOrderInfo=new SearchOrderInfoVO("orderID", "customerID", "hotelID", "customerName", "hotelName", 
+				new Date(), OrderState.Unexecuted);
 		ExecutionInfoVO=new ExecutionInfoVO("orderID", new ArrayList<String>(), new Time(0), new Time(0), new Time(0));
 	}
 

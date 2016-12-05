@@ -13,14 +13,13 @@ public class DiscountPO_web_district extends DiscountPO_web{
 	private String city;
 	private String district;
 	private String businessCircle;
-	private double discount;
 	
 	public DiscountPO_web_district(int lv,String city,String district,String businessCircle,double discount){
 		this.level=lv;
 		this.setCity(city);
 		this.setDistrict(district);
 		this.setBusinessCircle(businessCircle);
-		this.discount=discount;
+		setDiscount(discount);
 	}
 
 
@@ -30,7 +29,7 @@ public class DiscountPO_web_district extends DiscountPO_web{
 		this.city=discountVO_web.city;
 		this.district=discountVO_web.district;
 		this.businessCircle=discountVO_web.businessCircle;
-		this.discount=discountVO_web.discount;
+		setDiscount(discountVO_web.discount);
 		
 	}
 

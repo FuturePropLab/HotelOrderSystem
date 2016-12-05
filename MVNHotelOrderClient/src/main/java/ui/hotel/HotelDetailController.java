@@ -2,8 +2,12 @@ package ui.hotel;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import businesslogic.hotel.HotelDealController;
+import businesslogic.hotel.HotelManageController;
+import businesslogicservice.HotelDealService;
+import businesslogicservice.ManageHotelInfoService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -16,11 +20,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import tools.HotelAddress;
+import tools.HotelRoomInfo;
+import tools.ResultMessage_Hotel;
 import tools.RoomType;
 import ui.customer.BookHotelController;
 import ui.main.DetailsController;
 import ui.room.RoomInfoController;
 import vo.HotelDetailsVO;
+import vo.HotelDiscribtionsVO;
+import vo.HotelFacilityVO;
+import vo.HotelInputVO;
 
 /**
  * 酒店详情界面的控制器
@@ -112,6 +122,11 @@ public class HotelDetailController extends DetailsController{
 	private HotelDetailsVO hotelDetailsVO;//TODO:initialize()里设置
 	private String HotelID = "HT001"; //TODO:initialize()里设置
 	
+	
+	private HotelDealService hotelDealService;
+	private ManageHotelInfoService manageHotelService;
+	
+	
 	/**
      * Initializes the controller class. This method is automatically called
      * after the fxml file has been loaded.
@@ -120,7 +135,9 @@ public class HotelDetailController extends DetailsController{
     private void initialize() {//TODO:这个方法的内容先别动，要大改
     	//TODO:从blservice获取数据设置好值
     	if(false){//TODO:如果是客户
-    		
+    
+			
+
     	}
     	else if (true) {//TODO:如果是酒店工作人员
 			hotelNameLabel.setVisible(false);
@@ -250,18 +267,44 @@ public class HotelDetailController extends DetailsController{
 	@FXML
 	private void handleAssess() {
 		//TODO:跳转到评价信息界面
+		
 	}
 	@FXML
 	private void handleCityComboBox() {
 		//TODO:从blservice获取相应城市的区的信息
+		hotelDealService = HotelDealController.getInstance();
+		List<String> District = hotelDealService.getAllDistrictByCity(cityComboBox.getValue());
+		for(int i =0;i<District.size();i++){
+		districtComboBox.setValue(District.get(i));
+		}
+		
+		
+		
 	}
 	@FXML
 	private void handleDistrictComboBox() {
 		//TODO:从blservice获取相应区的商圈的信息
+		hotelDealService = HotelDealController.getInstance();
+		List<String> BusinessCircle = hotelDealService.getBusineeCircleByDistrict(districtComboBox.getValue());
+		for(int i = 0;i<BusinessCircle.size();i++){
+			
+			businessCircleComboBox.setValue(BusinessCircle.get(i));
+			
+		}
 	}
 	@FXML
 	private void handleSave() {
 		//TODO:调用blservice保存酒店信息
+		manageHotelService = HotelManageController.getInstance();
+		HotelAddress hotelAddress = new HotelAddress(cityComboBox.getValue(), districtComboBox.getValue(), businessCircleComboBox.getValue(), addressTextField.getText());
+		HotelInputVO hotelInputVO = new HotelInputVO(HotelID,hotelAddress);
+		ResultMessage_Hotel resultMessageAddress = manageHotelService.saveHotelInfo(hotelInputVO);
+	
+		
+		
+		
+		
+		
 	}
 	
 	private void toBookHotelView(RoomType roomType) {

@@ -1,7 +1,11 @@
 package vo;
 
 import po.DiscountPO_web_district;
-
+/**
+ * 
+ * @author LWY
+ *
+ */
 public class DiscountVO_web_district extends DiscountVO_web{
 	
 	public DiscountVO_web_district(DiscountPO_web_district discountPO_web) {

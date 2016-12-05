@@ -65,6 +65,9 @@ public class RootLayoutController {
 			changeDetails("../hotel/FacilitiesInfo.fxml");
 //        	changeDetails("../hotel/HotelDetail.fxml");
 //			changeDetails("../room/RoomInfo.fxml");
+
+//			changeDetails("../discount/WebStrategy.fxml");
+
         	changeGuid("GuideUI.fxml");
 		} catch (IOException e) {
 			e.printStackTrace();

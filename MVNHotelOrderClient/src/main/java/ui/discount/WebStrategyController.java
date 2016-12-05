@@ -7,14 +7,22 @@ import java.util.Date;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Accordion;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TitledPane;
+import ui.main.DetailsController;
 
 /**
  * 酒店优惠策略制定界面的控制器
  * @author zjy
  */
-public class WebStrategyController {
+public class WebStrategyController extends DetailsController{
 
+	@FXML 
+	private CheckBox notStart;
+	@FXML 
+	private CheckBox ongoing;
+	@FXML 
+	private CheckBox deleted;
 	@FXML 
 	private Accordion specialDayList;
 	@FXML 
@@ -32,6 +40,10 @@ public class WebStrategyController {
     private void initialize() {
     	initAccordions();
     }
+    @FXML
+    private void handleFilter() {
+    	//TODO:将显示出来的项目按三个checkbox过滤掉不显示的
+    }
     
     
     private void initAccordions() {
@@ -40,21 +52,18 @@ public class WebStrategyController {
     	//下面是一个例子
     	SpecialDayItemController specialDayItemController=
     			(SpecialDayItemController)addTitlePane(specialDayList,"SpecialDayItem.fxml");
-    	specialDayItemController.setValue("title", "未开始", "无", 9.5, new Date(2015, 10, 19), 
-    			new Date(2015, 10, 20), true);
+    	specialDayItemController.setValue("未开始", 2.2, new Date(2015, 10, 19), new Date(2015, 10, 20));
     	VIPAndBusinessCircleItemController vipAndBusinessCircleItemController=
     			(VIPAndBusinessCircleItemController)addTitlePane(VIPAndBusinessCircleList,"VIPAndBusinessCircleItem.fxml");
-    	vipAndBusinessCircleItemController.setValue("title", "未开始", "无", 9.5, new Date(2015, 10, 19), 
-    			new Date(2015, 10, 20), true);
+    	vipAndBusinessCircleItemController.setValue("未开始", 2.3, 1, "city", "district", "businessCircle");
     	VIPLevelAndDiscountItemController vipLevelAndDiscountItemController=
     			(VIPLevelAndDiscountItemController)addTitlePane(VIPLevelAndDiscountList,"VIPLevelAndDiscountItem.fxml");
-    	vipLevelAndDiscountItemController.setValue("title", "未开始", "无", 9.5, new Date(2015, 10, 19), 
-    			new Date(2015, 10, 20), true);
+    	vipLevelAndDiscountItemController.setValue("未开始", 2.4, 1, 200);
     	//上面是一个例子
     	
-    	addTitlePane(specialDayList,"SpecialDayItem.fxml");
-    	addTitlePane(VIPAndBusinessCircleList,"VIPAndBusinessCircleItem.fxml");
-    	addTitlePane(VIPLevelAndDiscountList,"VIPLevelAndDiscountItem.fxml");
+    	addNewItem(ItemType.SpecialDay);
+    	addNewItem(ItemType.VIPAndBusinessCircle);
+    	addNewItem(ItemType.VIPLevelAndDiscount);
     }
     private StrategyItemController addTitlePane(Accordion accordion,String fxml) {
     	try {       	
@@ -86,7 +95,9 @@ public class WebStrategyController {
 			addTitlePane(VIPAndBusinessCircleList,"VIPAndBusinessCircleItem.fxml");
 			break;
 		case VIPLevelAndDiscount:
-			addTitlePane(VIPLevelAndDiscountList,"VIPLevelAndDiscountItem.fxml");
+			VIPLevelAndDiscountItemController vipLevelAndDiscountItemController=
+			(VIPLevelAndDiscountItemController)addTitlePane(VIPLevelAndDiscountList,"VIPLevelAndDiscountItem.fxml");
+			vipLevelAndDiscountItemController.setLevel(VIPLevelAndDiscountList.getPanes().size());
 			break;
 		default:
 			break;

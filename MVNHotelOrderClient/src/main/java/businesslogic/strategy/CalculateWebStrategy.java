@@ -1,7 +1,6 @@
 package businesslogic.strategy;
 
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 import businesslogic.discount.StrategyGet;
@@ -15,7 +14,6 @@ import vo.OrderInputCalVO;
  */
 
 public class CalculateWebStrategy {
-	// private WebStrategyInterface
 
 	private List<DiscountVO_web> strategyList;
 	private OrderInputCalVO orderInputCalVO;
@@ -25,6 +23,7 @@ public class CalculateWebStrategy {
 		StrategyGetService discount = new StrategyGet();
 		strategyList = discount.getSuitableDiscount_web(orderInput);
 		this.orderInputCalVO = orderInput;
+		
 		// DiscountGetService disDealService = new MockDiscount("web");//桩程序
 
 		// strategyList = disDealService.getSuitableDiscount_web(orderInput);
@@ -35,35 +34,6 @@ public class CalculateWebStrategy {
 	 * 
 	 * @return 最优策略
 	 */
-	// public List<DiscountVO_web> calBest() {
-	//
-	// double min = 1.0;
-	// List<DiscountVO_web> res = new LinkedList<DiscountVO_web>();
-	//
-	// Iterator<DiscountVO_web> iter = strategyList.iterator();
-	//
-	// while (iter.hasNext()) {
-	//
-	// DiscountVO_web strategyVO_web = iter.next();
-	// FactoryConcreteWebStrategy factoryConcreteWebStrategy = new
-	// FactoryConcreteWebStrategy();
-	// WebStrategyInterface webStrategyInterface =
-	// factoryConcreteWebStrategy.getConcreteInstance(strategyVO_web);
-	//
-	// double calulate = webStrategyInterface.calculate(orderInput,
-	// strategyVO_web);
-	// if (calulate < min) {
-	//
-	// min = calulate;
-	// res.add(strategyVO_web);
-	//
-	// }
-	//
-	// }
-	// return res;
-	//
-	// // return (DiscountVO_web) strategyList.get(0);
-	// }
 
 	public DiscountVO_web calBest() {
 
