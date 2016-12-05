@@ -58,7 +58,7 @@ public class Order {
 			this.orderDataService=orderDataService;
 			init(orderInput);
 			saveOrder();
-			sync();
+//			sync();
 		}
 	}
 	/**
@@ -77,7 +77,7 @@ public class Order {
 		this.hotelInfo=hotelInfo;
 		this.orderDataService=orderDataService;
 		init(orderPO);
-		sync();
+//		sync();
 	}
 	/**
 	 * @deprecated
@@ -211,7 +211,7 @@ public class Order {
 	public OrderPO getOrderPO() {
 		return new OrderPO(orderID, placingOrderInfo.customerID, placingOrderInfo.hotelID, placingOrderInfo.roomNumber,
 				placingOrderInfo.startTime, placingOrderInfo.latestTime, placingOrderInfo.planedLeaveTime, 
-				checkInInfo.checkInTime, checkOutInfo.checkOutTime, revokeTime, placingOrderInfo.roomType, 
+				checkInInfo.checkInTime, checkInInfo.planedLeaveTime,checkOutInfo.checkOutTime, revokeTime, placingOrderInfo.roomType, 
 				placingOrderInfo.numberOfRooms, value, placingOrderInfo.planedPeopleNumber, placingOrderInfo.child, 
 				orderState, assessInfo.mark, assessInfo.assessment,placingOrderInfo.price);
 	}
@@ -257,7 +257,7 @@ public class Order {
 				orderPO.getNumberOfRooms(), orderPO.getRoomNumber(), orderPO.getHotelID(), orderPO.getStartTime(), 
 				orderPO.getLatestTime(), orderPO.getPlanedLeaveTime(), orderPO.getPlanedPeopleNumber(), 
 				orderPO.isChild(),orderPO.getPrice());
-		this.checkInInfo=new CheckInInfo(orderPO.getPlanedLeaveTime(), orderPO.getCheckInTime());
+		this.checkInInfo=new CheckInInfo(orderPO.getPlanedCheckOutTime(), orderPO.getCheckInTime());
 		this.checkOutInfo=new CheckOutInfo(orderPO.getCheckOutTime());
 		this.assessInfo=new AssessInfo(orderPO.getMark(), orderPO.getAssessment());
 	}

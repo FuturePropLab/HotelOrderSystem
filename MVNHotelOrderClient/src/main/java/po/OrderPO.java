@@ -22,6 +22,7 @@ public class OrderPO {
 	private Date latestTime;//最晚订单执行时间
 	private Date planedLeaveTime;//预计离开时间
 	private Date checkInTime;//实际入住时间
+	private Date planedCheckOutTime;//预计退房时间  待加上
 	private Date checkOutTime;//实际离开时间
 	private Date revokeTime;//实际撤销时间
 	private RoomType roomType;
@@ -64,7 +65,7 @@ public class OrderPO {
 		this.assessment=null;
 	}
 	public OrderPO(String orderID, String customerID, String hotelID, ArrayList<String> roomNumber, Date startTime,
-			Date latestTime, Date planedLeaveTime, Date checkInTime, Date checkOutTime, Date revokeTime,
+			Date latestTime, Date planedLeaveTime, Date checkInTime, Date planedCheckOutTime,Date checkOutTime, Date revokeTime,
 			RoomType roomType, int numberOfRooms, int value, int planedPeopleNumber, boolean child,
 			OrderState orderState, Mark mark, String assessment,double price) {
 		super();
@@ -76,6 +77,7 @@ public class OrderPO {
 		this.latestTime = latestTime;
 		this.planedLeaveTime = planedLeaveTime;
 		this.checkInTime = checkInTime;
+		this.planedCheckOutTime=planedCheckOutTime;
 		this.checkOutTime = checkOutTime;
 		this.revokeTime = revokeTime;
 		this.roomType = roomType;
@@ -251,5 +253,11 @@ public class OrderPO {
 	}
 	public void setPrice(double price) {
 		this.price = price;
+	}
+	public Date getPlanedCheckOutTime() {
+		return planedCheckOutTime;
+	}
+	public void setPlanedCheckOutTime(Date planedCheckOutTime) {
+		this.planedCheckOutTime = planedCheckOutTime;
 	}
 }

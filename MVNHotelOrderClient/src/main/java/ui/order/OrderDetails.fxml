@@ -6,11 +6,12 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.order.OrderDetailsController">
    <children>
       <AnchorPane layoutX="126.0" prefHeight="750.0" prefWidth="620.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -37,48 +38,62 @@
                         <Font size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="141.0" layoutY="443.0" text="2016-10-2  12：00">
+                  <Label fx:id="planedLeaveDate" layoutX="141.0" layoutY="443.0" text="2016-10-2  12：00">
                      <font>
                         <Font size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="140.0" layoutY="411.0" text="2016-10-1  22：00">
+                  <Label fx:id="latestDate" layoutX="140.0" layoutY="411.0" text="2016-10-1  22：00">
                      <font>
                         <Font size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="162.0" layoutY="475.0" text="1人">
+                  <Label layoutX="34.0" layoutY="536.0" text="客户姓名">
                      <font>
                         <Font size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="168.0" layoutY="505.0" text="无">
+                  <HBox layoutX="162.0" layoutY="475.0">
+                     <children>
+                        <Label fx:id="people" text="1">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Label text="人">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Label fx:id="children" layoutX="168.0" layoutY="505.0" text="无">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="customerName" layoutX="149.0" layoutY="536.0" text="特朗普">
                      <font>
                         <Font size="19.0" />
                      </font>
                   </Label>
                </children>
             </Group>
-            <Line endX="175.0" layoutX="114.0" layoutY="86.0" startX="-100.0" />
-            <Label contentDisplay="CENTER" layoutX="90.0" layoutY="34.0" text="皇家酒店">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
-            <Label layoutX="119.0" layoutY="99.0" text="未执行" textFill="#0eee0e">
+            <Line endX="175.0" layoutX="128.0" layoutY="86.0" startX="-100.0" />
+            <Label fx:id="orderState" layoutX="130.0" layoutY="94.0" text="未执行" textFill="#0eee0e">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
             <Group layoutX="81.0" layoutY="238.0">
                <children>
-                  <Label text="2016-10-1">
+                  <Label fx:id="date_from" text="2016-10-1">
                      <font>
                         <Font size="27.0" />
                      </font>
                   </Label>
                   <Label layoutX="68.0" layoutY="28.0" prefHeight="20.0" prefWidth="27.0" text="|" />
-                  <Label layoutY="43.0" text="2016-10-2">
+                  <Label fx:id="date_to" layoutY="43.0" text="2016-10-2">
                      <font>
                         <Font size="27.0" />
                      </font>
@@ -87,22 +102,36 @@
             </Group>
             <Group layoutX="67.0" layoutY="326.0">
                <children>
-                  <Label text="总统套房">
+                  <Label fx:id="roomType" text="总统套房">
                      <font>
                         <Font size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="107.0" text="1间">
-                     <font>
-                        <Font size="19.0" />
-                     </font>
-                  </Label>
+                  <HBox layoutX="107.0">
+                     <children>
+                        <Label fx:id="roomNumber" text="1">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Label text="间">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                   <Label layoutX="19.0" layoutY="32.0" text="实付">
                      <font>
                         <Font size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="103.0" layoutY="35.0" text="￥999999999" />
+                  <HBox layoutX="103.0" layoutY="35.0">
+                     <children>
+                        <Label text="￥" />
+                        <Label fx:id="price" text="999999999" />
+                     </children>
+                  </HBox>
                </children>
             </Group>
             <Label layoutX="13.0" layoutY="683.0" text="酒店联系方式">
@@ -110,12 +139,12 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="166.0" layoutY="683.0" text="xxxxxxxxxxx">
+            <Label fx:id="contactInformation" layoutX="166.0" layoutY="683.0" text="xxxxxxxxxxx">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="102.0" layoutY="648.0" text="南京市栖霞区仙林大道163号">
+            <Label fx:id="hotelAddress" layoutX="102.0" layoutY="648.0" text="南京市栖霞区仙林大道163号">
                <font>
                   <Font size="17.0" />
                </font>
@@ -127,7 +156,7 @@
                         <Font size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="94.0" text="000000000000001">
+                  <Label fx:id="orderID" layoutX="94.0" text="000000000000001">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -137,7 +166,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="98.0" layoutY="25.0" text="2016-10-1">
+                  <Label fx:id="placingOrderDate" layoutX="98.0" layoutY="25.0" text="2016-10-1">
                      <font>
                         <Font size="21.0" />
                      </font>
@@ -167,17 +196,17 @@
                         <Font size="21.0" />
                      </font>
                   </Label>
-                  <Label layoutX="149.0" layoutY="60.0" text="8888">
+                  <Label fx:id="roomNumbers" layoutX="129.0" layoutY="60.0" maxHeight="28.0" maxWidth="120.0" text="8888 8889 8810">
                      <font>
                         <Font size="21.0" />
                      </font>
                   </Label>
-                  <Label layoutX="35.0" layoutY="131.0" text="2016-10-1  22：00">
+                  <Label fx:id="checkInDate" layoutX="35.0" layoutY="131.0" text="2016-10-1  22：00">
                      <font>
                         <Font size="21.0" />
                      </font>
                   </Label>
-                  <Label layoutX="35.0" layoutY="202.0" text="2016-10-1  22：00">
+                  <Label fx:id="planedCheckOutDate" layoutX="35.0" layoutY="202.0" text="2016-10-1  22：00">
                      <font>
                         <Font size="21.0" />
                      </font>
@@ -198,7 +227,7 @@
                         <Font size="21.0" />
                      </font>
                   </Label>
-                  <Label layoutX="30.0" layoutY="91.0" text="2016-10-1  22：00">
+                  <Label fx:id="checkOutDate" layoutX="30.0" layoutY="91.0" text="2016-10-1  22：00">
                      <font>
                         <Font size="21.0" />
                      </font>
@@ -208,42 +237,60 @@
             <Group layoutX="348.0" layoutY="438.0">
                <children>
                   <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="217.0" stroke="BLACK" strokeType="INSIDE" width="245.0" />
-                  <Label layoutX="17.0" layoutY="14.0" text="评分">
+                  <Label layoutX="17.0" layoutY="14.0" text="评分：">
                      <font>
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="37.0" fitWidth="37.0" layoutX="61.0" layoutY="8.0">
-                     <image>
-                        <Image url="@../../../resources/images/star__selected.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="35.0" fitWidth="32.0" layoutX="209.0" layoutY="9.0">
-                     <image>
-                        <Image url="@../../../resources/images/star_unselected.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="37.0" fitWidth="37.0" layoutX="98.0" layoutY="8.0">
-                     <image>
-                        <Image url="@../../../resources/images/star__selected.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="37.0" fitWidth="37.0" layoutX="135.0" layoutY="8.0">
-                     <image>
-                        <Image url="@../../../resources/images/star__selected.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="37.0" fitWidth="37.0" layoutX="172.0" layoutY="8.0">
-                     <image>
-                        <Image url="@../../../resources/images/star__selected.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="17.0" layoutY="54.0" text="评价：">
+                  <HBox layoutX="108.0" layoutY="14.0">
+                     <children>
+                        <Label fx:id="mark" text="4">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label text="分">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="35.0" layoutY="43.0">
+                     <children>
+                        <ImageView fx:id="star_1" fitHeight="37.0" fitWidth="37.0">
+                           <image>
+                              <Image url="@../../../resources/images/star__selected.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="star_2" fitHeight="37.0" fitWidth="37.0">
+                           <image>
+                              <Image url="@../../../resources/images/star__selected.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="star_3" fitHeight="37.0" fitWidth="37.0">
+                           <image>
+                              <Image url="@../../../resources/images/star__selected.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="star_4" fitHeight="37.0" fitWidth="37.0">
+                           <image>
+                              <Image url="@../../../resources/images/star__selected.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="star_5" fitHeight="35.0" fitWidth="32.0">
+                           <image>
+                              <Image url="@../../../resources/images/star_unselected.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <Label layoutX="17.0" layoutY="90.0" text="评价：">
                      <font>
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <Label layoutX="17.0" layoutY="98.0" text="隔音效果较差">
+                  <Label fx:id="assess" layoutX="17.0" layoutY="119.0" maxWidth="216.0" text="隔音效果较差">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -255,9 +302,14 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Hyperlink layoutX="398.0" layoutY="672.0" text="撤销该订单">
+            <Hyperlink fx:id="revoke" layoutX="398.0" layoutY="672.0" onAction="#handleRevoke" text="撤销该订单" visible="false">
                <font>
                   <Font size="26.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink fx:id="hotelName" layoutX="94.0" layoutY="35.0" onAction="#handleHotelName" text="皇家酒店">
+               <font>
+                  <Font size="30.0" />
                </font>
             </Hyperlink>
          </children>

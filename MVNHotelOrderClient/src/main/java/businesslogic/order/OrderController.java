@@ -68,6 +68,7 @@ public class OrderController implements OrderService{
 		orderVO.latestTime=order.getPlacingOrderInfo().latestTime;
 		orderVO.planedLeaveTime=order.getPlacingOrderInfo().planedLeaveTime;
 		orderVO.checkInTime=order.getCheckInAndOutInfo().checkInTime;
+		orderVO.planedCheckOutTime=order.getCheckInAndOutInfo().planedLeaveTime;
 		orderVO.checkOutTime=order.getCheckInAndOutInfo().checkOutTime;
 		orderVO.revokeTime=order.getRevokeTime();
 		orderVO.roomType=order.getPlacingOrderInfo().roomType;
@@ -93,6 +94,7 @@ public class OrderController implements OrderService{
 		orderVO.latestTime=orderPO.getLatestTime();
 		orderVO.planedLeaveTime=orderPO.getPlanedLeaveTime();
 		orderVO.checkInTime=orderPO.getCheckInTime();
+		orderVO.planedCheckOutTime=orderPO.getPlanedCheckOutTime();
 		orderVO.checkOutTime=orderPO.getCheckOutTime();
 		orderVO.revokeTime=orderPO.getRevokeTime();
 		orderVO.roomType=orderPO.getRoomType();
