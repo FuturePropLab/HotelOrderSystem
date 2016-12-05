@@ -1,5 +1,6 @@
 package businesslogicservice;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 import po.Order;
@@ -24,8 +25,9 @@ public interface CreditLogDealService {
 	 * @param order
 	 * @param type
 	 * @return
+	 * @throws RemoteException 
 	 */
-	public ResultMessage CreditChangeAboutOrder(Order order,ActionType type);
+	public ResultMessage CreditChangeAboutOrder(Order order,ActionType type) throws RemoteException;
 	
 	/**
 	 * 根据客户的ID 返回该客户的所有信用记录
@@ -39,6 +41,7 @@ public interface CreditLogDealService {
 	 * @param customer_id
 	 * @param ChargeMoney
 	 * @return ResultMessage
+	 * @throws RemoteException 
 	 */
-	public ResultMessage charge(String customer_id,int ChargeMoney);
+	public ResultMessage charge(String customer_id,int ChargeMoney) throws RemoteException;
 }

@@ -2,6 +2,7 @@
 
 package businesslogic.credit;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,8 +33,9 @@ public class Credit {
 	 * @author chenyuyan 12/1
 	 * 
 	 * 获取订单信息，计算信用变化 ，并调用addlog增加记录
+	 * @throws RemoteException 
 	 */
-	public ResultMessage CreditChangeAboutOrder (Order order,ActionType type){
+	public ResultMessage CreditChangeAboutOrder (Order order,ActionType type) throws RemoteException{
 		int creditchange = 0;
 		int result;
 		OrderPO orderPO  =new OrderPO(order);
@@ -170,8 +172,9 @@ public class Credit {
 	 * @param customer_id
 	 * @param ChargeMoney
 	 * @return ResultMessage
+	 * @throws RemoteException 
 	 */
-	public ResultMessage charge(String customer_id, int ChargeMoney) {
+	public ResultMessage charge(String customer_id, int ChargeMoney) throws RemoteException {
 		int value = ChargeMoney * 100;
 		CustomerVO customerVO = customerInfo.getCustomerInfo(customer_id);
 		customerVO.credit+= value;
@@ -205,8 +208,9 @@ public class Credit {
 	 * @author chenyuyan
 	 * 每次信用值有所变化后，检验并根据网站营销人员的制定更改等级
 	 * level
+	 * @throws RemoteException 
 	 */
-	public ResultMessage levelUpdate(int result,String customer_id){
+	public ResultMessage levelUpdate(int result,String customer_id) throws RemoteException{
 		DiscountWebController discountWeb =  DiscountWebController.getInstance();
 		int [] uplevel =new int[4];
 		

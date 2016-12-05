@@ -2,6 +2,8 @@ package businesslogic.strategy;
 
 import static org.junit.Assert.assertEquals;
 
+import java.rmi.RemoteException;
+
 import org.junit.Test;
 
 import vo.OrderInputCalVO;
@@ -13,7 +15,7 @@ import vo.OrderInputCalVO;
 public class TestStrategy {
 
 	@Test
-	public void test() {
+	public void test() throws RemoteException {
 		
 		
 		//LocalDateTime time= LocalDateTime.now();原定用LocalDateTime,由于与朱俊毅的冲突，暂改
