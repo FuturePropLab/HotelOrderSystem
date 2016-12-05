@@ -55,6 +55,20 @@ public interface DiscountDataHelper {
 		 * @return
 		 */
 		public ResultMessage_Discount modifyDiscountPO(DiscountPO_web discountPO_web);
+		
+		/**
+		 * 
+		 * @param discountID
+		 * @return
+		 */
+		public ResultMessage_Discount invalidDisCount(String discountID);
+		
+		/**
+		 * 
+		 * @param discountID
+		 * @return
+		 */
+		public ResultMessage_Discount deleteDiscount(String discountID);
 
 	
 		
