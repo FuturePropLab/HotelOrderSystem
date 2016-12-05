@@ -41,21 +41,21 @@ public class Hotel {
 	 * @return ResultMessage_Hotel成功
 	 */
 	public ResultMessage_Hotel addHotel(HotelInputVO hotelInputVO) {
-		String username = hotelInputVO.username;
-		String password = hotelInputVO.password;
+//		String username = hotelInputVO.username;
+//		String password = hotelInputVO.password;
 		HotelAccountController hotelAccountController =  HotelAccountController.getInstance();
-		ResultMessage_Account rs = hotelAccountController.addAccount(username, password);
+//		ResultMessage_Account rs = hotelAccountController.addAccount(username, password);
 		
-		if(!rs.equals(ResultMessage_Account.Success)){
-			//TODO  add more return detail
-			return ResultMessage_Hotel.fail;
-		}
-		String hotelID = hotelAccountController.getAccountID(username);
-		if("".equals(hotelID) || hotelID == null) return ResultMessage_Hotel.fail;
+//		if(!rs.equals(ResultMessage_Account.Success)){
+//			TODO  add more return detail
+//			return ResultMessage_Hotel.fail;
+//		}
+//		String hotelID = hotelAccountController.getAccountID(username);
+//		if("".equals(hotelID) || hotelID == null) return ResultMessage_Hotel.fail;
 		
 		//一般应该是空的
 		HotelPO hotelPO = new HotelPO(hotelInputVO);
-		hotelPO.setHotelID(hotelID);	
+//		hotelPO.setHotelID(hotelID);	
 		ResultMessage_Hotel result;
 		try {
 			result = hotelDataService.addHotel(hotelPO);
@@ -90,12 +90,12 @@ public class Hotel {
 		}	
 		
 		//更新酒店的设施图片
-		if(hotelInputVO.hotelFacilityVO!=null  && hotelInputVO.hotelFacilityVO.facilityImage!=null){
-			URI uri = hotelInputVO.hotelFacilityVO.facilityImage;
-			ResultMessage_Hotel r = pictureDeal.uploadFacilttyPicture(hotelInputVO.hotelID, uri);
-			if(r == ResultMessage_Hotel.fail)
-				rs = ResultMessage_Hotel.fail;
-		}
+//		if(hotelInputVO.hotelFacilityVO!=null  && hotelInputVO.hotelFacilityVO.facilityImage!=null){
+//			URI uri = hotelInputVO.hotelFacilityVO.facilityImage;
+//			ResultMessage_Hotel r = pictureDeal.uploadFacilttyPicture(hotelInputVO.hotelID, uri);
+//			if(r == ResultMessage_Hotel.fail)
+//				rs = ResultMessage_Hotel.fail;
+//		}
 		//更新酒店的其他信息
 		HotelPO hotelPO = new HotelPO(hotelInputVO);
 		try {
