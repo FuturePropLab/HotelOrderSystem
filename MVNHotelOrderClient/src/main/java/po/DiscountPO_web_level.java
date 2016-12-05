@@ -24,11 +24,12 @@ public class DiscountPO_web_level extends DiscountPO_web {
 	 * @param remarks
 	 * @param type
 	 */
+	//???
 	public DiscountPO_web_level(double discount, int lv, int levelUpCredit,DiscountState discountState,String remarks,Strategy_webType type) {
 		setDiscount(discount);
 		this.level = lv;
 		this.levelUpCredit = levelUpCredit;
-		super.setDiscountState(discountState);
+		super.setDiscountState(discountState); 
 		super.setRemarks(remarks);
 		super.setType(type);
 	}
