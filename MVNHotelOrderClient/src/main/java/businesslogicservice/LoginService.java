@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 
 import tools.AccountType;
 import tools.ResultMessage_LoginCheck;
+import vo.LogVO;
 
 /**
  * 
@@ -24,4 +25,10 @@ public interface LoginService {
 	 * @throws RemoteException 
 	 */
 	public ResultMessage_LoginCheck login(String username,String password,AccountType accountType) throws RemoteException;
+	
+	/**
+	 * 获取登陆的状态和信息
+	 * @return
+	 */
+	public LogVO getLogState() ;
 }

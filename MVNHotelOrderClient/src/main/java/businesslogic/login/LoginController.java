@@ -60,4 +60,13 @@ public class LoginController implements LoginService{
 		return loginw.login(username, password, accountType);
 	}
 
+	/**
+	 * 获取登陆的状态和信息
+	 * @return
+	 */
+	@Override
+	public LogVO getLogState() {
+		return new LogVO(loginw.getState(), loginw.getUserName(), loginw.getAccountType());
+	}
+
 }
