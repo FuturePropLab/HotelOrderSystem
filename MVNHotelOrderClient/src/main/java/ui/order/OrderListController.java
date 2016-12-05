@@ -24,6 +24,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import tools.HotelAddress;
+import tools.RoomType;
+import ui.customer.BookHotelController;
+import ui.hotel.HotelDetailController;
 import ui.main.DetailsController;
 import vo.HotelbriefVO;
 import vo.LogVO;
@@ -84,7 +87,7 @@ public class OrderListController extends DetailsController{
 				HotelAddress hotelAddress=hotelbriefVO.hotelAddress;
 				orderItemController.setValue(hotelImage, hotelName, hotelAddress, orderVO.latestTime, 
 						orderVO.planedLeaveTime, orderVO.roomType, orderVO.roomNumber.size(), orderVO.price, 
-						orderVO.orderState, orderVO.orderID);
+						orderVO.orderState, orderVO.orderID, orderVO.hotelID);
 			}
 		}
 		handleFilter();
@@ -115,5 +118,19 @@ public class OrderListController extends DetailsController{
     		e.printStackTrace();
     	}
     	return null;
+	}
+    
+    /**
+     * 跳转到订单相关的酒店详情界面
+     * @param hotelID 酒店ID
+     */
+	public void toHotelDetailView(String hotelID) {
+		try {
+			rootLayoutController.changeDetails("../hotel/HotelDetail.fxml");
+			HotelDetailController hotelDetailController=(HotelDetailController)rootLayoutController.getDetailsController();
+			hotelDetailController.initVaule(hotelID);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

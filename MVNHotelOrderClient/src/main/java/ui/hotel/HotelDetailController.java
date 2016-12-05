@@ -120,13 +120,7 @@ public class HotelDetailController extends DetailsController{
 	private TextField addressTextField;//只有酒店工作人员可见
 	@FXML
 	private Hyperlink save;//只有酒店工作人员可见
-	private HotelDetailsVO hotelDetailsVO;//TODO:initialize()里设置
-	private String HotelID = "HT001"; //TODO:initialize()里设置
-	
-	
-	private HotelDealService hotelDealService;
-	private ManageHotelInfoService manageHotelService;
-	
+	private HotelDetailsVO hotelDetailsVO;
 	
 	/**
      * Initializes the controller class. This method is automatically called
@@ -174,37 +168,23 @@ public class HotelDetailController extends DetailsController{
 		}
     }
 	
-	/**
-	 * bookEluxeSuite被单击时调用
-	 */
+
 	@FXML
 	private void handleBookEluxeSuite() {
 		toBookHotelView(RoomType.EluxeSuite);
 	}
-	/**
-	 * bookSuites被单击时调用
-	 */
 	@FXML
 	private void handleBookSuites() {
 		toBookHotelView(RoomType.Suites);
 	}
-	/**
-	 * bookStandard被单击时调用
-	 */
 	@FXML
 	private void handleBookStandard() {
 		toBookHotelView(RoomType.Standard);
 	}
-	/**
-	 * bookDouble被单击时调用
-	 */
 	@FXML
 	private void handleBookDouble() {
 		toBookHotelView(RoomType.Double);
 	}
-	/**
-	 * bookSingle被单击时调用
-	 */
 	@FXML
 	private void handleBookSingle() {
 		toBookHotelView(RoomType.Single);
@@ -260,7 +240,8 @@ public class HotelDetailController extends DetailsController{
 			rootLayoutController.changeDetails("../hotel/FacilitiesInfo.fxml");
 			FacilitiesInfoController facilitiesInfoController=
 					(FacilitiesInfoController)rootLayoutController.getDetailsController();
-			facilitiesInfoController.setValues(HotelDealController.getInstance().gethotelFacilityVO(HotelID));
+			facilitiesInfoController.setValues(HotelDealController.getInstance().gethotelFacilityVO(
+					hotelDetailsVO.hotelID));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -269,41 +250,33 @@ public class HotelDetailController extends DetailsController{
 	private void handleAssess() {
 		//TODO:跳转到评价信息界面
 		
-		hotelDealService = HotelDealController.getInstance();
-		List<CommentVO> commentList = hotelDealService.getComment(HotelID);
+		HotelDealService hotelDealService = HotelDealController.getInstance();
+		List<CommentVO> commentList = hotelDealService.getComment(hotelDetailsVO.hotelID);
 		
 		
 		
 	}
 	@FXML
 	private void handleCityComboBox() {
-		//TODO:从blservice获取相应城市的区的信息
-		hotelDealService = HotelDealController.getInstance();
-		List<String> District = hotelDealService.getAllDistrictByCity(cityComboBox.getValue());
-		for(int i =0;i<District.size();i++){
-		districtComboBox.setValue(District.get(i));
-		}
-		
-		
-		
+		HotelDealService hotelDealService = HotelDealController.getInstance();
+		List<String> districts = hotelDealService.getAllDistrictByCity(cityComboBox.getValue());
+		districtComboBox.getItems().clear();
+		districtComboBox.getItems().addAll(districts);	
 	}
 	@FXML
 	private void handleDistrictComboBox() {
-		//TODO:从blservice获取相应区的商圈的信息
-		hotelDealService = HotelDealController.getInstance();
-		List<String> BusinessCircle = hotelDealService.getBusineeCircleByDistrict(districtComboBox.getValue());
-		for(int i = 0;i<BusinessCircle.size();i++){
-			
-			businessCircleComboBox.setValue(BusinessCircle.get(i));
-			
-		}
+		HotelDealService hotelDealService = HotelDealController.getInstance();
+		List<String> businessCircle = hotelDealService.getBusineeCircleByDistrict(districtComboBox.getValue());
+		businessCircleComboBox.getItems().clear();
+		businessCircleComboBox.getItems().addAll(businessCircle);	
 	}
 	@FXML
 	private void handleSave() {
 		//TODO:调用blservice保存酒店信息
-		manageHotelService = HotelManageController.getInstance();
-		HotelAddress hotelAddress = new HotelAddress(cityComboBox.getValue(), districtComboBox.getValue(), businessCircleComboBox.getValue(), addressTextField.getText());
-		HotelInputVO hotelInputVO = new HotelInputVO(HotelID,hotelAddress);
+		ManageHotelInfoService manageHotelService = HotelManageController.getInstance();
+		HotelAddress hotelAddress = new HotelAddress(cityComboBox.getValue(), districtComboBox.getValue(), 
+				businessCircleComboBox.getValue(), addressTextField.getText());
+		HotelInputVO hotelInputVO = new HotelInputVO(hotelDetailsVO.hotelID,hotelAddress);
 		ResultMessage_Hotel resultMessageAddress = manageHotelService.saveHotelInfo(hotelInputVO);
 	
 		
@@ -317,7 +290,7 @@ public class HotelDetailController extends DetailsController{
 		try {
 			rootLayoutController.changeDetails("../customer/BookHotel.fxml");
 			BookHotelController bookHotelController=(BookHotelController)rootLayoutController.getDetailsController();
-			bookHotelController.setRoomType(roomType);
+			bookHotelController.setRoomType(roomType);//TODO:设置预订酒店界面的组建的值
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -329,11 +302,51 @@ public class HotelDetailController extends DetailsController{
 			RoomInfoController roomInfoController=(RoomInfoController)rootLayoutController.getDetailsController();
 			for(int i=0;i<hotelDetailsVO.hotelRoomInfoVO.typeRoomInfo.size();i++){
 				if(roomType.equals(hotelDetailsVO.hotelRoomInfoVO.typeRoomInfo.get(i).getRoomtype())){
-					roomInfoController.setValue(hotelDetailsVO.hotelRoomInfoVO.typeRoomInfo.get(i));;
+					roomInfoController.setValue(hotelDetailsVO.hotelRoomInfoVO.typeRoomInfo.get(i));
+					break;
 				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * 通过酒店ID来初始化界面的各组件的值
+	 * @param hotelID 酒店ID
+	 */
+	public void initVaule(String hotelID) {
+		HotelDealService hotelDealService=HotelDealController.getInstance();
+		this.hotelDetailsVO=hotelDealService.getHotelDetailsVO(hotelID);
+		if(hotelDetailsVO==null){
+			System.err.println("hotelDetailsVO is null. At HotelDetailController.initVaule(String hotelID)");
+		}
+		this.hotelImage.setImage(new Image(hotelDetailsVO.hotelImage.toString()));
+		this.hotelNameLabel.setText(hotelDetailsVO.hotelName);
+		this.hotelNameTextField.setText(hotelDetailsVO.hotelName);
+		this.describtionText.setText(hotelDetailsVO.hotelDiscribtionsVO.discribes.get(0));
+		this.describtionTextArea.setText(hotelDetailsVO.hotelDiscribtionsVO.discribes.get(0));
+		this.starLabel.setText(hotelDetailsVO.star.ordinal()+"");
+		this.starComboBox.setValue(starArray[hotelDetailsVO.star.ordinal()]);
+		handleStarComboBox();
+		double mark=hotelDealService.gethotelAssessVO(hotelID).averageMark;
+		this.mark.setText(mark+"");
+		this.star_1.setImage(mark>=1? yellowStar:greyStar);
+		this.star_2.setImage(mark>=2? yellowStar:greyStar);
+		this.star_3.setImage(mark>=3? yellowStar:greyStar);
+		this.star_4.setImage(mark>=4? yellowStar:greyStar);
+		this.star_5.setImage(mark>=5? yellowStar:greyStar);
+		this.cityLabel.setText(hotelDetailsVO.hotelAddress.getCity());
+		this.districtLabel.setText(hotelDetailsVO.hotelAddress.getDistrict());
+		this.businessCircleLabel.setText(hotelDetailsVO.hotelAddress.getBusinessCircle());
+		this.addressLabel.setText(hotelDetailsVO.hotelAddress.getAddressDetail());
+		this.cityComboBox.getItems().clear();
+		this.cityComboBox.getItems().addAll(hotelDealService.getAllCity());
+		this.cityComboBox.setValue(hotelDetailsVO.hotelAddress.getCity());
+		handleCityComboBox();
+		this.districtComboBox.setValue(hotelDetailsVO.hotelAddress.getDistrict());
+		handleDistrictComboBox();
+		this.businessCircleComboBox.setValue(hotelDetailsVO.hotelAddress.getBusinessCircle());
+		this.addressTextField.setText(hotelDetailsVO.hotelAddress.getAddressDetail());
 	}
 }

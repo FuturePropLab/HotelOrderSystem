@@ -41,6 +41,7 @@ public class OrderItemController {
 	@FXML
 	private Hyperlink detail;
 	private String orderID;
+	private String hotelID;
 	private OrderListController orderListController;
 	
 	@FXML
@@ -49,7 +50,7 @@ public class OrderItemController {
 	}
 	@FXML
 	private void handleHotelName(){
-		//TODO:跳转到酒店详情界面
+		orderListController.toHotelDetailView(hotelID);
 	}
 	
 	
@@ -69,9 +70,10 @@ public class OrderItemController {
 	 * @param price 价格
 	 * @param orderState 订单状态
 	 * @param orderID 订单ID
+	 * @param hotelID 酒店ID
 	 */
 	public void setValue(Image hotelImage,String hotelName,HotelAddress hotelAddress,Date date_from,Date date_to,
-			RoomType roomType,int roomNumber,double price,OrderState orderState,String orderID) {
+			RoomType roomType,int roomNumber,double price,OrderState orderState,String orderID,String hotelID) {
 		this.hotelImage.setImage(hotelImage);
 		this.hotelName.setText(hotelName);
 		this.hotelAddress.setText(hotelAddress.getAddressDetail());
@@ -82,5 +84,6 @@ public class OrderItemController {
 		this.price.setText(price+"");
 		this.orderState.setText(orderStates[orderState.ordinal()]);
 		this.orderID=orderID;
+		this.hotelID=hotelID;
 	}
 }
