@@ -1,5 +1,6 @@
 package businesslogic.strategy;
 
+import java.rmi.RemoteException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,8 +32,9 @@ public class CalculateHotelStrategy {
 	 * 
 	 * @param orderInput
 	 *            构造方法
+	 * @throws RemoteException 
 	 */
-	public CalculateHotelStrategy(OrderInputCalVO orderInput) {
+	public CalculateHotelStrategy(OrderInputCalVO orderInput) throws RemoteException {
 		StrategyGetService discount = new StrategyGet();
 		strategyList = discount.getSuitableDiscount_hotel(orderInput);
 		this.orderInputCalVO = orderInput;

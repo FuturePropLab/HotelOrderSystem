@@ -1,5 +1,6 @@
 package businesslogic.strategy;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 import businesslogicservice.StrategyService;
@@ -24,7 +25,7 @@ public class StrategyController implements StrategyService{
 		if(strategyController==null)strategyController=new StrategyController();
 		return strategyController;
 	}
-	public StrategyVO CalculateBestStrategy(OrderInputCalVO orderInputCalVO) {
+	public StrategyVO CalculateBestStrategy(OrderInputCalVO orderInputCalVO) throws RemoteException {
 		
 		return strategy.CalculateBestStrategy(orderInputCalVO);
 	}

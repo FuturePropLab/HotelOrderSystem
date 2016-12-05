@@ -1,5 +1,6 @@
 package businesslogic.discount;
 
+import java.rmi.RemoteException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -27,7 +28,7 @@ public class StrategyGet implements StrategyGetService {
 //		dataService=RemoteHelper.getInstance().getStrategy();
 	}
 	
-	public List<StrategyVO_hotel> getSuitableDiscount_hotel(OrderInputCalVO orderInput) {
+	public List<StrategyVO_hotel> getSuitableDiscount_hotel(OrderInputCalVO orderInput) throws RemoteException {
 		
 		List<DiscountPO_hotel> list= hotelDataService.getHotelDiscount(orderInput.hotelID);
 		List<StrategyVO_hotel> res = new LinkedList<StrategyVO_hotel>();
@@ -40,7 +41,7 @@ public class StrategyGet implements StrategyGetService {
 		return res;
 	}
 
-	public List<DiscountVO_web> getSuitableDiscount_web(OrderInputCalVO orderInput) {
+	public List<DiscountVO_web> getSuitableDiscount_web(OrderInputCalVO orderInput) throws RemoteException {
 		
 		List<DiscountPO_web> list= webDataService.getWebDiscount();
 		List<DiscountVO_web> res = new LinkedList<DiscountVO_web>();

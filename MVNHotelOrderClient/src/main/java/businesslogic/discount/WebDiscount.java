@@ -30,12 +30,12 @@ public class WebDiscount {
 		return dataService.editWebDiscount(factory.conversion(dis));
 	}
 
-	 public ResultMessage_Discount deleteDiscount(String  discountID) {
+	 public ResultMessage_Discount deleteDiscount(String  discountID) throws RemoteException {
 		 
 		return dataService.deleteWebDiscount(discountID);
 	 }
 
-	public List<DiscountVO_web> getWebDiscount() {
+	public List<DiscountVO_web> getWebDiscount() throws RemoteException {
 		
 		List<DiscountVO_web> res = new LinkedList<DiscountVO_web>();
 		List<DiscountPO_web> list = dataService.getWebDiscount();
@@ -52,8 +52,9 @@ public class WebDiscount {
 	 * 
 	 * @param discount_id
 	 * @return 将策略设置为无效
+	 * @throws RemoteException 
 	 */
-	public ResultMessage_Discount invalidDiscount(String discountID){
+	public ResultMessage_Discount invalidDiscount(String discountID) throws RemoteException{
 		return dataService.invalidDiscount(discountID);
 	}
 }

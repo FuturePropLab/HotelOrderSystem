@@ -1,5 +1,6 @@
 package businesslogic.discount;
 
+import java.rmi.RemoteException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -44,8 +45,9 @@ public class DiscountWebController implements DiscountWebService {
 	
 	/**
 	 * 增加网站营销策略，写入数据库同时在逻辑层缓存
+	 * @throws RemoteException 
 	 */
-	public ResultMessage_DiscountDetail addWebDiscount(DiscountVO_web dis) {
+	public ResultMessage_DiscountDetail addWebDiscount(DiscountVO_web dis) throws RemoteException {
 
 		if (dis.type == Strategy_webType.Level) {// 等级制定由低往高制定，否则失败
 
@@ -68,15 +70,13 @@ public class DiscountWebController implements DiscountWebService {
 			} else {
 				
 				System.out.println("Invalid level !!");
-//				return ResultMessage_strategy.Conflict;
 
 			}
 		}
-		//wsw:  林文烨 你自己改处理一下rmi  的异常!!!!
 		return web.addWebDiscount(dis);
 	}
 
-	public ResultMessage_Discount editWebDiscount(DiscountVO_web dis) {
+	public ResultMessage_Discount editWebDiscount(DiscountVO_web dis) throws RemoteException {
 
 		return web.editWebDiscount(dis);
 
@@ -84,8 +84,9 @@ public class DiscountWebController implements DiscountWebService {
 
 	/**
 	 * 得到所有策略
+	 * @throws RemoteException 
 	 */
-	public List<DiscountVO_web> getWebDiscount() {
+	public List<DiscountVO_web> getWebDiscount() throws RemoteException {
 
 		List<DiscountVO_web> res = web.getWebDiscount();
 
@@ -116,7 +117,7 @@ public class DiscountWebController implements DiscountWebService {
 		return res;
 	}
 
-	public ResultMessage_Discount deleteDiscount(String discountID) {
+	public ResultMessage_Discount deleteDiscount(String discountID) throws RemoteException {
 
 		return web.deleteDiscount(discountID);
 	}
@@ -157,8 +158,9 @@ public class DiscountWebController implements DiscountWebService {
 
 	/**
 	 * 设为失效
+	 * @throws RemoteException 
 	 */
-	public ResultMessage_Discount invalidDiscount(String discountID) {
+	public ResultMessage_Discount invalidDiscount(String discountID) throws RemoteException {
 
 		return web.invalidDiscount(discountID);
 	}
@@ -167,8 +169,9 @@ public class DiscountWebController implements DiscountWebService {
 	 * 
 	 * @return 返回各个等级的最低信用值
 	 *         example：返回[20,50,90]表示达到20升入2级，（默认0信用值起始为1级），信用值达到50升到3级
+	 * @throws RemoteException 
 	 */
-	public int[] getLevelCredit() {
+	public int[] getLevelCredit() throws RemoteException {
 
 		if (list == null)	getWebDiscount();
 		

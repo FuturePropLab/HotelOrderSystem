@@ -1,5 +1,6 @@
 package businesslogicservice;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 import tools.ResultMessage_Discount;
@@ -13,14 +14,15 @@ import vo.DiscountVO_web;
  */
 public interface DiscountWebService {
 
-	public ResultMessage_DiscountDetail addWebDiscount (DiscountVO_web dis);
+	public ResultMessage_DiscountDetail addWebDiscount (DiscountVO_web dis) throws RemoteException;
 	
-	public ResultMessage_Discount editWebDiscount (DiscountVO_web dis);
+	public ResultMessage_Discount editWebDiscount (DiscountVO_web dis) throws RemoteException;
 	/**
 	 * 得到網站的所有促銷策略
 	 * @return
+	 * @throws RemoteException 
 	 */
-	public List<DiscountVO_web> getWebDiscount ();
+	public List<DiscountVO_web> getWebDiscount () throws RemoteException;
 	/**
 	 * 
 	 * @param type
@@ -28,13 +30,14 @@ public interface DiscountWebService {
 	 */
 	public List<DiscountVO_web> getWebDiscount(Strategy_webType type) ;
 	
-	public ResultMessage_Discount deleteDiscount (String discountID);
+	public ResultMessage_Discount deleteDiscount (String discountID) throws RemoteException;
 	
 	/**
 	 * 
 	 * @param discount_id
 	 * @return 将策略设置为无效
+	 * @throws RemoteException 
 	 */
-	public ResultMessage_Discount invalidDiscount(String discount_id);
+	public ResultMessage_Discount invalidDiscount(String discount_id) throws RemoteException;
 	
 }

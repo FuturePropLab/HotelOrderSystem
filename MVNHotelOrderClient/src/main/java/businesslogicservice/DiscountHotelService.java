@@ -1,5 +1,6 @@
 package businesslogicservice;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 import tools.DiscountState;
@@ -14,31 +15,35 @@ public interface DiscountHotelService {
 	 * @param hotelID
 	 * @param discountVO_hotel
 	 * @return 增加酒店策略
+	 * @throws RemoteException 
 	 */
-	public ResultMessage_DiscountDetail addHotelDiscount(String hotelID,DiscountVO_hotel discountVO_hotel);
+	public ResultMessage_DiscountDetail addHotelDiscount(String hotelID,DiscountVO_hotel discountVO_hotel) throws RemoteException;
 	
 	/**
 	 * 
 	 * @param discountID
 	 * @param discountVO_hotel
 	 * @return 編輯酒店策略，返回是否成功
+	 * @throws RemoteException 
 	 */
-	public ResultMessage_Discount editHotelDiscount (String discountID,DiscountVO_hotel discountVO_hotel);
+	public ResultMessage_Discount editHotelDiscount (String discountID,DiscountVO_hotel discountVO_hotel) throws RemoteException;
 	
 	/**
 	 * 
 	 * @param hotelID
 	 * @param discountID
 	 * @return 是否成功刪除
+	 * @throws RemoteException 
 	 */
-	public ResultMessage_Discount deleteHotelDiscount(String hotelID,String discountID);
+	public ResultMessage_Discount deleteHotelDiscount(String hotelID,String discountID) throws RemoteException;
 	
 	/**
 	 * 
 	 * @param hotelID
 	 * @return 得到所有酒店促銷策略
+	 * @throws RemoteException 
 	 */
-	public List<DiscountVO_hotel> getHotelDiscount (String hotelID);
+	public List<DiscountVO_hotel> getHotelDiscount (String hotelID) throws RemoteException;
 	
 	/**
 	 * 
@@ -52,8 +57,9 @@ public interface DiscountHotelService {
 	 * 
 	 * @param discount_id
 	 * @return 将策略设置为无效
+	 * @throws RemoteException 
 	 */
-	public ResultMessage_Discount invalidDiscount(String hotelID,String discount_id);
+	public ResultMessage_Discount invalidDiscount(String hotelID,String discount_id) throws RemoteException;
 	
 	/**
 	 * 

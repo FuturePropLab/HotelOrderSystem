@@ -1,5 +1,6 @@
 package businesslogic.strategy;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 import vo.DiscountVO_web;
@@ -18,7 +19,7 @@ public class Strategy {
 	private CalculateHotelStrategy hotelStrategy;
 	private CalculateWebStrategy webStrategy;
 
-	public StrategyVO CalculateBestStrategy(OrderInputCalVO orderInput) {
+	public StrategyVO CalculateBestStrategy(OrderInputCalVO orderInput) throws RemoteException {
 
 		hotelStrategy = new CalculateHotelStrategy(orderInput);
 		List<StrategyVO_hotel> hotelBest = hotelStrategy.calBest();

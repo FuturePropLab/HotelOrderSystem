@@ -1,5 +1,6 @@
 package businesslogic.strategy;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 import vo.DiscountVO_web;
@@ -13,8 +14,8 @@ import vo.StrategyVO_hotel;
  */
 public interface StrategyGetService {
 		
-		public List<StrategyVO_hotel> getSuitableDiscount_hotel(OrderInputCalVO orderInput);
+		public List<StrategyVO_hotel> getSuitableDiscount_hotel(OrderInputCalVO orderInput) throws RemoteException;
 		
-		public List<DiscountVO_web> getSuitableDiscount_web(OrderInputCalVO orderInput);
+		public List<DiscountVO_web> getSuitableDiscount_web(OrderInputCalVO orderInput) throws RemoteException;
 
 }

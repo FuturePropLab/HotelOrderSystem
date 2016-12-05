@@ -1,5 +1,7 @@
 package businesslogicservice;
 
+import java.rmi.RemoteException;
+
 import vo.OrderInputCalVO;
 import vo.StrategyVO;
 /**
@@ -8,5 +10,5 @@ import vo.StrategyVO;
  *
  */
 public interface StrategyService {
-	public StrategyVO CalculateBestStrategy(OrderInputCalVO orderInputCalVO);
+	public StrategyVO CalculateBestStrategy(OrderInputCalVO orderInputCalVO) throws RemoteException;
 }

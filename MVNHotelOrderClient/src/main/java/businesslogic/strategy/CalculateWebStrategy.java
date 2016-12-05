@@ -1,5 +1,6 @@
 package businesslogic.strategy;
 
+import java.rmi.RemoteException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class CalculateWebStrategy {
 	private List<DiscountVO_web> strategyList;
 	private OrderInputCalVO orderInputCalVO;
 
-	public CalculateWebStrategy(OrderInputCalVO orderInput) {
+	public CalculateWebStrategy(OrderInputCalVO orderInput) throws RemoteException {
 
 		StrategyGetService discount = new StrategyGet();
 		strategyList = discount.getSuitableDiscount_web(orderInput);

@@ -1,5 +1,6 @@
 package businesslogic.discount;
 
+import java.rmi.RemoteException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -43,24 +44,25 @@ public class DiscountHotelController implements DiscountHotelService {
 
 /**
  * 得到所有该酒店的促销策略，必须先被调用
+ * @throws RemoteException 
  */
-	public List<DiscountVO_hotel> getHotelDiscount(String hotelID) {
+	public List<DiscountVO_hotel> getHotelDiscount(String hotelID) throws RemoteException {
 		
 		return hotelDiscount.getHotelDiscount(hotelID);
 	}
 	
-	public ResultMessage_DiscountDetail addHotelDiscount(String hotelID, DiscountVO_hotel dis) {
+	public ResultMessage_DiscountDetail addHotelDiscount(String hotelID, DiscountVO_hotel dis) throws RemoteException {
 		
 		return hotelDiscount.addHotelDiscount(hotelID, dis);
 	}
 
-	public ResultMessage_Discount editHotelDiscount(String discountID, DiscountVO_hotel discountVO_hotel) {
+	public ResultMessage_Discount editHotelDiscount(String discountID, DiscountVO_hotel discountVO_hotel) throws RemoteException {
 		
 		return hotelDiscount.editHotelDiscount(discountID, discountVO_hotel);
 	}
 
 
-	public ResultMessage_Discount deleteHotelDiscount(String hotelID, String discountID) {
+	public ResultMessage_Discount deleteHotelDiscount(String hotelID, String discountID) throws RemoteException {
 		
 		return hotelDiscount.deleteHotelDiscount(hotelID, discountID);
 	}
@@ -92,7 +94,7 @@ public class DiscountHotelController implements DiscountHotelService {
 		return res;
 	}
 	
-	public ResultMessage_Discount invalidDiscount(String hotelID,String discountID) {
+	public ResultMessage_Discount invalidDiscount(String hotelID,String discountID) throws RemoteException {
 		Iterator<DiscountVO_hotel> iterator = list.iterator();
 		while (iterator.hasNext()) {
 			DiscountVO_hotel discountVO_hotel = (DiscountVO_hotel) iterator.next();

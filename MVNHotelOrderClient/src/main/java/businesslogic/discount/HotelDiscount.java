@@ -1,5 +1,6 @@
 package businesslogic.discount;
 
+import java.rmi.RemoteException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,9 +23,10 @@ public class HotelDiscount {
 	 * 增加酒店优惠策略
 	 * @param hotel_id
 	 * @return 添加成功
+	 * @throws RemoteException 
 	 */
 	
-	public ResultMessage_DiscountDetail addHotelDiscount(String hotel_id,DiscountVO_hotel dis) {
+	public ResultMessage_DiscountDetail addHotelDiscount(String hotel_id,DiscountVO_hotel dis) throws RemoteException {
 		
 		DiscountPO_hotel discountPO_hotel = new DiscountPO_hotel(dis);
 		discountPO_hotel.setDiscountState(DiscountState.valid);
@@ -35,9 +37,10 @@ public class HotelDiscount {
 	 * 修改编辑酒店优惠策略
 	 * @param Discount_id
 	 * @return 修改后信息
+	 * @throws RemoteException 
 	 */
 	
-	public ResultMessage_Discount editHotelDiscount(String hotel_id,DiscountVO_hotel dis){
+	public ResultMessage_Discount editHotelDiscount(String hotel_id,DiscountVO_hotel dis) throws RemoteException{
 		DiscountPO_hotel discountPO_hotel = new DiscountPO_hotel(dis);
 		return dataService.editHotelDiscount(hotel_id, discountPO_hotel);
 		
@@ -47,8 +50,9 @@ public class HotelDiscount {
 	 * 获取酒店全部优惠策略
 	 * @param hotel_id
 	 * @return
+	 * @throws RemoteException 
 	 */
-	public List<DiscountVO_hotel> getHotelDiscount(String hotel_id){
+	public List<DiscountVO_hotel> getHotelDiscount(String hotel_id) throws RemoteException{
 		
 		List<DiscountPO_hotel> get = dataService.getHotelDiscount(hotel_id);
 		List<DiscountVO_hotel> res = new LinkedList<DiscountVO_hotel>();
@@ -59,15 +63,16 @@ public class HotelDiscount {
 		return res;
 	}
 	
-	public ResultMessage_Discount deleteHotelDiscount(String hotelID, String discountID) {
+	public ResultMessage_Discount deleteHotelDiscount(String hotelID, String discountID) throws RemoteException {
 		// TODO Auto-generated method stub
 		return dataService.deleteHotelDiscount(hotelID, discountID);
 	}
  
 	/**
 	 * 将策略设为无效
+	 * @throws RemoteException 
 	 */
-	public ResultMessage_Discount invalidDiscount(String hotelID, String discountID) {
+	public ResultMessage_Discount invalidDiscount(String hotelID, String discountID) throws RemoteException {
 		// TODO Auto-generated method stubS
 		return dataService.invalidDiscount(discountID);
 	}
