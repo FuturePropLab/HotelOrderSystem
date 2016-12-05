@@ -22,7 +22,7 @@ public class FactoryConcreteHotelStrategy {
 		case CooperateEnterprise:
 			res = new EnterpriseStrategy_hotel();
 			break;
-		case SpecificPeriod:
+		case Period:
 			res = new PeriodStrategy_hotel();
 			break;
 		}
