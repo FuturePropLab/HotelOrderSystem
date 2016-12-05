@@ -2,8 +2,12 @@ package ui.hotel;
 
 import java.io.File;
 import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 import businesslogic.hotel.HotelDealController;
+import businesslogic.hotel.HotelManageController;
+import businesslogicservice.ManageHotelInfoService;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Hyperlink;
@@ -13,8 +17,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import tools.HotelRoomInfo;
+import tools.ResultMessage_Hotel;
 import ui.main.DetailsController;
+import vo.HotelDiscribtionsVO;
 import vo.HotelFacilityVO;
+import vo.HotelInputVO;
 
 /**
  * 酒店详情界面的控制器
@@ -76,7 +84,8 @@ public class FacilitiesInfoController extends DetailsController{
 	
 
 	private String hotelID = "HT001" ; //@author wsw  这个应该在初始化这个界面的时候就传过来的
-
+	
+	private ManageHotelInfoService manageInfoService;
 
 	
     @FXML
@@ -93,12 +102,21 @@ public class FacilitiesInfoController extends DetailsController{
     private void handleSave() {
 
     	//TODO:调用blservice保存信息
-    	//HotelFacilityVO hotelFacilityVO = new HotelFacilityVO(hotel_id,hotelName.getText(),facilitiesImage.GET,Boolean.valueOf(wifi.getText()).booleanValue(),Boolean.valueOf(noneSmoke.getText()).booleanValue(),Boolean.valueOf(diningHall.getText()).booleanValue(),Boolean.valueOf(parkingLot.getText()).booleanValue(),Boolean.valueOf(elevator.getText()).booleanValue(),Boolean.valueOf(conferenceHall.getText()).booleanValue(),Boolean.valueOf(morningCall.getText()).booleanValue(),Boolean.valueOf(frontdeskservice.getText()).booleanValue(),Boolean.valueOf(luggageStorage.getText()).booleanValue(),Boolean.valueOf(breakfast.getText()),Boolean.valueOf(other.getText()).booleanValue());
+    	HotelFacilityVO hotelFacilityVO = null;
+    	URL url = null;
+    try {
+		hotelFacilityVO = new HotelFacilityVO(hotelID,hotelName.getText(),url.toURI(),Boolean.valueOf(wifi.getText()).booleanValue(),Boolean.valueOf(noneSmoke.getText()).booleanValue(),Boolean.valueOf(diningHall.getText()).booleanValue(),Boolean.valueOf(parkingLot.getText()).booleanValue(),Boolean.valueOf(elevator.getText()).booleanValue(),Boolean.valueOf(conferenceHall.getText()).booleanValue(),Boolean.valueOf(morningCall.getText()).booleanValue(),Boolean.valueOf(frontdeskservice.getText()).booleanValue(),Boolean.valueOf(luggageStorage.getText()).booleanValue(),Boolean.valueOf(breakfast.getText()).booleanValue(),other.getText());
+	} catch (URISyntaxException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+    
     	//String hotelID, String hotelName, URI facilityImage, boolean wifi, boolean noneSmoke,
 		//boolean diningHall, boolean parkingLot, boolean elevator, boolean conferenceHall, boolean morningCall,
 		//boolean frontdeskservice, boolean luggageStorage, boolean breakfast, String other
-    	
-    	
+		HotelInputVO hotelInfoVO = new HotelInputVO(hotelID, hotelFacilityVO, null,null);
+    	manageInfoService = HotelManageController.getInstance();
+    	ResultMessage_Hotel result = manageInfoService.saveHotelInfo(hotelInfoVO);
 
     	
     }
