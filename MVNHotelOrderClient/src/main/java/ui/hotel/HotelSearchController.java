@@ -23,6 +23,7 @@ import tools.RoomType;
 import tools.SortType;
 import tools.Star;
 import ui.main.DetailsController;
+import vo.HotelDetailsVO;
 import vo.HotelbriefVO;
 import vo.SearchHotelVO;
 
@@ -62,6 +63,7 @@ public class HotelSearchController extends DetailsController{
 	@FXML
 	private FlowPane hotelList;
 	
+	private HotelDealService hotelDealService;
 	/**
      * Initializes the controller class. This method is automatically called
      * after the fxml file has been loaded.
@@ -137,6 +139,8 @@ public class HotelSearchController extends DetailsController{
 			e.printStackTrace();
 		}
 		//TODO:调用blservice模糊搜索
+		
+		
 	}
 	
 	@FXML
@@ -250,6 +254,9 @@ public class HotelSearchController extends DetailsController{
 		try {
 			rootLayoutController.changeDetails("../hotel/HotelDetail.fxml");
 			//TODO 获取相应的酒店详细信息并设置好值
+			hotelDealService = HotelDealController.getInstance();
+			HotelDetailsVO hotelDeatails= hotelDealService.getHotelDetailsVO(hotelID);
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -262,6 +269,10 @@ public class HotelSearchController extends DetailsController{
 		try {
 			rootLayoutController.changeDetails("../customer/BookHotel.fxml");
 			//TODO 在订单填写界面写上相应的酒店信息
+			
+			
+			
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

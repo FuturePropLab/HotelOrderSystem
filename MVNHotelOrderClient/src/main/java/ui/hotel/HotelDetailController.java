@@ -2,6 +2,7 @@ package ui.hotel;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import businesslogic.hotel.HotelDealController;
@@ -278,9 +279,18 @@ public class HotelDetailController extends DetailsController{
 				businessCircleComboBox.getValue(), addressTextField.getText());
 		HotelInputVO hotelInputVO = new HotelInputVO(hotelDetailsVO.hotelID,hotelAddress);
 		ResultMessage_Hotel resultMessageAddress = manageHotelService.saveHotelInfo(hotelInputVO);
-	
 		
+
 		
+		HotelDiscribtionsVO hotelDiscription =new HotelDiscribtionsVO();
+		List <String> dis = new ArrayList<String>();
+		dis.add(describtionTextArea.getText());
+		hotelDiscription.discribes =  dis;
+		
+//		TODO:RoomInfo 
+		
+		hotelInputVO = new HotelInputVO(hotelDetailsVO.hotelID, null, hotelDiscription, null);
+		ResultMessage_Hotel resultMessage_Hotel = manageHotelService.saveHotelInfo(hotelInputVO);
 		
 		
 		
