@@ -4,7 +4,15 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+import businesslogic.account.CustomerAccountController;
+import businesslogic.hotel.HotelDealController;
+import businesslogic.login.LoginController;
+import businesslogic.login.State;
 import businesslogic.order.OrderController;
+import businesslogicservice.AccountCustomerService;
+import businesslogicservice.AccountService;
+import businesslogicservice.HotelDealService;
+import businesslogicservice.LoginService;
 import businesslogicservice.OrderService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +25,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import tools.HotelAddress;
 import ui.main.DetailsController;
+import vo.HotelbriefVO;
+import vo.LogVO;
 import vo.OrderVO;
 import vo.SearchOrderInfoVO;
 /**
@@ -47,23 +57,31 @@ public class OrderListController extends DetailsController{
 	@FXML
     private void handleSearch() {
 		OrderService orderService=OrderController.getInstance();
+		LoginService loginService=LoginController.getInstance();
+		AccountCustomerService accountCustomerService=CustomerAccountController.getInstance();
+		HotelDealService hotelDealService=HotelDealController.getInstance();
+		
+		LogVO logVO=loginService.getLogState();		
+		if(logVO.state.equals(State.logout)){
+			System.err.println("can't handleSearch: the login state is logout!");
+			return;
+		}
+		String ID=accountCustomerService.getAccountID(logVO.username);
 		String string= "".equals(keyWords.getText())? null:keyWords.getText();
-		String customerID=null;//TODO:如果是客户就获取客户ID
-		String hotelID=null;//TODO:如果是酒店工作人员就获取酒店ID
+		//分别把搜索框内的关键字当做订单ID、客户姓名、酒店名称来搜索
 		List<OrderVO> orderVOs=orderService.CheckOrderList(new SearchOrderInfoVO(
-				string, customerID, hotelID, null, null, getDate(), null));
-		orderVOs.addAll(orderService.CheckOrderList(customerID==null? 
-				new SearchOrderInfoVO(null, customerID, null, string, null, getDate(), null)
-				:new SearchOrderInfoVO(null, null, hotelID, null, string, getDate(), null)));
+				string, ID, null, null, getDate(), null));
+		orderVOs.addAll(orderService.CheckOrderList(new SearchOrderInfoVO(null, ID, string, null, getDate(), null)));
+		orderVOs.addAll(orderService.CheckOrderList(new SearchOrderInfoVO(null, ID, null, string, getDate(), null)));
 
 		orderList.getChildren().clear();
 		if(orderVOs!=null){
 			for(OrderVO orderVO:orderVOs){
 				OrderItemController orderItemController=addItem();
-				//TODO:通过酒店ID得到下面的酒店的信息
-				Image hotelImage=null;
-				String hotelName="hotelname";
-				HotelAddress hotelAddress=null;
+				HotelbriefVO hotelbriefVO=hotelDealService.getHotelInfo(orderVO.hotelID);
+				Image hotelImage=new Image(hotelbriefVO.imageuri.toString());
+				String hotelName=hotelbriefVO.hotelName;
+				HotelAddress hotelAddress=hotelbriefVO.hotelAddress;
 				orderItemController.setValue(hotelImage, hotelName, hotelAddress, orderVO.latestTime, 
 						orderVO.planedLeaveTime, orderVO.roomType, orderVO.roomNumber.size(), orderVO.price, 
 						orderVO.orderState, orderVO.orderID);

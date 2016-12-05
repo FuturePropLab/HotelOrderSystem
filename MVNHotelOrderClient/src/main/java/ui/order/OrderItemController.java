@@ -17,6 +17,8 @@ import tools.RoomType;
  *
  */
 public class OrderItemController {
+	private static String[] roomTypes={"单人间","双人间","标准间","豪华套房","总统套房"};
+	private static String[] orderStates={"未入住","已入住","异常订单","已撤销"};
 
 	@FXML
 	private ImageView hotelImage;
@@ -70,6 +72,15 @@ public class OrderItemController {
 	 */
 	public void setValue(Image hotelImage,String hotelName,HotelAddress hotelAddress,Date date_from,Date date_to,
 			RoomType roomType,int roomNumber,double price,OrderState orderState,String orderID) {
-		
+		this.hotelImage.setImage(hotelImage);
+		this.hotelName.setText(hotelName);
+		this.hotelAddress.setText(hotelAddress.getAddressDetail());
+		this.date_from.setText(date_from.getYear()+"-"+date_from.getMonth()+"-"+date_from.getDate());
+		this.date_to.setText(date_to.getYear()+"-"+date_to.getMonth()+"-"+date_to.getDate());
+		this.roomType.setText(roomTypes[roomType.ordinal()]);
+		this.roomNumber.setText(roomNumber+"");
+		this.price.setText(price+"");
+		this.orderState.setText(orderStates[orderState.ordinal()]);
+		this.orderID=orderID;
 	}
 }

@@ -31,8 +31,9 @@ public class OrderController implements OrderService{
 	 * @return 实例化的OrderController
 	 */
 	public static OrderController getInstance(){
-		if(orderController==null)
+		if(orderController==null){
 			orderController = new OrderController();
+		}
 		return orderController;
 	}
 
