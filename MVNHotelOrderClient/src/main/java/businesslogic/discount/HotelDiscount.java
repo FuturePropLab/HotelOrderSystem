@@ -6,7 +6,7 @@ import java.util.List;
 
 import po.DiscountPO_hotel;
 import tools.DiscountState;
-import tools.ResultMessageDiscount;
+import tools.ResultMessage_Discount;
 import tools.ResultMessage_strategy;
 import vo.DiscountVO_hotel;
 /**
@@ -37,7 +37,7 @@ public class HotelDiscount {
 	 * @return 修改后信息
 	 */
 	
-	public ResultMessageDiscount editHotelDiscount(String hotel_id,DiscountVO_hotel dis){
+	public ResultMessage_Discount editHotelDiscount(String hotel_id,DiscountVO_hotel dis){
 		DiscountPO_hotel discountPO_hotel = new DiscountPO_hotel(dis);
 		return dataService.editHotelDiscount(hotel_id, discountPO_hotel);
 		
@@ -59,7 +59,7 @@ public class HotelDiscount {
 		return res;
 	}
 	
-	public ResultMessageDiscount deleteHotelDiscount(String hotelID, String discountID) {
+	public ResultMessage_Discount deleteHotelDiscount(String hotelID, String discountID) {
 		// TODO Auto-generated method stub
 		return dataService.deleteHotelDiscount(hotelID, discountID);
 	}
@@ -67,7 +67,7 @@ public class HotelDiscount {
 	/**
 	 * 将策略设为无效
 	 */
-	public ResultMessageDiscount invalidDiscount(String hotelID, String discountID) {
+	public ResultMessage_Discount invalidDiscount(String hotelID, String discountID) {
 		// TODO Auto-generated method stubS
 		return dataService.invalidDiscount(discountID);
 	}

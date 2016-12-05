@@ -3,7 +3,7 @@ package businesslogicservice;
 import java.util.List;
 
 import tools.DiscountState;
-import tools.ResultMessageDiscount;
+import tools.ResultMessage_Discount;
 import tools.ResultMessage_strategy;
 import tools.Strategy_hotelType;
 import vo.DiscountVO_hotel;
@@ -23,7 +23,7 @@ public interface DiscountHotelService {
 	 * @param discountVO_hotel
 	 * @return 編輯酒店策略，返回是否成功
 	 */
-	public ResultMessageDiscount editHotelDiscount (String discountID,DiscountVO_hotel discountVO_hotel);
+	public ResultMessage_Discount editHotelDiscount (String discountID,DiscountVO_hotel discountVO_hotel);
 	
 	/**
 	 * 
@@ -31,7 +31,7 @@ public interface DiscountHotelService {
 	 * @param discountID
 	 * @return 是否成功刪除
 	 */
-	public ResultMessageDiscount deleteHotelDiscount(String hotelID,String discountID);
+	public ResultMessage_Discount deleteHotelDiscount(String hotelID,String discountID);
 	
 	/**
 	 * 
@@ -53,7 +53,7 @@ public interface DiscountHotelService {
 	 * @param discount_id
 	 * @return 将策略设置为无效
 	 */
-	public ResultMessageDiscount invalidDiscount(String hotelID,String discount_id);
+	public ResultMessage_Discount invalidDiscount(String hotelID,String discount_id);
 	
 	/**
 	 * 

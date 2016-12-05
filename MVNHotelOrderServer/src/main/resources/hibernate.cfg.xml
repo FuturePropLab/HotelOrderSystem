@@ -32,6 +32,10 @@ jdbc:mysql://localhost:3306/wsw
         <mapping class="po.HotelFacilityPO"/>
         <mapping class="po.RoomDisablePO"/>      
         <mapping class="po.SingleRoomPO"/>
+        <mapping class="po.DiscountPO_web"/>
+        <mapping class="po.DiscountPO_web_period"/>
+        <mapping class="po.DiscountPO_web_level"/>
+        <mapping class="po.DiscountPO_web_district"/>
         
         
     </session-factory>

@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import businesslogic.customer.Customer;
 import tools.MemberType;
-import tools.ResultMessageDiscount;
+import tools.ResultMessage_Discount;
 import vo.CustomerInputVO;
 import vo.CustomerVO;
 import vo.MemberVO;
@@ -19,7 +19,7 @@ public class TestCustomer {
 		
 		CustomerInputVO test=new CustomerInputVO("xx","xxx",
 				"xxx", "123456789", "xx");
-		ResultMessageDiscount expect= ResultMessageDiscount.Success;
+		ResultMessage_Discount expect= ResultMessage_Discount.Success;
 		String customer_id="0000";
 		MemberType memberType = new MemberType("123");
 		MemberVO membervo  = new MemberVO("123", memberType);

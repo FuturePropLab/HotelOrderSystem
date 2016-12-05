@@ -6,7 +6,7 @@ import java.util.List;
 
 import businesslogicservice.DiscountWebService;
 import tools.DiscountState;
-import tools.ResultMessageDiscount;
+import tools.ResultMessage_Discount;
 import tools.ResultMessage_strategy;
 import tools.Strategy_webType;
 import vo.DiscountVO_web;
@@ -76,7 +76,7 @@ public class DiscountWebController implements DiscountWebService {
 		return web.addWebDiscount(dis);
 	}
 
-	public ResultMessageDiscount editWebDiscount(DiscountVO_web dis) {
+	public ResultMessage_Discount editWebDiscount(DiscountVO_web dis) {
 
 		return web.editWebDiscount(dis);
 
@@ -116,7 +116,7 @@ public class DiscountWebController implements DiscountWebService {
 		return res;
 	}
 
-	public ResultMessageDiscount deleteDiscount(String discountID) {
+	public ResultMessage_Discount deleteDiscount(String discountID) {
 
 		return web.deleteDiscount(discountID);
 	}
@@ -158,7 +158,7 @@ public class DiscountWebController implements DiscountWebService {
 	/**
 	 * 设为失效
 	 */
-	public ResultMessageDiscount invalidDiscount(String discountID) {
+	public ResultMessage_Discount invalidDiscount(String discountID) {
 
 		return web.invalidDiscount(discountID);
 	}

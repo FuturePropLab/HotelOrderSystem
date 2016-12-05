@@ -3,7 +3,7 @@ package dataservice;
 import java.util.List;
 
 import po.DiscountPO_web;
-import tools.ResultMessageDiscount;
+import tools.ResultMessage_Discount;
 import tools.ResultMessage_strategy;
 import vo.DiscountVO_web;
 /**
@@ -19,7 +19,7 @@ public interface DiscountWebDataService {
 	 */
 	public ResultMessage_strategy addWebDiscount (DiscountPO_web dis);
 	
-	public ResultMessageDiscount editWebDiscount (DiscountPO_web discountPO_web);
+	public ResultMessage_Discount editWebDiscount (DiscountPO_web discountPO_web);
 	
 	/**
 	 * 
@@ -27,12 +27,12 @@ public interface DiscountWebDataService {
 	 */
 	public List<DiscountPO_web> getWebDiscount ();
 	
-	public ResultMessageDiscount deleteWebDiscount (String discountID);
+	public ResultMessage_Discount deleteWebDiscount (String discountID);
 	
 	/**
 	 * 
 	 * @param discountID
 	 * @return 是否成功，已为无效的不可重复设置无效
 	 */
-	public ResultMessageDiscount invalidDiscount(String discountID);
+	public ResultMessage_Discount invalidDiscount(String discountID);
 }

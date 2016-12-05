@@ -3,7 +3,7 @@ package driver;
 import java.util.LinkedList;
 import java.util.List;
 
-import tools.ResultMessageDiscount;
+import tools.ResultMessage_Discount;
 import vo.DiscountVO_hotel;
 
 public class DiscountService_Driver {
@@ -19,7 +19,7 @@ public class DiscountService_Driver {
 		disvo.discountID = "0050";
 		
 		
-		ResultMessageDiscount re;
+		ResultMessage_Discount re;
 		re=dis.addHotelDiscount("005");
 		System.out.println(disvo.discount);
 		

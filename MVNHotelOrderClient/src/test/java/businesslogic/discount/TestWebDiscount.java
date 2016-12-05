@@ -7,7 +7,7 @@ import java.util.Date;
 
 import org.junit.Test;
 
-import tools.ResultMessageDiscount;
+import tools.ResultMessage_Discount;
 import tools.ResultMessage_strategy;
 import vo.DiscountVO_web;
 
@@ -18,7 +18,7 @@ public class TestWebDiscount {
 		Date t1=new Date(2016,9,1);
 		Date t2=new Date(2016,9,2);
 //		DiscountVO_web dis=new DiscountVO_web(10,"新街口",9.9,t1,t2,10);
-		ResultMessageDiscount exp=ResultMessageDiscount.Success;
+		ResultMessage_Discount exp=ResultMessage_Discount.Success;
 		WebDiscount test=new WebDiscount();
 		String id="0000";
 //		DiscountVO_web t=new DiscountVO_web(0, id, 0, t2, t2, 0);
