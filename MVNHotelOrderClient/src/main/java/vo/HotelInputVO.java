@@ -106,6 +106,7 @@ public class HotelInputVO {
 		this.hotelInfoVO = hotelInfoVO;
 		this.hotelRoomInfo = hotelRoomInfo;
 	}
-
+	
+	
 	
 }

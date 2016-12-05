@@ -27,6 +27,7 @@ import tools.RoomType;
 import ui.customer.BookHotelController;
 import ui.main.DetailsController;
 import ui.room.RoomInfoController;
+import vo.CommentVO;
 import vo.HotelDetailsVO;
 import vo.HotelDiscribtionsVO;
 import vo.HotelFacilityVO;
@@ -267,6 +268,11 @@ public class HotelDetailController extends DetailsController{
 	@FXML
 	private void handleAssess() {
 		//TODO:跳转到评价信息界面
+		
+		hotelDealService = HotelDealController.getInstance();
+		List<CommentVO> commentList = hotelDealService.getComment(HotelID);
+		
+		
 		
 	}
 	@FXML

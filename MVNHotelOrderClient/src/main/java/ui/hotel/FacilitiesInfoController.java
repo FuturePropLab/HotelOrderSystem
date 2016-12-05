@@ -1,6 +1,7 @@
 package ui.hotel;
 
 import java.io.File;
+import java.net.URI;
 
 import businesslogic.hotel.HotelDealController;
 import javafx.fxml.FXML;
@@ -73,7 +74,10 @@ public class FacilitiesInfoController extends DetailsController{
 	@FXML
 	private Label service6;	
 	
+
 	private String hotelID = "HT001" ; //@author wsw  这个应该在初始化这个界面的时候就传过来的
+
+
 	
     @FXML
     private void initialize() {
@@ -87,7 +91,15 @@ public class FacilitiesInfoController extends DetailsController{
     
     @FXML
     private void handleSave() {
-    	//HotelDealController hotelDealController = HotelDealController.getInstance();
+
+    	//TODO:调用blservice保存信息
+    	//HotelFacilityVO hotelFacilityVO = new HotelFacilityVO(hotel_id,hotelName.getText(),facilitiesImage.GET,Boolean.valueOf(wifi.getText()).booleanValue(),Boolean.valueOf(noneSmoke.getText()).booleanValue(),Boolean.valueOf(diningHall.getText()).booleanValue(),Boolean.valueOf(parkingLot.getText()).booleanValue(),Boolean.valueOf(elevator.getText()).booleanValue(),Boolean.valueOf(conferenceHall.getText()).booleanValue(),Boolean.valueOf(morningCall.getText()).booleanValue(),Boolean.valueOf(frontdeskservice.getText()).booleanValue(),Boolean.valueOf(luggageStorage.getText()).booleanValue(),Boolean.valueOf(breakfast.getText()),Boolean.valueOf(other.getText()).booleanValue());
+    	//String hotelID, String hotelName, URI facilityImage, boolean wifi, boolean noneSmoke,
+		//boolean diningHall, boolean parkingLot, boolean elevator, boolean conferenceHall, boolean morningCall,
+		//boolean frontdeskservice, boolean luggageStorage, boolean breakfast, String other
+    	
+    	
+
     	
     }
     @FXML

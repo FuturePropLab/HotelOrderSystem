@@ -85,5 +85,30 @@ public class OrderVO {
 		this.mark = mark;
 		this.assessment = assessment;
 	}
+	public OrderVO(OrderPO orderPO){
+		this.orderID = orderPO.getOrderID();
+		this.customerID = orderPO.getCustomerID();
+		this.hotelID = orderPO.getHotelID();
+		this.price = orderPO.getPrice();
+		this.roomNumber = orderPO.getRoomNumber();
+		this.startTime = orderPO.getStartTime();
+		this.latestTime =orderPO.getLatestTime();
+		this.planedLeaveTime = orderPO.getPlanedLeaveTime();
+		this.checkInTime = orderPO.getCheckInTime();
+		this.checkOutTime = orderPO.getCheckInTime();
+		this.revokeTime = orderPO.getRevokeTime();
+		this.roomType = orderPO.getRoomType();
+		this.numberOfRooms = orderPO.getNumberOfRooms();
+		this.value = orderPO.getValue();
+		this.planedPeopleNumber = orderPO.getPlanedPeopleNumber();
+		this.child = orderPO.isChild();
+		this.orderState = orderPO.getOrderState();
+		this.mark = orderPO.getMark();
+		this.assessment = orderPO.getAssessment();
+		
+		
+		
+		
+	}
 
 }
