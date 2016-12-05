@@ -1,5 +1,7 @@
 package po;
 
+import tools.DiscountState;
+import tools.Strategy_webType;
 import vo.DiscountVO_web_level;
 
 /**
@@ -13,10 +15,22 @@ public class DiscountPO_web_level extends DiscountPO_web {
 
 	private int levelUpCredit;// 升级所需信用
 
-	public DiscountPO_web_level(double discount, int lv, int levelUpCredit) {
+	/**
+	 * 
+	 * @param discount
+	 * @param lv
+	 * @param levelUpCredit
+	 * @param discountState
+	 * @param remarks
+	 * @param type
+	 */
+	public DiscountPO_web_level(double discount, int lv, int levelUpCredit,DiscountState discountState,String remarks,Strategy_webType type) {
 		setDiscount(discount);
 		this.level = lv;
 		this.levelUpCredit = levelUpCredit;
+		super.setDiscountState(discountState);
+		super.setRemarks(remarks);
+		super.setType(type);
 	}
 
 	public DiscountPO_web_level(DiscountVO_web_level discountVO_web) {

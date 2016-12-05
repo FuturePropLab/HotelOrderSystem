@@ -1,5 +1,7 @@
 package po;
 
+import tools.DiscountState;
+import tools.Strategy_webType;
 import vo.DiscountVO_web_district;
 
 /**
@@ -14,12 +16,26 @@ public class DiscountPO_web_district extends DiscountPO_web{
 	private String district;
 	private String businessCircle;
 	
-	public DiscountPO_web_district(int lv,String city,String district,String businessCircle,double discount){
+	/**
+	 * 
+	 * @param 等级
+	 * @param city
+	 * @param district
+	 * @param businessCircle
+	 * @param discount
+	 * @param discountState
+	 * @param remarks
+	 * @param type
+	 */
+	public DiscountPO_web_district(int lv,String city,String district,String businessCircle,double discount,DiscountState discountState,String remarks,Strategy_webType type){
 		this.level=lv;
 		this.setCity(city);
 		this.setDistrict(district);
 		this.setBusinessCircle(businessCircle);
 		setDiscount(discount);
+		setDiscountState(discountState);
+		setRemarks(remarks);
+		setType(type);
 	}
 
 

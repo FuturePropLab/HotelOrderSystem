@@ -1,5 +1,8 @@
 package po;
 import java.time.LocalDate;
+
+import tools.DiscountState;
+import tools.Strategy_webType;
 import vo.DiscountVO_web_period;
 
 /**
@@ -13,10 +16,22 @@ public class DiscountPO_web_period extends DiscountPO_web{
 	
 	private LocalDate endDate;
 	
-	public DiscountPO_web_period(double discount , LocalDate startDate ,LocalDate endDate ){
+	/**
+	 * 
+	 * @param discount
+	 * @param startDate
+	 * @param endDate
+	 * @param type
+	 * @param discountState
+	 * @param remarks
+	 */
+	public DiscountPO_web_period(double discount , LocalDate startDate ,LocalDate endDate,Strategy_webType type,DiscountState discountState ,String remarks){
 		super.setDiscount(discount);
 		this.startDate=startDate;
 		this.endDate=endDate;
+		super.setDiscountState(discountState);
+		super.setRemarks(remarks);
+		super.setType(type);
 	}
 	public DiscountPO_web_period(DiscountVO_web_period discountVO_web) {
 		// TODO Auto-generated constructor stub

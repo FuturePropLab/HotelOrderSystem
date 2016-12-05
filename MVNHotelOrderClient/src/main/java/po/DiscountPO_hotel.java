@@ -31,6 +31,18 @@ public class DiscountPO_hotel {
 	
 	private String enterpriseName;//企业名称
 	
+	/**
+	 * 
+	 * @param discountState
+	 * @param type
+	 * @param discountID
+	 * @param discount
+	 * @param startDate
+	 * @param enDate
+	 * @param remarks
+	 * @param superimpose
+	 * @param enterpriseName
+	 */
 	public DiscountPO_hotel(DiscountState discountState,Strategy_hotelType type,String discountID,double discount,LocalDate startDate,LocalDate enDate,String remarks,boolean superimpose,String enterpriseName){
 		this.discountState=discountState;
 		this.type=type;
