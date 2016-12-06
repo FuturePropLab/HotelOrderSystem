@@ -12,9 +12,11 @@ import java.rmi.RemoteException;
 import java.time.LocalDate;
 
 import dataservice.DiscountHotelDataService;
+import dataservice.LoginCheckService;
 import javafx.util.converter.LocalDateStringConverter;
 import po.DiscountPO_hotel;
 import rmi.RemoteHelper;
+import tools.AccountType;
 import tools.DiscountState;
 import tools.Strategy_hotelType;
 
@@ -65,11 +67,13 @@ public class ClientRunner {
 //			System.out.println(list.get(i).getDiscount());
 //		}
 		
-		DiscountHotelDataService discountHotelDataService = RemoteHelper.getInstance().getDiscountHotelDataService();
-		DiscountPO_hotel discountPO_hotel = new DiscountPO_hotel
-				(DiscountState.valid, Strategy_hotelType.CooperateEnterprise, null, 9.5,  LocalDate.now(),
-						LocalDate.of(2016, 12, 31), "王帅惟设计的", false, "朱俊毅粉丝后援团");
-		System.out.println(discountHotelDataService.getHotelDiscount("HT000").isEmpty());
+//		DiscountHotelDataService discountHotelDataService = RemoteHelper.getInstance().getDiscountHotelDataService();
+//		DiscountPO_hotel discountPO_hotel = new DiscountPO_hotel
+//				(DiscountState.valid, Strategy_hotelType.CooperateEnterprise, null, 8.5,  LocalDate.now(),
+//						LocalDate.of(2016, 12, 31), "王帅惟设计的2", true, "朱俊毅粉丝后援团2");
+//		System.out.println(discountHotelDataService.getHotelDiscount("HT000").isEmpty());
+		LoginCheckService loginCheckService = RemoteHelper.getInstance().getLoginCheckService();
+		System.out.println(loginCheckService.checkLogin("zhujunyi", "zhujunyi", AccountType.Customer));
 		 
 	}
 	

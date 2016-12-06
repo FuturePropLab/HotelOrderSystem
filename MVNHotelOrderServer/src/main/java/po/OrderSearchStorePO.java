@@ -5,12 +5,14 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Id;
 
 import tools.OrderState;
 
 
 @Entity
 public class OrderSearchStorePO {
+	@Id
 	private String orderID;
 	private String customerID;
 	private String hotelID;
