@@ -4,11 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Exception.CustomerCreditNotEnoughException;
+import businesslogic.credit.CreditController;
+import businesslogic.customer.CustomerDealController;
+import businesslogicservice.CreditLogDealService;
+import businesslogicservice.CustomerDealService;
 import businesslogicservice.OrderService;
 import dataservice.OrderDataService;
 import po.OrderPO;
 import po.SearchOrderInfo;
 import rmi.RemoteHelper;
+import tools.AccountType;
+import tools.ActionType;
 import tools.OrderState;
 import tools.ResultMessage;
 import vo.ExecutionInfoVO;
@@ -114,12 +120,12 @@ public class OrderController implements OrderService{
 	 * @return 订单信息
 	 * @throws CustomerCreditNotEnoughException 客户信用值为负
 	 */
-	public OrderVO createOrders(OrderInputVO orderInput) throws CustomerCreditNotEnoughException {
+	public ResultMessage createOrders(OrderInputVO orderInput) throws CustomerCreditNotEnoughException {
 		if(orderInput==null){
 			return null;
 		}
 		Order order=new Order(orderInput, new MockCustomerInfo(), new MockHotelInfo(), orderDataService);//TODO: 暂时先用Mock代替
-		return getOrderVO(order);
+		return order.saveOrder();
 	}
 	/**
 	 * 持久化保存订单
@@ -134,10 +140,7 @@ public class OrderController implements OrderService{
 		}
 		Order order=new Order(orderDataService.findOrder(preorder.orderID), new MockCustomerInfo(), //TODO: 暂时先用Mock代替
 				new MockHotelInfo(), orderDataService);
-		if(order.saveOrder()){
-			return ResultMessage.Exist;
-		}
-		return ResultMessage.NotExist;
+		return order.saveOrder();
 	}
 	/**
 	 * 搜索订单
@@ -181,6 +184,9 @@ public class OrderController implements OrderService{
 		}
 		Order order2=new Order(orderPO,  new MockCustomerInfo(),new MockHotelInfo(), orderDataService); //TODO: 暂时先用Mock代替
 		if(order2.getState().equals(OrderState.Unexecuted)){
+			String customerID=order2.getCustomer().customerID;
+			CreditLogDealService creditLogDealService=CreditController.getInstance();
+			creditLogDealService.CreditChangeAboutOrder(order2, ActionType.RevokeOrder);
 			return order2.changeState(OrderState.Revoked)? ResultMessage.Exist:ResultMessage.NotExist;
 		}
 		return ResultMessage.NotExist;
@@ -188,11 +194,11 @@ public class OrderController implements OrderService{
 	/**
 	 * 计算撤销订单将要损失的信用值
 	 * @param order 订单的信息
-	 * @return 预计损失的信用值，如果order为null，则返回-1
+	 * @return 预计损失的信用值，如果找不到订单，则返回-1
 	 */
 	public int calculateCreditLose(OrderVO order) {
 		if(order==null){
-			return -1;
+			throw new NullPointerException();
 		}
 		OrderPO orderPO=orderDataService.findOrder(order.orderID);
 		if(orderPO==null){

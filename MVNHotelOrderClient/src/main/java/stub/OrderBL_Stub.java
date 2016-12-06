@@ -14,19 +14,8 @@ import vo.SearchOrderInfoVO;
 public class OrderBL_Stub implements OrderService{
 
 
-	public OrderVO createOrders(OrderInputVO orderInput) {
-		OrderVO orderVO=new OrderVO();
-		orderVO.orderID="000000001";
-		orderVO.customerID=orderInput.customerID;
-		orderVO.hotelID=orderInput.hotelID;
-		orderVO.startTime=orderInput.startTime;
-		orderVO.latestTime=orderInput.latestTime;
-		orderVO.roomType=orderInput.roomType;
-		orderVO.numberOfRooms=orderInput.numberOfRooms;
-		orderVO.planedPeopleNumber=orderInput.planedPeopleNumber;
-		orderVO.child=orderInput.child;
-		orderVO.orderState=OrderState.Unexecuted;
-		return orderVO;
+	public ResultMessage createOrders(OrderInputVO orderInput) {
+		return orderInput==null?ResultMessage.NotExist:ResultMessage.Exist;
 	}
 
 	

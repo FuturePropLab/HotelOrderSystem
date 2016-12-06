@@ -6,8 +6,8 @@ import java.util.List;
 import businesslogic.customer.Customer;
 import businesslogic.customer.CustomerDealController;
 import businesslogic.customer.CustomerInfoImp;
+import businesslogic.order.Order;
 import businesslogicservice.CreditLogDealService;
-import po.Order;
 import tools.ActionType;
 import tools.ResultMessage;
 import vo.CreditlogVO;
@@ -41,7 +41,7 @@ public class CreditController implements CreditLogDealService{
 		
 		return credit.addlog(order, type, result);
 	}*/
-	public ResultMessage CreditChangeAboutOrder(Order order,ActionType type) throws RemoteException{
+	public ResultMessage CreditChangeAboutOrder(Order order,ActionType type){
 		//Credit credit = new Credit(order.getCustomerID());
 		
 		return credit.CreditChangeAboutOrder(order, type);
@@ -53,7 +53,7 @@ public class CreditController implements CreditLogDealService{
 		return credit.getLogList(customer_id);
 	}
 
-	public ResultMessage charge(String customer_id, int ChargeMoney) throws RemoteException {
+	public ResultMessage charge(String customer_id, int ChargeMoney){
 		// TODO Auto-generated method stub
 		//Credit credit = new Credit(customer_id);
 		return credit.charge(customer_id, ChargeMoney);

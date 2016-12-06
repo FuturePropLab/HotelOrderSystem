@@ -8,9 +8,9 @@ import java.util.Date;
 import java.util.List;
 
 import businesslogic.discount.DiscountWebController;
+import businesslogic.order.Order;
 import dataservice.CreditDataService;
 import po.CreditLogPO;
-import po.Order;
 import po.OrderPO;
 import stub.CreditData_Stub;
 import tools.ActionType;
@@ -35,7 +35,7 @@ public class Credit {
 	 * 获取订单信息，计算信用变化 ，并调用addlog增加记录
 	 * @throws RemoteException 
 	 */
-	public ResultMessage CreditChangeAboutOrder (Order order,ActionType type) throws RemoteException{
+	public ResultMessage CreditChangeAboutOrder (Order order,ActionType type){
 		int creditchange = 0;
 		int result;
 		OrderPO orderPO  =new OrderPO(order);
@@ -77,7 +77,11 @@ public class Credit {
 		result = credit+creditchange;
 		
 		//System.out.print(result);
-		ResultMessage updatelevel = c.levelUpdate(result, order.getCustomerID());
+		try {
+			ResultMessage updatelevel = c.levelUpdate(result, order.getCustomerID());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		ResultMessage resultMessage = creditDataService.changeCredit(order.getCustomerID(), result);
 		if(resultMessage == ResultMessage.Exist){
 		return addlog(order, type, creditchange);}else{return ResultMessage.NotExist;}
@@ -174,13 +178,18 @@ public class Credit {
 	 * @return ResultMessage
 	 * @throws RemoteException 
 	 */
-	public ResultMessage charge(String customer_id, int ChargeMoney) throws RemoteException {
+	public ResultMessage charge(String customer_id, int ChargeMoney){
 		int value = ChargeMoney * 100;
 		CustomerVO customerVO = customerInfo.getCustomerInfo(customer_id);
 		customerVO.credit+= value;
 		int result = customerVO.credit;
 		Credit c= new Credit();
-		ResultMessage ret = c.levelUpdate(result, customer_id);
+		ResultMessage ret=ResultMessage.NotExist;
+		try {
+			ret = c.levelUpdate(result, customer_id);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		
 		
 		ResultMessage rm = customerInfo.changeCustomerInfo(customerVO);

@@ -59,14 +59,12 @@ public class TestOrderController {
 
 	@Test
 	public void testCreateOrders() {
-		OrderVO newOrderVO = null;
+		OrderVO newOrderVO = new OrderVO();
 		try {
-			newOrderVO = orderController.createOrders(orderInputVO);
+			assertEquals(orderController.createOrders(orderInputVO), ResultMessage.Exist);
 		} catch (CustomerCreditNotEnoughException e) {
 			System.out.println("客户信用值为负");
 		}
-		assertNotNull(newOrderVO);
-		assertEquals(newOrderVO.customerID, "customerID");
 	}
 	@Test
 	public void testSaveOrder() {
