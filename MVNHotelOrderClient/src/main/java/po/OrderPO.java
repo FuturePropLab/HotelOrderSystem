@@ -1,5 +1,7 @@
 package po;
 
+import java.awt.SecondaryLoop;
+import java.io.Serializable;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,11 +15,18 @@ import vo.OrderVO;
  * @author zjy
  *
  */
-public class OrderPO {
+public class OrderPO implements Serializable  {
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2359170002512854429L;
 	private String orderID;
 	private String customerID;
 	private String hotelID;
 	private ArrayList<String> roomNumber;//房间号
+	
 	private Date startTime;//未定time用什么类
 	private Date latestTime;//最晚订单执行时间
 	private Date planedLeaveTime;//预计离开时间
