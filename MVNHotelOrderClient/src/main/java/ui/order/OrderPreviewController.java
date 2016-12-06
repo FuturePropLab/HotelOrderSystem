@@ -1,14 +1,20 @@
 package ui.order;
 
 import Exception.CustomerCreditNotEnoughException;
+import businesslogic.customer.CustomerDealController;
+import businesslogic.hotel.HotelDealController;
 import businesslogic.order.OrderController;
+import businesslogicservice.CustomerDealService;
+import businesslogicservice.HotelDealService;
 import businesslogicservice.OrderService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import tools.DateFormat;
 import ui.main.Dialogs;
+import vo.HotelbriefVO;
 import vo.OrderInputVO;
 
 /**
@@ -72,5 +78,39 @@ public class OrderPreviewController {
 	@FXML
 	private void handleCancel() {
 		//TODO:返回填写订单界面
+	}
+	
+	/**
+	 * 初始化界面各组件的值
+	 * @param orderInputVO
+	 */
+	public void initVaule(OrderInputVO orderInputVO) {
+		HotelDealService hotelDealService=HotelDealController.getInstance();
+		HotelbriefVO hotelbriefVO=hotelDealService.getHotelInfo(orderInputVO.hotelID);
+		CustomerDealService customerDealService=CustomerDealController.getInstance();
+		String roomTypes[]={"单人间","双人间","标准间","豪华套房","总统套房"};
+		
+		this.hotelName.setText(hotelbriefVO.hotelName);
+		this.date_from.setText(DateFormat.format(orderInputVO.latestTime));
+		this.date_to.setText(DateFormat.format(orderInputVO.planedLeaveTime));
+		this.roomType.setText(roomTypes[orderInputVO.roomType.ordinal()]);
+		this.roomNumber.setText(orderInputVO.numberOfRooms+"");
+		this.price.setText(orderInputVO.price+"");
+		this.latestDate.setText(DateFormat.format_includingTime(orderInputVO.latestTime));
+		this.planedLeaveDate.setText(DateFormat.format_includingTime(orderInputVO.planedLeaveTime));
+		this.people.setText(orderInputVO.planedPeopleNumber+"");
+		this.children.setText(orderInputVO.child?"有":"无");
+		try {
+			this.customerName.setText(customerDealService.getCustomerInfo(orderInputVO.customerID).customerName);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		this.hotelAddress.setText(hotelbriefVO.hotelAddress.toString());
+		this.star_1.setImage(hotelbriefVO.star.ordinal()+1>=1? yellowStar:greyStar);
+		this.star_2.setImage(hotelbriefVO.star.ordinal()+1>=2? yellowStar:greyStar);
+		this.star_3.setImage(hotelbriefVO.star.ordinal()+1>=3? yellowStar:greyStar);
+		this.star_4.setImage(hotelbriefVO.star.ordinal()+1>=4? yellowStar:greyStar);
+		this.star_5.setImage(hotelbriefVO.star.ordinal()+1>=5? yellowStar:greyStar);
+		this.orderInputVO=orderInputVO;
 	}
 }

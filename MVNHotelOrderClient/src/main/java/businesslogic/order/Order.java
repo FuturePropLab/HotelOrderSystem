@@ -17,7 +17,7 @@ import vo.OrderInputVO;
 
 /**
  * 订单的领域类
- * orderID应该由data层决定，初始化order对象的时候应该没有orderID
+ * orderID应该由这个类层决定，创建订单的时候会生成
  * @author zjy
  *
  */
@@ -241,7 +241,7 @@ public class Order {
 		this.checkOutInfo=new CheckOutInfo(null);
 		this.assessInfo=new AssessInfo(null, null);
 		
-		orderID="orderID";//生成订单ID应该由data层决定
+		orderID=createOrderID(orderInput);
 		value=createValue();
 	}
 	/**
@@ -279,6 +279,32 @@ public class Order {
 		newValue+=customerInfo.getCustomer(placingOrderInfo.customerID).membervo.memberType.getType()
 				.equals(MemberBelongType.None)?0:1000;
 		return newValue;
+	}
+	/**
+	 * 生成订单的ID
+	 * 要求orderInput.startTime在同一次下单时为同一个对象
+	 * @param orderInput 下单的信息
+	 * @return 订单的ID，同一客户在对同一订单下单时生成的ID相同，否则不会和任何订单ID相同
+	 */
+	private String createOrderID(OrderInputVO orderInput) {
+		//算法是将orderInput.startTime的哈希值与customerID隔字符插入形成的字符串作为订单ID
+		
+		String hashValue=orderInput.startTime.hashCode()+"";
+		String customerID=orderInput.customerID;
+		String result="";
+		for(int i=0,j=0;i<hashValue.length()||j<customerID.length();i++,j++){
+			if(i>=hashValue.length()){
+				result=result+customerID.charAt(j);
+			}else if (j>=customerID.length()) {
+				result=result+hashValue.charAt(i);
+			}else {
+				result=result+hashValue.charAt(i)+customerID.charAt(j);
+			}
+		}
+		if("".equals(result)){
+			System.err.println("create OrderID failed!");
+		}
+		return result;
 	}
 	
 	/**
