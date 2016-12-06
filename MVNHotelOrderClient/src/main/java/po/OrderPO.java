@@ -25,24 +25,31 @@ public class OrderPO implements Serializable  {
 	private String orderID;
 	private String customerID;
 	private String hotelID;
-	private ArrayList<String> roomNumber;//房间号
+	private Date startTime;//未定time用什么类	
 	
-	private Date startTime;//未定time用什么类
+	private OrderState orderState;
+	
 	private Date latestTime;//最晚订单执行时间
-	private Date planedLeaveTime;//预计离开时间
-	private Date checkInTime;//实际入住时间
+	private Date planedLeaveTime;//预计离开时间	
 	private Date planedCheckOutTime;//预计退房时间
-	private Date checkOutTime;//实际离开时间
-	private Date revokeTime;//实际撤销时间
+	
 	private RoomType roomType;
 	private int numberOfRooms;//房间数量
+	
 	private int value;//订单的价值
 	private int planedPeopleNumber;//预计入住人数
-	private boolean child;//有无儿童
-	private OrderState orderState;
+	private boolean child;//有无儿童	
+	private double price;
+	
+	
+	private ArrayList<String> roomNumber;//房间号
+
 	private Mark mark;
 	private String assessment;
-	private double price;
+	
+	private Date checkOutTime;//实际离开时间
+	private Date revokeTime;//实际撤销时间
+	private Date checkInTime;//实际入住时间	
 	
 	public OrderPO() {
 		super();
