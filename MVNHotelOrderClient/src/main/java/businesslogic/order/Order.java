@@ -36,7 +36,7 @@ public class Order {
 //	private OrderPO orderPO;
 	
 	/**
-	 * 订单的构造方法，通过客户下单生成订单，构造之后会调用saveOrder
+	 * 订单的构造方法，通过客户下单生成订单
 	 * @param orderInput 下单信息
 	 * @param customerInfo 实现客户信息接口的对象
 	 * @param hotelInfo 实现酒店信息接口的对象
@@ -49,7 +49,7 @@ public class Order {
 		if(orderInput==null){
 			return;
 		}
-		int credit=customerInfo.getCustomer(placingOrderInfo.customerID).credit;
+		int credit=customerInfo.getCustomer(orderInput.customerID).credit;
 		if(credit<0){
 			throw new CustomerCreditNotEnoughException(credit);
 		}
@@ -58,7 +58,6 @@ public class Order {
 			this.hotelInfo=hotelInfo;
 			this.orderDataService=orderDataService;
 			init(orderInput);
-			saveOrder();
 //			sync();
 		}
 	}
@@ -81,12 +80,11 @@ public class Order {
 //		sync();
 	}
 	/**
-	 * @deprecated
 	 * 持久化保存订单
-	 * @return  成功则返回true，失败返回false
+	 * @return 成功返回exit，否则返回notExit
 	 */
-	public boolean saveOrder(){
-		return orderDataService.add(getOrderPO()).equals(ResultMessage.Exist);
+	public ResultMessage saveOrder(){
+		return orderDataService.add(getOrderPO());
 	}
 	/**
 	 * 改变订单的状态

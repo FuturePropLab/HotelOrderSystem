@@ -3,7 +3,7 @@ package businesslogicservice;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import po.Order;
+import businesslogic.order.Order;
 import tools.ActionType;
 import tools.ResultMessage;
 import vo.CreditlogVO;
@@ -27,7 +27,7 @@ public interface CreditLogDealService {
 	 * @return
 	 * @throws RemoteException 
 	 */
-	public ResultMessage CreditChangeAboutOrder(Order order,ActionType type) throws RemoteException;
+	public ResultMessage CreditChangeAboutOrder(Order order,ActionType type);
 	
 	/**
 	 * 根据客户的ID 返回该客户的所有信用记录
@@ -43,5 +43,5 @@ public interface CreditLogDealService {
 	 * @return ResultMessage
 	 * @throws RemoteException 
 	 */
-	public ResultMessage charge(String customer_id,int ChargeMoney) throws RemoteException;
+	public ResultMessage charge(String customer_id,int ChargeMoney);
 }

@@ -21,7 +21,7 @@ public interface OrderService {
 	 * @return 订单信息
 	 * @throws CustomerCreditNotEnoughException 客户信用值为负
 	 */
-	public OrderVO createOrders(OrderInputVO orderInput) throws CustomerCreditNotEnoughException;
+	public ResultMessage createOrders(OrderInputVO orderInput) throws CustomerCreditNotEnoughException;
 	/**
 	 * 持久化保存订单
 	 * @param preorder 订单信息

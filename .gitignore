@@ -117,3 +117,5 @@ MVNHotelOrderClient/target/classes/vo/HotelRoomInfoVO.class
 MVNHotelOrderClient/target/classes/vo/HotelInputVO.class
 
 MVNHotelOrderClient/target/classes/vo/RoomVO.class
+
+*.class

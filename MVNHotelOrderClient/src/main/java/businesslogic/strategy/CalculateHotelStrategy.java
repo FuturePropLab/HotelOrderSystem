@@ -34,9 +34,14 @@ public class CalculateHotelStrategy {
 	 *            构造方法
 	 * @throws RemoteException 
 	 */
-	public CalculateHotelStrategy(OrderInputCalVO orderInput) throws RemoteException {
+	public CalculateHotelStrategy(OrderInputCalVO orderInput)  {
 		StrategyGetService discount = new StrategyGet();
-		strategyList = discount.getSuitableDiscount_hotel(orderInput);
+		try {
+			strategyList = discount.getSuitableDiscount_hotel(orderInput);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.orderInputCalVO = orderInput;
 	}
 

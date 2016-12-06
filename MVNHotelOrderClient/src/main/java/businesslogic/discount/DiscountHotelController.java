@@ -44,27 +44,50 @@ public class DiscountHotelController implements DiscountHotelService {
 
 /**
  * 得到所有该酒店的促销策略，必须先被调用
- * @throws RemoteException 
  */
-	public List<DiscountVO_hotel> getHotelDiscount(String hotelID) throws RemoteException {
+	public List<DiscountVO_hotel> getHotelDiscount(String hotelID) {
 		
-		return hotelDiscount.getHotelDiscount(hotelID);
+		try {
+			return hotelDiscount.getHotelDiscount(hotelID);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			//System.out.println(e.getMessage());
+			return null;
+		}
 	}
 	
-	public ResultMessage_DiscountDetail addHotelDiscount(String hotelID, DiscountVO_hotel dis) throws RemoteException {
+	public ResultMessage_DiscountDetail addHotelDiscount(String hotelID, DiscountVO_hotel dis) {
 		
-		return hotelDiscount.addHotelDiscount(hotelID, dis);
+		try {
+			return hotelDiscount.addHotelDiscount(hotelID, dis);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
-	public ResultMessage_Discount editHotelDiscount(String discountID, DiscountVO_hotel discountVO_hotel) throws RemoteException {
+	public ResultMessage_Discount editHotelDiscount(String discountID, DiscountVO_hotel discountVO_hotel) {
 		
-		return hotelDiscount.editHotelDiscount(discountID, discountVO_hotel);
+		try {
+			return hotelDiscount.editHotelDiscount(discountID, discountVO_hotel);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 
-	public ResultMessage_Discount deleteHotelDiscount(String hotelID, String discountID) throws RemoteException {
+	public ResultMessage_Discount deleteHotelDiscount(String hotelID, String discountID) {
 		
-		return hotelDiscount.deleteHotelDiscount(hotelID, discountID);
+		try {
+			return hotelDiscount.deleteHotelDiscount(hotelID, discountID);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	public List<DiscountVO_hotel> getHotelDiscountByType(String hotelID,Strategy_hotelType type) {
@@ -94,7 +117,7 @@ public class DiscountHotelController implements DiscountHotelService {
 		return res;
 	}
 	
-	public ResultMessage_Discount invalidDiscount(String hotelID,String discountID) throws RemoteException {
+	public ResultMessage_Discount invalidDiscount(String hotelID,String discountID) {
 		Iterator<DiscountVO_hotel> iterator = list.iterator();
 		while (iterator.hasNext()) {
 			DiscountVO_hotel discountVO_hotel = (DiscountVO_hotel) iterator.next();
@@ -102,13 +125,13 @@ public class DiscountHotelController implements DiscountHotelService {
 				discountVO_hotel.discountState=DiscountState.invalid;
 			}
 		}
-		return hotelDiscount.invalidDiscount(hotelID, discountID);
+		try {
+			return hotelDiscount.invalidDiscount(hotelID, discountID);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
-
-
 	
-	
-	
-	
-
 }

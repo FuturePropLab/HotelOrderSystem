@@ -12,6 +12,8 @@ import Exception.CustomerCreditNotEnoughException;
 import po.OrderPO;
 import stub.OrderDate_Stub;
 import tools.OrderState;
+import tools.ResultMessage;
+import tools.ResultMessage_LoginCheck;
 import tools.RoomType;
 import vo.ExecutionInfoVO;
 import vo.OrderInputVO;
@@ -39,7 +41,7 @@ public class TestOrder {
 	}
 	@Test
 	public void testSaveOrder() {
-		assertTrue(order.saveOrder());
+		assertEquals(order.saveOrder(), ResultMessage.Exist);
 	}
 	@Test
 	public void testChangeState() {

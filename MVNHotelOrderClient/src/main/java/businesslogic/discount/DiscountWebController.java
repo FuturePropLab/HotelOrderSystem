@@ -45,9 +45,8 @@ public class DiscountWebController implements DiscountWebService {
 	
 	/**
 	 * 增加网站营销策略，写入数据库同时在逻辑层缓存
-	 * @throws RemoteException 
 	 */
-	public ResultMessage_DiscountDetail addWebDiscount(DiscountVO_web dis) throws RemoteException {
+	public ResultMessage_DiscountDetail addWebDiscount(DiscountVO_web dis) {
 
 		if (dis.type == Strategy_webType.Level) {// 等级制定由低往高制定，否则失败
 
@@ -73,22 +72,40 @@ public class DiscountWebController implements DiscountWebService {
 
 			}
 		}
-		return web.addWebDiscount(dis);
+		try {
+			return web.addWebDiscount(dis);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
-	public ResultMessage_Discount editWebDiscount(DiscountVO_web dis) throws RemoteException {
+	public ResultMessage_Discount editWebDiscount(DiscountVO_web dis) {
 
-		return web.editWebDiscount(dis);
+		try {
+			return web.editWebDiscount(dis);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 
 	}
 
 	/**
 	 * 得到所有策略
-	 * @throws RemoteException 
 	 */
-	public List<DiscountVO_web> getWebDiscount() throws RemoteException {
+	public List<DiscountVO_web> getWebDiscount() {
 
-		List<DiscountVO_web> res = web.getWebDiscount();
+		List<DiscountVO_web> res;
+		try {
+			res = web.getWebDiscount();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 
 		list = res;
 
@@ -117,9 +134,15 @@ public class DiscountWebController implements DiscountWebService {
 		return res;
 	}
 
-	public ResultMessage_Discount deleteDiscount(String discountID) throws RemoteException {
+	public ResultMessage_Discount deleteDiscount(String discountID) {
 
-		return web.deleteDiscount(discountID);
+		try {
+			return web.deleteDiscount(discountID);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	/**
@@ -158,11 +181,15 @@ public class DiscountWebController implements DiscountWebService {
 
 	/**
 	 * 设为失效
-	 * @throws RemoteException 
 	 */
-	public ResultMessage_Discount invalidDiscount(String discountID) throws RemoteException {
+	public ResultMessage_Discount invalidDiscount(String discountID) {
 
-		return web.invalidDiscount(discountID);
+		try {
+			return web.invalidDiscount(discountID);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return ResultMessage_Discount.Fail;		}
 	}
 
 	/**

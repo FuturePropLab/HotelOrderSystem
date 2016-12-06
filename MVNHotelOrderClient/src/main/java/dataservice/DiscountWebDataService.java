@@ -15,7 +15,7 @@ import tools.ResultMessage_DiscountDetail;
 public interface DiscountWebDataService extends Remote{
 	
 	/**
-	 * DiscountPO_web传过去的对象需要根据具体的type判断，应向下转型为哪种类型（好担心这个设计不是很好~~
+	 * DiscountPO_web传过去的对象需要根据具体的type判断，应向下转型为哪种类型
 	 * @return 成功或者失败(1.与已有的冲突：时间冲突，商圈冲突等；2.已经存在）
 	 */
 	public ResultMessage_DiscountDetail addWebDiscount (DiscountPO_web dis) throws RemoteException;
