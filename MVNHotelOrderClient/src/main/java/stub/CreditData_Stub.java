@@ -44,4 +44,11 @@ public class CreditData_Stub implements CreditDataService {
 		return null;
 	}
 
+
+	@Override
+	public ResultMessage changeCredit(String customer_id, double result) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

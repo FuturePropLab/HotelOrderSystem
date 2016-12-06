@@ -5,11 +5,11 @@ import tools.ActionType;
 public class CreditLogPO {
 		private ActionType actionType ;
 		private  OrderPO orderPO ;
-		private  int changeValue;
+		private  double changeValue;
 		
-		public CreditLogPO(ActionType actionType , OrderPO orderPO,int changeValue){
+		public CreditLogPO(ActionType actionType , OrderPO orderPO,double creditchange2){
 			this.actionType = actionType;
-			this.changeValue = changeValue;
+			this.changeValue = creditchange2;
 			this.orderPO = orderPO;
 		}
 		
@@ -29,7 +29,7 @@ public class CreditLogPO {
 			this.orderPO = orderPO;
 		}
 
-		public int getChangeValue() {
+		public double getChangeValue() {
 			return changeValue;
 		}
 

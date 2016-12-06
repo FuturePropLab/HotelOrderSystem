@@ -36,8 +36,8 @@ public class Credit {
 	 * @throws RemoteException 
 	 */
 	public ResultMessage CreditChangeAboutOrder (Order order,ActionType type){
-		int creditchange = 0;
-		int result;
+		double creditchange = 0;
+		double result;
 		OrderPO orderPO  =new OrderPO();
 		//CustomerVO customerVO = customerInfo.getCustomerInfo(order.getCustomerID());
 		CustomerVO customerVO = order.getCustomer();
@@ -45,28 +45,36 @@ public class Credit {
 		//int credit =80;
 		switch (type){
 		
-		case RightOrder:creditchange = 50;//完成一个订单增加50信用值
-		case RevokeOrder:creditchange = -30;//撤销订单信用值－30，
+		case RightOrder:creditchange = order.getOrderPO().getPrice();//完成一个订单增加订单价值的信用值
+		case RevokeOrder://撤销的订单时间距离最晚订单执行时间不足6个小时，扣去订单价值的一半，需求上写的
+				Date revokedTime = order.getOrderPO().getRevokeTime();
+				Date latestTimeArriv = order.getOrderPO().getLatestTime();
+				long between = ((latestTimeArriv.getTime()-revokedTime.getTime())/(1000*60*60));
+				if(between<6){
+					creditchange = -order.getOrderPO().getPrice()/2;
+				}
+			
+			
 		case BadOrder:
 			
 			
 			
 			
-			//延迟入住信用值减25,延迟退房超过30分钟减25,
+			
 				Date latestTime = order.getOrderPO().getLatestTime();
 				Date checkIntime = order.getOrderPO().getCheckInTime();
 				Date planedLeaveTime =order.getOrderPO().getPlanedLeaveTime();
 				Date checkOutTime = order.getOrderPO().getCheckOutTime();
 				if(checkIntime.before(latestTime)){
-					creditchange = creditchange-25;
+					creditchange = -order.getOrderPO().getPrice();
 					
 				}
 	
 				
-				long between=((checkOutTime.getTime()-planedLeaveTime.getTime())/(1000*60));
+				/*long between=((checkOutTime.getTime()-planedLeaveTime.getTime())/(1000*60));
 				if(between>=30){
 					creditchange -=30;
-									}
+									}*/
 				//System.out.println(between);
 				
 				
@@ -99,12 +107,12 @@ public class Credit {
 	 * @param result
 	 * @return ResultMessage
 	 */
-	public ResultMessage addlog(Order order, ActionType type, int changeValue) {
+	public ResultMessage addlog(Order order, ActionType type, double creditchange2) {
 		int creditchange =0;
 		
 		if(order==null && type!=ActionType.Charge)  return ResultMessage.NotExist;
 		if(type == ActionType.Charge)  {
-			CreditLogPO creditpo = new CreditLogPO(type,null,changeValue);
+			CreditLogPO creditpo = new CreditLogPO(type,null,creditchange2);
 			
 			return creditDataService.add(creditpo);}
 		
@@ -142,7 +150,7 @@ public class Credit {
 			ResultMessage resultMessage = creditDataService.changeCredit(customer_id, result);
 			
 			CreditLogPO creditLogPO = new CreditLogPO(type, orderPO, result);*/
-		CreditLogPO creditLogPO = new CreditLogPO(type, orderPO, changeValue);
+		CreditLogPO creditLogPO = new CreditLogPO(type, orderPO, creditchange2);
 			
 		return creditDataService.add(creditLogPO);
 	}
@@ -220,7 +228,7 @@ public class Credit {
 	 * level
 	 * @throws RemoteException 
 	 */
-	public ResultMessage levelUpdate(int result,String customer_id) throws RemoteException{
+	public ResultMessage levelUpdate(double result,String customer_id) throws RemoteException{
 		DiscountWebController discountWeb =  DiscountWebController.getInstance();
 		int [] uplevel =new int[4];
 		
