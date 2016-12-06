@@ -1,5 +1,6 @@
 package businesslogic.order;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -124,7 +125,8 @@ public class OrderController implements OrderService{
 		if(orderInput==null){
 			return null;
 		}
-		Order order=new Order(orderInput, new MockCustomerInfo(), new MockHotelInfo(), orderDataService);//TODO: 暂时先用Mock代替
+		Order order=new Order(orderInput, new MockCustomerInfo(), new MockHotelInfo(), orderDataService);
+		//TODO: 暂时先用Mock代替
 		return order.saveOrder();
 	}
 	/**
@@ -138,9 +140,14 @@ public class OrderController implements OrderService{
 		if(preorder==null){
 			return ResultMessage.NotExist;
 		}
-		Order order=new Order(orderDataService.findOrder(preorder.orderID), new MockCustomerInfo(), //TODO: 暂时先用Mock代替
-				new MockHotelInfo(), orderDataService);
-		return order.saveOrder();
+		try {
+			Order order = new Order(orderDataService.findOrder(preorder.orderID), new MockCustomerInfo(), 
+					new MockHotelInfo(), orderDataService);//TODO: 暂时先用Mock代替
+			return order.saveOrder();
+		} catch (RemoteException e) {
+			System.err.println(e.getCause().getMessage());
+			return ResultMessage.NotExist;
+		}
 	}
 	/**
 	 * 搜索订单
@@ -151,23 +158,33 @@ public class OrderController implements OrderService{
 		if(searchOrderInfo==null){
 			return null;
 		}
-		List<OrderPO> poList=orderDataService.searchOrder(null);//TODO：接口要改，先用null代替
-		List<OrderVO> voList=new ArrayList<OrderVO>();
-		for(OrderPO orderPO:poList){
-			voList.add(getOrderVO(orderPO));
+		try {
+			List<OrderPO> poList=orderDataService.searchOrder(null);//TODO：接口要改，先用null代替
+			List<OrderVO> voList=new ArrayList<OrderVO>();
+			for(OrderPO orderPO:poList){
+				voList.add(getOrderVO(orderPO));
+			}
+			return voList;
+		} catch (RemoteException e) {
+			System.err.println(e.getCause().getMessage());
+			return new ArrayList<OrderVO>();
 		}
-		return voList;
 	}
 	/**
 	 * 获取单个订单的信息
 	 * @param order_id 订单的ID
-	 * @return 订单的信息
+	 * @return 订单的信息，如果获取失败，则返回null
 	 */
 	public OrderVO checkSingleOrder(String order_id) {
 		if(order_id==null){
 			return null;
 		}
-		return getOrderVO(orderDataService.findOrder(order_id));
+		try {
+			return getOrderVO(orderDataService.findOrder(order_id));
+		} catch (RemoteException e) {
+			System.err.println(e.getCause().getMessage());
+			return null;
+		}
 	}
 	/**
 	 * 撤销订单
@@ -178,16 +195,21 @@ public class OrderController implements OrderService{
 		if(order==null){
 			return ResultMessage.NotExist;
 		}
-		OrderPO orderPO=orderDataService.findOrder(order.orderID);
-		if(orderPO==null){
-			return ResultMessage.NotExist;
-		}
-		Order order2=new Order(orderPO,  new MockCustomerInfo(),new MockHotelInfo(), orderDataService); //TODO: 暂时先用Mock代替
-		if(order2.getState().equals(OrderState.Unexecuted)){
-			String customerID=order2.getCustomer().customerID;
-			CreditLogDealService creditLogDealService=CreditController.getInstance();
-			creditLogDealService.CreditChangeAboutOrder(order2, ActionType.RevokeOrder);
-			return order2.changeState(OrderState.Revoked)? ResultMessage.Exist:ResultMessage.NotExist;
+		try {
+			OrderPO orderPO=orderDataService.findOrder(order.orderID);
+			if(orderPO==null){
+				return ResultMessage.NotExist;
+			}
+			Order order2=new Order(orderPO,  new MockCustomerInfo(),new MockHotelInfo(), orderDataService); 
+			//TODO: 暂时先用Mock代替
+			if(order2.getState().equals(OrderState.Unexecuted)){
+				String customerID=order2.getCustomer().customerID;
+				CreditLogDealService creditLogDealService=CreditController.getInstance();
+				creditLogDealService.CreditChangeAboutOrder(order2, ActionType.RevokeOrder);
+				return order2.changeState(OrderState.Revoked);
+			}
+		} catch (RemoteException e) {
+			System.err.println(e.getCause().getMessage());
 		}
 		return ResultMessage.NotExist;
 	}
@@ -200,12 +222,18 @@ public class OrderController implements OrderService{
 		if(order==null){
 			throw new NullPointerException();
 		}
-		OrderPO orderPO=orderDataService.findOrder(order.orderID);
-		if(orderPO==null){
+		try {
+			OrderPO orderPO=orderDataService.findOrder(order.orderID);
+			if(orderPO==null){
+				return -1;
+			}
+			Order order2=new Order(orderPO,  new MockCustomerInfo(),new MockHotelInfo(), orderDataService); 
+			//TODO: 暂时先用Mock代替
+			return order2.getOrderValue();
+		} catch (RemoteException e) {
+			System.err.println(e.getCause().getMessage());
 			return -1;
 		}
-		Order order2=new Order(orderPO,  new MockCustomerInfo(),new MockHotelInfo(), orderDataService); //TODO: 暂时先用Mock代替
-		return order2.getOrderValue();
 	}
 	/**
 	 * 客户到店办理入住时，酒店工作人员执行订单，即修改订单的入住信息
@@ -216,15 +244,20 @@ public class OrderController implements OrderService{
 		if(executionInfo==null){
 			return ResultMessage.NotExist;
 		}
-		OrderPO orderPO=orderDataService.findOrder(executionInfo.orderID);
-		if(orderPO==null){
-			return ResultMessage.NotExist;
-		}
-		Order order=new Order(orderPO,  new MockCustomerInfo(),new MockHotelInfo(), orderDataService); //TODO: 暂时先用Mock代替
-		boolean checkIn=order.modifyCheckInInfo(executionInfo);
-		boolean checkOut=order.modifyCheckOutInfo(executionInfo);
-		if(checkIn&&checkOut){
-			return ResultMessage.Exist;
+		try {
+			OrderPO orderPO=orderDataService.findOrder(executionInfo.orderID);
+			if(orderPO==null){
+				return ResultMessage.NotExist;
+			}
+			Order order=new Order(orderPO,  new MockCustomerInfo(),new MockHotelInfo(), orderDataService); 
+			//TODO: 暂时先用Mock代替
+			boolean checkIn=order.modifyCheckInInfo(executionInfo);
+			boolean checkOut=order.modifyCheckOutInfo(executionInfo);
+			if(checkIn&&checkOut){
+				return ResultMessage.Exist;
+			}
+		} catch (RemoteException e) {
+			System.err.println(e.getCause().getMessage());
 		}
 		return ResultMessage.NotExist;
 	}
@@ -238,12 +271,18 @@ public class OrderController implements OrderService{
 		if(Order==null){
 			return ResultMessage.NotExist;
 		}
-		OrderPO orderPO=orderDataService.findOrder(Order.orderID);
-		if(orderPO==null){
+		try {
+			OrderPO orderPO=orderDataService.findOrder(Order.orderID);
+			if(orderPO==null){
+				return ResultMessage.NotExist;
+			}
+			Order order2=new Order(orderPO,  new MockCustomerInfo(),new MockHotelInfo(), orderDataService); 
+			//TODO: 暂时先用Mock代替
+			return ResultMessage.Exist;
+		} catch (RemoteException e) {
+			System.err.println(e.getCause().getMessage());
 			return ResultMessage.NotExist;
 		}
-		Order order2=new Order(orderPO,  new MockCustomerInfo(),new MockHotelInfo(), orderDataService); //TODO: 暂时先用Mock代替
-		return ResultMessage.Exist;
 	}
 	/**
 	 * 撤销异常订单
@@ -254,13 +293,18 @@ public class OrderController implements OrderService{
 		if(badOrder==null){
 			return ResultMessage.NotExist;
 		}
-		OrderPO orderPO=orderDataService.findOrder(badOrder.orderID);
-		if(orderPO==null){
-			return ResultMessage.NotExist;
-		}
-		Order order=new Order(orderPO,  new MockCustomerInfo(),new MockHotelInfo(), orderDataService); //TODO: 暂时先用Mock代替
-		if(order.getState().equals(OrderState.Exception)){
-			return order.changeState(OrderState.Unexecuted)? ResultMessage.Exist:ResultMessage.NotExist;
+		try {
+			OrderPO orderPO=orderDataService.findOrder(badOrder.orderID);
+			if(orderPO==null){
+				return ResultMessage.NotExist;
+			}
+			Order order=new Order(orderPO,  new MockCustomerInfo(),new MockHotelInfo(), orderDataService); 
+			//TODO: 暂时先用Mock代替
+			if(order.getState().equals(OrderState.Exception)){
+				return order.changeState(OrderState.Unexecuted);
+			}
+		} catch (RemoteException e) {
+			System.err.println(e.getCause().getMessage());
 		}
 		return ResultMessage.NotExist;
 	}

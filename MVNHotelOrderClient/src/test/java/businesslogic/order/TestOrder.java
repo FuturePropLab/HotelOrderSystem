@@ -45,7 +45,7 @@ public class TestOrder {
 	}
 	@Test
 	public void testChangeState() {
-		assertTrue(order.changeState(OrderState.Exception));
+		assertEquals(order.changeState(OrderState.Exception),ResultMessage.Exist);
 		assertEquals(order.getState(), OrderState.Exception);
 	}
 	@Test

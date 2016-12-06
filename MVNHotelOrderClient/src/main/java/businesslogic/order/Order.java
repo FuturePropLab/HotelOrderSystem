@@ -1,5 +1,6 @@
 package businesslogic.order;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -84,17 +85,26 @@ public class Order {
 	 * @return 成功返回exit，否则返回notExit
 	 */
 	public ResultMessage saveOrder(){
-		return orderDataService.add(getOrderPO());
+		try {
+			return orderDataService.add(getOrderPO());
+		} catch (RemoteException e) {
+			System.err.println(e.getCause().getMessage());
+			return ResultMessage.NotExist;
+		}
 	}
 	/**
 	 * 改变订单的状态
 	 * @param orderState 希望改变后的状态
-	 * @return 成功则返回true，失败返回false
+	 * @return 成功返回exit，否则返回notExit
 	 */
-	public boolean changeState(OrderState orderState){
+	public ResultMessage changeState(OrderState orderState){
 		this.orderState=orderState;
-		orderDataService.modify(getOrderPO());
-		return true;
+		try {
+			return orderDataService.modify(getOrderPO());
+		} catch (RemoteException e) {
+			System.err.println(e.getCause().getMessage());
+			return ResultMessage.NotExist;
+		}
 	}
 	/**
 	 * 修改订单的入住信息
@@ -120,7 +130,13 @@ public class Order {
 		if(checkInInfo.filled()&&orderState.equals(OrderState.Unexecuted)){
 			changeState(OrderState.Executed);
 		}
-		ResultMessage resultMessage=orderDataService.modify(getOrderPO());
+		ResultMessage resultMessage=ResultMessage.NotExist;
+		try {
+			resultMessage = orderDataService.modify(getOrderPO());
+		} catch (RemoteException e) {
+			System.err.println(e.getCause().getMessage());
+			return false;
+		}
 		return resultMessage.equals(ResultMessage.Exist);
 	}
 	/**
@@ -138,7 +154,13 @@ public class Order {
 		if(executionInfo.checkOutTime!=null){
 			checkOutInfo.checkOutTime=executionInfo.checkOutTime;
 		}
-		ResultMessage resultMessage=orderDataService.modify(getOrderPO());
+		ResultMessage resultMessage=ResultMessage.NotExist;
+		try {
+			resultMessage = orderDataService.modify(getOrderPO());
+		} catch (RemoteException e) {
+			System.err.println(e.getCause().getMessage());
+			return false;
+		}
 		return resultMessage.equals(ResultMessage.Exist);
 	}
 	/**
@@ -325,6 +347,8 @@ public class Order {
 				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();
+			} catch (RemoteException e) {
+				System.err.println(e.getCause().getMessage());
 			}
 		}
 	}
