@@ -14,15 +14,15 @@ import vo.DiscountVO_web;
  */
 public interface DiscountWebService {
 
-	public ResultMessage_DiscountDetail addWebDiscount (DiscountVO_web dis) throws RemoteException;
+	public ResultMessage_DiscountDetail addWebDiscount (DiscountVO_web dis) ;
 	
-	public ResultMessage_Discount editWebDiscount (DiscountVO_web dis) throws RemoteException;
+	public ResultMessage_Discount editWebDiscount (DiscountVO_web dis) ;
 	/**
 	 * 得到網站的所有促銷策略
 	 * @return
 	 * @throws RemoteException 
 	 */
-	public List<DiscountVO_web> getWebDiscount () throws RemoteException;
+	public List<DiscountVO_web> getWebDiscount () ;
 	/**
 	 * 
 	 * @param type
@@ -30,7 +30,7 @@ public interface DiscountWebService {
 	 */
 	public List<DiscountVO_web> getWebDiscount(Strategy_webType type) ;
 	
-	public ResultMessage_Discount deleteDiscount (String discountID) throws RemoteException;
+	public ResultMessage_Discount deleteDiscount (String discountID) ;
 	
 	/**
 	 * 
@@ -38,6 +38,6 @@ public interface DiscountWebService {
 	 * @return 将策略设置为无效
 	 * @throws RemoteException 
 	 */
-	public ResultMessage_Discount invalidDiscount(String discount_id) throws RemoteException;
+	public ResultMessage_Discount invalidDiscount(String discount_id);
 	
 }
