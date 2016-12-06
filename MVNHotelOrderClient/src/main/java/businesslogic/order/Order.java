@@ -49,8 +49,9 @@ public class Order {
 		if(orderInput==null){
 			return;
 		}
-		if(customerInfo.getCustomer(placingOrderInfo.customerID).credit<0){
-			throw new CustomerCreditNotEnoughException();
+		int credit=customerInfo.getCustomer(placingOrderInfo.customerID).credit;
+		if(credit<0){
+			throw new CustomerCreditNotEnoughException(credit);
 		}
 		else {
 			this.customerInfo=customerInfo;

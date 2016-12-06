@@ -1,79 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.order.OrderPreviewController">
    <children>
       <AnchorPane layoutX="92.0" layoutY="-15.0" maxHeight="689.0" prefHeight="689.0" prefWidth="606.0">
          <children>
             <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="603.0" layoutX="66.0" layoutY="57.0" stroke="BLACK" strokeType="INSIDE" width="624.0" />
-            <Group layoutX="184.0" layoutY="-97.0" />
-            <Label contentDisplay="CENTER" layoutX="215.0" layoutY="77.0" text="皇家酒店">
+            <Label fx:id="hotelName" contentDisplay="CENTER" layoutX="215.0" layoutY="77.0" text="皇家酒店">
                <font>
                   <Font size="30.0" />
                </font>
             </Label>
-            <Group layoutX="81.0" layoutY="238.0" />
-            <Group layoutX="418.0" layoutY="516.0">
+            <HBox layoutX="358.0" layoutY="78.0">
                <children>
-                  <Label layoutX="-22.0" text="总统套房">
+                  <ImageView fx:id="star_1" fitHeight="37.0" fitWidth="37.0">
+                     <image>
+                        <Image url="@../../../resources/images/star__selected.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="star_2" fitHeight="37.0" fitWidth="37.0">
+                     <image>
+                        <Image url="@../../../resources/images/star__selected.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="star_3" fitHeight="37.0" fitWidth="37.0">
+                     <image>
+                        <Image url="@../../../resources/images/star__selected.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="star_4" fitHeight="37.0" fitWidth="37.0">
+                     <image>
+                        <Image url="@../../../resources/images/star__selected.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="star_5" fitHeight="35.0" fitWidth="32.0">
+                     <image>
+                        <Image url="@../../../resources/images/star_unselected.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox layoutX="319.0" layoutY="129.0">
+               <children>
+                  <Label text="地址：">
                      <font>
-                        <Font size="28.0" />
+                        <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="137.0" text="1间">
+                  <Label fx:id="hotelAddress" text="南京市栖霞区仙林大道163号">
                      <font>
-                        <Font size="28.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="-22.0" layoutY="54.0" text="实付">
-                     <font>
-                        <Font size="22.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="79.0" layoutY="36.0" text="￥999">
-                     <font>
-                        <Font size="50.0" />
+                        <Font size="17.0" />
                      </font>
                   </Label>
                </children>
-            </Group>
-            <Label layoutX="370.0" layoutY="130.0" text="南京市栖霞区仙林大道163号">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <Group layoutX="234.0" layoutY="182.0" />
-            <Label layoutX="319.0" layoutY="129.0" text="地址：">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="37.0" fitWidth="37.0" layoutX="359.0" layoutY="78.0">
-               <image>
-                  <Image url="@../../../resources/images/star__selected.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="37.0" fitWidth="37.0" layoutX="409.0" layoutY="78.0">
-               <image>
-                  <Image url="@../../../resources/images/star__selected.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="37.0" fitWidth="37.0" layoutX="460.0" layoutY="78.0">
-               <image>
-                  <Image url="@../../../resources/images/star__selected.png" />
-               </image>
-            </ImageView>
+            </HBox>
             <GridPane layoutX="165.0" layoutY="172.0" prefHeight="285.0" prefWidth="410.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -87,12 +80,12 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="订单号">
+                  <Label text="客户姓名">
                      <font>
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <Label text="000000000000001" GridPane.columnIndex="1">
+                  <Label fx:id="customerName" text="特朗普" GridPane.columnIndex="1">
                      <font>
                         <Font size="22.0" />
                      </font>
@@ -102,7 +95,7 @@
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="43.0" prefWidth="207.0" text="2016-10-1  22：00" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Label fx:id="latestDate" prefHeight="43.0" prefWidth="207.0" text="2016-10-1  22：00" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font size="22.0" />
                      </font>
@@ -112,7 +105,7 @@
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <Label text="2016-10-2  12：00" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Label fx:id="planedLeaveDate" text="2016-10-2  12：00" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
                         <Font size="22.0" />
                      </font>
@@ -122,31 +115,111 @@
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <Label text="1人" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <font>
-                        <Font size="22.0" />
-                     </font>
-                  </Label>
+                  <HBox GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <children>
+                        <Label fx:id="people" text="1">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label text="人">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="10.0" top="15.0" />
+                     </GridPane.margin>
+                  </HBox>
                   <Label text="有无儿童" GridPane.rowIndex="4">
                      <font>
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <Label text="无" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <Label fx:id="children" text="无" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <font>
                         <Font size="22.0" />
                      </font>
                   </Label>
                </children>
             </GridPane>
-            <Label layoutX="395.0" layoutY="472.0" prefHeight="34.0" prefWidth="205.0" text="10-1   —  10-2">
+            <HBox layoutX="395.0" layoutY="472.0">
+               <children>
+                  <Label fx:id="date_from" text="10-1">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Label>
+                  <Label text="—">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="date_to" text="10-2">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <Group layoutX="418.0" layoutY="516.0">
+               <children>
+                  <Label fx:id="roomType" layoutX="-22.0" text="总统套房">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Label>
+                  <HBox layoutX="137.0">
+                     <children>
+                        <Label fx:id="roomNumber" text="1">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Label>
+                        <Label text="间">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Label layoutX="-22.0" layoutY="54.0" text="实付">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <HBox layoutX="79.0" layoutY="36.0">
+                     <children>
+                        <Label text="￥">
+                           <font>
+                              <Font size="50.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="price" text="999">
+                           <font>
+                              <Font size="50.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </Group>
+         </children>
+      </AnchorPane>
+      <HBox layoutX="534.0" layoutY="658.0" spacing="40.0">
+         <children>
+            <Hyperlink fx:id="confirm" onAction="#handleConfirm" text="确认下单">
                <font>
                   <Font size="28.0" />
                </font>
-            </Label>
+            </Hyperlink>
+            <Hyperlink fx:id="cancel" onAction="#handleCancel" text="取消">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Hyperlink>
          </children>
-      </AnchorPane>
-      <Button layoutX="505.0" layoutY="674.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="119.0" text="生成订单" />
-      <Button layoutX="651.0" layoutY="674.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="119.0" text="取消" />
+      </HBox>
    </children>
 </AnchorPane>

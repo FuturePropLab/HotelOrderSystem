@@ -1,10 +1,15 @@
 package ui.order;
 
+import Exception.CustomerCreditNotEnoughException;
+import businesslogic.order.OrderController;
+import businesslogicservice.OrderService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import ui.main.Dialogs;
+import vo.OrderInputVO;
 
 /**
  * 订单预览界面的控制器
@@ -53,15 +58,19 @@ public class OrderPreviewController {
 	private Hyperlink confirm;
 	@FXML
 	private Hyperlink cancel;
-	private String hotelID;
-	private String customerID;
+	private OrderInputVO orderInputVO;
 	
 	@FXML
 	private void handleConfirm() {
-		//TODO:
+		OrderService orderService=OrderController.getInstance();
+		try {
+			orderService.createOrders(orderInputVO);
+		} catch (CustomerCreditNotEnoughException e) {
+			Dialogs.showMessage("你的信用值是："+e.credit,"你的信用值不足，不能下单，请联系网站促销人员进行充值");
+		}
 	}
 	@FXML
 	private void handleCancel() {
-		//TODO:
+		//TODO:返回填写订单界面
 	}
 }
