@@ -67,6 +67,7 @@ public class OrderPO implements Serializable  {
 		this.roomNumber.add("8888");
 		this.startTime=new Time(0);
 		this.latestTime=new Time(0);
+		this.planedLeaveTime=new Date();
 		this.planedCheckOutTime=new Date();
 		this.checkInTime=new Time(0);
 		this.checkOutTime=new Time(0);
