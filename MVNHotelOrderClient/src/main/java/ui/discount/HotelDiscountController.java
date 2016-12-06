@@ -1,14 +1,24 @@
 package ui.discount;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
+import businesslogic.discount.DiscountHotelController;
+import businesslogicservice.DiscountHotelService;
+import dataservice.DiscountHotelDataService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;
+import po.DiscountPO_hotel;
+import rmi.RemoteHelper;
+import tools.Strategy_hotelType;
 import ui.main.DetailsController;
+import vo.DiscountVO_hotel;
 
 /**
  * 酒店优惠策略制定界面的控制器
@@ -27,6 +37,9 @@ public class HotelDiscountController extends DetailsController{
 	private ArrayList<TitledPane> titledPanes = new ArrayList<TitledPane>();
 	private ArrayList<ItemController> itemControllers = new ArrayList<ItemController>();
 	
+	
+	private String hotelID = "HT001";  //以后处理这个id的获取方式  @lwy
+	
 	/**
      * Initializes the controller class. This method is automatically called
      * after the fxml file has been loaded.
@@ -37,15 +50,40 @@ public class HotelDiscountController extends DetailsController{
     }
     
     
-    private void initAccordions() {
+    private void initAccordions()  {
     	//TODO: 调用blservice查询该优惠策略的信息然后将组建的值设置好
     	
+//    	
+//    	DiscountHotelService discountHotelService = DiscountHotelController.getInstance();
+//    	
+//    	DiscountHotelDataService hotelDataService = RemoteHelper.getInstance().getDiscountHotelDataService();
+    	//List<DiscountVO_hotel> discountVO_hotels = discountHotelService.getHotelDiscount(hotelID);
+//    			discountHotelService.getHotelDiscountByType(hotelID, Strategy_hotelType.CooperateEnterprise);
+  
+//    	while(it.hasNext()){
+//    		DiscountVO_hotel dis = it.next();
+//    		BirthdayItemController birthdayItemController=(BirthdayItemController)addTitlePane(birthdayList,"BirthdayItem.fxml");
+//        	birthdayItemController.setValue("biaoti", dis.discountState.toString(), 
+//        			dis.remarks, dis.discount, (Date)dis.startDate, (Date)dis.endDate, true);
+//        	
+//    	}
     	//下面是一个例子
     	BirthdayItemController birthdayItemController=(BirthdayItemController)addTitlePane(birthdayList,"BirthdayItem.fxml");
     	birthdayItemController.setValue("title", "未开始", "无", 9.5, new Date(2015, 10, 19), new Date(2015, 10, 20), true);
     	OverThreeRoomsItemController overThreeRoomsItemController=(OverThreeRoomsItemController)addTitlePane(overThreeRoomsList,"OverThreeRoomsItem.fxml");
     	overThreeRoomsItemController.setValue("title", "未开始", "无", 9.5, new Date(2015, 10, 19), new Date(2015, 10, 20), true);
-    	CompanyItemController companyItemController=(CompanyItemController)addTitlePane(companyList,"CompanyItem.fxml");
+//    	while(it.hasNext()){
+        	CompanyItemController companyItemController=(CompanyItemController)addTitlePane(companyList,"CompanyItem.fxml");
+//
+//    		DiscountPO_hotel dis = it.next();
+//    		System.out.println(dis.getDiscount_id());
+//    		companyItemController.setValue("biaoti", dis.getDiscountState().toString(), 
+//        			dis.getRemarks(), dis.getDiscount(), new Date(), new Date(), dis.isSuperimpose());
+//    		companyItemController.setCompanyName(dis.getEnterpriseName());
+//    		addTitlePane(companyList,"CompanyItem.fxml");
+////        	
+//    	}
+    	
     	companyItemController.setValue("title", "未开始", "无", 9.5, new Date(2015, 10, 19), new Date(2015, 10, 20), true);
     	companyItemController.setCompanyName("companyName");
     	Double11ItemController double11ItemController=(Double11ItemController)addTitlePane(double11List,"Double11Item.fxml");
@@ -55,7 +93,7 @@ public class HotelDiscountController extends DetailsController{
     	
     	addTitlePane(birthdayList,"BirthdayItem.fxml");
     	addTitlePane(overThreeRoomsList,"OverThreeRoomsItem.fxml");
-    	addTitlePane(companyList,"CompanyItem.fxml");
+    	
     	addTitlePane(double11List,"Double11Item.fxml");
     }
     private ItemController addTitlePane(Accordion accordion,String fxml) {

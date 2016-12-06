@@ -93,11 +93,19 @@ public class DiscountHotelController implements DiscountHotelService {
 	public List<DiscountVO_hotel> getHotelDiscountByType(String hotelID,Strategy_hotelType type) {
 		
 		List<DiscountVO_hotel> res = new LinkedList<DiscountVO_hotel>();
+		
+		//add null value check
+		if(list==null){
+			this.list = getHotelDiscount(hotelID);
+		}
+		
 		Iterator<DiscountVO_hotel> iterator = list.iterator();
+		
 		while (iterator.hasNext()) {
 			DiscountVO_hotel discountVO_hotel =  iterator.next();
 			if(discountVO_hotel.type==type) res.add(discountVO_hotel);
 		}
+		
 		return res;
 	}
 	/**

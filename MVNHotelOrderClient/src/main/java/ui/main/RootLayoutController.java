@@ -63,10 +63,10 @@ public class RootLayoutController {
         try {
 //        	changeFullLayout("../login/Login.fxml");
 			changeDetails("../order/OrderList.fxml");
-//        	changeDetails("../hotel/HotelDetail.fxml");
+//       	changeDetails("../hotel/HotelDetail.fxml");
 //			changeDetails("../room/RoomInfo.fxml");
 
-//			changeDetails("../discount/WebStrategy.fxml");
+//			changeDetails("../discount/HotelDiscount.fxml");
 
         	changeGuid("GuideUI.fxml");
 		} catch (IOException e) {

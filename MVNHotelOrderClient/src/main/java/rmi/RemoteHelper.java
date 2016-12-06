@@ -46,9 +46,9 @@ public class RemoteHelper {
 		return (AccountDataService)remote;
 	}
 	
-//	public OrderDataService getOrderDataService(){
-//		return (OrderDataService)remote;
-//	}
+	public OrderDataService getOrderDataService(){
+		return (OrderDataService)remote;
+	}
 	
 	/**
 	 * 返回CustomerDataService RMI调用
