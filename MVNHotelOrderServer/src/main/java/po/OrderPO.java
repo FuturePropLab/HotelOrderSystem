@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import Exception.OutOfBoundsException;
 import tools.Mark;
 import tools.OrderState;
 import tools.RoomType;
@@ -57,25 +59,80 @@ public class OrderPO implements Serializable  {
 	public OrderPO(String orderID) {
 		super();
 		this.orderID = orderID;
-		this.customerID="customerID";
-		this.hotelID="hotelID";
-		this.roomNumber=new ArrayList<String>();
-		this.roomNumber.add("8888");
-		this.startTime=new Time(0);
-		this.latestTime=new Time(0);
-		this.planedCheckOutTime=new Date();
-		this.checkInTime=new Time(0);
-		this.checkOutTime=new Time(0);
+		this.customerID="CS001";
+		this.hotelID="HT001";
+//		this.roomNumber=new ArrayList<String>();
+//		this.roomNumber.add("8888");
+		this.startTime=new Date();
+		this.latestTime=new Date(2016-1900, 11, 9);
+		this.planedLeaveTime = new Date(2016-1900, 11, 16);
+		this.planedCheckOutTime=null;
+		this.checkInTime=null;
+		this.checkOutTime=null;
 		this.revokeTime=null;
-		this.roomType=RoomType.EluxeSuite;
-		this.numberOfRooms=1;
+		this.roomType=RoomType.Double;
+		this.numberOfRooms=2;
 		this.value=1;
-		this.planedPeopleNumber=1;
+		this.planedPeopleNumber=3;
 		this.child=false;
 		this.orderState=OrderState.Unexecuted;
 		this.mark=null;
 		this.assessment=null;
 	}
+	
+	/**
+	 * 推荐使用的返回生成方法
+	 * @param orderSearchStorePO
+	 * @param orderNotChangePO
+	 * @param orderAssessPO
+	 */
+	public OrderPO(OrderSearchStorePO orderSearchStorePO , OrderNotChangePO orderNotChangePO
+			, OrderAssessPO orderAssessPO) {
+		super();
+		this.orderID = orderSearchStorePO.getOrderID();
+		this.customerID=orderSearchStorePO.getCustomerID();
+		this.hotelID=orderSearchStorePO.getHotelID();
+
+		this.startTime=orderSearchStorePO.getStartTime();
+		this.latestTime=orderNotChangePO.getLatestTime();
+		
+		this.planedCheckOutTime=orderSearchStorePO.getPlanedCheckOutTime();
+		this.checkInTime=orderSearchStorePO.getCheckInTime();
+		this.checkOutTime=orderSearchStorePO.getCheckOutTime();
+		this.revokeTime=orderSearchStorePO.getRevokeTime();
+		this.roomType=orderNotChangePO.getRoomType();
+		this.numberOfRooms=orderNotChangePO.getNumberOfRooms();
+		this.value=orderNotChangePO.getValue();
+		this.planedPeopleNumber= orderNotChangePO.getPlanedPeopleNumber();
+		this.child=orderNotChangePO.isChild();
+		this.planedLeaveTime = orderNotChangePO.getPlanedLeaveTime();
+		this.orderState=orderSearchStorePO.getOrderState();
+		
+		//deal with the mark
+		try {
+			this.mark=new Mark(orderAssessPO.getMarkValue());
+		} catch (OutOfBoundsException e) {
+			int m = orderAssessPO.getMarkValue();
+			if(m<0){
+				try {
+					this.mark = new Mark(0);
+				} catch (OutOfBoundsException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}else{
+				try {
+					this.mark = new Mark(5);
+				} catch (OutOfBoundsException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		}
+		this.assessment=orderAssessPO.getAssessment();
+	}
+	
+	
 	public OrderPO(String orderID, String customerID, String hotelID, ArrayList<String> roomNumber, Date startTime,
 			Date latestTime,Date planedLeaveTime, Date checkInTime, Date planedCheckOutTime,Date checkOutTime, Date revokeTime,
 			RoomType roomType, int numberOfRooms, int value, int planedPeopleNumber, boolean child,
@@ -245,6 +302,9 @@ public class OrderPO implements Serializable  {
 	}
 	public void setRevokeTime(Date revokeTime) {
 		this.revokeTime = revokeTime;
+	}
+	public void setOrderID(String orderID) {
+		this.orderID = orderID;
 	}
 	
 }

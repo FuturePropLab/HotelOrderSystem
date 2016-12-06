@@ -2,18 +2,20 @@ package po;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 
 import tools.RoomType;
 
+@Entity
 public class OrderNotChangePO {
 	@Id
 	private String orderID;
 	private Date latestTime;//最晚订单执行时间
 	private Date planedLeaveTime;//预计离开时间	
-	private Date planedCheckOutTime;//预计退房时间	
+
 	private RoomType roomType;
 	private int numberOfRooms;//房间数量	
 	private int value;//订单的价值
@@ -26,7 +28,19 @@ public class OrderNotChangePO {
 	}
 	
 	
-	
+	public OrderNotChangePO(OrderPO orderPO){
+		super();
+		this.child = orderPO.isChild();
+		this.latestTime = orderPO.getLatestTime();
+		this.numberOfRooms  =orderPO.getNumberOfRooms();
+		this.orderID = orderPO.getOrderID();
+		//this.planedCheckOutTime  =orderPO.getPlanedCheckOutTime();
+		this.planedLeaveTime = orderPO.getPlanedLeaveTime();
+		this.planedPeopleNumber =orderPO.getPlanedPeopleNumber();
+		this.price  =orderPO.getPrice();
+		this.roomType  =orderPO.getRoomType();
+		this.value = orderPO.getValue();
+	}
 	
 	public String getOrderID() {
 		return orderID;
@@ -50,14 +64,6 @@ public class OrderNotChangePO {
 
 	public void setPlanedLeaveTime(Date planedLeaveTime) {
 		this.planedLeaveTime = planedLeaveTime;
-	}
-
-	public Date getPlanedCheckOutTime() {
-		return planedCheckOutTime;
-	}
-
-	public void setPlanedCheckOutTime(Date planedCheckOutTime) {
-		this.planedCheckOutTime = planedCheckOutTime;
 	}
 	
 	@Enumerated(EnumType.STRING)

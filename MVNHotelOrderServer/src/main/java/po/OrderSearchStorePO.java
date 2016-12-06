@@ -20,11 +20,26 @@ public class OrderSearchStorePO {
 	private Date checkOutTime;//实际离开时间
 	private Date revokeTime;//实际撤销时间
 	private Date checkInTime;//实际入住时间	
+	private Date planedCheckOutTime;//预计退房时间	
 	private OrderState orderState;
 	
 	
 	public OrderSearchStorePO(){
 		
+	}
+	
+	
+	public OrderSearchStorePO(OrderPO orderPO){
+		super();
+		this.orderID = orderPO.getOrderID();
+		this.hotelID =orderPO.getHotelID();
+		this.customerID =orderPO.getCustomerID();
+		this.startTime  =orderPO.getStartTime();
+		this.checkInTime  =orderPO.getCheckInTime();
+		this.checkOutTime =orderPO.getCheckOutTime();
+		this.revokeTime  =orderPO.getRevokeTime();
+		this.planedCheckOutTime = orderPO.getPlanedCheckOutTime();
+		this.orderState = orderPO.getOrderState();
 	}
 
 
@@ -106,6 +121,18 @@ public class OrderSearchStorePO {
 	public void setCheckInTime(Date checkInTime) {
 		this.checkInTime = checkInTime;
 	}
+
+
+	public Date getPlanedCheckOutTime() {
+		return planedCheckOutTime;
+	}
+
+
+	public void setPlanedCheckOutTime(Date planedCheckOutTime) {
+		this.planedCheckOutTime = planedCheckOutTime;
+	}
+	
+	
 	
 	
 }
