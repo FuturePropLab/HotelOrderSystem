@@ -74,7 +74,7 @@ public class OrderVO {
 		this.roomNumber = roomNumber;
 		this.startTime = startTime;
 		this.latestTime = latestTime;
-		this.planedLeaveTime = planedLeaveTime;
+		this.planedLeaveTime=planedLeaveTime;
 		this.checkInTime = checkInTime;
 		this.planedCheckOutTime=planedCheckOutTime;
 		this.checkOutTime = checkOutTime;
@@ -96,7 +96,8 @@ public class OrderVO {
 		this.roomNumber = orderPO.getRoomNumber();
 		this.startTime = orderPO.getStartTime();
 		this.latestTime =orderPO.getLatestTime();
-		this.planedLeaveTime = orderPO.getPlanedLeaveTime();
+		this.planedLeaveTime=orderPO.getPlanedLeaveTime();
+		this.planedCheckOutTime= orderPO.getPlanedCheckOutTime();
 		this.checkInTime = orderPO.getCheckInTime();
 		this.checkOutTime = orderPO.getCheckInTime();
 		this.revokeTime = orderPO.getRevokeTime();

@@ -26,21 +26,21 @@ public class OrderInputVO {
 	 *  @param hotelID  酒店ID
 	 *  @param startTime  订单开始时间
 	 *  @param latestTime  最晚订单执行时间
-	 *  @param planedLeaveTime  预计离开时间
+	 *  @param planedLeaveTime 预计离开时间
 	 *  @param roomType  房间类型
 	 *  @param numberOfRooms  预订的房间数量
 	 *  @param planedPeopleNumber  预计入住人数
 	 *  @param child  是否有儿童
 	 *  @param price 订单总价
 	 */
-	public OrderInputVO(String customerID, String hotelID, Date startTime, Date latestTime, Date planedLeaveTime,
+	public OrderInputVO(String customerID, String hotelID, Date startTime, Date latestTime,Date planedLeaveTime,
 			RoomType roomType, int numberOfRooms, int planedPeopleNumber, boolean child,double price) {
 		super();
 		this.customerID = customerID;
 		this.hotelID = hotelID;
 		this.startTime = startTime;
 		this.latestTime = latestTime;
-		this.planedLeaveTime = planedLeaveTime;
+		this.planedLeaveTime=planedLeaveTime;
 		this.roomType = roomType;
 		this.numberOfRooms = numberOfRooms;
 		this.planedPeopleNumber = planedPeopleNumber;

@@ -37,7 +37,7 @@ public class PlacingOrderInfo {
 	 * @param price 订单总价
 	 */
 	public PlacingOrderInfo(String customerID, RoomType roomType, int numberOfRooms, ArrayList<String> roomNumber,
-			String hotelID, Date startTime, Date latestTime, Date planedLeaveTime, int planedPeopleNumber,
+			String hotelID, Date startTime, Date latestTime,Date planedLeaveTime, int planedPeopleNumber,
 			boolean child,double price) {
 		super();
 		this.customerID = customerID;
@@ -47,7 +47,7 @@ public class PlacingOrderInfo {
 		this.hotelID = hotelID;
 		this.startTime = startTime;
 		this.latestTime = latestTime;
-		this.planedLeaveTime = planedLeaveTime;
+		this.planedLeaveTime=planedLeaveTime;
 		this.planedPeopleNumber = planedPeopleNumber;
 		this.child = child;
 		this.price=price;

@@ -21,7 +21,6 @@ public class OrderBL_Stub implements OrderService{
 		orderVO.hotelID=orderInput.hotelID;
 		orderVO.startTime=orderInput.startTime;
 		orderVO.latestTime=orderInput.latestTime;
-		orderVO.planedLeaveTime=orderInput.planedLeaveTime;
 		orderVO.roomType=orderInput.roomType;
 		orderVO.numberOfRooms=orderInput.numberOfRooms;
 		orderVO.planedPeopleNumber=orderInput.planedPeopleNumber;

@@ -22,7 +22,7 @@ public class OrderPO {
 	private Date latestTime;//最晚订单执行时间
 	private Date planedLeaveTime;//预计离开时间
 	private Date checkInTime;//实际入住时间
-	private Date planedCheckOutTime;//预计退房时间  待加上
+	private Date planedCheckOutTime;//预计退房时间
 	private Date checkOutTime;//实际离开时间
 	private Date revokeTime;//实际撤销时间
 	private RoomType roomType;
@@ -51,7 +51,7 @@ public class OrderPO {
 		this.roomNumber.add("8888");
 		this.startTime=new Time(0);
 		this.latestTime=new Time(0);
-		this.planedLeaveTime=new Time(0);
+		this.planedCheckOutTime=new Date();
 		this.checkInTime=new Time(0);
 		this.checkOutTime=new Time(0);
 		this.revokeTime=null;
@@ -65,7 +65,7 @@ public class OrderPO {
 		this.assessment=null;
 	}
 	public OrderPO(String orderID, String customerID, String hotelID, ArrayList<String> roomNumber, Date startTime,
-			Date latestTime, Date planedLeaveTime, Date checkInTime, Date planedCheckOutTime,Date checkOutTime, Date revokeTime,
+			Date latestTime,Date planedLeaveTime, Date checkInTime, Date planedCheckOutTime,Date checkOutTime, Date revokeTime,
 			RoomType roomType, int numberOfRooms, int value, int planedPeopleNumber, boolean child,
 			OrderState orderState, Mark mark, String assessment,double price) {
 		super();
@@ -75,7 +75,7 @@ public class OrderPO {
 		this.roomNumber = roomNumber;
 		this.startTime = startTime;
 		this.latestTime = latestTime;
-		this.planedLeaveTime = planedLeaveTime;
+		this.planedLeaveTime=planedLeaveTime;
 		this.checkInTime = checkInTime;
 		this.planedCheckOutTime=planedCheckOutTime;
 		this.checkOutTime = checkOutTime;
@@ -105,6 +105,7 @@ public class OrderPO {
 		this.latestTime =  order.getLatestTime();
 		this.planedLeaveTime =  order.getPlanedLeaveTime();
 		this.checkInTime =  order.getCheckInTime();
+		this.planedCheckOutTime=order.getPlanedCheckOutTime();
 		this.checkOutTime =  order.getCheckOutTime();
 		this.revokeTime =  order.getRevokeTime();
 		this.roomType =  order.getRoomType();
@@ -129,8 +130,9 @@ public class OrderPO {
 		this.roomNumber = orderVO.roomNumber;
 		this.startTime = orderVO.startTime;
 		this.latestTime = orderVO.latestTime;
-		this.planedLeaveTime = orderVO.planedLeaveTime;
+		this.planedLeaveTime=orderVO.planedLeaveTime;
 		this.checkInTime = orderVO.checkInTime;
+		this.planedCheckOutTime = orderVO.planedCheckOutTime;
 		this.checkOutTime = orderVO.checkOutTime;
 		this.revokeTime = orderVO.revokeTime;
 		this.roomType = orderVO.roomType;
@@ -160,9 +162,6 @@ public class OrderPO {
 	}
 	public Date getLatestTime() {
 		return latestTime;
-	}
-	public Date getPlanedLeaveTime() {
-		return planedLeaveTime;
 	}
 	public Date getCheckInTime() {
 		return checkInTime;
@@ -215,9 +214,6 @@ public class OrderPO {
 	public void setLatestTime(Time latestTime) {
 		this.latestTime = latestTime;
 	}
-	public void setPlanedLeaveTime(Time planedLeaveTime) {
-		this.planedLeaveTime = planedLeaveTime;
-	}
 	public void setCheckInTime(Time checkInTime) {
 		this.checkInTime = checkInTime;
 	}
@@ -260,4 +256,26 @@ public class OrderPO {
 	public void setPlanedCheckOutTime(Date planedCheckOutTime) {
 		this.planedCheckOutTime = planedCheckOutTime;
 	}
+	public Date getPlanedLeaveTime() {
+		return planedLeaveTime;
+	}
+	public void setPlanedLeaveTime(Date planedLeaveTime) {
+		this.planedLeaveTime = planedLeaveTime;
+	}
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
+	public void setLatestTime(Date latestTime) {
+		this.latestTime = latestTime;
+	}
+	public void setCheckInTime(Date checkInTime) {
+		this.checkInTime = checkInTime;
+	}
+	public void setCheckOutTime(Date checkOutTime) {
+		this.checkOutTime = checkOutTime;
+	}
+	public void setRevokeTime(Date revokeTime) {
+		this.revokeTime = revokeTime;
+	}
+	
 }

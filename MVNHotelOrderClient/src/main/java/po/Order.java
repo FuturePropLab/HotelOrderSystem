@@ -17,6 +17,7 @@ public class Order {
 	private Date latestTime;//最晚订单执行时间
 	private Date planedLeaveTime;//预计离开时间
 	private Date checkInTime;//实际入住时间
+	private Date planedCheckOutTime;//预计退房时间
 	private Date checkOutTime;//实际离开时间
 	private Date revokeTime;//实际撤销时间
 	private RoomType roomType;
@@ -137,6 +138,14 @@ public class Order {
 	}
 	public void setAssessment(String assessment) {
 		this.assessment = assessment;
+	}
+
+	public Date getPlanedCheckOutTime() {
+		return planedCheckOutTime;
+	}
+
+	public void setPlanedCheckOutTime(Date planedCheckOutTime) {
+		this.planedCheckOutTime = planedCheckOutTime;
 	}
 	
 }

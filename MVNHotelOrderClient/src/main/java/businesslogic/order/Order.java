@@ -177,7 +177,7 @@ public class Order {
 	 */
 	public OrderInputVO getPlacingOrderInfo(){
 		return new OrderInputVO(placingOrderInfo.customerID, placingOrderInfo.hotelID, placingOrderInfo.startTime, 
-				placingOrderInfo.latestTime, placingOrderInfo.planedLeaveTime, placingOrderInfo.roomType, 
+				placingOrderInfo.latestTime, placingOrderInfo.planedLeaveTime,placingOrderInfo.roomType, 
 				placingOrderInfo.numberOfRooms, placingOrderInfo.planedPeopleNumber, placingOrderInfo.child,
 				placingOrderInfo.price);
 	}
@@ -210,7 +210,7 @@ public class Order {
 	 */
 	public OrderPO getOrderPO() {
 		return new OrderPO(orderID, placingOrderInfo.customerID, placingOrderInfo.hotelID, placingOrderInfo.roomNumber,
-				placingOrderInfo.startTime, placingOrderInfo.latestTime, placingOrderInfo.planedLeaveTime, 
+				placingOrderInfo.startTime, placingOrderInfo.latestTime,  placingOrderInfo.planedLeaveTime,
 				checkInInfo.checkInTime, checkInInfo.planedLeaveTime,checkOutInfo.checkOutTime, revokeTime, placingOrderInfo.roomType, 
 				placingOrderInfo.numberOfRooms, value, placingOrderInfo.planedPeopleNumber, placingOrderInfo.child, 
 				orderState, assessInfo.mark, assessInfo.assessment,placingOrderInfo.price);
@@ -236,7 +236,7 @@ public class Order {
 	private void init(OrderInputVO orderInput) {
 		this.orderState=OrderState.Unexecuted;
 		this.placingOrderInfo=new PlacingOrderInfo(orderInput.customerID, orderInput.roomType, orderInput.numberOfRooms, 
-				null, orderInput.hotelID, orderInput.startTime, orderInput.latestTime, orderInput.planedLeaveTime, 
+				null, orderInput.hotelID, orderInput.startTime, orderInput.latestTime, orderInput.planedLeaveTime,
 				orderInput.planedPeopleNumber, orderInput.child,orderInput.price);
 		this.checkInInfo=new CheckInInfo(null, null);
 		this.checkOutInfo=new CheckOutInfo(null);
