@@ -325,7 +325,7 @@ public class HotelDetailController extends DetailsController{
 	 * 通过酒店ID来初始化界面的各组件的值
 	 * @param hotelID 酒店ID
 	 */
-	public void initVaule(String hotelID) {
+	public void initValue(String hotelID) {
 		HotelDealService hotelDealService=HotelDealController.getInstance();
 		this.hotelDetailsVO=hotelDealService.getHotelDetailsVO(hotelID);
 		if(hotelDetailsVO==null){

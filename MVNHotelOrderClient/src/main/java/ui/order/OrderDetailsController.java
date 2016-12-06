@@ -1,5 +1,6 @@
 package ui.order;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Date;
 
@@ -21,6 +22,7 @@ import tools.DateFormat;
 import tools.HotelAddress;
 import tools.OrderState;
 import tools.RoomType;
+import ui.hotel.HotelDetailController;
 import ui.main.DetailsController;
 import vo.CustomerVO;
 import vo.HotelbriefVO;
@@ -90,18 +92,28 @@ public class OrderDetailsController extends DetailsController{
 	private Label assess;
 	@FXML
 	private Hyperlink revoke;
+	private String hotelID;
 	
 	
 	@FXML
 	private void handleHotelName(){
-		//TODO:跳转到酒店详情界面
+		try {
+			rootLayoutController.changeDetails("../hotel/HotelDetail.fxml");
+			HotelDetailController hotelDetailController=(HotelDetailController)rootLayoutController.getDetailsController();
+			hotelDetailController.initValue(hotelID);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	private void handleRevoke(){
 		//TODO:调用blservice撤销订单
 	}
 	
-	
+	/**
+	 * 初始化各组件的值
+	 * @param orderID 订单ID
+	 */
 	public void initValue(String orderID){
 		OrderService orderService=OrderController.getInstance();
 		OrderVO orderVO=orderService.checkSingleOrder(orderID);
@@ -156,5 +168,6 @@ public class OrderDetailsController extends DetailsController{
 				orderVO.orderState.equals(OrderState.Unexecuted)){
 			revoke.setVisible(true);
 		}
+		this.hotelID=orderVO.hotelID;
 	}
 }

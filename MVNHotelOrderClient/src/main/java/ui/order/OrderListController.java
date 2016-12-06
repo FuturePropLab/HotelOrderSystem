@@ -128,7 +128,21 @@ public class OrderListController extends DetailsController{
 		try {
 			rootLayoutController.changeDetails("../hotel/HotelDetail.fxml");
 			HotelDetailController hotelDetailController=(HotelDetailController)rootLayoutController.getDetailsController();
-			hotelDetailController.initVaule(hotelID);
+			hotelDetailController.initValue(hotelID);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+    /**
+     * 跳转到订单详情界面
+     * @param orderID 订单ID
+     */
+	public void toOrderDetailView(String orderID) {
+		try {
+			rootLayoutController.changeDetails("../order/OrderDetails.fxml");
+			OrderDetailsController orderDetailsController=(OrderDetailsController)rootLayoutController.getDetailsController();
+			orderDetailsController.initValue(orderID);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

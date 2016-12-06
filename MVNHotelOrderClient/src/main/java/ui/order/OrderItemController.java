@@ -46,7 +46,7 @@ public class OrderItemController {
 	
 	@FXML
 	private void handleDetail(){
-		//TODO:跳转到订单详情界面
+		orderListController.toOrderDetailView(orderID);
 	}
 	@FXML
 	private void handleHotelName(){
