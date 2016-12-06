@@ -14,9 +14,11 @@ import java.time.LocalDate;
 import businesslogic.discount.DiscountHotelController;
 import businesslogicservice.DiscountHotelService;
 import dataservice.DiscountHotelDataService;
+import dataservice.LoginCheckService;
 import javafx.util.converter.LocalDateStringConverter;
 import po.DiscountPO_hotel;
 import rmi.RemoteHelper;
+import tools.AccountType;
 import tools.DiscountState;
 import tools.Strategy_hotelType;
 import vo.DiscountVO_hotel;
@@ -82,6 +84,15 @@ public class ClientRunner {
 		discountHotelService.addHotelDiscount("330", discountVO_hotel);
 		//discountHotelService.getHotelDiscount("330");
 		
+
+//		DiscountHotelDataService discountHotelDataService = RemoteHelper.getInstance().getDiscountHotelDataService();
+//		DiscountPO_hotel discountPO_hotel = new DiscountPO_hotel
+//				(DiscountState.valid, Strategy_hotelType.CooperateEnterprise, null, 8.5,  LocalDate.now(),
+//						LocalDate.of(2016, 12, 31), "王帅惟设计的2", true, "朱俊毅粉丝后援团2");
+//		System.out.println(discountHotelDataService.getHotelDiscount("HT000").isEmpty());
+//		LoginCheckService loginCheckService = RemoteHelper.getInstance().getLoginCheckService();
+//		System.out.println(loginCheckService.checkLogin("zhujunyi", "zhujunyi", AccountType.Customer));
+
 		 
 	}
 	
