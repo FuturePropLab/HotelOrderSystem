@@ -11,12 +11,15 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
 
+import businesslogic.discount.DiscountHotelController;
+import businesslogicservice.DiscountHotelService;
 import dataservice.DiscountHotelDataService;
 import javafx.util.converter.LocalDateStringConverter;
 import po.DiscountPO_hotel;
 import rmi.RemoteHelper;
 import tools.DiscountState;
 import tools.Strategy_hotelType;
+import vo.DiscountVO_hotel;
 
 public class ClientRunner {
 	private RemoteHelper remoteHelper;
@@ -64,12 +67,21 @@ public class ClientRunner {
 //			System.out.println(list.get(i).getDiscountState());
 //			System.out.println(list.get(i).getDiscount());
 //		}
+//		
+//		DiscountHotelDataService discountHotelDataService = RemoteHelper.getInstance().getDiscountHotelDataService();
+//		DiscountPO_hotel discountPO_hotel = new DiscountPO_hotel
+//				(DiscountState.valid, Strategy_hotelType.CooperateEnterprise, null, 9.5,  LocalDate.now(),
+//						LocalDate.of(2016, 12, 31), "王帅惟设计的", false, "朱俊毅粉丝后援团");
+//		System.out.println(discountHotelDataService.getHotelDiscount("HT000").isEmpty());
 		
-		DiscountHotelDataService discountHotelDataService = RemoteHelper.getInstance().getDiscountHotelDataService();
-		DiscountPO_hotel discountPO_hotel = new DiscountPO_hotel
-				(DiscountState.valid, Strategy_hotelType.CooperateEnterprise, null, 9.5,  LocalDate.now(),
-						LocalDate.of(2016, 12, 31), "王帅惟设计的", false, "朱俊毅粉丝后援团");
-		System.out.println(discountHotelDataService.getHotelDiscount("HT000").isEmpty());
+		DiscountHotelService discountHotelService = DiscountHotelController.getInstance();
+		
+		DiscountVO_hotel discountVO_hotel = 
+				new DiscountVO_hotel(
+						6, LocalDate.of(2016, 12, 4), LocalDate.of(2016, 12, 6), "很豪华", false);
+		discountHotelService.addHotelDiscount("330", discountVO_hotel);
+		//discountHotelService.getHotelDiscount("330");
+		
 		 
 	}
 	

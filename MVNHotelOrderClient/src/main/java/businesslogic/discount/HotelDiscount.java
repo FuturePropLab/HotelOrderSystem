@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import po.DiscountPO_hotel;
+import rmi.RemoteHelper;
 import tools.DiscountState;
 import tools.ResultMessage_Discount;
 import tools.ResultMessage_DiscountDetail;
@@ -18,6 +19,10 @@ import vo.DiscountVO_hotel;
 public class HotelDiscount {
 
 	private dataservice.DiscountHotelDataService dataService;
+	
+	public  HotelDiscount(){
+		this.dataService = RemoteHelper.getInstance().getDiscountHotelDataService();
+	}
 	
 	/**
 	 * 增加酒店优惠策略
