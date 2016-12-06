@@ -31,10 +31,14 @@ public class DiscountVO_hotel {
 		this.superimpose=superimpose;
 	}
 	public DiscountVO_hotel (DiscountPO_hotel discountPO_hotel) {
+		this.discountID=discountPO_hotel.getDiscount_id();
+		this.type=discountPO_hotel.getType();
 		this.discount=discountPO_hotel.getDiscount();
 		this.startDate=discountPO_hotel.getStartDate();
 		this.endDate=discountPO_hotel.getEndDate();
 		this.remarks=discountPO_hotel.getRemarks();
 		this.superimpose=discountPO_hotel.isSuperimpose();
+		this.discountState=discountPO_hotel.getDiscountState();
+		this.enterpriseName=discountPO_hotel.getEnterpriseName();
 	}
 }
