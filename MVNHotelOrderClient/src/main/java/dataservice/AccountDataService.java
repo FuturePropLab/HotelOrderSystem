@@ -32,7 +32,7 @@ public interface AccountDataService extends Remote{
 	 * @return AccountPO
 	 * @return password==null
 	 */
-	public AccountPO getAccountByID(String userid);
+	public AccountPO getAccountByID(String userid)throws RemoteException;
 	
 	/**
 	 * 新增持久化账户细信息

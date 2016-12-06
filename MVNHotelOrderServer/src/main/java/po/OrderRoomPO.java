@@ -12,6 +12,11 @@ public class OrderRoomPO {
 	public OrderRoomPO(){
 		
 	}
+	
+	public OrderRoomPO(String orderID, String RoomNumebr){
+		this.orderID  = orderID;
+		this.RoomNumber = RoomNumebr;
+	}
 
 	public String getOrderID() {
 		return orderID;
