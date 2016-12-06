@@ -95,6 +95,8 @@ public class OrderListController extends DetailsController{
     @FXML
     private void handleFilter() {
     	//TODO:将显示出来的项目按4个checkbox过滤掉不显示的
+    	
+    	
     }
     
     

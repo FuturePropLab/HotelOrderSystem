@@ -41,4 +41,11 @@ public class CreditLogDeal_Stub implements businesslogicservice.CreditLogDealSer
 		return null;
 	}
 
+
+	@Override
+	public ResultMessage CreditChangeAboutOrder(businesslogic.order.Order order, ActionType type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

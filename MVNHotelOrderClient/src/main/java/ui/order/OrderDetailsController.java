@@ -1,6 +1,7 @@
 package ui.order;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -20,7 +21,9 @@ import javafx.scene.image.ImageView;
 import tools.AccountType;
 import tools.DateFormat;
 import tools.HotelAddress;
+import tools.Mark;
 import tools.OrderState;
+import tools.ResultMessage;
 import tools.RoomType;
 import ui.hotel.HotelDetailController;
 import ui.main.DetailsController;
@@ -108,6 +111,12 @@ public class OrderDetailsController extends DetailsController{
 	@FXML
 	private void handleRevoke(){
 		//TODO:调用blservice撤销订单
+		OrderService orderService=OrderController.getInstance();
+		OrderVO orderVO=orderService.checkSingleOrder(orderID.getText());
+		ResultMessage resultMessage = orderService.revokeCurrentOrder(orderVO);
+		
+		
+		
 	}
 	
 	/**

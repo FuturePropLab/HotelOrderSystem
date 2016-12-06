@@ -103,7 +103,7 @@ public class FacilitiesInfoController extends DetailsController{
 
     	//TODO:调用blservice保存信息
     	HotelFacilityVO hotelFacilityVO = null;
-    	URL url = null;
+    	URL url = null;//不太清楚图片怎么搞
     try {
 		hotelFacilityVO = new HotelFacilityVO(hotelID,hotelName.getText(),url.toURI(),Boolean.valueOf(wifi.getText()).booleanValue(),Boolean.valueOf(noneSmoke.getText()).booleanValue(),Boolean.valueOf(diningHall.getText()).booleanValue(),Boolean.valueOf(parkingLot.getText()).booleanValue(),Boolean.valueOf(elevator.getText()).booleanValue(),Boolean.valueOf(conferenceHall.getText()).booleanValue(),Boolean.valueOf(morningCall.getText()).booleanValue(),Boolean.valueOf(frontdeskservice.getText()).booleanValue(),Boolean.valueOf(luggageStorage.getText()).booleanValue(),Boolean.valueOf(breakfast.getText()).booleanValue(),other.getText());
 	} catch (URISyntaxException e) {
