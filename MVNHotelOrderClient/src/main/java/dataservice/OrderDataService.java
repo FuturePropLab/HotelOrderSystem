@@ -1,5 +1,6 @@
 package dataservice;
 
+import java.rmi.Remote;
 import java.util.List;
 
 import po.OrderPO;
@@ -10,7 +11,7 @@ import tools.ResultMessage;
  * @author zjy
  *
  */
-public interface OrderDataService {
+public interface OrderDataService extends Remote{
 	/**
 	 * 持久化增加订单
 	 * @param order 订单的信息

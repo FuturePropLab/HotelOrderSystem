@@ -37,6 +37,11 @@ jdbc:mysql://localhost:3306/wsw
         <mapping class="po.DiscountPO_web_level"/>
         <mapping class="po.DiscountPO_web_district"/>
         <mapping class="po.DiscountHotelPO"/>
+        <mapping class="po.OrderNotChangePO"/>
+        <mapping class="po.OrderRoomPO"/>
+        <mapping class="po.OrderSearchStorePO"/>
+        <mapping class="po.OrderAssessPO"/>
+        
         
     </session-factory>
 </hibernate-configuration>

@@ -78,4 +78,6 @@ public class RemoteHelper {
 	public DiscountHotelDataService getDiscountHotelDataService(){
 		return (DiscountHotelDataService)remote;
 	}
+	
+	
 }
