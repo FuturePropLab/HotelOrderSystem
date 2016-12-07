@@ -9,12 +9,9 @@ import po.BackPO;
 import tools.ApplyResult;
 import tools.MemberBelongType;
 import tools.MemberType;
-import tools.ResultMessage;
 import tools.ResultMessage_Member;
 import vo.ApplyVO;
 import vo.BackVO;
-import stub.MemberBL_Stub;
-import stub.MemberData_Stub;
 
 /**
  * 

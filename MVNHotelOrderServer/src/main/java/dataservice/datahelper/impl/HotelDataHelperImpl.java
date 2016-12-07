@@ -71,8 +71,11 @@ public class HotelDataHelperImpl implements HotelDataHelper {
 		Criteria cr = s.createCriteria(HotelBasePO.class);
 		cr.add(Restrictions.eq("hotelID", hotelID));
 		List<HotelBasePO> HotelBasePOs = cr.list();
+		
+		//TODO  maybe wrong
+		s.close();
 		if(HotelBasePOs.isEmpty()) return null;
-		HotelBasePO hotelBasePO = HotelBasePOs.get(0);
+		HotelBasePO hotelBasePO = HotelBasePOs.get(0);	
 		return hotelBasePO;
 	}
 
@@ -85,6 +88,8 @@ public class HotelDataHelperImpl implements HotelDataHelper {
 		Criteria cr = s.createCriteria(HotelAddressPO.class);
 		cr.add(Restrictions.eq("hotelID", hotelID));
 		List<HotelAddressPO> hotelAddressPOs = cr.list();
+		//maybe wrong  TODO
+		s.close();
 		if(hotelAddressPOs.isEmpty()) return null;
 		HotelAddressPO hotelAddressPO = hotelAddressPOs.get(0);
 		return hotelAddressPO;
@@ -100,6 +105,7 @@ public class HotelDataHelperImpl implements HotelDataHelper {
 		cr.add(Restrictions.eq("hotelName", hotelName));
 		List<TypeRoomInfoPO> typeRoomInfoPOs = cr.list();
 		System.out.println(hotelName+"  "+typeRoomInfoPOs.size());
+		s.close();
 		if(typeRoomInfoPOs.isEmpty()) return null;
 		List<TypeRoomInfo> typeRoomInfos = new ArrayList<TypeRoomInfo>();
 		Iterator<TypeRoomInfoPO> it = typeRoomInfoPOs.iterator();
@@ -119,6 +125,8 @@ public class HotelDataHelperImpl implements HotelDataHelper {
 		Criteria cr = s.createCriteria(HotelFacilityPO.class);
 		cr.add(Restrictions.eq("hotelID", hotelID));
 		List<HotelFacilityPO> hotelFacilityPOs = cr.list();
+		
+		s.close();
 		if(hotelFacilityPOs.isEmpty()) return null;
 		HotelFacilityPO hotelFacilityPO = hotelFacilityPOs.get(0);
 		return hotelFacilityPO;
@@ -306,6 +314,7 @@ public class HotelDataHelperImpl implements HotelDataHelper {
 		List<TypeRoomInfo> typeRoomInfos = hotelRoomInfo.getTypeRoomInfo();
 		if(typeRoomInfos == null) return ResultMessage_Hotel.success;
 		String hotelName = getHotelName(hotelRoomInfo.getHotelID());
+		
 		if(hotelName==null || "".equals(hotelName))  return ResultMessage_Hotel.fail;
 		Iterator<TypeRoomInfo> it = typeRoomInfos.iterator();
 		while(it.hasNext()){
@@ -376,6 +385,9 @@ public class HotelDataHelperImpl implements HotelDataHelper {
 		List<HotelAddressPO> hotelAddresss = cr.list();
 		System.out.println(hotelAddresss.size());
 		List<String> hotelIDList = new ArrayList<String>();
+		
+		s.close();
+		
 		if(hotelAddress==null)  return hotelIDList;
 		Iterator<HotelAddressPO> it = hotelAddresss.iterator();
 		while(it.hasNext()){
@@ -434,6 +446,8 @@ public class HotelDataHelperImpl implements HotelDataHelper {
 		Session s = Hibernateutils.getSessionFactory().openSession();
 		Criteria cr = s.createCriteria(HotelAddressPO.class);
 		List<HotelAddressPO> hotelAddressPOs = cr.list();
+		
+		s.close();
 		if(hotelAddressPOs == null)  return null;
 		Iterator<HotelAddressPO>  it = hotelAddressPOs.iterator();
 		

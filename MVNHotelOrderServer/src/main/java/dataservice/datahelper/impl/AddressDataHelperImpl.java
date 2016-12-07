@@ -27,16 +27,16 @@ public class AddressDataHelperImpl implements AddressDataHelper {
 	public List<String> getDistributeList(String city) {
 		Session s = Hibernateutils.getSessionFactory().openSession();
 		List<String> districtList;
-//		try{
+		try{
 			districtList = s.createSQLQuery("select distribute from CityDistributePO"
 					+ " where city = '"+city+"'").list();
 			System.out.println("getDistributeList:   "+districtList.size());
 			return districtList;
-//		}catch(Exception e){
-//			return null;
-//		}finally {
-//			s.close();
-//		}
+		}catch(Exception e){
+			return null;
+		}finally {
+			s.close();
+		}
 	}
 	
 	/*@

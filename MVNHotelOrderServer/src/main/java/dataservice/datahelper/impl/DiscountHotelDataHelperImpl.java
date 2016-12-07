@@ -95,7 +95,7 @@ public class DiscountHotelDataHelperImpl implements DiscountHotelDataHelper {
 		cr.add(Restrictions.eq("hotelID", hotelID));
 		List<DiscountHotelPO>  list = cr.list();
 		Iterator< DiscountHotelPO>  it = list.iterator();
-		
+		s.close();
 		List<DiscountPO_hotel> returnlist = new ArrayList<DiscountPO_hotel>();
 		while(it.hasNext()){
 			DiscountPO_hotel discountPO_hotel = new DiscountPO_hotel(it.next());

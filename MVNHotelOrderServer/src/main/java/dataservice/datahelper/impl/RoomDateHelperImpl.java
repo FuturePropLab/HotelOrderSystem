@@ -146,6 +146,7 @@ public class RoomDateHelperImpl  implements RoomDateHelper{
 			s.close();	
 		}	
 	}
+	
 	public List<String> getRoomNobyType(String hotelID, RoomType roomType) {
 		Session s = Hibernateutils.getSessionFactory().openSession();	
 		Criteria cr = s.createCriteria(SingleRoomPO.class);
@@ -156,6 +157,7 @@ public class RoomDateHelperImpl  implements RoomDateHelper{
 		while(it.hasNext()){
 			list.add(it.next().getSingleRoomPK().getRoomNO());
 		}
+		s.close();
 		return list;
 	}
 	public boolean isAvailableRoom(String hotelID, String roomNO, Date begin, Date end) {
@@ -164,6 +166,7 @@ public class RoomDateHelperImpl  implements RoomDateHelper{
 		cr.add(Restrictions.eq("roomDisablePK.hotelID", hotelID));
 		cr.add(Restrictions.eq("roomDisablePK.roomNO", roomNO));
 		cr.add(Restrictions.lt("roomDisablePK.begin", end));
+		s.close();
 		return cr.list().isEmpty(); 
 	}
 

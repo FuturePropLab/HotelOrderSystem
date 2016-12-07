@@ -5,8 +5,10 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import DataFactory.DataHelperUtils;
 import DataFactory.Hibernateutils;
@@ -17,6 +19,8 @@ import po.OrderNotChangePO;
 import po.OrderPO;
 import po.OrderRoomPO;
 import po.OrderSearchStorePO;
+import po.SearchOrderInfo;
+import tools.OrderState;
 import tools.ResultMessage;
 import tools.RoomType;
 
@@ -149,6 +153,134 @@ public class OrderDateHelperImpl implements OrderDataHelper {
 			return roomlist;
 		else 
 			return null;
+	}
+
+	public OrderSearchStorePO getOrderSearchStorePO(String orderID) {
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		OrderSearchStorePO orderSearchStorePO = (OrderSearchStorePO) s.load(OrderSearchStorePO.class, orderID);
+		try{
+			System.out.println(orderSearchStorePO.getCustomerID());
+		}catch(Exception e){
+			orderSearchStorePO = null;
+		}finally{
+			s.close();
+		}
+		
+		return orderSearchStorePO;
+	}
+
+	public OrderNotChangePO getOrderNotChangePO(String orderID) {
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		OrderNotChangePO orderNotChangePO = (OrderNotChangePO) s.load(OrderNotChangePO.class, orderID);
+		try{
+			System.out.println(orderNotChangePO.getOrderID());
+		}catch(Exception e){
+			orderNotChangePO = null;
+		}finally{
+			s.close();
+		}
+		
+		return orderNotChangePO;
+	}
+
+	public OrderAssessPO getOrderAssessPO(String orderID) {
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		OrderAssessPO orderAssessPO = (OrderAssessPO) s.load(OrderAssessPO.class, orderID);
+		try{
+			System.out.println(orderAssessPO.getOrderID());
+		}catch(Exception e){
+			orderAssessPO = null;
+		}finally {
+			s.close();
+		}
+		
+		return orderAssessPO;
+	}
+
+	public List<String> getOrderRoomPO(String orderID) {
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		Criteria cr = s.createCriteria(OrderRoomPO.class);
+		cr.add(Restrictions.eq("orderID", orderID));
+		
+		List<OrderRoomPO>  roomlist = cr.list();
+		List<String> strList = new ArrayList<String>();
+		Iterator<OrderRoomPO> it = roomlist.iterator();
+		
+		while(it.hasNext()){
+			OrderRoomPO orderRoomPO = it.next();
+			strList.add(orderRoomPO.getRoomNumber());
+		}
+		s.close();
+		return strList;
+	}
+
+	public OrderPO getCompleteOrderPO(String orderID) {
+		OrderSearchStorePO  orderSearchStorePO  = getOrderSearchStorePO(orderID);
+		if(orderSearchStorePO == null)  return null;
+		OrderNotChangePO  orderNotChangePO  = getOrderNotChangePO(orderID);
+		if(orderNotChangePO ==null)  return null;
+		OrderAssessPO orderAssessPO = getOrderAssessPO(orderID);
+		if(orderAssessPO ==null)  return null;
+		List<String>  list = getOrderRoomPO(orderID);
+		
+		OrderPO orderPO = new OrderPO(orderSearchStorePO, orderNotChangePO, orderAssessPO);
+		orderPO.setRoomNumber((ArrayList<String>) list);
+		
+		return orderPO;
+	}
+
+	public ResultMessage modifyOrderSearchPO(OrderSearchStorePO orderSearchStorePO) {
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		try {
+			Transaction t = s.beginTransaction();
+			s.update(orderSearchStorePO);
+			t.commit();
+			return ResultMessage.Exist;
+		} catch (Exception e) {
+			//System.out.println(e.getMessage());
+			return ResultMessage.NotExist;
+		}finally {
+			s.close();
+		}
+	}
+
+	public ResultMessage modifyOrderAssessPO(OrderAssessPO orderAssessPO) {
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		try {
+			Transaction t = s.beginTransaction();
+			s.update(orderAssessPO);
+			t.commit();
+			return ResultMessage.Exist;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return ResultMessage.NotExist;
+		}finally {
+			s.close();
+		}
+	}
+
+	public ResultMessage changeOrderState(String orderID, OrderState orderState) {
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		try{
+			OrderSearchStorePO orderSearchStorePO = (OrderSearchStorePO) s.load(OrderSearchStorePO.class, orderID);
+			s.close();
+			s = Hibernateutils.getSessionFactory().openSession();
+			Transaction t = s.beginTransaction();
+			orderSearchStorePO.setOrderState(orderState);
+			s.update(orderSearchStorePO);
+			t.commit();
+			return ResultMessage.Exist;
+		}catch(Exception e){
+			//System.err.println(e.getMessage());
+			return ResultMessage.NotExist;
+		}finally{
+			s.close();
+		}
+	}
+
+	public List<String> getOrderListBycondition(SearchOrderInfo searchOrderInfo) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

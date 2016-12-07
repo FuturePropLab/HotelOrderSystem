@@ -22,6 +22,7 @@ import tools.Strategy_webType;
 @Inheritance(strategy=InheritanceType.JOINED)
 public class DiscountPO_web implements Serializable {
 	private static final long serialVersionUID = -4692890931780645810L;
+	
 	@Id
 	private String discountID;
 	
