@@ -58,7 +58,7 @@ public class Credit {
 				}
 			
 			
-		case BadOrder:
+		/*case BadOrder:异常订单交给数据层处理
 			
 	
 				Date latestTime = order.getOrderPO().getLatestTime();
@@ -68,7 +68,7 @@ public class Credit {
 				if(checkIntime.before(latestTime)){
 					creditchange = -order.getOrderValue();
 					
-				}
+				}*/
 	
 				
 				/*long between=((checkOutTime.getTime()-planedLeaveTime.getTime())/(1000*60));

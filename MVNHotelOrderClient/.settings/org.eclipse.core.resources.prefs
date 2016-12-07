@@ -65,6 +65,7 @@ encoding//src/main/java/driver/ManageHotelInfoService_Driver.java=UTF-8
 encoding//src/main/java/driver/RoomDataService_Driver.java=UTF-8
 encoding//src/main/java/driver/RoomSingleService_Driver.java=UTF-8
 encoding//src/main/java/po/ApplyPO.java=UTF-8
+encoding//src/main/java/po/CreditLogPO.java=UTF-8
 encoding//src/main/java/po/CustomerAccountPO.java=UTF-8
 encoding//src/main/java/po/CustomerPO.java=UTF-8
 encoding//src/main/java/po/DiscountPO_web_level.java=UTF-8

@@ -9,10 +9,10 @@ public class CreditLogPO {
 		private ActionType actionType ; //动作类型 
 		private Date ChangDate; // 信用记录发生变化的时间
 		private String orderID; //订单的ID
-		private  double changeValue;  //信用值变化
-		private  double money; // 充值金额
+		private  int changeValue;  //信用值变化
+		private  int money; // 充值金额
 		
-		public CreditLogPO(String customerID , ActionType actionType , String  orderID, Date changDate ,  double changeValue,double money){
+		public CreditLogPO(String customerID , ActionType actionType , String  orderID, Date changDate ,  int changeValue,int money){
 			this.customerID = customerID;
 			this.actionType = actionType;
 			this.changeValue = changeValue;
@@ -55,11 +55,11 @@ public class CreditLogPO {
 			this.orderID = orderID;
 		}
 
-		public double getChangeValue() {
+		public int getChangeValue() {
 			return changeValue;
 		}
 
-		public void setChangeValue(double changeValue) {
+		public void setChangeValue(int changeValue) {
 			this.changeValue = changeValue;
 		}
 
@@ -67,7 +67,7 @@ public class CreditLogPO {
 			return money;
 		}
 
-		public void setMoney(double money) {
+		public void setMoney(int money) {
 			this.money = money;
 		}
 

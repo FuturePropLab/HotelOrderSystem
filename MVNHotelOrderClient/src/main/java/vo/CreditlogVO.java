@@ -6,11 +6,11 @@ import tools.ActionType;
 public class CreditlogVO {
 		public ActionType actionType ;
 		public OrderVO order ;
-		public double changeValue;// 
+		public int changeValue;// 
 		
-		public CreditlogVO(ActionType actionType , OrderVO order,double d){
+		public CreditlogVO(ActionType actionType , OrderVO order,int  i){
 			this.actionType = actionType;
-			this.changeValue = d;
+			this.changeValue = i;
 			this.order = order;
 		}
 		
