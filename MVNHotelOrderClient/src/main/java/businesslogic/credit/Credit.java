@@ -37,8 +37,8 @@ public class Credit {
 	 * @throws RemoteException 
 	 */
 	public ResultMessage CreditChangeAboutOrder (Order order,ActionType type){
-		double creditchange = 0;
-		double result;
+		int creditchange = 0;
+		int result;
 		OrderPO orderPO  =new OrderPO();
 		//CustomerVO customerVO = customerInfo.getCustomerInfo(order.getCustomerID());
 		CustomerVO customerVO = order.getCustomer();
@@ -46,7 +46,7 @@ public class Credit {
 		//int credit =80;
 		switch (type){
 		
-		case RightOrder:creditchange = order.getOrderPO().getPrice();//完成一个订单增加订单价值的信用值
+		case RightOrder:creditchange = order.getOrderValue();//完成一个订单增加订单价值的信用值
 		//case DelayOrder:creditchange = order.getOrderPO().getPrice();//手工延迟入住，并恢复信用值
 		
 		case RevokeOrder://撤销的订单时间距离最晚订单执行时间不足6个小时，扣去订单价值的一半，需求上写的
@@ -54,7 +54,7 @@ public class Credit {
 				Date latestTimeArriv = order.getOrderPO().getLatestTime();
 				long between = ((latestTimeArriv.getTime()-revokedTime.getTime())/(1000*60*60));
 				if(between<6){
-					creditchange = -order.getOrderPO().getPrice()/2;
+					creditchange = -order.getOrderValue()/2;
 				}
 			
 			
@@ -69,7 +69,7 @@ public class Credit {
 				Date planedLeaveTime =order.getOrderPO().getPlanedLeaveTime();
 				Date checkOutTime = order.getOrderPO().getCheckOutTime();
 				if(checkIntime.before(latestTime)){
-					creditchange = -order.getOrderPO().getPrice();
+					creditchange = -order.getOrderValue();
 					
 				}
 	
@@ -110,7 +110,7 @@ public class Credit {
 	 * @param result
 	 * @return ResultMessage
 	 */
-	public ResultMessage addlog(Order order, ActionType type, double creditchange2) {
+	public ResultMessage addlog(Order order, ActionType type, int creditchange2) {
 		int creditchange =0;
 		
 		if(order==null && type!=ActionType.Charge)  return ResultMessage.NotExist;
@@ -231,7 +231,7 @@ public class Credit {
 	 * level
 	 * @throws RemoteException 
 	 */
-	public ResultMessage levelUpdate(double result,String customer_id) throws RemoteException{
+	public ResultMessage levelUpdate(int result,String customer_id) throws RemoteException{
 		DiscountWebController discountWeb =  DiscountWebController.getInstance();
 		int [] uplevel =new int[4];
 		
@@ -259,7 +259,18 @@ public class Credit {
 		}else{
 			creditchange = value/2;
 		}
+		String customer_id = order.getCustomer().customerID;
 		
+		int credit = order.getCustomer().credit;
+		credit = credit +creditchange;
+		Credit c = new Credit();
+		ResultMessage resultMessage = null;
+		try {
+			resultMessage = c.levelUpdate(credit, customer_id);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return null;
 		
