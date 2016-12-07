@@ -18,6 +18,7 @@ import rmi.RemoteHelper;
 import tools.AccountType;
 import tools.ActionType;
 import tools.OrderState;
+import tools.RecoverValue;
 import tools.ResultMessage;
 import vo.ExecutionInfoVO;
 import vo.OrderInputVO;
@@ -290,9 +291,10 @@ public class OrderController implements OrderService{
 	/**
 	 * 撤销异常订单
 	 * @param badOrder 订单信息
+	 * @param recoverValue 选择恢复全部的信用值还是一半
 	 * @return 调用成功则返回Exist，失败返回NotExist
 	 */
-	public ResultMessage revokeBadOrderr(OrderVO badOrder) {
+	public ResultMessage revokeBadOrderr(OrderVO badOrder,RecoverValue recoverValue) {
 		if(badOrder==null){
 			return ResultMessage.NotExist;
 		}
@@ -305,7 +307,7 @@ public class OrderController implements OrderService{
 			//TODO: 暂时先用Mock代替
 			if(order.getState().equals(OrderState.Exception)){
 				CreditLogDealService creditLogDealService=CreditController.getInstance();
-				creditLogDealService.CreditChangeAboutOrder(order, ActionType.RecoverOrder);//TODO:用错接口了
+				creditLogDealService.Recover(order, recoverValue);
 				order.setRevokeTime(new Date());
 				return order.changeState(OrderState.Revoked);
 			}

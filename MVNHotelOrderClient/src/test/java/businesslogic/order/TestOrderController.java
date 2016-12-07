@@ -13,6 +13,7 @@ import Exception.CustomerCreditNotEnoughException;
 import stub.OrderDate_Stub;
 import tools.Mark;
 import tools.OrderState;
+import tools.RecoverValue;
 import tools.ResultMessage;
 import tools.RoomType;
 import vo.ExecutionInfoVO;
@@ -46,7 +47,7 @@ public class TestOrderController {
 		orderVO.revokeTime=null;
 		orderVO.roomType=RoomType.EluxeSuite;
 		orderVO.numberOfRooms=1;
-		orderVO.value=1;
+		orderVO.value=100;
 		orderVO.planedPeopleNumber=1;
 		orderVO.child=false;
 		orderVO.orderState=OrderState.Unexecuted;
@@ -98,6 +99,6 @@ public class TestOrderController {
 	}
 	@Test
 	public void testRevokeBadOrderr() {
-		assertEquals(orderController.revokeBadOrderr(orderVO), ResultMessage.NotExist);
+		assertEquals(orderController.revokeBadOrderr(orderVO,RecoverValue.RecoverAll), ResultMessage.NotExist);
 	}
 }

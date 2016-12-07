@@ -5,6 +5,7 @@ import java.util.List;
 
 import businesslogicservice.OrderService;
 import tools.OrderState;
+import tools.RecoverValue;
 import tools.ResultMessage;
 import vo.ExecutionInfoVO;
 import vo.OrderInputVO;
@@ -71,7 +72,7 @@ public class OrderBL_Stub implements OrderService{
 	}
 
 	
-	public ResultMessage revokeBadOrderr(OrderVO badOrder) {
+	public ResultMessage revokeBadOrderr(OrderVO badOrder,RecoverValue recoverValue) {
 		if(badOrder.orderState.equals(OrderState.Exception)){
 			return ResultMessage.Exist;
 		}

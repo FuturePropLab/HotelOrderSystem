@@ -3,6 +3,7 @@ package businesslogicservice;
 import java.util.List;
 
 import Exception.CustomerCreditNotEnoughException;
+import tools.RecoverValue;
 import tools.ResultMessage;
 import vo.ExecutionInfoVO;
 import vo.OrderInputVO;
@@ -67,7 +68,8 @@ public interface OrderService {
 	/**
 	 * 撤销异常订单
 	 * @param badOrder 订单信息
+	 * @param recoverValue 选择恢复全部的信用值还是一半
 	 * @return 调用成功则返回Exist，失败返回NotExist
 	 */
-	public ResultMessage revokeBadOrderr(OrderVO badOrder);
+	public ResultMessage revokeBadOrderr(OrderVO badOrder,RecoverValue recoverValue);
 }

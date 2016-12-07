@@ -12,6 +12,7 @@ import businesslogicservice.OrderService;
 import tools.DateRange;
 import tools.OrderState;
 import tools.PriceRange;
+import tools.RecoverValue;
 import tools.ResultMessage;
 import tools.RoomType;
 import tools.Star;
@@ -79,7 +80,7 @@ public class OrderBLService_Driver {
 		}
 		
 		order.orderState=OrderState.Exception;
-		result=orderService.revokeBadOrderr(order);
+		result=orderService.revokeBadOrderr(order,RecoverValue.RecoverAll);
 		if(result.equals(ResultMessage.NotExist)){
 			return false;
 		}

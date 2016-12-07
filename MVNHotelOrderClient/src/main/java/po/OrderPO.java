@@ -65,8 +65,8 @@ public class OrderPO implements Serializable  {
 		this.hotelID="hotelID";
 		this.roomNumber=new ArrayList<String>();
 		this.roomNumber.add("8888");
-		this.startTime=new Time(0);
-		this.latestTime=new Time(0);
+		this.startTime=new Date();
+		this.latestTime=new Date(new Date().getTime()+60*1000);
 		this.planedLeaveTime=new Date();
 		this.planedCheckOutTime=new Date();
 		this.checkInTime=new Time(0);
@@ -74,7 +74,7 @@ public class OrderPO implements Serializable  {
 		this.revokeTime=null;
 		this.roomType=RoomType.EluxeSuite;
 		this.numberOfRooms=1;
-		this.value=1;
+		this.value=100;
 		this.planedPeopleNumber=1;
 		this.child=false;
 		this.orderState=OrderState.Unexecuted;
