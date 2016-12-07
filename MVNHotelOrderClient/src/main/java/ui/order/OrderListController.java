@@ -69,13 +69,9 @@ public class OrderListController extends DetailsController{
 			System.err.println("can't handleSearch: the login state is logout!");
 			return;
 		}
-		String ID=accountCustomerService.getAccountID(logVO.username);
-		String string= "".equals(keyWords.getText())? null:keyWords.getText();
+		String keywords= "".equals(keyWords.getText())? null:keyWords.getText();
 		//分别把搜索框内的关键字当做订单ID、客户姓名、酒店名称来搜索
-		List<OrderVO> orderVOs=orderService.CheckOrderList(new SearchOrderInfoVO(
-				string, ID, null, null, getDate(), null));
-		orderVOs.addAll(orderService.CheckOrderList(new SearchOrderInfoVO(null, ID, string, null, getDate(), null)));
-		orderVOs.addAll(orderService.CheckOrderList(new SearchOrderInfoVO(null, ID, null, string, getDate(), null)));
+		List<OrderVO> orderVOs=orderService.CheckOrderList(new SearchOrderInfoVO(keywords, getDate(), null));
 
 		orderList.getChildren().clear();
 		if(orderVOs!=null){

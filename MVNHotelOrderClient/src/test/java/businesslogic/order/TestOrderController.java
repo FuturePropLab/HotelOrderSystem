@@ -53,8 +53,7 @@ public class TestOrderController {
 		orderVO.orderState=OrderState.Unexecuted;
 		orderVO.mark=null;
 		orderVO.assessment=null;
-		searchOrderInfo=new SearchOrderInfoVO("orderID", "ID", "customerName", "hotelName", 
-				new Date(), OrderState.Unexecuted);
+		searchOrderInfo=new SearchOrderInfoVO("keywords", new Date(), OrderState.Unexecuted);
 		ExecutionInfoVO=new ExecutionInfoVO("orderID", new ArrayList<String>(), new Time(0), new Time(0), new Time(0));
 	}
 

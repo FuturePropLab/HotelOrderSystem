@@ -7,5 +7,6 @@ package tools;
 public enum AccountType {
 	Customer,
 	Hotel,
-	Web
+	Web,
+	Administor
 }

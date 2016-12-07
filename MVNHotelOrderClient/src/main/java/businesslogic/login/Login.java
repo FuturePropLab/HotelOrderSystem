@@ -19,6 +19,7 @@ public class Login {
 	private State state;
 	private String username;
 	private AccountType accountType;
+	private String accountID;
 	/**
 	 * 
 	 * @param accountDataService AccountDataService接口
@@ -47,6 +48,7 @@ public class Login {
 			this.state=State.login;
 			this.username=username;
 			this.accountType=accountType;
+			this.accountID=loginCheckService.getUserID(username, password);
 		}
 		return loginResult;
 	}
@@ -73,5 +75,13 @@ public class Login {
 	 */
 	public AccountType getAccountType(){
 		return accountType;
+	}
+
+	/**
+	 * 
+	 * @return 账号对应的ID，如果是客户，就是客户ID，如果是酒店工作人员，就是酒店ID，依次类推
+	 */
+	public String getAccountID() {
+		return accountID;
 	}
 }

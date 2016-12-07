@@ -8,8 +8,10 @@ import java.util.List;
 import Exception.CustomerCreditNotEnoughException;
 import businesslogic.credit.CreditController;
 import businesslogic.customer.CustomerDealController;
+import businesslogic.login.LoginController;
 import businesslogicservice.CreditLogDealService;
 import businesslogicservice.CustomerDealService;
+import businesslogicservice.LoginService;
 import businesslogicservice.OrderService;
 import dataservice.OrderDataService;
 import po.OrderPO;
@@ -161,7 +163,16 @@ public class OrderController implements OrderService{
 			return null;
 		}
 		try {
-			List<OrderPO> poList=orderDataService.searchOrder(null);//TODO：接口要改，先用null代替
+			LoginService loginService=LoginController.getInstance();
+			String accountID = loginService.getLogState().accountID;
+			
+			//把关键字分别当做订单ID、客户姓名、酒店名称来搜索
+			List<OrderPO> poList=orderDataService.searchOrder(new SearchOrderInfo(accountID,searchOrderInfo.keywords, 
+					null, null, searchOrderInfo.date, searchOrderInfo.orderState));
+			poList.addAll(orderDataService.searchOrder(new SearchOrderInfo(accountID,null, searchOrderInfo.keywords, 
+					null, searchOrderInfo.date, searchOrderInfo.orderState)));
+			poList.addAll(orderDataService.searchOrder(new SearchOrderInfo(accountID,null, null, searchOrderInfo.keywords, 
+					searchOrderInfo.date, searchOrderInfo.orderState)));
 			List<OrderVO> voList=new ArrayList<OrderVO>();
 			for(OrderPO orderPO:poList){
 				voList.add(getOrderVO(orderPO));

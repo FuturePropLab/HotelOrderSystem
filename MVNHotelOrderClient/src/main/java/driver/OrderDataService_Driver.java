@@ -40,7 +40,7 @@ public class OrderDataService_Driver {
 				return false;
 			}
 			
-			SearchOrderInfo searchOrderInfo=new SearchOrderInfo(null, null, null, null, OrderState.Unexecuted);
+			SearchOrderInfo searchOrderInfo=new SearchOrderInfo("accountID",null, null, null, null, OrderState.Unexecuted);
 			List<OrderPO> list=orderService.searchOrder(searchOrderInfo);
 			if(list==null){
 				return false;
