@@ -254,8 +254,11 @@ public class HotelSearchController extends DetailsController{
 		try {
 			rootLayoutController.changeDetails("../hotel/HotelDetail.fxml");
 			//TODO 获取相应的酒店详细信息并设置好值
-			hotelDealService = HotelDealController.getInstance();
-			HotelDetailsVO hotelDeatails= hotelDealService.getHotelDetailsVO(hotelID);
+			//hotelDealService = HotelDealController.getInstance();
+			//HotelDetailsVO hotelDeatails= hotelDealService.getHotelDetailsVO(hotelID);
+			HotelDetailController hotelDetail = (HotelDetailController) rootLayoutController.getDetailsController();
+			hotelDetail.initValue(hotelID);
+			
 			
 		} catch (IOException e) {
 			e.printStackTrace();
