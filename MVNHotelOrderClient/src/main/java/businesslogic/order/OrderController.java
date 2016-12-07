@@ -2,6 +2,7 @@ package businesslogic.order;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import Exception.CustomerCreditNotEnoughException;
@@ -203,9 +204,9 @@ public class OrderController implements OrderService{
 			Order order2=new Order(orderPO,  new MockCustomerInfo(),new MockHotelInfo(), orderDataService); 
 			//TODO: 暂时先用Mock代替
 			if(order2.getState().equals(OrderState.Unexecuted)){
-				String customerID=order2.getCustomer().customerID;
 				CreditLogDealService creditLogDealService=CreditController.getInstance();
 				creditLogDealService.CreditChangeAboutOrder(order2, ActionType.RevokeOrder);
+				order2.setRevokeTime(new Date());
 				return order2.changeState(OrderState.Revoked);
 			}
 		} catch (RemoteException e) {
@@ -229,7 +230,9 @@ public class OrderController implements OrderService{
 			}
 			Order order2=new Order(orderPO,  new MockCustomerInfo(),new MockHotelInfo(), orderDataService); 
 			//TODO: 暂时先用Mock代替
-			return order2.getOrderValue();
+			//如果撤销的订单距离最晚订单执行时间不足6个小时，撤销的同时扣除信用值，信用值为订单的（总价值*1/2）
+			return new Date().getTime()-order2.getPlacingOrderInfo().latestTime.getTime()>6*24*60*1000?
+					0:order2.getOrderValue()/2;
 		} catch (RemoteException e) {
 			System.err.println(e.getCause().getMessage());
 			return -1;
@@ -301,7 +304,10 @@ public class OrderController implements OrderService{
 			Order order=new Order(orderPO,  new MockCustomerInfo(),new MockHotelInfo(), orderDataService); 
 			//TODO: 暂时先用Mock代替
 			if(order.getState().equals(OrderState.Exception)){
-				return order.changeState(OrderState.Unexecuted);
+				CreditLogDealService creditLogDealService=CreditController.getInstance();
+				creditLogDealService.CreditChangeAboutOrder(order, ActionType.RecoverOrder);//TODO:用错接口了
+				order.setRevokeTime(new Date());
+				return order.changeState(OrderState.Revoked);
 			}
 		} catch (RemoteException e) {
 			System.err.println(e.getCause().getMessage());

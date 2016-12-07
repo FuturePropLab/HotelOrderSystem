@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import Exception.CustomerCreditNotEnoughException;
+import businesslogic.credit.CreditController;
+import businesslogicservice.CreditLogDealService;
 import dataservice.OrderDataService;
 import po.OrderPO;
+import tools.ActionType;
 import tools.MemberBelongType;
 import tools.OrderState;
 import tools.ResultMessage;
@@ -128,7 +131,9 @@ public class Order {
 			placingOrderInfo.roomNumber=executionInfo.roomNumber;
 		}
 		if(checkInInfo.filled()&&orderState.equals(OrderState.Unexecuted)){
-			changeState(OrderState.Executed);
+			orderState=OrderState.Executed;
+			CreditLogDealService creditLogDealService=CreditController.getInstance();
+			creditLogDealService.CreditChangeAboutOrder(this, ActionType.RightOrder);
 		}
 		ResultMessage resultMessage=ResultMessage.NotExist;
 		try {
@@ -251,6 +256,13 @@ public class Order {
 		return revokeTime;
 	}
 	
+	/**
+	 * 
+	 * @param revokeTime 撤销时间
+	 */
+	public void setRevokeTime(Date revokeTime) {
+		this.revokeTime = revokeTime;
+	}
 	/**
 	 * 订单的初始化
 	 */
