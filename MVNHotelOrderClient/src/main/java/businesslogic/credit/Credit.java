@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import businesslogic.customer.CustomerInfoforCreditImp;
 import businesslogic.discount.DiscountWebController;
 import businesslogic.order.Order;
 import dataservice.CreditDataService;
@@ -47,8 +48,6 @@ public class Credit {
 		switch (type){
 		
 		case RightOrder:creditchange = order.getOrderValue();//完成一个订单增加订单价值的信用值
-		//case DelayOrder:creditchange = order.getOrderPO().getPrice();//手工延迟入住，并恢复信用值
-		
 		case RevokeOrder://撤销的订单时间距离最晚订单执行时间不足6个小时，扣去订单价值的一半，需求上写的
 				Date revokedTime = order.getOrderPO().getRevokeTime();
 				Date latestTimeArriv = order.getOrderPO().getLatestTime();
@@ -57,10 +56,11 @@ public class Credit {
 					creditchange = -order.getOrderValue()/2;
 				}
 			
+		}
+		result = credit+creditchange;
+		//异常订单交给数据层处理,只处理正常订单和撤销订单，正常订单包括手动延迟入住，交给数据层判断
 			
-		/*case BadOrder:异常订单交给数据层处理
-			
-	
+	/*
 				Date latestTime = order.getOrderPO().getLatestTime();
 				Date checkIntime = order.getOrderPO().getCheckInTime();
 				Date planedLeaveTime =order.getOrderPO().getPlanedLeaveTime();
@@ -81,80 +81,37 @@ public class Credit {
 				
 		
 		
-		}
-		Credit c= new Credit();
-		result = credit+creditchange;
+		
+		
 		
 		//System.out.print(result);
-		try {
+	/*	try {
 			ResultMessage updatelevel = c.levelUpdate(result, order.getCustomer().customerID);
 		} catch (RemoteException e) {
 			e.printStackTrace();
-		}
+		}*/  //会员等级信息不在这里同步了
+		
 		ResultMessage resultMessage = creditDataService.changeCredit(order.getCustomer().customerID, result);
-		if(resultMessage == ResultMessage.Exist){
-		return addlog(order, type, creditchange);}else{return ResultMessage.NotExist;}
 		
+	
+		if(order==null){return ResultMessage.NotExist;}
+		else if(type.equals(ActionType.RevokeOrder)){
+			
+			CreditLogPO creditLogPO = new CreditLogPO(order.getCustomer().customerID, type, order.getOrderID(),order.getRevokeTime(),creditchange,0);
+	
+			return creditDataService.add(creditLogPO);
+		}else if(type.equals(ActionType.RightOrder)){
+			CreditLogPO creditLogPO = new CreditLogPO(order.getCustomer().customerID, type, order.getOrderID(),order.getCheckInAndOutInfo().checkInTime,creditchange,0);
+			return creditDataService.add(creditLogPO);
+	}
+			return resultMessage.NotExist;
 	}
 	
 	
 	
 	
-	/**
-	 *  增加一条信用记录
-	 * @param order
-	 * @param type
-	 * @param result
-	 * @return ResultMessage
-	 */
-	public ResultMessage addlog(Order order, ActionType type, int creditchange2) {
-		int creditchange =0;
-		
-		if(order==null && type!=ActionType.Charge)  return ResultMessage.NotExist;
-		if(type == ActionType.Charge)  {
-			CreditLogPO creditpo = new CreditLogPO(type,null,creditchange2);
-			
-			return creditDataService.add(creditpo);}
-		
-		else{
-		OrderPO orderPO  =order.getOrderPO();
-		//CustomerVO customerVO = customerInfo.getCustomerInfo(customer_id);
-		/*CustomerVO  customerVO  = new CustomerVO
-				("ppd", "wsw", "male", "15251124223", null, 20);
-		int credit = customerVO.credit;
-		
-		
-		//撤销订单信用值－30，延迟入住信用值减25,延迟退房超过30分钟减25,没有异常的话，完成一个订单增加50信用值
-		Date revoketime = order.getRevokeTime();
-		if(revoketime !=null){
-			creditchange =creditchange -30;
-		}
-			Date latestTime = order.getLatestTime();
-			Date checkIntime = order.getCheckInTime();
-			Date planedLeaveTime =order.getPlanedLeaveTime();
-			Date checkOutTime = order.getCheckOutTime();
-			if(checkIntime.before(latestTime)){
-				creditchange = creditchange-25;
-				
-			
-		}
-			long between=(checkOutTime.getTime()-planedLeaveTime.getTime())/1000/60;
-			if(between>=30){
-				creditchange -=30;
-			}
-			//System.out.println(between);
-			if(creditchange==0) creditchange =50;
-			result = credit+creditchange;
-			
-			System.out.println(creditchange);
-			ResultMessage resultMessage = creditDataService.changeCredit(customer_id, result);
-			
-			CreditLogPO creditLogPO = new CreditLogPO(type, orderPO, result);*/
-		CreditLogPO creditLogPO = new CreditLogPO(type, orderPO, creditchange2);
-			
-		return creditDataService.add(creditLogPO);
-	}
-	}
+	
+	
 	/**
 	 * 根据客户的ID 返回该客户所有信用记录
 	 * @param customer_id
@@ -166,13 +123,12 @@ public class Credit {
 		for(int i = 0 ; i <  list.size() ; i++){
 			CreditLogPO creditlogPO = list.get(i);
 			CreditlogVO creditlogVO;
-			if(creditlogPO.getOrderPO()==null){
-				creditlogVO = new CreditlogVO(creditlogPO.getActionType(),
-						null , creditlogPO.getChangeValue());
+			if(creditlogPO.getOrderID()==null){
+				//充值
+				creditlogVO = new CreditlogVO(creditlogPO.getCustomerID(),creditlogPO.getActionType(),null,creditlogPO.getChangDate(),creditlogPO.getChangeValue(),creditlogPO.getMoney());
 			}else{
-				OrderVO orderVO = new OrderVO(creditlogPO.getOrderPO());
-				creditlogVO = new CreditlogVO(creditlogPO.getActionType(),
-						orderVO , creditlogPO.getChangeValue());
+				//订单变化
+				creditlogVO = new CreditlogVO(creditlogPO.getCustomerID(),creditlogPO.getActionType(),creditlogPO.getOrderID(),creditlogPO.getChangDate(),creditlogPO.getChangeValue(),0);
 			}
 			
 			logList.add(creditlogVO);
@@ -187,48 +143,36 @@ public class Credit {
 	 * @return ResultMessage
 	 * @throws RemoteException 
 	 */
-	public ResultMessage charge(String customer_id, int ChargeMoney){
+	public ResultMessage charge(String customer_id, int ChargeMoney,Date chargeTime){
 		int value = ChargeMoney * 100;
 		CustomerVO customerVO = customerInfo.getCustomerInfo(customer_id);
 		customerVO.credit+= value;
 		int result = customerVO.credit;
 		Credit c= new Credit();
 		ResultMessage ret=ResultMessage.NotExist;
-		try {
-			ret = c.levelUpdate(result, customer_id);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+		
 		
 		
 		ResultMessage rm = customerInfo.changeCustomerInfo(customerVO);
 		
 		if(rm==ResultMessage.NotExist||ret==ResultMessage.NotExist) return rm;
 		
-		return addlog(null, ActionType.Charge, value);
+		CreditLogPO creditLogPO = new CreditLogPO(customer_id, ActionType.Charge,null,chargeTime,value,ChargeMoney);
+		
+		return creditDataService.add(creditLogPO);
 	}
 	
-	/**
-	 * 初始化
-	 */
-	/*public Credit(CustomerInfoforCredit customerInfo){
-		this.customerInfo = customerInfo;
-		this.creditDataService = new  CreditData_Stub();
-	}
-	/**
-	 * 添加构造方法
-	 * @author chenyuyan
-	 */
-	/*public Credit(String customer_id){
-		this.creditDataService = new  CreditData_Stub();
-	}*/
+	
 	/**
 	 * @author chenyuyan
 	 * 每次信用值有所变化后，检验并根据网站营销人员的制定更改等级
 	 * level
 	 * @throws RemoteException 
 	 */
-	public ResultMessage levelUpdate(int result,String customer_id) throws RemoteException{
+	public int levelUpdate(String customer_id) throws RemoteException{
+		CustomerInfoforCredit customerInfo = CustomerInfoforCreditImp.getInstance();
+		
+		int result = customerInfo.getCustomerInfo(customer_id).credit;
 		DiscountWebController discountWeb =  DiscountWebController.getInstance();
 		int [] uplevel =new int[4];
 		
@@ -241,13 +185,20 @@ public class Credit {
 			
 			
 		}
+		return level;
 		
 		//System.out.println(level);
 		
-		return creditDataService.setLevel(level, customer_id);
+		//return creditDataService.setLevel(level, customer_id);
 		
 	
 	}
+	/**
+	 * 线下申诉合理，撤销异常订单
+	 * @param order
+	 * @param recoverValue
+	 * @return
+	 */
 	public ResultMessage Recover(Order order,RecoverValue recoverValue){
 		int value  = order.getOrderValue();		
 		int creditchange = 0;
@@ -260,19 +211,16 @@ public class Credit {
 		
 		int credit = order.getCustomer().credit;
 		credit = credit +creditchange;
-		Credit c = new Credit();
+		
 		ResultMessage resultMessage = null;
-		try {
-			resultMessage = c.levelUpdate(credit, customer_id);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if(resultMessage.equals(ResultMessage.Exist)){
+		
+		
 			resultMessage = creditDataService.changeCredit(customer_id, credit);//修改客户信用值
-		}
+		
 		if(resultMessage.equals(ResultMessage.Exist)){
-			resultMessage = c.addlog(order, ActionType.RevokeOrder, creditchange);
+			//String customerID , ActionType actionType , String  orderID, Date changDate ,  int changeValue,int money
+			CreditLogPO creditlogPO = new CreditLogPO(order.getCustomer().customerID,ActionType.RevokeOrder,order.getOrderID(),order.getRevokeTime(),creditchange,0);
+			resultMessage =creditDataService.add(creditlogPO);
 			
 		}
 		return resultMessage;

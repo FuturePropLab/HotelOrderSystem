@@ -1,6 +1,7 @@
 package businesslogicservice;
 
 import java.rmi.RemoteException;
+import java.util.Date;
 import java.util.List;
 
 import businesslogic.order.Order;
@@ -44,7 +45,7 @@ public interface CreditLogDealService {
 	 * @return ResultMessage
 	 * @throws RemoteException 
 	 */
-	public ResultMessage charge(String customer_id,int ChargeMoney);
+	public ResultMessage charge(String customer_id,int ChargeMoney,Date chargeTime);
 	/**
 	 * 申诉成功，恢复信用值，且有网站营销人员决定恢复一般还是全部
 	 * @author chenyuyan
@@ -52,4 +53,5 @@ public interface CreditLogDealService {
 	 * @param RecoverValue 一半，全部
 	 */
 	public ResultMessage Recover(Order order,RecoverValue recoverValue);
+	public int levelUpdate(String customer_id);
 }

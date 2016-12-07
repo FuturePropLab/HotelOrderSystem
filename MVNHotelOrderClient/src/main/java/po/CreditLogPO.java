@@ -70,7 +70,7 @@ public class CreditLogPO  implements Serializable{
 			this.changeValue = changeValue;
 		}
 
-		public double getMoney() {
+		public int getMoney() {
 			return money;
 		}
 

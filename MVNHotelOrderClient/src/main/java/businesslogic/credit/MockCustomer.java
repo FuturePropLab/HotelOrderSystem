@@ -25,4 +25,6 @@ public class MockCustomer implements CustomerInfoforCredit{
 		this.rm = rm;
 		this.customerVO = customerVO;
 	}
+
+	
 }

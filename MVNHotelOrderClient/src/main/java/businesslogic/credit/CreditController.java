@@ -1,6 +1,7 @@
 package businesslogic.credit;
 
 import java.rmi.RemoteException;
+import java.util.Date;
 import java.util.List;
 
 import businesslogic.customer.Customer;
@@ -54,13 +55,22 @@ public class CreditController implements CreditLogDealService{
 		return credit.getLogList(customer_id);
 	}
 
-	public ResultMessage charge(String customer_id, int ChargeMoney){
+	public ResultMessage charge(String customer_id, int ChargeMoney,Date chargeTime){
 		// TODO Auto-generated method stub
 		//Credit credit = new Credit(customer_id);
-		return credit.charge(customer_id, ChargeMoney);
+		return credit.charge(customer_id, ChargeMoney,chargeTime);
 	}
 	public ResultMessage Recover(Order order,RecoverValue recoverValue){
 		return credit.Recover(order, recoverValue);
 		
+	}
+	public int levelUpdate(String customer_id){
+		try {
+			return credit.levelUpdate(customer_id);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return -99999;
+		}
 	}
 }

@@ -23,7 +23,7 @@ public class Member {
 		memberApply=new MemberApply();
 		memberManage=new MemberManage();
 	}
-	public ResultMessage_Member addApply(ApplyVO apply) {
+	/*public ResultMessage_Member addApply(ApplyVO apply) {
 		return memberApply.addApply(apply);
 
 	}
@@ -51,7 +51,7 @@ public class Member {
 	public ResultMessage_Member deleteBack(String back_id) {
 		return memberApply.deleteBack(back_id);
 
-	}
+	}*/
 
 	public MemberVO getMemberInfo(String customer_id) {
 		return memberManage.getMemberInfo(customer_id);
