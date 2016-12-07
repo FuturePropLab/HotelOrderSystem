@@ -1,6 +1,6 @@
 package po;
 
-import java.sql.Time;
+import java.io.Serializable;
 import java.util.Date;
 
 import tools.OrderState;
@@ -10,8 +10,14 @@ import tools.OrderState;
  * @author zjy
  *
  */
-public class SearchOrderInfo {
-	public String accountID;
+public class SearchOrderInfo implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6894084097095957907L;
+	public String hotelID;
+	public String customerID;
 	public String orderID;
 	public String customerName;
 	public String hotelName;
@@ -27,14 +33,17 @@ public class SearchOrderInfo {
 	 * @param startTime 介于最晚到店时间和预计离开时间中的某一天
 	 * @param orderState 订单状态
 	 */
-	public SearchOrderInfo(String accountID,String orderID, String customerName, String hotelName, 
+	public SearchOrderInfo(String hotelID , String customerID,String orderID, String customerName, String hotelName, 
 			Date startTime, OrderState orderState) {
 		super();
-		this.accountID=accountID;
+		this.hotelID=hotelID;
+		this.customerID =customerID;
 		this.orderID = orderID;
 		this.customerName = customerName;
 		this.hotelName = hotelName;
 		this.startTime = startTime;
 		this.orderState = orderState;
 	}
+
+	
 }

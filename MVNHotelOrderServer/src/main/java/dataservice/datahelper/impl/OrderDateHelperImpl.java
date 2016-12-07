@@ -228,7 +228,11 @@ public class OrderDateHelperImpl implements OrderDataHelper {
 		
 		return orderPO;
 	}
-
+	
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.datahelper.OrderDataHelper#modifyOrderSearchPO(po.OrderSearchStorePO)
+	 */
 	public ResultMessage modifyOrderSearchPO(OrderSearchStorePO orderSearchStorePO) {
 		Session s = Hibernateutils.getSessionFactory().openSession();
 		try {
@@ -277,7 +281,11 @@ public class OrderDateHelperImpl implements OrderDataHelper {
 			s.close();
 		}
 	}
-
+	
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.datahelper.OrderDataHelper#getOrderListBycondition(po.SearchOrderInfo)
+	 */
 	public List<String> getOrderListBycondition(SearchOrderInfo searchOrderInfo) {
 		// TODO Auto-generated method stub
 		return null;
