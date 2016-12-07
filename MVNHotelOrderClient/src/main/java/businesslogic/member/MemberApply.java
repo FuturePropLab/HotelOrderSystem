@@ -23,7 +23,7 @@ public class MemberApply {
 	private MemberDataService  memberDataService;
 	
 	
-	public ResultMessage_Member addApply(ApplyVO apply) {
+	/*public ResultMessage_Member addApply(ApplyVO apply) {
 		MemberType membertype= new MemberType(apply.customer_ID);
 		ApplyPO applypo =  new ApplyPO(apply.customer_ID,apply.type);
 		
@@ -108,5 +108,5 @@ public class MemberApply {
 		
 		//return new MemberData_Stub().deleteBack(back_id);
 
-	}
+	}*/
 }

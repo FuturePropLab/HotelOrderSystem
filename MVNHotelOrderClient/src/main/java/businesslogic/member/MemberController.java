@@ -18,7 +18,7 @@ import vo.MemberVO;
  */
 public class MemberController implements MemberService{
 
-	private Member member;
+	private MemberManage member;
 	private static MemberController memberController;
 	private MemberController() {
 		// TODO Auto-generated constructor stub
@@ -38,7 +38,7 @@ public class MemberController implements MemberService{
 		return member.getMemberInfo(customer_id);
 	}
 
-	public ResultMessage_Member addApply(ApplyVO apply) {
+	/*public ResultMessage_Member addApply(ApplyVO apply) {
 		// TODO Auto-generated method stub
 		return member.addApply(apply);
 	}
@@ -57,7 +57,7 @@ public class MemberController implements MemberService{
 		// TODO Auto-generated method stub
 		return member.getBack(customer_id);
 	}
-
+*/
 	public ResultMessage_Member modifyMemberInfo(MemberVO memberInfo) {
 		// TODO Auto-generated method stub
 		return member.modifyMemberInfo(memberInfo);

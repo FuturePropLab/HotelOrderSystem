@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import businesslogic.customer.CustomerInfoforCreditImp;
 import businesslogic.discount.DiscountWebController;
 import businesslogic.order.Order;
 import dataservice.CreditDataService;
@@ -149,11 +150,7 @@ public class Credit {
 		int result = customerVO.credit;
 		Credit c= new Credit();
 		ResultMessage ret=ResultMessage.NotExist;
-		try {
-			ret = c.levelUpdate(result, customer_id);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+		
 		
 		
 		ResultMessage rm = customerInfo.changeCustomerInfo(customerVO);
@@ -172,7 +169,10 @@ public class Credit {
 	 * level
 	 * @throws RemoteException 
 	 */
-	public ResultMessage levelUpdate(int result,String customer_id) throws RemoteException{
+	public int levelUpdate(String customer_id) throws RemoteException{
+		CustomerInfoforCredit customerInfo = CustomerInfoforCreditImp.getInstance();
+		
+		int result = customerInfo.getCustomerInfo(customer_id).credit;
 		DiscountWebController discountWeb =  DiscountWebController.getInstance();
 		int [] uplevel =new int[4];
 		
@@ -185,7 +185,7 @@ public class Credit {
 			
 			
 		}
-		return null;
+		return level;
 		
 		//System.out.println(level);
 		

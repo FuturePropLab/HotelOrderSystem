@@ -4,6 +4,7 @@ import dataservice.MemberDataService;
 import po.MemberPO;
 import stub.MemberBL_Stub;
 import stub.MemberData_Stub;
+import tools.MemberType;
 import tools.ResultMessage;
 import tools.ResultMessage_Member;
 import vo.MemberVO;
@@ -30,16 +31,20 @@ public class MemberManage {
 	}
 
 	public ResultMessage_Member modifyMemberInfo(MemberVO memberInfo) {
+		MemberManage manage = new MemberManage();
 		
-		if(memberInfo.customer_ID==null){
-			return ResultMessage_Member.NotExit;
-			}else{
-				
-				MemberPO memberPO = new MemberPO(memberInfo.customer_ID,memberInfo.memberType);
-				
-				return memberDataService.modifyMember(memberPO);
-			}
+		MemberType memberType = manage.getMemberInfo(memberInfo.customer_ID).memberType;
+		//≈–∂œ «∑Ò÷ÿ∏¥◊¢≤·
+		if(memberType==null){
+			
+			MemberPO memberPO = new MemberPO(memberInfo.customer_ID,memberInfo.memberType);
+			
+			return memberDataService.modifyMember(memberPO);
+		}
 		
+		else{
+			return ResultMessage_Member.Failed;
+		}
 		
 		//MemberPO memberPO = new MemberPO(memberInfo.customer_ID,memberInfo.memberType);
 		

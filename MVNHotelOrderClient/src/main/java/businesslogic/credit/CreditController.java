@@ -64,4 +64,13 @@ public class CreditController implements CreditLogDealService{
 		return credit.Recover(order, recoverValue);
 		
 	}
+	public int levelUpdate(String customer_id){
+		try {
+			return credit.levelUpdate(customer_id);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return -99999;
+		}
+	}
 }

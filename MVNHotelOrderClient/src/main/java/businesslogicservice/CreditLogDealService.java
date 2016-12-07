@@ -53,4 +53,5 @@ public interface CreditLogDealService {
 	 * @param RecoverValue 一半，全部
 	 */
 	public ResultMessage Recover(Order order,RecoverValue recoverValue);
+	public int levelUpdate(String customer_id);
 }
