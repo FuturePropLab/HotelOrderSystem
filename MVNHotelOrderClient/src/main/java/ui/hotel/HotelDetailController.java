@@ -7,7 +7,9 @@ import java.util.List;
 
 import businesslogic.hotel.HotelDealController;
 import businesslogic.hotel.HotelManageController;
+import businesslogic.login.LoginController;
 import businesslogicservice.HotelDealService;
+import businesslogicservice.LoginService;
 import businesslogicservice.ManageHotelInfoService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -21,6 +23,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import tools.AccountType;
 import tools.HotelAddress;
 import tools.HotelRoomInfo;
 import tools.ResultMessage_Hotel;
@@ -130,12 +133,15 @@ public class HotelDetailController extends DetailsController{
     @FXML
     private void initialize() {//TODO:这个方法的内容先别动，要大改
     	//TODO:从blservice获取数据设置好值
-    	if(false){//TODO:如果是客户
+    	LoginService login = LoginController.getInstance();
+		AccountType account = login.getLogState().accountType;
+    	
+    	if(account.equals(AccountType.Customer)){//TODO:如果是客户
     
 			
 
     	}
-    	else if (true) {//TODO:如果是酒店工作人员
+    	else if (account.equals(AccountType.Hotel)) {//TODO:如果是酒店工作人员
 			hotelNameLabel.setVisible(false);
 			hotelNameTextField.setVisible(true);
 			describtionText.setVisible(false);

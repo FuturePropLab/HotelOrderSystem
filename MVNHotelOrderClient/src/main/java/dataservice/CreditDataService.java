@@ -18,6 +18,6 @@ public interface CreditDataService {
 	 * @param result
 	 * @return
 	 */
-	public ResultMessage changeCredit(String customer_id,double result);
+	public ResultMessage changeCredit(String customer_id,int result);
 	public ResultMessage setLevel(int level,String customer_id);
 }

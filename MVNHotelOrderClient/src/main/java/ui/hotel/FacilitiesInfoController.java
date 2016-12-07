@@ -7,6 +7,8 @@ import java.net.URL;
 
 import businesslogic.hotel.HotelDealController;
 import businesslogic.hotel.HotelManageController;
+import businesslogic.login.LoginController;
+import businesslogicservice.LoginService;
 import businesslogicservice.ManageHotelInfoService;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -17,6 +19,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import sun.security.jgss.LoginConfigImpl;
+import tools.AccountType;
 import tools.HotelRoomInfo;
 import tools.ResultMessage_Hotel;
 import ui.main.DetailsController;
@@ -85,7 +89,7 @@ public class FacilitiesInfoController extends DetailsController{
 
 	private String hotelID = "HT001" ; //@author wsw  这个应该在初始化这个界面的时候就传过来的
 	
-	private ManageHotelInfoService manageInfoService;
+	//private ManageHotelInfoService manageInfoService;
 
 	
     @FXML
@@ -100,7 +104,7 @@ public class FacilitiesInfoController extends DetailsController{
     
     @FXML
     private void handleSave() {
-
+    	ManageHotelInfoService manageInfoService;
     	//TODO:调用blservice保存信息
     	HotelFacilityVO hotelFacilityVO = null;
     	URL url = null;//不太清楚图片怎么搞
@@ -153,7 +157,11 @@ public class FacilitiesInfoController extends DetailsController{
 		String[] texts={"wifi无线上网","无烟房","餐厅","免费停车场","电梯","会议厅","叫醒服务","24小时前台服务","行李寄存",
 				"供应早餐"};
 		
-    	if(false){//TODO:如果不是酒店工作人员
+		LoginService login = LoginController.getInstance();
+		AccountType account = login.getLogState().accountType;
+		
+		
+    	if(!account.equals(AccountType.Hotel)){//TODO:如果不是酒店工作人员
     		for(Label label:facilities){//先把Lable清空
     			label.setText(null);
     		}
