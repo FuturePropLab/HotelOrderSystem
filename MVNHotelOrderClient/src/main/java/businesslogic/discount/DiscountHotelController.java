@@ -50,19 +50,13 @@ public class DiscountHotelController implements DiscountHotelService {
 	 */
 	public List<DiscountVO_hotel> getHotelDiscount(String hotelID) {
 		List<DiscountVO_hotel> discountVO_hotels = new LinkedList<DiscountVO_hotel>();
-		try {
-			if (hotelID.equals(this.hotelID)) {
-				return list;
-			}
-			discountVO_hotels = hotelDiscount.getHotelDiscount(hotelID);
-			this.list = discountVO_hotels;
-			this.hotelID = hotelID;
-			return discountVO_hotels;
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			// System.out.println(e.getMessage());
-			return null;
+		if (hotelID.equals(this.hotelID)) {
+			return list;
 		}
+		else{
+			discountVO_hotels = initHotelDiscount(hotelID);
+		}
+		return discountVO_hotels;
 	}
 
 	public ResultMessage_DiscountDetail addHotelDiscount(String hotelID, DiscountVO_hotel dis) {
@@ -71,7 +65,7 @@ public class DiscountHotelController implements DiscountHotelService {
 
 			resultMessage_DiscountDetail = hotelDiscount.addHotelDiscount(hotelID, dis);
 			if (resultMessage_DiscountDetail == ResultMessage_DiscountDetail.Success) {
-				getHotelDiscount(hotelID);
+				initHotelDiscount(hotelID);
 			}
 			return resultMessage_DiscountDetail;
 		} catch (RemoteException e) {
@@ -180,6 +174,19 @@ public class DiscountHotelController implements DiscountHotelService {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	private List<DiscountVO_hotel> initHotelDiscount(String hotelID) {
+		List<DiscountVO_hotel> discountVO_hotels = new LinkedList<DiscountVO_hotel>();
+		try {
+			discountVO_hotels = hotelDiscount.getHotelDiscount(hotelID);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.list = discountVO_hotels;
+		this.hotelID = hotelID;
+		return discountVO_hotels;
 	}
 
 }
