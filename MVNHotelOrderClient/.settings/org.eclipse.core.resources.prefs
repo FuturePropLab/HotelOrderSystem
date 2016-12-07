@@ -49,6 +49,7 @@ encoding//src/main/java/businesslogicservice/DiscountWebService.java=UTF-8
 encoding//src/main/java/businesslogicservice/ManageHotelInfoService.java=UTF-8
 encoding//src/main/java/businesslogicservice/MemberService.java=UTF-8
 encoding//src/main/java/dataservice/AccountDataService.java=UTF-8
+encoding//src/main/java/dataservice/CreditDataService.java=UTF-8
 encoding//src/main/java/dataservice/CustomerDataService.java=UTF-8
 encoding//src/main/java/dataservice/MemberDataService.java=UTF-8
 encoding//src/main/java/dataservice/OrderDataService.java=UTF-8

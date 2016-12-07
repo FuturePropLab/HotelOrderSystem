@@ -271,8 +271,14 @@ public class Credit {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return null;
+		if(resultMessage.equals(ResultMessage.Exist)){
+			resultMessage = creditDataService.changeCredit(customer_id, credit);//修改客户信用值
+		}
+		if(resultMessage.equals(ResultMessage.Exist)){
+			resultMessage = c.addlog(order, ActionType.RevokeOrder, creditchange);
+			
+		}
+		return resultMessage;
 		
 		
 	}
