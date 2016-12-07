@@ -5,6 +5,7 @@ import java.util.List;
 
 import po.Order;
 import tools.ActionType;
+import tools.RecoverValue;
 import tools.ResultMessage;
 import vo.CreditlogVO;
 
@@ -44,6 +45,13 @@ public class CreditLogDeal_Stub implements businesslogicservice.CreditLogDealSer
 
 	@Override
 	public ResultMessage CreditChangeAboutOrder(businesslogic.order.Order order, ActionType type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public ResultMessage Recover(businesslogic.order.Order order, RecoverValue recoverValue) {
 		// TODO Auto-generated method stub
 		return null;
 	}

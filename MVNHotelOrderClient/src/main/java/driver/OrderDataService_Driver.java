@@ -1,5 +1,6 @@
 package driver;
 
+import java.rmi.RemoteException;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,28 +23,31 @@ import vo.SearchHotelVO;
 
 public class OrderDataService_Driver {
 	public boolean drive(OrderDataService orderService) {
-		OrderPO order=new OrderPO("000000001");
-		ResultMessage result=orderService.add(order);
-		if(result.equals(ResultMessage.NotExist)){
-			return false;
+		try {
+			OrderPO order=new OrderPO("000000001");
+			ResultMessage result=orderService.add(order);
+			if(result.equals(ResultMessage.NotExist)){
+				return false;
+			}
+			
+			order=orderService.findOrder("000000001");
+			if(order==null){
+				return false;
+			}
+			
+			result=orderService.modify(order);
+			if(result.equals(ResultMessage.NotExist)){
+				return false;
+			}
+			
+			SearchOrderInfo searchOrderInfo=new SearchOrderInfo(null, null, null, null, OrderState.Unexecuted);
+			List<OrderPO> list=orderService.searchOrder(searchOrderInfo);
+			if(list==null){
+				return false;
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
 		}
-		
-		order=orderService.findOrder("000000001");
-		if(order==null){
-			return false;
-		}
-		
-		result=orderService.modify(order);
-		if(result.equals(ResultMessage.NotExist)){
-			return false;
-		}
-		
-		SearchOrderInfo searchOrderInfo=new SearchOrderInfo(null, null, null, null, OrderState.Unexecuted);
-		List<OrderPO> list=orderService.searchOrder(searchOrderInfo);
-		if(list==null){
-			return false;
-		}
-		
 		return true;
 	}
 

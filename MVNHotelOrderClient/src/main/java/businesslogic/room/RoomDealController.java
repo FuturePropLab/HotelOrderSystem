@@ -27,7 +27,7 @@ public class RoomDealController implements RoomDealService{
 	
 	/**
 	 * @author chenyuyan 11/26
-	 * 增加一个方法，查看空余房间
+	 * 澧炲姞涓�涓柟娉曪紝鏌ョ湅绌轰綑鎴块棿
 	 * 
 	 * 
 	 */

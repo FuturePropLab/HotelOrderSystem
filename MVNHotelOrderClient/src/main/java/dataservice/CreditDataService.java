@@ -12,8 +12,8 @@ public interface CreditDataService {
 	
 	
 	/**
+	 * ä¿®æ”¹å®¢æˆ·ä¿¡ç”¨å€¼
 	 * @author chenyuyan 12/1
-	 * ĞŞ¸Ä¿Í»§ĞÅÓÃÖµ
 	 * @param customer_id
 	 * @param result
 	 * @return
