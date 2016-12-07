@@ -164,15 +164,18 @@ public class OrderController implements OrderService{
 		}
 		try {
 			LoginService loginService=LoginController.getInstance();
-			String accountID = loginService.getLogState().accountID;
+			String hotelID = loginService.getLogState().accountType.equals(AccountType.Hotel)?
+					loginService.getLogState().accountID:null;
+			String customerID = loginService.getLogState().accountType.equals(AccountType.Customer)?
+					loginService.getLogState().accountID:null;
 			
 			//把关键字分别当做订单ID、客户姓名、酒店名称来搜索
-			List<OrderPO> poList=orderDataService.searchOrder(new SearchOrderInfo(accountID,searchOrderInfo.keywords, 
-					null, null, searchOrderInfo.date, searchOrderInfo.orderState));
-			poList.addAll(orderDataService.searchOrder(new SearchOrderInfo(accountID,null, searchOrderInfo.keywords, 
-					null, searchOrderInfo.date, searchOrderInfo.orderState)));
-			poList.addAll(orderDataService.searchOrder(new SearchOrderInfo(accountID,null, null, searchOrderInfo.keywords, 
-					searchOrderInfo.date, searchOrderInfo.orderState)));
+			List<OrderPO> poList=orderDataService.searchOrder(new SearchOrderInfo(hotelID,customerID,
+					searchOrderInfo.keywords, null, null, searchOrderInfo.date, searchOrderInfo.orderState));
+			poList.addAll(orderDataService.searchOrder(new SearchOrderInfo(hotelID,customerID,null, 
+					searchOrderInfo.keywords, null, searchOrderInfo.date, searchOrderInfo.orderState)));
+			poList.addAll(orderDataService.searchOrder(new SearchOrderInfo(hotelID,customerID,null, null, 
+					searchOrderInfo.keywords, searchOrderInfo.date, searchOrderInfo.orderState)));
 			List<OrderVO> voList=new ArrayList<OrderVO>();
 			for(OrderPO orderPO:poList){
 				voList.add(getOrderVO(orderPO));

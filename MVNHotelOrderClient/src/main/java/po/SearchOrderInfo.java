@@ -26,7 +26,8 @@ public class SearchOrderInfo implements Serializable{
 	
 	/**
 	 * 如果某项搜索条件不限，则该项为null
-	 * @param accountID 发起搜索的账户ID,如果是客户就是客户ID，如果是酒店工作人员就是酒店工作人员ID，以此类推
+	 * @param hotelID 如果是酒店工作人员就是酒店ID，否则是null
+	 * @param customerID 如果是客户就是客户ID，否则是null
 	 * @param orderID 订单ID
 	 * @param customerName 客户姓名
 	 * @param hotelName 酒店名称
