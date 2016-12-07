@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import tools.DateFormat;
+import tools.ResultMessage;
 import ui.main.Dialogs;
 import vo.HotelbriefVO;
 import vo.OrderInputVO;
@@ -69,10 +70,17 @@ public class OrderPreviewController {
 	@FXML
 	private void handleConfirm() {
 		OrderService orderService=OrderController.getInstance();
+		ResultMessage resultMessage = ResultMessage.NotExist;
 		try {
-			orderService.createOrders(orderInputVO);
+			resultMessage=orderService.createOrders(orderInputVO);
 		} catch (CustomerCreditNotEnoughException e) {
 			Dialogs.showMessage("你的信用值是："+e.credit,"你的信用值不足，不能下单，请联系网站促销人员进行充值");
+		}
+		if(resultMessage.equals(ResultMessage.Exist)){
+			//TODO:
+		}
+		else {
+			Dialogs.showMessage("下单失败");
 		}
 	}
 	@FXML
