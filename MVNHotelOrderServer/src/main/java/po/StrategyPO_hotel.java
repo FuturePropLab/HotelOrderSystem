@@ -9,6 +9,7 @@ import tools.Strategy_hotelType;
  * @author LWY
  *
  */
+
 public class StrategyPO_hotel {
 	private Calendar startDate;// 折扣开始时间
 

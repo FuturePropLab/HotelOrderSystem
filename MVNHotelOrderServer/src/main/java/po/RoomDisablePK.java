@@ -11,6 +11,7 @@ public class RoomDisablePK implements Serializable {
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = -632870926291931246L;
 	private String hotelID;
 	private String roomNO;

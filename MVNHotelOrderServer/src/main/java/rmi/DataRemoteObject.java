@@ -11,6 +11,7 @@ import dataservice.DiscountHotelDataService;
 import dataservice.DiscountWebDataService;
 import dataservice.HotelDataService;
 import dataservice.LoginCheckService;
+import dataservice.OrderDataService;
 import dataservice.RoomDataService;
 import dataservice.impl.AccountDataServiceImpl;
 import dataservice.impl.CustomerDataServiceImpl;
@@ -18,6 +19,7 @@ import dataservice.impl.DiscountHotelDataServiceImpl;
 import dataservice.impl.DiscountWebServiceImpl;
 import dataservice.impl.HotelDataServiceImpl;
 import dataservice.impl.LoginCheckServiceImpl;
+import dataservice.impl.OrderDataServiceImpl;
 import dataservice.impl.RoomDataServiceImpl;
 import po.AccountPO;
 import po.CustomerPO;
@@ -25,7 +27,10 @@ import po.DiscountPO_hotel;
 import po.DiscountPO_web;
 import po.HotelPO;
 import po.ImageInfoPO;
+import po.OrderPO;
+import po.SearchOrderInfo;
 import tools.AccountType;
+import tools.ResultMessage;
 import tools.ResultMessage_Account;
 import tools.ResultMessage_Discount;
 import tools.ResultMessage_DiscountDetail;
@@ -39,7 +44,8 @@ import tools.StandardSearch;
 
 public class DataRemoteObject extends UnicastRemoteObject implements
 LoginCheckService ,AccountDataService,CustomerDataService,
-HotelDataService,RoomDataService, DiscountWebDataService,DiscountHotelDataService{
+HotelDataService,RoomDataService, DiscountWebDataService,DiscountHotelDataService,
+OrderDataService{
 	/**
 	 *  RMI 接口
 	 */
@@ -51,6 +57,7 @@ HotelDataService,RoomDataService, DiscountWebDataService,DiscountHotelDataServic
 	private RoomDataService roomDataService;
 	private DiscountWebDataService discountWebDataService;
 	private DiscountHotelDataService discountHotelDataService;
+	private OrderDataService orderDataService;
 	protected DataRemoteObject() throws RemoteException {
 		//用loginCheckServiceIMPL 实现
 		loginCheckService = new LoginCheckServiceImpl();
@@ -60,6 +67,7 @@ HotelDataService,RoomDataService, DiscountWebDataService,DiscountHotelDataServic
 		roomDataService = new RoomDataServiceImpl();
 		discountWebDataService = new DiscountWebServiceImpl();
 		discountHotelDataService = new DiscountHotelDataServiceImpl();
+		orderDataService = new OrderDataServiceImpl();
 
 	}
 	/**
@@ -224,6 +232,22 @@ HotelDataService,RoomDataService, DiscountWebDataService,DiscountHotelDataServic
 	}
 	public ResultMessage_Discount deleteHotelDiscount(String hotelID, String discountID) throws RemoteException {
 		return discountHotelDataService.invalidDiscount(discountID);
+	}
+	
+	/**
+	 * order 
+	 */
+	public ResultMessage add(OrderPO order) throws RemoteException {
+		return orderDataService.add(order);
+	}
+	public OrderPO findOrder(String order_id) throws RemoteException {
+		return orderDataService.findOrder(order_id);
+	}
+	public ResultMessage modify(OrderPO order) throws RemoteException {
+		return orderDataService.modify(order);
+	}
+	public List<OrderPO> searchOrder(SearchOrderInfo searchOrderInfo) throws RemoteException {
+		return orderDataService.searchOrder(searchOrderInfo);
 	}
 
 }

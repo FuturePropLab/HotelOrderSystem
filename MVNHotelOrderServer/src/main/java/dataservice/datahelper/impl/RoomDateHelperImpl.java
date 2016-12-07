@@ -166,8 +166,9 @@ public class RoomDateHelperImpl  implements RoomDateHelper{
 		cr.add(Restrictions.eq("roomDisablePK.hotelID", hotelID));
 		cr.add(Restrictions.eq("roomDisablePK.roomNO", roomNO));
 		cr.add(Restrictions.lt("roomDisablePK.begin", end));
+		List<RoomDisablePO>  list = cr.list();
 		s.close();
-		return cr.list().isEmpty(); 
+		return list.isEmpty(); 
 	}
 
 	

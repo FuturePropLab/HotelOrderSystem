@@ -1,12 +1,19 @@
 package tools;
 
+import java.io.Serializable;
+
 import Exception.OutOfBoundsException;
 
 /**
  *  酒店的评分，0.0-5.0的double值
  *  @author zjy
  */
-public class Mark {
+public class Mark implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9087306203033224497L;
 	private double mark;
 	
 	/**

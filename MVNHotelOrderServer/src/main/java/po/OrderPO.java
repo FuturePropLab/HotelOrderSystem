@@ -112,10 +112,10 @@ public class OrderPO implements Serializable  {
 		try {
 			this.mark=new Mark(orderAssessPO.getMarkValue());
 		} catch (OutOfBoundsException e) {
-			int m = orderAssessPO.getMarkValue();
+			double m = orderAssessPO.getMarkValue();
 			if(m<0){
 				try {
-					this.mark = new Mark(0);
+					this.mark = new Mark(0.0);
 				} catch (OutOfBoundsException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

@@ -9,10 +9,16 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.Calendar;
+import java.util.Date;
 
 import businesslogic.discount.DiscountHotelController;
 import businesslogicservice.DiscountHotelService;
+import dataservice.OrderDataService;
+import po.OrderPO;
 import rmi.RemoteHelper;
+import tools.OrderState;
+import tools.RoomType;
 import vo.DiscountVO_hotel;
 
 public class ClientRunner {
@@ -68,14 +74,14 @@ public class ClientRunner {
 //						LocalDate.of(2016, 12, 31), "王帅惟设计的", false, "朱俊毅粉丝后援团");
 //		System.out.println(discountHotelDataService.getHotelDiscount("HT000").isEmpty());
 		
-		DiscountHotelService discountHotelService = DiscountHotelController.getInstance();
+//		DiscountHotelService discountHotelService = DiscountHotelController.getInstance();
 		
 //		DiscountVO_hotel discountVO_hotel = 
 //				new DiscountVO_hotel(
 //						6, LocalDate.of(2016, 12, 4), LocalDate.of(2016, 12, 6), "很豪华", false);
 //		discountHotelService.addHotelDiscount("330", discountVO_hotel);
-		DiscountVO_hotel discountVO_hotel = discountHotelService.getHotelDiscount("330").get(0);
-		System.out.println(discountVO_hotel.remarks);
+//		DiscountVO_hotel discountVO_hotel = discountHotelService.getHotelDiscount("330").get(0);
+//		System.out.println(discountVO_hotel.remarks);
 		
 		
 		
@@ -88,6 +94,16 @@ public class ClientRunner {
 //		System.out.println(discountHotelDataService.getHotelDiscount("HT000").isEmpty());
 //		LoginCheckService loginCheckService = RemoteHelper.getInstance().getLoginCheckService();
 //		System.out.println(loginCheckService.checkLogin("zhujunyi", "zhujunyi", AccountType.Customer));
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.HOUR_OF_DAY, 21); // 控制时
+		calendar.set(Calendar.MINUTE, 15);    // 控制分
+	    calendar.set(Calendar.SECOND, 0);    // 控制秒
+		OrderDataService orderDataService  =RemoteHelper.getInstance().getOrderDataService();
+		OrderPO order = new 
+				OrderPO("OD09", "CS002", "HT001", null, new Date(), calendar.getTime(), new Date(2016-1900, 11, 15), 
+						null, null, null, null, RoomType.Double, 1, 3, 1, true, OrderState.Unexecuted, null, null, 180);
+		System.out.println(orderDataService.add(order));
 
 		 
 	}

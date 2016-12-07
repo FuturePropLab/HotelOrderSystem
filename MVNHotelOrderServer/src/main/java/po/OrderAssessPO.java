@@ -12,7 +12,7 @@ public class OrderAssessPO {
 	private String orderID;
 	private String hotelID;
 	
-	private int markValue;
+	private double markValue;
 	private String assessment;
 	
 	
@@ -28,7 +28,7 @@ public class OrderAssessPO {
 	 * @param assessment
 	 */
 	
-	public OrderAssessPO(String orderID , String hotelID, int markValue, String assessment){
+	public OrderAssessPO(String orderID , String hotelID, double markValue, String assessment){
 		super();
 		this.assessment  =assessment;
 		this.hotelID  =hotelID;
@@ -66,12 +66,12 @@ public class OrderAssessPO {
 	}
 
 
-	public int getMarkValue() {
+	public double getMarkValue() {
 		return markValue;
 	}
 
 
-	public void setMarkValue(int markValue) {
+	public void setMarkValue(double markValue) {
 		this.markValue = markValue;
 	}
 

@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.hibernate.Criteria;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -14,12 +19,13 @@ import DataFactory.DataHelperUtils;
 import DataFactory.Hibernateutils;
 import dataservice.datahelper.OrderDataHelper;
 import dataservice.datahelper.RoomDateHelper;
+import po.CustomerPO;
+import po.HotelBasePO;
 import po.OrderAssessPO;
 import po.OrderNotChangePO;
 import po.OrderPO;
 import po.OrderRoomPO;
 import po.OrderSearchStorePO;
-import po.SearchOrderInfo;
 import tools.OrderState;
 import tools.ResultMessage;
 import tools.RoomType;
@@ -121,9 +127,44 @@ public class OrderDateHelperImpl implements OrderDataHelper {
 		addOrderRoomPO(orderPO.getOrderID(), orderPO.getRoomNumber());
 		addOrderAssessPO(new OrderAssessPO(orderPO.getOrderID(), orderPO.getHotelID()));
 		
+		Timer timer = new Timer();
+	    final Date time = orderPO.getLatestTime();
+	    final String OrderID = orderPO.getOrderID();
+	    
+	    System.out.println(time.toString());
+	    
+	    timer.schedule(new TimerTask() {
+	      public void run() {
+	    	  OrderSearchStorePO orderSearchStorePO = getOrderSearchStorePO(OrderID);
+	    	  System.out.println(orderSearchStorePO.getOrderState());
+	    	  if(orderSearchStorePO.getOrderState()==OrderState.Unexecuted){
+	    		  Session s = Hibernateutils.getSessionFactory().openSession();
+	    			try{
+	    				Transaction t = s.beginTransaction();
+	    				orderSearchStorePO.setOrderState(OrderState.Unexecuted.Exception);
+	    				s.update(orderSearchStorePO);
+	    				t.commit();
+	    			}catch(Exception e){
+	    				//System.err.println(e.getMessage());
+	    			}finally{
+	    				s.close();
+	    			}
+	    		  System.out.println("change to Exception");
+	    	  }
+	    	  //TODO  Change the credit
+	    	  
+	        System.gc();
+	      }
+	    }, time);
+	    //timer.cancel();
+	    System.out.println("jump!!!!!");
+		
 		return ResultMessage.Exist;
 	}
-
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.datahelper.OrderDataHelper#getArrangeRoom(java.lang.String, tools.RoomType, int, java.util.Date, java.util.Date)
+	 */
 	public List<String> getArrangeRoom(String hotelID, RoomType roomType, int count,Date begin , Date end) {
 		RoomDateHelper roomDateHelper  = DataHelperUtils.getRoomDateHelper();
 		List<String> allRoom = roomDateHelper.getRoomNobyType(hotelID, roomType);
@@ -154,7 +195,11 @@ public class OrderDateHelperImpl implements OrderDataHelper {
 		else 
 			return null;
 	}
-
+	
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.datahelper.OrderDataHelper#getOrderSearchStorePO(java.lang.String)
+	 */
 	public OrderSearchStorePO getOrderSearchStorePO(String orderID) {
 		Session s = Hibernateutils.getSessionFactory().openSession();
 		OrderSearchStorePO orderSearchStorePO = (OrderSearchStorePO) s.load(OrderSearchStorePO.class, orderID);
@@ -168,7 +213,11 @@ public class OrderDateHelperImpl implements OrderDataHelper {
 		
 		return orderSearchStorePO;
 	}
-
+	
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.datahelper.OrderDataHelper#getOrderNotChangePO(java.lang.String)
+	 */
 	public OrderNotChangePO getOrderNotChangePO(String orderID) {
 		Session s = Hibernateutils.getSessionFactory().openSession();
 		OrderNotChangePO orderNotChangePO = (OrderNotChangePO) s.load(OrderNotChangePO.class, orderID);
@@ -182,7 +231,11 @@ public class OrderDateHelperImpl implements OrderDataHelper {
 		
 		return orderNotChangePO;
 	}
-
+	
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.datahelper.OrderDataHelper#getOrderAssessPO(java.lang.String)
+	 */
 	public OrderAssessPO getOrderAssessPO(String orderID) {
 		Session s = Hibernateutils.getSessionFactory().openSession();
 		OrderAssessPO orderAssessPO = (OrderAssessPO) s.load(OrderAssessPO.class, orderID);
@@ -196,24 +249,26 @@ public class OrderDateHelperImpl implements OrderDataHelper {
 		
 		return orderAssessPO;
 	}
-
+	
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.datahelper.OrderDataHelper#getOrderRoomPO(java.lang.String)
+	 */
 	public List<String> getOrderRoomPO(String orderID) {
 		Session s = Hibernateutils.getSessionFactory().openSession();
-		Criteria cr = s.createCriteria(OrderRoomPO.class);
-		cr.add(Restrictions.eq("orderID", orderID));
+		SQLQuery q =s.createSQLQuery("select RoomNumber from OrderRoomPO  where orderID = '"+orderID+"'");
 		
-		List<OrderRoomPO>  roomlist = cr.list();
+		
 		List<String> strList = new ArrayList<String>();
-		Iterator<OrderRoomPO> it = roomlist.iterator();
-		
-		while(it.hasNext()){
-			OrderRoomPO orderRoomPO = it.next();
-			strList.add(orderRoomPO.getRoomNumber());
-		}
+		strList = q.list();
 		s.close();
 		return strList;
 	}
-
+	
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.datahelper.OrderDataHelper#getCompleteOrderPO(java.lang.String)
+	 */
 	public OrderPO getCompleteOrderPO(String orderID) {
 		OrderSearchStorePO  orderSearchStorePO  = getOrderSearchStorePO(orderID);
 		if(orderSearchStorePO == null)  return null;
@@ -247,7 +302,11 @@ public class OrderDateHelperImpl implements OrderDataHelper {
 			s.close();
 		}
 	}
-
+	
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.datahelper.OrderDataHelper#modifyOrderAssessPO(po.OrderAssessPO)
+	 */
 	public ResultMessage modifyOrderAssessPO(OrderAssessPO orderAssessPO) {
 		Session s = Hibernateutils.getSessionFactory().openSession();
 		try {
@@ -262,7 +321,11 @@ public class OrderDateHelperImpl implements OrderDataHelper {
 			s.close();
 		}
 	}
-
+	
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.datahelper.OrderDataHelper#changeOrderState(java.lang.String, tools.OrderState)
+	 */
 	public ResultMessage changeOrderState(String orderID, OrderState orderState) {
 		Session s = Hibernateutils.getSessionFactory().openSession();
 		try{
@@ -286,12 +349,83 @@ public class OrderDateHelperImpl implements OrderDataHelper {
 	 * (non-Javadoc)
 	 * @see dataservice.datahelper.OrderDataHelper#getOrderListBycondition(po.SearchOrderInfo)
 	 */
-	public List<String> getOrderListBycondition(SearchOrderInfo searchOrderInfo) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean isValidCustomerName(String customerpattern, String customerID) {
+		if(customerpattern==null)  return true;
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		CustomerPO customerPO  = (CustomerPO) s.load(CustomerPO.class, customerID);
+		String realname = null;
+		
+		try {
+			realname = customerPO.getCustomerName();
+		} catch (Exception e) {
+			s.close();
+			return false;
+		}
+		s.close();
+		Pattern pattern = Pattern.compile(customerpattern);
+    	Matcher matcher = pattern.matcher(realname);
+		return matcher.matches();
+	}
+	
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.datahelper.OrderDataHelper#isValidHotelName(java.lang.String, java.lang.String)
+	 */
+	public boolean isValidHotelName(String hotelnamepattern, String hotelID) {
+		if(hotelnamepattern==null)  return true;
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		HotelBasePO hotelBasePO  = (HotelBasePO) s.load(HotelBasePO.class, hotelID);
+		String realname = null;
+		
+		try {
+			realname = hotelBasePO.getHotelName();
+		} catch (Exception e) {
+			s.close();
+			return false;
+		}
+		s.close();
+		Pattern pattern = Pattern.compile(hotelnamepattern);
+    	Matcher matcher = pattern.matcher(realname);
+		return matcher.matches();
+	}
+	
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.datahelper.OrderDataHelper#isValidTime(java.lang.String, java.util.Date)
+	 */
+	public boolean isValidTime(String orderID, Date date) {
+		
+		if(date==null)  return true;
+		
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		Criteria cr = s.createCriteria(OrderNotChangePO.class);
+		cr.add(Restrictions.le("latestTime", date));
+		cr.add(Restrictions.ge("planedLeaveTime", date));
+		List<OrderNotChangePO> list =  cr.list();
+		s.close();
+		if(list.isEmpty())  return false;
+		return true;
+	}
+	
+	
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.datahelper.OrderDataHelper#getOrderListBycondition(tools.OrderState, java.lang.String, java.lang.String)
+	 */
+	public List<OrderSearchStorePO> getOrderListBycondition(OrderState orderState, String hotelID, String customerID) {
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		Criteria cr = s.createCriteria(OrderSearchStorePO.class);
+		if(orderState!=null)
+			cr.add(Restrictions.eq("orderState", orderState));
+		if(hotelID !=null)
+			cr.add(Restrictions.eq("hotelID", hotelID));
+		if(customerID!=null)
+			cr.add(Restrictions.eq("customerID", customerID));	
+		List<OrderSearchStorePO>  list = cr.list();	
+		s.close();
+		return list;
 	}
 
 	
-//	public ResultMessage addOrder
 
 }

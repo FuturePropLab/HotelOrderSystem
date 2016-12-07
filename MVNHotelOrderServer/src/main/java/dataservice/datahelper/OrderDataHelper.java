@@ -55,7 +55,7 @@ public interface OrderDataHelper {
 	public List<String> getOrderRoomPO(String OrderID);
 	
 	/**
-	 * 
+	 * 通过完整的  orderid  获得完整的order信息
 	 * @param orderID
 	 * @return
 	 */
@@ -68,7 +68,40 @@ public interface OrderDataHelper {
 	
 	public ResultMessage changeOrderState(String orderID , OrderState orderState);
 	
-	public List<String>  getOrderListBycondition(SearchOrderInfo searchOrderInfo);
+	
+	/**
+	 * 通过查找 专门为搜索订单准备的子数据库  获取搜索用信息
+	 * @param orderState
+	 * @param hotelID
+	 * @param customerID
+	 * @return
+	 */
+	public List<OrderSearchStorePO>  getOrderListBycondition(OrderState orderState , String hotelID , String customerID);
+	
+	/**
+	 * 判断客户名字的模糊查找
+	 * @param customerpattern
+	 * @param customerID
+	 * @return
+	 */
+	public boolean  isValidCustomerName (String customerpattern , String customerID);
+	
+	/**
+	 * 判断酒店名字的酒店查找
+	 * @param hotelpattern
+	 * @param hotelID
+	 * @return
+	 */
+	public boolean  isValidHotelName (String hotelpattern , String hotelID);
+	
+	
+	/**
+	 * 判断时间是否符合搜索的标准
+	 * @param orderID
+	 * @param date
+	 * @return
+	 */
+	public boolean  isValidTime(String orderID , Date date);
 	
 	
 

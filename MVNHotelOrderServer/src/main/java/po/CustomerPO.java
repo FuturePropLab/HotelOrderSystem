@@ -12,6 +12,7 @@ public class CustomerPO implements Serializable{
 	  /**
 	 * 序列化id
 	 */
+	
 	private static final long serialVersionUID = -4620814777325515534L;
 	
 	
