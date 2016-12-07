@@ -63,7 +63,7 @@ public class CreditLogPO {
 			this.changeValue = changeValue;
 		}
 
-		public double getMoney() {
+		public int getMoney() {
 			return money;
 		}
 
