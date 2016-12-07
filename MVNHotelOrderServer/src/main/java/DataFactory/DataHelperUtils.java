@@ -2,6 +2,7 @@ package DataFactory;
 
 import dataservice.datahelper.AccountDataHelper;
 import dataservice.datahelper.AddressDataHelper;
+import dataservice.datahelper.CreditLogdataHelper;
 import dataservice.datahelper.CustomerDataHelper;
 import dataservice.datahelper.DiscountHotelDataHelper;
 import dataservice.datahelper.DiscountWebDataHelper;
@@ -11,6 +12,7 @@ import dataservice.datahelper.OrderDataHelper;
 import dataservice.datahelper.RoomDateHelper;
 import dataservice.datahelper.impl.AccountDataHelperImpl;
 import dataservice.datahelper.impl.AddressDataHelperImpl;
+import dataservice.datahelper.impl.CreditLogdataHelperImpl;
 import dataservice.datahelper.impl.CustomerDataHelperImpl;
 import dataservice.datahelper.impl.DiscountHotelDataHelperImpl;
 import dataservice.datahelper.impl.DiscountWebDataHelperImpl;
@@ -96,6 +98,11 @@ public  class DataHelperUtils {
 	 */
 	public static OrderDataHelper getOrderDataHelper(){
 		return OrderDateHelperImpl.getInstance();
+	}
+	
+	
+	public static CreditLogdataHelper getCreditLogdataHelper(){
+		return CreditLogdataHelperImpl.getIntance();
 	}
 	
 }

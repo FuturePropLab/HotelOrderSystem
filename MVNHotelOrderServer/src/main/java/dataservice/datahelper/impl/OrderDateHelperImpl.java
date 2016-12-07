@@ -17,8 +17,10 @@ import org.hibernate.criterion.Restrictions;
 
 import DataFactory.DataHelperUtils;
 import DataFactory.Hibernateutils;
+import dataservice.datahelper.CreditLogdataHelper;
 import dataservice.datahelper.OrderDataHelper;
 import dataservice.datahelper.RoomDateHelper;
+import po.CreditLogPO;
 import po.CustomerPO;
 import po.HotelBasePO;
 import po.OrderAssessPO;
@@ -26,6 +28,7 @@ import po.OrderNotChangePO;
 import po.OrderPO;
 import po.OrderRoomPO;
 import po.OrderSearchStorePO;
+import tools.ActionType;
 import tools.OrderState;
 import tools.ResultMessage;
 import tools.RoomType;
@@ -127,13 +130,20 @@ public class OrderDateHelperImpl implements OrderDataHelper {
 		addOrderRoomPO(orderPO.getOrderID(), orderPO.getRoomNumber());
 		addOrderAssessPO(new OrderAssessPO(orderPO.getOrderID(), orderPO.getHotelID()));
 		
-		Timer timer = new Timer();
+		Timer timer1 = new Timer();
+		Timer timer2 = new Timer();
 	    final Date time = orderPO.getLatestTime();
 	    final String OrderID = orderPO.getOrderID();
-	    
+	    final Date endTime = orderPO.getPlanedLeaveTime();
+	    final String customerID =  orderPO.getCustomerID();
+	    final Date startTime = orderPO.getStartTime();
+	    final int value = orderPO.getValue();
+	    final List<String>  roomNOList = orderPO.getRoomNumber();
+	    final String hotelID = orderPO.getHotelID();
 	    System.out.println(time.toString());
+	    System.out.println(endTime.toString());
 	    
-	    timer.schedule(new TimerTask() {
+	    timer1.schedule(new TimerTask() {
 	      public void run() {
 	    	  OrderSearchStorePO orderSearchStorePO = getOrderSearchStorePO(OrderID);
 	    	  System.out.println(orderSearchStorePO.getOrderState());
@@ -149,7 +159,31 @@ public class OrderDateHelperImpl implements OrderDataHelper {
 	    			}finally{
 	    				s.close();
 	    			}
-	    		  System.out.println("change to Exception");
+	    			
+	    			
+	    		//add credit log 
+	    		 CreditLogdataHelper creditLogdataHelper = DataHelperUtils.getCreditLogdataHelper();
+		    	 creditLogdataHelper.addCreditLog
+		    		  (new CreditLogPO(customerID, ActionType.BadOrder, OrderID, time, 
+		    				  0-value, 0));
+		    	 
+		    	 
+		    	//change value; 
+		    	Session s2 = Hibernateutils.getSessionFactory().openSession();
+		 		CustomerPO customerPO  = (CustomerPO) s2.load(CustomerPO.class, customerID);
+		 		//s.close();
+		 		//Session s2 = Hibernateutils.getSessionFactory().openSession();
+		 		try{		
+		 			Transaction t = s2.beginTransaction();
+		 			customerPO.setCredit(customerPO.getCredit()-value);
+		 			s2.update(customerPO);
+		 			t.commit();
+		 		}catch(Exception e){
+		 			System.err.println(e.getMessage());
+		 		}finally {
+		 			s2.close();
+		 		}	    	 
+	    		System.out.println("change to Exception");
 	    	  }
 	    	  //TODO  Change the credit
 	    	  
@@ -157,6 +191,27 @@ public class OrderDateHelperImpl implements OrderDataHelper {
 	      }
 	    }, time);
 	    //timer.cancel();
+	    
+	    
+	    //change room avaiabe;
+	    timer2.schedule(new TimerTask() {
+		      public void run() {
+		    	  OrderSearchStorePO orderSearchStorePO = getOrderSearchStorePO(OrderID);
+		    	  System.out.println(orderSearchStorePO.getOrderState());
+		    	  if(orderSearchStorePO.getOrderState()==OrderState.Exception){
+		    		 RoomDateHelper roomDateHelper  =DataHelperUtils.getRoomDateHelper();
+		    		 for (int i = 0; i < roomNOList.size(); i++) {
+		    			 roomDateHelper.deleteRecord(hotelID, roomNOList.get(i), startTime);
+					}
+		    		 System.out.println("Recober Room");
+		    	  }
+		    	  
+		        System.gc();
+		      }
+		    }, endTime);
+	    
+	    
+	    
 	    System.out.println("jump!!!!!");
 		
 		return ResultMessage.Exist;

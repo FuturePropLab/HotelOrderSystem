@@ -21,6 +21,10 @@ public class OrderDataServiceImpl implements OrderDataService {
 		this.orderDataHelper =  DataHelperUtils.getOrderDataHelper();
 	}
 	
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.OrderDataService#add(po.OrderPO)
+	 */
 	public ResultMessage add(OrderPO orderPO) throws RemoteException {
 		List<String> roomList = orderDataHelper.getArrangeRoom
 				(orderPO.getHotelID(), orderPO.getRoomType(), orderPO.getNumberOfRooms(),
@@ -34,7 +38,13 @@ public class OrderDataServiceImpl implements OrderDataService {
 	public OrderPO findOrder(String order_id) throws RemoteException {
 		return orderDataHelper.getCompleteOrderPO(order_id);
 	}
-
+	
+	
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.OrderDataService#modify(po.OrderPO)
+	 */
+	
 	public ResultMessage modify(OrderPO order) throws RemoteException {
 		double markV = 5.0;
 		if(order.getMark()!=null){
@@ -47,6 +57,15 @@ public class OrderDataServiceImpl implements OrderDataService {
 		return  orderDataHelper.modifyOrderSearchPO(new OrderSearchStorePO(order));
 	}
 
+	
+	
+	
+	
+	
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.OrderDataService#searchOrder(po.SearchOrderInfo)
+	 */
 	public List<OrderPO> searchOrder(SearchOrderInfo searchOrderInfo) throws RemoteException {
 		
 		List<OrderPO>  list = new ArrayList<OrderPO>();

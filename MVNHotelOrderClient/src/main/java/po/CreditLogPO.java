@@ -1,10 +1,17 @@
 package po;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import tools.ActionType;
 
-public class CreditLogPO {
+public class CreditLogPO  implements Serializable{
+	
+	
+		/**
+	 * 
+	 */
+		private static final long serialVersionUID = -2606867803581702730L;
 		private  String customerID  ;//客户的ID
 		private ActionType actionType ; //动作类型 
 		private Date ChangDate; // 信用记录发生变化的时间

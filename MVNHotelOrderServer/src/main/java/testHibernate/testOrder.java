@@ -46,13 +46,13 @@ public class testOrder {
 //			orderSearchStorePO.setStartTime( new Date());
 			
 			Calendar calendar = Calendar.getInstance();
-			calendar.set(Calendar.HOUR_OF_DAY, 21); // 控制时
-			calendar.set(Calendar.MINUTE, 8);    // 控制分
-		    calendar.set(Calendar.SECOND, 0);    // 控制秒
+//			calendar.set(Calendar.HOUR_OF_DAY, 1); // 控制时
+//			calendar.set(Calendar.MINUTE, 8);    // 控制分
+//		    calendar.set(Calendar.SECOND, 0);    // 控制秒
 			
 			OrderPO order = new 
-					OrderPO("OD08", "CS002", "HT001", null, new Date(), calendar.getTime(), new Date(2016-1900, 11, 15), 
-							null, null, null, null, RoomType.Double, 1, 3, 1, true, OrderState.Unexecuted, null, null, 180);
+					OrderPO("OD13", "CS002", "HT001", null, new Date(), new Date(), new Date(), 
+							null, null, null, null, RoomType.Double, 1, 100, 1, true, OrderState.Unexecuted, null, null, 180);
 			System.out.println(orderDataService.add(order));
 			
 			

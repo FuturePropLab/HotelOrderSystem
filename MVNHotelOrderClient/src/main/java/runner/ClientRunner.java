@@ -10,6 +10,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import dataservice.CreditDataService;
 import rmi.RemoteHelper;
 
 public class ClientRunner {
@@ -95,7 +96,14 @@ public class ClientRunner {
 //				OrderPO("OD09", "CS002", "HT001", null, new Date(), calendar.getTime(), new Date(2016-1900, 11, 15), 
 //						null, null, null, null, RoomType.Double, 1, 3, 1, true, OrderState.Unexecuted, null, null, 180);
 //		System.out.println(orderDataService.add(order));
-
+		
+		
+		CreditDataService creditDataService = RemoteHelper.getInstance().getCreditDataService();
+//		CreditLogPO creditLogPO =new CreditLogPO
+//				("CS001", ActionType.Charge, null, new Date(), 400, 100);
+//		System.out.println(creditDataService.add(creditLogPO));	
+		//System.out.println(creditDataService.getLogList("CS001").size());
+		System.out.println(creditDataService.changeCredit("CS001", 500));
 		 
 	}
 	

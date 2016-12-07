@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import dataservice.AccountDataService;
+import dataservice.CreditDataService;
 import dataservice.CustomerDataService;
 import dataservice.DiscountHotelDataService;
 import dataservice.DiscountWebDataService;
@@ -14,6 +15,7 @@ import dataservice.LoginCheckService;
 import dataservice.OrderDataService;
 import dataservice.RoomDataService;
 import dataservice.impl.AccountDataServiceImpl;
+import dataservice.impl.CreditdataServiceImpl;
 import dataservice.impl.CustomerDataServiceImpl;
 import dataservice.impl.DiscountHotelDataServiceImpl;
 import dataservice.impl.DiscountWebServiceImpl;
@@ -22,6 +24,7 @@ import dataservice.impl.LoginCheckServiceImpl;
 import dataservice.impl.OrderDataServiceImpl;
 import dataservice.impl.RoomDataServiceImpl;
 import po.AccountPO;
+import po.CreditLogPO;
 import po.CustomerPO;
 import po.DiscountPO_hotel;
 import po.DiscountPO_web;
@@ -45,7 +48,7 @@ import tools.StandardSearch;
 public class DataRemoteObject extends UnicastRemoteObject implements
 LoginCheckService ,AccountDataService,CustomerDataService,
 HotelDataService,RoomDataService, DiscountWebDataService,DiscountHotelDataService,
-OrderDataService{
+OrderDataService,CreditDataService{
 	/**
 	 *  RMI 接口
 	 */
@@ -58,6 +61,7 @@ OrderDataService{
 	private DiscountWebDataService discountWebDataService;
 	private DiscountHotelDataService discountHotelDataService;
 	private OrderDataService orderDataService;
+	private CreditDataService creditDataService;
 	protected DataRemoteObject() throws RemoteException {
 		//用loginCheckServiceIMPL 实现
 		loginCheckService = new LoginCheckServiceImpl();
@@ -68,6 +72,7 @@ OrderDataService{
 		discountWebDataService = new DiscountWebServiceImpl();
 		discountHotelDataService = new DiscountHotelDataServiceImpl();
 		orderDataService = new OrderDataServiceImpl();
+		creditDataService = new CreditdataServiceImpl();
 
 	}
 	/**
@@ -248,6 +253,20 @@ OrderDataService{
 	}
 	public List<OrderPO> searchOrder(SearchOrderInfo searchOrderInfo) throws RemoteException {
 		return orderDataService.searchOrder(searchOrderInfo);
+	}
+	
+	
+	/**
+	 * credit 
+	 */
+	public ResultMessage add(CreditLogPO creditlog) throws RemoteException {
+		return creditDataService.add(creditlog);
+	}
+	public List<CreditLogPO> getLogList(String customer_id) throws RemoteException {
+		return creditDataService.getLogList(customer_id);
+	}
+	public ResultMessage changeCredit(String customer_id, int result) throws RemoteException {
+		return creditDataService.changeCredit(customer_id, result);
 	}
 
 }

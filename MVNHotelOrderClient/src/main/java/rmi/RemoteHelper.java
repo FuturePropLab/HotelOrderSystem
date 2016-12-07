@@ -3,11 +3,13 @@ package rmi;
 import java.rmi.Remote;
 
 import dataservice.AccountDataService;
+import dataservice.CreditDataService;
 import dataservice.CustomerDataService;
 import dataservice.DiscountHotelDataService;
 import dataservice.DiscountWebDataService;
 import dataservice.HotelDataService;
 import dataservice.LoginCheckService;
+import dataservice.MemberDataService;
 import dataservice.OrderDataService;
 import dataservice.RoomDataService;
 
@@ -77,6 +79,14 @@ public class RemoteHelper {
 	
 	public DiscountHotelDataService getDiscountHotelDataService(){
 		return (DiscountHotelDataService)remote;
+	}
+	
+	public CreditDataService getCreditDataService(){
+		return (CreditDataService)remote;
+	}
+	
+	public MemberDataService getMemberDataService(){
+		return (MemberDataService)remote;
 	}
 	
 	
