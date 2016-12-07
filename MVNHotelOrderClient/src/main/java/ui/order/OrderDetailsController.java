@@ -114,7 +114,7 @@ public class OrderDetailsController extends DetailsController{
 		OrderService orderService=OrderController.getInstance();
 		OrderVO orderVO=orderService.checkSingleOrder(orderID.getText());
 		ResultMessage resultMessage = orderService.revokeCurrentOrder(orderVO);
-		
+		//TODO:如果是客户，则提示撤销结果，如果是网站促销人员，提示选择恢复全部信用值或一半，选择后调用blservice
 		
 		
 	}
@@ -173,8 +173,10 @@ public class OrderDetailsController extends DetailsController{
 		this.star_5.setImage(orderVO.mark.getValue()>=5? yellowStar:greyStar);
 		this.assess.setText(orderVO.assessment);
 		
-		if(loginService.getLogState().accountType.equals(AccountType.Customer) && 
-				orderVO.orderState.equals(OrderState.Unexecuted)){
+		if((loginService.getLogState().accountType.equals(AccountType.Customer) && 
+				orderVO.orderState.equals(OrderState.Unexecuted)) || 
+				(loginService.getLogState().accountType.equals(AccountType.Web) && 
+						orderVO.orderState.equals(OrderState.Unexecuted))){
 			revoke.setVisible(true);
 		}
 		this.hotelID=orderVO.hotelID;
