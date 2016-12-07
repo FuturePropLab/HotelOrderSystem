@@ -9,17 +9,8 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.Calendar;
-import java.util.Date;
 
-import businesslogic.discount.DiscountHotelController;
-import businesslogicservice.DiscountHotelService;
-import dataservice.OrderDataService;
-import po.OrderPO;
 import rmi.RemoteHelper;
-import tools.OrderState;
-import tools.RoomType;
-import vo.DiscountVO_hotel;
 
 public class ClientRunner {
 	private RemoteHelper remoteHelper;
@@ -95,15 +86,15 @@ public class ClientRunner {
 //		LoginCheckService loginCheckService = RemoteHelper.getInstance().getLoginCheckService();
 //		System.out.println(loginCheckService.checkLogin("zhujunyi", "zhujunyi", AccountType.Customer));
 		
-		Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.HOUR_OF_DAY, 21); // 控制时
-		calendar.set(Calendar.MINUTE, 15);    // 控制分
-	    calendar.set(Calendar.SECOND, 0);    // 控制秒
-		OrderDataService orderDataService  =RemoteHelper.getInstance().getOrderDataService();
-		OrderPO order = new 
-				OrderPO("OD09", "CS002", "HT001", null, new Date(), calendar.getTime(), new Date(2016-1900, 11, 15), 
-						null, null, null, null, RoomType.Double, 1, 3, 1, true, OrderState.Unexecuted, null, null, 180);
-		System.out.println(orderDataService.add(order));
+//		Calendar calendar = Calendar.getInstance();
+//		calendar.set(Calendar.HOUR_OF_DAY, 21); // 控制时
+//		calendar.set(Calendar.MINUTE, 15);    // 控制分
+//	    calendar.set(Calendar.SECOND, 0);    // 控制秒
+//		OrderDataService orderDataService  =RemoteHelper.getInstance().getOrderDataService();
+//		OrderPO order = new 
+//				OrderPO("OD09", "CS002", "HT001", null, new Date(), calendar.getTime(), new Date(2016-1900, 11, 15), 
+//						null, null, null, null, RoomType.Double, 1, 3, 1, true, OrderState.Unexecuted, null, null, 180);
+//		System.out.println(orderDataService.add(order));
 
 		 
 	}

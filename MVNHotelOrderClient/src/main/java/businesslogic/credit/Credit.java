@@ -60,10 +60,7 @@ public class Credit {
 			
 		case BadOrder:
 			
-			
-			
-			
-			
+	
 				Date latestTime = order.getOrderPO().getLatestTime();
 				Date checkIntime = order.getOrderPO().getCheckInTime();
 				Date planedLeaveTime =order.getOrderPO().getPlanedLeaveTime();

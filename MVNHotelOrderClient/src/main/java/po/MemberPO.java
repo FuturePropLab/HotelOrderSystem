@@ -28,7 +28,7 @@ public class MemberPO implements Serializable {
 	public void setMemberType(MemberType memberType) {
 		this.memberType = memberType;
 	}
-
+	
 	public MemberPO(String customer_ID, MemberType memberType) {
 		super();
 		this.customer_ID = customer_ID;
