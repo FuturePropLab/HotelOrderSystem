@@ -5,6 +5,7 @@ import java.util.List;
 
 import businesslogic.order.Order;
 import tools.ActionType;
+import tools.RecoverValue;
 import tools.ResultMessage;
 import vo.CreditlogVO;
 
@@ -44,4 +45,11 @@ public interface CreditLogDealService {
 	 * @throws RemoteException 
 	 */
 	public ResultMessage charge(String customer_id,int ChargeMoney);
+	/**
+	 * 申诉成功，恢复信用值，且有网站营销人员决定恢复一般还是全部
+	 * @author chenyuyan
+	 * @param order 
+	 * @param RecoverValue 一半，全部
+	 */
+	public ResultMessage Recover(Order order,RecoverValue recoverValue);
 }

@@ -14,6 +14,7 @@ import po.CreditLogPO;
 import po.OrderPO;
 import stub.CreditData_Stub;
 import tools.ActionType;
+import tools.RecoverValue;
 import tools.ResultMessage;
 import vo.CreditlogVO;
 import vo.CustomerVO;
@@ -46,6 +47,8 @@ public class Credit {
 		switch (type){
 		
 		case RightOrder:creditchange = order.getOrderPO().getPrice();//完成一个订单增加订单价值的信用值
+		//case DelayOrder:creditchange = order.getOrderPO().getPrice();//手工延迟入住，并恢复信用值
+		
 		case RevokeOrder://撤销的订单时间距离最晚订单执行时间不足6个小时，扣去订单价值的一半，需求上写的
 				Date revokedTime = order.getOrderPO().getRevokeTime();
 				Date latestTimeArriv = order.getOrderPO().getLatestTime();
@@ -248,7 +251,20 @@ public class Credit {
 		
 	
 	}
-	
+	public ResultMessage Recover(Order order,RecoverValue recoverValue){
+		int value  = order.getOrderValue();		
+		int creditchange = 0;
+		if(recoverValue == RecoverValue.RecoverAll){
+			creditchange = value;
+		}else{
+			creditchange = value/2;
+		}
+		
+		
+		return null;
+		
+		
+	}
 	
 	
 	public Credit(){

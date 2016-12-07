@@ -9,6 +9,7 @@ import businesslogic.customer.CustomerInfoImp;
 import businesslogic.order.Order;
 import businesslogicservice.CreditLogDealService;
 import tools.ActionType;
+import tools.RecoverValue;
 import tools.ResultMessage;
 import vo.CreditlogVO;
 
@@ -58,5 +59,8 @@ public class CreditController implements CreditLogDealService{
 		//Credit credit = new Credit(customer_id);
 		return credit.charge(customer_id, ChargeMoney);
 	}
-
+	public ResultMessage Recover(Order order,RecoverValue recoverValue){
+		return credit.Recover(order, recoverValue);
+		
+	}
 }

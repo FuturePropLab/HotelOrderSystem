@@ -5,4 +5,5 @@ public enum ActionType {
 	BadOrder,
 	RightOrder,
 	RevokeOrder,
+	RecoverOrder
 }
