@@ -90,9 +90,17 @@ public class OrderDetailsController extends DetailsController{
 	@FXML
 	private Label assess;
 	@FXML
-	private Group assessInfo;//如果没评价就设为不可见，否则可见
+	private Group checkInInfo;//如果入住了就设为可见，否则不可见
 	@FXML
-	private Label goTOAssess;
+	private Hyperlink checkIn;//如果入住了就设为不可见，否则可见，只有酒店工作人员可见
+	@FXML
+	private Group checkOutInfo;//如果退房不就设为可见，否则不可见
+	@FXML
+	private Hyperlink checkOut;//如果退房了就设为不可见，否则可见，只有酒店工作人员可见
+	@FXML
+	private Group assessInfo;//如果评价了就设为可见，否则不可见
+	@FXML
+	private Hyperlink goTOAssess;//如果评价了就设为不可见，否则可见，只有客户可见
 	@FXML
 	private Hyperlink revoke;
 	private String hotelID;
@@ -119,7 +127,15 @@ public class OrderDetailsController extends DetailsController{
 		
 	}
 	@FXML
+	private void handleCheckIn(){
+		//TODO:跳转到入住和退房界面
+	}
+	@FXML
 	private void handleGoTOAssess(){
+		//TODO:跳转到入住和退房界面
+	}
+	@FXML
+	private void handleCheckOut(){
 		//TODO:跳转到评价订单界面
 		try {
 			rootLayoutController.changeDetails("../customer/OrderAssess.fxml");
@@ -129,6 +145,7 @@ public class OrderDetailsController extends DetailsController{
 			e.printStackTrace();
 		}
 	}
+	
 	
 	/**
 	 * 初始化各组件的值
