@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import tools.RoomType;
+import ui.customer.BookHotelController;
 
 /**
  * The controller for the root layout. The root layout provides the basic
@@ -63,12 +65,15 @@ public class RootLayoutController {
 		try {
 //			 changeFullLayout("../login/Login.fxml");
 //			 changeDetails("../order/OrderList.fxml");
-
-//			 changeDetails("../hotel/HotelDetail.fxml");
+			changeDetails("../customer/BookHotel.fxml");
+			BookHotelController bookHotelController = (BookHotelController)this.getDetailsController();
+			bookHotelController.setRoomType(RoomType.Double);
+			bookHotelController.setValue("CS001", "HT001");
+			changeDetails("../hotel/HotelDetail.fxml");
 			// changeDetails("../room/RoomInfo.fxml");
 //			changeDetails("../order/OrderDetails.fxml");
 //			 changeDetails("../discount/HotelDiscount.fxml");
-			changeDetails("../customer/OrderAssess.fxml");
+//			changeDetails("../customer/OrderAssess.fxml");
 
 			changeGuid("GuideUI.fxml");
 		} catch (IOException e) {

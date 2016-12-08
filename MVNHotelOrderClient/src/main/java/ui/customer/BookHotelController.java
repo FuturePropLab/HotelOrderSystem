@@ -1,9 +1,13 @@
 package ui.customer;
 
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Date;
 
-import com.sun.javafx.scene.control.skin.HyperlinkSkin;
-
+import Exception.NoSuchValueException;
+import businesslogic.customer.CustomerDealController;
+import businesslogic.hotel.HotelDealController;
+import businesslogicservice.HotelDealService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -12,8 +16,13 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.util.converter.LocalDateStringConverter;
 import tools.RoomType;
+import ui.hotel.HotelDetailController;
 import ui.main.DetailsController;
+import vo.CustomerVO;
+import vo.HotelbriefVO;
+import vo.OrderInputVO;
 
 /**
  * 预订酒店界面的控制器
@@ -52,12 +61,30 @@ public class BookHotelController extends DetailsController{
 	@FXML
 	private Button confirm;
 	
+	
+	private static String typename[] =  {"单人间","双人间","标准间","套房","总统套房"}; 
+	private static HotelbriefVO hotelbriefVO = null;
+	private static String customerID = null;
 	@FXML
 	private void handleHotelName(){
-		//TODO:跳转到酒店详情界面
+		try {
+			rootLayoutController.changeDetails("../hotel/HotelDetail.fxml");
+			HotelDetailController hotelDetailController = 
+					(HotelDetailController) rootLayoutController.getDetailsController();
+			hotelDetailController.initValue(hotelbriefVO.hotelID);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	private void handlePreview(){
+		planedLeaveDate_time.getValue();
+		
+//		OrderInputVO orderInputVO = new OrderInputVO
+//				(customerID, this.hotelbriefVO.hotelID, 
+//						this.tartTime, latestTime, planedLeaveTime, roomType, numberOfRooms, planedPeopleNumber, child, price)
 		//TODO:跳转到订单预览界面
 	}
 	@FXML
@@ -79,17 +106,64 @@ public class BookHotelController extends DetailsController{
 	 * @param hotelID 酒店ID
 	 */
 	public void setValue(String customerID,String hotelID) {
-		//TODO:设置组件的值
+		this.customerID = customerID;
+		HotelDealService hotelDetailController = HotelDealController.getInstance();
+		this.hotelbriefVO  =  hotelDetailController.getHotelInfo(hotelID);
+		String hotelName = hotelbriefVO.hotelName;
+		this.hotelName.setText(hotelName);
+		
+		CustomerDealController customerDealController = CustomerDealController.getInstance();
+		CustomerVO customerVO = null;
+		try {
+			customerVO = customerDealController.getCustomerInfo(customerID);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String customerName = customerVO.customerName;
+		this.customerName.setText(customerName);
+		
+		
 	}
 	
 	public void setRoomType(RoomType roomType) {
 		System.out.println(roomType);
-		//TODO:设置组件的值
+		this.roomType.setValue(getRoomString(roomType));
 	}	
 	public void setLastDate(Date lastDate) {
-		//TODO:设置组件的值
+		LocalDate endLocalDate = LocalDate.of(lastDate.getYear(), lastDate.getMonth(), lastDate.getDate());
+		this.lastDate.setValue(endLocalDate);
 	}
 	public void setPlanedLeaveDate(Date planedLeaveDate) {
-		//TODO:设置组件的值
+		LocalDate endLocalDate = LocalDate.of(planedLeaveDate.getYear(),
+				planedLeaveDate.getMonth(), planedLeaveDate.getDate());
+		this.lastDate.setValue(endLocalDate);
+	}
+	
+	private RoomType getRoomType() throws NoSuchValueException{
+		if(roomType.getValue()==null){
+			return null;
+		}
+		RoomType[] types={null,RoomType.Standard,RoomType.Single,RoomType.Double,RoomType.Suites,RoomType.EluxeSuite};
+		String[] texts={"所有","标准间","单人间","双人间","豪华套房","总统套房"};
+		int index;
+		for(index=0;index<texts.length;index++){
+			if(roomType.getValue().equals(texts[index])){
+				return types[index];
+			}
+		}
+		throw new NoSuchValueException();
+	}
+	
+	private String getRoomString(RoomType roomType) {
+		RoomType[] types={RoomType.Standard,RoomType.Single,RoomType.Double,RoomType.Suites,RoomType.EluxeSuite};
+		String[] texts={"标准间","单人间","双人间","豪华套房","总统套房"};
+		int index;
+		for(index=0;index<texts.length;index++){
+			if(roomType.equals(types[index])){
+				return texts[index];
+			}
+		}
+		return "";
 	}
 }
