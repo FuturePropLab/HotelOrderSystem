@@ -1,11 +1,8 @@
 package ui.discount;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Accordion;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
@@ -30,10 +27,10 @@ public abstract class ItemController {
 	protected TextField aditionalMessage;
 	@FXML
 	protected TextField discount;
-	@FXML
-	protected DatePicker startTime;
-	@FXML
-	protected DatePicker endTime;
+//	@FXML
+//	protected DatePicker startTime;
+//	@FXML
+//	protected DatePicker endTime;
 	@FXML
 	protected CheckBox superposition;
 	@FXML
@@ -55,48 +52,48 @@ public abstract class ItemController {
 			System.out.println("discount is not between 0 and 10");
 		}
 	}
+//	@FXML
+//	protected void handleStartTime(){
+//		//TODO: 开始时间在结束时间之后时处理
+//		
+//	}
+//	@FXML
+//	protected void handleEndTime(){
+//		//TODO: 开始时间在结束时间之后时处理
+//		LocalDate endDate = endTime.getValue();
+//	}
+//	
 	@FXML
-	protected void handleStartTime(){
-		//TODO: 开始时间在结束时间之后时处理
-		
-	}
-	@FXML
-	protected void handleEndTime(){
-		//TODO: 开始时间在结束时间之后时处理
-		LocalDate endDate = endTime.getValue();
-	}
-	
-	@FXML
-	protected void handleDelete(){
-		if(state.getText().equals("填写中")){
-			if(isFinished()){
-				setTitle();
-				state.setText("未开始");
-				
-				//TODO: 调用blservice增加策略
-				delete.setText("删 除");//字中间有空格
-				hotelDiscountController.addNewItem(getType());
-			}
-			else {
-				System.out.println("the discount is not finished");//TODO:弹窗提示未完成
-			}
-		}
-		else {
-			disableControls();
-			//TODO: 调用blservice删除策略
-		}
-	}
-	
+//	protected void handleDelete(){
+//		if(state.getText().equals("填写中")){
+//			if(isFinished()){
+//				setTitle();
+//				state.setText("未开始");
+//				
+//				//TODO: 调用blservice增加策略
+//				delete.setText("删 除");//字中间有空格
+//				hotelDiscountController.addNewItem(getType());
+//			}
+//			else {
+//				System.out.println("the discount is not finished");//TODO:弹窗提示未完成
+//			}
+//		}
+//		else {
+//			disableControls();
+//			//TODO: 调用blservice删除策略
+//		}
+//	}
+//	
 	protected abstract ItemType getType() ;
 	protected abstract void setTitle() ;
 	
-	/**
-	 * 检查是否填写完毕
-	 * @return
-	 */
-	protected boolean isFinished() {
-		return startTime.getValue()!=null && endTime.getValue()!=null && !"".equals(discount.getText());
-	}
+//	/**
+//	 * 检查是否填写完毕
+//	 * @return
+//	 */
+//	protected boolean isFinished() {
+//		return startTime.getValue()!=null && endTime.getValue()!=null && !"".equals(discount.getText());
+//	}
 	
 	protected void disableControls() {
 		state.setText("已删除");
@@ -104,8 +101,8 @@ public abstract class ItemController {
 		title.setTextFill(Color.GRAY);
 		aditionalMessage.setEditable(false);
 		discount.setEditable(false);
-		startTime.setEditable(false);
-		endTime.setEditable(false);
+//		startTime.setEditable(false);
+//		endTime.setEditable(false);
 		superposition.setDisable(true);
 		delete.setDisable(true);
 	}
@@ -127,9 +124,9 @@ public abstract class ItemController {
 		this.aditionalMessage.setText(aditionalMessage);
 		this.discount.setText(discount+"");
 //		this.startTime.setPromptText(startTime.getYear()+"-"+startTime.getMonth()+"-"+startTime.getDate());
-		this.startTime.setPromptText(startTime.toString());
-//		this.endTime.setPromptText(endTime.getYear()+"-"+endTime.getMonth()+"-"+endTime.getDate());
-		this.endTime.setPromptText(endTime.toString());
+//		this.startTime.setPromptText(startTime.toString());
+////		this.endTime.setPromptText(endTime.getYear()+"-"+endTime.getMonth()+"-"+endTime.getDate());
+//		this.endTime.setPromptText(endTime.toString());
 		this.superposition.setSelected(superposition);
 		this.delete.setText("删 除");//字中间有空格
 	}

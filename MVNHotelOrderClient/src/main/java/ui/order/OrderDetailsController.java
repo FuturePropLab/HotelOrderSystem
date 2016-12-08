@@ -1,9 +1,6 @@
 package ui.order;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
 
 import businesslogic.customer.CustomerDealController;
 import businesslogic.hotel.HotelDealController;
@@ -21,11 +18,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import tools.AccountType;
 import tools.DateFormat;
-import tools.HotelAddress;
-import tools.Mark;
 import tools.OrderState;
 import tools.ResultMessage;
-import tools.RoomType;
+import ui.customer.OrderAssessController;
 import ui.hotel.HotelDetailController;
 import ui.main.DetailsController;
 import vo.CustomerVO;
@@ -126,6 +121,13 @@ public class OrderDetailsController extends DetailsController{
 	@FXML
 	private void handleGoTOAssess(){
 		//TODO:跳转到评价订单界面
+		try {
+			rootLayoutController.changeDetails("../customer/OrderAssess.fxml");
+			OrderAssessController orderAssessController=(OrderAssessController)rootLayoutController.getDetailsController();
+//			orderAssessController.init();暂无初始化
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
