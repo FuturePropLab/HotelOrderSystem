@@ -1,5 +1,6 @@
 package ui.discount;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javafx.fxml.FXML;
@@ -57,10 +58,12 @@ public abstract class ItemController {
 	@FXML
 	protected void handleStartTime(){
 		//TODO: 开始时间在结束时间之后时处理
+		
 	}
 	@FXML
 	protected void handleEndTime(){
 		//TODO: 开始时间在结束时间之后时处理
+		LocalDate endDate = endTime.getValue();
 	}
 	
 	@FXML
@@ -117,14 +120,16 @@ public abstract class ItemController {
 	 * @param endTime 结束时间
 	 * @param superposition 能否与其它折扣叠加
 	 */
-	public void setValue(String title,String state,String aditionalMessage,double discount,Date startTime,
-			Date endTime,boolean superposition) {
+	public void setValue(String title,String state,String aditionalMessage,double discount,LocalDate startTime,
+			LocalDate endTime,boolean superposition) {
 		this.title.setText(title);
 		this.state.setText(state);
 		this.aditionalMessage.setText(aditionalMessage);
 		this.discount.setText(discount+"");
-		this.startTime.setPromptText(startTime.getYear()+"-"+startTime.getMonth()+"-"+startTime.getDate());
-		this.endTime.setPromptText(endTime.getYear()+"-"+endTime.getMonth()+"-"+endTime.getDate());
+//		this.startTime.setPromptText(startTime.getYear()+"-"+startTime.getMonth()+"-"+startTime.getDate());
+		this.startTime.setPromptText(startTime.toString());
+//		this.endTime.setPromptText(endTime.getYear()+"-"+endTime.getMonth()+"-"+endTime.getDate());
+		this.endTime.setPromptText(endTime.toString());
 		this.superposition.setSelected(superposition);
 		this.delete.setText("删 除");//字中间有空格
 	}

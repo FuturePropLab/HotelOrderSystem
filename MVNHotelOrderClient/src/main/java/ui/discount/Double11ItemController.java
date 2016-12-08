@@ -1,5 +1,6 @@
 package ui.discount;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javafx.fxml.FXML;
@@ -52,11 +53,9 @@ public class Double11ItemController extends ItemController{
 	 * 设置节日日期
 	 * @param endTime 节日日期
 	 */
-	public void setFestivalDate(Date festivalDate_from,Date festivalDate_to) {
-		this.festivalDate_from.setPromptText(festivalDate_from.getYear()+"-"+festivalDate_from.getMonth()+
-				"-"+festivalDate_from.getDate());
-		this.festivalDate_to.setPromptText(festivalDate_to.getYear()+"-"+festivalDate_to.getMonth()+
-				"-"+festivalDate_to.getDate());
+	public void setFestivalDate(LocalDate startDate,LocalDate endDate) {
+		this.festivalDate_from.setPromptText(startDate.toString());
+		this.festivalDate_to.setPromptText(endDate.toString());
 	}
 
 }
