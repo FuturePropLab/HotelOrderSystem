@@ -61,8 +61,10 @@ public class RootLayoutController {
 	@FXML
 	private void initialize() {
 		try {
+
 			 changeFullLayout("../login/Login.fxml");
 //			 changeDetails("../order/OrderList.fxml");
+
 //			 changeDetails("../hotel/HotelDetail.fxml");
 			// changeDetails("../room/RoomInfo.fxml");
 //			changeDetails("../order/OrderDetails.fxml");

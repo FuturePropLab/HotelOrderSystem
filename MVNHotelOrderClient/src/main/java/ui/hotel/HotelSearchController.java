@@ -274,7 +274,9 @@ public class HotelSearchController extends DetailsController{
 			rootLayoutController.changeDetails("../customer/BookHotel.fxml");
 			//TODO 在订单填写界面写上相应的酒店信息
 			
-			BookHotelController bookHotelController ＝ rootLayoutController.getDetailsController();
+			BookHotelController bookHotelController = 
+					(BookHotelController) rootLayoutController.getDetailsController();
+			bookHotelController.
 			
 			
 		} catch (IOException e) {
