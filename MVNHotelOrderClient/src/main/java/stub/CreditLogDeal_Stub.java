@@ -1,6 +1,7 @@
 package stub;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import po.Order;
@@ -18,7 +19,7 @@ public class CreditLogDeal_Stub implements businesslogicservice.CreditLogDealSer
 	}
 
 	
-	public List<CreditlogVO> getLogList(String customer_id) {
+	/*public List<CreditlogVO> getLogList(String customer_id) {
 		List<CreditlogVO> creditLogList = new ArrayList<CreditlogVO>();
 		
 		CreditlogVO creditlogVO1 = new CreditlogVO(ActionType.Charge, null, 100);
@@ -28,7 +29,7 @@ public class CreditLogDeal_Stub implements businesslogicservice.CreditLogDealSer
 		
 		return creditLogList;
 		
-	}
+	}*/
 
 
 	public ResultMessage charge(String customer_id, int ChargeMoney) {
@@ -52,6 +53,27 @@ public class CreditLogDeal_Stub implements businesslogicservice.CreditLogDealSer
 
 	@Override
 	public ResultMessage Recover(businesslogic.order.Order order, RecoverValue recoverValue) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public ResultMessage charge(String customer_id, int ChargeMoney, Date chargeTime) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public int levelUpdate(String customer_id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public List<CreditlogVO> getLogList(String customer_id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

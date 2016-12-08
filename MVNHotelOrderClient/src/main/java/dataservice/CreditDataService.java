@@ -34,5 +34,13 @@ public interface CreditDataService extends Remote{
 	 */
 	public ResultMessage changeCredit(String customer_id,int result) throws RemoteException;
 
+<<<<<<< HEAD
 
 }
+=======
+}
+	
+	//	public ResultMessage setLevel(int level,String customer_id);
+
+//	public ResultMessage setLevel(int level,String customer_id);
+>>>>>>> origin/master
