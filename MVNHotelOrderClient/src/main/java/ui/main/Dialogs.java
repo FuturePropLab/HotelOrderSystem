@@ -2,6 +2,9 @@ package ui.main;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.StackPane;
+
+import com.jfoenix.controls.JFXDialog;
 
 /**
  * 弹窗消息
@@ -39,5 +42,10 @@ public class Dialogs {
 		alert.setHeaderText(headerText);
 		alert.setContentText(message);
 		alert.show();
+	}
+	
+	@Deprecated
+	public static void showChoise(String message,String choise1,String choise2) {
+		//TODO
 	}
 }
