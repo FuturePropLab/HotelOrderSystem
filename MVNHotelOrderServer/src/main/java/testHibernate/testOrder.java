@@ -50,10 +50,10 @@ public class testOrder {
 //			calendar.set(Calendar.MINUTE, 8);    // 控制分
 //		    calendar.set(Calendar.SECOND, 0);    // 控制秒
 			
-			OrderPO order = new 
-					OrderPO("OD13", "CS002", "HT001", null, new Date(), new Date(), new Date(), 
-							null, null, null, null, RoomType.Double, 1, 100, 1, true, OrderState.Unexecuted, null, null, 180);
-			System.out.println(orderDataService.add(order));
+//			OrderPO order = new 
+//					OrderPO("OD13", "CS002", "HT001", null, new Date(), new Date(), new Date(), 
+//							null, null, null, null, RoomType.Double, 1, 100, 1, true, OrderState.Unexecuted, null, null, 180);
+//			System.out.println(orderDataService.add(order));
 			
 			
 	//		System.out.println(orderDataService.modify(new OrderPO(orderSearchStorePO, new OrderNotChangePO(), orderAssessPO)));

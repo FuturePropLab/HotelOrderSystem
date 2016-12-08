@@ -8,6 +8,7 @@ import dataservice.datahelper.DiscountHotelDataHelper;
 import dataservice.datahelper.DiscountWebDataHelper;
 import dataservice.datahelper.HotelDataHelper;
 import dataservice.datahelper.LoginCheckDatahelper;
+import dataservice.datahelper.MemberDataHelper;
 import dataservice.datahelper.OrderDataHelper;
 import dataservice.datahelper.RoomDateHelper;
 import dataservice.datahelper.impl.AccountDataHelperImpl;
@@ -18,6 +19,7 @@ import dataservice.datahelper.impl.DiscountHotelDataHelperImpl;
 import dataservice.datahelper.impl.DiscountWebDataHelperImpl;
 import dataservice.datahelper.impl.HotelDataHelperImpl;
 import dataservice.datahelper.impl.LoginCheckDatahelperImpl;
+import dataservice.datahelper.impl.MemberDataHelperImpl;
 import dataservice.datahelper.impl.OrderDateHelperImpl;
 import dataservice.datahelper.impl.RoomDateHelperImpl;
 
@@ -103,6 +105,11 @@ public  class DataHelperUtils {
 	
 	public static CreditLogdataHelper getCreditLogdataHelper(){
 		return CreditLogdataHelperImpl.getIntance();
+	}
+	
+	
+	public static MemberDataHelper  getMemberDataHelper(){
+		return  MemberDataHelperImpl.getInstance();
 	}
 	
 }
