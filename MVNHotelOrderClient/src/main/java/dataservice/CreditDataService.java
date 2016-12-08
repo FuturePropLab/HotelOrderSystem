@@ -32,14 +32,10 @@ public interface CreditDataService extends Remote{
 	 * @param result
 	 * @return
 	 */
-<<<<<<< HEAD
 	public ResultMessage changeCredit(String customer_id,int result) throws RemoteException;
 
-	
+}
 	
 	//	public ResultMessage setLevel(int level,String customer_id);
-=======
-	public ResultMessage changeCredit(String customer_id,int result);
+
 //	public ResultMessage setLevel(int level,String customer_id);
->>>>>>> origin/master
-}

@@ -18,12 +18,12 @@ public class MemberDataService_Driver {
 	private static final String back_id="000000004";
 	
 	public boolean drive(MemberDataService memberService) {
-		ResultMessage_Member result=memberService.addMember(customer_ID_test);
-		if(result.equals(ResultMessage.NotExist)){
-			return false;
-		}
+//		ResultMessage_Member result=memberService.addMember(customer_ID_test);
+//		if(result.equals(ResultMessage.NotExist)){
+//			return false;
+//		}
 		
-		result=memberService.modifyMember(new MemberPO(customer_ID_test, new MemberType(customer_ID_test)));
+		ResultMessage_Member result = memberService.modifyMember(new MemberPO(customer_ID_test, new MemberType(customer_ID_test)));
 		if(result.equals(ResultMessage.NotExist)){
 			return false;
 		}
@@ -33,7 +33,7 @@ public class MemberDataService_Driver {
 			return false;
 		}
 		
-		result=memberService.addApply(new ApplyPO(customer_ID_test, MemberBelongType.Ordinary));
+		/*result=memberService.addApply(new ApplyPO(customer_ID_test, MemberBelongType.Ordinary));
 		if(result.equals(ResultMessage.NotExist)){
 			return false;
 		}
@@ -71,7 +71,7 @@ public class MemberDataService_Driver {
 		result=memberService.deleteBack(back_id);
 		if(result.equals(ResultMessage.NotExist)){
 			return false;
-		}
+		}*/
 		
 		
 		return true;

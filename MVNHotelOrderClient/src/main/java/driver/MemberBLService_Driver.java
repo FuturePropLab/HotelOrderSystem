@@ -19,8 +19,9 @@ public class MemberBLService_Driver {
 		if(member==null){
 			return false;
 		}
+		return false;
 		
-		ResultMessage_Member result=memberService.addApply(new ApplyVO(customer_ID_test, MemberBelongType.Ordinary));
+		/*ResultMessage_Member result=memberService.addApply(new ApplyVO(customer_ID_test, MemberBelongType.Ordinary));
 		if(result.equals(ResultMessage.NotExist)){
 			return false;
 		}
@@ -40,7 +41,7 @@ public class MemberBLService_Driver {
 			return false;
 		}
 		
-		return true;
+		return true;*/
 	}
 
 }

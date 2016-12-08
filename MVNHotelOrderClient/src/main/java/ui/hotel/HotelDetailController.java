@@ -133,6 +133,10 @@ public class HotelDetailController extends DetailsController{
     @FXML
     private void initialize() {//TODO:这个方法的内容先别动，要大改
     	//TODO:从blservice获取数据设置好值
+    	
+    	
+    	
+    	
     	LoginService login = LoginController.getInstance();
 		AccountType account = login.getLogState().accountType;
     	
@@ -259,7 +263,12 @@ public class HotelDetailController extends DetailsController{
 		
 		HotelDealService hotelDealService = HotelDealController.getInstance();
 		List<CommentVO> commentList = hotelDealService.getComment(hotelDetailsVO.hotelID);
-		
+		try {
+			rootLayoutController.changeDetails("");//跳转到酒店评价信息界面，
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 	}
@@ -307,6 +316,7 @@ public class HotelDetailController extends DetailsController{
 			rootLayoutController.changeDetails("../customer/BookHotel.fxml");
 			BookHotelController bookHotelController=(BookHotelController)rootLayoutController.getDetailsController();
 			bookHotelController.setRoomType(roomType);//TODO:设置预订酒店界面的组建的值
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

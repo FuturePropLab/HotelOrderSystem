@@ -91,7 +91,13 @@ public class Credit {
 			e.printStackTrace();
 		}*/  //会员等级信息不在这里同步了
 		
-		ResultMessage resultMessage = creditDataService.changeCredit(order.getCustomer().customerID, result);
+		ResultMessage resultMessage;
+		try {
+			resultMessage = creditDataService.changeCredit(order.getCustomer().customerID, result);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	
 		if(order==null){return ResultMessage.NotExist;}
@@ -99,12 +105,22 @@ public class Credit {
 			
 			CreditLogPO creditLogPO = new CreditLogPO(order.getCustomer().customerID, type, order.getOrderID(),order.getRevokeTime(),creditchange,0);
 	
-			return creditDataService.add(creditLogPO);
+			try {
+				return creditDataService.add(creditLogPO);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}else if(type.equals(ActionType.RightOrder)){
 			CreditLogPO creditLogPO = new CreditLogPO(order.getCustomer().customerID, type, order.getOrderID(),order.getCheckInAndOutInfo().checkInTime,creditchange,0);
-			return creditDataService.add(creditLogPO);
+			try {
+				return creditDataService.add(creditLogPO);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
-			return resultMessage.NotExist;
+			return ResultMessage.NotExist;
 	}
 	
 	
@@ -119,7 +135,13 @@ public class Credit {
 	 */
 	public List<CreditlogVO> getLogList(String customer_id) {
 		List<CreditlogVO> logList = new ArrayList<CreditlogVO>();
-		List<CreditLogPO> list = creditDataService.getLogList(customer_id);
+		List<CreditLogPO> list = null;
+		try {
+			list = creditDataService.getLogList(customer_id);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		for(int i = 0 ; i <  list.size() ; i++){
 			CreditLogPO creditlogPO = list.get(i);
 			CreditlogVO creditlogVO;
@@ -159,7 +181,13 @@ public class Credit {
 		
 		CreditLogPO creditLogPO = new CreditLogPO(customer_id, ActionType.Charge,null,chargeTime,value,ChargeMoney);
 		
-		return creditDataService.add(creditLogPO);
+		try {
+			return creditDataService.add(creditLogPO);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return ResultMessage.NotExist;
+		}
 	}
 	
 	
@@ -215,12 +243,22 @@ public class Credit {
 		ResultMessage resultMessage = null;
 		
 		
-			resultMessage = creditDataService.changeCredit(customer_id, credit);//修改客户信用值
+			try {
+				resultMessage = creditDataService.changeCredit(customer_id, credit);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}//修改客户信用值
 		
 		if(resultMessage.equals(ResultMessage.Exist)){
 			//String customerID , ActionType actionType , String  orderID, Date changDate ,  int changeValue,int money
 			CreditLogPO creditlogPO = new CreditLogPO(order.getCustomer().customerID,ActionType.RevokeOrder,order.getOrderID(),order.getRevokeTime(),creditchange,0);
-			resultMessage =creditDataService.add(creditlogPO);
+			try {
+				resultMessage =creditDataService.add(creditlogPO);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		}
 		return resultMessage;
