@@ -371,6 +371,7 @@ public class HotelDataHelperImpl implements HotelDataHelper {
 
 	public List<String> getHotelIDListByAddress(HotelAddress hotelAddress) {
 		String city = hotelAddress.getCity();
+		System.out.println("bottom :   "+city);
 		Session s = Hibernateutils.getSessionFactory().openSession();
 		Criteria cr = s.createCriteria(HotelAddressPO.class);
 		cr.add(Restrictions.eq("city", city));
@@ -386,9 +387,13 @@ public class HotelDataHelperImpl implements HotelDataHelper {
 		System.out.println(hotelAddresss.size());
 		List<String> hotelIDList = new ArrayList<String>();
 		
-		s.close();
 		
-		if(hotelAddress==null)  return hotelIDList;
+		
+		if(hotelAddress==null) {
+			s.close();
+			return hotelIDList;
+		}
+		
 		Iterator<HotelAddressPO> it = hotelAddresss.iterator();
 		while(it.hasNext()){
 			hotelIDList.add(it.next().getHotelID());

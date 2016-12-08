@@ -12,7 +12,7 @@ import tools.TypeRoomInfo;
 
 @Entity
 public class TypeRoomInfoPO implements Serializable{
-
+ 
 	private static final long serialVersionUID = 7723572381158309175L;
 
 	  @Id

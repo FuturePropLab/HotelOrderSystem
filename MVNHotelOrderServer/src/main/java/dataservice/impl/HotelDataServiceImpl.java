@@ -126,8 +126,12 @@ public class HotelDataServiceImpl implements HotelDataService {
 	}
 
 	public HotelPO getHotel(String hotel_id) throws RemoteException  {
+		System.out.println("bottom gethotel  "+hotel_id);
 		HotelBasePO hotelBasePO = hotelDataHelper.getHotelBasePO(hotel_id);
+		System.out.println(hotelBasePO == null);
 		if(hotelBasePO == null )  return null;
+		
+		System.out.println("bottom  bright!!");
 		HotelAddressPO hotelAddressPO = hotelDataHelper.getHotelAddressPO(hotel_id);
 		HotelFacilityPO hotelFacilityPO = hotelDataHelper.getHotelFacilityPO(hotel_id);
 		//这个未来可能注释调  因为需要的概率不大
@@ -146,12 +150,14 @@ public class HotelDataServiceImpl implements HotelDataService {
 	public List<HotelPO> searchHotelList(StandardSearch standardSearchs) throws RemoteException  {
 		List<HotelPO> hotelPOs = new ArrayList<HotelPO>();
 		//get all id by address
+		
 		List<String> hotelIDList = hotelDataHelper.getHotelIDListByAddress(standardSearchs.getHotelAddress());
 		if(hotelIDList==null || hotelIDList.isEmpty())  return hotelPOs;
 		
 		//name regex 
 		Iterator<String> it = hotelIDList.iterator();
 		System.out.println("by address   " +hotelIDList.size() );
+		
 		String regex = null;
 		String name = standardSearchs.getHotelName();
 		if(name!=null){
@@ -172,6 +178,7 @@ public class HotelDataServiceImpl implements HotelDataService {
 			}
 				
 		}
+		System.out.println("newlist :"    +newList.size());
 		return getPOsbyList(newList);
 	}
 

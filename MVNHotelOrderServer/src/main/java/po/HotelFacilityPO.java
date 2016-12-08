@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import tools.HotelFacility;
-
+ 
 @Entity
 public class HotelFacilityPO implements Serializable{
 	

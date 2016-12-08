@@ -7,7 +7,7 @@ import tools.HotelFacility;
 import tools.HotelInfo;
 import tools.HotelRoomInfo;
 import tools.Star;
-
+ 
 /**
  * 传过来的 HotelPO
  * @author wshwbluebird

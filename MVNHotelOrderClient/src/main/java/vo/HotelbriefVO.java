@@ -88,6 +88,7 @@ public class HotelbriefVO {
 		}
 		
 		List<TypeRoomInfo> typeRoomInfos =hotelRoom.getTypeRoomInfo();
+		//System.out.println("number of type info : "+typeRoomInfos.size());
 		if(typeRoomInfos!=null  && typeRoomInfos.size()!=0){
 			double least = typeRoomInfos.get(0).getPrice();
 			double high = typeRoomInfos.get(0).getPrice();
@@ -95,10 +96,14 @@ public class HotelbriefVO {
 			Iterator<TypeRoomInfo> it = typeRoomInfos.iterator();
 			double allprice = 0;
 			while(it.hasNext()){
-				double price = it.next().getPrice();
-				allprice += price;
-				if(least > price)  least = price;
-				if(high < price) high = price;
+				TypeRoomInfo typeRoomInfo = it.next();
+				if(typeRoomInfo.getAvailableCount()!=0){
+					double price = typeRoomInfo.getPrice();
+				//System.out.println();
+					allprice += price;
+					if(least > price)  least = price;
+					else if(high < price) high = price;}
+				
 			}
 			try {
 				this.priceRange = new PriceRange(least, high);

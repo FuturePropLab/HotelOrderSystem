@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import tools.HotelAddress;
-
+ 
 @Entity
 public class HotelAddressPO {
        private String hotelID;

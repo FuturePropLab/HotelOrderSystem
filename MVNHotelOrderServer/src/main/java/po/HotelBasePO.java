@@ -6,7 +6,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 
 import tools.Star;
-
+ 
 /**
  * 酒店的简单信息!!
  * @author wshwbluebird

@@ -61,14 +61,14 @@ public class RootLayoutController {
 	@FXML
 	private void initialize() {
 		try {
-			// changeFullLayout("../login/Login.fxml");
-			 changeDetails("../order/OrderList.fxml");
+			 changeFullLayout("../login/Login.fxml");
+//			 changeDetails("../order/OrderList.fxml");
 //			 changeDetails("../hotel/HotelDetail.fxml");
 			// changeDetails("../room/RoomInfo.fxml");
 //			changeDetails("../order/OrderDetails.fxml");
 //			 changeDetails("../discount/HotelDiscount.fxml");
 
-			changeGuid("GuideUI.fxml");
+//			changeGuid("GuideUI.fxml");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -154,6 +154,8 @@ public class RootLayoutController {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource(fxml));
 		Parent child = (Parent) loader.load();
+		details.getChildren().clear();
+		guid.getChildren().clear();
 		fullLayout.getChildren().clear();
 		fullLayout.getChildren().addAll(child);
 		fullLayout.setDisable(false);
