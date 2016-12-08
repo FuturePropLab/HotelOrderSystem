@@ -1,4 +1,4 @@
-package ui.main;
+﻿package ui.main;
 
 import java.io.IOException;
 
@@ -63,6 +63,7 @@ public class RootLayoutController {
 		try {
 //			 changeFullLayout("../login/Login.fxml");
 //			 changeDetails("../order/OrderList.fxml");
+
 //			 changeDetails("../hotel/HotelDetail.fxml");
 			// changeDetails("../room/RoomInfo.fxml");
 //			changeDetails("../order/OrderDetails.fxml");
