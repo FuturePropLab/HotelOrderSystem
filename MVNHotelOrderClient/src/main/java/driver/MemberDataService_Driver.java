@@ -1,5 +1,6 @@
 package driver;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 import dataservice.MemberDataService;
@@ -23,12 +24,24 @@ public class MemberDataService_Driver {
 //			return false;
 //		}
 		
-		ResultMessage_Member result = memberService.modifyMember(new MemberPO(customer_ID_test, new MemberType(customer_ID_test)));
+		ResultMessage_Member result = null;
+		try {
+			result = memberService.modifyMember(new MemberPO(customer_ID_test, new MemberType(customer_ID_test)));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if(result.equals(ResultMessage.NotExist)){
 			return false;
 		}
 		
-		MemberPO member=memberService.getMember(customer_ID_test);
+		MemberPO member = null;
+		try {
+			member = memberService.getMember(customer_ID_test);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if(member==null){
 			return false;
 		}

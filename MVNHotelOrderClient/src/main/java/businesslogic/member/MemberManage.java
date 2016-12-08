@@ -25,9 +25,16 @@ public class MemberManage {
 	public MemberVO getMemberInfo(String customer_id) {
 		if(customer_id==null)return null;
 		else {
-			MemberPO memberpo = memberDataService.getMember(customer_id);
-			
-			return new MemberVO(memberpo.getCustomer_ID(),memberpo.getMemberType());
+			MemberPO memberpo;
+			try {
+				memberpo = memberDataService.getMember(customer_id);
+				return new MemberVO(memberpo.getCustomer_ID(),memberpo.getMemberType());
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+//			return new MemberVO(memberpo.getCustomer_ID(),memberpo.getMemberType());
 			
 		
 		
@@ -68,7 +75,13 @@ public class MemberManage {
 			}else if(memberInfo.memberType.getType().equals(MemberBelongType.Enterprise)){
 				MemberPO memberPO = new MemberPO(memberInfo.customer_ID,memberInfo.memberType);
 				
-				result= memberDataService.modifyMember(memberPO);
+				try {
+					result= memberDataService.modifyMember(memberPO);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					result = ResultMessage_Member.Failed;
+				}
 			}
 			
 		}
@@ -76,7 +89,13 @@ public class MemberManage {
 		else{//注册过，修改信息
 			MemberPO memberPO = new MemberPO(memberInfo.customer_ID,memberInfo.memberType);
 			
-			result= memberDataService.modifyMember(memberPO);
+			try {
+				result= memberDataService.modifyMember(memberPO);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				result = ResultMessage_Member.Failed;
+			}
 		
 		}
 		return result;
