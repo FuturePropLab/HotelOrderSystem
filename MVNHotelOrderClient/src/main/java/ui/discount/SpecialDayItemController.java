@@ -22,10 +22,20 @@ public class SpecialDayItemController extends StrategyItemController{
 	@FXML
 	protected void handleStartTime(){
 		//TODO: 开始时间在结束时间之后时处理
+		if(endTime.getValue()!=null){
+			if(startTime.getValue().compareTo(endTime.getValue())>=0){
+				//怎么处理？？弹窗？
+			}
+		}
 	}
 	@FXML
 	protected void handleEndTime(){
 		//TODO: 开始时间在结束时间之后时处理
+		if(startTime.getValue()!=null){
+			if(startTime.getValue().compareTo(endTime.getValue())>=0){
+				//怎么处理？？弹窗？
+			}
+		}
 	}	
 	@FXML
 	protected void handleDiscount(){

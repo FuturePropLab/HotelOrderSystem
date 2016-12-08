@@ -2,6 +2,7 @@ package ui.discount;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -69,9 +70,9 @@ public class HotelDiscountController extends DetailsController{
 //    	}
     	//下面是一个例子
     	BirthdayItemController birthdayItemController=(BirthdayItemController)addTitlePane(birthdayList,"BirthdayItem.fxml");
-    	birthdayItemController.setValue("title", "未开始", "无", 9.5, new Date(2015, 10, 19), new Date(2015, 10, 20), true);
+    	birthdayItemController.setValue("title", "未开始", "无", 9.5, LocalDate.of(2016, 12, 4),LocalDate.of(2016, 12, 6), true);
     	OverThreeRoomsItemController overThreeRoomsItemController=(OverThreeRoomsItemController)addTitlePane(overThreeRoomsList,"OverThreeRoomsItem.fxml");
-    	overThreeRoomsItemController.setValue("title", "未开始", "无", 9.5, new Date(2015, 10, 19), new Date(2015, 10, 20), true);
+    	overThreeRoomsItemController.setValue("title", "未开始", "无", 9.5, LocalDate.of(2016, 12, 4),LocalDate.of(2016, 12, 6), true);
 //    	while(it.hasNext()){
         	CompanyItemController companyItemController=(CompanyItemController)addTitlePane(companyList,"CompanyItem.fxml");
 //
@@ -84,11 +85,11 @@ public class HotelDiscountController extends DetailsController{
 ////        	
 //    	}
     	
-    	companyItemController.setValue("title", "未开始", "无", 9.5, new Date(2015, 10, 19), new Date(2015, 10, 20), true);
+    	companyItemController.setValue("title", "未开始", "无", 9.5, LocalDate.of(2016, 12, 4),LocalDate.of(2016, 12, 6), true);
     	companyItemController.setCompanyName("companyName");
     	Double11ItemController double11ItemController=(Double11ItemController)addTitlePane(double11List,"Double11Item.fxml");
-    	double11ItemController.setValue("title", "未开始", "无", 9.5, new Date(2015, 10, 19), new Date(2015, 10, 20), true);
-    	double11ItemController.setFestivalDate(new Date(2015, 10, 19),new Date(2015, 10, 19));
+    	double11ItemController.setValue("title", "未开始", "无", 9.5, LocalDate.of(2016, 12, 4),LocalDate.of(2016, 12, 6), true);
+    	double11ItemController.setFestivalDate(LocalDate.of(2016, 12, 4),LocalDate.of(2016, 12, 6));
     	//上面是一个例子
     	
     	addTitlePane(birthdayList,"BirthdayItem.fxml");
