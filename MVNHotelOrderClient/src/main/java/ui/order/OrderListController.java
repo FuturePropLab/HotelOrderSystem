@@ -74,8 +74,6 @@ public class OrderListController extends DetailsController{
 		//分别把搜索框内的关键字当做订单ID、客户姓名、酒店名称来搜索
 		List<OrderVO> orderVOs=orderService.CheckOrderList(new SearchOrderInfoVO(
 				string, null, null));
-		orderVOs.addAll(orderService.CheckOrderList(new SearchOrderInfoVO(null, null, null)));
-		orderVOs.addAll(orderService.CheckOrderList(new SearchOrderInfoVO(null, null, null)));
 
 		orderList.getChildren().clear();
 		if(orderVOs!=null){
@@ -98,7 +96,8 @@ public class OrderListController extends DetailsController{
     	if(!unexecuted.isSelected()){
     		
     	}
-    	
+//    	AnchorPane items=(AnchorPane) orderList.getChildren().get(0);
+//    	orderList.getChildren().remove(0);
     }
     
     
