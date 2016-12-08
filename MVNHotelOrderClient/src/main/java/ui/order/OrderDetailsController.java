@@ -14,6 +14,7 @@ import businesslogicservice.HotelDealService;
 import businesslogicservice.LoginService;
 import businesslogicservice.OrderService;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -94,6 +95,10 @@ public class OrderDetailsController extends DetailsController{
 	@FXML
 	private Label assess;
 	@FXML
+	private Group assessInfo;//如果没评价就设为不可见，否则可见
+	@FXML
+	private Label goTOAssess;
+	@FXML
 	private Hyperlink revoke;
 	private String hotelID;
 	
@@ -117,6 +122,10 @@ public class OrderDetailsController extends DetailsController{
 		//TODO:如果是客户，则提示撤销结果，如果是网站促销人员，提示选择恢复全部信用值或一半，选择后调用blservice
 		
 		
+	}
+	@FXML
+	private void handleGoTOAssess(){
+		//TODO:跳转到评价订单界面
 	}
 	
 	/**
