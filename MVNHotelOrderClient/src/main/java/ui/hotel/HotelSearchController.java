@@ -276,7 +276,7 @@ public class HotelSearchController extends DetailsController{
 			
 			BookHotelController bookHotelController = 
 					(BookHotelController) rootLayoutController.getDetailsController();
-			bookHotelController.
+			
 			
 			
 		} catch (IOException e) {

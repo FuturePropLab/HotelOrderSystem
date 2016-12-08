@@ -1,5 +1,7 @@
 package ui.order;
 
+import java.io.IOException;
+
 import Exception.CustomerCreditNotEnoughException;
 import businesslogic.customer.CustomerDealController;
 import businesslogic.hotel.HotelDealController;
@@ -15,6 +17,7 @@ import javafx.scene.image.ImageView;
 import tools.DateFormat;
 import tools.ResultMessage;
 import ui.main.Dialogs;
+import ui.main.RootLayoutController;
 import vo.HotelbriefVO;
 import vo.OrderInputVO;
 
@@ -26,7 +29,7 @@ import vo.OrderInputVO;
 public class OrderPreviewController {
 	private static Image yellowStar=new Image("file:./target/resources/images/star__selected.png");
 	private static Image greyStar=new Image("file:./target/resources/images/star_unselected.png");
-
+	protected RootLayoutController rootLayoutController;
 	@FXML
 	private Hyperlink hotelName;
 	@FXML
@@ -86,6 +89,15 @@ public class OrderPreviewController {
 	@FXML
 	private void handleCancel() {
 		//TODO:返回填写订单界面
+		try {
+			rootLayoutController.changeDetails("../customer/BookHotel.fxml");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		BookHotelController bookHotelController=rootLayoutController.ge;
+		
+		
 	}
 	
 	/**
