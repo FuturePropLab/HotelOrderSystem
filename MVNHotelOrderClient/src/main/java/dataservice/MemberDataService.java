@@ -1,18 +1,16 @@
 package dataservice;
 
-import java.util.List;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 
-import po.ApplyPO;
-import po.BackPO;
 import po.MemberPO;
-import tools.ResultMessage;
 import tools.ResultMessage_Member;
 /**
  * 
  * @author zjy
  *
  */
-public interface MemberDataService {
+public interface MemberDataService extends Remote{
 //	/**
 //	 * 增加会员，这是给网站管理人员的bl调用的
 //	 * @param customer_id 客户ID
@@ -26,13 +24,13 @@ public interface MemberDataService {
 	 * @param member 修改的信息
 	 * @return 调用成功则返回Exist，失败返回NotExist
 	 */
-	public ResultMessage_Member modifyMember(MemberPO member);
+	public ResultMessage_Member modifyMember(MemberPO member)throws RemoteException;
 	/**
 	 * 获取会员信息
 	 * @param customer_id 请求查询的客户ID
 	 * @return 会员信息
 	 */
-	public MemberPO getMember(String customer_id);
+	public MemberPO getMember(String customer_id)throws RemoteException;
 
 	
 	

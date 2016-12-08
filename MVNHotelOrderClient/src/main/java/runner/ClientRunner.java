@@ -11,6 +11,8 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import dataservice.CreditDataService;
+import dataservice.MemberDataService;
+import po.MemberPO;
 import rmi.RemoteHelper;
 
 public class ClientRunner {
@@ -98,12 +100,17 @@ public class ClientRunner {
 //		System.out.println(orderDataService.add(order));
 		
 		
-		CreditDataService creditDataService = RemoteHelper.getInstance().getCreditDataService();
+		//CreditDataService creditDataService = RemoteHelper.getInstance().getCreditDataService();
 //		CreditLogPO creditLogPO =new CreditLogPO
 //				("CS001", ActionType.Charge, null, new Date(), 400, 100);
 //		System.out.println(creditDataService.add(creditLogPO));	
 		//System.out.println(creditDataService.getLogList("CS001").size());
-		System.out.println(creditDataService.changeCredit("CS001", 500));
+		//System.out.println(creditDataService.changeCredit("CS001", 500));
+		
+		
+		MemberDataService memberDataService  =RemoteHelper.getInstance().getMemberDataService();
+		MemberPO memberPO  =memberDataService.getMember("CS001");
+		System.out.println(memberPO.getMemberType().getCompanyName());
 		 
 	}
 	

@@ -12,8 +12,10 @@ import dataservice.DiscountHotelDataService;
 import dataservice.DiscountWebDataService;
 import dataservice.HotelDataService;
 import dataservice.LoginCheckService;
+import dataservice.MemberDataService;
 import dataservice.OrderDataService;
 import dataservice.RoomDataService;
+import dataservice.datahelper.MemberDataHelper;
 import dataservice.impl.AccountDataServiceImpl;
 import dataservice.impl.CreditdataServiceImpl;
 import dataservice.impl.CustomerDataServiceImpl;
@@ -21,6 +23,7 @@ import dataservice.impl.DiscountHotelDataServiceImpl;
 import dataservice.impl.DiscountWebServiceImpl;
 import dataservice.impl.HotelDataServiceImpl;
 import dataservice.impl.LoginCheckServiceImpl;
+import dataservice.impl.MemberDataServiceImpl;
 import dataservice.impl.OrderDataServiceImpl;
 import dataservice.impl.RoomDataServiceImpl;
 import po.AccountPO;
@@ -30,6 +33,7 @@ import po.DiscountPO_hotel;
 import po.DiscountPO_web;
 import po.HotelPO;
 import po.ImageInfoPO;
+import po.MemberPO;
 import po.OrderPO;
 import po.SearchOrderInfo;
 import tools.AccountType;
@@ -39,6 +43,7 @@ import tools.ResultMessage_Discount;
 import tools.ResultMessage_DiscountDetail;
 import tools.ResultMessage_Hotel;
 import tools.ResultMessage_LoginCheck;
+import tools.ResultMessage_Member;
 import tools.ResultMessage_Modify;
 import tools.ResultMessage_Room;
 import tools.ResultMessage_signUp;
@@ -48,7 +53,7 @@ import tools.StandardSearch;
 public class DataRemoteObject extends UnicastRemoteObject implements
 LoginCheckService ,AccountDataService,CustomerDataService,
 HotelDataService,RoomDataService, DiscountWebDataService,DiscountHotelDataService,
-OrderDataService,CreditDataService{
+OrderDataService,CreditDataService, MemberDataService{
 	/**
 	 *  RMI 接口
 	 */
@@ -62,6 +67,7 @@ OrderDataService,CreditDataService{
 	private DiscountHotelDataService discountHotelDataService;
 	private OrderDataService orderDataService;
 	private CreditDataService creditDataService;
+	private MemberDataService memberDataService;
 	protected DataRemoteObject() throws RemoteException {
 		//用loginCheckServiceIMPL 实现
 		loginCheckService = new LoginCheckServiceImpl();
@@ -73,6 +79,7 @@ OrderDataService,CreditDataService{
 		discountHotelDataService = new DiscountHotelDataServiceImpl();
 		orderDataService = new OrderDataServiceImpl();
 		creditDataService = new CreditdataServiceImpl();
+		memberDataService = new MemberDataServiceImpl();
 
 	}
 	/**
@@ -267,6 +274,12 @@ OrderDataService,CreditDataService{
 	}
 	public ResultMessage changeCredit(String customer_id, int result) throws RemoteException {
 		return creditDataService.changeCredit(customer_id, result);
+	}
+	public ResultMessage_Member modifyMember(MemberPO member) throws RemoteException{
+		return memberDataService.modifyMember(member);
+	}
+	public MemberPO getMember(String customer_id) throws RemoteException{
+		return memberDataService.getMember(customer_id);
 	}
 
 }
