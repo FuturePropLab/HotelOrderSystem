@@ -27,6 +27,7 @@ import vo.MemberVO;
 public class Customer {
 	
 	private  CustomerDataService customerdata;
+	private  CustomerDeal_Stub customerStub;
 	
 	public Customer(){
 		this.customerdata = rmi.RemoteHelper.getInstance().getCustomerDataService();
@@ -86,12 +87,14 @@ public class Customer {
 		//CustomerDeal_Stub test=new CustomerDeal_Stub();
 		//MockMember test2=new MockMember();
 		//test2.customer_ID_test=customer_id;
-		CustomerPO cus = customerdata.find(customer_id);
+//		CustomerPO cus = customerdata.find(customer_id);
+		customerStub = new CustomerDeal_Stub();
+		CustomerVO cus = customerStub.getCustomerInfo(customer_id);
 		
-        MemberVO memberInfo = new MemberVO(cus.getMemberpo().getCustomer_ID(),cus.getMemberpo().getMemberType());
-		return new CustomerVO(cus.getCustomerID(),cus.getCustomerName(),cus.getGender(),cus.getTelephone(),memberInfo,cus.getCredit());
+//        MemberVO memberInfo = new MemberVO(cus.getMemberpo().getCustomer_ID(),cus.getMemberpo().getMemberType());
+//		return new CustomerVO(cus.getCustomerID(),cus.getCustomerName(),cus.getGender(),cus.getTelephone(),memberInfo,cus.getCredit());
 		//return test.getCustomerInfo(customer_id);
-		
+		return cus;
 	}
 	/**
 	 * 修改客户信息

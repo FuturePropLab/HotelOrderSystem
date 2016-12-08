@@ -1,5 +1,6 @@
 package stub;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,18 +29,28 @@ public class MemberData_Stub implements MemberDataService{
 
 	
 	public ResultMessage_Member modifyMember(MemberPO member) {
-		if(member.getCustomer_ID().equals(customer_ID_test)){
-			return ResultMessage_Member.Success;
+		if(member!=null){return ResultMessage_Member.Success;}
+		else{
+			return ResultMessage_Member.Failed;
 		}
-		return ResultMessage_Member.Failed;
 	}
 
 	
 	public MemberPO getMember(String customer_id) {
 		if(customer_id.equals(customer_ID_test)){
+			MemberType memberType = new MemberType(customer_ID_test);
+			LocalDate birthday =  LocalDate.of(2016, 3, 8);
+			memberType.setBirthday(birthday);
+			
 			return new MemberPO(customer_ID_test, new MemberType(customer_ID_test));
+		}else{
+			
+		MemberType type= new MemberType(customer_id);
+		type.setType(MemberBelongType.None);
+//		System.out.println("not exit");
+		return new MemberPO(customer_id,type);
+		
 		}
-		return null;
 	}
 
 	

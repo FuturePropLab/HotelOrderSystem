@@ -22,6 +22,7 @@ import tools.PriceRange;
 import tools.RoomType;
 import tools.SortType;
 import tools.Star;
+import ui.customer.BookHotelController;
 import ui.main.DetailsController;
 import vo.HotelDetailsVO;
 import vo.HotelbriefVO;
@@ -273,7 +274,7 @@ public class HotelSearchController extends DetailsController{
 			rootLayoutController.changeDetails("../customer/BookHotel.fxml");
 			//TODO 在订单填写界面写上相应的酒店信息
 			
-			
+			BookHotelController bookHotelController ＝ rootLayoutController.getDetailsController();
 			
 			
 		} catch (IOException e) {
