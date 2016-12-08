@@ -19,7 +19,7 @@ public class testMember {
 			System.out.println(memberDataHelper.modifyMemberPO(memberPO));
 		
 			
-			System.out.println(memberPO.getMemberType().getType());
+	//		System.out.println(memberPO.getMemberType().getType());
 //			System.out.println(memberPO.getCustomer_ID());
 //			System.out.println(memberPO.getCustomer_ID());
 		}
