@@ -24,7 +24,7 @@ public class OrderMoreStrategy_hotel implements HotelStrategyInterface {
 			res = res - orderInputCalVO.price * orderInputCalVO.numberOfRooms;
 
 		} 
-
+//		System.out.println(res);
 		return res;
 	}
 

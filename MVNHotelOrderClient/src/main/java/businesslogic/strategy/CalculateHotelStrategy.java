@@ -32,7 +32,6 @@ public class CalculateHotelStrategy {
 	 * 
 	 * @param orderInput
 	 *            构造方法
-	 * @throws RemoteException 
 	 */
 	public CalculateHotelStrategy(OrderInputCalVO orderInput)  {
 		StrategyGetService discount = new StrategyGet();
@@ -43,7 +42,7 @@ public class CalculateHotelStrategy {
 			e.printStackTrace();
 		}
 		this.orderInputCalVO = orderInput;
-		this.minus = new double[orderInputCalVO.days+1];
+		this.minus = new double[orderInputCalVO.days];
 	}
 
 	/**
@@ -60,6 +59,7 @@ public class CalculateHotelStrategy {
 			List<StrategyVO_hotel> temp = new LinkedList<StrategyVO_hotel>();
 
 			Iterator<StrategyVO_hotel> iter = strategyList.iterator();
+//			System.out.println(strategyList.isEmpty());
 			double min = 0;// 不可叠加的策略减去的额度
 			double all = 0;// 可叠加的策略减去的总额
 
@@ -73,7 +73,6 @@ public class CalculateHotelStrategy {
 				double calculate = hotelStrategyInterface.calculate(orderInputCalVO, strategyVO_hotel, i);
 
 				strategyVO_hotel.minusPrice = calculate;
-
 				if (strategyVO_hotel.superimpose == true) {
 					temp.add(strategyVO_hotel);
 					all += strategyVO_hotel.minusPrice;
@@ -108,10 +107,10 @@ public class CalculateHotelStrategy {
 					if (!exist)
 						res.add(compare);
 				}
-				minus[(int) i]=(discountMultiply-1)*orderInputCalVO.numberOfRooms*orderInputCalVO.price;
+				minus[(int)( i-orderInputCalVO.startDate.toEpochDay())]=(discountMultiply-1)*orderInputCalVO.numberOfRooms*orderInputCalVO.price;
 				
 			} else {
-				minus[(int) i]=(single.discount-1)*orderInputCalVO.numberOfRooms*orderInputCalVO.price;
+				minus[(int)( i-orderInputCalVO.startDate.toEpochDay())]=(single.discount-1)*orderInputCalVO.numberOfRooms*orderInputCalVO.price;
 				boolean exist = false;
 				Iterator<StrategyVO_hotel> iterator = res.iterator();
 				while (iterator.hasNext()) {

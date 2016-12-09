@@ -32,12 +32,17 @@ public class Strategy {
 		double[] minus = hotelStrategy.minus;
 		for (int i = 0; i < orderInput.days; i++) {
 			price += minus[i];
+			System.out.println(minus[i]);
 		}
+		System.out.println(webBest.discount);
 		price *= webBest.discount;
 
 		StrategyVO res = new StrategyVO(hotelBest, webBest);
 		res.price = price;
 		
+		for(StrategyVO_hotel strategyVO_hotel:hotelBest){
+			System.out.println(strategyVO_hotel.type);
+		}
 		return res;
 	}
 }

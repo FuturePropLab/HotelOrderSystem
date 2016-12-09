@@ -38,7 +38,8 @@ public class CalculateWebStrategy {
 
 	public DiscountVO_web calBest() {
 
-			DiscountVO_web single = null;
+			DiscountVO_web single = new DiscountVO_web();
+			single.discount = 1;
 
 			Iterator<DiscountVO_web> iter = strategyList.iterator();
 			double min = 0;// 策略减去的额度,为负数

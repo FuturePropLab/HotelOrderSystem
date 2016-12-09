@@ -21,11 +21,11 @@ public class PeriodStrategy_web implements WebStrategyInterface {
 		DiscountVO_web_period discountVO_web_period = (DiscountVO_web_period) discountVO_web;
 
 		if (day < discountVO_web_period.endDate.toEpochDay() && day >= discountVO_web_period.startDate.toEpochDay()) {
-
+			
 			res = (discountVO_web_period.discount - 1) * orderInputCalVO.numberOfRooms * orderInputCalVO.price;
 
 		}
-
+		System.out.println(res);
 		return res;
 	}
 
