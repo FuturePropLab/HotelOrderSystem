@@ -2,7 +2,9 @@ package businesslogicservice;
 
 import java.net.URI;
 
+import tools.HotelRoomInfo;
 import tools.ResultMessage_Hotel;
+import vo.HotelFacilityVO;
 import vo.HotelInputVO;
 
 /**
@@ -29,4 +31,18 @@ public interface ManageHotelInfoService {
 	
 	public ResultMessage_Hotel modifyHotelPicture(String hotelID,URI uri);
 	
+	/**
+	 * 修改酒店的设施信息
+	 * @param hotelFacilityVO
+	 * @return
+	 */
+	public ResultMessage_Hotel modifyFacility(HotelFacilityVO hotelFacilityVO);
+	
+	/**
+	 * 修改酒店的房间信息
+	 * @param hotelRoomInfo
+	 * @return
+	 */
+	public ResultMessage_Hotel modifyRoomInfo(HotelRoomInfo hotelRoomInfo);
+		
 }

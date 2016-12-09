@@ -11,6 +11,7 @@ import Exception.OutOfBoundsException;
 import businesslogic.hotel.HotelDealController;
 import businesslogic.login.LoginController;
 import businesslogicservice.HotelDealService;
+import businesslogicservice.LoginService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -21,6 +22,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
+import tools.AccountType;
 import tools.PriceRange;
 import tools.RoomType;
 import tools.SortType;
@@ -140,12 +142,8 @@ public class HotelSearchController extends DetailsController{
 		try {
 			initHotelItems(voListsort);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//TODO:调用blservice模糊搜索
-		
-		
 	}
 	
 	@FXML
@@ -254,13 +252,9 @@ public class HotelSearchController extends DetailsController{
 	public void toHotelDetailUI(String hotelID) {
 		try {
 			rootLayoutController.changeDetails("../hotel/HotelDetail.fxml");
-			//TODO 获取相应的酒店详细信息并设置好值
-			//hotelDealService = HotelDealController.getInstance();
-			//HotelDetailsVO hotelDeatails= hotelDealService.getHotelDetailsVO(hotelID);
-			HotelDetailController hotelDetail = (HotelDetailController) rootLayoutController.getDetailsController();
-			hotelDetail.initValue(hotelID);
-			
-			
+			HotelDetailController hotelDetailController = (HotelDetailController) 
+					rootLayoutController.getDetailsController();
+			hotelDetailController.initValue(hotelID);	
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -270,26 +264,17 @@ public class HotelSearchController extends DetailsController{
 	 * 跳转到订单填写界面
 	 */
 	public void toBookHotelUI(String hotelID) {
-		try {
-			rootLayoutController.changeDetails("../customer/BookHotel.fxml");
-			//TODO 在订单填写界面写上相应的酒店信息
-			
-<<<<<<< HEAD
-
-			BookHotelController bookHotelController = 
-					(BookHotelController) rootLayoutController.getDetailsController();
-			
-
-			bookHotelController = (BookHotelController)rootLayoutController.getDetailsController();
-
-			
-=======
-			BookHotelController bookHotelController = (BookHotelController)rootLayoutController.getDetailsController();
-			bookHotelController.setValue(LoginController.getInstance().getLogState().accountID, hotelID);
->>>>>>> origin/master
-			
-		} catch (IOException e) {
-			e.printStackTrace();
+		LoginService loginService=LoginController.getInstance();
+		if(loginService.getLogState().accountType.equals(AccountType.Customer)){
+			try {
+				rootLayoutController.changeDetails("../customer/BookHotel.fxml");
+				BookHotelController bookHotelController = (BookHotelController)rootLayoutController.getDetailsController();
+				bookHotelController.setValue(loginService.getLogState().accountID, hotelID);
+				bookHotelController.setLastDate(checkInDate.getValue());
+				bookHotelController.setPlanedLeaveDate(checkOutDate.getValue());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

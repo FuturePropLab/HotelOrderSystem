@@ -7,9 +7,9 @@ import tools.HotelRoomInfo;
 import tools.Star;
 //cyy  12/5删掉用户名、密码、酒店设施、房间信息
 /**
- * 我改了 这个类的值可以很多为空
+ * 酒店基本信息，即酒店详情界面上的信息，不包括设施服务、房间信息、评价信息
  * @author wshwbluebird
- *
+ * @author zjy
  */
 public class HotelInputVO {
 	public URI hotePictureURI;
@@ -106,7 +106,25 @@ public class HotelInputVO {
 		this.hotelInfoVO = hotelInfoVO;
 //		this.hotelRoomInfo = hotelRoomInfo;
 	}
-	
-	
+
+	/**
+	 * 这个构造方法才是正式使用的构造方法，其他重载的版本仅供测试使用
+	 * @param hotePictureURI 酒店图片
+	 * @param hotelID 酒店ID
+	 * @param hotelName 酒店名称
+	 * @param star 酒店星级
+	 * @param hotelAddress 酒店地址
+	 * @param hotelInfoVO 注意：这个是酒店简介板块信息
+	 */
+	public HotelInputVO(URI hotePictureURI, String hotelID, String hotelName, Star star, HotelAddress hotelAddress,
+			HotelDiscribtionsVO hotelInfoVO) {
+		super();
+		this.hotePictureURI = hotePictureURI;
+		this.hotelID = hotelID;
+		this.HotelName = hotelName;
+		this.star = star;
+		this.hotelAddress = hotelAddress;
+		this.hotelInfoVO = hotelInfoVO;
+	}
 	
 }

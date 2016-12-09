@@ -84,13 +84,9 @@ public class FacilitiesInfoController extends DetailsController{
 	@FXML
 	private Label service5;
 	@FXML
-	private Label service6;	
-	
-
-	private String hotelID = "HT001" ; //@author wsw  这个应该在初始化这个界面的时候就传过来的
-	
-	//private ManageHotelInfoService manageInfoService;
-
+	private Label service6;
+	private File imageFile;
+	private String hotelID;
 	
     @FXML
     private void initialize() {
@@ -104,25 +100,12 @@ public class FacilitiesInfoController extends DetailsController{
     
     @FXML
     private void handleSave() {
-    	ManageHotelInfoService manageInfoService;
-    	//TODO:调用blservice保存信息
-    	HotelFacilityVO hotelFacilityVO = null;
-    	URL url = null;//不太清楚图片怎么搞
-    try {
-		hotelFacilityVO = new HotelFacilityVO(hotelID,hotelName.getText(),url.toURI(),Boolean.valueOf(wifi.getText()).booleanValue(),Boolean.valueOf(noneSmoke.getText()).booleanValue(),Boolean.valueOf(diningHall.getText()).booleanValue(),Boolean.valueOf(parkingLot.getText()).booleanValue(),Boolean.valueOf(elevator.getText()).booleanValue(),Boolean.valueOf(conferenceHall.getText()).booleanValue(),Boolean.valueOf(morningCall.getText()).booleanValue(),Boolean.valueOf(frontdeskservice.getText()).booleanValue(),Boolean.valueOf(luggageStorage.getText()).booleanValue(),Boolean.valueOf(breakfast.getText()).booleanValue(),other.getText());
-	} catch (URISyntaxException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-    
-    	//String hotelID, String hotelName, URI facilityImage, boolean wifi, boolean noneSmoke,
-		//boolean diningHall, boolean parkingLot, boolean elevator, boolean conferenceHall, boolean morningCall,
-		//boolean frontdeskservice, boolean luggageStorage, boolean breakfast, String other
-		HotelInputVO hotelInfoVO = new HotelInputVO(hotelID, hotelFacilityVO, null,null);
-    	manageInfoService = HotelManageController.getInstance();
-    	ResultMessage_Hotel result = manageInfoService.saveHotelInfo(hotelInfoVO);
-
-    	
+    	HotelFacilityVO hotelFacilityVO = new HotelFacilityVO(hotelID,hotelName.getText(),imageFile.toURI(),
+    			wifi.isSelected(),noneSmoke.isSelected(),diningHall.isSelected(),parkingLot.isSelected(),
+    			elevator.isSelected(),conferenceHall.isSelected(),morningCall.isSelected(),
+    			frontdeskservice.isSelected(),luggageStorage.isSelected(),breakfast.isSelected(),other.getText());
+		ManageHotelInfoService manageInfoService = HotelManageController.getInstance();
+    	ResultMessage_Hotel result = manageInfoService.modifyFacility(hotelFacilityVO);
     }
     @FXML
     private void handleFacilitiesImage() {
@@ -132,6 +115,7 @@ public class FacilitiesInfoController extends DetailsController{
 		File selectedFile = fileChooser.showOpenDialog(rootLayoutController.getPrimaryStage());
 		if (selectedFile != null) {
 			facilitiesImage.setImage(new Image(selectedFile.toURI().toString()));
+			imageFile=selectedFile;
 		}
     }
     
@@ -142,6 +126,7 @@ public class FacilitiesInfoController extends DetailsController{
     	}
     	if(hotelFacilityVO.facilityImage!=null){
     		facilitiesImage.setImage(new Image(hotelFacilityVO.facilityImage.toString()));
+    		imageFile=new File(hotelFacilityVO.facilityImage);
     	}
     	System.out.println("Fac UI :  "+hotelFacilityVO.hotelName);
     	hotelName.setText(hotelFacilityVO.hotelName);
@@ -161,7 +146,7 @@ public class FacilitiesInfoController extends DetailsController{
 		AccountType account = login.getLogState().accountType;
 		
 		
-    	if(!account.equals(AccountType.Hotel)){//TODO:如果不是酒店工作人员
+    	if(!account.equals(AccountType.Hotel)){
     		for(Label label:facilities){//先把Lable清空
     			label.setText(null);
     		}
@@ -179,7 +164,7 @@ public class FacilitiesInfoController extends DetailsController{
     		}
     		
     	}
-    	else {//TODO:如果是酒店工作人员
+    	else {
 			for(Label label:facilities){
 				label.setVisible(false);
 			}

@@ -28,9 +28,12 @@ import tools.HotelAddress;
 import tools.HotelRoomInfo;
 import tools.ResultMessage_Hotel;
 import tools.RoomType;
+import tools.Star;
 import ui.customer.BookHotelController;
 import ui.main.DetailsController;
 import ui.room.RoomInfoController;
+import ui.utils.Dialogs;
+import ui.utils.StarHelper;
 import vo.CommentVO;
 import vo.HotelDetailsVO;
 import vo.HotelDiscribtionsVO;
@@ -124,6 +127,7 @@ public class HotelDetailController extends DetailsController{
 	private TextField addressTextField;//只有酒店工作人员可见
 	@FXML
 	private Hyperlink save;//只有酒店工作人员可见
+	private File imageFile;
 	private HotelDetailsVO hotelDetailsVO;
 	
 	/**
@@ -131,21 +135,14 @@ public class HotelDetailController extends DetailsController{
      * after the fxml file has been loaded.
      */
     @FXML
-    private void initialize() {//TODO:这个方法的内容先别动，要大改
-    	//TODO:从blservice获取数据设置好值
-    	
-    	
-    	
-    	
+    private void initialize() {
     	LoginService login = LoginController.getInstance();
 		AccountType account = login.getLogState().accountType;
     	
-    	if(account.equals(AccountType.Customer)){//TODO:如果是客户
-    
-			
-
+    	if(account.equals(AccountType.Customer)){
+    		
     	}
-    	else if (account.equals(AccountType.Hotel)) {//TODO:如果是酒店工作人员
+    	else if (account.equals(AccountType.Hotel)) {
 			hotelNameLabel.setVisible(false);
 			hotelNameTextField.setVisible(true);
 			describtionText.setVisible(false);
@@ -228,6 +225,7 @@ public class HotelDetailController extends DetailsController{
 		File selectedFile = fileChooser.showOpenDialog(rootLayoutController.getPrimaryStage());
 		if (selectedFile != null) {
 			hotelImage.setImage(new Image(selectedFile.toURI().toString()));
+			imageFile=selectedFile;
 		}
 	}
 	@FXML
@@ -266,11 +264,8 @@ public class HotelDetailController extends DetailsController{
 		try {
 			rootLayoutController.changeDetails("");//跳转到酒店评价信息界面，
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		
+		}		
 	}
 	@FXML
 	private void handleCityComboBox() {
@@ -288,37 +283,33 @@ public class HotelDetailController extends DetailsController{
 	}
 	@FXML
 	private void handleSave() {
-		//TODO:调用blservice保存酒店信息
-		ManageHotelInfoService manageHotelService = HotelManageController.getInstance();
 		HotelAddress hotelAddress = new HotelAddress(cityComboBox.getValue(), districtComboBox.getValue(), 
 				businessCircleComboBox.getValue(), addressTextField.getText());
-		HotelInputVO hotelInputVO = new HotelInputVO(hotelDetailsVO.hotelID,hotelAddress);
-		ResultMessage_Hotel resultMessageAddress = manageHotelService.saveHotelInfo(hotelInputVO);
+		ArrayList<String> discribes=new ArrayList<>();
+		discribes.add(describtionTextArea.getText());
+		HotelDiscribtionsVO hotelDiscribtionsVO=new HotelDiscribtionsVO(discribes, null);
+		HotelInputVO hotelInputVO=new HotelInputVO(imageFile.toURI(), hotelDetailsVO.hotelID, hotelNameTextField.getText(), 
+				StarHelper.getStar(starComboBox), hotelAddress, hotelDiscribtionsVO);
 		
-
-		
-		HotelDiscribtionsVO hotelDiscription =new HotelDiscribtionsVO();
-		List <String> dis = new ArrayList<String>();
-		dis.add(describtionTextArea.getText());
-		hotelDiscription.discribes =  dis;
-		
-//		TODO:RoomInfo 
-		
-		hotelInputVO = new HotelInputVO(hotelDetailsVO.hotelID, null, hotelDiscription, null);
+		ManageHotelInfoService manageHotelService = HotelManageController.getInstance();
 		ResultMessage_Hotel resultMessage_Hotel = manageHotelService.saveHotelInfo(hotelInputVO);
-		
-		
-		
+		if(!ResultMessage_Hotel.success.equals(resultMessage_Hotel)){
+			Dialogs.showMessage("保存失败");
+		}
 	}
 	
 	private void toBookHotelView(RoomType roomType) {
-		try {
-			rootLayoutController.changeDetails("../customer/BookHotel.fxml");
-			BookHotelController bookHotelController=(BookHotelController)rootLayoutController.getDetailsController();
-			bookHotelController.setRoomType(roomType);//TODO:设置预订酒店界面的组建的值
-			
-		} catch (IOException e) {
-			e.printStackTrace();
+		LoginService loginService=LoginController.getInstance();
+		if(loginService.getLogState().accountType.equals(AccountType.Customer)){
+			try {
+				rootLayoutController.changeDetails("../customer/BookHotel.fxml");
+				BookHotelController bookHotelController=(BookHotelController)rootLayoutController.getDetailsController();
+				bookHotelController.setValue(loginService.getLogState().accountID, hotelDetailsVO.hotelID);
+				bookHotelController.setRoomType(roomType);
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -348,6 +339,7 @@ public class HotelDetailController extends DetailsController{
 			System.err.println("hotelDetailsVO is null. At HotelDetailController.initVaule(String hotelID)");
 		}
 		this.hotelImage.setImage(new Image(hotelDetailsVO.hotelImage.toString()));
+		this.imageFile=new File(hotelDetailsVO.hotelImage);
 		this.hotelNameLabel.setText(hotelDetailsVO.hotelName);
 		this.hotelNameTextField.setText(hotelDetailsVO.hotelName);
 		this.describtionText.setText(hotelDetailsVO.hotelDiscribtionsVO.discribes.get(0));

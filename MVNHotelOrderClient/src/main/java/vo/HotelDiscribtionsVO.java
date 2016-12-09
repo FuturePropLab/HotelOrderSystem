@@ -11,4 +11,15 @@ import java.util.List;
 public class HotelDiscribtionsVO {
 	public List<String> discribes;
 	public List<URI> pictureURI;
+	
+	/**
+	 * 
+	 * @param discribes 酒店描述
+	 * @param pictureURI 酒店图片
+	 */
+	public HotelDiscribtionsVO(List<String> discribes, List<URI> pictureURI) {
+		super();
+		this.discribes = discribes;
+		this.pictureURI = pictureURI;
+	}
 }

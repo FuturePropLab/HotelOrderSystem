@@ -44,8 +44,6 @@ public class CreditChangLogController extends DetailsController{
 	 */
 	public void initValue(String customerID) {
 		creditList.getChildren().clear();
-		//TODO:初始化组件的值
-		//下面是一个例子
 		CreditLogDealService creditLogDealService=CreditController.getInstance();
 		for(CreditlogVO creditlogVO:creditLogDealService.getLogList(customerID)){
 			addItem(creditlogVO);

@@ -303,18 +303,22 @@ public class BookHotelController extends DetailsController{
 		this.roomType.getItems().clear();
 		System.out.println(roomType);
 		this.roomType.setValue(getRoomString(roomType));
-	}	
-	
+	}		
 	public void setLastDate(Date lastDate) {
 		LocalDate endLocalDate = LocalDate.of(lastDate.getYear(), lastDate.getMonth(), lastDate.getDate());
 		this.lastDate.setValue(endLocalDate);
 	}
-	
+	public void setLastDate(LocalDate lastDate) {
+		this.lastDate.setValue(lastDate);
+	}	
 	public void setPlanedLeaveDate(Date planedLeaveDate) {
 		LocalDate endLocalDate = LocalDate.of(planedLeaveDate.getYear(),
 				planedLeaveDate.getMonth(), planedLeaveDate.getDate());
 		this.lastDate.setValue(endLocalDate);
 	}
+	public void setPlanedLeaveDate(LocalDate planedLeaveDate) {
+		this.planedLeaveDate.setValue(planedLeaveDate);
+	}	
 	
 	private RoomType getRoomType() {
 		if(roomType.getValue()==null){
