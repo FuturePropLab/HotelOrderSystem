@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="200.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER_LEFT" layoutX="37.0" layoutY="20.0" spacing="20.0">
+         <children>
+            <Label text="完成订单" textFill="#14d711">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label text="+10086" textFill="#810ed3">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Label layoutX="684.0" layoutY="26.0" text="2016-10-1 14：05">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER_LEFT" layoutX="450.0" layoutY="114.0" spacing="20.0">
+         <children>
+            <Label text="订单号">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Hyperlink text="0000000001">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Hyperlink>
+         </children>
+      </HBox>
+      <Hyperlink layoutX="239.0" layoutY="112.0" text="皇家酒店">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Hyperlink>
+      <HBox layoutX="59.0" layoutY="116.0">
+         <children>
+            <Label text="￥">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Label text="580">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
