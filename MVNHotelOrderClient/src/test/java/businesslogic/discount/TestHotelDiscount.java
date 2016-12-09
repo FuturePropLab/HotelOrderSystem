@@ -1,16 +1,10 @@
 package businesslogic.discount;
 
-import static org.junit.Assert.*;
-
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 
 import org.junit.Test;
 
-import stub.Discount_stub;
 import tools.ResultMessage_Discount;
-import vo.DiscountVO_hotel;
 
 public class TestHotelDiscount {
 

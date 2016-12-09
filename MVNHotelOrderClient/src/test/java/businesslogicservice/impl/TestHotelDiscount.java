@@ -1,10 +1,8 @@
 package businesslogicservice.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.rmi.RemoteException;
-import java.sql.Time;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,7 +10,6 @@ import java.util.List;
 import org.junit.Test;
 
 import businesslogic.discount.HotelDiscount;
-import stub.Discount_stub;
 import tools.ResultMessage_Discount;
 import vo.DiscountVO_hotel;
 
