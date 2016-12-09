@@ -23,7 +23,7 @@ import ui.administor.WebController.Web;
 import ui.main.DetailsController;
 
 /**
- * 用户管理界面的控制器
+ * 用户、酒店管理界面的控制器，管理酒店即管理酒店工作人员账号
  * 这个模块大量使用了泛型和lambada表达式，并且用的模式不是可视化编程
  * 列表支持超大量数据，亲测120000条数据同时存在时也不会卡
  * 只在初始化的时候从bl层调一次数据
