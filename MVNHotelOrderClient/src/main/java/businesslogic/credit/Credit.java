@@ -14,6 +14,7 @@ import dataservice.CreditDataService;
 import po.CreditLogPO;
 import po.OrderPO;
 import stub.CreditData_Stub;
+import stub.CreditLogDeal_Stub;
 import tools.ActionType;
 import tools.RecoverValue;
 import tools.ResultMessage;
@@ -134,6 +135,8 @@ public class Credit {
 	 * @return List<CreditlogVO> 
 	 */
 	public List<CreditlogVO> getLogList(String customer_id) {
+//		CreditLogDeal_Stub creditStub = new CreditLogDeal_Stub();
+		
 		List<CreditlogVO> logList = new ArrayList<CreditlogVO>();
 		List<CreditLogPO> list = null;
 		try {
