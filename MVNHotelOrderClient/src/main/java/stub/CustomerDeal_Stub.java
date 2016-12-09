@@ -15,10 +15,19 @@ public class CustomerDeal_Stub implements CustomerDealService {
 
 	
 	public CustomerVO getCustomerInfo(String customer_id) {
+		if(customer_id.equals("000000009")){
 		MemberType memberType = new MemberType("000000009");
 		MemberVO membervo  = new MemberVO("000000009", memberType);
 		CustomerVO customerVO  = new CustomerVO(customer_id, "王帅惟", "男", "15050522805", membervo,1550);
-		return customerVO;
+		
+		return customerVO;}else if(customer_id.equals("000000008")){
+			MemberType memberType = new MemberType("000000008");
+			MemberVO membervo  = new MemberVO("000000008", memberType);
+			CustomerVO customerVO  = new CustomerVO(customer_id, "王帅惟", "男", "15050522805", membervo,50);
+			return customerVO;
+		}else{
+			return null;
+		}
 	}
 
 	

@@ -18,7 +18,7 @@ public class MemberData_Stub implements MemberDataService{
 	private static final String customer_ID_test="000000002";
 	private static final String apply_id="000000003";
 	private static final String back_id="000000004";
-
+	private static final String customer_ID_test2="000000008";
 	
 	public ResultMessage_Member addMember(String customer_id) {
 		if(customer_id.equals(customer_ID_test)){
@@ -43,7 +43,9 @@ public class MemberData_Stub implements MemberDataService{
 			memberType.setBirthday(birthday);
 			
 			return new MemberPO(customer_ID_test, new MemberType(customer_ID_test));
-		}else{
+		}
+		
+		else{
 			
 		MemberType type= new MemberType(customer_id);
 		type.setType(MemberBelongType.None);
