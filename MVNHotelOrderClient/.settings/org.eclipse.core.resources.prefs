@@ -11,6 +11,7 @@ encoding//src/main/java/businesslogic/account/HotelAccountController.java=UTF-8
 encoding//src/main/java/businesslogic/account/HotelInfo.java=UTF-8
 encoding//src/main/java/businesslogic/account/MockCustomer.java=UTF-8
 encoding//src/main/java/businesslogic/account/MockHotel.java=UTF-8
+encoding//src/main/java/businesslogic/account/WebDesignerAccountController.java=UTF-8
 encoding//src/main/java/businesslogic/credit/Credit.java=UTF-8
 encoding//src/main/java/businesslogic/credit/CreditController.java=UTF-8
 encoding//src/main/java/businesslogic/credit/CustomerInfoforCredit.java=UTF-8
