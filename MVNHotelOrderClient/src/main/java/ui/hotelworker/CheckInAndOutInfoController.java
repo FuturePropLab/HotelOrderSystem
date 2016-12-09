@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import ui.main.DetailsController;
 
 /**
- * 入住和退房信息通用界面的控制器
+ * 入住和退房信息通用界面的控制器，包括延时入住
  * @author zjy
  */
 public class CheckInAndOutInfoController extends DetailsController{

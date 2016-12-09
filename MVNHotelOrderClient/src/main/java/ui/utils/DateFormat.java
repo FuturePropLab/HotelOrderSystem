@@ -1,10 +1,15 @@
 package ui.utils;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 import com.jfoenix.controls.JFXDatePicker;
 
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Tooltip;
+import javafx.util.Callback;
 
 /**
  * 格式化日期的值，只提供静态方法
@@ -56,5 +61,40 @@ public class DateFormat {
 		return new Date(datePicker.getValue().getYear(), datePicker.getValue().getMonthValue(), 
 				datePicker.getValue().getDayOfMonth(),datePicker.getTime().getHour(),
 				datePicker.getTime().getMinute(),datePicker.getTime().getSecond());
+	}
+	
+	/**
+	 * 初始化日期选择器，使得退房日期一定在入住日期之后，且提示将要入住的天数
+	 * @param checkInDatePicker 入住日期的日期选择器
+	 * @param checkOutDatePicker 退房日期的日期选择器
+	 */
+	public static void initDatePicker(DatePicker checkInDatePicker,DatePicker checkOutDatePicker) {
+		checkInDatePicker.setValue(LocalDate.now());
+        final Callback<DatePicker, DateCell> dayCellFactory = 
+            new Callback<DatePicker, DateCell>() {
+                @Override
+                public DateCell call(final DatePicker datePicker) {
+                    return new DateCell() {
+                        @Override
+                        public void updateItem(LocalDate item, boolean empty) {
+                            super.updateItem(item, empty);
+                            if (item.isBefore(
+                                    checkInDatePicker.getValue().plusDays(1))
+                                ) {
+                                    setDisable(true);
+                                    setStyle("-fx-background-color: #ffc0cb;");
+                            }
+                            long p = ChronoUnit.DAYS.between(
+                                    checkInDatePicker.getValue(), item
+                            );
+                            setTooltip(new Tooltip(
+                                "You're about to stay for " + p + " days")
+                            );
+                    }
+                };
+            }
+        };
+        checkOutDatePicker.setDayCellFactory(dayCellFactory);
+        checkOutDatePicker.setValue(checkInDatePicker.getValue().plusDays(1));
 	}
 }

@@ -19,6 +19,7 @@ import javafx.scene.image.ImageView;
 import tools.ResultMessage;
 import ui.customer.BookHotelController;
 import ui.hotel.HotelDetailController;
+import ui.main.DetailsController;
 import ui.main.RootLayoutController;
 import ui.utils.DateFormat;
 import ui.utils.Dialogs;
@@ -30,7 +31,7 @@ import vo.OrderInputVO;
  * @author zjy
  *
  */
-public class OrderPreviewController {
+public class OrderPreviewController extends DetailsController{
 	private static Image yellowStar=new Image("file:./target/resources/images/star__selected.png");
 	private static Image greyStar=new Image("file:./target/resources/images/star_unselected.png");
 
@@ -103,7 +104,6 @@ public class OrderPreviewController {
 	private void handleCancel() {
 		//TODO:返回填写订单界面
 		
-		RootLayoutController rootLayoutController = new RootLayoutController();//不知道加在哪里
 		try {
 			rootLayoutController.changeDetails("../customer/BookHotel.fxml");
 //			BookHotelController bookHotelController=(BookHotelController)rootLayoutController.getDetailsController();
