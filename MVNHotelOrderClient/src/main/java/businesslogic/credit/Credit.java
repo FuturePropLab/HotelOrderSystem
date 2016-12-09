@@ -235,7 +235,7 @@ public class Credit {
 		}else{
 			creditchange = value/2;
 		}
-		String customer_id = order.getCustomer().customerID;
+		String customer_id = order.getPlacingOrderInfo().customerID;
 		
 		int credit = order.getCustomer().credit;
 		credit = credit +creditchange;
@@ -252,7 +252,7 @@ public class Credit {
 		
 		if(resultMessage.equals(ResultMessage.Exist)){
 			//String customerID , ActionType actionType , String  orderID, Date changDate ,  int changeValue,int money
-			CreditLogPO creditlogPO = new CreditLogPO(order.getCustomer().customerID,ActionType.RevokeOrder,order.getOrderID(),order.getRevokeTime(),creditchange,0);
+			CreditLogPO creditlogPO = new CreditLogPO(order.getCustomer().customerID,ActionType.Recover,order.getOrderID(),order.getRevokeTime(),creditchange,0);
 			try {
 				resultMessage =creditDataService.add(creditlogPO);
 			} catch (RemoteException e) {
