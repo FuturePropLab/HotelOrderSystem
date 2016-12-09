@@ -75,7 +75,6 @@ public class OrderListController extends DetailsController {
 		String ID = accountCustomerService.getAccountID(logVO.username);
 		String string = "".equals(keyWords.getText()) ? null : keyWords.getText();
 
-		// 分别把搜索框内的关键字当做订单ID、客户姓名、酒店名称来搜索
 		List<OrderVO> orderVOs = new ArrayList<OrderVO>();
 		// 分别添加符合条件的
 		if (unexecuted.isSelected()) {
@@ -103,18 +102,7 @@ public class OrderListController extends DetailsController {
 						orderVO.orderState, orderVO.orderID, orderVO.hotelID);
 			}
 		}
-		// handleFilter();
 	}
-	// @FXML
-	// private void handleFilter() {
-	// //TODO:将显示出来的项目按4个checkbox过滤掉不显示的
-	// if(!unexecuted.isSelected()){
-	//
-	// }
-	//// AnchorPane items=(AnchorPane) orderList.getChildren().get(0);
-	//// orderList.getChildren().remove(0);
-	// }
-	//
 
 	private Date getDate() {
 		if (date.getValue() == null) {

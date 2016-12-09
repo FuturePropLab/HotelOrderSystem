@@ -64,6 +64,8 @@ public class OrderDetailsController extends DetailsController{
 	@FXML
 	private Label customerName;
 	@FXML
+	private Label customerContactInfo;
+	@FXML
 	private Label hotelAddress;
 	@FXML
 	private Label contactInformation;
@@ -184,6 +186,7 @@ public class OrderDetailsController extends DetailsController{
 		this.children.setText(orderVO.child?"有":"无");
 		this.customerName.setText(customerVO.customerName);
 		this.hotelAddress.setText(hotelbriefVO.hotelAddress.toString());
+		this.customerContactInfo.setText(customerVO.telephone);
 		this.contactInformation.setText("contactInformation");//TODO
 		String roomNumbers="";
 		for(String string:orderVO.roomNumber){

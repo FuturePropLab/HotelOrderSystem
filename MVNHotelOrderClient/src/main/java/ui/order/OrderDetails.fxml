@@ -77,6 +77,20 @@
                         <Font size="19.0" />
                      </font>
                   </Label>
+                  <HBox layoutX="30.0" layoutY="565.0" spacing="30.0">
+                     <children>
+                        <Label text="联系方式">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="customerContactInfo" text="xxxxxxxxxxx">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
             </Group>
             <Line endX="175.0" layoutX="128.0" layoutY="86.0" startX="-100.0" />
@@ -134,16 +148,20 @@
                   </HBox>
                </children>
             </Group>
-            <Label layoutX="13.0" layoutY="683.0" text="酒店联系方式">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label fx:id="contactInformation" layoutX="166.0" layoutY="683.0" text="xxxxxxxxxxx">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
+            <HBox layoutX="13.0" layoutY="683.0" spacing="30.0">
+               <children>
+                  <Label text="酒店联系方式">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="contactInformation" text="xxxxxxxxxxx">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
             <Label fx:id="hotelAddress" layoutX="102.0" layoutY="648.0" text="南京市栖霞区仙林大道163号">
                <font>
                   <Font size="17.0" />

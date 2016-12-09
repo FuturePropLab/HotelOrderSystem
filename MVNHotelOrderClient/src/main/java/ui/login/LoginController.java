@@ -17,6 +17,7 @@ import ui.discount.WebStrategyController;
 import ui.hotel.HotelDetailController;
 import ui.hotel.HotelSearchController;
 import ui.main.FullLayoutController;
+import ui.utils.Dialogs;
 /**
  * 
  * @author zjy
@@ -33,23 +34,32 @@ public class LoginController extends FullLayoutController{
 	private ComboBox<String> accountType;
 	@FXML
 	private Button loginButton;
+	@FXML
+	private TextField username_signup;
+	@FXML
+	private PasswordField password_signup;
+	@FXML
+	private PasswordField repeatPassword;
+	@FXML
+	private Button signupButton;
 	
 	@FXML
-	private void initialize(){
-		
+	private void initialize(){		
 		accountType.getItems().addAll(accountTypes);
+		accountType.setValue(accountTypes[0]);
 	}
 	
 	@FXML
 	private void handleLogin(){
 		ResultMessage_LoginCheck result;
 		try {
-			String accountTy = accountType.getValue();
+			String accountTy = this.accountType.getValue();
 			AccountType accountType  = null;
 			if(accountTy.equals(accountTypes[0])) accountType = AccountType.Customer;
 			else if(accountTy.equals(accountTypes[1]))  accountType = AccountType.Hotel;
 			else if(accountTy.equals(accountTypes[2]))  accountType = AccountType.Web;
-			else  accountType = AccountType.Administor;
+			else if(accountTy.equals(accountTypes[3]))  accountType = AccountType.Administor;
+			else    return;
 			
 			
 			result = LoginServiceUtil.getLoginService().login(username.getText(), password.getText(),accountType);
@@ -86,13 +96,15 @@ public class LoginController extends FullLayoutController{
 			
 			}
 			else if (result.equals(ResultMessage_LoginCheck.InvalidUsername)) {
-				System.out.println("Invalid Username");//TODO
+				System.out.println("Invalid Username");
+				Dialogs.showMessage("不存在这个用户名");
 			}
 			else if (result.equals(ResultMessage_LoginCheck.InvalidPassword)) {
-				System.out.println("Invalid Password");//TODO
+				System.out.println("Invalid Password");
+				Dialogs.showMessage("密码错误");
 			}
 			else if (result.equals(ResultMessage_LoginCheck.SystemError)) {
-				//TODO
+				System.err.println("login fail:SystemError");
 			}
 		} catch (RemoteException e) {
 			System.out.println("connect error");//TODO
@@ -100,5 +112,10 @@ public class LoginController extends FullLayoutController{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	@FXML
+	private void handleSignUp(){
+		LoginService loginService=businesslogic.login.LoginController.getInstance();
+		//TODO:注册
 	}
 }

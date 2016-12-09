@@ -16,10 +16,10 @@
          <children>
             <TextField fx:id="keyWords" layoutX="103.0" layoutY="71.0" onAction="#handleSearch" prefHeight="43.0" prefWidth="298.0" promptText="酒店名称" />
             <DatePicker fx:id="date" layoutX="506.0" layoutY="71.0" onAction="#handleSearch" prefHeight="40.0" prefWidth="209.0" />
-            <CheckBox fx:id="unexecuted" layoutX="270.0" layoutY="149.0" mnemonicParsing="false" onAction="#handleFilter" selected="true" text="未入住" />
-            <CheckBox fx:id="executed" layoutX="375.0" layoutY="149.0" mnemonicParsing="false" onAction="#handleFilter" selected="true" text="已入住" />
-            <CheckBox fx:id="exception" layoutX="487.0" layoutY="149.0" mnemonicParsing="false" onAction="#handleFilter" text="异常订单" />
-            <CheckBox fx:id="revoked" layoutX="612.0" layoutY="149.0" mnemonicParsing="false" onAction="#handleFilter" text="已撤销" />
+            <CheckBox fx:id="unexecuted" layoutX="270.0" layoutY="149.0" mnemonicParsing="false" onAction="#handleSearch" selected="true" text="未入住" />
+            <CheckBox fx:id="executed" layoutX="375.0" layoutY="149.0" mnemonicParsing="false" onAction="#handleSearch" selected="true" text="已入住" />
+            <CheckBox fx:id="exception" layoutX="487.0" layoutY="149.0" mnemonicParsing="false" onAction="#handleSearch" text="异常订单" />
+            <CheckBox fx:id="revoked" layoutX="612.0" layoutY="149.0" mnemonicParsing="false" onAction="#handleSearch" text="已撤销" />
             <ImageView fx:id="search" fitHeight="40.0" fitWidth="39.0" layoutX="412.0" layoutY="73.0" onMouseClicked="#handleSearch">
                <image>
                   <Image url="@../../../resources/images/icon_search.png" />

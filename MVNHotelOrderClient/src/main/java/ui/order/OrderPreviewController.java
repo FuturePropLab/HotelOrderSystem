@@ -26,6 +26,7 @@ import ui.utils.DateFormat;
 import ui.utils.Dialogs;
 import vo.HotelbriefVO;
 import vo.OrderInputVO;
+import vo.SearchOrderInfoVO;
 
 /**
  * 订单预览界面的控制器
@@ -88,12 +89,9 @@ public class OrderPreviewController extends DetailsController{
 			Dialogs.showMessage("你的信用值是："+e.credit,"你的信用值不足，不能下单，请联系网站促销人员进行充值");
 		}
 		if(resultMessage.equals(ResultMessage.Exist)){
-			//TODO:
-			
 			try {
-				orderService.createOrders(orderInputVO);
-			} catch (CustomerCreditNotEnoughException e) {
-				// TODO Auto-generated catch block
+				rootLayoutController.changeDetails("../order/OrderList.fxml");
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
@@ -103,27 +101,7 @@ public class OrderPreviewController extends DetailsController{
 	}
 	@FXML
 	private void handleCancel() {
-		//TODO:返回填写订单界面
-
-		try {
-			rootLayoutController.changeDetails("../customer/BookHotel.fxml");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-//		BookHotelController bookHotelController=rootLayoutController.ge;
-		
-		
-
-		
-		try {
-			rootLayoutController.changeDetails("../customer/BookHotel.fxml");
-//			BookHotelController bookHotelController=(BookHotelController)rootLayoutController.getDetailsController();
-//			 bookHotelController.setValue();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
+		rootLayoutController.toLastView();
 	}
 	
 	/**
