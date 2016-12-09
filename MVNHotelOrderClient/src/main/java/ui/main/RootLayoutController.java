@@ -73,6 +73,11 @@ public class RootLayoutController {
 //			bookHotelController.setRoomType(RoomType.Double);
 //			bookHotelController.setValue("CS001", "HT001");
 //			changeDetails("../hotel/HotelDetail.fxml");
+//			changeDetails("../customer/BookHotel.fxml");
+//			BookHotelController bookHotelController = (BookHotelController)this.getDetailsController();
+//			bookHotelController.setRoomType(RoomType.Double);
+//			bookHotelController.setValue("CS001", "HT001");
+
 			// changeDetails("../room/RoomInfo.fxml");
 //			changeDetails("../order/OrderDetails.fxml");
 //			 changeDetails("../discount/HotelDiscount.fxml");
