@@ -1,4 +1,4 @@
-package ui.main;
+package ui.guid;
 /**
  * 导航界面的控制器
  * @author zjy

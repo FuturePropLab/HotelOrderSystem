@@ -11,6 +11,7 @@ import tools.RoomType;
 import ui.customer.BookHotelController;
 import ui.customer.ClientInfoController;
 import ui.customer.OrderAssessController;
+import ui.guid.GuideUIController;
 
 /**
  * The controller for the root layout. The root layout provides the basic
@@ -86,7 +87,7 @@ public class RootLayoutController {
 //			 changeDetails("../discount/HotelDiscount.fxml");
 //			changeDetails("../customer/OrderAssess.fxml");
 
-			changeGuid("GuideUI.fxml");
+			changeGuid("../guid/GuideUI.fxml");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -179,5 +180,14 @@ public class RootLayoutController {
 		fullLayout.setDisable(false);
 		fullLayoutController = loader.getController();
 		fullLayoutController.setRootLayoutController(this);
+	}
+	
+	/**
+	 * 回到上一个界面
+	 * @return 如果没有上一个界面返回false，否则true
+	 */
+	public boolean toLastView() {
+		//TODO:
+		return true;
 	}
 }
