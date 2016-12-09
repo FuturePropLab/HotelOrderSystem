@@ -47,11 +47,19 @@ public class TestMember {
 		type.setType(MemberBelongType.Ordinary);
 		MemberVO memberInfo=new MemberVO("000000009",type );
 		assertEquals(ResultMessage_Member.Success, member.modifyMemberInfo(memberInfo));
-	}
-	public void test4() {
-		
 		assertEquals(new MemberVO("000000002", new MemberType("000000002")).customer_ID, member.getMemberInfo("000000002").customer_ID);
+	
+		type=new MemberType("000000008");
+		type.setType(MemberBelongType.Ordinary);
+		memberInfo=new MemberVO("000000008",type );
+		assertEquals(ResultMessage_Member.Failed, member.modifyMemberInfo(memberInfo));
+		
+		type=new MemberType("000000007");
+		type.setType(MemberBelongType.Enterprise);
+		memberInfo=new MemberVO("000000007",type );
+		assertEquals(ResultMessage_Member.Success, member.modifyMemberInfo(memberInfo));
 	}
+
 	/*public static void main(String []args){
 		MemberType type=new MemberType("000000009");
 		type.setType(MemberBelongType.Ordinary);

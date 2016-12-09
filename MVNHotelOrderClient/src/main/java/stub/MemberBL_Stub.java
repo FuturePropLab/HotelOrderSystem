@@ -14,7 +14,7 @@ import vo.MemberVO;
 
 public class MemberBL_Stub implements MemberService{
 	private static final String customer_ID_test="000000002";
-
+	private static final String customer_ID_test2 = "000000008";
 	
 	public MemberVO getMemberInfo(String customer_id) {
 		if(customer_id.equals(customer_ID_test)){
