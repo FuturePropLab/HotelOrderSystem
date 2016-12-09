@@ -44,16 +44,16 @@ public class OrderInputCalVO {
 		this.roomType = roomType;
 		this.numberOfRooms = numberOfRooms;
 		this.orderDate = orderDate;
-//		setMemberBelongType(customerID);
+		setMemberBelongType(customerID);
 		setDays(startDate, endDate);
-//		setLevel(customerID);
-//		setCircle(hotelID);
-//		if (memberBelongType == MemberBelongType.Ordinary) {
+		setLevel(customerID);
+		setCircle(hotelID);
+		if (memberBelongType == MemberBelongType.Ordinary) {
 			setBirthday(customerID);
-//
-//		} else if (memberBelongType == MemberBelongType.Enterprise) {
-//			setMemberBelongType(customerID);
-//		}
+
+		} else if (memberBelongType == MemberBelongType.Enterprise) {
+			setMemberBelongType(customerID);
+		}
 	}
 
 	public double price;// 订房单价
@@ -83,31 +83,31 @@ public class OrderInputCalVO {
 
 	}
 
-//	public void setCircle(String hotelID) {
-//		HotelDealService hotelDealService = HotelDealController.getInstance();
-//		city = hotelDealService.getHotelInfo(hotelID).hotelAddress.getCity();
-//		district = hotelDealService.getHotelInfo(hotelID).hotelAddress.getDistrict();
-//		businessCircle = hotelDealService.getHotelInfo(hotelID).hotelAddress.getBusinessCircle();
-//	}
-
-	public void setBirthday(String customerID) {
-//		MemberController member = MemberController.getInstance();
-//		this.birthday = member.getMemberInfo(customerID).memberType.getBirthday();
-		this.birthday = LocalDate.of(2016, 12, 4);
+	public void setCircle(String hotelID) {
+		HotelDealService hotelDealService = HotelDealController.getInstance();
+		city = hotelDealService.getHotelInfo(hotelID).hotelAddress.getCity();
+		district = hotelDealService.getHotelInfo(hotelID).hotelAddress.getDistrict();
+		businessCircle = hotelDealService.getHotelInfo(hotelID).hotelAddress.getBusinessCircle();
 	}
 
-//	public void setMemberBelongType(String customerID) {
-//		MemberController memberController = MemberController.getInstance();
-//		memberBelongType = memberController.getMemberInfo(customerID).memberType.getType();
-//	}
+	public void setBirthday(String customerID) {
+		MemberController member = MemberController.getInstance();
+		this.birthday = member.getMemberInfo(customerID).memberType.getBirthday();
+//		this.birthday = LocalDate.of(2016, 12, 4);
+	}
 
-//	public void setEnterprise(String customerID) {
-//		MemberController memberController = MemberController.getInstance();
-//		enterprise = memberController.getMemberInfo(customerID).memberType.getCompanyName();
-//	}
-//
-//	public void setLevel(String customerID) {
-//		MemberController memberController = MemberController.getInstance();
-//		level = memberController.getMemberInfo(customerID).memberType.getLevel();
-//	}
+	public void setMemberBelongType(String customerID) {
+		MemberController memberController = MemberController.getInstance();
+		memberBelongType = memberController.getMemberInfo(customerID).memberType.getType();
+	}
+
+	public void setEnterprise(String customerID) {
+		MemberController memberController = MemberController.getInstance();
+		enterprise = memberController.getMemberInfo(customerID).memberType.getCompanyName();
+	}
+
+	public void setLevel(String customerID) {
+		MemberController memberController = MemberController.getInstance();
+		level = memberController.getMemberInfo(customerID).memberType.getLevel();
+	}
 }

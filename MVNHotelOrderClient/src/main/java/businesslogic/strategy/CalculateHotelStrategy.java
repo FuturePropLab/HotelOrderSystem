@@ -38,7 +38,6 @@ public class CalculateHotelStrategy {
 		try {
 			strategyList = discount.getSuitableDiscount_hotel(orderInput);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		this.orderInputCalVO = orderInput;
@@ -110,7 +109,9 @@ public class CalculateHotelStrategy {
 				minus[(int)( i-orderInputCalVO.startDate.toEpochDay())]=(discountMultiply-1)*orderInputCalVO.numberOfRooms*orderInputCalVO.price;
 				
 			} else {
-				minus[(int)( i-orderInputCalVO.startDate.toEpochDay())]=(single.discount-1)*orderInputCalVO.numberOfRooms*orderInputCalVO.price;
+//				System.out.println(single.discount+""+);
+				minus[(int)( i-orderInputCalVO.startDate.toEpochDay())]=single.minusPrice;
+//				System.out.println((single.discount-1)*orderInputCalVO.numberOfRooms*orderInputCalVO.price);
 				boolean exist = false;
 				Iterator<StrategyVO_hotel> iterator = res.iterator();
 				while (iterator.hasNext()) {

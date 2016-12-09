@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import po.DiscountPO_web;
+import rmi.RemoteHelper;
 import tools.ResultMessage_Discount;
 import tools.ResultMessage_DiscountDetail;
 import vo.DiscountVO_web;
@@ -17,6 +18,10 @@ import vo.DiscountVO_web;
 public class WebDiscount {
 
 	private dataservice.DiscountWebDataService dataService;
+	
+	public WebDiscount(){
+		this.dataService=RemoteHelper.getInstance().getDiscountWebDAteService();
+	}
 
 	private FactoryDiscount factory= new FactoryDiscount();
 	

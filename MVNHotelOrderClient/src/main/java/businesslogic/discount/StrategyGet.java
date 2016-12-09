@@ -28,11 +28,10 @@ public class StrategyGet implements StrategyGetService {
 	private dataservice.DiscountWebDataService webDataService;
 	
 	public StrategyGet() {
-//		dataService=RemoteHelper.getInstance().getStrategy();
-//		hotelDataService = RemoteHelper.getInstance().getDiscountHotelDataService();
-//		webDataService = RemoteHelper.getInstance().getDiscountWebDAteService();
-		hotelDataService = new DiscountHotelData_stub();
-		webDataService = new DiscountWebData_stub();
+		hotelDataService = RemoteHelper.getInstance().getDiscountHotelDataService();
+		webDataService = RemoteHelper.getInstance().getDiscountWebDAteService();
+//		hotelDataService = new DiscountHotelData_stub();
+//		webDataService = new DiscountWebData_stub();
 	}
 	
 	public List<StrategyVO_hotel> getSuitableDiscount_hotel(OrderInputCalVO orderInput) throws RemoteException {
