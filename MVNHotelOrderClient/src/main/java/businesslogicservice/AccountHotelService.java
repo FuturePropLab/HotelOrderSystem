@@ -57,6 +57,9 @@ public interface AccountHotelService {
 	
 	/**
 	 * 根据酒店的ID 查看酒店的详细信息
+	 * @deprecated 建议用HotelDealService.getHotelInfo和HotelDealService.getHotelDetailsVO
+	 * @see HotelDealService.getHotelInfo
+	 * @see HotelDealService.getHotelDetailsVO
 	 * @param hotel_id
 	 * @return HotelInfoPO 
 	 */
