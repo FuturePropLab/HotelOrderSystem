@@ -137,4 +137,8 @@ public class OrderDataServiceImpl implements OrderDataService {
 		return listpo;
 	}
 
+	public List<String> getAllComment(String hotelID) throws RemoteException {
+		return orderDataHelper.getAllComment(hotelID);
+	}
+
 }

@@ -113,6 +113,9 @@ public interface HotelDataService extends Remote{
 	 * @throws RemoteException
 	 */
 	public List<HotelPO> searchHotelListFuzzy(String input) throws RemoteException;
+	
+	
+	//public 
 }
 
 

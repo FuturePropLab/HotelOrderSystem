@@ -2,6 +2,7 @@ package testHibernate;
 
 import java.rmi.RemoteException;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 
 import dataservice.OrderDataService;
@@ -15,25 +16,25 @@ public class testOrder {
 			OrderDataService orderDataService = new OrderDataServiceImpl();
 //			
 			SearchOrderInfo searchOrderInfo = 
-			new SearchOrderInfo(null, null, null, null, "大酒店", null, null);
+			new SearchOrderInfo(null, null, null, null, null, null, null);
 //			
 			List<OrderPO>  list = orderDataService.searchOrder(searchOrderInfo);
 			System.out.println(list.size());
-//			Iterator<OrderPO> it = list.iterator();
+			Iterator<OrderPO> it = list.iterator();
 //			
-//			while(it.hasNext()){
-//				OrderPO orderPO = it.next();
-//				System.out.println(orderPO.getHotelID());
-//				System.out.println(orderPO.getNumberOfRooms());
-//				System.out.println(orderPO.getOrderState());
-//				System.out.println(orderPO.getPrice());
-//				System.out.println(orderPO.getPlanedPeopleNumber());
-//				System.out.println(orderPO.getPlanedLeaveTime());
-//				System.out.println(orderPO.getRoomNumber());
-//				System.out.println(orderPO.getMark().getValue());
-//				System.out.println(orderPO.getAssessment());
-//				System.out.println();
-//			}
+			while(it.hasNext()){
+				OrderPO orderPO = it.next();
+				System.out.println(orderPO.getHotelID());
+				System.out.println(orderPO.getNumberOfRooms());
+				System.out.println(orderPO.getOrderState());
+				System.out.println(orderPO.getPrice());
+				System.out.println(orderPO.getPlanedPeopleNumber());
+				System.out.println(orderPO.getPlanedLeaveTime());
+				System.out.println(orderPO.getRoomNumber());
+				System.out.println(orderPO.getMark().getValue());
+				System.out.println(orderPO.getAssessment());
+				System.out.println();
+			}
 //			
 
 //			OrderAssessPO orderAssessPO = new OrderAssessPO("OD04", "HT001", 3.4, "not so good");
@@ -44,7 +45,7 @@ public class testOrder {
 //			orderSearchStorePO.setOrderState(OrderState.Executed);
 //			orderSearchStorePO.setStartTime( new Date());
 			
-			Calendar calendar = Calendar.getInstance();
+			//Calendar calendar = Calendar.getInstance();
 //			calendar.set(Calendar.HOUR_OF_DAY, 1); // 控制时
 //			calendar.set(Calendar.MINUTE, 8);    // 控制分
 //		    calendar.set(Calendar.SECOND, 0);    // 控制秒
@@ -76,7 +77,7 @@ public class testOrder {
 //			list.add("302");
 			
 			
-			//orderDataHelper.addCompleteOrderPO(new OrderPO("OD01"));			
+		//	System.out.println(orderDataHelper.getAllComment("HT001").size());		
 //			OrderDataHelper orderDataHelper = DataHelperUtils.getOrderDataHelper();
 //			OrderSearchStorePO orderSearchStorePO  = orderDataHelper.getOrderSearchStorePO("OD01");
 //			System.out.println(orderDataHelper.modifyOrderAssessPO

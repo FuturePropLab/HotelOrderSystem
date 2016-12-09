@@ -37,5 +37,13 @@ public interface OrderDataService extends Remote{
 	 * @return 符合条件的 列表
 	 */
 	public List<OrderPO> searchOrder(SearchOrderInfo searchOrderInfo)throws RemoteException;
+	
+	/**
+	 * 
+	 * @param hotelID
+	 * @return
+	 * @throws RemoteException
+	 */
+	public List<String> getAllComment(String hotelID) throws RemoteException;
 
 }
