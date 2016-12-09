@@ -117,8 +117,10 @@ public class OrderController implements OrderService{
 		orderVO.child=orderPO.isChild();
 		orderVO.orderState=orderPO.getOrderState();
 		orderVO.mark=orderPO.getMark();
+		System.out.println("change:         "+orderPO.getAssessment());
 		orderVO.assessment=orderPO.getAssessment();
 		return orderVO;
+	
 	}
 	
 	/**
@@ -198,6 +200,8 @@ public class OrderController implements OrderService{
 			return null;
 		}
 		try {
+			OrderPO orderPO  = orderDataService.findOrder(order_id);
+			System.out.println(orderPO.getAssessment());
 			return getOrderVO(orderDataService.findOrder(order_id));
 		} catch (RemoteException e) {
 			System.err.println(e.getCause().getMessage());

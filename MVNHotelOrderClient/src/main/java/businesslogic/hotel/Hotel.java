@@ -8,13 +8,11 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-import Exception.CustomerCreditNotEnoughException;
 import businesslogic.account.HotelAccountController;
+import businesslogic.order.HotelCommentImpl;
 import dataservice.HotelDataService;
 import po.HotelPO;
 import rmi.RemoteHelper;
-import stub.HotelDeal_Stub;
-import tools.ResultMessage_Account;
 import tools.ResultMessage_Hotel;
 import tools.SortType;
 import tools.StandardSearch;
@@ -175,6 +173,7 @@ public class Hotel {
 			e.printStackTrace();
 		}
 		HotelbriefVO hotelbriefVO = new HotelbriefVO(hotelPO);	
+		hotelbriefVO.imageuri = pictureDeal.downloadFrontPicture(hotel_id);
 		return hotelbriefVO;
 	}
 	/**
@@ -194,13 +193,9 @@ public class Hotel {
 	 */
 	public List<CommentVO> getComment(String hotel_id) {
 		// TODO Auto-generated method stub
-		MockOrder test = null;
-		try {
-			test = new MockOrder(null, null, null, null);
-		} catch (CustomerCreditNotEnoughException e) {
-			System.out.println("客户信用值不足");
-		}
-		return test.getComment();
+		
+		getComment getComment = new HotelCommentImpl();
+		return getComment.getComment(hotel_id);
 	}
 	
 	public  ResultMessage_Hotel modifyHotelDiscribtions (String hotelID , HotelDiscribtionsVO hotelDiscribtionsVO){
