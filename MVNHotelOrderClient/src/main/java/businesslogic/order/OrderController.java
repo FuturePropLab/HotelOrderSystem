@@ -8,6 +8,8 @@ import java.util.List;
 import Exception.CustomerCreditNotEnoughException;
 import businesslogic.credit.CreditController;
 import businesslogic.customer.CustomerDealController;
+import businesslogic.customer.OrderCustomerInfoImpl;
+import businesslogic.hotel.OrderHotelInfoImpl;
 import businesslogic.login.LoginController;
 import businesslogicservice.CreditLogDealService;
 import businesslogicservice.CustomerDealService;
@@ -129,7 +131,7 @@ public class OrderController implements OrderService{
 		if(orderInput==null){
 			return null;
 		}
-		Order order=new Order(orderInput, new MockCustomerInfo(), new MockHotelInfo(), orderDataService);
+		Order order=new Order(orderInput, new OrderCustomerInfoImpl(), new OrderHotelInfoImpl() , orderDataService);
 		//TODO: 暂时先用Mock代替
 		return order.saveOrder();
 	}

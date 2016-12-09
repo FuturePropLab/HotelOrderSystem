@@ -17,12 +17,13 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import tools.DateFormat;
 import tools.ResultMessage;
 import ui.customer.BookHotelController;
 import ui.hotel.HotelDetailController;
-import ui.main.Dialogs;
+import ui.main.DetailsController;
 import ui.main.RootLayoutController;
+import ui.utils.DateFormat;
+import ui.utils.Dialogs;
 import vo.HotelbriefVO;
 import vo.OrderInputVO;
 
@@ -31,7 +32,7 @@ import vo.OrderInputVO;
  * @author zjy
  *
  */
-public class OrderPreviewController {
+public class OrderPreviewController extends DetailsController{
 	private static Image yellowStar=new Image("file:./target/resources/images/star__selected.png");
 	private static Image greyStar=new Image("file:./target/resources/images/star_unselected.png");
 	protected RootLayoutController rootLayoutController;
@@ -115,7 +116,6 @@ public class OrderPreviewController {
 		
 
 		
-		RootLayoutController rootLayoutController = new RootLayoutController();//不知道加在哪里
 		try {
 			rootLayoutController.changeDetails("../customer/BookHotel.fxml");
 //			BookHotelController bookHotelController=(BookHotelController)rootLayoutController.getDetailsController();

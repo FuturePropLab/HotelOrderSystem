@@ -167,10 +167,15 @@ public class Hotel {
 	 * @return 
 	 */
 	public HotelbriefVO getHotelInfo(String hotel_id) {
-		// TODO Auto-generated method stub
-		HotelDeal_Stub test=new HotelDeal_Stub();
-		
-		return test.getHotelInfo(hotel_id);
+		HotelPO hotelPO = null;
+		try {
+			hotelPO = hotelDataService.getHotel(hotel_id);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		HotelbriefVO hotelbriefVO = new HotelbriefVO(hotelPO);	
+		return hotelbriefVO;
 	}
 	/**
 	 * 

@@ -1,6 +1,7 @@
 package businesslogic.login;
 
 import java.io.File;
+import java.net.StandardSocketOptions;
 import java.rmi.RemoteException;
 
 import dataservice.LoginCheckService;
@@ -49,6 +50,8 @@ public class Login {
 			this.username=username;
 			this.accountType=accountType;
 			this.accountID=loginCheckService.getUserID(username, password);
+			
+			System.out.println("ResultMessage_LoginCheck:   "+accountID);
 		}
 		return loginResult;
 	}

@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+import com.jfoenix.controls.JFXDatePicker;
+
 import Exception.NoSuchValueException;
 import Exception.OutOfBoundsException;
 import businesslogic.hotel.HotelDealController;
+import businesslogic.login.LoginController;
 import businesslogicservice.HotelDealService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +27,7 @@ import tools.SortType;
 import tools.Star;
 import ui.customer.BookHotelController;
 import ui.main.DetailsController;
+import ui.utils.DateFormat;
 import vo.HotelDetailsVO;
 import vo.HotelbriefVO;
 import vo.SearchHotelVO;
@@ -217,11 +221,7 @@ public class HotelSearchController extends DetailsController{
 	}
 	
 	private Date getDate(DatePicker datePicker) {
-		if(datePicker.getValue()==null){
-			return null;
-		}
-		return new Date(datePicker.getValue().getYear(), datePicker.getValue().getMonthValue(), 
-				datePicker.getValue().getDayOfMonth());
+		return DateFormat.getDate(datePicker);
 	}
 	
 	private PriceRange getPriceRange() throws NumberFormatException, OutOfBoundsException {
@@ -274,6 +274,7 @@ public class HotelSearchController extends DetailsController{
 			rootLayoutController.changeDetails("../customer/BookHotel.fxml");
 			//TODO 在订单填写界面写上相应的酒店信息
 			
+<<<<<<< HEAD
 
 			BookHotelController bookHotelController = 
 					(BookHotelController) rootLayoutController.getDetailsController();
@@ -282,6 +283,10 @@ public class HotelSearchController extends DetailsController{
 			bookHotelController = (BookHotelController)rootLayoutController.getDetailsController();
 
 			
+=======
+			BookHotelController bookHotelController = (BookHotelController)rootLayoutController.getDetailsController();
+			bookHotelController.setValue(LoginController.getInstance().getLogState().accountID, hotelID);
+>>>>>>> origin/master
 			
 		} catch (IOException e) {
 			e.printStackTrace();

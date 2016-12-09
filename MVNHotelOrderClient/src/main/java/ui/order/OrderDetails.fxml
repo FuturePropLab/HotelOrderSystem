@@ -173,7 +173,8 @@
                   </Label>
                </children>
             </Group>
-            <Group layoutX="348.0" layoutY="30.0">
+            <Line endY="735.0" layoutX="340.0" startY="15.0" />
+            <Group fx:id="checkInInfo" layoutX="348.0" layoutY="30.0">
                <children>
                   <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="237.0" stroke="BLACK" strokeType="INSIDE" width="248.0" />
                   <Label layoutX="17.0" layoutY="14.0" text="入住信息">
@@ -213,8 +214,7 @@
                   </Label>
                </children>
             </Group>
-            <Line endY="735.0" layoutX="340.0" startY="15.0" />
-            <Group layoutX="348.0" layoutY="287.0">
+            <Group fx:id="checkOutInfo" layoutX="348.0" layoutY="287.0">
                <children>
                   <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="136.0" stroke="BLACK" strokeType="INSIDE" width="245.0" />
                   <Label layoutX="17.0" layoutY="14.0" text="退房信息">
@@ -315,6 +315,16 @@
             <Hyperlink fx:id="hotelName" layoutX="94.0" layoutY="35.0" onAction="#handleHotelName" text="皇家酒店">
                <font>
                   <Font size="30.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink fx:id="checkIn" layoutX="416.0" layoutY="114.0" onAction="#handleCheckIn" text="办理入住" visible="false">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink fx:id="checkOut" layoutX="416.0" layoutY="316.0" onAction="#handleCheckOut" text="办理退房" visible="false">
+               <font>
+                  <Font size="24.0" />
                </font>
             </Hyperlink>
          </children>

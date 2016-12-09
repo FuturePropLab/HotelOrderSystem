@@ -47,8 +47,7 @@ public class HotelDealController implements HotelDealService {
 	}
 
 	public HotelbriefVO getHotelInfo(String hotel_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return hotel.getHotelInfo(hotel_id);
 	}
 
 	public List<DiscountVO_hotel> getHotelDiscount(String hotel_id) {

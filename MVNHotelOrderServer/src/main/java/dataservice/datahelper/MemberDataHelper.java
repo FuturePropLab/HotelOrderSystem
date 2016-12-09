@@ -18,4 +18,5 @@ public interface MemberDataHelper {
 		 */
 		
 		public MemberPO getMemberByID (String customerID);
+
 }

@@ -1,5 +1,7 @@
 package ui.customer;
 
+import businesslogic.customer.CustomerDealController;
+import businesslogic.member.MemberController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -7,7 +9,11 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import tools.MemberBelongType;
+import tools.MemberType;
 import ui.main.DetailsController;
+import vo.CustomerVO;
+import vo.MemberVO;
 
 /**
  * 客户信息界面的控制器
@@ -53,9 +59,19 @@ public class ClientInfoController extends DetailsController{
 	@FXML
 	private AnchorPane applyMessage;
 	
+	private String customerID;
+	
 	@FXML
 	private void handleSave(){
-		//TODO:调用blservice保存信息
+		CustomerVO customerVO =  new CustomerVO
+				(customerID, this.customerName.getText(), this.gender.getValue(),
+						this.contactWay.getText(), null, 0);
+		try {
+			CustomerDealController.getInstance().changeCustomerInfo(customerVO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	private void handleApplyMember(){
@@ -84,6 +100,58 @@ public class ClientInfoController extends DetailsController{
 	 * @param customerID 客户ID
 	 */
 	public void initValue(String customerID) {
+		this.customerID = customerID;
+		CustomerVO customerVO = null ;
 		//TODO:调用blservice获取客户信息并将组件的值填好
+		try {
+		   customerVO  =CustomerDealController.getInstance().getCustomerInfo(customerID);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(customerVO!=null){
+			this.gender.setValue(customerVO.gender);
+			this.credit.setText(String.valueOf(customerVO.credit));
+			this.customerName.setText(customerVO.customerName);
+			MemberVO memberVO = MemberController.getInstance().getMemberInfo(customerID);
+			
+			MemberType me = memberVO.memberType;
+			if(me.getType()== MemberBelongType.None){
+				this.applyMessage.setVisible(false);
+				this.memberType.setText("不是会员");
+				this.memberType.setVisible(true);
+				this.memberType_apply.getItems().clear();
+				this.memberType_apply.getItems().add("普通会员");
+				this.memberType_apply.getItems().add("企业会员");
+				this.memberType.setText("");
+				
+			}else if(me.getType()==MemberBelongType.Ordinary){
+				this.applyMessage.setVisible(false);
+				this.applyMember.setVisible(false);
+				this.memberType.setText("普通会员");
+				this.memberMessage.setVisible(true);
+				this.memberTypeInfo.setText("会员生日:");
+				this.memberTypeInfo.setVisible(true);
+				this.memberInfo.setText(me.getBirthday().toString());
+				this.memberInfo.setVisible(true);
+				this.level.setText(String.valueOf(me.getLevel()));
+				this.level.setVisible(true);
+				this.levelLable.setVisible(true);
+			}else{
+				this.applyMessage.setVisible(false);
+				this.applyMember.setVisible(false);
+				this.memberType.setText("企业会员");
+				this.memberMessage.setVisible(true);
+				this.memberTypeInfo.setText("企业名称:");
+				this.memberTypeInfo.setVisible(true);
+				this.memberInfo.setText(me.getCompanyName());
+				this.memberInfo.setVisible(true);
+				this.level.setText(String.valueOf(me.getLevel()));
+				this.level.setVisible(true);
+				this.levelLable.setVisible(true);
+			}
+			
+		}
 	}
 }

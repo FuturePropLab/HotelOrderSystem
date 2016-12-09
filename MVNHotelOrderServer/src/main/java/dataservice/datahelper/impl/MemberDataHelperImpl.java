@@ -46,6 +46,28 @@ public class MemberDataHelperImpl implements MemberDataHelper {
 		}
 	}
 
+	
+	public ResultMessage_Member addMemberPO(MemberPO memberPO) {
+		if("".equals(memberPO.getCustomer_ID()) || memberPO.getCustomer_ID()==null)
+			return ResultMessage_Member.Failed;
+		
+		MemberStorePO memberStorePO  = new MemberStorePO(memberPO);
+		
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		
+		try {
+			Transaction t = s.beginTransaction();
+			s.save(memberStorePO);
+			t.commit();
+			return ResultMessage_Member.Success;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return ResultMessage_Member.Failed;
+		}finally {
+			s.close();
+		}
+	}
+	
 	public MemberPO getMemberByID(String customerID) {
 		Session s = Hibernateutils.getSessionFactory().openSession();
 		MemberStorePO memberStorePO  = (MemberStorePO) s.load(MemberStorePO.class, customerID);

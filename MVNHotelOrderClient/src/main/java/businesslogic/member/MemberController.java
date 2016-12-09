@@ -22,7 +22,7 @@ public class MemberController implements MemberService{
 	private static MemberController memberController;
 	private MemberController() {
 		// TODO Auto-generated constructor stub
-		Member member = new Member();
+		this.member = new MemberManage();
 	} 
 	
 	

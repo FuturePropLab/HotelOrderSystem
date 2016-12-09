@@ -2,7 +2,6 @@ package tools;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Calendar;
 
 /**
  *  会员类型，包含会员的类型和会员类型信息，客户ID

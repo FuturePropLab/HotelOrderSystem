@@ -15,11 +15,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import tools.RoomType;
 import tools.TypeRoomInfo;
 import ui.main.DetailsController;
+import ui.utils.DateFormat;
 
 /**
  * 房间信息的控制器
@@ -54,6 +56,10 @@ public class RoomInfoController extends DetailsController{
 	private AnchorPane roomManage;
 	
 	@FXML
+	private void initialize() {
+		DateFormat.initDatePicker(date_from, date_to);
+	}
+	@FXML
 	private void handleRoomImage(){
 		if(true){
 			FileChooser fileChooser = new FileChooser();
@@ -87,6 +93,7 @@ public class RoomInfoController extends DetailsController{
 			roomList.getChildren().clear();
 			//TODO:调用blservice获取房间号码和状态，设置avaliableRoom totalRoom roomList的值，下面是一个例子
 			Hyperlink room=new Hyperlink("8887");
+			room.setFont(Font.font(24));
 			room.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e) -> {
 				//TODO:调用blservice删除这个房间，如果删除成功，更新相关组件的值，如果失败，弹窗提示原因
 			});
