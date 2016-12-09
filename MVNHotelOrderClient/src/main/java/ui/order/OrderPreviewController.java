@@ -16,12 +16,12 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import tools.DateFormat;
 import tools.ResultMessage;
 import ui.customer.BookHotelController;
 import ui.hotel.HotelDetailController;
-import ui.main.Dialogs;
 import ui.main.RootLayoutController;
+import ui.utils.DateFormat;
+import ui.utils.Dialogs;
 import vo.HotelbriefVO;
 import vo.OrderInputVO;
 

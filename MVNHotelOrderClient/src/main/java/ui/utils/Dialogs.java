@@ -1,4 +1,4 @@
-package ui.main;
+package ui.utils;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -44,8 +44,25 @@ public class Dialogs {
 		alert.show();
 	}
 	
-	@Deprecated
-	public static void showChoise(String message,String choise1,String choise2) {
+	/**
+	 * 提示用户选择选项
+	 * @deprecated 还没写
+	 * @param message 显示给用户的信息
+	 * @param choise1 选择1的名称
+	 * @param choise2 选择2的名称
+	 */
+	public static Choise showChoise(String message,String choise1,String choise2) {
 		//TODO
+		return Choise.choise1;
+	}
+	
+	/**
+	 * 用户的选择
+	 * @author zjy
+	 *
+	 */
+	public enum Choise{
+		choise1,
+		choise2
 	}
 }
