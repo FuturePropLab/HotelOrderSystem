@@ -24,7 +24,12 @@ public class MemberPO implements Serializable{
 	public void setMemberType(MemberType memberType) {
 		this.memberType = memberType;
 	}
-
+	
+	public MemberPO(String id){
+		super();
+		this.customer_ID  =id;
+	}
+	
 	/**
 	 * 默认的构造函数
 	 * @param customer_ID

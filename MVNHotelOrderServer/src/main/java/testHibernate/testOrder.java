@@ -2,24 +2,23 @@ package testHibernate;
 
 import java.rmi.RemoteException;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.List;
 
 import dataservice.OrderDataService;
 import dataservice.impl.OrderDataServiceImpl;
 import po.OrderPO;
-import tools.OrderState;
-import tools.RoomType;
+import po.SearchOrderInfo;
 
 public class testOrder {
 		public static void main(String[] args) throws RemoteException {
-//			OrderDataHelper orderDataHelper = DataHelperUtils.getOrderDataHelper();
+			//OrderDataHelper orderDataHelper = DataHelperUtils.getOrderDataHelper();
 			OrderDataService orderDataService = new OrderDataServiceImpl();
 //			
-//			SearchOrderInfo searchOrderInfo = 
-//			new SearchOrderInfo(null, null, null, null, "大酒店", null, null);
+			SearchOrderInfo searchOrderInfo = 
+			new SearchOrderInfo(null, null, null, null, "大酒店", null, null);
 //			
-//			List<OrderPO>  list = orderDataService.searchOrder(searchOrderInfo);
-//			System.out.println(list.size());
+			List<OrderPO>  list = orderDataService.searchOrder(searchOrderInfo);
+			System.out.println(list.size());
 //			Iterator<OrderPO> it = list.iterator();
 //			
 //			while(it.hasNext()){

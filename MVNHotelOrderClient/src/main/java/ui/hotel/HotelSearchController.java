@@ -7,6 +7,7 @@ import java.util.List;
 import Exception.NoSuchValueException;
 import Exception.OutOfBoundsException;
 import businesslogic.hotel.HotelDealController;
+import businesslogic.login.LoginController;
 import businesslogicservice.HotelDealService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -275,7 +276,7 @@ public class HotelSearchController extends DetailsController{
 			//TODO 在订单填写界面写上相应的酒店信息
 			
 			BookHotelController bookHotelController = (BookHotelController)rootLayoutController.getDetailsController();
-			
+			bookHotelController.setValue(LoginController.getInstance().getLogState().accountID, hotelID);
 			
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -20,7 +20,7 @@ public class CalculateHotelStrategy {
 	private List<StrategyVO_hotel> strategyList;
 	private OrderInputCalVO orderInputCalVO;
 
-	public double[] minus = new double[orderInputCalVO.days];
+	public double[] minus ;
 	// public HotelStrategy(OrderInputVO orderInput) {
 	// 桩程序
 	// DiscountGetService disDealService = new MockDiscount("hotel");
@@ -43,6 +43,7 @@ public class CalculateHotelStrategy {
 			e.printStackTrace();
 		}
 		this.orderInputCalVO = orderInput;
+		this.minus = new double[orderInputCalVO.days+1];
 	}
 
 	/**

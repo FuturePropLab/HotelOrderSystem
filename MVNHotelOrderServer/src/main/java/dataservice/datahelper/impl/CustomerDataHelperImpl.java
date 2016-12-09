@@ -98,13 +98,18 @@ public class CustomerDataHelperImpl implements CustomerDataHelper {
 	public ResultMessage_Modify modify(CustomerPO customerInfo) {
 		//Session s = Hibernateutils.getSessionFactory().openSession();
 		Session s = Hibernateutils.getSessionFactory().openSession();
+		CustomerPO cus = (CustomerPO) s.load(CustomerPO.class, customerInfo.getCustomerID());
+		int value = cus.getCredit();
+		s.close();
+		s =  Hibernateutils.getSessionFactory().openSession();
 		try{
 			Transaction t =s.beginTransaction();
 //			CustomerPO customerPO = (CustomerPO)s.load(CustomerPO.class, customerInfo.getCustomerID());  //加载id为 userid的accountPO
 //			if(customerPO==null){
 //				s.close();
 //				return ResultMessage_Modify.Failure;
-//			}			
+//			}		
+			customerInfo.setCredit(value);
 			s.update(customerInfo);;
 			t.commit();
 			return ResultMessage_Modify.Success;

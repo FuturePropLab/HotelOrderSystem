@@ -1,5 +1,6 @@
 package po;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -13,7 +14,7 @@ import tools.MemberBelongType;
 public class MemberStorePO {
 	private String customerID;
 	private MemberBelongType memberBelongType;
-	private Date birthday;
+	private LocalDate birthday;
 	private String companyName;
 	
 	
@@ -23,7 +24,7 @@ public class MemberStorePO {
 	}
 	
 	//默认的构造方法
-	public MemberStorePO(String customerID ,MemberBelongType memberBelongType,	Date birthday,
+	public MemberStorePO(String customerID ,MemberBelongType memberBelongType,	LocalDate birthday,
 	String companyName ){
 		this.birthday = birthday;
 		this.companyName = companyName;
@@ -56,11 +57,11 @@ public class MemberStorePO {
 		this.memberBelongType = memberBelongType;
 	}
 
-	public Date getBirthday() {
+	public LocalDate getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(LocalDate birthday) {
 		this.birthday = birthday;
 	}
 

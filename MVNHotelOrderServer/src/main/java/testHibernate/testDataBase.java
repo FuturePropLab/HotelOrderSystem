@@ -10,6 +10,7 @@ import dataservice.impl.HotelDataServiceImpl;
 
 public class testDataBase {
 		public static void main(String[] args) throws RemoteException  {
+			
 			HotelDataService hotelDataService = new HotelDataServiceImpl();
 //			CustomerPO customerPO = null;
 //			try {
@@ -27,7 +28,7 @@ public class testDataBase {
 //			while(it.hasNext()){
 //				System.out.println(it.next());
 //			}
-			System.out.println(hotelDataService.makeDir("./ImageData/HT001"));
+//			System.out.println(hotelDataService.makeDir("./ImageData/HT001"));
 			Hibernateutils.shutdown();
 		}
 }

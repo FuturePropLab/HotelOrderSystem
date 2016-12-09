@@ -6,6 +6,7 @@ import businesslogic.customer.CustomerDealController;
 import businesslogicservice.CustomerDealService;
 import dataservice.MemberDataService;
 import po.MemberPO;
+import rmi.RemoteHelper;
 import stub.MemberBL_Stub;
 import stub.MemberData_Stub;
 import tools.MemberBelongType;
@@ -24,13 +25,18 @@ public class MemberManage {
 	private MemberDataService memberDataService;
 	public MemberData_Stub memberStub;
 	public MemberVO getMemberInfo(String customer_id) {
-		memberStub = new MemberData_Stub();
+//		memberStub = new MemberData_Stub();
+		memberDataService = RemoteHelper.getInstance().getMemberDataService();
 		if(customer_id==null)return null;
 		else {
 			MemberPO memberpo;
 			
 //				memberpo = memberDataService.getMember(customer_id);
-				memberpo = memberStub.getMember(customer_id);
+				try {
+					memberpo = memberDataService.getMember(customer_id);
+				} catch (RemoteException e) {
+					return null;
+				}
 				return new MemberVO(memberpo.getCustomer_ID(),memberpo.getMemberType());
 			
 //			return new MemberVO(memberpo.getCustomer_ID(),memberpo.getMemberType());
