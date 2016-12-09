@@ -107,7 +107,7 @@ public class OrderPO implements Serializable  {
 		this.child=orderNotChangePO.isChild();
 		this.planedLeaveTime = orderNotChangePO.getPlanedLeaveTime();
 		this.orderState=orderSearchStorePO.getOrderState();
-		
+		this.assessment=orderAssessPO.getAssessment();
 		//deal with the mark
 		try {
 			this.mark=new Mark(orderAssessPO.getMarkValue());
@@ -129,7 +129,7 @@ public class OrderPO implements Serializable  {
 				}
 			}
 		}
-		this.assessment=orderAssessPO.getAssessment();
+		
 	}
 	
 	

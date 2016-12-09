@@ -9,6 +9,7 @@ import com.jfoenix.controls.JFXDatePicker;
 import Exception.NoSuchValueException;
 import Exception.OutOfBoundsException;
 import businesslogic.hotel.HotelDealController;
+import businesslogic.login.LoginController;
 import businesslogicservice.HotelDealService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -273,8 +274,19 @@ public class HotelSearchController extends DetailsController{
 			rootLayoutController.changeDetails("../customer/BookHotel.fxml");
 			//TODO 在订单填写界面写上相应的酒店信息
 			
-			BookHotelController bookHotelController = (BookHotelController)rootLayoutController.getDetailsController();
+<<<<<<< HEAD
+
+			BookHotelController bookHotelController = 
+					(BookHotelController) rootLayoutController.getDetailsController();
 			
+
+			bookHotelController = (BookHotelController)rootLayoutController.getDetailsController();
+
+			
+=======
+			BookHotelController bookHotelController = (BookHotelController)rootLayoutController.getDetailsController();
+			bookHotelController.setValue(LoginController.getInstance().getLogState().accountID, hotelID);
+>>>>>>> origin/master
 			
 		} catch (IOException e) {
 			e.printStackTrace();

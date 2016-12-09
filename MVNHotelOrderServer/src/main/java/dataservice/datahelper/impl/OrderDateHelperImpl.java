@@ -331,6 +331,7 @@ public class OrderDateHelperImpl implements OrderDataHelper {
 		if(orderNotChangePO ==null)  return null;
 		OrderAssessPO orderAssessPO = getOrderAssessPO(orderID);
 		if(orderAssessPO ==null)  return null;
+		System.out.println("not Null");
 		List<String>  list = getOrderRoomPO(orderID);
 		
 		OrderPO orderPO = new OrderPO(orderSearchStorePO, orderNotChangePO, orderAssessPO);
@@ -479,6 +480,21 @@ public class OrderDateHelperImpl implements OrderDataHelper {
 		List<OrderSearchStorePO>  list = cr.list();	
 		s.close();
 		return list;
+	}
+
+	public List<String> getAllComment(String hotelID) {
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		Criteria cr = s.createCriteria(OrderAssessPO.class);
+		cr.add(Restrictions.eq("hotelID", hotelID));
+		List<OrderAssessPO>  orderAssessPOs = cr.list();
+		s.close();
+		List<String> ans =new ArrayList<String>();
+		for (int i = 0; i < orderAssessPOs.size(); i++) {
+			String comment = orderAssessPOs.get(i).getAssessment();
+			if(comment!=null)
+			ans.add(comment);
+		}
+		return ans;
 	}
 
 	

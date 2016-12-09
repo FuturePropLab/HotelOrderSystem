@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.sun.org.apache.regexp.internal.recompile;
 
+
 import Exception.CustomerCreditNotEnoughException;
 import businesslogic.customer.CustomerDealController;
 import businesslogic.hotel.HotelDealController;
@@ -34,7 +35,7 @@ import vo.OrderInputVO;
 public class OrderPreviewController extends DetailsController{
 	private static Image yellowStar=new Image("file:./target/resources/images/star__selected.png");
 	private static Image greyStar=new Image("file:./target/resources/images/star_unselected.png");
-
+	protected RootLayoutController rootLayoutController;
 	@FXML
 	private Hyperlink hotelName;
 	@FXML
@@ -103,6 +104,17 @@ public class OrderPreviewController extends DetailsController{
 	@FXML
 	private void handleCancel() {
 		//TODO:返回填写订单界面
+
+		try {
+			rootLayoutController.changeDetails("../customer/BookHotel.fxml");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		BookHotelController bookHotelController=rootLayoutController.ge;
+		
+		
+
 		
 		try {
 			rootLayoutController.changeDetails("../customer/BookHotel.fxml");
@@ -111,6 +123,7 @@ public class OrderPreviewController extends DetailsController{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
 	}
 	
 	/**

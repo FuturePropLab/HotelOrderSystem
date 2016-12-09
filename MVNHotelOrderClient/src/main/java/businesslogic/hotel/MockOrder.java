@@ -29,4 +29,10 @@ public class MockOrder extends Order implements getComment{
 		return list;
 	}
 
+	@Override
+	public List<CommentVO> getComment(String hotelID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

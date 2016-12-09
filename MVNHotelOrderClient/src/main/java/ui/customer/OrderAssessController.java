@@ -1,12 +1,19 @@
 package ui.customer;
 
+import java.net.URI;
+
+import businesslogic.hotel.HotelDealController;
+import businesslogic.order.OrderController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import tools.Mark;
 import ui.main.DetailsController;
+import vo.HotelbriefVO;
+import vo.OrderVO;
 
 /**
  * 订单评价界面的控制器
@@ -40,7 +47,7 @@ public class OrderAssessController extends DetailsController{
 	private Button submit;
 	@FXML
 	private Button cancel;
-	private int mark=4;//初始化时默认评分为4分
+	private int mark=5;//初始化时默认评分为4分
 	
 	@FXML
 	private void initialize() {
@@ -89,6 +96,25 @@ public class OrderAssessController extends DetailsController{
 	}
 	
 	public void initValue(String orderID) {
+		initialize();
+		OrderVO orderVO = OrderController.getInstance().checkSingleOrder(orderID);
+		Mark mark = orderVO.mark;
+		changeStarValue((int)mark.getValue());
+		System.out.println(orderVO.assessment);
+		if(orderVO.assessment!=null){
+			System.out.println(orderVO.assessment);
+			this.assessment.setText(orderVO.assessment);
+		}
+		String hotelID = orderVO.hotelID;
+		HotelbriefVO hotelbriefVO = HotelDealController.getInstance().getHotelInfo(hotelID);
+		this.hotelName.setText(hotelbriefVO.hotelName);
+		URI uri = hotelbriefVO.imageuri;
+		System.out.println(uri);
+		if(uri!=null){
+			Image image = new Image(uri.toString());
+			this.hotelImage.setImage(image);
+		}
 		//TODO:设置组件的值，如果订单不是已执行状态或者已经评价过，提示用户，调用handleCancel()
+		
 	}
 }

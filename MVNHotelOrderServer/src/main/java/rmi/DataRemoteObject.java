@@ -281,5 +281,8 @@ OrderDataService,CreditDataService, MemberDataService{
 	public MemberPO getMember(String customer_id) throws RemoteException{
 		return memberDataService.getMember(customer_id);
 	}
+	public List<String> getAllComment(String hotelID) throws RemoteException {
+		return orderDataService.getAllComment(hotelID);
+	}
 
 }

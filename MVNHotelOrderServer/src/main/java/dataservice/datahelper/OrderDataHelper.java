@@ -103,6 +103,12 @@ public interface OrderDataHelper {
 	 */
 	public boolean  isValidTime(String orderID , Date date);
 	
+	/**
+	 * get all comment
+	 * @param hotelID
+	 * @return
+	 */
+	public List<String>  getAllComment(String hotelID);
 	
 
 }
