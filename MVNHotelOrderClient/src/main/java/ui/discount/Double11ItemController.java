@@ -36,11 +36,11 @@ public class Double11ItemController extends ItemController{
 		handleFestivalDate();
 	}
 	
-	@Override
-	protected boolean isFinished() {
-		return startTime.getValue()!=null && endTime.getValue()!=null && festivalDate_from.getValue()!=null 
-				&& festivalDate_to.getValue()!=null;
-	}
+//	@Override
+//	protected boolean isFinished() {
+//		return startTime.getValue()!=null && endTime.getValue()!=null && festivalDate_from.getValue()!=null 
+//				&& festivalDate_to.getValue()!=null;
+//	}
 	
 	@Override
 	protected void disableControls() {

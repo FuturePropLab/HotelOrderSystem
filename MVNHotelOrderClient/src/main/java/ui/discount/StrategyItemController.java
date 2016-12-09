@@ -1,12 +1,10 @@
 package ui.discount;
 
-import java.util.Date;
-
+import businesslogic.discount.DiscountHotelController;
+import businesslogic.discount.DiscountWebController;
+import businesslogicservice.DiscountHotelService;
+import businesslogicservice.DiscountWebService;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Accordion;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -68,6 +66,9 @@ public abstract class StrategyItemController {
 		else {
 			disableControls();
 			//TODO: 调用blservice删除策略
+			DiscountWebService discountWebService = DiscountWebController.getInstance();
+//			String discountID = null; 
+//			discountWebService.deleteDiscount(discountID);
 		}
 	}
 	

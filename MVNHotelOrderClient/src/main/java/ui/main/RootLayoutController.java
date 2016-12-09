@@ -1,4 +1,4 @@
-package ui.main;
+﻿package ui.main;
 
 import java.io.IOException;
 
@@ -61,16 +61,16 @@ public class RootLayoutController {
 	@FXML
 	private void initialize() {
 		try {
-
-			 changeFullLayout("../login/Login.fxml");
+//			 changeFullLayout("../login/Login.fxml");
 //			 changeDetails("../order/OrderList.fxml");
 
 //			 changeDetails("../hotel/HotelDetail.fxml");
 			// changeDetails("../room/RoomInfo.fxml");
 //			changeDetails("../order/OrderDetails.fxml");
 //			 changeDetails("../discount/HotelDiscount.fxml");
+			changeDetails("../customer/OrderAssess.fxml");
 
-//			changeGuid("GuideUI.fxml");
+			changeGuid("GuideUI.fxml");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

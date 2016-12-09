@@ -34,12 +34,12 @@ public class CompanyItemController extends ItemController{
 	protected void setTitle() {
 		handleCompanyName();
 	}
-	
-	@Override
-	protected boolean isFinished() {
-		return startTime.getValue()!=null && endTime.getValue()!=null && companyName.getText()!=null 
-				&& companyName.getText().length()>0;
-	}
+//	
+//	@Override
+//	protected boolean isFinished() {
+//		return startTime.getValue()!=null && endTime.getValue()!=null && companyName.getText()!=null 
+//				&& companyName.getText().length()>0;
+//	}
 	
 	@Override
 	protected void disableControls() {

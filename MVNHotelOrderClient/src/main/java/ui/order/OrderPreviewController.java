@@ -2,6 +2,9 @@ package ui.order;
 
 import java.io.IOException;
 
+import com.sun.org.apache.regexp.internal.recompile;
+
+
 import Exception.CustomerCreditNotEnoughException;
 import businesslogic.customer.CustomerDealController;
 import businesslogic.hotel.HotelDealController;
@@ -16,6 +19,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import tools.DateFormat;
 import tools.ResultMessage;
+import ui.customer.BookHotelController;
+import ui.hotel.HotelDetailController;
 import ui.main.Dialogs;
 import ui.main.RootLayoutController;
 import vo.HotelbriefVO;
@@ -68,7 +73,9 @@ public class OrderPreviewController {
 	private Hyperlink confirm;
 	@FXML
 	private Hyperlink cancel;
+	
 	private OrderInputVO orderInputVO;
+
 	
 	@FXML
 	private void handleConfirm() {
@@ -81,6 +88,13 @@ public class OrderPreviewController {
 		}
 		if(resultMessage.equals(ResultMessage.Exist)){
 			//TODO:
+			
+			try {
+				orderService.createOrders(orderInputVO);
+			} catch (CustomerCreditNotEnoughException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		else {
 			Dialogs.showMessage("下单失败");
@@ -89,6 +103,7 @@ public class OrderPreviewController {
 	@FXML
 	private void handleCancel() {
 		//TODO:返回填写订单界面
+
 		try {
 			rootLayoutController.changeDetails("../customer/BookHotel.fxml");
 		} catch (IOException e) {
@@ -98,6 +113,17 @@ public class OrderPreviewController {
 //		BookHotelController bookHotelController=rootLayoutController.ge;
 		
 		
+
+		
+		RootLayoutController rootLayoutController = new RootLayoutController();//不知道加在哪里
+		try {
+			rootLayoutController.changeDetails("../customer/BookHotel.fxml");
+//			BookHotelController bookHotelController=(BookHotelController)rootLayoutController.getDetailsController();
+//			 bookHotelController.setValue();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 	
 	/**

@@ -1,4 +1,4 @@
-package ui.hotel;
+﻿package ui.hotel;
 
 import java.io.IOException;
 import java.util.Date;
@@ -274,9 +274,13 @@ public class HotelSearchController extends DetailsController{
 			rootLayoutController.changeDetails("../customer/BookHotel.fxml");
 			//TODO 在订单填写界面写上相应的酒店信息
 			
+
 			BookHotelController bookHotelController = 
 					(BookHotelController) rootLayoutController.getDetailsController();
 			
+
+			bookHotelController = (BookHotelController)rootLayoutController.getDetailsController();
+
 			
 			
 		} catch (IOException e) {
