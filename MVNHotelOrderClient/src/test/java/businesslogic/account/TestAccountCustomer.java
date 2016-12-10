@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.Test;
 
 import businesslogicservice.AccountCustomerService;
+import tools.ResultMessage_Account;
 import vo.AccountVO;
 import vo.CustomerAccountVO;
 import vo.CustomerSearchVO;
@@ -91,6 +92,48 @@ public class TestAccountCustomer {
 		assertEquals("cyy", account.getUsername("00005"));
 //		assertEquals(accountVO.password, account.getCustomerAccount("123").password);
 	}
+	@Test
+	public void testGetCustomerDetail(){
+		Account account = new Account();
+		try {
+			assertEquals("001", account.getCustomerDetail("001").customerID);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	@Test
+	public void testResetPassword(){
+		Account account = new Account();
+		assertEquals(ResultMessage_Account.InvalidInput,account.resetPassword("00005", "123"));
+	}
+	@Test
+	public void testSearchCustomerAccount() {
+		Account account = new Account();
+		CustomerSearchVO customerSearchVO = new CustomerSearchVO(null, "wsw", null);
+		try {
+			assertEquals(3, account.searchCustomerAccount(customerSearchVO).size() );
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			assertEquals("wsw", account.searchCustomerAccount(customerSearchVO).get(0).userid );
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			assertEquals("wsw2", account.searchCustomerAccount(customerSearchVO).get(1).userid);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	  
+	}
+	
 }
 
 		

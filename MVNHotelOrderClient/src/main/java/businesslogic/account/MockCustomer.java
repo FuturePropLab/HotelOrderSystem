@@ -5,6 +5,7 @@ import java.util.List;
 import businesslogic.customer.Customer;
 import vo.CustomerSearchVO;
 import vo.CustomerVO;
+import vo.MemberVO;
 
  /**
   * MockCustomer 模拟实现同层调用接口
@@ -28,7 +29,12 @@ public class MockCustomer  implements CustomerInfo{
 		this.customerList = customerList;
 		this.customerVO = customerVO;
 	}
+	public MockCustomer() {
+		// TODO Auto-generated constructor stub
+	}
 	public CustomerVO getCustomerDetail(String customer_id) {
+		CustomerVO customerVO = new CustomerVO("001", "cyy",
+		       "nan","12345", null,0);
 		return customerVO;
 	}
 

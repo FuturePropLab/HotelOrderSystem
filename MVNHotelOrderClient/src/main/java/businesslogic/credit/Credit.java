@@ -91,7 +91,7 @@ public class Credit {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}*/  //会员等级信息不在这里同步了
-		creditDataService = new CreditData_Stub();//test
+//		creditDataService = new CreditData_Stub();//test
 		ResultMessage resultMessage;
 		try {
 			resultMessage = creditDataService.changeCredit(order.getCustomer().customerID, result);
@@ -135,7 +135,7 @@ public class Credit {
 	 * @return List<CreditlogVO> 
 	 */
 	public List<CreditlogVO> getLogList(String customer_id) {
-		creditDataService = new CreditData_Stub();
+//		creditDataService = new CreditData_Stub();
 		
 		List<CreditlogVO> logList = new ArrayList<CreditlogVO>();
 		List<CreditLogPO> list = null;
@@ -201,11 +201,11 @@ public class Credit {
 	 * @throws RemoteException 
 	 */
 	public int levelUpdate(String customer_id) throws RemoteException{
-//		CustomerInfoforCredit customerInfo = CustomerInfoforCreditImp.getInstance();
-		CustomerInfoforCredit customerInfo  = new MockCustomer();//test
+		CustomerInfoforCredit customerInfo = CustomerInfoforCreditImp.getInstance();
+//		CustomerInfoforCredit customerInfo  = new MockCustomer();//test
 		int result = customerInfo.getCustomerInfo(customer_id).credit;
-//		DiscountWebController discountWeb =  DiscountWebController.getInstance();
-		MockDiscount discountWeb = new MockDiscount();//test
+		DiscountWebController discountWeb =  DiscountWebController.getInstance();
+//		MockDiscount discountWeb = new MockDiscount();//test
 		
 		int [] uplevel =new int[4];
 		
@@ -273,6 +273,6 @@ public class Credit {
 	
 	
 	public Credit(){
-		this.creditDataService = new  CreditData_Stub();
+//		this.creditDataService = new CreditDataService();
 	}
 }

@@ -41,7 +41,7 @@ public class Customer {
 	 */
 	 
 	public ResultMessage_signUp addCustomer(CustomerInputVO customerInput) throws RemoteException{
-		CustomerSignup_Stub test=new CustomerSignup_Stub();
+//		CustomerSignup_Stub test=new CustomerSignup_Stub();
 		
 	
 		
@@ -87,7 +87,7 @@ public class Customer {
 		//CustomerDeal_Stub test=new CustomerDeal_Stub();
 		//MockMember test2=new MockMember();
 		//test2.customer_ID_test=customer_id;
-		customerdata = new CustomerData_Stub();//test
+//		customerdata = new CustomerData_Stub();//test
 		CustomerPO cus = customerdata.find(customer_id);
 	//	customerStub = new CustomerDeal_Stub();
 		
@@ -107,7 +107,7 @@ public class Customer {
 	 * @throws RemoteException 
 	 */
 	public ResultMessage_Modify changeCustomerInfo(CustomerVO customerInfo) throws RemoteException{
-		CustomerDeal_Stub test=new CustomerDeal_Stub();
+//		CustomerDeal_Stub test=new CustomerDeal_Stub();
 		//MemberVO membervo = customerInfo.membervo;
 		//MemberPO memberpo = new MemberPO(membervo.customer_ID,membervo.memberType);	
 		CustomerPO newcustomerInfo = new CustomerPO(customerInfo.customerID,customerInfo.customerName,customerInfo.gender,customerInfo.telephone,null,customerInfo.credit);
@@ -130,7 +130,7 @@ public class Customer {
 	 */
 	public List<CustomerVO> searchCustomer(CustomerSearchVO customerSearchVO) throws RemoteException{
 //		CustomerDeal_Stub test=new CustomerDeal_Stub();
-		customerdata = new CustomerData_Stub();
+//		customerdata = new CustomerData_Stub();
 		List <CustomerPO> customerPOlist = customerdata.searchCustomer();
 		
 		//show howmuch 
