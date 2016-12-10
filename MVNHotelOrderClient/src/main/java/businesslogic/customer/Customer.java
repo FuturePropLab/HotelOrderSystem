@@ -87,6 +87,7 @@ public class Customer {
 		//CustomerDeal_Stub test=new CustomerDeal_Stub();
 		//MockMember test2=new MockMember();
 		//test2.customer_ID_test=customer_id;
+		customerdata = new CustomerData_Stub();//test
 		CustomerPO cus = customerdata.find(customer_id);
 	//	customerStub = new CustomerDeal_Stub();
 		

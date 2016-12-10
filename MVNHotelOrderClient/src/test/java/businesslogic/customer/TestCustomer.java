@@ -1,11 +1,20 @@
 package businesslogic.customer;
 
+import static org.junit.Assert.assertEquals;
+
+import java.rmi.RemoteException;
 import java.util.Iterator;
 import java.util.List;
 
+import org.junit.Test;
+
 import businesslogicservice.CustomerDealService;
+import tools.MemberType;
+import tools.ResultMessage_signUp;
+import vo.CustomerInputVO;
 import vo.CustomerSearchVO;
 import vo.CustomerVO;
+import vo.MemberVO;
 
 public class TestCustomer {
 
@@ -47,6 +56,34 @@ public class TestCustomer {
 		}*/
 		
 
-
+@Test
+	public void testGetCustomerInfo(){
+	String customer_id="123";
+	Customer customer = new Customer();
+	MemberType memberType = new MemberType("123");
+	MemberVO membervo  = new MemberVO("123", memberType);
+	CustomerVO customerVO  = new CustomerVO(customer_id, "王帅惟", "男", "15050522805", membervo,34);
+	try {
+		assertEquals(customerVO.customerID,customer.getCustomerInfo(customer_id).customerID);
+	} catch (RemoteException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
+@Test
+	public void testAddCustomer(){
+	Customer customer = new Customer();
+	CustomerInputVO test=new CustomerInputVO("xx","xxx","xxx", "12345678A", "xx");
+	try {
+		assertEquals(ResultMessage_signUp.Wrong,customer.addCustomer(test));
+	} catch (RemoteException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
+@Test
+	public void testSearch(){
+	
+}
 
 }

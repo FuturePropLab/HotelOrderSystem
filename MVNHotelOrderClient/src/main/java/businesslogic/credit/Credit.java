@@ -91,7 +91,7 @@ public class Credit {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}*/  //会员等级信息不在这里同步了
-		
+		creditDataService = new CreditData_Stub();//test
 		ResultMessage resultMessage;
 		try {
 			resultMessage = creditDataService.changeCredit(order.getCustomer().customerID, result);
