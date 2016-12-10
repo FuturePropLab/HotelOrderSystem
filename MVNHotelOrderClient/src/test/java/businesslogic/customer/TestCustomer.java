@@ -95,7 +95,14 @@ public class TestCustomer {
 @Test
 	public void testSearch2(){
 	Customer customer = new Customer();
-	
+//	String telephone,String customernName ,String gender
+	CustomerSearchVO searchVO = new CustomerSearchVO(null,"陈语嫣","女");
+	try {
+		assertEquals("CS005", customer.searchCustomer(searchVO).get(0).customerID);
+	} catch (RemoteException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 }
 
 }

@@ -1,11 +1,16 @@
 package businesslogic.account;
 
+import static org.junit.Assert.*;
+
 import java.rmi.RemoteException;
 import java.util.Iterator;
 import java.util.List;
 
+import org.junit.Test;
+
 import businesslogicservice.AccountCustomerService;
 import vo.AccountVO;
+import vo.CustomerAccountVO;
 import vo.CustomerSearchVO;
 
 //
@@ -78,9 +83,13 @@ public class TestAccountCustomer {
 //	}
 //
 // 
-	public static void main(String[] args) throws RemoteException {
-		
-		
+	@Test
+	public void testGetCustomerAccount() {
+		Account account = new Account();
+		CustomerAccountVO accountVO = new CustomerAccountVO("123", "wsw", "qisini");
+		assertEquals("INVALID_INPUT", account.getUsername("123"));
+		assertEquals("cyy", account.getUsername("00005"));
+//		assertEquals(accountVO.password, account.getCustomerAccount("123").password);
 	}
 }
 

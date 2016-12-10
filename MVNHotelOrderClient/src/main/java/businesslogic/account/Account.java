@@ -81,6 +81,8 @@ public class Account {
 		}
 		AccountPO accountPO;
 		try {
+//			accountPO = accountDataService.getAccountByUserName(username);
+			accountDataService = new AccountData_stub();
 			accountPO = accountDataService.getAccountByUserName(username);
 			if(accountPO==null)
 				return usrname_notexits;
@@ -163,7 +165,8 @@ public class Account {
 		}
 		AccountPO accountPO;
 		try {
-			accountPO = accountDataService.getAccountByUserName(userId);
+			accountDataService = new AccountData_stub();
+			accountPO = accountDataService.getAccountByID(userId);
 			if(accountPO==null)
 				return usrID_notexits;
 			return accountPO.getUsername();

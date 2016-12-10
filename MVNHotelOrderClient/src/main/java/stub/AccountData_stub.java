@@ -102,11 +102,17 @@ public class AccountData_stub implements AccountDataService{
 
 	public AccountPO getAccountByUserName(String username) {
 		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	public AccountPO getAccountByID(String userid) {
 		// TODO Auto-generated method stub
+		if(userid =="00005"){
+//			String id , String username , String password , AccountType accountType
+			AccountPO accountPO = new AccountPO("00005","cyy","cyy",AccountType.Customer);
+			return accountPO;
+		}
 		return null;
 	}
 
@@ -124,6 +130,7 @@ public class AccountData_stub implements AccountDataService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 
 
 
