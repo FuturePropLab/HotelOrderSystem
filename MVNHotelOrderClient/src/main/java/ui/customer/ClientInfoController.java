@@ -61,6 +61,13 @@ public class ClientInfoController extends DetailsController{
 	
 	private String customerID;
 	
+	
+	@FXML
+	private void initialize(){
+		memberType_apply.getItems().setAll("普通会员","企业会员");
+		memberType_apply.setValue("普通会员");
+	}
+	
 	@FXML
 	private void handleSave(){
 		CustomerVO customerVO =  new CustomerVO
