@@ -51,7 +51,7 @@ public class WebDiscountController extends DetailsController{
     	
     	//下面是一个例子
     	Period_WebItemController period_WebItemController=
-    			(Period_WebItemController)addTitlePane(specialDayList,"SpecialDayItem.fxml");
+    			(Period_WebItemController)addTitlePane(specialDayList,"Period_WebItem.fxml");
     	period_WebItemController.setValue("未开始", 2.2, new Date(2015, 10, 19), new Date(2015, 10, 20));
     	VIPAndBusinessCircle_WebItemController vipAndBusinessCircleItemController=
     			(VIPAndBusinessCircle_WebItemController)addTitlePane(VIPAndBusinessCircleList,"VIPAndBusinessCircleItem.fxml");
@@ -89,7 +89,7 @@ public class WebDiscountController extends DetailsController{
     public void addNewItem(ItemType itemType) {
 		switch (itemType) {
 		case SpecialDay:
-			addTitlePane(specialDayList,"SpecialDayItem.fxml");
+			addTitlePane(specialDayList,"Period_WebItem.fxml");
 			break;
 		case VIPAndBusinessCircle:
 			addTitlePane(VIPAndBusinessCircleList,"VIPAndBusinessCircleItem.fxml");

@@ -87,15 +87,15 @@ public class HotelDiscountController extends DetailsController{
     	
     	company_HotelItemController.setValue("title", "未开始", "无", 9.5, LocalDate.of(2016, 12, 4),LocalDate.of(2016, 12, 6), true);
     	company_HotelItemController.setCompanyName("companyName");
-    	Period_HotelItemController period_HotelItemController=(Period_HotelItemController)addTitlePane(double11List,"Double11Item.fxml");
+    	Period_HotelItemController period_HotelItemController=(Period_HotelItemController)addTitlePane(double11List,"Period_HotelItem.fxml");
     	period_HotelItemController.setValue("title", "未开始", "无", 9.5, LocalDate.of(2016, 12, 4),LocalDate.of(2016, 12, 6), true);
     	period_HotelItemController.setFestivalDate(LocalDate.of(2016, 12, 4),LocalDate.of(2016, 12, 6));
     	//上面是一个例子
     	
     	addTitlePane(birthdayList,"BirthdayItem.fxml");
     	addTitlePane(overThreeRoomsList,"OverThreeRoomsItem.fxml");
-    	
-    	addTitlePane(double11List,"Double11Item.fxml");
+    	addTitlePane(companyList,"CompanyItem.fxml");
+    	addTitlePane(double11List,"Period_HotelItem.fxml");
     }
     private HotelItemController addTitlePane(Accordion accordion,String fxml) {
     	try {       	
@@ -130,7 +130,7 @@ public class HotelDiscountController extends DetailsController{
 			addTitlePane(companyList,"CompanyItem.fxml");
 			break;
 		case DOUBLE11:
-			addTitlePane(double11List,"Double11Item.fxml");
+			addTitlePane(double11List,"Period_HotelItem.fxml");
 			break;
 		default:
 			break;

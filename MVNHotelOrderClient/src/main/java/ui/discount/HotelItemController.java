@@ -129,5 +129,6 @@ public abstract class HotelItemController {
 		this.endTime.setPromptText(endTime.toString());
 		this.superposition.setSelected(superposition);
 		this.delete.setText("删 除");//字中间有空格
+		setTitle();
 	}
 }
