@@ -150,9 +150,13 @@ public class RootLayoutController {
 	 *             FXMLLoader.load(URL location)加载失败时
 	 */
 	public void changeGuid(String fxml) throws IOException {
-		Parent child = (Parent) FXMLLoader.load(getClass().getResource(fxml));
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource(fxml));
+		Parent child = (Parent) loader.load();
 		guid.getChildren().clear();
 		guid.getChildren().addAll(child);
+		guideUIController = loader.getController();
+		guideUIController.setRootLayoutController(this);
 	}
 
 	/**
