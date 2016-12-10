@@ -21,6 +21,7 @@ import tools.OrderState;
 import tools.ResultMessage;
 import ui.customer.OrderAssessController;
 import ui.hotel.HotelDetailController;
+import ui.hotelworker.CheckInAndOutInfoController;
 import ui.main.DetailsController;
 import ui.utils.DateFormat;
 import vo.CustomerVO;
@@ -131,16 +132,32 @@ public class OrderDetailsController extends DetailsController{
 	@FXML
 	private void handleCheckIn(){
 		//TODO:跳转到入住和退房界面
+		try {
+			rootLayoutController.changeDetails("../hotelworker/CheckInAndOutInfo.fxml");
+			CheckInAndOutInfoController checkInAndOutInfoController = (CheckInAndOutInfoController)rootLayoutController.getDetailsController();
+			checkInAndOutInfoController.initValue(orderID.getText());//check in 与 check out 的 init应该为不同的方法，由于给的自由太小，那边的不敢动你的，再商议
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	@FXML
+	private void handleCheckOut(){ // 方法名称应该是弄反了 ,我调过来了 @lwy
+		//TODO:跳转到入住和退房界面
+		try {
+			rootLayoutController.changeDetails("../hotelworker/CheckInAndOutInfo.fxml");
+			CheckInAndOutInfoController checkInAndOutInfoController = (CheckInAndOutInfoController)rootLayoutController.getDetailsController();
+			checkInAndOutInfoController.initValue(orderID.getText());//check in 与 check out 的 init应该为不同的方法，由于给的自由太小，那边的不敢动你的，再商议
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	private void handleGoTOAssess(){
-		//TODO:跳转到入住和退房界面
-	}
-	@FXML
-	private void handleCheckOut(){
 		//TODO:跳转到评价订单界面
 		try {
-			rootLayoutController.changeDetails("../customer/OrderAssess.fxml");
+			rootLayoutController.changeDetails("../hotelworker/CheckInAndOutInfo.fxml");
 			OrderAssessController orderAssessController=(OrderAssessController)rootLayoutController.getDetailsController();
 //			orderAssessController.init();暂无初始化
 		} catch (IOException e) {
