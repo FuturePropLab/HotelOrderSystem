@@ -2,6 +2,8 @@ package ui.guid;
 
 import org.w3c.dom.css.ViewCSS;
 
+import com.jfoenix.controls.JFXListView;
+
 import businesslogic.login.LoginController;
 import businesslogicservice.LoginService;
 import javafx.fxml.FXML;
@@ -55,7 +57,16 @@ public class GuideUIController {
 		
 		
 		if(AccountType.Customer.equals(logVO.accountType)){
-			
+			guids.getItems().addAll(views[0],views[1],views[2],views[3]);
+		}else if (AccountType.Hotel.equals(logVO.accountType)) {
+			guids.getItems().addAll(views[1],views[3],views[4],views[5],views[6],views[7]);
+		}else if (AccountType.Web.equals(logVO.accountType)) {
+			guids.getItems().addAll(views[1],views[8],views[9]);
+		}else if (AccountType.Administor.equals(logVO.accountType)) {
+			guids.getItems().addAll(views[1],views[10]);
+		}
+		else {
+			System.err.println("can not get login state");
 		}
 		guids.getItems().addAll(views);
 		guids.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -65,6 +76,7 @@ public class GuideUIController {
 						e.printStackTrace();
 					}
                 });
+		//((JFXListView<String>)guids).depthProperty().set(1);
 	}
 	
 	private int getIndex(String name) {
