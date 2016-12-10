@@ -5,7 +5,7 @@ import java.util.Date;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.paint.Color;
-import ui.discount.WebStrategyController.ItemType;
+import ui.discount.WebDiscountController.ItemType;
 
 /**
  * 特定期间预订折扣的单个item的界面的控制器
@@ -13,7 +13,7 @@ import ui.discount.WebStrategyController.ItemType;
  * @author zjy
  *
  */
-public class SpecialDayItemController extends StrategyItemController{
+public class Period_WebItemController extends WebItemController{
 	@FXML
 	protected DatePicker startTime;
 	@FXML

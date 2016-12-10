@@ -8,7 +8,7 @@ import ui.discount.HotelDiscountController.ItemType;
  * @author zjy
  *
  */
-public class OverThreeRoomsItemController extends ItemController{
+public class OverThreeRooms_HotelItemController extends HotelItemController{
 	
 	@FXML
 	protected void handleDiscount(){

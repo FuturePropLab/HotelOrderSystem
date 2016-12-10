@@ -15,7 +15,7 @@ import ui.discount.HotelDiscountController.ItemType;
  * @author zjy
  *
  */
-public class CompanyItemController extends ItemController{
+public class Company_HotelItemController extends HotelItemController{
 
 	@FXML
 	private TextField companyName;

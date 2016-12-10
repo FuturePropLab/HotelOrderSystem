@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<TitledPane fx:id="title" alignment="CENTER" animated="false" prefHeight="388.0" prefWidth="766.0" text="新增策略" textOverrun="CLIP" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.discount.OverThreeRoomsItemController">
+<TitledPane fx:id="title" alignment="CENTER" animated="false" prefHeight="388.0" prefWidth="766.0" text="新增策略" textOverrun="CLIP" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.discount.OverThreeRooms_HotelItemController">
    <content>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0">
          <children>

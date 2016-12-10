@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TitledPane;
 import javafx.scene.paint.Color;
-import ui.discount.WebStrategyController.ItemType;
+import ui.discount.WebDiscountController.ItemType;
 
 /**
  * VIP会员特定商圈专属折扣的单个item的界面的控制器
@@ -14,7 +14,7 @@ import ui.discount.WebStrategyController.ItemType;
  * @author zjy
  *
  */
-public class VIPAndBusinessCircleItemController extends StrategyItemController{
+public class VIPAndBusinessCircle_WebItemController extends WebItemController{
 	
 	@FXML
 	protected ComboBox<String> vipLevel;

@@ -11,7 +11,7 @@ import ui.discount.HotelDiscountController.ItemType;
  * @author zjy
  *
  */
-public class BirthdayItemController extends ItemController{
+public class Birthday_HotelItemController extends HotelItemController{
 	
 	@FXML
 	protected void handleDiscount(){

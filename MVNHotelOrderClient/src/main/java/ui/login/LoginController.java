@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 import serviceFactory.LoginServiceUtil;
 import tools.AccountType;
 import tools.ResultMessage_LoginCheck;
-import ui.discount.WebStrategyController;
+import ui.discount.WebDiscountController;
 import ui.hotel.HotelDetailController;
 import ui.hotel.HotelSearchController;
 import ui.main.FullLayoutController;
@@ -87,8 +87,8 @@ public class LoginController extends FullLayoutController{
 					hotelDetailController.initValue(accountID);
 				}else if(testType == AccountType.Web){
 					rootLayoutController.changeDetails("../discount/WebStrategy.fxml");
-					WebStrategyController webStrategyController =
-							(WebStrategyController) rootLayoutController.getDetailsController();
+					WebDiscountController webDiscountController =
+							(WebDiscountController) rootLayoutController.getDetailsController();
 					
 				}
 				

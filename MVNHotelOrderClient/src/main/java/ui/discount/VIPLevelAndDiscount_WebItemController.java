@@ -5,7 +5,7 @@ import java.util.Date;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import ui.discount.WebStrategyController.ItemType;
+import ui.discount.WebDiscountController.ItemType;
 
 /**
  * 制定会员等级及其折扣的单个item的界面的控制器
@@ -13,7 +13,7 @@ import ui.discount.WebStrategyController.ItemType;
  * @author zjy
  *
  */
-public class VIPLevelAndDiscountItemController extends StrategyItemController{
+public class VIPLevelAndDiscount_WebItemController extends WebItemController{
 	
 	@FXML
 	protected Label level;

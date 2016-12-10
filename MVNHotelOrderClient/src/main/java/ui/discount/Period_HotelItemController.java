@@ -12,7 +12,7 @@ import ui.discount.HotelDiscountController.ItemType;
  * @author zjy
  *
  */
-public class Double11ItemController extends ItemController{
+public class Period_HotelItemController extends HotelItemController{
 	@FXML
 	private DatePicker festivalDate_from;
 	@FXML

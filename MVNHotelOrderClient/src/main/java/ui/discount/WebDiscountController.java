@@ -15,7 +15,7 @@ import ui.main.DetailsController;
  * 酒店优惠策略制定界面的控制器
  * @author zjy
  */
-public class WebStrategyController extends DetailsController{
+public class WebDiscountController extends DetailsController{
 
 	@FXML 
 	private CheckBox notStart;
@@ -30,7 +30,7 @@ public class WebStrategyController extends DetailsController{
 	@FXML 
 	private Accordion VIPLevelAndDiscountList;
 	private ArrayList<TitledPane> titledPanes = new ArrayList<TitledPane>();
-	private ArrayList<StrategyItemController> strategyItemControllers = new ArrayList<StrategyItemController>();
+	private ArrayList<WebItemController> webItemControllers = new ArrayList<WebItemController>();
 	
 	/**
      * Initializes the controller class. This method is automatically called
@@ -50,14 +50,14 @@ public class WebStrategyController extends DetailsController{
     	//TODO: 调用blservice查询该策略的信息然后将组建的值设置好
     	
     	//下面是一个例子
-    	SpecialDayItemController specialDayItemController=
-    			(SpecialDayItemController)addTitlePane(specialDayList,"SpecialDayItem.fxml");
-    	specialDayItemController.setValue("未开始", 2.2, new Date(2015, 10, 19), new Date(2015, 10, 20));
-    	VIPAndBusinessCircleItemController vipAndBusinessCircleItemController=
-    			(VIPAndBusinessCircleItemController)addTitlePane(VIPAndBusinessCircleList,"VIPAndBusinessCircleItem.fxml");
+    	Period_WebItemController period_WebItemController=
+    			(Period_WebItemController)addTitlePane(specialDayList,"SpecialDayItem.fxml");
+    	period_WebItemController.setValue("未开始", 2.2, new Date(2015, 10, 19), new Date(2015, 10, 20));
+    	VIPAndBusinessCircle_WebItemController vipAndBusinessCircleItemController=
+    			(VIPAndBusinessCircle_WebItemController)addTitlePane(VIPAndBusinessCircleList,"VIPAndBusinessCircleItem.fxml");
     	vipAndBusinessCircleItemController.setValue("未开始", 2.3, 1, "city", "district", "businessCircle");
-    	VIPLevelAndDiscountItemController vipLevelAndDiscountItemController=
-    			(VIPLevelAndDiscountItemController)addTitlePane(VIPLevelAndDiscountList,"VIPLevelAndDiscountItem.fxml");
+    	VIPLevelAndDiscount_WebItemController vipLevelAndDiscountItemController=
+    			(VIPLevelAndDiscount_WebItemController)addTitlePane(VIPLevelAndDiscountList,"VIPLevelAndDiscountItem.fxml");
     	vipLevelAndDiscountItemController.setValue("未开始", 2.4, 1, 200);
     	//上面是一个例子
     	
@@ -65,17 +65,17 @@ public class WebStrategyController extends DetailsController{
     	addNewItem(ItemType.VIPAndBusinessCircle);
     	addNewItem(ItemType.VIPLevelAndDiscount);
     }
-    private StrategyItemController addTitlePane(Accordion accordion,String fxml) {
+    private WebItemController addTitlePane(Accordion accordion,String fxml) {
     	try {       	
         	FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource(fxml));
         	TitledPane titledPane = (TitledPane) loader.load();
-        	StrategyItemController strategyItemController=loader.getController();
-        	strategyItemController.setWebStrategyController(this);
+        	WebItemController webItemController=loader.getController();
+        	webItemController.setWebStrategyController(this);
         	titledPanes.add(titledPane);
-        	strategyItemControllers.add(strategyItemController);
+        	webItemControllers.add(webItemController);
         	accordion.getPanes().add(titledPane);
-        	return strategyItemController;
+        	return webItemController;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -95,8 +95,8 @@ public class WebStrategyController extends DetailsController{
 			addTitlePane(VIPAndBusinessCircleList,"VIPAndBusinessCircleItem.fxml");
 			break;
 		case VIPLevelAndDiscount:
-			VIPLevelAndDiscountItemController vipLevelAndDiscountItemController=
-			(VIPLevelAndDiscountItemController)addTitlePane(VIPLevelAndDiscountList,"VIPLevelAndDiscountItem.fxml");
+			VIPLevelAndDiscount_WebItemController vipLevelAndDiscountItemController=
+			(VIPLevelAndDiscount_WebItemController)addTitlePane(VIPLevelAndDiscountList,"VIPLevelAndDiscountItem.fxml");
 			vipLevelAndDiscountItemController.setLevel(VIPLevelAndDiscountList.getPanes().size());
 			break;
 		default:

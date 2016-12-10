@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.paint.Color;
-import ui.discount.WebStrategyController.ItemType;
+import ui.discount.WebDiscountController.ItemType;
 
 /**
  * 单个网站促销策略item的界面的控制器
@@ -18,7 +18,7 @@ import ui.discount.WebStrategyController.ItemType;
  * @author zjy
  *
  */
-public abstract class StrategyItemController {
+public abstract class WebItemController {
 
 	@FXML
 	protected TitledPane title;
@@ -28,11 +28,11 @@ public abstract class StrategyItemController {
 	protected TextField discount;
 	@FXML
 	protected Hyperlink delete;//确认和删除合一的按钮，名字叫delete
-	protected WebStrategyController webStrategyController;
+	protected WebDiscountController webDiscountController;
 
 
-	public void setWebStrategyController(WebStrategyController webStrategyController) {
-		this.webStrategyController = webStrategyController;
+	public void setWebStrategyController(WebDiscountController webDiscountController) {
+		this.webDiscountController = webDiscountController;
 	}
 	
 	@FXML
@@ -57,7 +57,7 @@ public abstract class StrategyItemController {
 				
 				//TODO: 调用blservice增加策略
 				delete.setText("删 除");//字中间有空格
-				webStrategyController.addNewItem(getType());
+				webDiscountController.addNewItem(getType());
 			}
 			else {
 				System.out.println("the strategy is not finished");//TODO:弹窗提示未完成

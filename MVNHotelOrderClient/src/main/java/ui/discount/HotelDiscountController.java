@@ -36,7 +36,7 @@ public class HotelDiscountController extends DetailsController{
 	@FXML 
 	private Accordion double11List;
 	private ArrayList<TitledPane> titledPanes = new ArrayList<TitledPane>();
-	private ArrayList<ItemController> itemControllers = new ArrayList<ItemController>();
+	private ArrayList<HotelItemController> hotelItemControllers = new ArrayList<HotelItemController>();
 	
 	
 	private String hotelID = "HT001";  //以后处理这个id的获取方式  @lwy
@@ -69,12 +69,12 @@ public class HotelDiscountController extends DetailsController{
 //        	
 //    	}
     	//下面是一个例子
-    	BirthdayItemController birthdayItemController=(BirthdayItemController)addTitlePane(birthdayList,"BirthdayItem.fxml");
-    	birthdayItemController.setValue("title", "未开始", "无", 9.5, LocalDate.of(2016, 12, 4),LocalDate.of(2016, 12, 6), true);
-    	OverThreeRoomsItemController overThreeRoomsItemController=(OverThreeRoomsItemController)addTitlePane(overThreeRoomsList,"OverThreeRoomsItem.fxml");
-    	overThreeRoomsItemController.setValue("title", "未开始", "无", 9.5, LocalDate.of(2016, 12, 4),LocalDate.of(2016, 12, 6), true);
+    	Birthday_HotelItemController birthday_HotelItemController=(Birthday_HotelItemController)addTitlePane(birthdayList,"BirthdayItem.fxml");
+    	birthday_HotelItemController.setValue("title", "未开始", "无", 9.5, LocalDate.of(2016, 12, 4),LocalDate.of(2016, 12, 6), true);
+    	OverThreeRooms_HotelItemController overThreeRooms_HotelItemController=(OverThreeRooms_HotelItemController)addTitlePane(overThreeRoomsList,"OverThreeRoomsItem.fxml");
+    	overThreeRooms_HotelItemController.setValue("title", "未开始", "无", 9.5, LocalDate.of(2016, 12, 4),LocalDate.of(2016, 12, 6), true);
 //    	while(it.hasNext()){
-        	CompanyItemController companyItemController=(CompanyItemController)addTitlePane(companyList,"CompanyItem.fxml");
+        	Company_HotelItemController company_HotelItemController=(Company_HotelItemController)addTitlePane(companyList,"CompanyItem.fxml");
 //
 //    		DiscountPO_hotel dis = it.next();
 //    		System.out.println(dis.getDiscount_id());
@@ -85,11 +85,11 @@ public class HotelDiscountController extends DetailsController{
 ////        	
 //    	}
     	
-    	companyItemController.setValue("title", "未开始", "无", 9.5, LocalDate.of(2016, 12, 4),LocalDate.of(2016, 12, 6), true);
-    	companyItemController.setCompanyName("companyName");
-    	Double11ItemController double11ItemController=(Double11ItemController)addTitlePane(double11List,"Double11Item.fxml");
-    	double11ItemController.setValue("title", "未开始", "无", 9.5, LocalDate.of(2016, 12, 4),LocalDate.of(2016, 12, 6), true);
-    	double11ItemController.setFestivalDate(LocalDate.of(2016, 12, 4),LocalDate.of(2016, 12, 6));
+    	company_HotelItemController.setValue("title", "未开始", "无", 9.5, LocalDate.of(2016, 12, 4),LocalDate.of(2016, 12, 6), true);
+    	company_HotelItemController.setCompanyName("companyName");
+    	Period_HotelItemController period_HotelItemController=(Period_HotelItemController)addTitlePane(double11List,"Double11Item.fxml");
+    	period_HotelItemController.setValue("title", "未开始", "无", 9.5, LocalDate.of(2016, 12, 4),LocalDate.of(2016, 12, 6), true);
+    	period_HotelItemController.setFestivalDate(LocalDate.of(2016, 12, 4),LocalDate.of(2016, 12, 6));
     	//上面是一个例子
     	
     	addTitlePane(birthdayList,"BirthdayItem.fxml");
@@ -97,17 +97,17 @@ public class HotelDiscountController extends DetailsController{
     	
     	addTitlePane(double11List,"Double11Item.fxml");
     }
-    private ItemController addTitlePane(Accordion accordion,String fxml) {
+    private HotelItemController addTitlePane(Accordion accordion,String fxml) {
     	try {       	
         	FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource(fxml));
         	TitledPane titledPane = (TitledPane) loader.load();
-        	ItemController itemController=loader.getController();
-        	itemController.setHotelDiscountController(this);
+        	HotelItemController hotelItemController=loader.getController();
+        	hotelItemController.setHotelDiscountController(this);
         	titledPanes.add(titledPane);
-        	itemControllers.add(itemController);
+        	hotelItemControllers.add(hotelItemController);
         	accordion.getPanes().add(titledPane);
-        	return itemController;
+        	return hotelItemController;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

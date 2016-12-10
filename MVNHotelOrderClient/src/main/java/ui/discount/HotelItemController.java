@@ -17,7 +17,7 @@ import ui.discount.HotelDiscountController.ItemType;
  * @author zjy
  *
  */
-public abstract class ItemController {
+public abstract class HotelItemController {
 
 	@FXML
 	protected TitledPane title;
