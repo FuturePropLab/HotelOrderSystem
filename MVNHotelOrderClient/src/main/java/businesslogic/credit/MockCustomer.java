@@ -2,6 +2,7 @@ package businesslogic.credit;
 
 import tools.ResultMessage;
 import vo.CustomerVO;
+import vo.MemberVO;
 
 
 /**
@@ -14,6 +15,8 @@ public class MockCustomer implements CustomerInfoforCredit{
 	ResultMessage rm;
 	CustomerVO customerVO;
 	public CustomerVO getCustomerInfo(String customer_id) {
+		customerVO = new CustomerVO("001", "xx",
+		       "nan", "123",null,50);
 		return customerVO;
 	}
 
@@ -25,6 +28,9 @@ public class MockCustomer implements CustomerInfoforCredit{
 		this.rm = rm;
 		this.customerVO = customerVO;
 	}
-
+	public MockCustomer(){
+		
+	}
+	
 	
 }

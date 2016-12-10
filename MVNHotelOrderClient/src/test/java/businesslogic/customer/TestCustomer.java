@@ -83,6 +83,18 @@ public class TestCustomer {
 }
 @Test
 	public void testSearch(){
+	Customer customer = new Customer();
+	CustomerSearchVO searchVO = new CustomerSearchVO("CS001");
+	try {
+		assertEquals(34, customer.searchCustomer(searchVO).get(0).credit);
+	} catch (RemoteException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
+@Test
+	public void testSearch2(){
+	Customer customer = new Customer();
 	
 }
 

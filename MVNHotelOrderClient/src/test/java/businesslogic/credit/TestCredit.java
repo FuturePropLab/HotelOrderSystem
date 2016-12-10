@@ -100,6 +100,18 @@ public class TestCredit {
 		Credit credit = new Credit();
 //		assertArrayEquals(ResultMessage.Exist,credit.CreditChangeAboutOrder(order, ActionType.RevokeOrder));
 	}
+	@Test
+	public void testLevelUpdate(){
+		String customer_id = "001";
+		Credit credit = new Credit();
+		try {
+			assertEquals(3, credit.levelUpdate(customer_id));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	
 	 
 	

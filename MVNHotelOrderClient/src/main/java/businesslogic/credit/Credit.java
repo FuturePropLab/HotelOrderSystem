@@ -201,10 +201,12 @@ public class Credit {
 	 * @throws RemoteException 
 	 */
 	public int levelUpdate(String customer_id) throws RemoteException{
-		CustomerInfoforCredit customerInfo = CustomerInfoforCreditImp.getInstance();
-		
+//		CustomerInfoforCredit customerInfo = CustomerInfoforCreditImp.getInstance();
+		CustomerInfoforCredit customerInfo  = new MockCustomer();//test
 		int result = customerInfo.getCustomerInfo(customer_id).credit;
-		DiscountWebController discountWeb =  DiscountWebController.getInstance();
+//		DiscountWebController discountWeb =  DiscountWebController.getInstance();
+		MockDiscount discountWeb = new MockDiscount();//test
+		
 		int [] uplevel =new int[4];
 		
 		int level=0;
