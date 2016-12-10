@@ -44,7 +44,8 @@ public class TestCredit {
 		}
 		CreditlogVO creditlog = new CreditlogVO("008",ActionType.Charge,null,date1,10,1000);
 		logList.add(creditlog);
-		assertEquals(logList.get(0).actionType,credit.getLogList("008") );
+		assertEquals(logList.get(0).actionType,credit.getLogList("008").get(0).actionType );
+		
 	}
 	
 	 

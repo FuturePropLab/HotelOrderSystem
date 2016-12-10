@@ -135,7 +135,7 @@ public class Credit {
 	 * @return List<CreditlogVO> 
 	 */
 	public List<CreditlogVO> getLogList(String customer_id) {
-//		CreditLogDeal_Stub creditStub = new CreditLogDeal_Stub();
+		creditDataService = new CreditData_Stub();
 		
 		List<CreditlogVO> logList = new ArrayList<CreditlogVO>();
 		List<CreditLogPO> list = null;
