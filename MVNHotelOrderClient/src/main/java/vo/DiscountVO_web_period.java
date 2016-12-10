@@ -2,7 +2,11 @@ package vo;
 
 import java.time.LocalDate;
 
+import org.junit.experimental.theories.Theories;
+
 import po.DiscountPO_web_period;
+import tools.DiscountState;
+import tools.Strategy_webType;
 /**
  * 
  * @author LWY
@@ -18,7 +22,13 @@ public class DiscountVO_web_period extends DiscountVO_web {
 		this.discount=discountPO_web.getDiscount();
 		this.discountID=discountPO_web.getDiscountID();
 	}
-
+	public  DiscountVO_web_period(LocalDate startDate,LocalDate endDate,double discount){
+		this.startDate =startDate;
+		this.endDate = endDate;
+		this.discount=discount*0.1;
+		this.type=Strategy_webType.Period;
+		this.discountState=DiscountState.valid;
+	}
 	public LocalDate startDate;//可打折开始时间
 
 	public LocalDate endDate;

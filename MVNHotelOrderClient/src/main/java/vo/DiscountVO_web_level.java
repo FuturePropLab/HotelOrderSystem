@@ -1,6 +1,8 @@
 package vo;
 
 import po.DiscountPO_web_level;
+import tools.DiscountState;
+import tools.Strategy_webType;
 /**
  * 
  * @author LWY
@@ -16,6 +18,13 @@ public class DiscountVO_web_level extends DiscountVO_web {
 		this.levelUpCredit=discountPO_web.getLevelUpCredit();
 	}
 
+	public DiscountVO_web_level(Strategy_webType strategy_webType,double discount,int level, int levelUpCredit){
+		this.discount=discount*0.1;
+		this.level=level;
+		this.levelUpCredit = levelUpCredit;
+		this.type = Strategy_webType.Level;
+		this.discountState = DiscountState.valid;
+	}
 	public int level;// 会员等级
 
 	public int levelUpCredit;// 升级所需信用
