@@ -26,7 +26,7 @@ public class DiscountWebController implements DiscountWebService {
 
 	private List<DiscountVO_web> list;
 
-	private final int maxLevel = 10;// 系统默认允许的最高等级
+	private final int maxLevel = 5;// 系统默认允许的最高等级
 
 	private DiscountVO_web_level[] discountVO_web_level = new DiscountVO_web_level[maxLevel];
 
