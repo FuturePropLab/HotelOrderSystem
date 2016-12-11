@@ -53,7 +53,7 @@ public class Account {
 	 * @param customerInfo
 	 */
 	public Account(CustomerInfo customerInfo){
-		this.accountDataService = new AccountData_stub();
+//		this.accountDataService = new AccountData_stub();
 		this.hotelInfo = null;
 		this.customerInfo = customerInfo;
 	}
@@ -62,8 +62,8 @@ public class Account {
 	 * 无参数初始化
 	 */
 	public Account(){
-//		this.accountDataService = RemoteHelper.getInstance().getAccountDataService();
-		this.accountDataService = new AccountData_stub();
+		this.accountDataService = RemoteHelper.getInstance().getAccountDataService();
+//		this.accountDataService = new AccountData_stub();
 		this.hotelInfo = null;
 		this.customerInfo = null;
 	}
