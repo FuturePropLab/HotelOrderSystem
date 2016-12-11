@@ -68,7 +68,7 @@ public class GuideUIController {
 		else {
 			System.err.println("can not get login state");
 		}
-		guids.getItems().addAll(views);
+//		guids.getItems().addAll(views);
 		guids.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
                 	try {
 						rootLayoutController.changeDetails(fxmls[getIndex(newValue)]);

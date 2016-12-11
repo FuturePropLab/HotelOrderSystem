@@ -4,6 +4,12 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
+import com.sun.org.apache.bcel.internal.generic.RET;
+import com.sun.org.apache.bcel.internal.generic.RETURN;
+import com.sun.org.apache.xml.internal.security.utils.resolver.implementations.ResolverDirectHTTP;
 
 import Exception.CustomerCreditNotEnoughException;
 import businesslogic.credit.CreditController;
@@ -182,11 +188,19 @@ public class OrderController implements OrderService{
 			System.out.println("polist size2:   "+poList.size());
 			poList.addAll(orderDataService.searchOrder(new SearchOrderInfo(hotelID,customerID,null, null, 
 					searchOrderInfo.keywords, searchOrderInfo.date, searchOrderInfo.orderState)));
-			List<OrderVO> voList=new ArrayList<OrderVO>();
+//			List<OrderVO> voList=new ArrayList<OrderVO>();
 			System.out.println("polist size3:   "+poList.size());
-			for(OrderPO orderPO:poList){
-				voList.add(getOrderVO(orderPO));
-			}
+//			for(OrderPO orderPO:poList){
+//				voList.add(getOrderVO(orderPO));
+//			}
+			List<OrderVO> voList=poList.stream().filter(element->{
+				for(OrderPO orderPO:poList){
+					if(orderPO.getOrderID().equals(element.getOrderID())){
+						return true;
+					}
+				}
+				return false;
+			}).map(orderPO->getOrderVO(orderPO)).collect(Collectors.toList());
 			return voList;
 		} catch (RemoteException e) {
 			System.err.println(e.getCause().getMessage());
