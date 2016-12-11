@@ -23,6 +23,7 @@ public class Company_HotelItemController extends HotelItemController{
 	@FXML
 	private void handleCompanyName(){
 		title.setText(companyName.getText());
+		handleSave();
 	}
 	
 	@Override

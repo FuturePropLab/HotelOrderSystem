@@ -12,8 +12,8 @@ public class OverThreeRooms_HotelItemController extends HotelItemController{
 	
 	@FXML
 	protected void handleDiscount(){
-		super.handleDiscount();
 		title.setText(discount.getText()+"折");
+		super.handleDiscount();
 	}
 	
 	@Override

@@ -24,6 +24,7 @@ public class Period_HotelItemController extends HotelItemController{
 			title.setText(festivalDate_from.getValue().getMonthValue()+"月"+festivalDate_from.getValue().getDayOfMonth()+"日"
 					+"-"+festivalDate_to.getValue().getMonthValue()+"月"+festivalDate_to.getValue().getDayOfMonth()+"日");
 		}
+		handleSave();
 	}
 	
 	@Override

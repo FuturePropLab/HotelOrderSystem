@@ -30,7 +30,9 @@ public class VIPLevelAndDiscount_WebItemController extends WebItemController{
 		}
 		if(num<0){
 			System.out.println("discount is not bigger tan 0.");
+			return;
 		}
+		handleSave();
 	}
 
 	@Override

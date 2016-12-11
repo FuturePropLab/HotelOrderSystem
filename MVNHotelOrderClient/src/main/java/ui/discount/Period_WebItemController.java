@@ -2,6 +2,9 @@ package ui.discount;
 
 import java.util.Date;
 
+import com.sun.org.apache.bcel.internal.generic.RET;
+import com.sun.org.apache.bcel.internal.generic.RETURN;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.paint.Color;
@@ -25,8 +28,10 @@ public class Period_WebItemController extends WebItemController{
 		if(endTime.getValue()!=null){
 			if(startTime.getValue().compareTo(endTime.getValue())>=0){
 				//怎么处理？？弹窗？
+				return ;
 			}
 		}
+		handleSave();
 	}
 	@FXML
 	protected void handleEndTime(){
@@ -34,13 +39,15 @@ public class Period_WebItemController extends WebItemController{
 		if(startTime.getValue()!=null){
 			if(startTime.getValue().compareTo(endTime.getValue())>=0){
 				//怎么处理？？弹窗？
+				return;
 			}
 		}
+		handleSave();
 	}	
 	@FXML
 	protected void handleDiscount(){
-		super.handleDiscount();
 		title.setText(discount.getText()+"折");
+		super.handleDiscount();
 	}
 
 	@Override

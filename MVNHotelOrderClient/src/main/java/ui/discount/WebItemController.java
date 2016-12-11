@@ -45,7 +45,10 @@ public abstract class WebItemController {
 		}
 		if(num<0||num>10){
 			System.out.println("discount is not between 0 and 10");
+			return;
 		}
+
+		handleSave();
 	}
 	
 	@FXML
@@ -70,6 +73,10 @@ public abstract class WebItemController {
 //			String discountID = null; 
 //			discountWebService.deleteDiscount(discountID);
 		}
+	}
+	@FXML
+	protected void handleSave() {
+		//TODO:调用blservice保存信息，如果某个子类item的信息和这个了类不一样，覆写此方法
 	}
 	
 	protected abstract ItemType getType() ;

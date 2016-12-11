@@ -28,6 +28,7 @@ public class VIPAndBusinessCircle_WebItemController extends WebItemController{
 	@FXML
 	protected void handleVIPLevel(){
 		//TODO:调用blservice获取VIP信息并填写
+		handleSave();
 	}
 	@FXML
 	protected void handleDiscount(){

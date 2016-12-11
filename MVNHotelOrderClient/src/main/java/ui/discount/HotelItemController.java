@@ -57,7 +57,9 @@ public abstract class HotelItemController {
 		}
 		if(num<0||num>10){
 			System.out.println("discount is not between 0 and 10");
+			return ;
 		}
+		handleSave();
 	}
 	@FXML
 	protected void handleStartTime(){
@@ -66,8 +68,9 @@ public abstract class HotelItemController {
 		LocalDate endDate = endTime.getValue();
 		if(startDate.compareTo(endDate)>=0){
 			Dialogs.showMessage("开始日期应在结束日期之前！");
+			return;
 		}
-			
+		handleSave();
 	}
 	@FXML
 	protected void handleEndTime(){
@@ -76,7 +79,9 @@ public abstract class HotelItemController {
 		LocalDate endDate = endTime.getValue();
 		if(startDate.compareTo(endDate)>=0){
 			Dialogs.showMessage("结束日期应在开始日期之后！");
+			return;
 		}
+		handleSave();
 	}
 	
 	@FXML
@@ -102,6 +107,10 @@ public abstract class HotelItemController {
 			
 		}
 	}
+	@FXML
+	protected void handleSave() {
+		//TODO:调用blservice保存信息，如果某个子类item的信息和这个了类不一样，覆写此方法
+	}
 	
 	protected abstract ItemType getType() ;
 	protected abstract void setTitle() ;
@@ -125,6 +134,7 @@ public abstract class HotelItemController {
 		superposition.setDisable(true);
 		delete.setDisable(true);
 	}
+	
 	
 	/**
 	 * 
