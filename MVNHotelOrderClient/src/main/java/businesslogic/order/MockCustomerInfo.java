@@ -1,5 +1,6 @@
 package businesslogic.order;
 
+import tools.MemberBelongType;
 import tools.MemberType;
 import vo.CustomerVO;
 import vo.MemberVO;
@@ -12,8 +13,20 @@ public class MockCustomerInfo implements CustomerInfo{
 
 	public CustomerVO getCustomer(String customerID) {
 		// TODO Auto-generated method stub
+		
+		if(customerID=="0001"){
+		MemberType memberType = new MemberType("0001");
+		memberType.setType(MemberBelongType.Enterprise);
 		return new CustomerVO(customerID, "customerName", "gender", "telephone", new MemberVO(customerID, 
-				new MemberType(customerID)),34);
+				memberType),30);}
+		else if(customerID=="0002"){
+			MemberType memberType = new MemberType("0001");
+			memberType.setType(MemberBelongType.None);
+			return new CustomerVO(customerID, "customerName", "gender", "telephone", new MemberVO(customerID, 
+					memberType),40);}else{
+						return null;
+					}
+		}
 	}
 
-}
+

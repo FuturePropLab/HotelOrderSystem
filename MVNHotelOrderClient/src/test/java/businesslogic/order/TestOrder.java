@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import Exception.CustomerCreditNotEnoughException;
+import dataservice.OrderDataService;
 import po.OrderPO;
 import stub.OrderDate_Stub;
 import tools.OrderState;
@@ -28,7 +29,7 @@ import vo.OrderInputVO;
 public class TestOrder {
 	private Order order;
 	
-	@Before
+	/*@Before
 	public void init() {
 		try {
 			order=new Order(new OrderInputVO("customerID", "hotelID", new Time(0), new Time(0), new Time(0), RoomType.EluxeSuite, 1, 1, false,100), 
@@ -36,7 +37,7 @@ public class TestOrder {
 		} catch (CustomerCreditNotEnoughException e) {
 			System.out.println("客户信用值为负");
 		}
-	}
+	}*/
 
 	@Test
 	public void testOrder() {
@@ -91,8 +92,75 @@ public class TestOrder {
 		assertEquals(order.getState(), OrderState.Unexecuted);
 	}
 	@Test
-	public void testGetOrderValue() {
-		assertEquals(order.getOrderValue(), 1);
+	public void testCreateValue() {
+//		order = new Order();
+		Date date1 = null;
+		Date date2 = null;
+		SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		try {
+			 date1= df.parse("2004-01-02 11:30:24");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			 date2 = df.parse("2004-01-03 11:30:24");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		OrderInputVO orderInputVO = new OrderInputVO("0001","123",date1, date2, null,RoomType.Double, 1, 2, false,100);
+//		OrderInputVO orderInput,CustomerInfo customerInfo,HotelInfo hotelInfo,OrderDataService orderDataService
+		CustomerInfo customerInfo = new MockCustomerInfo();
+		MockHotelInfo hotelInfo = new MockHotelInfo();
+		OrderDataService orderDataService = new OrderDate_Stub();
+		try {
+			order = new Order(orderInputVO,customerInfo,hotelInfo,orderDataService);
+		} catch (CustomerCreditNotEnoughException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+		
+		
+		Date date3 = null;
+		Date date4 = null;
+		SimpleDateFormat df2=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		try {
+			 date3= df2.parse("2004-01-02 11:30:24");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			 date4 = df2.parse("2004-01-03 11:30:24");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		OrderInputVO orderInputVO2 = new OrderInputVO("0002","124",date1, date2, null,RoomType.Double, 1, 2, false,1000);
+//		OrderInputVO orderInput,CustomerInfo customerInfo,HotelInfo hotelInfo,OrderDataService orderDataService
+		CustomerInfo customerInfo2 = new MockCustomerInfo();
+		MockHotelInfo hotelInfo2 = new MockHotelInfo();
+		OrderDataService orderDataService2 = new OrderDate_Stub();
+		Order order2 = null;
+		try {
+			 order2 = new Order(orderInputVO2,customerInfo2,hotelInfo2,orderDataService2);
+		} catch (CustomerCreditNotEnoughException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+		assertEquals(order.getOrderValue(), 1320);
+		
+		
+		
+		
+		
+		assertEquals(order2.getOrderValue(), 1300);
+		
+		
+		
 	}
 	@Test
 	public void testGetOrderID() {

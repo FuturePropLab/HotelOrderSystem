@@ -138,8 +138,8 @@ public class Order {
 		}
 		if(checkInInfo.filled()&&orderState.equals(OrderState.Unexecuted)){
 			orderState=OrderState.Executed;
-			CreditLogDealService creditLogDealService=CreditController.getInstance();
-//			MockCredit creditLogDealService = new MockCredit();//test
+//			CreditLogDealService creditLogDealService=CreditController.getInstance();
+			MockCredit creditLogDealService = new MockCredit();//test
 			creditLogDealService.CreditChangeAboutOrder(this, ActionType.RightOrder);
 		}
 		ResultMessage resultMessage=ResultMessage.NotExist;
