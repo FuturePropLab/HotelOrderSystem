@@ -1,8 +1,6 @@
 package ui.discount;
 
-import businesslogic.discount.DiscountHotelController;
 import businesslogic.discount.DiscountWebController;
-import businesslogicservice.DiscountHotelService;
 import businesslogicservice.DiscountWebService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
@@ -10,7 +8,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.paint.Color;
-import ui.discount.WebDiscountController.ItemType;
+import tools.Strategy_webType;
+import ui.utils.Dialogs;
+import vo.DiscountVO_web;
 
 /**
  * 单个网站促销策略item的界面的控制器
@@ -42,9 +42,12 @@ public abstract class WebItemController {
 			num=Double.parseDouble(discount.getText());
 		} catch (NumberFormatException e) {
 			System.out.println("discount is not a number");// TODO: 折扣数不正确时处理
+			discount.setText("");
+			Dialogs.showMessage("折扣数非正确数字格式");
 		}
 		if(num<0||num>10){
 			System.out.println("discount is not between 0 and 10");
+			Dialogs.showMessage("折扣数应为0~10");
 			return;
 		}
 
@@ -59,6 +62,7 @@ public abstract class WebItemController {
 				state.setText("未开始");
 				
 				//TODO: 调用blservice增加策略
+				DiscountVO_web discountVO_web = new DiscountVO_web();
 				delete.setText("删 除");//字中间有空格
 				webDiscountController.addNewItem(getType());
 			}
@@ -79,7 +83,7 @@ public abstract class WebItemController {
 		//TODO:调用blservice保存信息，如果某个子类item的信息和这个了类不一样，覆写此方法
 	}
 	
-	protected abstract ItemType getType() ;
+	protected abstract Strategy_webType getType() ;
 	protected abstract void setTitle() ;
 	
 	/**

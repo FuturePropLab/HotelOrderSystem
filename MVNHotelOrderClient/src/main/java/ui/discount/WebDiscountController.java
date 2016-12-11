@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TitledPane;
+import tools.Strategy_webType;
 import ui.main.DetailsController;
 
 /**
@@ -61,9 +62,9 @@ public class WebDiscountController extends DetailsController{
     	vipLevelAndDiscountItemController.setValue("未开始", 2.4, 1, 200);
     	//上面是一个例子
     	
-    	addNewItem(ItemType.SpecialDay);
-    	addNewItem(ItemType.VIPAndBusinessCircle);
-    	addNewItem(ItemType.VIPLevelAndDiscount);
+    	addNewItem(Strategy_webType.Period);
+    	addNewItem(Strategy_webType.VIP_district);
+    	addNewItem(Strategy_webType.Level);
     }
     private WebItemController addTitlePane(Accordion accordion,String fxml) {
     	try {       	
@@ -84,17 +85,17 @@ public class WebDiscountController extends DetailsController{
     
     /**
      * 增加新的网站策略
-     * @param itemType 网站策略类型
+     * @param strategy_webType 网站策略类型
      */
-    public void addNewItem(ItemType itemType) {
-		switch (itemType) {
-		case SpecialDay:
+    public void addNewItem(Strategy_webType strategy_webType) {
+		switch (strategy_webType) {
+		case Period:
 			addTitlePane(specialDayList,"Period_WebItem.fxml");
 			break;
-		case VIPAndBusinessCircle:
+		case VIP_district:
 			addTitlePane(VIPAndBusinessCircleList,"VIPAndBusinessCircleItem.fxml");
 			break;
-		case VIPLevelAndDiscount:
+		case Level:
 			VIPLevelAndDiscount_WebItemController vipLevelAndDiscountItemController=
 			(VIPLevelAndDiscount_WebItemController)addTitlePane(VIPLevelAndDiscountList,"VIPLevelAndDiscountItem.fxml");
 			vipLevelAndDiscountItemController.setLevel(VIPLevelAndDiscountList.getPanes().size());
@@ -104,14 +105,5 @@ public class WebDiscountController extends DetailsController{
 		}
 	}
     
-    /**
-     * 网站策略类型
-     * @author zjy
-     *
-     */
-    public enum ItemType{
-    	SpecialDay,
-    	VIPAndBusinessCircle,
-    	VIPLevelAndDiscount,
-	}
+
 }

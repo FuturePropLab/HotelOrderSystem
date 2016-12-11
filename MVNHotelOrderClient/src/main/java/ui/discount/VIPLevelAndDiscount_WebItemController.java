@@ -1,11 +1,10 @@
 package ui.discount;
 
-import java.util.Date;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import ui.discount.WebDiscountController.ItemType;
+import tools.Strategy_webType;
+import ui.utils.Dialogs;
 
 /**
  * 制定会员等级及其折扣的单个item的界面的控制器
@@ -27,17 +26,22 @@ public class VIPLevelAndDiscount_WebItemController extends WebItemController{
 			num=Double.parseDouble(credit.getText());
 		} catch (NumberFormatException e) {
 			System.out.println("credit is not a number.");// TODO: 信用值不正确时处理
+			Dialogs.showMessage("输入信用值非正确的数字格式");
+			credit.setText("");
+			return;
 		}
 		if(num<0){
-			System.out.println("discount is not bigger tan 0.");
+			System.out.println("credit is not bigger tan 0.");
+			Dialogs.showMessage("信用值小于零");
+			credit.setText("");
 			return;
 		}
 		handleSave();
 	}
 
 	@Override
-	protected ItemType getType() {
-		return ItemType.VIPLevelAndDiscount;
+	protected Strategy_webType getType() {
+		return Strategy_webType.Level;
 	}
 
 	@Override

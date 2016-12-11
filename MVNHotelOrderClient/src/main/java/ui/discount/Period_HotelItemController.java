@@ -1,11 +1,10 @@
 package ui.discount;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
-import ui.discount.HotelDiscountController.ItemType;
+import tools.Strategy_hotelType;
 import ui.utils.Dialogs;
 
 /**
@@ -58,8 +57,8 @@ public class Period_HotelItemController extends HotelItemController{
 	}
 
 	@Override
-	protected ItemType getType() {
-		return ItemType.DOUBLE11;
+	protected Strategy_hotelType getType() {
+		return Strategy_hotelType.Period;
 	}
 	
 	@Override

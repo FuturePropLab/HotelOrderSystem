@@ -13,8 +13,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.paint.Color;
-import ui.discount.HotelDiscountController.ItemType;
+import tools.Strategy_hotelType;
 import ui.utils.Dialogs;
+import vo.DiscountVO_hotel;
 
 /**
  * 单个酒店优惠item的界面的控制器
@@ -42,8 +43,10 @@ public abstract class HotelItemController {
 	protected Hyperlink delete;// 确认和删除合一的按钮，名字叫delete
 	protected HotelDiscountController hotelDiscountController;
 
-	public String hotelID;
-	public String discountID;// 处理id的获取
+	private String hotelID;
+	private String discountID;
+	private Strategy_hotelType strategy_hotelType;
+	private String enterpriseName;
 
 	public void setHotelDiscountController(HotelDiscountController hotelDiscountController) {
 		this.hotelDiscountController = hotelDiscountController;
@@ -56,13 +59,18 @@ public abstract class HotelItemController {
 			num = Double.parseDouble(discount.getText());
 		} catch (NumberFormatException e) {
 			System.out.println("discount is not a number");// TODO: 折扣数不正确时处理
-
+			Dialogs.showMessage("折扣格式不正确");
+			discount.setText("");
+			return;
 		}
 		if (num < 0 || num > 10) {
 			System.out.println("discount is not between 0 and 10");
-			return ;
+			Dialogs.showMessage("折扣数应在0~10之间");
+			discount.setText("");
+			return;
 		}
-		handleSave();
+		if (discountID != null)
+			handleSave();
 	}
 
 	@FXML
@@ -72,12 +80,13 @@ public abstract class HotelItemController {
 		LocalDate endDate;
 		if (startDate != null && endTime.getValue() != null) {
 			endDate = endTime.getValue();
-			if(startDate.compareTo(endDate)>=0){
+			if (startDate.compareTo(endDate) >= 0) {
 				Dialogs.showMessage("开始日期应在结束日期之前！");
 				startTime.setValue(null);
 				return;
 			}
-			handleSave();
+			if (discountID != null)
+				handleSave();
 		}
 	}
 
@@ -93,7 +102,8 @@ public abstract class HotelItemController {
 				endTime.setValue(null);
 				return;
 			}
-			handleSave();
+			if (discountID != null)
+				handleSave();
 		}
 	}
 
@@ -104,10 +114,13 @@ public abstract class HotelItemController {
 				setTitle();
 				state.setText("未开始");
 
-				// TODO: 调用blservice删除策略
+				// TODO: 调用blservice新增策略
 				delete.setText("删 除");// 字中间有空格
 				DiscountHotelService discountHotelService = DiscountHotelController.getInstance();
-				discountHotelService.deleteHotelDiscount(hotelID, discountID);
+				DiscountVO_hotel discountVO_hotel = new DiscountVO_hotel(Double.parseDouble(discount.getText()) * 0.1,
+						startTime.getValue(), endTime.getValue(), aditionalMessage.getText(),
+						superposition.isSelected(), strategy_hotelType, enterpriseName);
+				discountHotelService.addHotelDiscount(hotelID, discountVO_hotel);
 				hotelDiscountController.addNewItem(getType());
 			} else {
 				Dialogs.showMessage("策略未完成");
@@ -116,18 +129,27 @@ public abstract class HotelItemController {
 			disableControls();
 			// TODO: 调用blservice删除策略
 			DiscountHotelService discountHotelService = DiscountHotelController.getInstance();
-			discountHotelService.deleteHotelDiscount(hotelID, discountID);
+			if (discountID != null)
+				discountHotelService.deleteHotelDiscount(hotelID, discountID);
 			hotelDiscountController.addNewItem(getType());
 		}
 	}
+
 	@FXML
 	protected void handleSave() {
-		//TODO:调用blservice保存信息，如果某个子类item的信息和这个了类不一样，覆写此方法
+		DiscountHotelService discountHotelService = DiscountHotelController.getInstance();
+		DiscountVO_hotel discountVO_hotel = new DiscountVO_hotel(Double.parseDouble(discount.getText()) * 0.1,
+				startTime.getValue(), endTime.getValue(), aditionalMessage.getText(), superposition.isSelected(),
+				strategy_hotelType, enterpriseName);
+		// TODO:调用blservice保存信息，如果某个子类item的信息和这个了类不一样，覆写此方法
+		if (discountID != null)
+			discountHotelService.editHotelDiscount(discountID, discountVO_hotel);
 	}
-	
-	protected abstract ItemType getType() ;
-	protected abstract void setTitle() ;
-	
+
+	protected abstract Strategy_hotelType getType();
+
+	protected abstract void setTitle();
+
 	/**
 	 * 检查是否填写完毕
 	 * 
@@ -167,7 +189,8 @@ public abstract class HotelItemController {
 	 *            能否与其它折扣叠加
 	 */
 	public void setValue(String title, String state, String aditionalMessage, double discount, LocalDate startTime,
-			LocalDate endTime, boolean superposition, String discountID) {
+			LocalDate endTime, boolean superposition, String discountID, Strategy_hotelType strategy_hotelType,
+			String enterpriseName) {
 		this.title.setText(title);
 		this.state.setText(state);
 		this.aditionalMessage.setText(aditionalMessage);
@@ -178,6 +201,8 @@ public abstract class HotelItemController {
 		this.delete.setText("删 除");// 字中间有空格
 		this.hotelID = LoginController.getInstance().getLogState().accountID;
 		this.discountID = discountID;
+		this.strategy_hotelType = strategy_hotelType;
+		this.enterpriseName = enterpriseName;
 		setTitle();
 	}
 }

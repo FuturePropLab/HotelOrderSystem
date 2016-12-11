@@ -1,10 +1,7 @@
 package ui.discount;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Accordion;
-import javafx.scene.control.TitledPane;
-import ui.discount.HotelDiscountController.ItemType;
+import tools.Strategy_hotelType;
 
 /**
  * 生日特惠的单个item的界面的控制器
@@ -20,8 +17,8 @@ public class Birthday_HotelItemController extends HotelItemController{
 	}
 
 	@Override
-	protected ItemType getType() {
-		return ItemType.BIRTHDAY;
+	protected Strategy_hotelType getType() {
+		return Strategy_hotelType.Birthday;
 	}
 
 	@Override

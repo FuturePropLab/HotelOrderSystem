@@ -1,14 +1,8 @@
 package ui.discount;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TitledPane;
-import javafx.scene.paint.Color;
-import ui.discount.HotelDiscountController.ItemType;
+import tools.Strategy_hotelType;
 
 /**
  * 合作企业的单个item的界面的控制器
@@ -27,8 +21,8 @@ public class Company_HotelItemController extends HotelItemController{
 	}
 	
 	@Override
-	protected ItemType getType() {
-		return ItemType.COMPANY;
+	protected Strategy_hotelType getType() {
+		return Strategy_hotelType.CooperateEnterprise;
 	}
 	
 	@Override

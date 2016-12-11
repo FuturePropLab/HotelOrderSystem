@@ -61,7 +61,7 @@ public class HotelDiscountController extends DetailsController {
 			Birthday_HotelItemController birthdayItemController = (Birthday_HotelItemController) addTitlePane(
 					birthdayList, "BirthdayItem.fxml");
 			birthdayItemController.setValue("生日特惠", dis.discountState.toString(), dis.remarks, dis.discount * 10,
-					dis.startDate, dis.endDate, dis.superimpose, dis.discountID); // discount*10为转换为几折几折
+					dis.startDate, dis.endDate, dis.superimpose, dis.discountID, Strategy_hotelType.Birthday, hotelID); // discount*10为转换为几折几折
 
 		}
 		
@@ -74,7 +74,7 @@ public class HotelDiscountController extends DetailsController {
 			OverThreeRooms_HotelItemController overThreeRooms_HotelItemController = (OverThreeRooms_HotelItemController) addTitlePane(
 					overThreeRoomsList, "OverThreeRoomsItem.fxml");
 			overThreeRooms_HotelItemController.setValue("预订多间优惠", dis2.discountState.toString(), dis2.remarks,
-					dis2.discount * 10, dis2.startDate, dis2.endDate, dis2.superimpose, dis2.discountID);
+					dis2.discount * 10, dis2.startDate, dis2.endDate, dis2.superimpose, dis2.discountID, Strategy_hotelType.OrderMore, hotelID);
 		}
 		
 		//初始合作企业促销策略
@@ -86,7 +86,7 @@ public class HotelDiscountController extends DetailsController {
 			Company_HotelItemController company_HotelItemController = (Company_HotelItemController) addTitlePane(
 					companyList, "CompanyItem.fxml");
 			company_HotelItemController.setValue("合作企业优惠", dis3.discountState.toString(), dis3.remarks,
-					dis3.discount * 10, dis3.startDate, dis3.endDate, dis3.superimpose, dis3.discountID);
+					dis3.discount * 10, dis3.startDate, dis3.endDate, dis3.superimpose, dis3.discountID, Strategy_hotelType.CooperateEnterprise, hotelID);
 			company_HotelItemController.setCompanyName(dis3.enterpriseName);
 		}
 		
@@ -99,7 +99,7 @@ public class HotelDiscountController extends DetailsController {
 					double11List, "Period_HotelItem.fxml");
 			DiscountVO_hotel dis4 = iterator4.next();
 			period_HotelItemController.setValue("特定期间优惠", dis4.discountState.toString(), dis4.remarks,
-					dis4.discount * 10, dis4.startDate, dis4.endDate, dis4.superimpose, dis4.discountID);
+					dis4.discount * 10, dis4.startDate, dis4.endDate, dis4.superimpose, dis4.discountID, Strategy_hotelType.Period, hotelID);
 			period_HotelItemController.setFestivalDate(dis4.startDate, dis4.endDate);
 		}
 		
@@ -129,21 +129,21 @@ public class HotelDiscountController extends DetailsController {
 	/**
 	 * 增加新的促销策略
 	 * 
-	 * @param itemType
+	 * @param strategy_hotelType
 	 *            促销策略类型
 	 */
-	public void addNewItem(ItemType itemType) {
-		switch (itemType) {
-		case BIRTHDAY:
+	public void addNewItem(Strategy_hotelType strategy_hotelType) {
+		switch (strategy_hotelType) {
+		case Birthday:
 			addTitlePane(birthdayList, "BirthdayItem.fxml");
 			break;
-		case OVER_THREE_ROOMS:
+		case OrderMore:
 			addTitlePane(overThreeRoomsList, "OverThreeRoomsItem.fxml");
 			break;
-		case COMPANY:
+		case CooperateEnterprise:
 			addTitlePane(companyList, "CompanyItem.fxml");
 			break;
-		case DOUBLE11:
+		case Period:
 			addTitlePane(double11List, "Period_HotelItem.fxml");
 			break;
 		default:
@@ -151,13 +151,4 @@ public class HotelDiscountController extends DetailsController {
 		}
 	}
 
-	/**
-	 * 促销策略类型
-	 * 
-	 * @author zjy
-	 *
-	 */
-	public enum ItemType {
-		BIRTHDAY, OVER_THREE_ROOMS, COMPANY, DOUBLE11
-	}
 }

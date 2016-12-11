@@ -1,14 +1,12 @@
 package ui.discount;
 
+import java.time.LocalDate;
 import java.util.Date;
-
-import com.sun.org.apache.bcel.internal.generic.RET;
-import com.sun.org.apache.bcel.internal.generic.RETURN;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
-import javafx.scene.paint.Color;
-import ui.discount.WebDiscountController.ItemType;
+import tools.Strategy_webType;
+import ui.utils.Dialogs;
 
 /**
  * 特定期间预订折扣的单个item的界面的控制器
@@ -23,27 +21,36 @@ public class Period_WebItemController extends WebItemController{
 	protected DatePicker endTime;
 	
 	@FXML
-	protected void handleStartTime(){
-		//TODO: 开始时间在结束时间之后时处理
-		if(endTime.getValue()!=null){
-			if(startTime.getValue().compareTo(endTime.getValue())>=0){
-				//怎么处理？？弹窗？
-				return ;
-			}
-		}
-		handleSave();
-	}
-	@FXML
-	protected void handleEndTime(){
-		//TODO: 开始时间在结束时间之后时处理
-		if(startTime.getValue()!=null){
-			if(startTime.getValue().compareTo(endTime.getValue())>=0){
-				//怎么处理？？弹窗？
+	protected void handleStartTime() {
+		// TODO: 开始时间在结束时间之后时处理
+		LocalDate startDate = startTime.getValue();
+		LocalDate endDate;
+		if (startDate != null && endTime.getValue() != null) {
+			endDate = endTime.getValue();
+			if(startDate.compareTo(endDate)>=0){
+				Dialogs.showMessage("开始日期应在结束日期之前！");
+				startTime.setValue(null);
 				return;
 			}
+			handleSave();
 		}
-		handleSave();
-	}	
+	}
+
+	@FXML
+	protected void handleEndTime() {
+		// TODO: 开始时间在结束时间之后时处理
+		LocalDate endDate = endTime.getValue();
+		LocalDate startDate;
+		if (endDate != null && startTime.getValue() != null) {
+			startDate = startTime.getValue();
+			if (startDate.compareTo(endDate) >= 0) {
+				Dialogs.showMessage("结束日期应在开始日期之后！");
+				endTime.setValue(null);
+				return;
+			}
+			handleSave();
+		}
+	}
 	@FXML
 	protected void handleDiscount(){
 		title.setText(discount.getText()+"折");
@@ -51,8 +58,8 @@ public class Period_WebItemController extends WebItemController{
 	}
 
 	@Override
-	protected ItemType getType() {
-		return ItemType.SpecialDay;
+	protected Strategy_webType getType() {
+		return Strategy_webType.Period;
 	}
 
 	@Override
@@ -82,8 +89,8 @@ public class Period_WebItemController extends WebItemController{
 	public void setValue(String state,double discount,Date startTime, Date endTime) {
 		this.state.setText(state);
 		this.discount.setText(discount+"");
-		this.startTime.setPromptText(startTime.getYear()+"-"+startTime.getMonth()+"-"+startTime.getDate());
-		this.endTime.setPromptText(endTime.getYear()+"-"+endTime.getMonth()+"-"+endTime.getDate());
+		this.startTime.setPromptText(startTime.toString());
+		this.endTime.setPromptText(endTime.toString());
 		this.delete.setText("删 除");//字中间有空格
 		setTitle();
 	}
