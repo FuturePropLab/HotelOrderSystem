@@ -44,7 +44,7 @@ public class Account {
 	 * @param hotelInfo
 	 */
 	public Account(HotelInfo hotelInfo){
-		this.accountDataService = new AccountData_stub();
+//		this.accountDataService = new AccountData_stub();
 		this.hotelInfo = hotelInfo;
 		this.customerInfo = null;
 	}
@@ -252,6 +252,7 @@ public class Account {
 			return ResultMessage_Account.InvalidInput;
 		}
 		try {
+//			accountDataService = new AccountData_stub();
 			return accountDataService.deleteAccount(userId);
 		} catch (RemoteException e) {
 			return ResultMessage_Account.SystemError;

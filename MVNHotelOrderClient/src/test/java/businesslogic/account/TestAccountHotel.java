@@ -1,27 +1,29 @@
-//package businesslogic.account;
-//
-//import static org.junit.Assert.*;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//import org.junit.Before;
-//import org.junit.Test;
-//
-//import tools.ResultMessage;
-//import tools.Star;
-//import vo.HotelAccountVO;
+package businesslogic.account;
+
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import tools.AccountType;
+import tools.ResultMessage;
+import tools.ResultMessage_Account;
+import tools.Star;
+import vo.HotelAccountVO;
 //import vo.HotelInfoVO;
-//import vo.HotelInputVO;
-//import vo.HotelSearchVO;
-//
-///**
-// *  测试HOTEL账户的相关方法
-// * @author wshwbluebird
-// *
-// */
-//public class TestAccountHotel {
-//	
+import vo.HotelInputVO;
+import vo.HotelSearchVO;
+
+/**
+ *  测试HOTEL账户的相关方法
+ * @author wshwbluebird
+ *
+ */
+public class TestAccountHotel {
+	public Account account;
 //	businesslogic.account.Account account;
 //	@Before
 //	public  void testBeforeClass(){
@@ -73,4 +75,19 @@
 //		assertEquals("bbb", account.searchHotelAccount(hotelSearchVO).get(1).id);
 //	}
 //
-//}
+	
+	@Test
+	public void testAddHotelAccount(){
+		account = new Account();
+		assertEquals(ResultMessage_Account.InvalidInput,account.addAccount("cyy", "123", AccountType.Hotel));
+		assertEquals(ResultMessage_Account.Success, account.addAccount("jinlinghotel", "123456", AccountType.Hotel));
+	}
+	@Test
+	public void testRestPassword(){
+		account = new Account();
+		assertEquals(ResultMessage_Account.Success, account.resetPassword("123455", "123456"));
+				
+	}
+	
+	
+}

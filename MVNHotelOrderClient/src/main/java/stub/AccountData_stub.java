@@ -97,7 +97,7 @@ public class AccountData_stub implements AccountDataService{
 
 	public ResultMessage_Account resetPassword(String userid, String newPassword) {
 		// TODO Auto-generated method stub
-		return null;
+		return ResultMessage_Account.Success;
 	}
 
 	public AccountPO getAccountByUserName(String username) {
@@ -118,12 +118,15 @@ public class AccountData_stub implements AccountDataService{
 
 	public ResultMessage_Account addAccount(AccountPO accountPO) {
 		// TODO Auto-generated method stub
-		return null;
+		if(accountPO!=null){
+		return ResultMessage_Account.Success;}else{
+			return ResultMessage_Account.Fail;
+		}
 	}
 
 	public ResultMessage_Account deleteAccount(String userid) {
 		// TODO Auto-generated method stub
-		return null;
+		return ResultMessage_Account.Success;
 	}
 
 	public List<AccountPO> getAccountList(List<String> idList, AccountType accountType) throws RemoteException {

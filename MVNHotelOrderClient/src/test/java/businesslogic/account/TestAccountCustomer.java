@@ -133,6 +133,13 @@ public class TestAccountCustomer {
 		
 	  
 	}
+	@Test
+	public void testDelete(){
+		Account account = new Account();
+		assertEquals(ResultMessage_Account.Success, account.deleteAccount("12345"));
+		
+		assertEquals(ResultMessage_Account.InvalidInput, account.deleteAccount("222s"));
+	}
 	
 }
 
