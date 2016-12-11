@@ -25,7 +25,7 @@ public class DiscountVO_web_period extends DiscountVO_web {
 	public  DiscountVO_web_period(LocalDate startDate,LocalDate endDate,double discount){
 		this.startDate =startDate;
 		this.endDate = endDate;
-		this.discount=discount*0.1;
+		this.discount=discount;
 		this.type=Strategy_webType.Period;
 		this.discountState=DiscountState.valid;
 	}

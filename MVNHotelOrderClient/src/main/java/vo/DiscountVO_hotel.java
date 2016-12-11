@@ -24,7 +24,7 @@ public class DiscountVO_hotel {
 	
 	
 	public DiscountVO_hotel( double discount,LocalDate start,LocalDate end,String remarks,boolean superimpose,Strategy_hotelType type ,String enterpriseName){
-		this.discount=discount*0.1;
+		this.discount=discount;
 		this.startDate=start;
 		this.endDate=end;
 		this.remarks=remarks;

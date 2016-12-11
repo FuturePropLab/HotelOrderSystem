@@ -19,7 +19,7 @@ public class DiscountVO_web_level extends DiscountVO_web {
 	}
 
 	public DiscountVO_web_level(Strategy_webType strategy_webType,double discount,int level, int levelUpCredit){
-		this.discount=discount*0.1;
+		this.discount=discount;
 		this.level=level;
 		this.levelUpCredit = levelUpCredit;
 		this.type = Strategy_webType.Level;

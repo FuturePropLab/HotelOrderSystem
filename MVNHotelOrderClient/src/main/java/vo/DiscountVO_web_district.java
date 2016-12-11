@@ -24,7 +24,7 @@ public class DiscountVO_web_district extends DiscountVO_web {
 
 	public DiscountVO_web_district(double discount, int level, String city, String district, String businessCircle) {
 
-		this.discount = discount * 0.1;
+		this.discount = discount ;
 		this.level = level;
 		this.city = city;
 		this.district = district;
