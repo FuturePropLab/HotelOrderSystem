@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import businesslogic.discount.DiscountHotelController;
+import businesslogic.login.LoginController;
 import businesslogicservice.DiscountHotelService;
 import dataservice.DiscountHotelDataService;
 import javafx.fxml.FXML;
@@ -49,6 +50,7 @@ public class HotelDiscountController extends DetailsController {
 	@FXML
 	private void initialize() {
 		initAccordions();
+		this.hotelID = LoginController.getInstance().getLogState().accountID;
 	}
 
 	private void initAccordions() {
