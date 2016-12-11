@@ -110,7 +110,14 @@ public class TestCredit {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		String customer_id2= "002";
+//		Credit credit = new Credit();
+		try {
+			assertEquals(4, credit.levelUpdate(customer_id2));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	 

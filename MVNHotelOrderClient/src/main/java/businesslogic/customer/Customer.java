@@ -130,7 +130,7 @@ public class Customer {
 	 */
 	public List<CustomerVO> searchCustomer(CustomerSearchVO customerSearchVO) throws RemoteException{
 //		CustomerDeal_Stub test=new CustomerDeal_Stub();
-//		customerdata = new CustomerData_Stub();
+		customerdata = new CustomerData_Stub();
 		List <CustomerPO> customerPOlist = customerdata.searchCustomer();
 		
 		//show howmuch 
