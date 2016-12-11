@@ -9,6 +9,7 @@ import businesslogic.credit.CreditController;
 import businesslogicservice.CreditLogDealService;
 import dataservice.OrderDataService;
 import po.OrderPO;
+import stub.OrderDate_Stub;
 import tools.ActionType;
 import tools.MemberBelongType;
 import tools.OrderState;
@@ -115,6 +116,7 @@ public class Order {
 	 * @return 修改成功返回true，失败返回false
 	 */
 	public boolean modifyCheckInInfo(ExecutionInfoVO executionInfo){
+		orderDataService = new OrderDate_Stub();
 		if(executionInfo==null){
 			return false;
 		}
@@ -132,7 +134,8 @@ public class Order {
 		}
 		if(checkInInfo.filled()&&orderState.equals(OrderState.Unexecuted)){
 			orderState=OrderState.Executed;
-			CreditLogDealService creditLogDealService=CreditController.getInstance();
+//			CreditLogDealService creditLogDealService=CreditController.getInstance();
+			MockCredit creditLogDealService = new MockCredit();//test
 			creditLogDealService.CreditChangeAboutOrder(this, ActionType.RightOrder);
 		}
 		ResultMessage resultMessage=ResultMessage.NotExist;
@@ -308,6 +311,8 @@ public class Order {
 	 */
 	private int createValue() {
 		int newValue=0;
+		hotelInfo = new MockHotelInfo();//test
+		customerInfo = new MockCustomerInfo();//test
 		newValue+=placingOrderInfo.price;
 		newValue+=hotelInfo.getHotelInfo(placingOrderInfo.hotelID).mark.getValue()*100;
 		newValue+=customerInfo.getCustomer(placingOrderInfo.customerID).membervo.memberType.getType()

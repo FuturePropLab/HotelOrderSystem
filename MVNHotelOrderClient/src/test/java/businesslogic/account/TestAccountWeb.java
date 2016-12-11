@@ -1,3 +1,9 @@
+package businesslogic.account;
+
+import org.junit.Test;
+
+import vo.WebDesignerSearchVO;
+
 //package businesslogic.account;
 //
 //import static org.junit.Assert.assertEquals;
@@ -41,3 +47,15 @@
 //	}
 //
 //}
+public class TestAccountWeb{
+	@Test
+	public void testSearch(){
+		WebDesignerSearchVO searchvo = new WebDesignerSearchVO();
+		searchvo.name = "chenyuyan";
+		
+	}
+	
+	
+	
+	
+}

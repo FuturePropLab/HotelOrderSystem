@@ -88,6 +88,11 @@ public class TestAccountHotel {
 		assertEquals(ResultMessage_Account.Success, account.resetPassword("123455", "123456"));
 				
 	}
-	
+	@Test
+	public void testGetHotelDetails(){
+		account = new Account();
+		
+		
+	}
 	
 }

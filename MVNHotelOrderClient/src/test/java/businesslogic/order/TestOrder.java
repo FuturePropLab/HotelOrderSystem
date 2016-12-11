@@ -3,7 +3,10 @@ package businesslogic.order;
 import static org.junit.Assert.*;
 
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -52,7 +55,28 @@ public class TestOrder {
 	public void testModifyCheckInInfo() {
 		ArrayList<String> roomNumber=new ArrayList<String>();
 		roomNumber.add("8888");
-		assertTrue(order.modifyCheckInInfo(new ExecutionInfoVO("orderID",roomNumber , new Time(0), new Time(0), null)));
+		Date date1 = null;
+		Date date2 = null;
+		SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		try {
+			 date1= df.parse("2004-01-02 11:30:24");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			 date2 = df.parse("2004-01-03 11:30:24");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+//		Date date4 = df.parse("2004-01-03 11:00:24");
+//		Date date5 = df.parse("2004-01-03 11:30:24");
+//		assertTrue(order.modifyCheckInInfo(new ExecutionInfoVO("orderID",roomNumber , date1, date2, null)));
+		
+		assertEquals(true, order.modifyCheckInInfo(new ExecutionInfoVO(order.getOrderID(),roomNumber , date1, date2, null)));
+		assertEquals(false, order.modifyCheckInInfo(new ExecutionInfoVO("000",roomNumber , null,null, null)));
 		assertEquals(order.getState(), OrderState.Executed);
 	}
 	@Test
