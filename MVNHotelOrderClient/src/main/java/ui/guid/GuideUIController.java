@@ -1,5 +1,7 @@
 package ui.guid;
 
+import java.io.File;
+
 import org.w3c.dom.css.ViewCSS;
 
 import com.jfoenix.controls.JFXListView;
@@ -12,8 +14,11 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import tools.AccountType;
 import ui.main.RootLayoutController;
 import vo.LogVO;
@@ -69,6 +74,13 @@ public class GuideUIController {
 			System.err.println("can not get login state");
 		}
 //		guids.getItems().addAll(views);
+//		guids.setCellFactory((ListView<String> l) -> new ListCell<String>(){
+//			@Override
+//			protected void updateItem(String item, boolean empty) {
+//				super.updateItem(item, empty);
+//			}
+//			
+//		});
 		guids.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
                 	try {
 						rootLayoutController.changeDetails(fxmls[getIndex(newValue)]);
@@ -77,6 +89,17 @@ public class GuideUIController {
 					}
                 });
 		//((JFXListView<String>)guids).depthProperty().set(1);
+	}
+	@FXML
+	private void handleHeadPortrait() {
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("选择一张图片");
+		fileChooser.getExtensionFilters().addAll(new ExtensionFilter("图片", "*.png", "*.jpg", "*.gif"));
+		File selectedFile = fileChooser.showOpenDialog(rootLayoutController.getPrimaryStage());
+		if (selectedFile != null) {
+			headPortrait.setImage(new Image(selectedFile.toURI().toString()));
+			//TODO:保存头像
+		}
 	}
 	
 	private int getIndex(String name) {
