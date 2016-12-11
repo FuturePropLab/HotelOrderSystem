@@ -17,6 +17,7 @@ import dataservice.datahelper.HotelDataHelper;
 import po.HotelAddressPO;
 import po.HotelBasePO;
 import po.HotelFacilityPO;
+import po.OrderAssessPO;
 import po.RoomPK;
 import po.TypeRoomInfoPO;
 import tools.HotelAddress;
@@ -466,6 +467,16 @@ public class HotelDataHelperImpl implements HotelDataHelper {
 	    	if(matcher.matches())   idList.add(id);
 		}
 		return idList;
+	}
+
+	public List<OrderAssessPO> gethotelAssessVO(String hotelID) {
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		Criteria cr = s.createCriteria(OrderAssessPO.class);
+		cr.add(Restrictions.eq("hotelID", hotelID));
+		
+		List<OrderAssessPO> hAssessPOs =  cr.list();
+		s.close();
+		return hAssessPOs;
 	}
 
 

@@ -25,6 +25,7 @@ import po.HotelBasePO;
 import po.HotelFacilityPO;
 import po.HotelPO;
 import po.ImageInfoPO;
+import po.OrderAssessPO;
 import tools.HotelAddress;
 import tools.HotelFacility;
 import tools.HotelRoomInfo;
@@ -335,6 +336,9 @@ public class HotelDataServiceImpl implements HotelDataService {
 		}	
 		List<String> idList = hotelDataHelper.getIDListByFuzzy(regex);
 		return  getPOsbyList(idList); 
+	}
+	public List<OrderAssessPO> gethotelAssessVO(String hotelID) throws RemoteException {
+		return hotelDataHelper.gethotelAssessVO(hotelID);
 	}
 	
 }  

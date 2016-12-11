@@ -1,11 +1,13 @@
 package dataservice.datahelper;
 
+import java.rmi.RemoteException;
 import java.util.List;
 import java.util.regex.Pattern;
 
 import po.HotelAddressPO;
 import po.HotelBasePO;
 import po.HotelFacilityPO;
+import po.OrderAssessPO;
 import tools.HotelAddress;
 import tools.HotelRoomInfo;
 import tools.ResultMessage_Hotel;
@@ -134,6 +136,8 @@ public interface HotelDataHelper {
 	  public boolean isvalidRoomType(String hotelID,RoomType roomType, double low , double high);
 	  
 	  public List<String> getIDListByFuzzy(String regex);
+	  	  
+	  public List<OrderAssessPO> gethotelAssessVO(String hotelID);
 
 	  
 	  

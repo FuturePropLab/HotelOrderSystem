@@ -38,7 +38,7 @@ public class OrderPreviewController extends DetailsController{
 	private static Image greyStar=new Image("file:./target/resources/images/star_unselected.png");
 	protected RootLayoutController rootLayoutController;
 	@FXML
-	private Hyperlink hotelName;
+	private Label hotelName;
 	@FXML
 	private Label date_from;
 	@FXML

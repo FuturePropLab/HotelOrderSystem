@@ -8,14 +8,18 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
+import Exception.OutOfBoundsException;
 import businesslogic.account.HotelAccountController;
 import businesslogic.order.HotelCommentImpl;
 import dataservice.HotelDataService;
 import po.HotelPO;
+import po.OrderAssessPO;
 import rmi.RemoteHelper;
+import tools.Mark;
 import tools.ResultMessage_Hotel;
 import tools.SortType;
 import tools.StandardSearch;
+import vo.AssessVO;
 import vo.CommentVO;
 import vo.DiscountVO_hotel;
 import vo.HotelAssessVO;
@@ -382,9 +386,44 @@ public class Hotel {
 		}
 		
 		public HotelAssessVO gethotelAssessVO(String hotelID) {
-			// TODO Auto-generated method stub
-			return null;
-		}s
+			List<OrderAssessPO> orderAssessPOs  = new ArrayList<>();
+			try {
+				orderAssessPOs= hotelDataService.gethotelAssessVO(hotelID);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			Iterator<OrderAssessPO> it = orderAssessPOs.iterator();
+			List<AssessVO> assessVOs = new ArrayList<AssessVO>();
+			double fullmark  = 0;
+			int count = 0;
+			while(it.hasNext()){
+				OrderAssessPO hAssessPO = it.next();
+				Mark mark = null;
+				try {
+					mark = new Mark(hAssessPO.getMarkValue());
+				} catch (OutOfBoundsException e) {
+					try {
+						mark = new Mark(5);
+					} catch (OutOfBoundsException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				AssessVO assessVO = new AssessVO(mark, hAssessPO.getAssessment());
+				assessVOs.add(assessVO);
+				fullmark+=hAssessPO.getMarkValue();
+				count++;		
+			}
+			double avmark = 4;
+			if(count!=0){
+				avmark = fullmark/count;
+			}
+			HotelAssessVO hotelAssessVO = new HotelAssessVO(avmark,assessVOs);
+			
+			return hotelAssessVO;
+		}
 		
 	
 }
