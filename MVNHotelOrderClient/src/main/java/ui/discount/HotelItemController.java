@@ -2,6 +2,9 @@ package ui.discount;
 
 import java.time.LocalDate;
 
+import businesslogic.discount.DiscountHotelController;
+import businesslogic.login.LoginController;
+import businesslogicservice.DiscountHotelService;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
@@ -11,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.paint.Color;
 import ui.discount.HotelDiscountController.ItemType;
+import ui.utils.Dialogs;
 
 /**
  * 单个酒店优惠item的界面的控制器
@@ -36,6 +40,9 @@ public abstract class HotelItemController {
 	@FXML
 	protected Hyperlink delete;//确认和删除合一的按钮，名字叫delete
 	protected HotelDiscountController hotelDiscountController;
+	
+	public String hotelID;
+	public String discountID;// 处理id的获取
 
 	public void setHotelDiscountController(HotelDiscountController hotelDiscountController) {
 		this.hotelDiscountController = hotelDiscountController;
@@ -55,12 +62,21 @@ public abstract class HotelItemController {
 	@FXML
 	protected void handleStartTime(){
 		//TODO: 开始时间在结束时间之后时处理
-		
+		LocalDate startDate = startTime.getValue();
+		LocalDate endDate = endTime.getValue();
+		if(startDate.compareTo(endDate)>=0){
+			Dialogs.showMessage("开始日期应在结束日期之前！");
+		}
+			
 	}
 	@FXML
 	protected void handleEndTime(){
 		//TODO: 开始时间在结束时间之后时处理
+		LocalDate startDate = startTime.getValue();
 		LocalDate endDate = endTime.getValue();
+		if(startDate.compareTo(endDate)>=0){
+			Dialogs.showMessage("结束日期应在开始日期之后！");
+		}
 	}
 	
 	@FXML
@@ -70,7 +86,9 @@ public abstract class HotelItemController {
 				setTitle();
 				state.setText("未开始");
 				
-				//TODO: 调用blservice增加策略
+				//TODO: 调用blservice删除策略
+				DiscountHotelService discountHotelService = DiscountHotelController.getInstance();
+				discountHotelService.deleteHotelDiscount(hotelID, discountID);
 				delete.setText("删 除");//字中间有空格
 				hotelDiscountController.addNewItem(getType());
 			}
@@ -81,6 +99,7 @@ public abstract class HotelItemController {
 		else {
 			disableControls();
 			//TODO: 调用blservice删除策略
+			
 		}
 	}
 	
@@ -118,17 +137,17 @@ public abstract class HotelItemController {
 	 * @param superposition 能否与其它折扣叠加
 	 */
 	public void setValue(String title,String state,String aditionalMessage,double discount,LocalDate startTime,
-			LocalDate endTime,boolean superposition) {
+			LocalDate endTime,boolean superposition ,String discountID) {
 		this.title.setText(title);
 		this.state.setText(state);
 		this.aditionalMessage.setText(aditionalMessage);
 		this.discount.setText(discount+"");
 		this.startTime.setPromptText(startTime.toString());
-		this.startTime.setPromptText(startTime.toString());
-		this.endTime.setPromptText(endTime.toString());
 		this.endTime.setPromptText(endTime.toString());
 		this.superposition.setSelected(superposition);
 		this.delete.setText("删 除");//字中间有空格
+		this.hotelID = LoginController.getInstance().getLogState().accountID;
+		this.discountID = discountID;
 		setTitle();
 	}
 }

@@ -384,7 +384,7 @@ public class Hotel {
 		public HotelAssessVO gethotelAssessVO(String hotelID) {
 			// TODO Auto-generated method stub
 			return null;
-		}s
+		}
 		
 	
 }
