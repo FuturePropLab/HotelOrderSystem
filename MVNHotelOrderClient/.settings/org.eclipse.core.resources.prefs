@@ -148,6 +148,7 @@ encoding//src/test/java/businesslogic/discount/TestHotelDiscount.java=UTF-8
 encoding//src/test/java/businesslogic/discount/TestWebDiscount.java=UTF-8
 encoding//src/test/java/businesslogic/hotel/TestHotel.java=UTF-8
 encoding//src/test/java/businesslogic/order/TestOrder.java=UTF-8
+encoding//src/test/java/businesslogic/order/TestOrderController.java=UTF-8
 encoding//src/test/java/businesslogic/strategy/TestStrategy.java=UTF-8
 encoding//src/test/java/businesslogicservice/impl/TestCustomer.java=UTF-8
 encoding//src/test/java/businesslogicservice/impl/TestHotel.java=UTF-8

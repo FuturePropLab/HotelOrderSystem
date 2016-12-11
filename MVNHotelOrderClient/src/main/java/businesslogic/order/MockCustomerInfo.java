@@ -23,7 +23,14 @@ public class MockCustomerInfo implements CustomerInfo{
 			MemberType memberType = new MemberType("0001");
 			memberType.setType(MemberBelongType.None);
 			return new CustomerVO(customerID, "customerName", "gender", "telephone", new MemberVO(customerID, 
-					memberType),40);}else{
+					memberType),40);}
+		else if(customerID=="0003"){
+			MemberType memberType = new MemberType("0001");
+			memberType.setType(MemberBelongType.None);
+			return new CustomerVO(customerID, "customerName", "gender", "telephone", new MemberVO(customerID, 
+					memberType),100);
+		}
+		else{
 						return null;
 					}
 		}
