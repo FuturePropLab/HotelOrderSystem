@@ -1,7 +1,10 @@
 package ui.customer;
 
+import java.time.LocalDate;
+
 import businesslogic.customer.CustomerDealController;
 import businesslogic.member.MemberController;
+import businesslogicservice.MemberService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -11,7 +14,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import tools.MemberBelongType;
 import tools.MemberType;
+import tools.ResultMessage;
+import tools.ResultMessage_Member;
 import ui.main.DetailsController;
+import ui.utils.Dialogs;
 import vo.CustomerVO;
 import vo.MemberVO;
 
@@ -99,7 +105,41 @@ public class ClientInfoController extends DetailsController{
 	}
 	@FXML
 	private void handleApply(){
-		//TODO:调用blservice申请会员
+		if("普通会员".equals(this.memberType_apply.getValue())){
+			LocalDate birthday = this.birthday_apply.getValue();
+			if(birthday == null)  return;
+			
+			MemberService memberService  =MemberController.getInstance();
+			MemberType memberType = new MemberType(customerID);
+			memberType.setBirthday(birthday);
+			memberType.setType(MemberBelongType.Ordinary);
+			MemberVO memberVO = new MemberVO(customerID, memberType);
+			ResultMessage_Member rs = memberService.modifyMemberInfo(memberVO);
+			if(rs==ResultMessage_Member.Success){
+				Dialogs.showMessage("会员申请成功");
+				// TODO洁面刷新
+			}else{
+				Dialogs.showMessage("会员申请失败   请注意自己的信用值");
+			}
+		}else  if("企业会员".equals(this.memberType_apply.getValue())){
+			if(this.companyName_apply.getText()==null){
+				return ;
+			}
+			String companyapplyname = this.companyName_apply.getText().trim();
+			MemberService memberService  =MemberController.getInstance();
+			MemberType memberType = new MemberType(customerID);
+			memberType.setCompanyName(companyapplyname);
+			memberType.setType(MemberBelongType.Enterprise);
+			MemberVO memberVO = new MemberVO(customerID, memberType);
+			ResultMessage_Member rs = memberService.modifyMemberInfo(memberVO);
+			if(rs==ResultMessage_Member.Success){
+				Dialogs.showMessage("会员申请成功");
+				// TODO洁面刷新
+			}else{
+				Dialogs.showMessage("会员申请失败   请注意自己的信用值");
+			}
+		}
+		
 	}
 	
 	/**
@@ -121,6 +161,7 @@ public class ClientInfoController extends DetailsController{
 			this.gender.setValue(customerVO.gender);
 			this.credit.setText(String.valueOf(customerVO.credit));
 			this.customerName.setText(customerVO.customerName);
+			this.contactWay.setText(customerVO.telephone);
 			MemberVO memberVO = MemberController.getInstance().getMemberInfo(customerID);
 			
 			MemberType me = memberVO.memberType;

@@ -10,9 +10,9 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-import dataservice.CreditDataService;
-import dataservice.MemberDataService;
-import po.MemberPO;
+import businesslogic.login.LoginController;
+import dataservice.HotelDataService;
+import po.HotelPO;
 import rmi.RemoteHelper;
 
 public class ClientRunner {
@@ -53,7 +53,24 @@ public class ClientRunner {
 	}
 	
 	
-	public void test() throws RemoteException{		
+	public void test() throws RemoteException{	
+		
+		
+		LoginController loginController = LoginController.getInstance();
+		System.out.println(loginController.getInstance().getLogState().accountID);
+		
+		
+//		HotelDataService hotelDataService = RemoteHelper.getInstance().getHotelDataService();
+//		HotelPO hotelPO = hotelDataService.getHotel("HT001");
+//		System.out.println(hotelPO.getHotelName());
+//		System.out.println(hotelPO.getHotelRoom().getTypeRoomInfo().size());
+		
+		
+//		HotelDealController hotelDealController = HotelDealController.getInstance();
+//		
+//		HotelDetailsVO hotelDetailsVO = hotelDealController.getHotelDetailsVO("HT001");
+//		System.out.println(hotelDetailsVO == null);
+//.out.println(hotelDetailsVO.hotelName);
 //		 DiscountWebDataService discountWebDataService =
 //				 RemoteHelper.getInstance().getDiscountWebDAteService();
 //		 List<DiscountPO_web> list = discountWebDataService.getWebDiscount();
@@ -106,11 +123,11 @@ public class ClientRunner {
 //		System.out.println(creditDataService.add(creditLogPO));	
 		//System.out.println(creditDataService.getLogList("CS001").size());
 		//System.out.println(creditDataService.changeCredit("CS001", 500));
-		
-		
-		MemberDataService memberDataService  =RemoteHelper.getInstance().getMemberDataService();
-		MemberPO memberPO  =memberDataService.getMember("CS001");
-		System.out.println(memberPO.getMemberType().getCompanyName());
+//		
+//		
+//		MemberDataService memberDataService  =RemoteHelper.getInstance().getMemberDataService();
+//		MemberPO memberPO  =memberDataService.getMember("CS001");
+//		System.out.println(memberPO.getMemberType().getCompanyName());
 		 
 	}
 	

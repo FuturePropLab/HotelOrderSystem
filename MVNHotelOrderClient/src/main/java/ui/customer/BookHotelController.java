@@ -27,6 +27,8 @@ import tools.RoomType;
 import tools.TypeRoomInfo;
 import ui.hotel.HotelDetailController;
 import ui.main.DetailsController;
+import ui.order.OrderPreviewController;
+import ui.utils.Dialogs;
 import vo.CustomerVO;
 import vo.HotelbriefVO;
 import vo.OrderInputCalVO;
@@ -122,11 +124,9 @@ public class BookHotelController extends DetailsController{
 						planedPeopleNumber, isChild(), reprice);
 		
 		try {
-			
-			//TODO ????????
 			rootLayoutController.changeDetails("../order/OrderPreview.fxml");
-			//OrderPreviewController orderPreviewController = (OrderPreviewController)rootLayoutController.getDetailsController();
-			
+			OrderPreviewController orderPreviewController = (OrderPreviewController)rootLayoutController.getDetailsController();
+			orderPreviewController.initVaule(orderInputVO);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -172,15 +172,21 @@ public class BookHotelController extends DetailsController{
 						planedPeopleNumber, this.children.isSelected(), reprice);
 		
 		OrderController orderController  = OrderController.getInstance();
+		ResultMessage resultMessage = null;
 		try {
-			ResultMessage resultMessage  = orderController.createOrders(orderInputVO);
-			if(resultMessage== ResultMessage.Exist){
-				// 提示客户成
-				System.out.println("success");
-			}
+			 resultMessage=orderController.createOrders(orderInputVO);
 		} catch (CustomerCreditNotEnoughException e) {
-			//提示客户信用不足
-			System.out.println("not good credit");
+			Dialogs.showMessage("你的信用值是："+e.credit,"你的信用值不足，不能下单，请联系网站促销人员进行充值");
+		}
+		if(resultMessage.equals(ResultMessage.Exist)){
+			try {
+				rootLayoutController.changeDetails("../order/OrderList.fxml");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		else {
+			Dialogs.showMessage("下单失败");
 		}
 		
 		
@@ -189,9 +195,11 @@ public class BookHotelController extends DetailsController{
 	@FXML
 	private void handlePrice(){
 		//:计算当前的价格，更改组件的值
+		
 		LocalDate startDate = this.lastDate.getValue() ;
 		LocalDate endDate = this.planedLeaveDate.getValue() ;
 		
+		if(startDate == null || endDate==null) return ;
 		
 		//简单计算天数
 		int days = endDate.getDayOfYear() - startDate.getDayOfYear();

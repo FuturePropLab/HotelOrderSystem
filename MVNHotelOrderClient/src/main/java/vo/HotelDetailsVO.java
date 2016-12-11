@@ -50,6 +50,7 @@ public class HotelDetailsVO {
 	
 	public HotelDetailsVO(HotelPO hotelPO){
 		super();
+		System.out.println(hotelPO==null);
 		this.hotelID = hotelPO.getHotelID();
 		this.hotelName = hotelPO.getHotelName();
 		this.star = hotelPO.getStar();

@@ -90,12 +90,13 @@ public class FacilitiesInfoController extends DetailsController{
 	
     @FXML
     private void initialize() {
-//    	HotelDealController hotelDealController = HotelDealController.getInstance();
-//    	HotelFacilityVO hotelFacilityVO = hotelDealController.gethotelFacilityVO(hotelID);
-    	//if(hotelFacilityVO!=null)
-    	setValues(new HotelFacilityVO("hotelID", "hotelName", null, true, true, true, true, true, true, true, true, 
-    			true, true, "other"));
-//    	setValues(hotelFacilityVO);
+    	this.hotelID = LoginController.getInstance().getLogState().accountID;
+    	HotelDealController hotelDealController = HotelDealController.getInstance();
+    	HotelFacilityVO hotelFacilityVO = hotelDealController.gethotelFacilityVO(hotelID);
+    	if(hotelFacilityVO!=null)
+//    	setValues(new HotelFacilityVO("hotelID", "hotelName", null, true, true, true, true, true, true, true, true, 
+//    			true, true, "other"));
+    	setValues(hotelFacilityVO);
     }
     
     @FXML

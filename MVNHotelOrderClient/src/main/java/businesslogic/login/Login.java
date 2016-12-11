@@ -51,7 +51,8 @@ public class Login {
 			this.accountType=accountType;
 			this.accountID=loginCheckService.getUserID(username, password);
 			
-			System.out.println("ResultMessage_LoginCheck:   "+accountID);
+			System.out.println("ResultMessage_LoginCheck:!!!   "+accountID);
+			System.out.println(accountID);
 		}
 		return loginResult;
 	}

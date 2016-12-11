@@ -6,18 +6,22 @@ import java.util.Date;
 
 import Exception.CustomerCreditNotEnoughException;
 import businesslogic.credit.CreditController;
+import businesslogic.member.MemberController;
 import businesslogicservice.CreditLogDealService;
 import dataservice.OrderDataService;
+import po.MemberPO;
 import po.OrderPO;
 import stub.OrderDate_Stub;
 import tools.ActionType;
 import tools.MemberBelongType;
+import tools.MemberType;
 import tools.OrderState;
 import tools.ResultMessage;
 import vo.AssessVO;
 import vo.CustomerVO;
 import vo.ExecutionInfoVO;
 import vo.HotelbriefVO;
+import vo.MemberVO;
 import vo.OrderInputVO;
 
 /**
@@ -315,8 +319,15 @@ public class Order {
 //		customerInfo = new MockCustomerInfo();//test
 		newValue+=placingOrderInfo.price;
 		newValue+=hotelInfo.getHotelInfo(placingOrderInfo.hotelID).mark.getValue()*100;
-		newValue+=customerInfo.getCustomer(placingOrderInfo.customerID).membervo.memberType.getType()
-				.equals(MemberBelongType.None)?0:1000;
+		
+		//TODO wsw  小改  不知道 这个方法本来又问题!!!!
+		MemberController memberController = MemberController.getInstance();
+		System.out.println(placingOrderInfo.customerID);
+		MemberVO memberVO = memberController.getMemberInfo(placingOrderInfo.customerID);
+		newValue+= memberVO.memberType.getType()==MemberBelongType.None?0:1000;
+		//memberController.getMemberInfo(placingOrderInfo.customerID);
+//		newValue+=customerInfo.getCustomer(placingOrderInfo.customerID).membervo.memberType.getType()
+//				.equals(MemberBelongType.None)?0:1000;
 		return newValue;
 	}
 	/**

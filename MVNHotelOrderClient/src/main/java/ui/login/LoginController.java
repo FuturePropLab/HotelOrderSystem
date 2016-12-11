@@ -68,19 +68,19 @@ public class LoginController extends FullLayoutController{
 				
 				String accountID  =  LoginServiceUtil.getLoginService().getLogState().accountID;
 				rootLayoutController.changeFullLayout(null);
-				rootLayoutController.changeGuid("GuideUI.fxml");
+				//rootLayoutController.changeGuid("GuideUI.fxml");
 				
 				
 				AccountType testType  = LoginServiceUtil.getLoginService().getLogState().accountType;
 				System.out.println(testType);
 				
-				if( testType  == AccountType.Customer){
-					
+				if( testType  == AccountType.Customer){			
 					rootLayoutController.changeDetails("../hotel/HotelSearch.fxml");
 					HotelSearchController controller =
 							(HotelSearchController) rootLayoutController.getDetailsController();
 					
 				}else if(testType == AccountType.Hotel){
+					System.out.println("Brfore into Detail Hotel : "+accountID);
 					rootLayoutController.changeDetails("../hotel/HotelDetail.fxml");
 					HotelDetailController hotelDetailController  =
 							(HotelDetailController) rootLayoutController.getDetailsController();

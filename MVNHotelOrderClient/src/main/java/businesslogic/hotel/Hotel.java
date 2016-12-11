@@ -18,6 +18,7 @@ import tools.SortType;
 import tools.StandardSearch;
 import vo.CommentVO;
 import vo.DiscountVO_hotel;
+import vo.HotelAssessVO;
 import vo.HotelDetailsVO;
 import vo.HotelDiscribtionsVO;
 import vo.HotelFacilityVO;
@@ -343,15 +344,17 @@ public class Hotel {
 	  */
 	 public HotelDetailsVO getHotelDetailsVO(String hotelID) {
 		 HotelDetailsVO hotelDetailsVO = null	;
+		 System.out.println("HotelDetailsVO:   "+hotelID);
 		 try {
-			 hotelDetailsVO =  new HotelDetailsVO(hotelDataService.getHotel(hotelID));
+			 HotelPO hotelPO = hotelDataService.getHotel(hotelID);
+			 hotelDetailsVO =  new HotelDetailsVO(hotelPO);
 			 hotelDetailsVO.hotelImage = pictureDeal.downloadFrontPicture(hotelID);
 			 hotelDetailsVO.hotelDiscribtionsVO = getHotelDiscribtionsVO(hotelID);			 
 			 } catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return null;
+			return hotelDetailsVO;
 		}
 	 
 	 
@@ -377,6 +380,11 @@ public class Hotel {
 		public ResultMessage_Hotel modifyHotelPicture(String hotelID, URI uri) {
 			return pictureDeal.uploadFrontPicture(hotelID, uri);
 		}
+		
+		public HotelAssessVO gethotelAssessVO(String hotelID) {
+			// TODO Auto-generated method stub
+			return null;
+		}s
 		
 	
 }

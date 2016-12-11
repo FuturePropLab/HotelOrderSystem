@@ -12,6 +12,7 @@ import ui.customer.BookHotelController;
 import ui.customer.ClientInfoController;
 import ui.customer.OrderAssessController;
 import ui.guid.GuideUIController;
+import ui.hotel.FacilitiesInfoController;
 
 /**
  * The controller for the root layout. The root layout provides the basic
@@ -66,11 +67,12 @@ public class RootLayoutController {
 	@FXML
 	private void initialize() {
 		try {
-//			 changeFullLayout("../login/Login.fxml");
+			 changeFullLayout("../login/Login.fxml");
 //			 changeDetails("../order/OrderList.fxml");
-			changeDetails("../administor/UserAdmin.fxml");
+//			changeDetails("../administor/UserAdmin.fxml");
 //			OrderAssessController controller = (OrderAssessController) this.getDetailsController();
 //			controller.initValue("-C4S90908105229");
+//			changeDetails("../customer/ClientInfo.fxml");
 //			ClientInfoController clientInfoController = (ClientInfoController) this.getDetailsController();
 //			clientInfoController.initValue("CS2016112919423486");
 //			BookHotelController bookHotelController = (BookHotelController)this.getDetailsController();
@@ -81,13 +83,15 @@ public class RootLayoutController {
 //			BookHotelController bookHotelController = (BookHotelController)this.getDetailsController();
 //			bookHotelController.setRoomType(RoomType.Double);
 //			bookHotelController.setValue("CS001", "HT001");
-
+//			changeFullLayout("../login/FacilitiesInfo.fxml");
+//			FacilitiesInfoController facilitiesInfoController = (FacilitiesInfoController) this.getDetailsController();
+			
 			// changeDetails("../room/RoomInfo.fxml");
 //			changeDetails("../order/OrderDetails.fxml");
 //			 changeDetails("../discount/HotelDiscount.fxml");
 //			changeDetails("../customer/OrderAssess.fxml");
 
-			changeGuid("../guid/GuideUI.fxml");
+//			changeGuid("../guid/GuideUI.fxml");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
