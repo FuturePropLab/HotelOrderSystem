@@ -9,8 +9,16 @@ import javax.swing.plaf.synth.SynthSpinnerUI;
 
 import DataFactory.DataHelperUtils;
 import dataservice.AccountDataService;
+import dataservice.HotelDataService;
 import dataservice.datahelper.AccountDataHelper;
+import dataservice.datahelper.CustomerDataHelper;
+import dataservice.datahelper.HotelDataHelper;
 import po.AccountPO;
+import po.CustomerAccount;
+import po.CustomerPO;
+import po.HotelAccount;
+import po.HotelAddressPO;
+import po.HotelBasePO;
 import tools.AccountType;
 import tools.ResultMessage_Account;
 
@@ -122,6 +130,43 @@ public class AccountDataServiceImpl implements AccountDataService {
 			}			
 		}
 		return accountListReturn;
+	}
+
+	public List<CustomerAccount> getCustomerAccount() throws RemoteException {
+		AccountDataHelper accountDataHelper = DataHelperUtils.getAccountDataHelper();
+		List<AccountPO>  accountList = accountDataHelper.getAccountList(AccountType.Customer);
+		List<CustomerAccount> customerAccounts  =new  ArrayList<CustomerAccount>();
+		Iterator<AccountPO> it = accountList.iterator();
+		CustomerDataHelper customerDataHelper = DataHelperUtils.getCustomerDataHelper();
+		while(it.hasNext()){
+			AccountPO accountPO = it.next();
+			CustomerPO customerPO  =customerDataHelper.find(accountPO.getUserid()) ;
+			CustomerAccount account = new CustomerAccount(accountPO, customerPO);
+			customerAccounts.add(account);
+		}
+		return customerAccounts;
+	}
+
+	public List<HotelAccount> getHotelAccount() throws RemoteException {
+		AccountDataHelper accountDataHelper = DataHelperUtils.getAccountDataHelper();
+		List<AccountPO>  accountList = accountDataHelper.getAccountList(AccountType.Hotel);
+		List<HotelAccount> hotelAccounts  =new  ArrayList<HotelAccount>();
+		Iterator<AccountPO> it = accountList.iterator();
+		HotelDataHelper hotelDataHelper= DataHelperUtils.getHotelDataHelper();
+		HotelDataService hotelDataService = new HotelDataServiceImpl();
+		
+		while(it.hasNext()){
+			AccountPO accountPO = it.next();
+			HotelAddressPO hotelAddressPO  =hotelDataHelper.getHotelAddressPO(accountPO.getUserid()) ;
+			HotelBasePO hotelBasePO = hotelDataHelper.getHotelBasePO(accountPO.getUserid());
+			HotelAccount account = new HotelAccount(accountPO, hotelAddressPO, hotelBasePO);
+			List<String>  liststr = hotelDataService.getHotelInfoString(accountPO.getUserid());
+			if(liststr!=null && !liststr.isEmpty()){
+				account.setContactWay(liststr.get(0));
+			}
+			hotelAccounts.add(account);
+		}
+		return hotelAccounts;
 	}
 
 }

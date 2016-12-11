@@ -28,9 +28,11 @@ import dataservice.impl.OrderDataServiceImpl;
 import dataservice.impl.RoomDataServiceImpl;
 import po.AccountPO;
 import po.CreditLogPO;
+import po.CustomerAccount;
 import po.CustomerPO;
 import po.DiscountPO_hotel;
 import po.DiscountPO_web;
+import po.HotelAccount;
 import po.HotelPO;
 import po.ImageInfoPO;
 import po.MemberPO;
@@ -287,6 +289,12 @@ OrderDataService,CreditDataService, MemberDataService{
 	}
 	public List<OrderAssessPO> gethotelAssessVO(String hotelID) throws RemoteException {
 		return hotelDataService.gethotelAssessVO(hotelID);
+	}
+	public List<CustomerAccount> getCustomerAccount() throws RemoteException {
+		return accountDataService.getCustomerAccount();
+	}
+	public List<HotelAccount> getHotelAccount() throws RemoteException {
+		return accountDataService.getHotelAccount();
 	}
 
 }

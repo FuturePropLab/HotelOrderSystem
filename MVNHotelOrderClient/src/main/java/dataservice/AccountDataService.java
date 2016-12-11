@@ -5,6 +5,8 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import po.AccountPO;
+import po.CustomerAccount;
+import po.HotelAccount;
 import tools.AccountType;
 import tools.ResultMessage_Account;
 
@@ -56,6 +58,19 @@ public interface AccountDataService extends Remote{
 	 * @throws RemoteException
 	 */
 	public List<AccountPO> getAccountList(List<String> idList,AccountType accountType) throws RemoteException;
-
+	
+	/**
+	 * 
+	 * @return
+	 * @throws RemoteException
+	 */
+	public List<CustomerAccount>  getCustomerAccount() throws RemoteException;
+	
+	/**
+	 * 
+	 * @return
+	 * @throws RemoteException
+	 */
+	public List<HotelAccount> getHotelAccount() throws RemoteException;
 	
 }

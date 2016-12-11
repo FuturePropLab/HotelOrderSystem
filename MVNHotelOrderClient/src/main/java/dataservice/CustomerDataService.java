@@ -4,6 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import po.CustomerAccount;
 import po.CustomerPO;
 import tools.ResultMessage;
 import tools.ResultMessage_Modify;
@@ -26,5 +27,8 @@ public interface CustomerDataService extends Remote{
 	
 	
 	public ResultMessage changeCustomerInfoAboutCredit(CustomerVO customerInfo);
+	
+	
+	public List<CustomerAccount>  getCustomerAccount() throws RemoteException;
 	
 }

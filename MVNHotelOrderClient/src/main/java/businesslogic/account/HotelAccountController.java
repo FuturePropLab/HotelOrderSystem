@@ -1,8 +1,11 @@
 package businesslogic.account;
 
+import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 import businesslogicservice.AccountHotelService;
+import po.HotelAccount;
 import tools.AccountType;
 import tools.ResultMessage_Account;
 import vo.AccountVO;
@@ -66,6 +69,17 @@ public class HotelAccountController implements AccountHotelService {
 
 	public ResultMessage_Account deleteAccount(String userId) {
 		return account.deleteAccount(userId);
+	}
+
+	@Override
+	public List<HotelAccount> getHotelAccount() {
+		try {
+			return account.getHotelAccount();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new ArrayList<>();
+		}
 	}
 
 

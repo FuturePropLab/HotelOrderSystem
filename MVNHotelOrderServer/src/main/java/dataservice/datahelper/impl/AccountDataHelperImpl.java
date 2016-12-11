@@ -74,6 +74,8 @@ public class AccountDataHelperImpl implements AccountDataHelper{
 			+password+"' where userid = '"+userid+"'");
 			//q.addEntity(AccountPO.class);
 			query.executeUpdate();
+			s.flush();
+			s.clear();
 			t.commit();
 			
 			return ResultMessage_Account.Success;

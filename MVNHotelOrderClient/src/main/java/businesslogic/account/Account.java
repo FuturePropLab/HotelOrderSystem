@@ -10,6 +10,8 @@ import java.util.List;
 import businesslogic.customer.CustomerInfoImp;
 import dataservice.AccountDataService;
 import po.AccountPO;
+import po.CustomerAccount;
+import po.HotelAccount;
 import rmi.RemoteHelper;
 import stub.AccountData_stub;
 import tools.AccountType;
@@ -257,6 +259,20 @@ public class Account {
 		} catch (RemoteException e) {
 			return ResultMessage_Account.SystemError;
 		}
+	}
+	
+	
+	/**
+	 * 
+	 * @return
+	 * @throws RemoteException 
+	 */
+	public List<CustomerAccount> getCustomerAccount() throws RemoteException{
+		return accountDataService.getCustomerAccount();
+	}
+	
+	public List<HotelAccount> getHotelAccount() throws RemoteException {
+		return accountDataService.getHotelAccount();
 	}
 	
 }

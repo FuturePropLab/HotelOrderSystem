@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import businesslogicservice.AccountCustomerService;
+import po.CustomerAccount;
 import tools.AccountType;
 import tools.ResultMessage_Account;
 import vo.AccountVO;
@@ -63,6 +64,11 @@ public class CustomerAccountController implements AccountCustomerService{
 
 	public ResultMessage_Account deleteAccount(String userId) {
 		return account.deleteAccount(userId);
+	}
+
+	@Override
+	public List<CustomerAccount> getCustomerAccount() throws RemoteException {
+		return account.getCustomerAccount();
 	}
 	
 		

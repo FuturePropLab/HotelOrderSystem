@@ -2,6 +2,7 @@ package businesslogicservice;
 
 import java.util.List;
 
+import po.HotelAccount;
 import tools.ResultMessage_Account;
 import vo.AccountVO;
 import vo.HotelbriefVO;
@@ -64,4 +65,10 @@ public interface AccountHotelService {
 	 * @return HotelInfoPO 
 	 */
 	public HotelbriefVO getHotelDetail(String hotel_id);
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public List<HotelAccount> getHotelAccount();
 }

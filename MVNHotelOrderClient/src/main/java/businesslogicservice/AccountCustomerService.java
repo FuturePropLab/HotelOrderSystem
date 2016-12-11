@@ -3,6 +3,7 @@ package businesslogicservice;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import po.CustomerAccount;
 import tools.ResultMessage_Account;
 import vo.AccountVO;
 import vo.CustomerSearchVO;
@@ -65,6 +66,12 @@ public interface AccountCustomerService {
 	 * @throws RemoteException 
 	 */
 	public List<AccountVO> searchCustomerAccount(CustomerSearchVO customerSearchVO) throws RemoteException;
+	
+	/**
+	 * 得到酒店管理人员的显示信息
+	 * @return
+	 */
+	public List<CustomerAccount>  getCustomerAccount() throws RemoteException;
 	
 
 }

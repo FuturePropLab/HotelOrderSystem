@@ -1,10 +1,17 @@
 package ui.administor;
 
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
+import businesslogic.account.CustomerAccountController;
+import businesslogicservice.AccountCustomerService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -13,6 +20,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
+import po.CustomerAccount;
+import tools.ResultMessage;
+import tools.ResultMessage_Account;
+import ui.utils.Dialogs;
 /**
  * 客户管理的委托类
  * @author zjy
@@ -43,8 +54,26 @@ public class CustomerController {
 	
 	private void initCustomer(){
 		customers = FXCollections.observableArrayList();
-		customers.add(new Customer("userName", "customerID", "customerName", "gender", "contactWay"));
-		customers.add(new Customer("userName1", "customerID", "customerName", "gender", "contactWay"));
+//		customers.add(new Customer("userName", "customerID", "customerName", "gender", "contactWay"));
+//		customers.add(new Customer("userName1", "customerID", "customerName", "gender", "contactWay"));
+		AccountCustomerService accountCustomerService = CustomerAccountController.getInstance();
+		List<CustomerAccount> list = null;
+		try {
+			 list  = accountCustomerService.getCustomerAccount();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			list  = new ArrayList<>();
+		}
+		
+		//TODO  以后改成lamda表达式
+		Iterator<CustomerAccount>  it = list.iterator();
+		while(it.hasNext()){
+			customers.add(new Customer(it.next()));
+		}
+		
+		
+		
 		//上面时一个例子
 		//TODO:调用blservice添加酒店账号信息
 		final TreeItem<Customer> root = new RecursiveTreeItem<Customer>(customers, RecursiveTreeObject::getChildren);
@@ -82,6 +111,17 @@ public class CustomerController {
 		}
 		String userName=customerList.getSelectionModel().getSelectedItem().getValue().userName.get();
 		System.out.println("reset:"+userName);
+		
+		String userID=customerList.getSelectionModel().getSelectedItem().getValue().customerID.get();
+		AccountCustomerService accountCustomerService = CustomerAccountController.getInstance();
+		ResultMessage_Account rs = accountCustomerService.resetPassword(userID, "123456");
+		
+		if(rs.equals(ResultMessage_Account.Success)){
+			Dialogs.showMessage("重置密码成功");
+		}else{
+			Dialogs.showMessage("重置失败 可能是连接又问题s!");
+		}
+		
 		//TODO:调用blservice重置密码
 	}
 	private void delete() {
@@ -91,9 +131,15 @@ public class CustomerController {
 		String userName=customerList.getSelectionModel().getSelectedItem().getValue().userName.get();
 		System.out.println("delete:"+userName);
 		//TODO:调用blservice删除账号
-		
-		
-		customers.remove(customerList.getSelectionModel().getSelectedItem().getValue());
+		AccountCustomerService accountCustomerService = CustomerAccountController.getInstance();
+		String userID=customerList.getSelectionModel().getSelectedItem().getValue().customerID.get();
+		ResultMessage_Account rs = accountCustomerService.deleteAccount(userID);		
+		if(rs.equals(ResultMessage_Account.Success)){
+			Dialogs.showMessage("删除成功");
+			customers.remove(customerList.getSelectionModel().getSelectedItem().getValue());
+		}else{
+			Dialogs.showMessage("删除失败 可能是连接又问题s!");
+		}
 	}
 	
 	/**
@@ -123,6 +169,14 @@ public class CustomerController {
 			this.customerName = new SimpleStringProperty(customerName) ;
 			this.gender = new SimpleStringProperty(gender) ;
 			this.contactWay = new SimpleStringProperty(contactWay) ;
+		}
+		
+		public Customer(CustomerAccount account){
+			this.userName = new SimpleStringProperty(account.getUserName()) ;
+			this.customerID = new SimpleStringProperty(account.getCustomerID()) ;
+			this.customerName = new SimpleStringProperty(account.getCustomerName()) ;
+			this.gender = new SimpleStringProperty(account.getGender()) ;
+			this.contactWay = new SimpleStringProperty(account.getContactWay()) ;
 		}
 	}
 }
