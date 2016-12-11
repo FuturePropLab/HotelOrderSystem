@@ -15,9 +15,18 @@ public class MockCustomer implements CustomerInfoforCredit{
 	ResultMessage rm;
 	CustomerVO customerVO;
 	public CustomerVO getCustomerInfo(String customer_id) {
+		if(customer_id=="001"){
 		customerVO = new CustomerVO("001", "xx",
 		       "nan", "123",null,50);
-		return customerVO;
+		return customerVO;}
+		else if(customer_id=="002"){
+			customerVO = new CustomerVO("002", "xx",
+				       "nan", "123",null,80);
+				return customerVO;
+		}
+		else{
+			return null;
+		}
 	}
 
 	public ResultMessage changeCustomerInfo(CustomerVO customerInfo) {

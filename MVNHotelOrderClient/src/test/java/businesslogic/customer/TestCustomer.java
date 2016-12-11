@@ -54,12 +54,12 @@ public class TestCustomer {
 			}
 			
 		}*/
-		
+		public Customer customer;
 
 @Test
 	public void testGetCustomerInfo(){
 	String customer_id="123";
-	Customer customer = new Customer();
+	customer = new Customer();
 	MemberType memberType = new MemberType("123");
 	MemberVO membervo  = new MemberVO("123", memberType);
 	CustomerVO customerVO  = new CustomerVO(customer_id, "王帅惟", "男", "15050522805", membervo,34);
@@ -72,7 +72,7 @@ public class TestCustomer {
 }
 @Test
 	public void testAddCustomer(){
-	Customer customer = new Customer();
+	 customer = new Customer();
 	CustomerInputVO test=new CustomerInputVO("xx","xxx","xxx", "12345678A", "xx");
 	try {
 		assertEquals(ResultMessage_signUp.Wrong,customer.addCustomer(test));
@@ -83,7 +83,7 @@ public class TestCustomer {
 }
 @Test
 	public void testSearch(){
-	Customer customer = new Customer();
+	 customer = new Customer();
 	CustomerSearchVO searchVO = new CustomerSearchVO("CS001");
 	try {
 		assertEquals(34, customer.searchCustomer(searchVO).get(0).credit);
@@ -94,7 +94,7 @@ public class TestCustomer {
 }
 @Test
 	public void testSearch2(){
-	Customer customer = new Customer();
+	customer = new Customer();
 //	String telephone,String customernName ,String gender
 	CustomerSearchVO searchVO = new CustomerSearchVO(null,"陈语嫣","女");
 	try {
@@ -104,5 +104,16 @@ public class TestCustomer {
 		e.printStackTrace();
 	}
 }
+@Test
+	public void testSearch3(){
+		customer = new Customer();
+		CustomerSearchVO searchVO = new CustomerSearchVO("333",null,null);
+		try {
+			assertEquals("CS003", customer.searchCustomer(searchVO).get(0).customerID);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }

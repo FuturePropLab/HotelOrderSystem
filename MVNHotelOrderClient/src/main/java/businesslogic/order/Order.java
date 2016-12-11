@@ -322,6 +322,7 @@ public class Order {
 		
 		//TODO wsw  小改  不知道 这个方法本来又问题!!!!
 		MemberController memberController = MemberController.getInstance();
+//		MockMemberController memberController = new MockMemberController();
 		System.out.println(placingOrderInfo.customerID);
 		MemberVO memberVO = memberController.getMemberInfo(placingOrderInfo.customerID);
 		newValue+= memberVO.memberType.getType()==MemberBelongType.None?0:1000;

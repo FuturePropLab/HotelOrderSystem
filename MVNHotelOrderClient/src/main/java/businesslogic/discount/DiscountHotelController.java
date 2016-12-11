@@ -50,7 +50,7 @@ public class DiscountHotelController implements DiscountHotelService {
 	 */
 	public List<DiscountVO_hotel> getHotelDiscount(String hotelID) {
 		List<DiscountVO_hotel> discountVO_hotels = new LinkedList<DiscountVO_hotel>();
-		if (hotelID.equals(this.hotelID)) {
+		if (this.hotelID!=null&&hotelID.equals(this.hotelID)) {
 			return list;
 		}
 		else{
