@@ -1,22 +1,17 @@
 package ui.discount;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 import businesslogic.discount.DiscountHotelController;
+import businesslogic.login.LoginController;
 import businesslogicservice.DiscountHotelService;
-import dataservice.DiscountHotelDataService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;
-import po.DiscountPO_hotel;
-import rmi.RemoteHelper;
 import tools.Strategy_hotelType;
 import ui.main.DetailsController;
 import vo.DiscountVO_hotel;
@@ -39,8 +34,7 @@ public class HotelDiscountController extends DetailsController {
 	private ArrayList<TitledPane> titledPanes = new ArrayList<TitledPane>();
 	private ArrayList<HotelItemController> hotelItemControllers = new ArrayList<HotelItemController>();
 
-	public String hotelID ;
-//	= "HT001"; // 以后处理这个id的获取方式 @lwy
+	public String hotelID;
 
 	/**
 	 * Initializes the controller class. This method is automatically called
@@ -49,14 +43,16 @@ public class HotelDiscountController extends DetailsController {
 	@FXML
 	private void initialize() {
 		initAccordions();
+		this.hotelID = LoginController.getInstance().getLogState().accountID;
 	}
 
 	private void initAccordions() {
 		// TODO: 调用blservice查询该优惠策略的信息然后将组建的值设置好
 
 		DiscountHotelService discountHotelService = DiscountHotelController.getInstance();
-		List<DiscountVO_hotel> discountVO_hotels = discountHotelService.getHotelDiscount(hotelID);
-
+//		List<DiscountVO_hotel> discountVO_hotels = discountHotelService.getHotelDiscount(hotelID);
+		
+		//初始化生日策略
 		List<DiscountVO_hotel> birthVOs = discountHotelService.getHotelDiscountByType(hotelID,
 				Strategy_hotelType.Birthday);
 		Iterator<DiscountVO_hotel> iterator = birthVOs.iterator();
@@ -65,10 +61,11 @@ public class HotelDiscountController extends DetailsController {
 			Birthday_HotelItemController birthdayItemController = (Birthday_HotelItemController) addTitlePane(
 					birthdayList, "BirthdayItem.fxml");
 			birthdayItemController.setValue("生日特惠", dis.discountState.toString(), dis.remarks, dis.discount * 10,
-					dis.startDate, dis.endDate, dis.superimpose,dis.discountID); // discount*10为转换为几折几折
+					dis.startDate, dis.endDate, dis.superimpose, dis.discountID, Strategy_hotelType.Birthday, hotelID); // discount*10为转换为几折几折
 
 		}
-
+		
+		//初始化预订多间房策略
 		List<DiscountVO_hotel> overThreeVOs = discountHotelService.getHotelDiscountByType(hotelID,
 				Strategy_hotelType.OrderMore);
 		Iterator<DiscountVO_hotel> iterator2 = overThreeVOs.iterator();
@@ -77,9 +74,10 @@ public class HotelDiscountController extends DetailsController {
 			OverThreeRooms_HotelItemController overThreeRooms_HotelItemController = (OverThreeRooms_HotelItemController) addTitlePane(
 					overThreeRoomsList, "OverThreeRoomsItem.fxml");
 			overThreeRooms_HotelItemController.setValue("预订多间优惠", dis2.discountState.toString(), dis2.remarks,
-					dis2.discount * 10, dis2.startDate, dis2.endDate, dis2.superimpose,dis2.discountID);
+					dis2.discount * 10, dis2.startDate, dis2.endDate, dis2.superimpose, dis2.discountID, Strategy_hotelType.OrderMore, hotelID);
 		}
-
+		
+		//初始合作企业促销策略
 		List<DiscountVO_hotel> enterpriseVOs = discountHotelService.getHotelDiscountByType(hotelID,
 				Strategy_hotelType.CooperateEnterprise);
 		Iterator<DiscountVO_hotel> iterator3 = enterpriseVOs.iterator();
@@ -88,22 +86,23 @@ public class HotelDiscountController extends DetailsController {
 			Company_HotelItemController company_HotelItemController = (Company_HotelItemController) addTitlePane(
 					companyList, "CompanyItem.fxml");
 			company_HotelItemController.setValue("合作企业优惠", dis3.discountState.toString(), dis3.remarks,
-					dis3.discount * 10, dis3.startDate, dis3.endDate, dis3.superimpose,dis3.discountID);
+					dis3.discount * 10, dis3.startDate, dis3.endDate, dis3.superimpose, dis3.discountID, Strategy_hotelType.CooperateEnterprise, hotelID);
 			company_HotelItemController.setCompanyName(dis3.enterpriseName);
 		}
 		
+		//初始特定期间促销策略
 		List<DiscountVO_hotel> periodVOs = discountHotelService.getHotelDiscountByType(hotelID,
 				Strategy_hotelType.Period);
-		Iterator<DiscountVO_hotel> iterator4 = enterpriseVOs.iterator();
+		Iterator<DiscountVO_hotel> iterator4 = periodVOs.iterator();
 		while (iterator4.hasNext()) {
-			Period_HotelItemController period_HotelItemController = (Period_HotelItemController) addTitlePane(double11List,
-					"Period_HotelItem.fxml");
+			Period_HotelItemController period_HotelItemController = (Period_HotelItemController) addTitlePane(
+					double11List, "Period_HotelItem.fxml");
 			DiscountVO_hotel dis4 = iterator4.next();
 			period_HotelItemController.setValue("特定期间优惠", dis4.discountState.toString(), dis4.remarks,
-					dis4.discount * 10, dis4.startDate, dis4.endDate, dis4.superimpose,dis4.discountID);
+					dis4.discount * 10, dis4.startDate, dis4.endDate, dis4.superimpose, dis4.discountID, Strategy_hotelType.Period, hotelID);
 			period_HotelItemController.setFestivalDate(dis4.startDate, dis4.endDate);
 		}
-
+		
 		addTitlePane(birthdayList, "BirthdayItem.fxml");
 		addTitlePane(overThreeRoomsList, "OverThreeRoomsItem.fxml");
 		addTitlePane(companyList, "CompanyItem.fxml");
@@ -130,21 +129,21 @@ public class HotelDiscountController extends DetailsController {
 	/**
 	 * 增加新的促销策略
 	 * 
-	 * @param itemType
+	 * @param strategy_hotelType
 	 *            促销策略类型
 	 */
-	public void addNewItem(ItemType itemType) {
-		switch (itemType) {
-		case BIRTHDAY:
+	public void addNewItem(Strategy_hotelType strategy_hotelType) {
+		switch (strategy_hotelType) {
+		case Birthday:
 			addTitlePane(birthdayList, "BirthdayItem.fxml");
 			break;
-		case OVER_THREE_ROOMS:
+		case OrderMore:
 			addTitlePane(overThreeRoomsList, "OverThreeRoomsItem.fxml");
 			break;
-		case COMPANY:
+		case CooperateEnterprise:
 			addTitlePane(companyList, "CompanyItem.fxml");
 			break;
-		case DOUBLE11:
+		case Period:
 			addTitlePane(double11List, "Period_HotelItem.fxml");
 			break;
 		default:
@@ -152,13 +151,4 @@ public class HotelDiscountController extends DetailsController {
 		}
 	}
 
-	/**
-	 * 促销策略类型
-	 * 
-	 * @author zjy
-	 *
-	 */
-	public enum ItemType {
-		BIRTHDAY, OVER_THREE_ROOMS, COMPANY, DOUBLE11
-	}
 }

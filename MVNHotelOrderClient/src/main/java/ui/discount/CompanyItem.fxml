@@ -84,7 +84,7 @@
                         <Font size="24.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="aditionalMessage" text="无" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="aditionalMessage" onAction="#handleSave" text="无" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin>
@@ -105,7 +105,7 @@
                         <Font size="27.0" />
                      </font>
                   </Label>
-                  <CheckBox fx:id="superposition" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <CheckBox fx:id="superposition" mnemonicParsing="false" onAction="#handleSave" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                   <Hyperlink fx:id="delete" onAction="#handleDelete" text="确 定" GridPane.columnIndex="3">
                      <font>
                         <Font size="26.0" />

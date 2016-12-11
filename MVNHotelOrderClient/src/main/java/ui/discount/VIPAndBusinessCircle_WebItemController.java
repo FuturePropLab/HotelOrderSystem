@@ -1,12 +1,8 @@
 package ui.discount;
 
-import java.util.Date;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TitledPane;
-import javafx.scene.paint.Color;
-import ui.discount.WebDiscountController.ItemType;
+import tools.Strategy_webType;
 
 /**
  * VIP会员特定商圈专属折扣的单个item的界面的控制器
@@ -28,6 +24,7 @@ public class VIPAndBusinessCircle_WebItemController extends WebItemController{
 	@FXML
 	protected void handleVIPLevel(){
 		//TODO:调用blservice获取VIP信息并填写
+		handleSave();
 	}
 	@FXML
 	protected void handleDiscount(){
@@ -36,9 +33,7 @@ public class VIPAndBusinessCircle_WebItemController extends WebItemController{
 	@FXML
 	protected void handleCity(){
 		//TODO:调用blservice获取区的信息并填写
-		if(city.getValue()!=null){
-			title.setText(city.getValue());//是这样？？ lwy
-		}
+		
 	}
 	@FXML
 	protected void handleDistrict(){
@@ -52,8 +47,8 @@ public class VIPAndBusinessCircle_WebItemController extends WebItemController{
 	}
 
 	@Override
-	protected ItemType getType() {
-		return ItemType.VIPAndBusinessCircle;
+	protected Strategy_webType getType() {
+		return Strategy_webType.VIP_district;
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 package ui.discount;
 
 import javafx.fxml.FXML;
-import ui.discount.HotelDiscountController.ItemType;
+import tools.Strategy_hotelType;
 
 /**
  * 三间房以上优惠的单个item的界面的控制器
@@ -12,13 +12,13 @@ public class OverThreeRooms_HotelItemController extends HotelItemController{
 	
 	@FXML
 	protected void handleDiscount(){
-		super.handleDiscount();
 		title.setText(discount.getText()+"折");
+		super.handleDiscount();
 	}
 	
 	@Override
-	protected ItemType getType() {
-		return ItemType.OVER_THREE_ROOMS;
+	protected Strategy_hotelType getType() {
+		return Strategy_hotelType.OrderMore;
 	}
 
 	@Override
