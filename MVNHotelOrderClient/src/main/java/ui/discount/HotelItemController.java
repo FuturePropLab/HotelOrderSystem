@@ -105,13 +105,14 @@ public abstract class HotelItemController {
 				discountHotelService.deleteHotelDiscount(hotelID, discountID);
 				hotelDiscountController.addNewItem(getType());
 			} else {
-				System.out.println("the discount is not finished");// TODO:弹窗提示未完成
+				Dialogs.showMessage("策略未完成");
 			}
 		} else {
 			disableControls();
 			// TODO: 调用blservice删除策略
 			DiscountHotelService discountHotelService = DiscountHotelController.getInstance();
 			discountHotelService.deleteHotelDiscount(hotelID, discountID);
+			hotelDiscountController.addNewItem(getType());
 		}
 	}
 

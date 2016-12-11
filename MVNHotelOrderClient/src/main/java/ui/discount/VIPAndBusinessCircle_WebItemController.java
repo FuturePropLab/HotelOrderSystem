@@ -36,9 +36,7 @@ public class VIPAndBusinessCircle_WebItemController extends WebItemController{
 	@FXML
 	protected void handleCity(){
 		//TODO:调用blservice获取区的信息并填写
-		if(city.getValue()!=null){
-			title.setText(city.getValue());//是这样？？ lwy
-		}
+		
 	}
 	@FXML
 	protected void handleDistrict(){

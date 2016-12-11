@@ -6,6 +6,7 @@ import java.util.Date;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import ui.discount.HotelDiscountController.ItemType;
+import ui.utils.Dialogs;
 
 /**
  * 双11优惠的单个item的界面的控制器
@@ -26,6 +27,35 @@ public class Period_HotelItemController extends HotelItemController{
 		}
 	}
 	
+	@FXML
+	protected void handleFromTime() {
+		// TODO: 开始时间在结束时间之后时处理
+		LocalDate startDate = festivalDate_from.getValue();
+		LocalDate endDate;
+		if (startDate != null && festivalDate_to.getValue() != null) {
+			endDate = festivalDate_to.getValue();
+			if (startDate.compareTo(endDate) >= 0) {
+				Dialogs.showMessage("开始日期应在结束日期之前！");
+				festivalDate_from.setValue(null);
+			}
+		}
+
+	}
+
+	@FXML
+	protected void handleToTime() {
+		// TODO: 开始时间在结束时间之后时处理
+		LocalDate endDate = festivalDate_to.getValue();
+		LocalDate startDate;
+		if (endDate != null && festivalDate_from.getValue() != null) {
+			startDate = festivalDate_from.getValue();
+			if (startDate.compareTo(endDate) >= 0) {
+				Dialogs.showMessage("结束日期应在开始日期之后！");
+				festivalDate_to.setValue(null);
+			}
+		}
+	}
+
 	@Override
 	protected ItemType getType() {
 		return ItemType.DOUBLE11;
