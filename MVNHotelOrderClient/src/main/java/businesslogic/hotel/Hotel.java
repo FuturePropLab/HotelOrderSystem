@@ -372,5 +372,11 @@ public class Hotel {
 		
 		}
 		
+		
+		
+		public ResultMessage_Hotel modifyHotelPicture(String hotelID, URI uri) {
+			return pictureDeal.uploadFrontPicture(hotelID, uri);
+		}
+		
 	
 }

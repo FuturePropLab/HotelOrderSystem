@@ -1,5 +1,6 @@
 package stub;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +39,13 @@ public class OrderDate_Stub implements OrderDataService{
 	public List<OrderPO> searchOrder(SearchOrderInfo searchOrderInfo) {
 		List<OrderPO> list=new ArrayList<OrderPO>();
 		return list;
+	}
+
+
+	@Override
+	public List<String> getAllComment(String hotelID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

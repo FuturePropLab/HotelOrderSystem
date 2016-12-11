@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import businesslogicservice.ManageHotelInfoService;
+import tools.HotelRoomInfo;
 import tools.ResultMessage_Hotel;
 import tools.RoomType;
 import tools.Star;
 import tools.TypeRoomInfo;
+import vo.HotelFacilityVO;
 import vo.HotelInputVO;
 import vo.HotelRoomInfoVO;
 import vo.HotelbriefVO;
@@ -57,6 +59,22 @@ public class ManageHotelInfo_Stub implements ManageHotelInfoService {
 
 
 	public ResultMessage_Hotel modifyHotelPicture(String hotelID, URI uri) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public ResultMessage_Hotel modifyFacility(HotelFacilityVO hotelFacilityVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public ResultMessage_Hotel modifyRoomInfo(HotelRoomInfo hotelRoomInfo) {
 		// TODO Auto-generated method stub
 		return null;
 	}

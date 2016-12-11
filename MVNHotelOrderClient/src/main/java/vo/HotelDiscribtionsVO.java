@@ -22,4 +22,9 @@ public class HotelDiscribtionsVO {
 		this.discribes = discribes;
 		this.pictureURI = pictureURI;
 	}
+	
+	
+	public HotelDiscribtionsVO(){
+		super();
+	}
 }

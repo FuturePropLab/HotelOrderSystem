@@ -3,7 +3,9 @@ package businesslogic.hotel;
 import java.net.URI;
 
 import businesslogicservice.ManageHotelInfoService;
+import tools.HotelRoomInfo;
 import tools.ResultMessage_Hotel;
+import vo.HotelFacilityVO;
 import vo.HotelInputVO;
 
 /**
@@ -13,10 +15,12 @@ import vo.HotelInputVO;
  */
 public class HotelManageController implements ManageHotelInfoService {
 	 private Hotel hotel;
+	 private PictureDeal pictureDeal ;
 	 
 	 private static HotelManageController manageHotelController = null;
 	 private HotelManageController(){
 		 hotel = new Hotel();
+		 pictureDeal = new PictureDeal();
 	 }
 
      public static HotelManageController getInstance(){
@@ -43,8 +47,17 @@ public class HotelManageController implements ManageHotelInfoService {
 	 }
 
 	public ResultMessage_Hotel modifyHotelPicture(String hotelID, URI uri) {
-		// TODO Auto-generated method stub
-		return null;
+		return hotel.modifyHotelPicture(hotelID, uri);
+	}
+
+	@Override
+	public ResultMessage_Hotel modifyFacility(HotelFacilityVO hotelFacilityVO) {
+		return hotel.saveHotelInfo(new HotelInputVO(hotelFacilityVO.hotelID, hotelFacilityVO, null, null));
+	}
+
+	@Override
+	public ResultMessage_Hotel modifyRoomInfo(HotelRoomInfo hotelRoomInfo) {
+		return hotel.saveHotelInfo(new HotelInputVO(hotelRoomInfo.getHotelID(), null, null, hotelRoomInfo));
 	}
 
 }
