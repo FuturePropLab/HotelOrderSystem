@@ -2,16 +2,11 @@ package po;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-import tools.Mark;
 
 
-@Entity
 public class OrderAssessPO implements Serializable{
 	private static final long serialVersionUID = -7901849477093574501L;
-	@Id
+
 	private String orderID;
 	private String hotelID;
 	

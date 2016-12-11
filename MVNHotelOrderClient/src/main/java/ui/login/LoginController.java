@@ -68,8 +68,7 @@ public class LoginController extends FullLayoutController{
 				
 				String accountID  =  LoginServiceUtil.getLoginService().getLogState().accountID;
 				rootLayoutController.changeFullLayout(null);
-				//rootLayoutController.changeGuid("GuideUI.fxml");
-				
+				rootLayoutController.changeGuid("../guid/GuideUI.fxml");
 				
 				AccountType testType  = LoginServiceUtil.getLoginService().getLogState().accountType;
 				System.out.println(testType);

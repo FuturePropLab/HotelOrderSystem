@@ -34,6 +34,7 @@ import po.DiscountPO_web;
 import po.HotelPO;
 import po.ImageInfoPO;
 import po.MemberPO;
+import po.OrderAssessPO;
 import po.OrderPO;
 import po.SearchOrderInfo;
 import tools.AccountType;
@@ -283,6 +284,9 @@ OrderDataService,CreditDataService, MemberDataService{
 	}
 	public List<String> getAllComment(String hotelID) throws RemoteException {
 		return orderDataService.getAllComment(hotelID);
+	}
+	public List<OrderAssessPO> gethotelAssessVO(String hotelID) throws RemoteException {
+		return hotelDataService.gethotelAssessVO(hotelID);
 	}
 
 }

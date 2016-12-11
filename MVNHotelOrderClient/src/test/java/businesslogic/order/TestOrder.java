@@ -150,15 +150,41 @@ public class TestOrder {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-				
+		
+		Date date5= null;
+		Date date6 = null;
+//		SimpleDateFormat df2=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		try {
+			 date5= df2.parse("2004-01-02 11:30:24");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			 date6 = df2.parse("2004-01-03 11:30:24");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		OrderInputVO orderInputVO3 = new OrderInputVO("0003","125",date1, date2, null,RoomType.Double, 1, 2, false,2000);
+//		OrderInputVO orderInput,CustomerInfo customerInfo,HotelInfo hotelInfo,OrderDataService orderDataService
+		CustomerInfo customerInfo3 = new MockCustomerInfo();
+		MockHotelInfo hotelInfo3 = new MockHotelInfo();
+//		OrderDataService orderDataService2 = new OrderDate_Stub();
+		Order order3 = null;
+		try {
+			 order3 = new Order(orderInputVO3,customerInfo3,hotelInfo3,orderDataService2);
+		} catch (CustomerCreditNotEnoughException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+		
+		
+		
 		assertEquals(order.getOrderValue(), 1320);
-		
-		
-		
-		
-		
 		assertEquals(order2.getOrderValue(), 1300);
-		
+		assertEquals(order3.getOrderValue(),2400 );
 		
 		
 	}

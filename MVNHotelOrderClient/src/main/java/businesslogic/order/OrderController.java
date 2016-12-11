@@ -176,11 +176,14 @@ public class OrderController implements OrderService{
 			//把关键字分别当做订单ID、客户姓名、酒店名称来搜索
 			List<OrderPO> poList=orderDataService.searchOrder(new SearchOrderInfo(hotelID,customerID,
 					searchOrderInfo.keywords, null, null, searchOrderInfo.date, searchOrderInfo.orderState));
+			System.out.println("polist size1:   "+poList.size());
 			poList.addAll(orderDataService.searchOrder(new SearchOrderInfo(hotelID,customerID,null, 
 					searchOrderInfo.keywords, null, searchOrderInfo.date, searchOrderInfo.orderState)));
+			System.out.println("polist size2:   "+poList.size());
 			poList.addAll(orderDataService.searchOrder(new SearchOrderInfo(hotelID,customerID,null, null, 
 					searchOrderInfo.keywords, searchOrderInfo.date, searchOrderInfo.orderState)));
 			List<OrderVO> voList=new ArrayList<OrderVO>();
+			System.out.println("polist size3:   "+poList.size());
 			for(OrderPO orderPO:poList){
 				voList.add(getOrderVO(orderPO));
 			}

@@ -27,6 +27,7 @@ import tools.RoomType;
 import tools.TypeRoomInfo;
 import ui.hotel.HotelDetailController;
 import ui.main.DetailsController;
+import ui.order.OrderListController;
 import ui.order.OrderPreviewController;
 import ui.utils.Dialogs;
 import vo.CustomerVO;
@@ -181,6 +182,8 @@ public class BookHotelController extends DetailsController{
 		if(resultMessage.equals(ResultMessage.Exist)){
 			try {
 				rootLayoutController.changeDetails("../order/OrderList.fxml");
+				//OrderListController orderListController = (OrderListController) rootLayoutController.getDetailsController();
+				//orderListController.
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
