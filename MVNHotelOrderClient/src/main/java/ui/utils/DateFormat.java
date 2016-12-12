@@ -97,4 +97,8 @@ public class DateFormat {
         checkOutDatePicker.setDayCellFactory(dayCellFactory);
         checkOutDatePicker.setValue(checkInDatePicker.getValue().plusDays(1));
 	}
+	
+	public static void initTimePicker(DatePicker aatePicker,DatePicker timePicker) {
+		
+	}
 }
