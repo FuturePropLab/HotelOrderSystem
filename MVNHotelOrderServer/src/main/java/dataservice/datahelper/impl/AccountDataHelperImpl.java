@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -15,11 +14,7 @@ import dataservice.datahelper.AccountDataHelper;
 import passwordtool.DESUtil;
 import passwordtool.ShaUtil;
 import po.AccountPO;
-import po.CustomerPO;
-import po.MemberPO;
-import po.MemberStorePO;
 import tools.AccountType;
-import tools.ResultMessage;
 import tools.ResultMessage_Account;
 
 /**
@@ -30,7 +25,7 @@ import tools.ResultMessage_Account;
 public class AccountDataHelperImpl implements AccountDataHelper{
 	private static AccountDataHelperImpl accountDataHelperImpl = null;
 	
-	private AccountDataHelperImpl(){
+	public  AccountDataHelperImpl(){
 		
 	}
 	/**
@@ -59,6 +54,7 @@ public class AccountDataHelperImpl implements AccountDataHelper{
 			return ResultMessage_Account.InvalidInput; 
 		}
 		Session s = Hibernateutils.getSessionFactory().openSession();
+
 		try{
 			
 			Query q = s.createSQLQuery("select * from accountpo where userid = '"+userid+"' limit 1");
@@ -66,17 +62,19 @@ public class AccountDataHelperImpl implements AccountDataHelper{
 			if(q.list().isEmpty()){
 				return ResultMessage_Account.Fail;
 			}
-			Transaction t = s.beginTransaction(); 
+			 
 			
-			
+			s.clear();
+			//s.setCacheMode(CacheMode.IGNORE);
+			Transaction t = s.beginTransaction();
 			//System.out.println("begin...");
-			SQLQuery query =  s.createSQLQuery("update accountpo set password = '"
-			+password+"' where userid = '"+userid+"'");
-			//q.addEntity(AccountPO.class);
-			query.executeUpdate();
+			AccountPO accountPO = (AccountPO) s.load(AccountPO.class, userid);
+			accountPO.setPassword(password);
+			s.delete(accountPO);		//s.setCacheMode(CacheMode.IGNORE);
+			s.save(accountPO);	
+			t.commit();
 			s.flush();
 			s.clear();
-			t.commit();
 			
 			return ResultMessage_Account.Success;
 		}catch(Exception e){

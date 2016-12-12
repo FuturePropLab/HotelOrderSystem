@@ -1,13 +1,20 @@
 package dataservice.datahelper.impl;
 
+import java.sql.Connection;
 import java.util.List;
 
+import org.hibernate.CacheMode;
+import org.hibernate.Criteria;
+import org.hibernate.FlushMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import dataservice.datahelper.LoginCheckDatahelper;
 import passwordtool.DESUtil;
 import passwordtool.ShaUtil;
+import po.AccountPO;
+import po.HotelBasePO;
 import testHibernate.Hibernateutils;
 import tools.AccountType;
 
@@ -21,7 +28,7 @@ public class LoginCheckDatahelperImpl implements LoginCheckDatahelper {
 	//单件模式
 	private static LoginCheckDatahelperImpl loginCheckDatahelperImpl = null;
 	
-	private LoginCheckDatahelperImpl(){
+	public LoginCheckDatahelperImpl(){
 		
 	}
 	
@@ -30,10 +37,10 @@ public class LoginCheckDatahelperImpl implements LoginCheckDatahelper {
 	 * @return
 	 */
 	public static LoginCheckDatahelperImpl getInstance(){
-		if(loginCheckDatahelperImpl == null){
+//		if(loginCheckDatahelperImpl == null){
 			loginCheckDatahelperImpl = new LoginCheckDatahelperImpl();
-		}
-		return loginCheckDatahelperImpl;
+//		}
+		return  loginCheckDatahelperImpl;
 	}
 	
 	
@@ -53,14 +60,30 @@ public class LoginCheckDatahelperImpl implements LoginCheckDatahelper {
 		
 		//用标准的sql方法实现
 		Session s = Hibernateutils.getSessionFactory().openSession();  //获取数据库连接池
-		Query q = s.createSQLQuery("select password from accountpo where username = '"+DESid
-				+"' and accounttype = '"+accountType+"'");
-		List<String> passwordlist =  q.list();
-		s.close();
+		s.clear();
+		s.setFlushMode(FlushMode.ALWAYS);
+		s.setCacheMode(CacheMode.IGNORE);
+		System.out.println(s.getCacheMode());
+		s.flush();
 		
+//		
+//		s.clear();
+//		Query q = s.createSQLQuery("select password from accountpo where username = '"+DESid
+//				+"' and accounttype = '"+accountType+"'");
+//		List<String> passwordlist =  q.list();
+//		s.close();
+		Criteria cr = s.createCriteria(AccountPO.class);
+		//cr.setCacheable(true);
+		cr.add(Restrictions.eq("username", DESid));
+		List<AccountPO> AccountPOs = cr.list();
+		//s.evict(AccountPO.class);
+		s.clear();
+		s.flush();
+		s.close();
 		//id输入错误的情况
-		if(passwordlist.isEmpty())  return "Bad_ID";
-		else return passwordlist.get(0);
+		if(AccountPOs.isEmpty())  return "Bad_ID";
+		//AccountPOs.get(0).getPassword();
+		else return AccountPOs.get(0).getPassword();
 	}
 
 	/**
@@ -76,7 +99,7 @@ public class LoginCheckDatahelperImpl implements LoginCheckDatahelper {
 		}
 		Session s = Hibernateutils.getSessionFactory().openSession();  //获取数据库连接池
 		Query q = s.createSQLQuery("select userid from accountpo where username = '"
-		+desid+"' and password = '"+shpass+"'");
+		+desid+"'");
 		List<String> idlist =  q.list();
 		s.close();
 		if(idlist.isEmpty())  return "FAIL";

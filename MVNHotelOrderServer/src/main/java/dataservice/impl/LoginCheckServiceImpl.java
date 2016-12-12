@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import DataFactory.DataHelperUtils;
 import dataservice.LoginCheckService;
 import dataservice.datahelper.LoginCheckDatahelper;
+import dataservice.datahelper.impl.LoginCheckDatahelperImpl;
 import passwordtool.ShaUtil;
 import tools.AccountType;
 import tools.ResultMessage_LoginCheck;
@@ -31,7 +32,8 @@ public class LoginCheckServiceImpl implements LoginCheckService {
 			return ResultMessage_LoginCheck.InvalidUsername;
 		}
 		//System.out.println("here!!");
-		LoginCheckDatahelper loginCheckDatahelper = DataHelperUtils.getLoginCheckDatahelper();
+	//	LoginCheckDatahelper loginCheckDatahelper = DataHelperUtils.getLoginCheckDatahelper();
+		LoginCheckDatahelper loginCheckDatahelper = new LoginCheckDatahelperImpl();
 		//System.out.println("there!!");
 		String realPassSha = loginCheckDatahelper.passwordInSha(username, accountType);
 		if("Bad_ID".equals(realPassSha))  return ResultMessage_LoginCheck.InvalidUsername;

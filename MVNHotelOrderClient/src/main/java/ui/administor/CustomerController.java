@@ -114,7 +114,7 @@ public class CustomerController {
 		
 		String userID=customerList.getSelectionModel().getSelectedItem().getValue().customerID.get();
 		AccountCustomerService accountCustomerService = CustomerAccountController.getInstance();
-		ResultMessage_Account rs = accountCustomerService.resetPassword(userID, "123456");
+		ResultMessage_Account rs = accountCustomerService.resetPassword(userID, "hibernate");
 		
 		if(rs.equals(ResultMessage_Account.Success)){
 			Dialogs.showMessage("重置密码成功");
