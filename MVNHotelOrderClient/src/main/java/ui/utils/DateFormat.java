@@ -98,7 +98,8 @@ public class DateFormat {
         checkOutDatePicker.setValue(checkInDatePicker.getValue().plusDays(1));
 	}
 	
-	public static void initTimePicker(DatePicker aatePicker,DatePicker timePicker) {
+	@Deprecated
+	public static void initTimePicker(DatePicker timePicker) {
 		
 	}
 }

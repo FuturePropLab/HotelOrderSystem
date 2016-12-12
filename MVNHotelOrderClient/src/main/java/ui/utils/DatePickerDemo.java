@@ -49,9 +49,6 @@ public class DatePickerDemo  extends Application {
 		blueDatePicker.setShowTime(true);
 		main.getChildren().add(blueDatePicker);
 		
-		Button button=new Button("test");
-		button.setOnAction(e->{System.out.println(blueDatePicker.getTime());});
-		main.getChildren().add(button);
 		
 		
 		StackPane pane = new StackPane();
