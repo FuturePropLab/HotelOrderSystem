@@ -1,9 +1,11 @@
 package stub;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
 import dataservice.CustomerDataService;
+import po.CustomerAccount;
 import po.CustomerPO;
 import po.MemberPO;
 import tools.MemberBelongType;
@@ -77,6 +79,13 @@ public class CustomerData_Stub implements CustomerDataService {
 
 
 public ResultMessage changeCustomerInfoAboutCredit(CustomerVO customerInfo) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+@Override
+public List<CustomerAccount> getCustomerAccount() throws RemoteException {
 	// TODO Auto-generated method stub
 	return null;
 }
