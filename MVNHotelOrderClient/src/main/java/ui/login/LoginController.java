@@ -3,6 +3,9 @@ package ui.login;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+
 import businesslogicservice.LoginService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -18,6 +21,7 @@ import ui.hotel.HotelDetailController;
 import ui.hotel.HotelSearchController;
 import ui.main.FullLayoutController;
 import ui.utils.Dialogs;
+import ui.utils.TextFieldUtil;
 /**
  * 
  * @author zjy
@@ -47,6 +51,10 @@ public class LoginController extends FullLayoutController{
 	private void initialize(){		
 		accountType.getItems().addAll(accountTypes);
 		accountType.setValue(accountTypes[0]);
+		
+		TextFieldUtil.setValidator((JFXTextField) username_signup);
+		TextFieldUtil.setValidator((JFXPasswordField) password_signup);
+		TextFieldUtil.setRepeatValidator((JFXPasswordField) password_signup,(JFXPasswordField) repeatPassword);
 	}
 	
 	@FXML

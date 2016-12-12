@@ -1,7 +1,0 @@
-businesslogic/discount/FactoryDiscount$1.class
-ui/discount/HotelDiscountController$1.class
-ui/discount/WebStrategyController$1.class
-businesslogic/strategy/FactoryConcreteWebStrategy$1.class
-businesslogic/credit/Credit$1.class
-businesslogic/strategy/FactoryConcreteHotelStrategy$1.class
-businesslogic/order/Order$1.class
