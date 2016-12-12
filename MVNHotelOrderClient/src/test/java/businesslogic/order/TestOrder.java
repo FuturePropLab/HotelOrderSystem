@@ -84,8 +84,30 @@ public class TestOrder {
 	public void testModifyCheckOutInfo() {
 		ArrayList<String> roomNumber=new ArrayList<String>();
 		roomNumber.add("8888");
-		assertTrue(order.modifyCheckOutInfo(new ExecutionInfoVO("orderID",roomNumber , new Time(0), new Time(0), new Time(0))));
-		assertNotNull(order.getCheckInAndOutInfo().checkOutTime);
+		Date date1 = null;
+		Date date2 = null;
+		SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		try {
+			 date1= df.parse("2004-01-02 11:30:24");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			 date2 = df.parse("2004-01-03 11:30:24");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		OrderPO orderPO = new OrderPO("123");
+//		order = new Order(orderPO,null,null,null);
+//		ArrayList<String> roomNumber=new ArrayList<String>();
+//		roomNumber.add("8888");
+		 
+		ExecutionInfoVO ex = new ExecutionInfoVO(order.getOrderID(), roomNumber, date1, date2, null);
+		assertEquals(false, order.modifyCheckOutInfo(ex));
+		
+//		assertNotNull(order.getCheckInAndOutInfo().checkOutTime);
 	}
 	@Test
 	public void testGetState() {
