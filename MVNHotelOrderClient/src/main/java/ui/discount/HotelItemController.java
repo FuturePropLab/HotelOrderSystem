@@ -45,7 +45,6 @@ public abstract class HotelItemController {
 
 	private String hotelID;
 	private String discountID;
-	private Strategy_hotelType strategy_hotelType;
 	private String enterpriseName;
 
 	public void setHotelDiscountController(HotelDiscountController hotelDiscountController) {
@@ -119,7 +118,7 @@ public abstract class HotelItemController {
 				DiscountHotelService discountHotelService = DiscountHotelController.getInstance();
 				DiscountVO_hotel discountVO_hotel = new DiscountVO_hotel(Double.parseDouble(discount.getText()) * 0.1,
 						startTime.getValue(), endTime.getValue(), aditionalMessage.getText(),
-						superposition.isSelected(), strategy_hotelType, enterpriseName);
+						superposition.isSelected(),getType(), enterpriseName);
 				discountHotelService.addHotelDiscount(hotelID, discountVO_hotel);
 				hotelDiscountController.addNewItem(getType());
 			} else {
@@ -140,7 +139,7 @@ public abstract class HotelItemController {
 		DiscountHotelService discountHotelService = DiscountHotelController.getInstance();
 		DiscountVO_hotel discountVO_hotel = new DiscountVO_hotel(Double.parseDouble(discount.getText()) * 0.1,
 				startTime.getValue(), endTime.getValue(), aditionalMessage.getText(), superposition.isSelected(),
-				strategy_hotelType, enterpriseName);
+				getType(), enterpriseName);
 		// TODO:调用blservice保存信息，如果某个子类item的信息和这个了类不一样，覆写此方法
 		if (discountID != null)
 			discountHotelService.editHotelDiscount(discountID, discountVO_hotel);
@@ -189,8 +188,7 @@ public abstract class HotelItemController {
 	 *            能否与其它折扣叠加
 	 */
 	public void setValue(String title, String state, String aditionalMessage, double discount, LocalDate startTime,
-			LocalDate endTime, boolean superposition, String discountID, Strategy_hotelType strategy_hotelType,
-			String enterpriseName) {
+			LocalDate endTime, boolean superposition, String discountID, String enterpriseName) {
 		this.title.setText(title);
 		this.state.setText(state);
 		this.aditionalMessage.setText(aditionalMessage);
@@ -201,7 +199,6 @@ public abstract class HotelItemController {
 		this.delete.setText("删 除");// 字中间有空格
 		this.hotelID = LoginController.getInstance().getLogState().accountID;
 		this.discountID = discountID;
-		this.strategy_hotelType = strategy_hotelType;
 		this.enterpriseName = enterpriseName;
 		setTitle();
 	}
