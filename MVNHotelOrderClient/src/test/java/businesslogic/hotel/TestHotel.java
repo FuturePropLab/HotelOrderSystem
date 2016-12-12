@@ -66,12 +66,20 @@ public class TestHotel {
 	public void testSearchHotel(){
 		hotel = new Hotel();
 		SearchHotelVO searchVO = new SearchHotelVO("南京",null,"夫子庙",null,null,null,null,false);
-		
-//		SearchHotelVO(String city, String district, String businessCircle, String hotelName, PriceRange priceRange,
-//				Star star, RoomType roomType, boolean booked)
 		assertEquals("003",hotel.SearchHotel(searchVO).get(0).hotelID);
 	}
-		
+	@Test
+	public void testSearchHotel2(){
+		hotel = new Hotel();
+		SearchHotelVO searchVO = new SearchHotelVO("南京",null,null,"rujia",null,null,null,false);
+		assertEquals("003",hotel.SearchHotel(searchVO).get(0).hotelID);
+	}
+	@Test
+	public void testSearch3(){
+		hotel = new Hotel();
+		SearchHotelVO searchVO = new SearchHotelVO("上海",null,null,null,null,null,null,false);
+		assertEquals("004",hotel.SearchHotel(searchVO).get(0).hotelID);
+	}
 		
 		/*List<TypeRoomInfo> typeList = new ArrayList<TypeRoomInfo>();
 		TypeRoomInfo typeRoomInfo1= new TypeRoomInfo("001","�ٻ���Ƶ�",RoomType.Single,5,180.0);
