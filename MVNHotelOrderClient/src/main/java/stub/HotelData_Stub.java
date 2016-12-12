@@ -11,11 +11,14 @@ import po.HotelPO;
 import po.ImageInfoPO;
 import po.OrderAssessPO;
 import tools.HotelAddress;
+import tools.HotelFacility;
 import tools.HotelRoomInfo;
 import tools.ResultMessage_Hotel;
+import tools.RoomType;
 import tools.SearchHotel;
 import tools.StandardSearch;
 import tools.Star;
+import tools.TypeRoomInfo;
 import vo.HotelDiscribtionsVO;
 import vo.HotelInputVO;
 
@@ -111,22 +114,52 @@ public class HotelData_Stub implements HotelDataService{
 //		URI hotePictureURI, String hotelID, String hotelName, Star star, HotelAddress hotelAddress,
 //		HotelDiscribtionsVO hotelInfoVO
 		ArrayList<HotelPO> hotelList = new ArrayList<HotelPO>();
-		hotelList = null;
+//		hotelList = null;
 		HotelAddress add = new HotelAddress("南京", "秦淮区","新街口","aa");
 		HotelInputVO hotelInputVO = new HotelInputVO(null,"001","jinling",Star.five,add,null);
 		HotelPO hotel1  = new HotelPO(hotelInputVO);
+		HotelFacility facility = new HotelFacility();
+		hotel1.setFacility(facility);
+		 List<TypeRoomInfo> typeRoomInfo = new ArrayList<TypeRoomInfo>();
+		 typeRoomInfo.add(new TypeRoomInfo("001", RoomType.Double,10,100.0));
+		hotel1.setHotelRoom(new HotelRoomInfo("001","jinling",typeRoomInfo));
 		
 		HotelAddress add2 = new HotelAddress("南京", "秦淮区","新街口","aa");
 		HotelInputVO hotelInputVO2 = new HotelInputVO(null,"002","jinjiang",Star.five,add,null);
-		HotelPO hotel2  = new HotelPO(hotelInputVO);
+		HotelPO hotel2  = new HotelPO(hotelInputVO2);
+		
+		HotelFacility facility2 = new HotelFacility();
+		hotel2.setFacility(facility2);
+		 List<TypeRoomInfo> typeRoomInfo2 = new ArrayList<TypeRoomInfo>();
+		 typeRoomInfo.add(new TypeRoomInfo("002", RoomType.Double,10,100.0));
+		hotel2.setHotelRoom(new HotelRoomInfo("002","jinling",typeRoomInfo));
+		
+		
+		
+		
 		
 		HotelAddress add3 = new HotelAddress("南京", "秦淮区","夫子庙","aa");
 		HotelInputVO hotelInputVO3= new HotelInputVO(null,"003","rujia",Star.five,add,null);
-		HotelPO hotel3  = new HotelPO(hotelInputVO);
+		HotelPO hotel3  = new HotelPO(hotelInputVO3);
+		HotelFacility facility3= new HotelFacility();
+		hotel3.setFacility(facility3);
+		 List<TypeRoomInfo> typeRoomInfo3 = new ArrayList<TypeRoomInfo>();
+		 typeRoomInfo.add(new TypeRoomInfo("003", RoomType.Double,10,100.0));
+		hotel3.setHotelRoom(new HotelRoomInfo("003","jinling",typeRoomInfo));
+		
+		
 		
 		HotelAddress add4 = new HotelAddress("上海", "xx","xx","aa");
 		HotelInputVO hotelInputVO4= new HotelInputVO(null,"004","rujia",Star.five,add,null);
-		HotelPO hotel4  = new HotelPO(hotelInputVO);
+		HotelPO hotel4  = new HotelPO(hotelInputVO4);
+		HotelFacility facility4 = new HotelFacility();
+		hotel4.setFacility(facility4);
+		 List<TypeRoomInfo> typeRoomInfo4 = new ArrayList<TypeRoomInfo>();
+		 typeRoomInfo.add(new TypeRoomInfo("004", RoomType.Double,10,100.0));
+		hotel4.setHotelRoom(new HotelRoomInfo("004","jinling",typeRoomInfo));
+		
+		
+		
 		
 //		System.out.println(standardSearch.getHotelName());
 		if (standardSearch.getHotelAddress().getCity()=="南京"&&standardSearch.getHotelAddress().getBusinessCircle()==null&&standardSearch.getHotelName()==null){
@@ -134,19 +167,22 @@ public class HotelData_Stub implements HotelDataService{
 			hotelList.add(hotel2);
 			hotelList.add(hotel3);
 		
-			System.out.println("1");
+//			System.out.println("1");
 			return hotelList;
 		}else if(standardSearch.getHotelAddress().getBusinessCircle()=="夫子庙"){
+//			System.out.println("2");
 			hotelList.add(hotel3);
-			System.out.println("2");
+//			System.out.println("2");
 			return hotelList;
 		}else if(standardSearch.getHotelName()=="rujia"){
 			hotelList.add(hotel3);
-			System.out.println("3");
+//			System.out.println("3");
+//			System.out.println("huode hotel3");
+			System.out.println("id是："+hotelList.get(0).getHotelID());
 			return hotelList;
 		}else if(standardSearch.getHotelAddress().getCity()=="上海"){
 			hotelList.add(hotel4);
-			System.out.println("4");
+//			System.out.println("4");
 			return hotelList;
 		}else{
 			hotelList = null;
