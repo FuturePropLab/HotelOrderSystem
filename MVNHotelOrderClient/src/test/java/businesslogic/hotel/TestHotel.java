@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 
 import java.net.URI;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
@@ -147,7 +148,14 @@ public class TestHotel {
 		
 		
 	}
-		
+		@Test
+		public void testGetHotelDiscount(){
+			hotel = new Hotel();
+			LocalDate date2 = LocalDate.of(2015, 5, 1);
+			assertEquals(date2, hotel.getHotelDiscount("001").get(0).endDate);
+			
+			
+		}
 		/*List<TypeRoomInfo> typeList = new ArrayList<TypeRoomInfo>();
 		TypeRoomInfo typeRoomInfo1= new TypeRoomInfo("001","�ٻ���Ƶ�",RoomType.Single,5,180.0);
 		typeList.add(typeRoomInfo1);
