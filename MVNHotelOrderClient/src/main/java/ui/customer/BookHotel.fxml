@@ -192,8 +192,8 @@
                   </Label>
                </children>
             </HBox>
-            <JFXDatePicker fx:id="lastDate_time" defaultColor="#d715eb" onAction="#handleDate" showTime="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <JFXDatePicker fx:id="planedLeaveDate_time" defaultColor="#d715eb" onAction="#handleDate" showTime="true" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <JFXDatePicker fx:id="lastDate_time" onAction="#handleDate" showTime="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <JFXDatePicker fx:id="planedLeaveDate_time" onAction="#handleDate" showTime="true" GridPane.columnIndex="3" GridPane.rowIndex="3" />
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="212.45538330078125" minWidth="10.0" prefWidth="134.83050537109375" />
