@@ -28,8 +28,11 @@ public abstract class WebItemController {
 	protected TextField discount;
 	@FXML
 	protected Hyperlink delete;//确认和删除合一的按钮，名字叫delete
+	@FXML
+	protected TextField aditionalMessage;
 	protected WebDiscountController webDiscountController;
-
+	
+	private String discountID;
 
 	public void setWebStrategyController(WebDiscountController webDiscountController) {
 		this.webDiscountController = webDiscountController;
@@ -44,10 +47,12 @@ public abstract class WebItemController {
 			System.out.println("discount is not a number");// TODO: 折扣数不正确时处理
 			discount.setText("");
 			Dialogs.showMessage("折扣数非正确数字格式");
+			return;
 		}
 		if(num<0||num>10){
 			System.out.println("discount is not between 0 and 10");
 			Dialogs.showMessage("折扣数应为0~10");
+			discount.setText("");
 			return;
 		}
 
@@ -62,12 +67,15 @@ public abstract class WebItemController {
 				state.setText("未开始");
 				
 				//TODO: 调用blservice增加策略
-				DiscountVO_web discountVO_web = new DiscountVO_web();
+				DiscountVO_web discountVO_web;
+				
+				
 				delete.setText("删 除");//字中间有空格
 				webDiscountController.addNewItem(getType());
 			}
 			else {
 				System.out.println("the strategy is not finished");//TODO:弹窗提示未完成
+				Dialogs.showMessage("策略未完成");
 			}
 		}
 		else {
@@ -100,5 +108,15 @@ public abstract class WebItemController {
 		title.setTextFill(Color.GRAY);
 		discount.setEditable(false);
 		delete.setDisable(true);
+	}
+	
+	public void setValue(String title, String state, String aditionalMessage, double discount, String discountID) {
+		this.title.setText(title);
+		this.state.setText(state);
+		this.aditionalMessage.setText(aditionalMessage);
+		this.discount.setText(discount + "");
+		this.delete.setText("删 除");// 字中间有空格
+		this.discountID = discountID;
+		setTitle();
 	}
 }
