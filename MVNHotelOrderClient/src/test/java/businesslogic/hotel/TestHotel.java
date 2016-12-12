@@ -19,11 +19,14 @@ import businesslogic.hotel.MockHotelDiscount;
 import businesslogic.hotel.MockOrder;
 import businesslogic.order.MockCustomerInfo;
 import businesslogic.order.MockHotelInfo;
+import po.HotelPO;
 import stub.HotelDeal_Stub;
 import stub.ManageHotelInfo_Stub;
 import stub.OrderDate_Stub;
 import tools.DateRange;
 import tools.HotelAddress;
+import tools.HotelFacility;
+import tools.HotelRoomInfo;
 import tools.PriceRange;
 import tools.ResultMessage_Hotel;
 import tools.RoomType;
@@ -35,6 +38,7 @@ import vo.DiscountVO_hotel;
 import vo.HotelDiscribtionsVO;
 import vo.HotelInputVO;
 import vo.HotelRoomInfoVO;
+import vo.HotelbriefVO;
 import vo.OrderInputVO;
 import vo.SearchHotelVO;
 
@@ -79,6 +83,69 @@ public class TestHotel {
 		hotel = new Hotel();
 		SearchHotelVO searchVO = new SearchHotelVO("上海",null,null,null,null,null,null,false);
 		assertEquals("004",hotel.SearchHotel(searchVO).get(0).hotelID);
+	}
+	@Test
+	public void testSort(){
+		hotel = new Hotel();
+		
+		HotelAddress add = new HotelAddress("南京", "秦淮区","新街口","aa");
+		HotelInputVO hotelInputVO = new HotelInputVO(null,"001","jinling",Star.five,add,null);
+		HotelPO hotel1  = new HotelPO(hotelInputVO);
+		HotelFacility facility = new HotelFacility();
+		hotel1.setFacility(facility);
+		 List<TypeRoomInfo> typeRoomInfo = new ArrayList<TypeRoomInfo>();
+		 typeRoomInfo.add(new TypeRoomInfo("001", RoomType.Double,10,100.0));
+		hotel1.setHotelRoom(new HotelRoomInfo("001","jinling",typeRoomInfo));
+		hotel1.setGrade(1.2);
+		HotelbriefVO brief = new HotelbriefVO(hotel1);
+		
+		
+		HotelAddress add2 = new HotelAddress("南京", "秦淮区","新街口","aa");
+		HotelInputVO hotelInputVO2 = new HotelInputVO(null,"002","jinjiang",Star.five,add,null);
+		HotelPO hotel2  = new HotelPO(hotelInputVO2);
+		
+		HotelFacility facility2 = new HotelFacility();
+		hotel2.setFacility(facility2);
+		 List<TypeRoomInfo> typeRoomInfo2 = new ArrayList<TypeRoomInfo>();
+		 typeRoomInfo.add(new TypeRoomInfo("002", RoomType.Double,10,100.0));
+		hotel2.setHotelRoom(new HotelRoomInfo("002","jinling",typeRoomInfo));
+		hotel2.setGrade(3.0);
+		HotelbriefVO brief2 = new HotelbriefVO(hotel1);
+		
+		
+		
+		
+		HotelAddress add3 = new HotelAddress("南京", "秦淮区","夫子庙","aa");
+		HotelInputVO hotelInputVO3= new HotelInputVO(null,"003","rujia",Star.five,add,null);
+		HotelPO hotel3  = new HotelPO(hotelInputVO3);
+		HotelFacility facility3= new HotelFacility();
+		hotel3.setFacility(facility3);
+		 List<TypeRoomInfo> typeRoomInfo3 = new ArrayList<TypeRoomInfo>();
+		 typeRoomInfo.add(new TypeRoomInfo("003", RoomType.Double,10,100.0));
+		hotel3.setHotelRoom(new HotelRoomInfo("003","jinling",typeRoomInfo));
+		hotel3.setGrade(4.0);
+		HotelbriefVO brief3 = new HotelbriefVO(hotel1);
+		
+		
+		HotelAddress add4 = new HotelAddress("上海", "xx","xx","aa");
+		HotelInputVO hotelInputVO4= new HotelInputVO(null,"004","rujia",Star.five,add,null);
+		HotelPO hotel4  = new HotelPO(hotelInputVO4);
+		HotelFacility facility4 = new HotelFacility();
+		hotel4.setFacility(facility4);
+		 List<TypeRoomInfo> typeRoomInfo4 = new ArrayList<TypeRoomInfo>();
+		 typeRoomInfo.add(new TypeRoomInfo("004", RoomType.Double,10,100.0));
+		hotel4.setHotelRoom(new HotelRoomInfo("004","jinling",typeRoomInfo));
+		hotel4.setGrade(2.0);
+		HotelbriefVO brief4 = new HotelbriefVO(hotel1);
+		
+		ArrayList<HotelbriefVO> list = new ArrayList<HotelbriefVO>();
+		list.add(brief);
+		list.add(brief2);
+		list.add(brief3);
+		list.add(brief4);
+		assertEquals("001", hotel.SortHotel(list, SortType.grade).get(0).hotelID);
+		
+		
 	}
 		
 		/*List<TypeRoomInfo> typeList = new ArrayList<TypeRoomInfo>();
