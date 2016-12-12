@@ -15,6 +15,7 @@ import dataservice.HotelDataService;
 import po.HotelPO;
 import po.OrderAssessPO;
 import rmi.RemoteHelper;
+import stub.HotelData_Stub;
 import tools.Mark;
 import tools.ResultMessage_Hotel;
 import tools.SortType;
@@ -34,7 +35,8 @@ public class Hotel {
 	private HotelDataService hotelDataService;
 	private PictureDeal pictureDeal;
 	public Hotel(){
-		hotelDataService = RemoteHelper.getInstance().getHotelDataService();
+//		hotelDataService = RemoteHelper.getInstance().getHotelDataService();
+		hotelDataService = new HotelData_Stub();//test
 		pictureDeal = new PictureDeal();
 	}
 	

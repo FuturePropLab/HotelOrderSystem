@@ -7,10 +7,6 @@ import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-import com.sun.org.apache.bcel.internal.generic.RET;
-import com.sun.org.apache.bcel.internal.generic.RETURN;
-import com.sun.org.apache.xml.internal.security.utils.resolver.implementations.ResolverDirectHTTP;
-
 import Exception.CustomerCreditNotEnoughException;
 import businesslogic.credit.CreditController;
 import businesslogic.customer.CustomerDealController;
