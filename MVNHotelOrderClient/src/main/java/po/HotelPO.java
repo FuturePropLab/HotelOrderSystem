@@ -2,7 +2,6 @@ package po;
 
 import java.io.Serializable;
 
-import businesslogic.hotel.HotelInfo;
 import tools.HotelAddress;
 import tools.HotelFacility;
 import tools.HotelRoomInfo;

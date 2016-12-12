@@ -1,11 +1,16 @@
 package businesslogic.account;
 
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import businesslogicservice.AccountWebService;
+import po.AccountPO;
 import tools.AccountType;
 import tools.ResultMessage_Account;
 import vo.AccountVO;
+import vo.WebAccountVO;
 import vo.WebDesignerSearchVO;
 /**
  * 实现WebDesignerAccountService的接口
@@ -54,5 +59,25 @@ public class WebDesignerAccountController implements AccountWebService {
 	public ResultMessage_Account deleteAccount(String userId) {
 		return account.deleteAccount(userId);
 	}
+
+	@Override
+	public List<WebAccountVO> getWebAccount() {
+		List<AccountPO>  WebAccounts  = null;
+		try {
+			WebAccounts  = account.getWebAccount();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			WebAccounts = new ArrayList<>();
+		}
+		List<WebAccountVO> voList = new ArrayList<WebAccountVO>();
+		Iterator<AccountPO> it = WebAccounts.iterator();
+		while(it.hasNext()){
+			AccountPO accountPO = it.next();
+			voList.add(new WebAccountVO(accountPO));
+		}
+		return voList;
+	}
+	
 	
 }

@@ -128,6 +128,7 @@ public class HotelDetailController extends DetailsController{
 	@FXML
 	private Hyperlink save;//只有酒店工作人员可见
 	private File imageFile;
+	
 	private HotelDetailsVO hotelDetailsVO;
 	
 	/**
@@ -314,9 +315,11 @@ public class HotelDetailController extends DetailsController{
 	}
 	
 	private void toRoomView(RoomType roomType) {
+		System.out.println("toRoomView:    is null? "+hotelDetailsVO.hotelRoomInfoVO.typeRoomInfo==null);
 		try {
 			rootLayoutController.changeDetails("../room/RoomInfo.fxml");
 			RoomInfoController roomInfoController=(RoomInfoController)rootLayoutController.getDetailsController();
+			//System.out.println("toRoomView:    is null? "+hotelDetailsVO.hotelRoomInfoVO.typeRoomInfo==null);
 			for(int i=0;i<hotelDetailsVO.hotelRoomInfoVO.typeRoomInfo.size();i++){
 				if(roomType.equals(hotelDetailsVO.hotelRoomInfoVO.typeRoomInfo.get(i).getRoomtype())){
 					roomInfoController.setValue(hotelDetailsVO.hotelRoomInfoVO.typeRoomInfo.get(i));

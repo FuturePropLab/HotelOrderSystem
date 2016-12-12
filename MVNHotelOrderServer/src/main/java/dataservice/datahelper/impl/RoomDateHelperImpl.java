@@ -22,7 +22,6 @@ import po.SingleRoomPO;
 import po.TypeRoomInfoPO;
 import tools.ResultMessage_Room;
 import tools.RoomType;
-import tools.TypeRoomInfo;
 
 public class RoomDateHelperImpl  implements RoomDateHelper{
 	
@@ -169,6 +168,46 @@ public class RoomDateHelperImpl  implements RoomDateHelper{
 		List<RoomDisablePO>  list = cr.list();
 		s.close();
 		return list.isEmpty(); 
+	}
+	
+	
+	public ResultMessage_Room modifyTypeToomInfoName(String hotelID, String hotelName) {
+		Session s = Hibernateutils.getSessionFactory().openSession();	
+		Criteria cr = s.createCriteria(TypeRoomInfoPO.class);
+		cr.add(Restrictions.eq("roomPK.hotelID", hotelID));
+		List<TypeRoomInfoPO>  list = cr.list();
+		try {
+			for (int i = 0; i < list.size(); i++) {
+				TypeRoomInfoPO typeRoomInfoPO = list.get(i);
+				Transaction t = s.beginTransaction();
+				typeRoomInfoPO.setHotelName(hotelName);
+				t.commit();
+			} 
+			return ResultMessage_Room.success;
+		} catch (Exception e) {
+			return ResultMessage_Room.fail;
+		}finally {
+			s.close();
+		}
+	}
+	
+	
+	public ResultMessage_Room modifyTypeRoomPrice(String hotelID, RoomType roomType, double price) {
+		Session s = Hibernateutils.getSessionFactory().openSession();	
+		RoomPK roomPK = new RoomPK(hotelID, roomType);
+		try {
+			TypeRoomInfoPO typeRoomInfoPO = (TypeRoomInfoPO) s.load(TypeRoomInfoPO.class, roomPK);
+			typeRoomInfoPO.setPrice(price);
+			Transaction t = s.beginTransaction();
+			s.update(typeRoomInfoPO);
+			t.commit();			
+			return ResultMessage_Room.success;
+		} catch (Exception e) {
+			return ResultMessage_Room.success.fail;
+		}finally {
+			s.close();
+		}
+		
 	}
 
 	

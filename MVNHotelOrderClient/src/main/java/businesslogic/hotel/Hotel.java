@@ -35,6 +35,7 @@ public class Hotel {
 	private PictureDeal pictureDeal;
 	public Hotel(){
 		hotelDataService = RemoteHelper.getInstance().getHotelDataService();
+//		hotelDataService = new HotelData_Stub();//test
 		pictureDeal = new PictureDeal();
 	}
 	
@@ -351,6 +352,7 @@ public class Hotel {
 		 System.out.println("HotelDetailsVO:   "+hotelID);
 		 try {
 			 HotelPO hotelPO = hotelDataService.getHotel(hotelID);
+			 System.out.println("HotelDetailsVO getHotelDetailsVO:  isnull?:   "+hotelPO == null);
 			 hotelDetailsVO =  new HotelDetailsVO(hotelPO);
 			 hotelDetailsVO.hotelImage = pictureDeal.downloadFrontPicture(hotelID);
 			 hotelDetailsVO.hotelDiscribtionsVO = getHotelDiscribtionsVO(hotelID);			 

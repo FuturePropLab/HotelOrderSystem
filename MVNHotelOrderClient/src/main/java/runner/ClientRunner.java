@@ -11,6 +11,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import dataservice.HotelDataService;
+import po.HotelPO;
 import rmi.RemoteHelper;
 
 public class ClientRunner {
@@ -53,18 +54,18 @@ public class ClientRunner {
 	
 	public void test() throws RemoteException{	
 		
-		HotelDataService hotelDataService  =RemoteHelper.getInstance().getHotelDataService();
-		System.out.println(hotelDataService.gethotelAssessVO("HT001").size());
+//		HotelDataService hotelDataService  =RemoteHelper.getInstance().getHotelDataService();
+//		System.out.println(hotelDataService.gethotelAssessVO("HT001").size());
 		
 		
 //		LoginController loginController = LoginController.getInstance();
 //		System.out.println(loginController.getInstance().getLogState().accountID);
 		
 		
-//		HotelDataService hotelDataService = RemoteHelper.getInstance().getHotelDataService();
-//		HotelPO hotelPO = hotelDataService.getHotel("HT001");
-//		System.out.println(hotelPO.getHotelName());
-//		System.out.println(hotelPO.getHotelRoom().getTypeRoomInfo().size());
+		HotelDataService hotelDataService = RemoteHelper.getInstance().getHotelDataService();
+		HotelPO hotelPO = hotelDataService.getHotel("HT001");
+		System.out.println(hotelPO.getHotelName());
+		System.out.println(hotelPO.getHotelRoom().getTypeRoomInfo().size());
 		
 		
 //		HotelDealController hotelDealController = HotelDealController.getInstance();

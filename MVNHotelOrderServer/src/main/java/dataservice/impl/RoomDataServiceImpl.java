@@ -126,5 +126,9 @@ public class RoomDataServiceImpl implements RoomDataService {
 		}
 	}
 
+	public ResultMessage_Room changePrice(String hotelID, RoomType roomType, double price) throws RemoteException {
+		return roomDateHelper.modifyTypeRoomPrice(hotelID, roomType, price);
+	}
+
 	
 }

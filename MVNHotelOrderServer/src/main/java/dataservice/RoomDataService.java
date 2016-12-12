@@ -87,5 +87,15 @@ public interface RoomDataService extends Remote{
 		 * @throws RemoteException
 		 */
 		public List<String>   getRoomInfoString(String hotelID, RoomType roomType) throws RemoteException;
-
+			
+		
+		/**
+		 * 
+		 * @param hotelID
+		 * @param roomType
+		 * @param price
+		 * @return
+		 * @throws RemoteException
+		 */
+		public ResultMessage_Room changePrice(String hotelID ,RoomType roomType , double price) throws RemoteException;
 }

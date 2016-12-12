@@ -47,5 +47,10 @@ public class RoomManageController implements RoomManageService{
 	public int getAvaiableNumberByTime(String hotelID, RoomType roomType, Date begin, Date end) {
 		return roomManager.getAvaiableNumberByTime(hotelID, roomType, begin, end);
 	}
+
+	@Override
+	public ResultMessage_Room changePrice(String hotelID, RoomType roomType, double price) {
+		return roomManager.changePrice(hotelID, roomType, price);
+	}
 	
 }

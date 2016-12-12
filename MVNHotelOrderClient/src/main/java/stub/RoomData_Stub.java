@@ -167,4 +167,11 @@ public class RoomData_Stub implements RoomDataService {
 		return null;
 	}
 
+
+	@Override
+	public ResultMessage_Room changePrice(String hotelID, RoomType roomType, double price) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

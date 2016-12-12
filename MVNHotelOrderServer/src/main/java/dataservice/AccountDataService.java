@@ -66,5 +66,19 @@ public interface AccountDataService extends Remote{
 	 */
 	public List<CustomerAccount>  getCustomerAccount() throws RemoteException;
 	
+	
+	/**
+	 * 
+	 * @return
+	 * @throws RemoteException
+	 */
 	public List<HotelAccount>  getHotelAccount() throws RemoteException;
+	
+	/**
+	 * 
+	 * @param accountType
+	 * @return
+	 * @throws RemoteException
+	 */
+	public List<AccountPO> getAccountByTypr(AccountType accountType) throws RemoteException;
 }

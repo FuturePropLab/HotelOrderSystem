@@ -169,4 +169,14 @@ public class AccountDataServiceImpl implements AccountDataService {
 		return hotelAccounts;
 	}
 
+	public List<AccountPO> getAccountByTypr(AccountType accountType) throws RemoteException {
+		AccountDataHelper accountDataHelper = DataHelperUtils.getAccountDataHelper();
+		List<AccountPO> list= accountDataHelper.getAccountList(accountType);
+		if(list == null){
+			list =  new ArrayList<AccountPO>();
+		}
+		
+		return list;
+	}
+
 }

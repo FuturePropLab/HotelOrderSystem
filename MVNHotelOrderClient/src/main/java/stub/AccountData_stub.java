@@ -147,6 +147,12 @@ public class AccountData_stub implements AccountDataService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<AccountPO> getAccountByTypr(AccountType accountType) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 

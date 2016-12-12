@@ -275,4 +275,8 @@ public class Account {
 		return accountDataService.getHotelAccount();
 	}
 	
+	public List<AccountPO>  getWebAccount()  throws RemoteException{
+		return accountDataService.getAccountByTypr(AccountType.Web);
+	}
+	
 }

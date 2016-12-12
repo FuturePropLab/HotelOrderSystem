@@ -51,7 +51,7 @@ public class RoomManager {
 			System.out.println(e.getMessage());
 			return ResultMessage_Room.fail;
 		}		
-		return ResultMessage_Room.fail;
+		return ResultMessage_Room.success;
 	}
 	
 	public List<String> getAllRoomByType(String hotelID, RoomType roomType) {
@@ -83,6 +83,17 @@ public class RoomManager {
 
 	public int getAvaiableNumberByTime(String hotelID, RoomType roomType, Date begin, Date end) {	
 		return  getAvaiableRoomBytime(hotelID, roomType, begin, end).size();
+	}
+	
+	
+	public ResultMessage_Room changePrice(String hotelID, RoomType roomType, double price) {
+		try {
+			return roomDataService.changePrice(hotelID, roomType, price);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return ResultMessage_Room.fail;
+		}
 	}
 
 }

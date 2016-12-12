@@ -73,4 +73,13 @@ public interface AccountDataService extends Remote{
 	 */
 	public List<HotelAccount> getHotelAccount() throws RemoteException;
 	
+	
+	/**
+	 * 通过账户类型  获得账户的信息
+	 * @param accountType
+	 * @return
+	 * @throws RemoteException
+	 */
+	public List<AccountPO> getAccountByTypr(AccountType accountType) throws RemoteException;
+	
 }

@@ -79,4 +79,11 @@ public class RoomHotelInfo_Stub implements RoomManageService {
 		return 0;
 	}
 
+
+	@Override
+	public ResultMessage_Room changePrice(String hotelID, RoomType roomType, double price) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -63,5 +63,22 @@ public interface RoomDateHelper {
 	 	 */
 	 	public boolean  isAvailableRoom(String hotelID , String roomNO , Date begin ,Date end);
 	 	
+	 	/**
+	 	 * 批量修改酒店信息中的名字
+	 	 * @param hotelID
+	 	 * @param hotelName
+	 	 * @return
+	 	 */
+	 	public ResultMessage_Room modifyTypeToomInfoName(String hotelID , String hotelName);
+	 	
+	 	/**
+	 	 * 
+	 	 * @param hotelID
+	 	 * @param roomType
+	 	 * @param price
+	 	 * @return
+	 	 */	 	
+	 	public ResultMessage_Room modifyTypeRoomPrice (String hotelID , RoomType roomType, double price);
+	 	
 	 	
 }

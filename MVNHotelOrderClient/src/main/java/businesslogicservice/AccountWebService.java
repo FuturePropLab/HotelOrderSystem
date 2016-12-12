@@ -5,6 +5,7 @@ import java.util.List;
 import tools.AccountType;
 import tools.ResultMessage_Account;
 import vo.AccountVO;
+import vo.WebAccountVO;
 import vo.WebDesignerSearchVO;
 
 /**
@@ -59,6 +60,12 @@ public interface AccountWebService {
 	 * @return  List<AccountVO>
 	 */
 	public List<AccountVO> searchWebDesignerAccount(WebDesignerSearchVO webDesignerSearchVO);
+	
+	/**
+	 * 获取酒店管理人员显示的 网站设计人员的信息
+	 * @return
+	 */
+	public List<WebAccountVO> getWebAccount();
 	
 	
 }

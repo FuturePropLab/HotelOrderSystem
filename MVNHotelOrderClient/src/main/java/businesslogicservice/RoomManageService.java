@@ -59,4 +59,13 @@ public interface RoomManageService {
 	 * @return
 	 */
 	public int getAvaiableNumberByTime(String hotelID , RoomType roomType , Date begin,Date end);
+	
+	/**
+	 * 更改房间的价格
+	 * @param hotelID
+	 * @param roomType
+	 * @param price
+	 * @return
+	 */
+	public ResultMessage_Room changePrice(String hotelID , RoomType roomType , double price);
 }

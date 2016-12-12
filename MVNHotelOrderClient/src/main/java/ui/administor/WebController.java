@@ -1,10 +1,14 @@
 package ui.administor;
 
+import java.util.Iterator;
+import java.util.List;
+
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
+import businesslogic.account.WebDesignerAccountController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -13,6 +17,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
+import tools.ResultMessage_Account;
+import ui.utils.Dialogs;
+import vo.WebAccountVO;
 /**
  * 网站营销人员账号管理的委托类
  * @author zjy
@@ -43,10 +50,20 @@ public class WebController {
 	
 	private void initWeb(){
 		webs = FXCollections.observableArrayList();
-		webs.add(new Web("userName","webName"));
-		webs.add(new Web("userName1","webName"));
+		//webs.add(new Web("userName","webName"));
+		//webs.add(new Web("userName1","webName"));
 		//上面时一个例子
 		//TODO:调用blservice添加酒店账号信息
+		WebDesignerAccountController webDesignerAccountController = 
+				WebDesignerAccountController.getInstance();
+		List<WebAccountVO> webVoList = webDesignerAccountController.getWebAccount();
+		Iterator<WebAccountVO> it = webVoList.iterator();
+		while(it.hasNext()){
+			WebAccountVO vo = it.next();
+			webs.add(new Web(vo.name,vo.id));
+		}
+		
+		
 		final TreeItem<Web> root = new RecursiveTreeItem<Web>(webs, RecursiveTreeObject::getChildren);
 		webList.setRoot(root);
 		
@@ -78,6 +95,18 @@ public class WebController {
 		String userName=webList.getSelectionModel().getSelectedItem().getValue().userName.get();
 		System.out.println("reset:"+userName);
 		//TODO:调用blservice重置密码
+		String id=webList.getSelectionModel().getSelectedItem().getValue().webName.get();
+		WebDesignerAccountController webDesignerAccountController = 
+				WebDesignerAccountController.getInstance();
+		ResultMessage_Account rs = webDesignerAccountController.resetPassword(id, "webweb");
+		
+		if(rs.equals(ResultMessage_Account.Success)){
+			Dialogs.showMessage("重置密码成功");
+		}else{
+			Dialogs.showMessage("重置失败 可能是连接又问题s!");
+		}
+		
+		
 	}
 	private void delete() {
 		if(webList.getSelectionModel().getSelectedItem()==null){
@@ -86,9 +115,17 @@ public class WebController {
 		String userName=webList.getSelectionModel().getSelectedItem().getValue().userName.get();
 		System.out.println("delete:"+userName);
 		//TODO:调用blservice删除账号
+		String id=webList.getSelectionModel().getSelectedItem().getValue().webName.get();
+		WebDesignerAccountController webDesignerAccountController = 
+				WebDesignerAccountController.getInstance();
+		ResultMessage_Account rs = webDesignerAccountController.deleteAccount(id);
 		
-		
-		webs.remove(webList.getSelectionModel().getSelectedItem().getValue());
+		if(rs.equals(ResultMessage_Account.Success)){
+			Dialogs.showMessage("删除成功");
+			webs.remove(webList.getSelectionModel().getSelectedItem().getValue());
+		}else{
+			Dialogs.showMessage("删除失败 可能是连接又问题s!");
+		}
 	}
 	
 	/**
@@ -103,12 +140,12 @@ public class WebController {
 		/**
 		 * 
 		 * @param userName 用户名
-		 * @param webName 网站营销人员的名字
+		 * @param webName 网站营销人员的名字  没有 暂时先用id 代替
 		 */
-		public Web(String userName, String webName) {
+		public Web(String userID, String username) {
 			super();
-			this.userName = new SimpleStringProperty(userName) ;
-			this.webName = new SimpleStringProperty(webName) ;
+			this.userName = new SimpleStringProperty(userID) ;
+			this.webName = new SimpleStringProperty(username) ;
 		}
 	}
 }

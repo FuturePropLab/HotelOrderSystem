@@ -15,7 +15,6 @@ import dataservice.LoginCheckService;
 import dataservice.MemberDataService;
 import dataservice.OrderDataService;
 import dataservice.RoomDataService;
-import dataservice.datahelper.MemberDataHelper;
 import dataservice.impl.AccountDataServiceImpl;
 import dataservice.impl.CreditdataServiceImpl;
 import dataservice.impl.CustomerDataServiceImpl;
@@ -295,6 +294,13 @@ OrderDataService,CreditDataService, MemberDataService{
 	}
 	public List<HotelAccount> getHotelAccount() throws RemoteException {
 		return accountDataService.getHotelAccount();
+	}
+	public List<AccountPO> getAccountByTypr(AccountType accountType) throws RemoteException {
+		return accountDataService.getAccountByTypr(accountType);
+	}
+	public ResultMessage_Room changePrice(String hotelID, RoomType roomType, double price) throws RemoteException {
+		// TODO Auto-generated method stub
+		return roomDataService.changePrice(hotelID, roomType, price);
 	}
 
 }

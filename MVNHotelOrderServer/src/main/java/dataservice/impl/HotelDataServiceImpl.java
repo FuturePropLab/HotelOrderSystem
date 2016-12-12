@@ -20,6 +20,7 @@ import DataFactory.DataHelperUtils;
 import dataservice.HotelDataService;
 import dataservice.datahelper.AddressDataHelper;
 import dataservice.datahelper.HotelDataHelper;
+import dataservice.datahelper.RoomDateHelper;
 import po.HotelAddressPO;
 import po.HotelBasePO;
 import po.HotelFacilityPO;
@@ -30,8 +31,9 @@ import tools.HotelAddress;
 import tools.HotelFacility;
 import tools.HotelRoomInfo;
 import tools.ResultMessage_Hotel;
-import tools.SearchHotel;
+import tools.RoomType;
 import tools.StandardSearch;
+import tools.TypeRoomInfo;
 
 public class HotelDataServiceImpl implements HotelDataService {
 	
@@ -57,6 +59,28 @@ public class HotelDataServiceImpl implements HotelDataService {
 			hotelBasePO.setHotelName(null);
 		}
 		hotelDataHelper.addHotelBasePO(hotelBasePO);
+		
+		String hotelName = hotelBasePO.getHotelName();
+		if(hotelName!=null){
+			RoomDateHelper roomDateHelper = DataHelperUtils.getRoomDateHelper();
+			roomDateHelper.modifyTypeToomInfoName(hotelID, hotelName);
+		}
+		
+		//TODO important check
+		TypeRoomInfo typeRoomInfo1 = new TypeRoomInfo(hotelID, hotelName, RoomType.Single, 0, 0.0);
+		hotelDataHelper.addTypeRoomInfo(typeRoomInfo1);
+		
+		TypeRoomInfo typeRoomInfo2 = new TypeRoomInfo(hotelID, hotelName, RoomType.Double, 0, 0.0);
+		hotelDataHelper.addTypeRoomInfo(typeRoomInfo2);
+		
+		TypeRoomInfo typeRoomInfo3 = new TypeRoomInfo(hotelID, hotelName, RoomType.Standard, 0, 0.0);
+		hotelDataHelper.addTypeRoomInfo(typeRoomInfo3);
+		
+		TypeRoomInfo typeRoomInfo4 = new TypeRoomInfo(hotelID, hotelName, RoomType.EluxeSuite, 0, 0.0);
+		hotelDataHelper.addTypeRoomInfo(typeRoomInfo4);
+		
+		TypeRoomInfo typeRoomInfo5 = new TypeRoomInfo(hotelID, hotelName, RoomType.Suites, 0, 0.0);
+		hotelDataHelper.addTypeRoomInfo(typeRoomInfo5);
 		
 		//facility
 		HotelFacility hotelFacility;
@@ -96,6 +120,7 @@ public class HotelDataServiceImpl implements HotelDataService {
 		if(hotelID==null || "".equals(hotelID))
 			return ResultMessage_Hotel.fail;
 		HotelBasePO hotelBasePO = new HotelBasePO(hotelPO);
+		//hotelDataHelper.getTypeRoomInfoList(hotelName)
 		
 		
 		//whether update base

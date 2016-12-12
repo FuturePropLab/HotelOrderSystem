@@ -1,20 +1,15 @@
 package testHibernate;
 
 import java.rmi.RemoteException;
-import java.util.Date;
 
-import DataFactory.DataHelperUtils;
 import DataFactory.Hibernateutils;
-import dataservice.RoomDataService;
-import dataservice.datahelper.RoomDateHelper;
-import dataservice.impl.RoomDataServiceImpl;
-import tools.RoomType;
 
 public class testRoom {
 		
 		public static void main(String[] args) throws RemoteException {
-			RoomDateHelper  roomDateHelper = DataHelperUtils.getRoomDateHelper();
-			System.out.println(roomDateHelper.deleteRoom("HT001", "315"));
+//			RoomDateHelper  roomDateHelper = DataHelperUtils.getRoomDateHelper();
+//			roomDateHelper.modifyTypeRoomPrice("HT001", RoomType.Single, 199);
+//			System.out.println(roomDateHelper.deleteRoom("HT001", "315"));
 //			System.out.println(roomDateHelper.addRoom("HT001", "305", RoomType.Double));
 //			System.out.println(roomDateHelper.deleteRoom("HT001", "301"));
 //			System.out.println(roomDateHelper.deleteRoom("HT001", "311"));
