@@ -25,7 +25,11 @@ public class MockMemberController {
 					memberType);
 		}
 		else{
-						return null;
+			MemberType memberType = new MemberType("0001");
+			memberType.setType(MemberBelongType.None);
+			return new MemberVO(customer_id, 
+					memberType);
+						
 					}
 		
 		

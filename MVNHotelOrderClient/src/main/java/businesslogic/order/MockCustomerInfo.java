@@ -31,7 +31,10 @@ public class MockCustomerInfo implements CustomerInfo{
 					memberType),100);
 		}
 		else{
-						return null;
+			MemberType memberType = new MemberType("0001");
+			memberType.setType(MemberBelongType.None);
+			return new CustomerVO(customerID, "customerName", "gender", "telephone", new MemberVO(customerID, 
+					memberType),100);	
 					}
 		}
 	}
