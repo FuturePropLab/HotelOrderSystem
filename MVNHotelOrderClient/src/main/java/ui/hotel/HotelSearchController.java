@@ -1,10 +1,8 @@
-﻿package ui.hotel;
+package ui.hotel;
 
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
-
-import com.jfoenix.controls.JFXDatePicker;
 
 import Exception.NoSuchValueException;
 import Exception.OutOfBoundsException;
@@ -30,7 +28,6 @@ import tools.Star;
 import ui.customer.BookHotelController;
 import ui.main.DetailsController;
 import ui.utils.DateFormat;
-import vo.HotelDetailsVO;
 import vo.HotelbriefVO;
 import vo.SearchHotelVO;
 

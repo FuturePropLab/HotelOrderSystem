@@ -6,7 +6,9 @@ import java.util.List;
 
 import dataservice.AccountDataService;
 import po.AccountPO;
+import po.CustomerAccount;
 import po.CustomerAccountPO;
+import po.HotelAccount;
 import po.HotelAccountPO;
 import po.SearchCondition;
 import po.WebAccountPO;
@@ -130,6 +132,18 @@ public class AccountData_stub implements AccountDataService{
 	}
 
 	public List<AccountPO> getAccountList(List<String> idList, AccountType accountType) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<CustomerAccount> getCustomerAccount() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<HotelAccount> getHotelAccount() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
