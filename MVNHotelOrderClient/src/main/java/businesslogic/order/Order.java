@@ -138,8 +138,8 @@ public class Order {
 		}
 		if(checkInInfo.filled()&&orderState.equals(OrderState.Unexecuted)){
 			orderState=OrderState.Executed;
-//			CreditLogDealService creditLogDealService=CreditController.getInstance();
-			MockCredit creditLogDealService = new MockCredit();//test
+			CreditLogDealService creditLogDealService=CreditController.getInstance();
+//			MockCredit creditLogDealService = new MockCredit();//test
 			creditLogDealService.CreditChangeAboutOrder(this, ActionType.RightOrder);
 		}
 		ResultMessage resultMessage=ResultMessage.NotExist;
@@ -321,8 +321,8 @@ public class Order {
 		newValue+=hotelInfo.getHotelInfo(placingOrderInfo.hotelID).mark.getValue()*100;
 		
 		//TODO wsw  小改  不知道 这个方法本来又问题!!!!
-//		MemberController memberController = MemberController.getInstance();
-		MockMemberController memberController = new MockMemberController();
+		MemberController memberController = MemberController.getInstance();
+//		MockMemberController memberController = new MockMemberController();
 		System.out.println(placingOrderInfo.customerID);
 		MemberVO memberVO = memberController.getMemberInfo(placingOrderInfo.customerID);
 		newValue+= memberVO.memberType.getType()==MemberBelongType.None?0:1000;
