@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXDialog.DialogTransition;
@@ -14,8 +15,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import tools.RoomType;
 import ui.customer.BookHotelController;
@@ -23,6 +26,7 @@ import ui.customer.ClientInfoController;
 import ui.customer.OrderAssessController;
 import ui.guid.GuideUIController;
 import ui.hotel.FacilitiesInfoController;
+import ui.utils.Dialogs;
 
 /**
  * The controller for the root layout. The root layout provides the basic
@@ -113,10 +117,8 @@ public class RootLayoutController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		acceptButton.setOnAction(e -> dialog.close());
-		dialog.setTransitionType(DialogTransition.TOP);
-		dialog.show(rootLayout);
-		System.out.println(dialog.getChildren().get(0));
+		Dialogs.init(rootLayout, dialog);
+		Dialogs.showMessage("messages");
 	}
 
 	/**
