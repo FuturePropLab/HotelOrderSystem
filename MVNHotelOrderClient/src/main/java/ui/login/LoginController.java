@@ -22,6 +22,7 @@ import ui.hotel.HotelSearchController;
 import ui.main.FullLayoutController;
 import ui.utils.Dialogs;
 import ui.utils.TextFieldUtil;
+import ui.utils.saveUsernameUtil;
 /**
  * 
  * @author zjy
@@ -55,6 +56,9 @@ public class LoginController extends FullLayoutController{
 		TextFieldUtil.setValidator((JFXTextField) username_signup);
 		TextFieldUtil.setValidator((JFXPasswordField) password_signup);
 		TextFieldUtil.setRepeatValidator((JFXPasswordField) password_signup,(JFXPasswordField) repeatPassword);
+		String[] str= saveUsernameUtil.getSave();
+		this.username.setText(str[0]);
+		this.accountType.setValue(str[1]);
 	}
 	
 	@FXML
@@ -73,7 +77,7 @@ public class LoginController extends FullLayoutController{
 			result = LoginServiceUtil.getLoginService().login(username.getText(), password.getText(),accountType);
 			if(result.equals(ResultMessage_LoginCheck.Success)){
 				
-				
+				saveUsernameUtil.saveinfo(username.getText().trim(), accountTy);
 				String accountID  =  LoginServiceUtil.getLoginService().getLogState().accountID;
 				rootLayoutController.changeFullLayout(null);
 				rootLayoutController.changeGuid("../guid/GuideUI.fxml");
