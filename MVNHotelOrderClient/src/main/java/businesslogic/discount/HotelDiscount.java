@@ -7,6 +7,7 @@ import java.util.List;
 
 import po.DiscountPO_hotel;
 import rmi.RemoteHelper;
+import stub.DiscountHotelData_stub;
 import tools.DiscountState;
 import tools.ResultMessage_Discount;
 import tools.ResultMessage_DiscountDetail;
@@ -21,7 +22,11 @@ public class HotelDiscount {
 	private dataservice.DiscountHotelDataService dataService;
 	
 	public  HotelDiscount(){
-		this.dataService = RemoteHelper.getInstance().getDiscountHotelDataService();
+//		this.dataService = RemoteHelper.getInstance().getDiscountHotelDataService();
+		this.dataService = new DiscountHotelData_stub();
+		
+		
+		
 	}
 	
 	/**

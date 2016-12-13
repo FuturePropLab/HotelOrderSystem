@@ -6,11 +6,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 import dataservice.DiscountWebDataService;
+import po.DiscountPO_hotel;
 import po.DiscountPO_web;
 import po.DiscountPO_web_period;
 import tools.DiscountState;
 import tools.ResultMessage_Discount;
 import tools.ResultMessage_DiscountDetail;
+import tools.Strategy_hotelType;
 import tools.Strategy_webType;
 
 public class DiscountWebData_stub implements DiscountWebDataService{
@@ -30,10 +32,22 @@ public class DiscountWebData_stub implements DiscountWebDataService{
 	@Override
 	public List<DiscountPO_web> getWebDiscount() throws RemoteException {
 		// TODO Auto-generated method stub
-		List<DiscountPO_web>discountPO_webs = new LinkedList<DiscountPO_web>();
-		DiscountPO_web discountPO_web = new DiscountPO_web_period(0.9, LocalDate.of(2016, 12, 1), LocalDate.of(2016, 12, 10),Strategy_webType.Period, DiscountState.valid, null);
-		discountPO_webs.add(discountPO_web);
-		return discountPO_webs;
+		
+		List<DiscountPO_web>res = new LinkedList<DiscountPO_web>();
+		/*LocalDate date1 = LocalDate.of(2016, 1, 1);
+		LocalDate date2 = LocalDate.of(2016, 1, 2);
+		LocalDate date3 = LocalDate.of(2016, 1, 3);
+		LocalDate date4 = LocalDate.of(2016, 1, 4);
+		LocalDate date5 = LocalDate.of(2016, 1, 5);
+		LocalDate date6 = LocalDate.of(2016, 1, 6);*/
+		DiscountPO_web webDis = new DiscountPO_web();
+		webDis.setType(Strategy_webType.VIP_district);
+		webDis.setDiscount(8.8);
+		webDis.setDiscountState(DiscountState.invalid);
+		webDis.setRemarks("good");
+		res.add(webDis);
+		return res;
+		
 	}
 	@Override
 	public ResultMessage_Discount deleteWebDiscount(String discountID) throws RemoteException {

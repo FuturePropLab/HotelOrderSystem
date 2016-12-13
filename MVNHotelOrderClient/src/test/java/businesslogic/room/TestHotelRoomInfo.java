@@ -74,4 +74,6 @@ public class TestHotelRoomInfo {
 		}
 		assertEquals("003", manager.getAvaiableRoomBytime("001",RoomType.Double, date5, date6).get(0));
 	}
+	@Test
+	public void test
 }

@@ -7,6 +7,7 @@ import java.util.List;
 
 import po.DiscountPO_web;
 import rmi.RemoteHelper;
+import stub.DiscountWebData_stub;
 import tools.ResultMessage_Discount;
 import tools.ResultMessage_DiscountDetail;
 import vo.DiscountVO_web;
@@ -20,7 +21,8 @@ public class WebDiscount {
 	private dataservice.DiscountWebDataService dataService;
 	
 	public WebDiscount(){
-		this.dataService=RemoteHelper.getInstance().getDiscountWebDAteService();
+//		this.dataService=RemoteHelper.getInstance().getDiscountWebDAteService();
+		this.dataService = new DiscountWebData_stub();
 	}
 
 	private FactoryDiscount factory= new FactoryDiscount();

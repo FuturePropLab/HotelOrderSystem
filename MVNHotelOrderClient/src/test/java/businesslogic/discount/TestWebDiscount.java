@@ -1,5 +1,8 @@
 package businesslogic.discount;
 
+import static org.junit.Assert.*;
+
+import java.rmi.RemoteException;
 import java.util.Date;
 
 import org.junit.Test;
@@ -12,6 +15,8 @@ public class TestWebDiscount {
 	public void test() {
 		Date t1=new Date(2016,9,1);
 		Date t2=new Date(2016,9,2);
+		WebDiscount webDis =new WebDiscount();
+		
 //		DiscountVO_web dis=new DiscountVO_web(10,"新街口",9.9,t1,t2,10);
 		ResultMessage_Discount exp=ResultMessage_Discount.Success;
 		WebDiscount test=new WebDiscount();
@@ -21,7 +26,12 @@ public class TestWebDiscount {
 //		assertEquals(exp,test.addWebDiscount(dis));
 //		assertSame(dis.district,test.editWebDiscount(id).district);
 //		assertEquals(ResultMessage_strategy.Success,test.saveDiscount(t));
-		
+		try {
+			assertEquals(8.8,webDis.getWebDiscount().get(0).discount);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
