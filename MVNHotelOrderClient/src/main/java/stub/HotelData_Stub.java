@@ -19,7 +19,9 @@ import tools.SearchHotel;
 import tools.StandardSearch;
 import tools.Star;
 import tools.TypeRoomInfo;
+import vo.HotelDetailsVO;
 import vo.HotelDiscribtionsVO;
+import vo.HotelFacilityVO;
 import vo.HotelInputVO;
 
 public class HotelData_Stub implements HotelDataService{
@@ -104,6 +106,17 @@ public class HotelData_Stub implements HotelDataService{
 
 	public HotelPO getHotel(String hotel_id) throws RemoteException {
 		// TODO Auto-generated method stub
+		if(hotel_id =="001"){
+			HotelAddress add = new HotelAddress("南京", "秦淮区","新街口","aa");
+			HotelInputVO hotelInputVO = new HotelInputVO(null,"001","jinling",Star.five,add,null);
+			HotelPO hotelPO  = new HotelPO(hotelInputVO);
+			HotelFacility facility = new HotelFacility();
+			hotelPO.setFacility  (facility);
+//			HotelDetailsVO details = new HotelDetailsVO(hotelPO);
+//			HotelRoomInfo(String hotelID, St???ring hotelName, List<TypeRoomInfo> typeRoomInfo
+			hotelPO.setHotelRoom(new HotelRoomInfo("001","jinling",null));
+			return hotelPO;
+		}
 		return null;
 	}
 

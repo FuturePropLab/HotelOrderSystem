@@ -36,6 +36,7 @@ import tools.Star;
 import tools.TypeRoomInfo;
 import vo.CommentVO;
 import vo.DiscountVO_hotel;
+import vo.HotelDetailsVO;
 import vo.HotelDiscribtionsVO;
 import vo.HotelInputVO;
 import vo.HotelRoomInfoVO;
@@ -156,6 +157,17 @@ public class TestHotel {
 			
 			
 		}
+		@Test
+		public void testGetHotelDetails(){
+			hotel =new Hotel();
+			
+			HotelAddress add = new HotelAddress("南京", "秦淮区","新街口","aa");
+			HotelInputVO hotelInputVO = new HotelInputVO(null,"001","jinling",Star.five,add,null);
+			HotelPO hotelPO  = new HotelPO(hotelInputVO);
+//			HotelDetailsVO details = new HotelDetailsVO(hotelPO);
+			assertEquals("南京", hotel.getHotelDetailsVO("001").hotelAddress.getCity());
+		}
+		
 		/*List<TypeRoomInfo> typeList = new ArrayList<TypeRoomInfo>();
 		TypeRoomInfo typeRoomInfo1= new TypeRoomInfo("001","�ٻ���Ƶ�",RoomType.Single,5,180.0);
 		typeList.add(typeRoomInfo1);
