@@ -130,10 +130,31 @@
     -fx-text-fill: WHITE;
 }
 
+.button-raised-green{
+    -fx-font-size: 24px;
+    -fx-button-type: RAISED;
+    -fx-background-color: rgb(33,221,49);
+    -fx-text-fill: WHITE;
+}
+
 .button-raised-purple{
     -fx-font-size: 24px;
     -fx-button-type: RAISED;
     -fx-background-color: rgb(224,11,118);
+    -fx-text-fill: WHITE;
+}
+
+.button-raised-yellow{
+    -fx-font-size: 24px;
+    -fx-button-type: RAISED;
+    -fx-background-color: rgb(255,232,82);
+    -fx-text-fill: WHITE;
+}
+
+.button-raised-cyan{
+    -fx-font-size: 24px;
+    -fx-button-type: RAISED;
+    -fx-background-color: rgb(84,255,183);
     -fx-text-fill: WHITE;
 }
 
@@ -142,6 +163,13 @@
     -fx-button-type: RAISED;
     -fx-background-color: rgb(0,0,0);
     -fx-text-fill: WHITE;
+}
+
+.button-raised-white{
+    -fx-font-size: 24px;
+    -fx-button-type: RAISED;
+    -fx-background-color: rgb(255,255,255);
+    -fx-text-fill: PURPLE;
 }
 	 
 	 

@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="750.0" prefWidth="1300.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.login.LoginController">
+<AnchorPane prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.login.LoginController">
    <children>
-      <JFXTabPane layoutX="370.0" layoutY="170.0" prefHeight="410.0" prefWidth="560.0">
+      <JFXTabPane layoutX="342.0" layoutY="170.0" prefHeight="410.0" prefWidth="560.0">
          <tabs>
           <Tab text="登陆">
             <content>
@@ -40,7 +40,7 @@
                            </font>
                         </JFXPasswordField>
                         <JFXComboBox fx:id="accountType" layoutX="41.0" layoutY="245.0" prefHeight="45.0" prefWidth="171.0" stylesheets="@../../../resources/css/jfoenix-components.css" />
-                        <JFXButton fx:id="loginButton" buttonType="RAISED" layoutX="353.0" layoutY="244.0" onAction="#handleLogin" prefWidth="130.0" styleClass="button-raised-red" stylesheets="@../../../resources/css/jfoenix-components.css" text="确定">
+                        <JFXButton fx:id="loginButton" buttonType="RAISED" layoutX="353.0" layoutY="244.0" onAction="#handleLogin" prefWidth="130.0" ripplerFill="WHITE" styleClass="button-raised-purple" stylesheets="@../../../resources/css/jfoenix-components.css" text="确定">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -77,7 +77,7 @@
                               <Font size="24.0" />
                            </font>
                         </JFXPasswordField>
-                        <JFXButton fx:id="signupButton" buttonType="RAISED" layoutX="367.0" layoutY="302.0" onAction="#handleSignUp" prefWidth="130.0" text="注册">
+                        <JFXButton fx:id="signupButton" buttonType="RAISED" layoutX="367.0" layoutY="302.0" onAction="#handleSignUp" prefWidth="130.0" styleClass="button-raised-green" stylesheets="@../../../resources/css/jfoenix-components.css" text="注册">
                            <font>
                               <Font size="24.0" />
                            </font>

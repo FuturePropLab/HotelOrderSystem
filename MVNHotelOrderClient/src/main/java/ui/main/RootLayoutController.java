@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+import com.jfoenix.controls.JFXDialog;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import tools.RoomType;
 import ui.customer.BookHotelController;
@@ -30,11 +33,15 @@ public class RootLayoutController {
 	private Stage primaryStage;
 	private Stack<View> formerViews;//存储界面跳转历史记录的栈
 	@FXML
+	private StackPane rootLayout;
+	@FXML
 	private AnchorPane fullLayout;
 	@FXML
 	private AnchorPane details;
 	@FXML
 	private AnchorPane guid;
+	@FXML
+	private JFXDialog dialog;
 
 	public AnchorPane getDetails() {
 		return details;
@@ -100,20 +107,7 @@ public class RootLayoutController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		// // Initialize the person table with the two columns.
-		// firstNameColumn.setCellValueFactory(
-		// cellData -> cellData.getValue().firstNameProperty());
-		// lastNameColumn.setCellValueFactory(
-		// cellData -> cellData.getValue().lastNameProperty());
-		//
-		// // Clear person details.
-		// showPersonDetails(null);
-		//
-		// // Listen for selection changes and show the person details when
-		// changed.
-		// personTable.getSelectionModel().selectedItemProperty().addListener(
-		// (observable, oldValue, newValue) -> showPersonDetails(newValue));
+		dialog.show(rootLayout);
 	}
 
 	/**

@@ -5,6 +5,9 @@ import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialog.DialogTransition;
+
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
@@ -12,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -61,33 +65,5 @@ public class MainUI {
             e.printStackTrace();
         }
     }
-    
-    /**
-     * @deprecated
-     * Shows the hotel details inside the root layout.
-     */
-    public void showHotelDetails() {
-    	try {
-			HotelDetailController controller = (HotelDetailController) replaceSceneContent("../hotel/HotelDetail.fxml");
-		} catch (Exception e) {
-			Logger.getLogger(MainUI.class.getName()).log(Level.SEVERE, null, e);
-		}
-    }
-    
-    private Initializable replaceSceneContent(String fxml) throws Exception {  
-        FXMLLoader loader = new FXMLLoader();  
-        InputStream in = MainUI.class.getResourceAsStream(fxml);  
-        loader.setBuilderFactory(new JavaFXBuilderFactory());  
-        loader.setLocation(MainUI.class.getResource(fxml));  
-        AnchorPane page;  
-        try {  
-            page = (AnchorPane) loader.load(in);  
-        } finally {  
-            in.close();  
-        }   
-        Scene scene = new Scene(page);  
-        primaryStage.setScene(scene);  
-        primaryStage.sizeToScene();  
-        return (Initializable) loader.getController();  
-    }  
+
 }
