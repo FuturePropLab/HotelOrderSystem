@@ -205,31 +205,31 @@ public class BookHotelController extends DetailsController{
 		if(startDate == null || endDate==null) return ;
 		
 		//简单计算天数
-		int days = endDate.getDayOfYear() - startDate.getDayOfYear();
-		System.out.println(days);
-		System.out.println(days);
-		if(days < 0 )  days+= startDate.isLeapYear()? 1:0;
-		
-		if(days == 0)  days = 1;
+		int days = (int) (endDate.toEpochDay() - startDate.toEpochDay());//@lwy 修复跨年订单计算出错
+//		System.out.println(days);
+//		System.out.println(days);
+//		if(days < 0 )  days+= startDate.isLeapYear()? 1:0;
+//		
+//		if(days == 0)  days = 1;
 		
 		StrategyController strategyController  =StrategyController.getInstance();
 		List<TypeRoomInfo> typeRoomInfos  = hotelbriefVO.hotelRoom.getTypeRoomInfo();
-		double singlePrince = 0;
+		double singlePrice = 0;
 		for (int i = 0; i < typeRoomInfos.size(); i++) {
 			if(typeRoomInfos.get(i).getRoomtype()== getRoomType()){
-				singlePrince = typeRoomInfos.get(i).getPrice();
+				singlePrice = typeRoomInfos.get(i).getPrice();
 				break;
 			}
 		}
 		//number of room
 		int numberofRoom = Integer.valueOf(this.roomNumber.getText());
-		double OriginValue =  days * singlePrince *numberofRoom;
+		double OriginValue =  days * singlePrice *numberofRoom;
 		
 		//set origin
 		this.originalPrice.setText(String.valueOf(OriginValue));
 		
 		OrderInputCalVO orderInputCalVO  = new OrderInputCalVO
-				(OriginValue, this.customerID, hotelbriefVO.hotelID, startDate, endDate, 
+				(singlePrice, this.customerID, hotelbriefVO.hotelID, startDate, endDate, 
 						LocalDate.now(), getRoomType(), Integer.valueOf(this.roomNumber.getText()));
 		
 		try {
