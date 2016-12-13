@@ -6,9 +6,7 @@ import java.rmi.RemoteException;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
-import businesslogic.account.CustomerAccountController;
 import businesslogic.customer.CustomerSignupController;
-import businesslogicservice.LoginService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -16,7 +14,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import serviceFactory.LoginServiceUtil;
 import tools.AccountType;
-import tools.ResultMessage_Account;
 import tools.ResultMessage_LoginCheck;
 import tools.ResultMessage_signUp;
 import ui.customer.ClientInfoController;
