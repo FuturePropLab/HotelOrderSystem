@@ -5,5 +5,6 @@ public enum ResultMessage_Account {
   Fail,
   InvalidInput,
   InvalidGennerateID,
+  HasON,
   SystemError
 }

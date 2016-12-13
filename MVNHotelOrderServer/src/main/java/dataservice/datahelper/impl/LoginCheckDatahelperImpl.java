@@ -1,22 +1,25 @@
 package dataservice.datahelper.impl;
 
-import java.sql.Connection;
 import java.util.List;
 
 import org.hibernate.CacheMode;
 import org.hibernate.Criteria;
 import org.hibernate.FlushMode;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import dataservice.datahelper.LoginCheckDatahelper;
 import passwordtool.DESUtil;
 import passwordtool.ShaUtil;
 import po.AccountPO;
-import po.HotelBasePO;
+import po.StatePO;
 import testHibernate.Hibernateutils;
 import tools.AccountType;
+import tools.ResultMessage_Account;
+import tools.ResultMessage_LoginCheck;
 
 /**
  * 
@@ -37,9 +40,9 @@ public class LoginCheckDatahelperImpl implements LoginCheckDatahelper {
 	 * @return
 	 */
 	public static LoginCheckDatahelperImpl getInstance(){
-//		if(loginCheckDatahelperImpl == null){
+		if(loginCheckDatahelperImpl == null){
 			loginCheckDatahelperImpl = new LoginCheckDatahelperImpl();
-//		}
+		}
 		return  loginCheckDatahelperImpl;
 	}
 	
@@ -104,6 +107,49 @@ public class LoginCheckDatahelperImpl implements LoginCheckDatahelper {
 		s.close();
 		if(idlist.isEmpty())  return "FAIL";
 		return idlist.get(0);
+	}
+
+	public ResultMessage_LoginCheck addState(String accountID) {
+		StatePO statePO = new StatePO(accountID);
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		try {
+			Transaction t = s.beginTransaction();
+			s.save(statePO);
+			t.commit();
+			return ResultMessage_LoginCheck.Success;
+		} catch (Exception e) {
+			return ResultMessage_LoginCheck.hasOn;
+		}finally {
+			s.close();
+		}
+	}
+
+	public ResultMessage_LoginCheck deleteState(String accountID) {
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		StatePO statePO = (StatePO) s.load(StatePO.class, accountID);	
+		try {
+			Transaction t = s.beginTransaction();
+			s.delete(statePO);
+			t.commit();
+			return ResultMessage_LoginCheck.Success;
+		} catch (Exception e) {
+			return ResultMessage_LoginCheck.SystemError;
+		}finally {
+			s.close();
+		}
+	}
+
+	public ResultMessage_Account deleteAll() {
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		try {
+			SQLQuery q = s.createSQLQuery("truncate table StatePO");
+			q.executeUpdate();
+			return ResultMessage_Account.Success;
+		} catch (Exception e) {
+			return ResultMessage_Account.Fail;
+		}finally {
+			s.close();
+		}
 	}
 	
 	

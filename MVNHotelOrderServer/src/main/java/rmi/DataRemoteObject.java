@@ -306,5 +306,8 @@ OrderDataService,CreditDataService, MemberDataService{
 			throws RemoteException {
 		return orderDataService.searchFuzzyOrder(hotelID, cusrtomerID, input, begin);
 	}
+	public ResultMessage_LoginCheck logOut(String accountID) throws RemoteException {
+		return loginCheckService.logOut(accountID);
+	}
 
 }

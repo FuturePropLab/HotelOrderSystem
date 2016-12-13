@@ -57,6 +57,17 @@ public class Login {
 		return loginResult;
 	}
 	
+	public ResultMessage_LoginCheck logOut(String accountID){
+		try {
+			 return loginCheckService.logOut(getAccountID());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return ResultMessage_LoginCheck.SystemError;
+		}
+	}
+	
+	
 	/**
 	 * 
 	 * @return 登陆的状态
@@ -88,4 +99,6 @@ public class Login {
 	public String getAccountID() {
 		return accountID;
 	}
+	
+	
 }

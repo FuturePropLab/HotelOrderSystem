@@ -31,4 +31,11 @@ public interface LoginService {
 	 * @return
 	 */
 	public LogVO getLogState() ;
+
+	/**
+	 * 	登出
+	 * @param accountID
+	 * @return
+	 */
+	public ResultMessage_LoginCheck logOut(String accountID);
 }

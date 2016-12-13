@@ -2,11 +2,8 @@ package businesslogic.login;
 
 import java.rmi.RemoteException;
 
-import businesslogic.customer.CustomerDealController;
-import businesslogicservice.CustomerDealService;
 import businesslogicservice.LoginService;
 import dataservice.AccountDataService;
-import rmi.RemoteHelper;
 import tools.AccountType;
 import tools.ResultMessage_LoginCheck;
 import vo.LogVO;
@@ -70,6 +67,11 @@ public class LoginController implements LoginService{
 	public LogVO getLogState() {
 		
 		return new LogVO(loginw.getState(), loginw.getUserName(), loginw.getAccountType(), loginw.getAccountID());
+	}
+
+	@Override
+	public ResultMessage_LoginCheck  logOut(String accountID) {
+		 return loginw.logOut(accountID);
 	}
 
 }

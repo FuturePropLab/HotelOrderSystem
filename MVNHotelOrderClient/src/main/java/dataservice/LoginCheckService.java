@@ -32,4 +32,12 @@ public interface LoginCheckService extends Remote{
 	 * @throws RemoteException
 	 */
 	public String  getUserID(String username, String password) throws RemoteException;
+	
+	/**
+	 * 结束时的登出
+	 * @param accountID
+	 * @return null
+	 * @throws RemoteException
+	 */
+	public ResultMessage_LoginCheck logOut(String accountID)throws RemoteException;
 }

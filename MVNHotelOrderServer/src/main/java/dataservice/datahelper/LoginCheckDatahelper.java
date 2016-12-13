@@ -3,6 +3,8 @@ package dataservice.datahelper;
 import java.util.Map;
 
 import tools.AccountType;
+import tools.ResultMessage_Account;
+import tools.ResultMessage_LoginCheck;
 
 public interface LoginCheckDatahelper {
 		/**
@@ -20,6 +22,26 @@ public interface LoginCheckDatahelper {
 		 * @return ID
 		 */
 		public String getID(String username , String password);
+		
+		/**
+		 * 添加在线信息
+		 * @param accountID
+		 * @return
+		 */
+		public ResultMessage_LoginCheck addState(String accountID);
+		
+		/**
+		 * 删除在线信息
+		 * @param accountID
+		 * @return
+		 */
+		public ResultMessage_LoginCheck deleteState(String accountID);
+		
+		/**
+		 * 
+		 * @return
+		 */
+		public ResultMessage_Account deleteAll();
 
 		
 }

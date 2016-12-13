@@ -38,11 +38,17 @@ public class LoginCheckServiceImpl implements LoginCheckService {
 		String realPassSha = loginCheckDatahelper.passwordInSha(username, accountType);
 		if("Bad_ID".equals(realPassSha))  return ResultMessage_LoginCheck.InvalidUsername;
 		if(!inputPassSha.equals(realPassSha)) return ResultMessage_LoginCheck.InvalidPassword;
-		return ResultMessage_LoginCheck.Success;
+		String id = getUserID(username, password);
+		return loginCheckDatahelper.addState(id);
 	}
 
 	public String getUserID(String username, String password) throws RemoteException {	
 		LoginCheckDatahelper loginCheckDatahelper = DataHelperUtils.getLoginCheckDatahelper();
 		return loginCheckDatahelper.getID(username, password);
+	}
+
+	public ResultMessage_LoginCheck logOut(String accountID) throws RemoteException {
+		LoginCheckDatahelper loginCheckDatahelper = DataHelperUtils.getLoginCheckDatahelper();
+		return loginCheckDatahelper.deleteState(accountID);
 	}
 }

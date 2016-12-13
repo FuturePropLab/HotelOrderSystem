@@ -10,6 +10,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import businesslogic.login.LoginController;
 import dataservice.HotelDataService;
 import po.HotelPO;
 import rmi.RemoteHelper;
@@ -53,6 +54,9 @@ public class ClientRunner {
 	
 	
 	public void test() throws RemoteException{	
+		
+		LoginController loginController = LoginController .getInstance();
+		loginController.logOut("CS001");
 		
 //		HotelDataService hotelDataService  =RemoteHelper.getInstance().getHotelDataService();
 //		System.out.println(hotelDataService.gethotelAssessVO("HT001").size());

@@ -112,6 +112,8 @@ public class LoginController extends FullLayoutController{
 			}
 			else if (result.equals(ResultMessage_LoginCheck.SystemError)) {
 				System.err.println("login fail:SystemError");
+			}else if(result.equals(ResultMessage_LoginCheck.hasOn)){
+				Dialogs.showMessage("改用户已经在线");
 			}
 		} catch (RemoteException e) {
 			System.out.println("connect error");//TODO

@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXDialog.DialogTransition;
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
+import businesslogic.login.LoginController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -126,6 +127,13 @@ public class RootLayoutController {
 	 */
 	@FXML
 	private void handleExit() {
+		try {
+			LoginController loginController = LoginController.getInstance();
+			String accountID = loginController.getLogState().accountID;
+			loginController.logOut(accountID);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		System.exit(0);
 	}
 
