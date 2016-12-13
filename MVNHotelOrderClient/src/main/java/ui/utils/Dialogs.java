@@ -1,5 +1,7 @@
 package ui.utils;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
@@ -7,6 +9,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import ui.main.RootLayoutController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.experimental.theories.Theories;
 
@@ -16,13 +21,35 @@ import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXDialog.DialogTransition;
 
 /**
- * 弹窗消息
+ * 弹窗消息，只提供静态方法
  * @author zjy
  *
  */
 public class Dialogs {
 	private static StackPane rootLayout;
 	private static JFXDialog dialog;
+	
+	private static void showDialog(String title,String message,DialogTransition transition,JFXButton... buttons) {	
+		Label headingLabel=new Label(title);
+		headingLabel.setFont(new Font(30));
+		headingLabel.setTextFill(Color.LIGHTCORAL);
+		Label bodyLabel=new Label(message);
+		bodyLabel.setFont(new Font(22));
+		
+		JFXDialogLayout jfxDialogLayout=new JFXDialogLayout();
+		jfxDialogLayout.setHeading(headingLabel);
+		jfxDialogLayout.getHeading().forEach(
+				heading->heading.setStyle("-fx-font-weight: BOLD;-fx-alignment: center-left;"));
+		jfxDialogLayout.setBody(bodyLabel);
+		jfxDialogLayout.getBody().forEach(
+				body->body.setStyle("-fx-wrap-text: true;"));
+		jfxDialogLayout.setActions(buttons);
+		
+		dialog=new JFXDialog(rootLayout, jfxDialogLayout, DialogTransition.TOP);
+		dialog.setTransitionType(transition);
+		dialog.show(rootLayout);
+	}
+	
 	
 	/**
 	 * 给这个类设置rootLayout和dialog的引用
@@ -66,49 +93,31 @@ public class Dialogs {
 	public static void showMessage(String title,String message,DialogTransition transition) {
 		JFXButton acceptButton=new JFXButton("我知道了");
 		acceptButton.setOnAction(e -> dialog.close());
-		
-		Label headingLabel=new Label(title);
-		headingLabel.setFont(new Font(30));
-		headingLabel.setTextFill(Color.LIGHTCORAL);
-		Label bodyLabel=new Label(message);
-		bodyLabel.setFont(new Font(22));
-		
-		JFXDialogLayout jfxDialogLayout=new JFXDialogLayout();
-		jfxDialogLayout.setHeading(headingLabel);
-		jfxDialogLayout.getHeading().forEach(
-				heading->heading.setStyle("-fx-font-weight: BOLD;-fx-alignment: center-left;"));
-		jfxDialogLayout.setBody(bodyLabel);
-		jfxDialogLayout.getBody().forEach(
-				body->body.setStyle("-fx-wrap-text: true;"));
-		jfxDialogLayout.setActions(acceptButton);
-		
-		dialog=new JFXDialog(rootLayout, jfxDialogLayout, DialogTransition.TOP);
-		dialog.setTransitionType(transition);
-		dialog.show(rootLayout);
+		showDialog(title, message, transition, acceptButton);
 	}
 	
 	/**
 	 * 提示用户选择选项
-	 * @deprecated 还没写
+	 * <p>
+	 * 下面是一个例子
+	 * <p>
+	 * Dialogs.showChoise("message", new Choice("choice1",e->System.out.println("choice1")),
+	 * new Choice("choice2",e->System.out.println("choice2")),
+	 * new Choice("choice3",e->System.out.println("choice3")));
 	 * @param message 显示给用户的信息
-	 * @param choise1 选择1的名称
-	 * @param choise2 选择2的名称
-	 * @return 如果用户选择第一个选项，返回Choise.choise1
-	 * 			如果用户选择第二个选项，返回Choise.choise2
-	 * 			如果用户取消选择，返回null
+	 * @param choices 提供给用户的选择，包括选项名称和处理方法
 	 */
-	public static Choise showChoise(String message,String choise1,String choise2) {
-		//TODO
-		return Choise.choise1;
+	public static void showChoise(String message,Choice... choices) {
+		List<JFXButton> buttons=new ArrayList<JFXButton>();
+		for(Choice choice:choices){
+			JFXButton choiseButton=new JFXButton(choice.choiceName);
+			choiseButton.setOnAction(e -> {
+				choice.value.handle(e);
+				dialog.close();
+			});
+			buttons.add(choiseButton);
+		}
+		showDialog("aaa", message, DialogTransition.BOTTOM, buttons.toArray(new JFXButton[0]));
 	}
 	
-	/**
-	 * 用户的选择
-	 * @author zjy
-	 *
-	 */
-	public enum Choise{
-		choise1,
-		choise2
-	}
 }

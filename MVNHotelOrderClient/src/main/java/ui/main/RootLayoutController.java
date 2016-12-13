@@ -119,7 +119,6 @@ public class RootLayoutController {
 			e.printStackTrace();
 		}
 		Dialogs.init(rootLayout, dialog);
-		Dialogs.showMessage("messages");
 	}
 
 	/**

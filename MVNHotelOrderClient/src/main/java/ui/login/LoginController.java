@@ -7,6 +7,8 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
 import businesslogicservice.LoginService;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -21,6 +23,7 @@ import ui.hotel.HotelDetailController;
 import ui.hotel.HotelSearchController;
 import ui.main.FullLayoutController;
 import ui.utils.Dialogs;
+import ui.utils.Choice;
 import ui.utils.TextFieldUtil;
 import ui.utils.saveUsernameUtil;
 /**
@@ -130,5 +133,6 @@ public class LoginController extends FullLayoutController{
 	private void handleSignUp(){
 		LoginService loginService=businesslogic.login.LoginController.getInstance();
 		//TODO:注册
+		
 	}
 }
