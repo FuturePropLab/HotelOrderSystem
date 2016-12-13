@@ -5,6 +5,7 @@ import java.util.Date;
 
 import dataservice.RoomDataService;
 import rmi.RemoteHelper;
+import stub.RoomData_Stub;
 import tools.ResultMessage_Room;
 import tools.RoomType;
 import vo.RoomVO;
@@ -18,7 +19,8 @@ public class RoomSingle  {
 	private RoomDataService roomDataService;
 	
 	public RoomSingle(){
-		roomDataService = RemoteHelper.getInstance().getRoomDataService();
+//		roomDataService = RemoteHelper.getInstance().getRoomDataService();
+		roomDataService = new RoomData_Stub();//TEST
 	}
 	public ResultMessage_Room addSingleRoom(String hotelID, String RoomNO, RoomType roomType) {
 		try {

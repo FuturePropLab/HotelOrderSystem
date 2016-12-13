@@ -6,6 +6,7 @@ import java.util.List;
 
 import dataservice.RoomDataService;
 import rmi.RemoteHelper;
+import stub.RoomData_Stub;
 import tools.ResultMessage_Room;
 import tools.RoomDescription;
 import tools.RoomType;
@@ -26,7 +27,8 @@ public class RoomManager {
 	private RoomDataService roomDataService;
 	private RoomPictureDeal roomPictureDeal;
 	public RoomManager(){
-		this.roomDataService = RemoteHelper.getInstance().getRoomDataService();
+//		this.roomDataService = RemoteHelper.getInstance().getRoomDataService();
+		this.roomDataService =new RoomData_Stub();
 		this.roomPictureDeal = new RoomPictureDeal();
 	}
 	
