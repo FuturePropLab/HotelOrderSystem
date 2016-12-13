@@ -10,12 +10,9 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-import businesslogic.customer.CustomerSignupController;
-import businesslogic.login.LoginController;
-import dataservice.HotelDataService;
-import po.HotelPO;
+import businesslogic.customer.CustomerDealController;
 import rmi.RemoteHelper;
-import vo.CustomerInputVO;
+import vo.CustomerVO;
 
 public class ClientRunner {
 	private RemoteHelper remoteHelper;
@@ -59,8 +56,11 @@ public class ClientRunner {
 		
 //		LoginController loginController = LoginController .getInstance();
 //		loginController.logOut("CS001");
-		CustomerSignupController controller= CustomerSignupController.getInstance();
-		controller.addCustomer(new CustomerInputVO("aaaaaa", "aaaaaaa", "", "", ""));
+//		
+		
+		CustomerDealController customerDealController = CustomerDealController.getInstance();
+		CustomerVO cus = customerDealController.getCustomerInfo("CS001");
+		System.out.println(cus.membervo);
 		
 //		HotelDataService hotelDataService  =RemoteHelper.getInstance().getHotelDataService();
 //		System.out.println(hotelDataService.gethotelAssessVO("HT001").size());

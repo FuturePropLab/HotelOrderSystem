@@ -68,6 +68,7 @@ public class GuideUIController {
 				CustomerVO customerVO = customerDealService.getCustomerInfo(logVO.accountID);
 				credit.setText(customerVO.credit+"");
 				String memberTypes[]={"普通会员","企业会员","你不是会员"};
+				System.out.println(customerVO.membervo);
 				memberType.setText(memberTypes[customerVO.membervo.memberType.getType().ordinal()]);
 			} catch (RemoteException e) {
 				Dialogs.showMessage("阿欧", "网络连接好像断开了……");

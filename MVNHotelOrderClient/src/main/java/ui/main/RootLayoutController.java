@@ -179,6 +179,7 @@ public class RootLayoutController {
 		guid.getChildren().addAll(child);
 		guideUIController = loader.getController();
 		guideUIController.setRootLayoutController(this);
+		
 	}
 
 	/**

@@ -23,7 +23,7 @@
             <Label fx:id="userName" maxWidth="130.0" text="WSW的小号" />
             <HBox alignment="CENTER_LEFT" layoutY="43.0" spacing="5.0">
                <children>
-                  <Label text="信用值：" />
+                  <Label fx:id="creditLabel" text="信用值：" />
                   <Label fx:id="credit" prefWidth="60.0" text="99999999" />
                </children>
             </HBox>
