@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.guid.GuideUIController">
    <children>
       <Circle fill="WHITE" layoutX="86.0" layoutY="86.0" radius="62.0" stroke="BLACK" strokeType="INSIDE" />
       <ImageView fx:id="headPortrait" fitHeight="86.0" fitWidth="78.0" layoutX="47.0" layoutY="43.0">
