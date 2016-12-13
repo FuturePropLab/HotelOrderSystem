@@ -16,7 +16,6 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import ui.hotel.HotelDetailController;
-import ui.utils.TextFieldDemo;
 /**
  * 整个UI的控制器，包括初始化打开软件的UI
  * @author zjy
