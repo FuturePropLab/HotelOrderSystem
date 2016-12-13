@@ -6,16 +6,20 @@ import java.rmi.RemoteException;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
+import businesslogic.account.CustomerAccountController;
+import businesslogic.customer.CustomerSignupController;
 import businesslogicservice.LoginService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import serviceFactory.LoginServiceUtil;
 import tools.AccountType;
+import tools.ResultMessage_Account;
 import tools.ResultMessage_LoginCheck;
+import tools.ResultMessage_signUp;
+import ui.customer.ClientInfoController;
 import ui.discount.WebDiscountController;
 import ui.hotel.HotelDetailController;
 import ui.hotel.HotelSearchController;
@@ -23,6 +27,7 @@ import ui.main.FullLayoutController;
 import ui.utils.Dialogs;
 import ui.utils.TextFieldUtil;
 import ui.utils.saveUsernameUtil;
+import vo.CustomerInputVO;
 /**
  * 
  * @author zjy
@@ -126,9 +131,51 @@ public class LoginController extends FullLayoutController{
 			e.printStackTrace();
 		}
 	}
+	
 	@FXML
 	private void handleSignUp(){
-		LoginService loginService=businesslogic.login.LoginController.getInstance();
-		//TODO:注册
+		//LoginService loginService=businesslogic.login.LoginController.getInstance();
+		CustomerSignupController signupController = CustomerSignupController.getInstance();
+		CustomerInputVO customerInputVO = 
+				new CustomerInputVO(this.username_signup.getText(), this.password_signup.getText(), "", "", "");
+		//CustomerAccountController customerAccountController = CustomerAccountController.getInstance();
+		//System.out.println(this.username.getText()+"   "+this.password.getText());
+		ResultMessage_signUp rs =signupController.addCustomer(customerInputVO);
+		if(rs.equals(ResultMessage_signUp.Wrong)){
+			Dialogs.showMessage("注册失败,请重新输入用户名和密码");
+		//}else if(rs.equals(ResultMessage_Account.InvalidInput)){
+		//	Dialogs.showMessage("注册失败,请输入5位以上的用户名 和6位以上的密码");
+		}else if(rs.equals(ResultMessage_signUp.Success)){
+			Dialogs.showMessage("恭喜您注册成功");
+			accountType.setValue(accountTypes[0]);			
+			try {
+				ResultMessage_LoginCheck result
+				= LoginServiceUtil.getLoginService().login(username_signup.getText(), password_signup.getText(),AccountType.Customer);
+				if(result.equals(ResultMessage_LoginCheck.Success)){			
+					saveUsernameUtil.saveinfo(username_signup.getText().trim(), "用户");
+					String accountID  =  LoginServiceUtil.getLoginService().getLogState().accountID;
+					rootLayoutController.changeFullLayout(null);
+					rootLayoutController.changeGuid("../guid/GuideUI.fxml");
+					
+					AccountType testType  = LoginServiceUtil.getLoginService().getLogState().accountType;
+					System.out.println(testType);
+					
+					if(testType == AccountType.Customer){			
+						rootLayoutController.changeDetails("../customer/ClientInfo.fxml");
+						ClientInfoController controller =
+								(ClientInfoController) rootLayoutController.getDetailsController();
+						controller.initValue( LoginServiceUtil.getLoginService().getLogState().accountID);
+					}			
+				}
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		}
 	}
 }
+

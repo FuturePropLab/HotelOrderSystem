@@ -52,11 +52,11 @@ public class Customer {
 		
 		ResultMessage_signUp re=ResultMessage_signUp.Success;
 		//输入数据是否合法,
-		for(int i=0;i<customerInput.telephone.length();i++){
-			if(customerInput.telephone.charAt(i)>'9'||customerInput.telephone.charAt(i)<'0'){
-				re=ResultMessage_signUp.Wrong;
-			}
-		}
+//		for(int i=0;i<customerInput.telephone.length();i++){
+//			if(customerInput.telephone.charAt(i)>'9'||customerInput.telephone.charAt(i)<'0'){
+//				re=ResultMessage_signUp.Wrong;
+//			}
+//		}
 		if(re==ResultMessage_signUp.Success){
 			 //Account customer = new Account();
 			 AccountCustomerService account=CustomerAccountController.getInstance();

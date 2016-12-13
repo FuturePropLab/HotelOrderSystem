@@ -38,13 +38,5 @@ public class Certificate {
 			return true;
 		}
 		
-		public static boolean isValidUserID(String userid){
-			//TODO add more restriction to password
-			if(userid==null)
-				return false;
-			if(userid.length()<5 || userid.length()>=20 )
-				return false;
-			return true;
-		}
 		
 }

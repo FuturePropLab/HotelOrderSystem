@@ -10,10 +10,12 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import businesslogic.customer.CustomerSignupController;
 import businesslogic.login.LoginController;
 import dataservice.HotelDataService;
 import po.HotelPO;
 import rmi.RemoteHelper;
+import vo.CustomerInputVO;
 
 public class ClientRunner {
 	private RemoteHelper remoteHelper;
@@ -55,8 +57,10 @@ public class ClientRunner {
 	
 	public void test() throws RemoteException{	
 		
-		LoginController loginController = LoginController .getInstance();
-		loginController.logOut("CS001");
+//		LoginController loginController = LoginController .getInstance();
+//		loginController.logOut("CS001");
+		CustomerSignupController controller= CustomerSignupController.getInstance();
+		controller.addCustomer(new CustomerInputVO("aaaaaa", "aaaaaaa", "", "", ""));
 		
 //		HotelDataService hotelDataService  =RemoteHelper.getInstance().getHotelDataService();
 //		System.out.println(hotelDataService.gethotelAssessVO("HT001").size());
@@ -66,11 +70,11 @@ public class ClientRunner {
 //		System.out.println(loginController.getInstance().getLogState().accountID);
 		
 		
-		HotelDataService hotelDataService = RemoteHelper.getInstance().getHotelDataService();
-		HotelPO hotelPO = hotelDataService.getHotel("HT001");
-		System.out.println(hotelPO.getHotelName());
-		System.out.println(hotelPO.getHotelRoom().getTypeRoomInfo().size());
-		
+//		HotelDataService hotelDataService = RemoteHelper.getInstance().getHotelDataService();
+//		HotelPO hotelPO = hotelDataService.getHotel("HT001");
+//		System.out.println(hotelPO.getHotelName());
+//		System.out.println(hotelPO.getHotelRoom().getTypeRoomInfo().size());
+//		
 		
 //		HotelDealController hotelDealController = HotelDealController.getInstance();
 //		

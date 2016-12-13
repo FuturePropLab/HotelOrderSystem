@@ -85,7 +85,7 @@ public class Account {
 		AccountPO accountPO;
 		try {
 //			accountPO = accountDataService.getAccountByUserName(username);
-			accountDataService = new AccountData_stub();
+			//accountDataService = new AccountData_stub();
 			accountPO = accountDataService.getAccountByUserName(username);
 			if(accountPO==null)
 				return usrname_notexits;
@@ -146,7 +146,7 @@ public class Account {
 	 *TODO  补充返回注释说明
 	 */
 	public ResultMessage_Account resetPassword(String userid, String newPassword){
-		if(!Certificate.isValidPassword(newPassword) || !Certificate.isValidUserID(userid)){
+		if(!Certificate.isValidPassword(newPassword)){
 			return ResultMessage_Account.InvalidInput;
 		}
 		try {
@@ -163,9 +163,6 @@ public class Account {
 	 * @return 该账户的用户名
 	 */
 	public String getUsername(String userId){
-		if(!Certificate.isValidUserID(userId)){
-			return invalid_input;
-		}
 		AccountPO accountPO;
 		try {
 			accountDataService = new AccountData_stub();
@@ -250,9 +247,6 @@ public class Account {
 	 * @return 删除操作是否成功
 	 */
 	public ResultMessage_Account deleteAccount(String userId) {
-		if(!Certificate.isValidUserID(userId)){
-			return ResultMessage_Account.InvalidInput;
-		}
 		try {
 //			accountDataService = new AccountData_stub();
 			return accountDataService.deleteAccount(userId);
