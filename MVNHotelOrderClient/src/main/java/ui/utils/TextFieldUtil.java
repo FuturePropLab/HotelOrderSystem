@@ -33,7 +33,7 @@ public class TextFieldUtil {
 		RequiredFieldValidator validator = new RequiredFieldValidator();
 		validator.setErrorStyleClass("");
 		validator.setMessage("这项内容不能为空!");
-		validator.setIcon(new Icon(AwesomeIcon.WARNING,"1em",";","error"));		
+		validator.setIcon(new Icon(AwesomeIcon.WARNING,"1em",";","error"));
 		textField.getValidators().add(validator);
 		textField.focusedProperty().addListener((o,oldVal,newVal)->{
 			if(!newVal) textField.validate();

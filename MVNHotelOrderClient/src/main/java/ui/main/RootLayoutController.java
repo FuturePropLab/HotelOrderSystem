@@ -1,11 +1,17 @@
 package ui.main;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
+import com.jfoenix.controls.JFXDialog;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import tools.RoomType;
 import ui.customer.BookHotelController;
@@ -25,12 +31,17 @@ public class RootLayoutController {
 	private DetailsController detailsController;
 	private GuideUIController guideUIController;
 	private Stage primaryStage;
+	private Stack<View> formerViews;//存储界面跳转历史记录的栈
+	@FXML
+	private StackPane rootLayout;
 	@FXML
 	private AnchorPane fullLayout;
 	@FXML
 	private AnchorPane details;
 	@FXML
 	private AnchorPane guid;
+	@FXML
+	private JFXDialog dialog;
 
 	public AnchorPane getDetails() {
 		return details;
@@ -66,6 +77,7 @@ public class RootLayoutController {
 	 */
 	@FXML
 	private void initialize() {
+		formerViews=new Stack<View>();
 		try {
 			 changeFullLayout("../login/Login.fxml");
 //			 changeDetails("../order/OrderList.fxml");
@@ -95,20 +107,7 @@ public class RootLayoutController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		// // Initialize the person table with the two columns.
-		// firstNameColumn.setCellValueFactory(
-		// cellData -> cellData.getValue().firstNameProperty());
-		// lastNameColumn.setCellValueFactory(
-		// cellData -> cellData.getValue().lastNameProperty());
-		//
-		// // Clear person details.
-		// showPersonDetails(null);
-		//
-		// // Listen for selection changes and show the person details when
-		// changed.
-		// personTable.getSelectionModel().selectedItemProperty().addListener(
-		// (observable, oldValue, newValue) -> showPersonDetails(newValue));
+		dialog.show(rootLayout);
 	}
 
 	/**
@@ -143,6 +142,7 @@ public class RootLayoutController {
 		details.getChildren().addAll(child);
 		detailsController = loader.getController();
 		detailsController.setRootLayoutController(this);
+		formerViews.add(new View(child, detailsController));
 	}
 
 	/**
@@ -195,7 +195,29 @@ public class RootLayoutController {
 	 * @return 如果没有上一个界面返回false，否则true
 	 */
 	public boolean toLastView() {
-		//TODO:
+		if(formerViews.isEmpty()){
+			return false;
+		}
+		View lastView=formerViews.pop();
+		details.getChildren().clear();
+		details.getChildren().addAll(lastView.parent);
+		detailsController = lastView.detailsController;
 		return true;
+	}
+	
+	/**
+	 * 界面和控制器的集合类
+	 * @author zjy
+	 *
+	 */
+	private class View {
+		private Parent parent;
+		private DetailsController detailsController;
+		
+		private View(Parent parent, DetailsController detailsController) {
+			super();
+			this.parent = parent;
+			this.detailsController = detailsController;
+		}
 	}
 }

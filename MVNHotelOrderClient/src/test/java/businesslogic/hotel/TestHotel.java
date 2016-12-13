@@ -157,17 +157,12 @@ public class TestHotel {
 			
 			
 		}
-		@Test
-		public void testGetHotelDetails(){
-			hotel =new Hotel();
-			
-			HotelAddress add = new HotelAddress("南京", "秦淮区","新街口","aa");
-			HotelInputVO hotelInputVO = new HotelInputVO(null,"001","jinling",Star.five,add,null);
-			HotelPO hotelPO  = new HotelPO(hotelInputVO);
-//			HotelDetailsVO details = new HotelDetailsVO(hotelPO);
-			assertEquals("南京", hotel.getHotelDetailsVO("001").hotelAddress.getCity());
-		}
 		
+		@Test
+		public void testGetHotelDiscription(){
+			hotel =new Hotel();
+			assertEquals(hotel.getHotelDiscribtionsVO("001").discribes.get(0), "环境好");
+		}
 		/*List<TypeRoomInfo> typeList = new ArrayList<TypeRoomInfo>();
 		TypeRoomInfo typeRoomInfo1= new TypeRoomInfo("001","�ٻ���Ƶ�",RoomType.Single,5,180.0);
 		typeList.add(typeRoomInfo1);

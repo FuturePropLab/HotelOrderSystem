@@ -1,6 +1,7 @@
 package stub;
 
 import java.rmi.RemoteException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -53,10 +54,11 @@ public class RoomData_Stub implements RoomDataService {
 	}
 
 	
-	public ResultMessage_delete deleteRoom1(String hotel_id, String room_id) {
+	/*public ResultMessage_delete deleteRoom1(String hotel_id, String room_id) {
+		
 		if(room_id!=null && hotel_id != null)  return ResultMessage_delete.Success;
 				return ResultMessage_delete.Failure;
-	}
+	}*/
 
 	
 	
@@ -119,7 +121,9 @@ public class RoomData_Stub implements RoomDataService {
 
 	public ResultMessage_Room deleteRoom(String hotelID, String RoomNO) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		if(hotelID!=null && RoomNO != null)  return ResultMessage_Room.success;
+		return ResultMessage_Room.fail;
+		
 	}
 
 
@@ -137,8 +141,24 @@ public class RoomData_Stub implements RoomDataService {
 
 	public List<String> getAvailbleRoomNoByType(String hotelID, RoomType roomType, Date begin, Date end)
 			throws RemoteException {
+		
+		
+		
 		// TODO Auto-generated method stub
-		return null;
+		List<String> list =new ArrayList<String>();
+		if(begin==null&&end==null){
+		if(roomType==RoomType.Double){
+			list.add("001");
+			
+		}
+		else{
+			list.add("002");
+		}
+	}else{
+		list.add("003");
+		
+	}
+		return list;
 	}
 
 
@@ -164,7 +184,9 @@ public class RoomData_Stub implements RoomDataService {
 
 	public List<String> getRoomInfoString(String hotelID, RoomType roomType) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		List<String> s =new ArrayList<String>();
+		s.add("good");
+		return s;
 	}
 
 

@@ -6,10 +6,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.time.format.FormatStyle;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import com.jfoenix.controls.JFXDatePicker;
 
@@ -27,17 +25,14 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.util.converter.LocalTimeStringConverter;
 import tools.ResultMessage;
 import tools.RoomType;
 import tools.TypeRoomInfo;
 import ui.hotel.HotelDetailController;
 import ui.main.DetailsController;
-import ui.order.OrderListController;
 import ui.order.OrderPreviewController;
 import ui.utils.DateFormat;
 import ui.utils.Dialogs;
-import ui.utils.TextFieldUtil;
 import vo.CustomerVO;
 import vo.HotelbriefVO;
 import vo.OrderInputCalVO;
@@ -221,31 +216,28 @@ public class BookHotelController extends DetailsController{
 		if(startDate == null || endDate==null) return ;
 		
 		//简单计算天数
-		int days = endDate.getDayOfYear() - startDate.getDayOfYear();
-		System.out.println(days);
-		System.out.println(days);
-		if(days < 0 )  days+= startDate.isLeapYear()? 1:0;		
-		if(days == 0)  days = 1;
+
+		int days = (int) (endDate.toEpochDay() - startDate.toEpochDay());//@lwy 修复跨年订单计算出错
 		
 		StrategyController strategyController  =StrategyController.getInstance();
 		List<TypeRoomInfo> typeRoomInfos  = hotelbriefVO.hotelRoom.getTypeRoomInfo();
-		double singlePrince = 0;
+		double singlePrice = 0;
 		for (int i = 0; i < typeRoomInfos.size(); i++) {
 			if(typeRoomInfos.get(i).getRoomtype()== getRoomType()){
-				singlePrince = typeRoomInfos.get(i).getPrice();
+				singlePrice = typeRoomInfos.get(i).getPrice();
 				break;
 			}
 		}
 		//number of room
 		int numberofRoom = Integer.valueOf(this.roomNumber.getText());
-		double OriginValue =  days * singlePrince *numberofRoom;
+		double OriginValue =  days * singlePrice *numberofRoom;
 		
 		//set origin
 		this.originalPrice.setText(String.valueOf(OriginValue));
 		
 		//get discout info
 		OrderInputCalVO orderInputCalVO  = new OrderInputCalVO
-				(OriginValue, this.customerID, hotelbriefVO.hotelID, startDate, endDate, 
+				(singlePrice, this.customerID, hotelbriefVO.hotelID, startDate, endDate, 
 						LocalDate.now(), getRoomType(), Integer.valueOf(this.roomNumber.getText()));
 		
 		try {
@@ -271,14 +263,14 @@ public class BookHotelController extends DetailsController{
 		//TODO
 		if(startDate==null)  return ;
 		LocalDate latestTime = lastDate_time.getValue();
-		LocalDateTime lasttime = startDate.atTime(12, 0, 0);
-		Date datestart = Date.from(lasttime.atZone(ZoneId.systemDefault()).toInstant()); 
+		//LocalDateTime lasttime = startDate.atTime(12, 0, 0);
+		//Date datestart = Date.from(lasttime.atZone(ZoneId.systemDefault()).toInstant()); 
 		
 		LocalDate endDate = this.planedLeaveDate.getValue() ;
 		if(endDate==null)  return ;
-		LocalDate endTime = this.planedLeaveDate_time.getValue();
-		LocalDateTime timeend = startDate.atTime(12, 0, 0);
-		Date dateend = Date.from(timeend.atZone(ZoneId.systemDefault()).toInstant());
+		//LocalDate endTime = this.planedLeaveDate_time.getValue();
+		//LocalDateTime timeend = startDate.atTime(12, 0, 0);
+		//Date dateend = Date.from(timeend.atZone(ZoneId.systemDefault()).toInstant());
 		handlePrice();
 
 	}

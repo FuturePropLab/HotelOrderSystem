@@ -244,7 +244,11 @@ public class HotelData_Stub implements HotelDataService{
 	@Override
 	public List<String> getHotelInfoString(String hotelID) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		List<String> dis = new ArrayList<String>();
+		dis.add("环境好");
+		dis.add("设施好");
+		return dis;
+		
 	}
 
 

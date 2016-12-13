@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane prefHeight="750.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.guid.GuideUIController">
+<AnchorPane prefHeight="750.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.guid.GuideUIController">
    <children>
       <Circle fill="WHITE" layoutX="90.0" layoutY="76.0" radius="62.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="14.0" />
       <ImageView fx:id="headPortrait" fitHeight="86.0" fitWidth="78.0" layoutX="51.0" layoutY="33.0">
@@ -31,7 +31,7 @@
             <Label fx:id="message" layoutX="14.0" layoutY="41.0" text="你的预订成功啦~\(≧▽≦)/~" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="671.0" prefHeight="72.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane layoutY="671.0" prefHeight="72.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="72.0" stroke="BLACK" strokeType="INSIDE" width="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <ImageView fx:id="messageImage" fitHeight="58.0" fitWidth="59.0" layoutX="291.0" layoutY="7.0">
