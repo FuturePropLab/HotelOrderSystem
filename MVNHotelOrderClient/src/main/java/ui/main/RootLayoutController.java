@@ -6,10 +6,14 @@ import java.util.List;
 import java.util.Stack;
 
 import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
+import com.jfoenix.controls.JFXDialog.DialogTransition;
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -42,6 +46,8 @@ public class RootLayoutController {
 	private AnchorPane guid;
 	@FXML
 	private JFXDialog dialog;
+	@FXML
+	private Button acceptButton;
 
 	public AnchorPane getDetails() {
 		return details;
@@ -107,7 +113,10 @@ public class RootLayoutController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		acceptButton.setOnAction(e -> dialog.close());
+		dialog.setTransitionType(DialogTransition.TOP);
 		dialog.show(rootLayout);
+		System.out.println(dialog.getChildren().get(0));
 	}
 
 	/**
