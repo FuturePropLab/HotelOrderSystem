@@ -39,8 +39,8 @@
                               <Font size="24.0" />
                            </font>
                         </JFXPasswordField>
-                        <JFXComboBox fx:id="accountType" layoutX="41.0" layoutY="245.0" prefHeight="45.0" prefWidth="171.0" />
-                        <JFXButton fx:id="loginButton" buttonType="RAISED" layoutX="353.0" layoutY="244.0" onAction="#handleLogin" prefWidth="130.0" text="确定">
+                        <JFXComboBox fx:id="accountType" layoutX="41.0" layoutY="245.0" prefHeight="45.0" prefWidth="171.0" stylesheets="@../../../resources/css/jfoenix-components.css" />
+                        <JFXButton fx:id="loginButton" buttonType="RAISED" layoutX="353.0" layoutY="244.0" onAction="#handleLogin" prefWidth="130.0" styleClass="button-raised-red" stylesheets="@../../../resources/css/jfoenix-components.css" text="确定">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -50,7 +50,7 @@
           </Tab>
           <Tab text="注册">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: WHITE;">
                      <children>
                         <ImageView fitHeight="57.0" fitWidth="62.0" layoutX="431.0" layoutY="33.0">
                            <image>
