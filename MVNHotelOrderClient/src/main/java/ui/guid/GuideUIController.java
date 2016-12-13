@@ -2,7 +2,9 @@ package ui.guid;
 
 import java.io.File;
 
+import businesslogic.customer.CustomerDealController;
 import businesslogic.login.LoginController;
+import businesslogicservice.CustomerDealService;
 import businesslogicservice.LoginService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -14,6 +16,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import tools.AccountType;
 import ui.main.RootLayoutController;
+import vo.CustomerVO;
 import vo.LogVO;
 
 /**
@@ -36,6 +39,8 @@ public class GuideUIController {
 	@FXML
 	private Label credit;
 	@FXML
+	private Label creditLabel;
+	@FXML
 	private Label memberType;
 	@FXML
 	private ListView<String> guids;
@@ -52,12 +57,19 @@ public class GuideUIController {
 		LoginService loginService=LoginController.getInstance();
 		LogVO logVO = loginService.getLogState();
 		//TODO:设置组件的值
-		
+		userName.setText(logVO.username);
 		
 		if(AccountType.Customer.equals(logVO.accountType)){
-			guids.getItems().addAll(views[0],views[1],views[2],views[3]);
+//			guids.getItems().addAll(views[0],views[1],views[2],views[3]);
+//			CustomerDealService customerDealService=CustomerDealController.getInstance();
+//			CustomerVO customerVO=customerDealService.getCustomerInfo(logVO.accountID);
+//			
+//			credit.setText(customerVO.credit+"");
+			credit.setVisible(true);
+			creditLabel.setVisible(true);
+			memberType.setVisible(true);
 		}else if (AccountType.Hotel.equals(logVO.accountType)) {
-			guids.getItems().addAll(views[1],views[3],views[4],views[5],views[6],views[7]);
+			guids.getItems().addAll(views[1],views[4],views[5],views[6],views[7]);
 		}else if (AccountType.Web.equals(logVO.accountType)) {
 			guids.getItems().addAll(views[1],views[8],views[9]);
 		}else if (AccountType.Administor.equals(logVO.accountType)) {
