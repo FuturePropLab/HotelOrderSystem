@@ -25,17 +25,22 @@ public class CustomerDealController implements CustomerDealService {
 	
 	
 	
-	public CustomerVO getCustomerInfo(String customer_id) throws Exception {
+	public CustomerVO getCustomerInfo(String customer_id) throws RemoteException{
 		// TODO Auto-generated method stub
 		//Customer cus=new Customer();
 		
 		return customer.getCustomerInfo(customer_id);
 	}
 
-	public ResultMessage_Modify changeCustomerInfo(CustomerVO customerInfo) throws Exception {
+	public ResultMessage_Modify changeCustomerInfo(CustomerVO customerInfo){
 		// TODO Auto-generated method stub
 		//Customer cus=new Customer();
-		return customer.changeCustomerInfo(customerInfo);
+		try {
+			return customer.changeCustomerInfo(customerInfo);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return ResultMessage_Modify.Failure;
+		}
 	}
 	public List<CustomerVO> searchCustomer(CustomerSearchVO customerSearchVO){
 		//Customer cus=new Customer();

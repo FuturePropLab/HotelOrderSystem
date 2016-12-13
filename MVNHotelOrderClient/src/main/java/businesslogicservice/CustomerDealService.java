@@ -12,8 +12,7 @@ import vo.CustomerVO;
 public interface CustomerDealService {
 	
 	
-	public CustomerVO getCustomerInfo(String customer_id) throws RemoteException, Exception;
 	
-	public ResultMessage_Modify changeCustomerInfo (CustomerVO customerInfo) throws RemoteException, Exception;
+	public ResultMessage_Modify changeCustomerInfo (CustomerVO customerInfo);
 	public List<CustomerVO> searchCustomer(CustomerSearchVO customerSearchVO);
 }

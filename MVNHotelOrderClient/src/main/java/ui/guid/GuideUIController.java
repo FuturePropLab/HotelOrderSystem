@@ -1,6 +1,7 @@
 package ui.guid;
 
 import java.io.File;
+import java.rmi.RemoteException;
 
 import businesslogic.customer.CustomerDealController;
 import businesslogic.login.LoginController;
@@ -16,6 +17,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import tools.AccountType;
 import ui.main.RootLayoutController;
+import ui.utils.Dialogs;
 import vo.CustomerVO;
 import vo.LogVO;
 
@@ -33,7 +35,7 @@ public class GuideUIController {
 			"../discount/WebDiscount.fxml","../webdesign/CreditCharge.fxml","../administor/UserAdmin.fxml"};
 
 	@FXML
-	private ImageView headPortrait;
+	private ImageView headPortrait;		//TODO:设置头像
 	@FXML
 	private Label userName;
 	@FXML
@@ -56,15 +58,21 @@ public class GuideUIController {
 	private void initialize() {
 		LoginService loginService=LoginController.getInstance();
 		LogVO logVO = loginService.getLogState();
-		//TODO:设置组件的值
+
 		userName.setText(logVO.username);
 		
 		if(AccountType.Customer.equals(logVO.accountType)){
-//			guids.getItems().addAll(views[0],views[1],views[2],views[3]);
-//			CustomerDealService customerDealService=CustomerDealController.getInstance();
-//			CustomerVO customerVO=customerDealService.getCustomerInfo(logVO.accountID);
-//			
-//			credit.setText(customerVO.credit+"");
+			guids.getItems().addAll(views[0],views[1],views[2],views[3]);
+			CustomerDealService customerDealService=CustomerDealController.getInstance();
+			try {
+				CustomerVO customerVO = customerDealService.getCustomerInfo(logVO.accountID);
+				credit.setText(customerVO.credit+"");
+				String memberTypes[]={"普通会员","企业会员","你不是会员"};
+				memberType.setText(memberTypes[customerVO.membervo.memberType.getType().ordinal()]);
+			} catch (RemoteException e) {
+				Dialogs.showMessage("阿欧", "网络连接好像断开了……");
+			}
+			
 			credit.setVisible(true);
 			creditLabel.setVisible(true);
 			memberType.setVisible(true);
