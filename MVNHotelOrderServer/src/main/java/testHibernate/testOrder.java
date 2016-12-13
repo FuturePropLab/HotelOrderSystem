@@ -15,10 +15,10 @@ public class testOrder {
 			//OrderDataHelper orderDataHelper = DataHelperUtils.getOrderDataHelper();
 			OrderDataService orderDataService = new OrderDataServiceImpl();
 //			
-			SearchOrderInfo searchOrderInfo = 
-			new SearchOrderInfo(null, null, null, null, null, null, null);
+//			SearchOrderInfo searchOrderInfo = 
+//			new SearchOrderInfo(null, null, null, null, null, null, null);
 //			
-			List<OrderPO>  list = orderDataService.searchOrder(searchOrderInfo);
+			List<OrderPO>  list = orderDataService.searchFuzzyOrder(null, null, "朱ppsad",null);
 			System.out.println(list.size());
 			Iterator<OrderPO> it = list.iterator();
 //			
@@ -35,7 +35,7 @@ public class testOrder {
 				System.out.println(orderPO.getAssessment());
 				System.out.println();
 			}
-//			
+			System.out.println(list.size());
 
 //			OrderAssessPO orderAssessPO = new OrderAssessPO("OD04", "HT001", 3.4, "not so good");
 //			OrderSearchStorePO  orderSearchStorePO = new OrderSearchStorePO();

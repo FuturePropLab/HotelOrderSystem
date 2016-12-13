@@ -24,12 +24,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import tools.AccountType;
 import tools.HotelAddress;
 import tools.OrderState;
 import tools.RoomType;
 import ui.customer.BookHotelController;
 import ui.hotel.HotelDetailController;
 import ui.main.DetailsController;
+import vo.FuzzySearchOrderVO;
 import vo.HotelbriefVO;
 import vo.LogVO;
 import vo.OrderVO;
@@ -72,23 +74,38 @@ public class OrderListController extends DetailsController {
 			System.err.println("can't handleSearch: the login state is logout!");
 			return;
 		}
-		String ID = accountCustomerService.getAccountID(logVO.username);
-		String string = "".equals(keyWords.getText()) ? null : keyWords.getText();
-
+		
+		String tempHotelID = null;
+		String tempcustomerID = null;
+		if(logVO.accountType==AccountType.Customer){
+			tempcustomerID = logVO.accountID;
+		}else if(logVO.accountType==AccountType.Hotel){
+			tempHotelID = logVO.accountID;;
+		}
+		
+//		String ID = accountCustomerService.getAccountID(logVO.username);
+		String keywordinput = "".equals(keyWords.getText()) ? null : keyWords.getText();
+		
+		
 		List<OrderVO> orderVOs = new ArrayList<OrderVO>();
-		// 分别添加符合条件的
-		if (unexecuted.isSelected()) {
-			orderVOs.addAll(orderService.CheckOrderList(new SearchOrderInfoVO(string, null, OrderState.Unexecuted)));
-		}
-		if (executed.isSelected()) {
-			orderVOs.addAll(orderService.CheckOrderList(new SearchOrderInfoVO(string, null, OrderState.Executed)));
-		}
-		if (exception.isSelected()) {
-			orderVOs.addAll(orderService.CheckOrderList(new SearchOrderInfoVO(string, null, OrderState.Exception)));
-		}
-		if (revoked.isSelected()) {
-			orderVOs.addAll(orderService.CheckOrderList(new SearchOrderInfoVO(string, null, OrderState.Revoked)));
-		}
+		
+		orderVOs = orderService.CheckOrderList
+				(new FuzzySearchOrderVO(tempHotelID, tempcustomerID, null, keywordinput,
+						unexecuted.isSelected(), executed.isSelected(),
+						revoked.isSelected(), exception.isSelected()));
+//		// 分别添加符合条件的
+//		if (unexecuted.isSelected()) {
+//			orderVOs.addAll(orderService.CheckOrderList(new SearchOrderInfoVO(string, null, OrderState.Unexecuted)));
+//		}
+//		if (executed.isSelected()) {
+//			orderVOs.addAll(orderService.CheckOrderList(new SearchOrderInfoVO(string, null, OrderState.Executed)));
+//		}
+//		if (exception.isSelected()) {
+//			orderVOs.addAll(orderService.CheckOrderList(new SearchOrderInfoVO(string, null, OrderState.Exception)));
+//		}
+//		if (revoked.isSelected()) {
+//			orderVOs.addAll(orderService.CheckOrderList(new SearchOrderInfoVO(string, null, OrderState.Revoked)));
+//		}
 		orderList.getChildren().clear();
 		if (orderVOs != null) {
 			for (OrderVO orderVO : orderVOs) {

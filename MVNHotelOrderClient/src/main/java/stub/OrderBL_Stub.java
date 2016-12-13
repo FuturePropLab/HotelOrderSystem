@@ -8,6 +8,7 @@ import tools.OrderState;
 import tools.RecoverValue;
 import tools.ResultMessage;
 import vo.ExecutionInfoVO;
+import vo.FuzzySearchOrderVO;
 import vo.OrderInputVO;
 import vo.OrderVO;
 import vo.SearchOrderInfoVO;
@@ -77,6 +78,13 @@ public class OrderBL_Stub implements OrderService{
 			return ResultMessage.Exist;
 		}
 		return ResultMessage.NotExist;
+	}
+
+
+	@Override
+	public List<OrderVO> CheckOrderList(FuzzySearchOrderVO fuzzySearchOrderVO) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

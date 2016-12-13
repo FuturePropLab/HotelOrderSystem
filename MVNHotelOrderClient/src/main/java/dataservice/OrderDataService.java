@@ -2,6 +2,7 @@ package dataservice;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.Date;
 import java.util.List;
 
 import po.OrderPO;
@@ -45,5 +46,16 @@ public interface OrderDataService extends Remote{
 	 * @throws RemoteException
 	 */
 	public List<String> getAllComment(String hotelID) throws RemoteException;
+	
+	/**
+	 * 根据  输入或者ID  模糊查找
+	 * @param hotelID
+	 * @param cusrtomerID
+	 * @param input
+	 * @param begin
+	 * @return
+	 * @throws RemoteException
+	 */
+	public List<OrderPO> searchFuzzyOrder(String hotelID , String cusrtomerID , String input,Date begin)throws RemoteException;
 
 }

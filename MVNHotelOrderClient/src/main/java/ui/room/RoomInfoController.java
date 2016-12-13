@@ -116,12 +116,13 @@ public class RoomInfoController extends DetailsController{
 			String roomStrInfo = this.roomDescribtion.getText();
 			List<String > infoLsit = new ArrayList<>();
 			infoLsit.add(roomStrInfo);
-			RoomManageController roomManageController = RoomManageController.getInstance();
-			RoomDescriptionVO roomDescriptionVO = new RoomDescriptionVO
-					(this.roomType,infoLsit , imageFile.toURI());
 			System.out.println(infoLsit.get(0));
 			System.out.println(roomType);
-			System.out.println(imageFile.toURI().toString());
+			RoomManageController roomManageController = RoomManageController.getInstance();
+			RoomDescriptionVO roomDescriptionVO = new RoomDescriptionVO
+					(this.roomType,  infoLsit , imageFile==null?null:imageFile.toURI());
+			
+			//System.out.println(imageFile.toURI().toString());
 			ResultMessage_Room rs1 = 
 			roomManageController.saveRoomInfo(hotelID, roomDescriptionVO);
 			ResultMessage_Room rs2 = 
@@ -244,7 +245,10 @@ public class RoomInfoController extends DetailsController{
 		if(roomDescriptionVO.typeimage !=null){
 			this.imageFile = new File(roomDescriptionVO.typeimage);
 			this.roomImage.setImage(new Image(roomDescriptionVO.typeimage.toString()));
-		}	
+		}else{
+			this.imageFile = new File("./target/resources/images/room.png");
+			this.roomImage.setImage(new Image(imageFile.toURI().toString()));
+		}
 		roomPrice.setText(typeRoomInfo.getPrice()+"");
 		//TODO:加上这句
 		if(roomDescriptionVO.description!=null && !roomDescriptionVO.description.isEmpty())

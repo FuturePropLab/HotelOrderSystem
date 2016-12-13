@@ -4,9 +4,14 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.format.FormatStyle;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+
+import com.jfoenix.controls.JFXDatePicker;
 
 import Exception.CustomerCreditNotEnoughException;
 import businesslogic.customer.CustomerDealController;
@@ -22,6 +27,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.util.converter.LocalTimeStringConverter;
 import tools.ResultMessage;
 import tools.RoomType;
 import tools.TypeRoomInfo;
@@ -29,7 +35,9 @@ import ui.hotel.HotelDetailController;
 import ui.main.DetailsController;
 import ui.order.OrderListController;
 import ui.order.OrderPreviewController;
+import ui.utils.DateFormat;
 import ui.utils.Dialogs;
+import ui.utils.TextFieldUtil;
 import vo.CustomerVO;
 import vo.HotelbriefVO;
 import vo.OrderInputCalVO;
@@ -59,11 +67,11 @@ public class BookHotelController extends DetailsController{
 	@FXML
 	private DatePicker lastDate;
 	@FXML
-	private DatePicker lastDate_time;
+	private JFXDatePicker lastDate_time;
 	@FXML
 	private DatePicker planedLeaveDate;
 	@FXML
-	private DatePicker planedLeaveDate_time;
+	private JFXDatePicker planedLeaveDate_time;
 	@FXML
 	private TextField people;
 	@FXML
@@ -94,21 +102,23 @@ public class BookHotelController extends DetailsController{
 	private void handlePreview(){
 		
 		if(this.lastDate.getValue()==null || this.realPrice.getText()==null || 
-					this.originalPrice.getText()==null)  return;
+					this.originalPrice.getText()==null|| lastDate_time.getTime()==null
+					|| planedLeaveDate_time.getTime()==null )  return;
+		
 		if(getRoomType()==null)  return ;
 		
-		LocalDate latestTime2 = lastDate_time.getValue();
-		System.out.println(latestTime2);
-		
-		//TODO  精确到时间有问题
+		//start time deal
 		LocalDate startDate = this.lastDate.getValue() ;
-		LocalDate latestTime = lastDate_time.getValue();
-		LocalDateTime lasttime = startDate.atTime(12, 0, 0);
+		LocalTime startTime = this.lastDate_time.getTime();		
+		LocalDateTime lasttime = startDate.atTime
+				(startTime.getHour(), startTime.getMinute(), startTime.getSecond());
 		Date datestart = Date.from(lasttime.atZone(ZoneId.systemDefault()).toInstant()); 
 		
+		//leve time deal
 		LocalDate endDate = this.planedLeaveDate.getValue() ;
-		LocalDate endTime = this.planedLeaveDate_time.getValue();
-		LocalDateTime timeend = endDate.atTime(12, 0, 0);
+		LocalTime endTime = this.planedLeaveDate_time.getTime();
+		LocalDateTime timeend = endDate.atTime
+				(endTime.getHour(), endTime.getMinute(), endTime.getSecond());
 		Date dateend = Date.from(timeend.atZone(ZoneId.systemDefault()).toInstant());
 		
 		int planedPeopleNumber = Integer.valueOf(this.people.getText());
@@ -151,14 +161,18 @@ public class BookHotelController extends DetailsController{
 		//System.out.println(latestTimex.toString());
 		
 		//TODO  精确到时间有问题
+		//start time deal
 		LocalDate startDate = this.lastDate.getValue() ;
-		LocalDate latestTime = lastDate_time.getValue();
-		LocalDateTime lasttime = startDate.atTime(12, 0, 0);
+		LocalTime startTime = this.lastDate_time.getTime();		
+		LocalDateTime lasttime = startDate.atTime
+				(startTime.getHour(), startTime.getMinute(), startTime.getSecond());
 		Date datestart = Date.from(lasttime.atZone(ZoneId.systemDefault()).toInstant()); 
-		
+				
+		//leve time deal
 		LocalDate endDate = this.planedLeaveDate.getValue() ;
-		LocalDate endTime = this.planedLeaveDate_time.getValue();
-		LocalDateTime timeend = endDate.atTime(12, 0, 0);
+		LocalTime endTime = this.planedLeaveDate_time.getTime();
+		LocalDateTime timeend = endDate.atTime
+				(endTime.getHour(), endTime.getMinute(), endTime.getSecond());
 		Date dateend = Date.from(timeend.atZone(ZoneId.systemDefault()).toInstant());
 		
 		int planedPeopleNumber = Integer.valueOf(this.people.getText());
@@ -176,11 +190,13 @@ public class BookHotelController extends DetailsController{
 		ResultMessage resultMessage = null;
 		try {
 			 resultMessage=orderController.createOrders(orderInputVO);
+			 System.out.println(resultMessage);
 		} catch (CustomerCreditNotEnoughException e) {
 			Dialogs.showMessage("你的信用值是："+e.credit,"你的信用值不足，不能下单，请联系网站促销人员进行充值");
 		}
 		if(resultMessage.equals(ResultMessage.Exist)){
 			try {
+				Dialogs.showMessage("预定成功");
 				rootLayoutController.changeDetails("../order/OrderList.fxml");
 				//OrderListController orderListController = (OrderListController) rootLayoutController.getDetailsController();
 				//orderListController.
@@ -208,8 +224,7 @@ public class BookHotelController extends DetailsController{
 		int days = endDate.getDayOfYear() - startDate.getDayOfYear();
 		System.out.println(days);
 		System.out.println(days);
-		if(days < 0 )  days+= startDate.isLeapYear()? 1:0;
-		
+		if(days < 0 )  days+= startDate.isLeapYear()? 1:0;		
 		if(days == 0)  days = 1;
 		
 		StrategyController strategyController  =StrategyController.getInstance();
@@ -228,6 +243,7 @@ public class BookHotelController extends DetailsController{
 		//set origin
 		this.originalPrice.setText(String.valueOf(OriginValue));
 		
+		//get discout info
 		OrderInputCalVO orderInputCalVO  = new OrderInputCalVO
 				(OriginValue, this.customerID, hotelbriefVO.hotelID, startDate, endDate, 
 						LocalDate.now(), getRoomType(), Integer.valueOf(this.roomNumber.getText()));
@@ -250,10 +266,8 @@ public class BookHotelController extends DetailsController{
 	@FXML
 	private void handleDate(){
 		if(getRoomType() == null)
-			return ;
-		
-		LocalDate startDate = this.lastDate.getValue() ;
-		
+			return ;		
+		LocalDate startDate = this.lastDate.getValue() ;		
 		//TODO
 		if(startDate==null)  return ;
 		LocalDate latestTime = lastDate_time.getValue();
@@ -265,12 +279,8 @@ public class BookHotelController extends DetailsController{
 		LocalDate endTime = this.planedLeaveDate_time.getValue();
 		LocalDateTime timeend = startDate.atTime(12, 0, 0);
 		Date dateend = Date.from(timeend.atZone(ZoneId.systemDefault()).toInstant());
-		if(dateend.before(datestart)){
-			//提示客户不行！！！！
-			return ;
-		}else{
-			handlePrice();
-		}
+		handlePrice();
+
 	}
 	
 	/**
@@ -306,6 +316,10 @@ public class BookHotelController extends DetailsController{
 		String customerName = customerVO.customerName;
 		System.out.println("customerName:   "+customerName);
 		this.customerName.setText(customerName);
+		DateFormat.initDatePicker(lastDate, planedLeaveDate);
+		
+		//Change it oto JF field
+		//TextFieldUtil.setValidator(this.roomNumber);
 		
 		
 	}
@@ -322,6 +336,7 @@ public class BookHotelController extends DetailsController{
 	public void setLastDate(LocalDate lastDate) {
 		this.lastDate.setValue(lastDate);
 	}	
+	
 	public void setPlanedLeaveDate(Date planedLeaveDate) {
 		LocalDate endLocalDate = LocalDate.of(planedLeaveDate.getYear(),
 				planedLeaveDate.getMonth(), planedLeaveDate.getDate());

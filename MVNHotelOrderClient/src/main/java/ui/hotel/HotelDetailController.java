@@ -25,10 +25,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import tools.AccountType;
 import tools.HotelAddress;
-import tools.HotelRoomInfo;
 import tools.ResultMessage_Hotel;
 import tools.RoomType;
-import tools.Star;
 import ui.customer.BookHotelController;
 import ui.main.DetailsController;
 import ui.room.RoomInfoController;
@@ -37,7 +35,6 @@ import ui.utils.StarHelper;
 import vo.CommentVO;
 import vo.HotelDetailsVO;
 import vo.HotelDiscribtionsVO;
-import vo.HotelFacilityVO;
 import vo.HotelInputVO;
 
 /**

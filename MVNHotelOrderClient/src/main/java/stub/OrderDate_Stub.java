@@ -2,6 +2,7 @@ package stub;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import dataservice.OrderDataService;
@@ -44,6 +45,14 @@ public class OrderDate_Stub implements OrderDataService{
 
 	@Override
 	public List<String> getAllComment(String hotelID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<OrderPO> searchFuzzyOrder(String hotelID, String cusrtomerID, String input, Date begin)
+			throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}

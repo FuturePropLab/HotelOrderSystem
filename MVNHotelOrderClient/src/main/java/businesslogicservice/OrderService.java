@@ -6,6 +6,7 @@ import Exception.CustomerCreditNotEnoughException;
 import tools.RecoverValue;
 import tools.ResultMessage;
 import vo.ExecutionInfoVO;
+import vo.FuzzySearchOrderVO;
 import vo.OrderInputVO;
 import vo.OrderVO;
 import vo.SearchHotelVO;
@@ -72,4 +73,12 @@ public interface OrderService {
 	 * @return 调用成功则返回Exist，失败返回NotExist
 	 */
 	public ResultMessage revokeBadOrderr(OrderVO badOrder,RecoverValue recoverValue);
+	
+	
+	/**
+	 * 适合 新界面的搜索接口 @wsw
+	 * @param fuzzySearchOrderVO
+	 * @return
+	 */
+	public List<OrderVO> CheckOrderList (FuzzySearchOrderVO fuzzySearchOrderVO);
 }

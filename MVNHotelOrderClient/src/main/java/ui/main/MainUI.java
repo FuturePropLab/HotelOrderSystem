@@ -8,15 +8,12 @@ import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import ui.hotel.HotelDetailController;
-import ui.utils.TextFieldDemo;
 /**
  * 整个UI的控制器，包括初始化打开软件的UI
  * @author zjy

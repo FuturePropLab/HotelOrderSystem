@@ -302,5 +302,9 @@ OrderDataService,CreditDataService, MemberDataService{
 		// TODO Auto-generated method stub
 		return roomDataService.changePrice(hotelID, roomType, price);
 	}
+	public List<OrderPO> searchFuzzyOrder(String hotelID, String cusrtomerID, String input, Date begin)
+			throws RemoteException {
+		return orderDataService.searchFuzzyOrder(hotelID, cusrtomerID, input, begin);
+	}
 
 }

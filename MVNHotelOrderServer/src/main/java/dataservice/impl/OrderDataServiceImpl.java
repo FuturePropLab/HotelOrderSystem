@@ -2,6 +2,7 @@ package dataservice.impl;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -139,6 +140,48 @@ public class OrderDataServiceImpl implements OrderDataService {
 
 	public List<String> getAllComment(String hotelID) throws RemoteException {
 		return orderDataHelper.getAllComment(hotelID);
+	}
+
+	public List<OrderPO> searchFuzzyOrder(String hotelID, String customerID, String input, Date begin) throws RemoteException {
+		List<String>  allIDList;
+		// getAll list by State  if null get all
+		List<OrderSearchStorePO>   polist = orderDataHelper.getOrderListBycondition
+				(null, hotelID, customerID);
+		
+		String inputPattern = null ;
+		if(input!=null){
+			inputPattern = ".*";
+			for (int i = 0; i < input.length(); i++) {
+				inputPattern = inputPattern + input.charAt(i)+".*";
+			}
+		}
+		
+		Iterator<OrderSearchStorePO>  it = polist.iterator();
+		List<String>   strList = new ArrayList<String>();
+		while(it.hasNext()){
+			OrderSearchStorePO orderSearchStorePO = it.next();
+			String orderID = orderSearchStorePO.getOrderID();
+			String hoteID = orderSearchStorePO.getHotelID();
+			String cutomerID = orderSearchStorePO.getCustomerID();
+			if(orderDataHelper.isValidCustomerName(inputPattern, cutomerID)  || 
+					orderDataHelper.isValidHotelName(inputPattern, hoteID))
+				strList.add(orderID);
+		}
+		
+		Iterator<String>  listit = strList.iterator();
+		List<String>  newlist = new ArrayList<String>();
+		while(listit.hasNext()){
+			String orderID = listit.next();
+			if(orderDataHelper.isValidTime(orderID,begin))
+				newlist.add(orderID);
+		}
+		
+		List<OrderPO>  listpo = new ArrayList<OrderPO>();
+		Iterator<String>  iter = newlist.iterator();
+		while(iter.hasNext()){
+			listpo.add(orderDataHelper.getCompleteOrderPO(iter.next()));
+		}	
+		return listpo;
 	}
 
 }

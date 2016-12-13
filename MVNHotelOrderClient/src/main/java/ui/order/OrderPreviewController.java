@@ -2,9 +2,6 @@ package ui.order;
 
 import java.io.IOException;
 
-import com.sun.org.apache.regexp.internal.recompile;
-
-
 import Exception.CustomerCreditNotEnoughException;
 import businesslogic.customer.CustomerDealController;
 import businesslogic.hotel.HotelDealController;
@@ -18,15 +15,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import tools.ResultMessage;
-import ui.customer.BookHotelController;
-import ui.hotel.HotelDetailController;
 import ui.main.DetailsController;
 import ui.main.RootLayoutController;
 import ui.utils.DateFormat;
 import ui.utils.Dialogs;
 import vo.HotelbriefVO;
 import vo.OrderInputVO;
-import vo.SearchOrderInfoVO;
 
 /**
  * 订单预览界面的控制器
@@ -90,6 +84,7 @@ public class OrderPreviewController extends DetailsController{
 		}
 		if(resultMessage.equals(ResultMessage.Exist)){
 			try {
+				Dialogs.showMessage("下单成功");
 				rootLayoutController.changeDetails("../order/OrderList.fxml");
 			} catch (IOException e) {
 				e.printStackTrace();

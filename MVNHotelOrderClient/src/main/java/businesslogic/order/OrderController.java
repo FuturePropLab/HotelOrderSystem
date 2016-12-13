@@ -27,6 +27,7 @@ import tools.OrderState;
 import tools.RecoverValue;
 import tools.ResultMessage;
 import vo.ExecutionInfoVO;
+import vo.FuzzySearchOrderVO;
 import vo.OrderInputVO;
 import vo.OrderVO;
 import vo.SearchOrderInfoVO;
@@ -348,6 +349,48 @@ public class OrderController implements OrderService{
 			System.err.println(e.getCause().getMessage());
 		}
 		return ResultMessage.NotExist;
+	}
+
+	@Override
+	/**
+	 *  重载搜索方法  搜索速度更快 不会重复
+	 * @param fuzzySearchOrderVO
+	 * @return
+	 */
+	public List<OrderVO> CheckOrderList(FuzzySearchOrderVO fuzzySearchOrderVO) {
+		try {
+			List<OrderPO>  poList=orderDataService.searchFuzzyOrder
+					(fuzzySearchOrderVO.hotelID, fuzzySearchOrderVO.customerID, 
+							fuzzySearchOrderVO.keyword, fuzzySearchOrderVO.date);
+			List<OrderPO>  poListnew = new ArrayList<OrderPO>();
+			for (int i = 0; i < poList.size(); i++) {
+				OrderPO orderPO = poList.get(i);
+				OrderState orderState = orderPO.getOrderState();
+				if(orderState == OrderState.Unexecuted && fuzzySearchOrderVO.unexe==true){
+					poListnew.add(orderPO);
+				}else if(orderState == OrderState.Executed && fuzzySearchOrderVO.exed==true){
+					poListnew.add(orderPO);
+				}else if(orderState == OrderState.Revoked && fuzzySearchOrderVO.revoke==true){
+					poListnew.add(orderPO);
+				}else if(orderState == OrderState.Exception && fuzzySearchOrderVO.bad==true){
+					poListnew.add(orderPO);
+				}
+			}
+			
+			 List<OrderVO> voList=poListnew.stream().filter(element->{
+					for(OrderPO orderPO:poListnew){
+						if(orderPO.getOrderID().equals(element.getOrderID())){
+							return true;
+						}
+					}
+					return false;
+				}).map(orderPO->getOrderVO(orderPO)).collect(Collectors.toList());
+				return voList;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		return null;
 	}
 
 }
