@@ -12,9 +12,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import ui.hotel.HotelDetailController;
+import ui.utils.TextFieldDemo;
 /**
  * 整个UI的控制器，包括初始化打开软件的UI
  * @author zjy
@@ -22,7 +24,7 @@ import ui.hotel.HotelDetailController;
  */
 public class MainUI {
 	private Stage primaryStage;
-    private AnchorPane rootLayout;
+    private StackPane rootLayout;
     private RootLayoutController rootLayoutController;
     
 	public MainUI(Stage primaryStage) {
@@ -43,7 +45,7 @@ public class MainUI {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainUI.class
                     .getResource("RootLayout.fxml"));
-            rootLayout = (AnchorPane) loader.load();
+            rootLayout = (StackPane) loader.load();
 
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);

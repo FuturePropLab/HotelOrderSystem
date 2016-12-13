@@ -3,28 +3,34 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Line?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.main.RootLayoutController">
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.main.RootLayoutController">
    <children>
-      <AnchorPane fx:id="details" layoutX="612.0" prefHeight="750.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane fx:id="guid" prefHeight="750.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane fx:id="fullLayout" disable="true" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane layoutX="1142.0" prefHeight="59.0" prefWidth="158.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0">
          <children>
-            <ImageView fitHeight="39.0" fitWidth="38.0" layoutX="120.0" onMouseClicked="#handleExit">
-               <image>
-                  <Image url="@../../../resources/images/closeButtonwsw.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="14.0" fitWidth="40.0" layoutX="70.0" layoutY="13.0" onMouseClicked="#handleMinimize">
-               <image>
-                  <Image url="@../../../resources/images/minimize.png" />
-               </image>
-            </ImageView>
-            <Line endX="102.0" endY="0.5" rotate="-128.7" />
-            <Line endX="80.0" layoutX="77.0" layoutY="40.0" startX="5.0" />
+            <AnchorPane fx:id="details" layoutX="612.0" prefHeight="750.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane fx:id="guid" prefHeight="750.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane fx:id="fullLayout" disable="true" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane layoutX="1142.0" prefHeight="59.0" prefWidth="158.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="39.0" fitWidth="38.0" layoutX="120.0" onMouseClicked="#handleExit">
+                     <image>
+                        <Image url="@../../../resources/images/closeButtonwsw.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="14.0" fitWidth="40.0" layoutX="70.0" layoutY="13.0" onMouseClicked="#handleMinimize">
+                     <image>
+                        <Image url="@../../../resources/images/minimize.png" />
+                     </image>
+                  </ImageView>
+                  <Line endX="102.0" endY="0.5" rotate="-128.7" />
+                  <Line endX="80.0" layoutX="77.0" layoutY="40.0" startX="5.0" />
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>
-</AnchorPane>
+</StackPane>

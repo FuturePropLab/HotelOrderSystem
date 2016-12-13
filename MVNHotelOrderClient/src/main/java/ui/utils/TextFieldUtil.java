@@ -9,6 +9,8 @@ import com.jfoenix.validation.NumberValidator;
 import com.jfoenix.validation.RequiredFieldValidator;
 import com.jfoenix.validation.base.ValidatorBase;
 
+import de.jensd.fx.fontawesome.AwesomeIcon;
+import de.jensd.fx.fontawesome.Icon;
 import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
@@ -31,7 +33,7 @@ public class TextFieldUtil {
 		RequiredFieldValidator validator = new RequiredFieldValidator();
 		validator.setErrorStyleClass("");
 		validator.setMessage("这项内容不能为空!");
-//		validator.setIcon(new Icon(AwesomeIcon.WARNING,"1em",";","error"));		
+		validator.setIcon(new Icon(AwesomeIcon.WARNING,"1em",";","error"));		
 		textField.getValidators().add(validator);
 		textField.focusedProperty().addListener((o,oldVal,newVal)->{
 			if(!newVal) textField.validate();
@@ -47,7 +49,7 @@ public class TextFieldUtil {
 		RequiredFieldValidator validator = new RequiredFieldValidator();
 		validator.setErrorStyleClass("");
 		validator.setMessage("这项内容不能为空!");
-//		validator.setIcon(new Icon(AwesomeIcon.WARNING,"1em",";","error"));		
+		validator.setIcon(new Icon(AwesomeIcon.WARNING,"1em",";","error"));		
 		passwordField.getValidators().add(validator);
 		passwordField.focusedProperty().addListener((o,oldVal,newVal)->{
 			if(!newVal) passwordField.validate();
@@ -64,7 +66,7 @@ public class TextFieldUtil {
 		RequiredFieldValidator validator = new RequiredFieldValidator();
 		validator.setErrorStyleClass("");
 		validator.setMessage("两次密码不一致!");
-//		validator.setIcon(new Icon(AwesomeIcon.WARNING,"1em",";","error"));	
+		validator.setIcon(new Icon(AwesomeIcon.WARNING,"1em",";","error"));	
 		repeatPassword.getValidators().add(validator);
 		repeatPassword.focusedProperty().addListener((o,oldVal,newVal)->{
 			if((!"".equals(passwordField.getText())) && (!"".equals(repeatPassword.getText())) &&
@@ -85,7 +87,7 @@ public class TextFieldUtil {
 		RequiredFieldValidator validator = new RequiredFieldValidator();
 		validator.setErrorStyleClass("");
 		validator.setMessage("这项内容不能为空!");
-//		validator.setIcon(new Icon(AwesomeIcon.WARNING,"1em",";","error"));		
+		validator.setIcon(new Icon(AwesomeIcon.WARNING,"1em",";","error"));		
 		textArea.getValidators().add(validator);
 		textArea.focusedProperty().addListener((o,oldVal,newVal)->{
 			if(!newVal) textArea.validate();
@@ -101,7 +103,7 @@ public class TextFieldUtil {
 		NumberValidator numberValidator=new NumberValidator();
 		numberValidator.setErrorStyleClass("");
 		numberValidator.setMessage("只能输入数字!");
-//		validator.setIcon(new Icon(AwesomeIcon.WARNING,"1em",";","error"));		
+		numberValidator.setIcon(new Icon(AwesomeIcon.WARNING,"1em",";","error"));		
 		textField.getValidators().add(numberValidator);
 		textField.focusedProperty().addListener((o,oldVal,newVal)->{
 			if(!newVal) textField.validate();
