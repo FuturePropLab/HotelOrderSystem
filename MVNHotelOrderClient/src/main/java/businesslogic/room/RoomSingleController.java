@@ -27,7 +27,10 @@ public class RoomSingleController implements RoomSingleService{
 			roomSingleController = new RoomSingleController();
 		return roomSingleController;
 	}
-
+	
+	/**
+	 * 
+	 */
 	public ResultMessage_Room addSingleRoom(String hotelID, String RoomNO, RoomType roomType) {
 		return roomSingle.addSingleRoom(hotelID, RoomNO, roomType);
 	}

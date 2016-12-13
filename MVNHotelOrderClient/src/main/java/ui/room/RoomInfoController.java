@@ -8,6 +8,7 @@ import java.util.List;
 
 import businesslogic.login.LoginController;
 import businesslogic.room.RoomManageController;
+import businesslogic.room.RoomSingleController;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
@@ -144,21 +145,80 @@ public class RoomInfoController extends DetailsController{
 			roomList.getChildren().clear();
 			//TODO:调用blservice获取房间号码和状态，设置avaliableRoom totalRoom roomList的值，下面是一个例子
 			int  allRoomNum = roomManageController.getAllNumberByType(hotelID, roomType);
-			//List<String > roomlsit = roomManageController.getAllRoomByType(hotelID, roomType)
+			int availableNum = roomManageController.getAvaiableNumberByTime
+					(hotelID, roomType, DateFormat.getDate(date_from),  DateFormat.getDate(date_to));
+						
+			this.avaliableRoom .setText(String.valueOf(availableNum));
+			this.totalRoom.setText(String.valueOf(allRoomNum));			
+			List<String> roomlist = roomManageController.getAllRoomByType(hotelID, roomType);
+			List<String> availableRoomLsit = roomManageController.getAvaiableRoomBytime
+					(hotelID, roomType, DateFormat.getDate(date_from),  DateFormat.getDate(date_to));
 			
-			Hyperlink room=new Hyperlink("8887");
-			room.setFont(Font.font(24));
-			room.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e) -> {
-				//TODO:调用blservice删除这个房间，如果删除成功，更新相关组件的值，如果失败，弹窗提示原因
-			});
-			roomList.getChildren().add(room);
+			
+			RoomSingleController roomSingleController = 
+					RoomSingleController.getInstance();
+			//roomSingleController.deleteSingleRoom(hotelID, roomNO);
+			
+			
+			//添加可以删除的房间
+			for (int i = 0; i < availableRoomLsit.size(); i++) {
+				String roomNO = availableRoomLsit.get(i);
+				roomlist.remove(roomNO);
+				Hyperlink room=new Hyperlink(roomNO);
+				room.setFont(Font.font(24));
+				room.setOnAction(e-> {
+					//TODO:调用blservice删除这个房间，如果删除成功，更新相关组件的值，如果失败，弹窗提示原因
+					ResultMessage_Room rs = roomSingleController.deleteSingleRoom(hotelID, roomNO);
+					if(rs==ResultMessage_Room.success){
+						Dialogs.showMessage("删除成功");
+						this.roomList.getChildren().remove(room);
+					}else{
+						Dialogs.showMessage("删除失败");
+					}
+				});
+				this.roomList.getChildren().add(room);
+				
+			}
+			
+			
+			//添加不可以删除的房间
+			for (int i = 0; i < roomlist.size(); i++) {
+				String roomNO = roomlist.get(i);
+				roomlist.remove(roomNO);
+				Hyperlink room=new Hyperlink(roomNO);
+				room.setDisable(true);
+				room.setFont(Font.font(24));
+				this.roomList.getChildren().add(room);				
+			}
+			
+			
+			
 		}
 	}
 	@FXML
 	private void handleAdd(){
 		String roomNum=newRoomNum.getText();
 		if(roomNum!=null && !"".equals(roomNum)){
-			//TODO:调用blservice添加房间
+			RoomSingleController roomSingleController = RoomSingleController.getInstance();
+			ResultMessage_Room rs = roomSingleController.addSingleRoom(hotelID, roomNum, roomType);
+			if(rs==ResultMessage_Room.success){
+				Dialogs.showMessage("添加成功");
+				Hyperlink room=new Hyperlink(roomNum);
+				room.setFont(Font.font(24));
+				room.setOnAction(e-> {
+					//TODO:调用blservice删除这个房间，如果删除成功，更新相关组件的值，如果失败，弹窗提示原因
+					ResultMessage_Room rsinner = roomSingleController.deleteSingleRoom(hotelID, roomNum);
+					if(rsinner==ResultMessage_Room.success){
+						Dialogs.showMessage("删除成功");
+						this.roomList.getChildren().remove(room);
+					}else{
+						Dialogs.showMessage("删除失败");
+					}
+				});
+				this.roomList.getChildren().add(room);
+			}else{
+				Dialogs.showMessage("添加失败 ，该房间号已经存在!!!");
+			}
 		}
 	}
 	
@@ -210,10 +270,16 @@ public class RoomInfoController extends DetailsController{
 			roomManage.setVisible(false);
 		}
 	}
-	public void setRoomType(RoomType roomType) {
-		// TODO Auto-generated method stub
-		
-	}
+	
+//	
+//	/**
+//	 * 
+//	 * @param roomType
+//	 */
+//	public void setRoomType(RoomType roomType) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 	
 
 }
