@@ -24,6 +24,18 @@ public class MemberManage {
 	
 	private MemberDataService memberDataService;
 //	public MemberData_Stub memberStub;
+	/**
+	 * chenyuyan，测试用构造方法
+	 * @param customer_id
+	 * @return
+	 */
+	public MemberManage(MemberData_Stub memberStub){
+		this.memberDataService = memberStub;
+	}
+	public MemberManage(){
+		
+	}
+	
 	public MemberVO getMemberInfo(String customer_id) {
 //		memberStub = new MemberData_Stub();
 		memberDataService = RemoteHelper.getInstance().getMemberDataService();

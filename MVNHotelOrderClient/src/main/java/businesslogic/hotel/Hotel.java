@@ -39,7 +39,12 @@ public class Hotel {
 		//hotelDataService = new HotelData_Stub();//test
 		pictureDeal = new PictureDeal();
 	}
-	
+	/**
+	 * chenyuyan 测试用构造
+	 */
+	public Hotel(HotelData_Stub stub){
+		this.hotelDataService = stub;
+	}
 	/**
 	 * 添加酒店
 	 * @param hotelInputVO

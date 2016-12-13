@@ -23,6 +23,7 @@ public class Member {
 		memberApply=new MemberApply();
 		memberManage=new MemberManage();
 	}
+	
 	/*public ResultMessage_Member addApply(ApplyVO apply) {
 		return memberApply.addApply(apply);
 

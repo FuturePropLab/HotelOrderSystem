@@ -31,7 +31,13 @@ public class Credit {
 	private CreditDataService creditDataService;
 	private CustomerInfoforCredit customerInfo;
 	//private String customer_id;
-	
+	/**
+	 * chenyuyan 测试用构造方法
+	 * 
+	 */
+	public Credit(CreditData_Stub stub){
+		this.creditDataService = stub;
+	}
 	/**
 	 * @author chenyuyan 12/1
 	 * 
