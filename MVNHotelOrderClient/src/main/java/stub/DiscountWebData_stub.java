@@ -34,17 +34,17 @@ public class DiscountWebData_stub implements DiscountWebDataService{
 		// TODO Auto-generated method stub
 		
 		List<DiscountPO_web>res = new LinkedList<DiscountPO_web>();
-		/*LocalDate date1 = LocalDate.of(2016, 1, 1);
+		LocalDate date1 = LocalDate.of(2016, 1, 1);
 		LocalDate date2 = LocalDate.of(2016, 1, 2);
-		LocalDate date3 = LocalDate.of(2016, 1, 3);
+		/*LocalDate date3 = LocalDate.of(2016, 1, 3);
 		LocalDate date4 = LocalDate.of(2016, 1, 4);
 		LocalDate date5 = LocalDate.of(2016, 1, 5);
 		LocalDate date6 = LocalDate.of(2016, 1, 6);*/
-		DiscountPO_web webDis = new DiscountPO_web();
-		webDis.setType(Strategy_webType.VIP_district);
-		webDis.setDiscount(8.8);
-		webDis.setDiscountState(DiscountState.invalid);
-		webDis.setRemarks("good");
+		
+		
+		
+		DiscountPO_web_period webDis = new DiscountPO_web_period(8.8, date1, date2,Strategy_webType.Period, DiscountState.invalid, "good");
+	
 		res.add(webDis);
 		return res;
 		

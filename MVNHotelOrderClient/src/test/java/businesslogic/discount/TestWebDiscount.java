@@ -7,6 +7,7 @@ import java.util.Date;
 
 import org.junit.Test;
 
+import tools.DiscountState;
 import tools.ResultMessage_Discount;
 
 public class TestWebDiscount {
@@ -27,12 +28,22 @@ public class TestWebDiscount {
 //		assertSame(dis.district,test.editWebDiscount(id).district);
 //		assertEquals(ResultMessage_strategy.Success,test.saveDiscount(t));
 		try {
-			assertEquals(8.8,webDis.getWebDiscount().get(0).discount);
+			assertEquals(DiscountState.invalid,webDis.getWebDiscount().get(0).discountState);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+	}
+	@Test
+	public void testDelete(){
+		WebDiscount webDis =new WebDiscount();
+		try {
+			assertEquals(ResultMessage_Discount.Success, webDis.deleteDiscount("001"));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

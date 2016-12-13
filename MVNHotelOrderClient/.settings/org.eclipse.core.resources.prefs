@@ -76,6 +76,7 @@ encoding//src/main/java/po/CustomerPO.java=UTF-8
 encoding//src/main/java/po/DiscountPO_hotel.java=UTF-8
 encoding//src/main/java/po/DiscountPO_web.java=UTF-8
 encoding//src/main/java/po/DiscountPO_web_level.java=UTF-8
+encoding//src/main/java/po/DiscountPO_web_period.java=UTF-8
 encoding//src/main/java/po/HotelPO.java=UTF-8
 encoding//src/main/java/po/MemberPO.java=UTF-8
 encoding//src/main/java/po/Order.java=UTF-8
