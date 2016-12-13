@@ -2,6 +2,9 @@ package businesslogic.room;
 
 import static org.junit.Assert.assertEquals;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -32,8 +35,43 @@ public class TestHotelRoomInfo {
 	}
 
 	@Test
-	public void testGetRoomByTime(){
-		
-		
+	public void testGetRoomNumByTime(){
+		manager = new RoomManager();
+		Date date5= null;
+		Date date6 = null;
+		SimpleDateFormat df2=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		try {
+			 date5= df2.parse("2004-01-02 11:30:24");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			 date6 = df2.parse("2004-01-03 11:30:24");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertEquals(1, manager.getAvaiableNumberByTime("001", RoomType.Double, date5, date6));
+	}
+	@Test
+	public void tetGetRoomByTime(){
+		manager = new RoomManager();
+		Date date5= null;
+		Date date6 = null;
+		SimpleDateFormat df2=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		try {
+			 date5= df2.parse("2004-01-02 11:30:24");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			 date6 = df2.parse("2004-01-03 11:30:24");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertEquals("003", manager.getAvaiableRoomBytime("001",RoomType.Double, date5, date6).get(0));
 	}
 }

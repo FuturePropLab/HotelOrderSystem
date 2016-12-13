@@ -1,6 +1,7 @@
 package stub;
 
 import java.rmi.RemoteException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -140,8 +141,12 @@ public class RoomData_Stub implements RoomDataService {
 
 	public List<String> getAvailbleRoomNoByType(String hotelID, RoomType roomType, Date begin, Date end)
 			throws RemoteException {
+		
+		
+		
 		// TODO Auto-generated method stub
 		List<String> list =new ArrayList<String>();
+		if(begin==null&&end==null){
 		if(roomType==RoomType.Double){
 			list.add("001");
 			
@@ -149,6 +154,10 @@ public class RoomData_Stub implements RoomDataService {
 		else{
 			list.add("002");
 		}
+	}else{
+		list.add("003");
+		
+	}
 		return list;
 	}
 
