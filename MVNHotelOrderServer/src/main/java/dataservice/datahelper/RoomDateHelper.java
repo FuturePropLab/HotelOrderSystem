@@ -80,5 +80,11 @@ public interface RoomDateHelper {
 	 	 */	 	
 	 	public ResultMessage_Room modifyTypeRoomPrice (String hotelID , RoomType roomType, double price);
 	 	
-	 	
+	 	/**
+	 	 * 
+	 	 * @param hotelID
+	 	 * @param roomNO
+	 	 * @return
+	 	 */
+	 	public ResultMessage_Room deleteRecord(String hotelID, String roomNO);
 }

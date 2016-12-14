@@ -146,6 +146,29 @@ public class RoomDateHelperImpl  implements RoomDateHelper{
 		}	
 	}
 	
+	public ResultMessage_Room deleteRecord(String hotelID, String roomNO) {
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		//Session s = Hibernateutils.getSessionFactory().openSession();	
+		Criteria cr = s.createCriteria(RoomDisablePO.class);
+		cr.add(Restrictions.eq("roomDisablePK.hotelID", hotelID));
+		cr.add(Restrictions.eq("roomDisablePK.roomNO", roomNO));
+		cr.add(Restrictions.lt("roomDisablePK.begin", new Date()));
+		List<RoomDisablePO>  list = cr.list();
+		if(list.isEmpty())  {
+			System.out.println("none");
+			s.close();
+			return ResultMessage_Room.success;
+		}else{
+			Transaction  t = s.beginTransaction();
+			s.delete(list.get(0));
+			t.commit();
+			s.close();
+			return ResultMessage_Room.success;
+		}
+	}
+	
+	
+	
 	public List<String> getRoomNobyType(String hotelID, RoomType roomType) {
 		Session s = Hibernateutils.getSessionFactory().openSession();	
 		Criteria cr = s.createCriteria(SingleRoomPO.class);
