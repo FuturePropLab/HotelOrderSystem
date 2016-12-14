@@ -42,6 +42,13 @@ public class RoomSingle  {
 
 	public ResultMessage_Room addDisable(String hotelID, String roomNO, Date begin, Date end) {
 		try {
+			if(begin==null){
+				begin=new Date();
+			}
+			if(end==null){
+				end=new Date();
+				end.setYear(end.getYear()+100);
+			}
 			return roomDataService.addRecord(hotelID, roomNO, begin, end);
 		} catch (RemoteException e) {
 			System.out.println(e.getMessage());

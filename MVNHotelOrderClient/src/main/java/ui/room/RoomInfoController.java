@@ -83,7 +83,7 @@ public class RoomInfoController extends DetailsController{
 	}
 	@FXML
 	private void handleRoomImage(){
-		if(true){
+		if(AccountType.Hotel.equals(this.accountType)){
 			FileChooser fileChooser = new FileChooser();
 			fileChooser.setTitle("选择一张图片");
 			fileChooser.getExtensionFilters().addAll(new ExtensionFilter("图片", "*.png", "*.jpg", "*.gif"));
@@ -91,25 +91,22 @@ public class RoomInfoController extends DetailsController{
 			if (selectedFile != null) {
 				roomImage.setImage(new Image(selectedFile.toURI().toString()));
 				this.imageFile = selectedFile;
-			}
-			
+			}			
 		}
 	}
 	@FXML
 	private void handleSave(){
-		if(this.accountType==AccountType.Customer){//TODO:如果是客户
+		if(this.accountType==AccountType.Customer){
 			try {
 				rootLayoutController.changeDetails("../customer/BookHotel.fxml");
 				BookHotelController bookHotelController = (BookHotelController) rootLayoutController.getDetailsController();
-				bookHotelController.setRoomType(roomType);
 				bookHotelController.setValue(acountID, hotelID);
-				//TODO:设置填写订单界面的信息
+				bookHotelController.setRoomType(roomType);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-		else{//TODO:如果是酒店工作人员
-			//TODO:调用blservice保存类型房间信息
+		else{
 			String pricestr = this.roomPrice.getText();
 			//检测 是否为数字
 			double savePrice = Double.parseDouble(pricestr);
@@ -144,7 +141,6 @@ public class RoomInfoController extends DetailsController{
 		if(from!=null && to!=null && to.isAfter(from)){
 			RoomManageController roomManageController = RoomManageController.getInstance();
 			roomList.getChildren().clear();
-			//TODO:调用blservice获取房间号码和状态，设置avaliableRoom totalRoom roomList的值，下面是一个例子
 			int  allRoomNum = roomManageController.getAllNumberByType(hotelID, roomType);
 			int availableNum = roomManageController.getAvaiableNumberByTime
 					(hotelID, roomType, DateFormat.getDate(date_from),  DateFormat.getDate(date_to));
@@ -168,7 +164,6 @@ public class RoomInfoController extends DetailsController{
 				Hyperlink room=new Hyperlink(roomNO);
 				room.setFont(Font.font(24));
 				room.setOnAction(e-> {
-					//TODO:调用blservice删除这个房间，如果删除成功，更新相关组件的值，如果失败，弹窗提示原因
 					ResultMessage_Room rs = roomSingleController.deleteSingleRoom(hotelID, roomNO);
 					if(rs==ResultMessage_Room.success){
 						Dialogs.showMessage("删除成功");
@@ -207,7 +202,6 @@ public class RoomInfoController extends DetailsController{
 				Hyperlink room=new Hyperlink(roomNum);
 				room.setFont(Font.font(24));
 				room.setOnAction(e-> {
-					//TODO:调用blservice删除这个房间，如果删除成功，更新相关组件的值，如果失败，弹窗提示原因
 					ResultMessage_Room rsinner = roomSingleController.deleteSingleRoom(hotelID, roomNum);
 					if(rsinner==ResultMessage_Room.success){
 						Dialogs.showMessage("删除成功");
@@ -250,19 +244,16 @@ public class RoomInfoController extends DetailsController{
 			this.roomImage.setImage(new Image(imageFile.toURI().toString()));
 		}
 		roomPrice.setText(typeRoomInfo.getPrice()+"");
-		//TODO:加上这句
 		if(roomDescriptionVO.description!=null && !roomDescriptionVO.description.isEmpty())
 		roomDescribtion.setText(roomDescriptionVO.description.get(0));
 		
-		//TODO  单个的房间信息
-		
-		if(accountType==AccountType.Customer){//TODO:如果是客户
+		if(accountType==AccountType.Customer){
 			roomPrice.setEditable(false);
 			roomDescribtion.setEditable(false);
 			save.setText("预订");
 			roomManage.setVisible(false);
 		}
-		else if (accountType==AccountType.Hotel) {//TODO:如果是酒店工作人员
+		else if (accountType==AccountType.Hotel) {
 			date_from.setValue(LocalDate.now());
 			date_to.setValue(LocalDate.now().plusDays(1));
 			handleDate();
@@ -274,16 +265,5 @@ public class RoomInfoController extends DetailsController{
 			roomManage.setVisible(false);
 		}
 	}
-	
-//	
-//	/**
-//	 * 
-//	 * @param roomType
-//	 */
-//	public void setRoomType(RoomType roomType) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-	
 
 }

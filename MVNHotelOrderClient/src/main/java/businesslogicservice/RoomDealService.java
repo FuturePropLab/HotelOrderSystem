@@ -12,6 +12,7 @@ import vo.RoomVO;
 public interface RoomDealService {
 	public ResultMessage_Modify ChangeState (String hotel_id , String room_id, RoomState state,Date date);
 	
+	@Deprecated
 	public ResultMessage arrangeRoom(Order order);
 	public RoomVO searchEmptyRoom(RoomType type,String hotel_Id,Date Startdate,Date Enddate);
 	
