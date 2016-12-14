@@ -103,6 +103,7 @@ public class OfflineInfoController extends DetailsController{
 	
 	
 	private RoomType geRoomType() {
+		return null;
 		
 	}
 }
