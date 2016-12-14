@@ -32,7 +32,7 @@ public abstract class WebItemController {
 	protected TextField aditionalMessage;
 	protected WebDiscountController webDiscountController;
 	
-	private String discountID;
+	protected String discountID;
 
 	public void setWebStrategyController(WebDiscountController webDiscountController) {
 		this.webDiscountController = webDiscountController;
@@ -60,36 +60,37 @@ public abstract class WebItemController {
 	}
 	
 	@FXML
-	protected void handleDelete(){
-		if(state.getText().equals("填写中")){
-			if(isFinished()){
-				setTitle();
-				state.setText("未开始");
-				
-				//TODO: 调用blservice增加策略
-				DiscountVO_web discountVO_web;
-				
-				
-				delete.setText("删 除");//字中间有空格
-				webDiscountController.addNewItem(getType());
-			}
-			else {
-				System.out.println("the strategy is not finished");//TODO:弹窗提示未完成
-				Dialogs.showMessage("策略未完成");
-			}
-		}
-		else {
-			disableControls();
-			//TODO: 调用blservice删除策略
-			DiscountWebService discountWebService = DiscountWebController.getInstance();
-//			String discountID = null; 
-//			discountWebService.deleteDiscount(discountID);
-		}
-	}
+	protected abstract void handleDelete();
+//	{
+//		if(state.getText().equals("填写中")){
+//			if(isFinished()){
+//				setTitle();
+//				state.setText("未开始");
+//				
+//				//TODO: 调用blservice增加策略
+//				DiscountVO_web discountVO_web;
+//				
+//				
+//				delete.setText("删 除");//字中间有空格
+//				webDiscountController.addNewItem(getType());
+//			}
+//			else {
+//				System.out.println("the strategy is not finished");//TODO:弹窗提示未完成
+//				Dialogs.showMessage("策略未完成");
+//			}
+//		}
+//		else {
+//			disableControls();
+//			//TODO: 调用blservice删除策略
+//			DiscountWebService discountWebService = DiscountWebController.getInstance();
+////			String discountID = null; 
+////			discountWebService.deleteDiscount(discountID);
+//		}
+//	}
 	@FXML
-	protected void handleSave() {
+	protected abstract void handleSave() ;
 		//TODO:调用blservice保存信息，如果某个子类item的信息和这个了类不一样，覆写此方法
-	}
+	
 	
 	protected abstract Strategy_webType getType() ;
 	protected abstract void setTitle() ;
@@ -98,9 +99,7 @@ public abstract class WebItemController {
 	 * 检查是否填写完毕
 	 * @return
 	 */
-	protected boolean isFinished() {
-		return !"".equals(discount.getText());
-	}
+	protected abstract boolean isFinished();
 	
 	protected void disableControls() {
 		state.setText("已删除");

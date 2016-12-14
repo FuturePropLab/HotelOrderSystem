@@ -1,10 +1,13 @@
 package ui.discount;
 
+import businesslogic.discount.DiscountWebController;
+import businesslogicservice.DiscountWebService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import tools.Strategy_webType;
 import ui.utils.Dialogs;
+import vo.DiscountVO_web;
 
 /**
  * 制定会员等级及其折扣的单个item的界面的控制器
@@ -15,7 +18,7 @@ import ui.utils.Dialogs;
 public class VIPLevelAndDiscount_WebItemController extends WebItemController{
 	
 	@FXML
-	protected Label level;
+	protected TextField level;
 	@FXML
 	protected TextField credit;
 	
@@ -78,5 +81,40 @@ public class VIPLevelAndDiscount_WebItemController extends WebItemController{
 		this.level.setText("VIP"+level);
 		this.credit.setText(""+credit);
 		setTitle();
+	}
+
+	@Override
+	protected void handleDelete() {
+		// TODO Auto-generated method stub
+			if(state.getText().equals("填写中")){
+				if(isFinished()){
+					setTitle();
+					state.setText("未开始");
+					
+					//TODO: 调用blservice增加策略
+					DiscountVO_web discountVO_web;
+					
+					
+					delete.setText("删 除");//字中间有空格
+					webDiscountController.addNewItem(getType());
+				}
+				else {
+					System.out.println("the strategy is not finished");//TODO:弹窗提示未完成
+					Dialogs.showMessage("策略未完成");
+				}
+			}
+			else {
+				disableControls();
+				//TODO: 调用blservice删除策略
+				DiscountWebService discountWebService = DiscountWebController.getInstance();
+				discountWebService.deleteDiscount(this.discountID);
+			}
+		}
+		
+
+	@Override
+	protected void handleSave() {
+		// TODO Auto-generated method stub
+		
 	}
 }

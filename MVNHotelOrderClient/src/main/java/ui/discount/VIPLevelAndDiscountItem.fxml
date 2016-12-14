@@ -27,7 +27,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Label text="至少信用值:" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Label text="升级需信用值:" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -65,11 +65,11 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="level" text="VIP0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                  <TextField fx:id="level" onKeyReleased="#handleDiscount" text="1" GridPane.columnIndex="1">
                      <font>
                         <Font size="24.0" />
                      </font>
-                  </Label>
+                  </TextField>
                </children>
             </GridPane>
          </children>

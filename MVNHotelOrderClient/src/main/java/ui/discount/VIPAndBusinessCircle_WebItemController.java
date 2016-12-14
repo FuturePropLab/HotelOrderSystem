@@ -41,7 +41,7 @@ public class VIPAndBusinessCircle_WebItemController extends WebItemController {
 		int levels = list.size();
 		ObservableList<String> options = FXCollections.observableArrayList(// 可能有一些臆测成分。。待检测
 				"Level 1");
-		for (int i = 2; i < levels + 1; i++) {
+		for (int i = 2; i < levels +1; i++) {
 			options.add("Level " + i);
 		}
 
@@ -147,5 +147,11 @@ public class VIPAndBusinessCircle_WebItemController extends WebItemController {
 		this.district.setValue(district);
 		this.businessCircle.setValue(businessCircle);
 		setTitle();
+	}
+
+	@Override
+	protected void handleDelete() {
+		// TODO Auto-generated method stub
+		
 	}
 }
