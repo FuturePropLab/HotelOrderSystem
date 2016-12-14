@@ -24,6 +24,9 @@ public class DateFormat {
 	 * @return 格式化的字符串
 	 */
 	public static String format(Date date) {
+		if(date==null){
+			return null;
+		}
 		return String.valueOf(1900+date.getYear())+"-"+String.valueOf(1+date.getMonth())+"-"+
 				String.valueOf(date.getDate());
 	}
@@ -34,6 +37,9 @@ public class DateFormat {
 	 * @return 格式化的字符串
 	 */
 	public static String format_includingTime(Date date) {
+		if(date==null){
+			return null;
+		}
 		return format(date)+" "+date.getHours()+":"+date.getMinutes();
 	}
 	

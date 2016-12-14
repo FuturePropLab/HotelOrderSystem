@@ -185,7 +185,7 @@ public class OrderDetailsController extends DetailsController{
 			customerVO = customerDealService.getCustomerInfo(orderVO.customerID);
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("CustomerVO is null!");
+			System.err.println("CustomerVO is null!");
 		}
 		LoginService loginService=LoginController.getInstance();
 		
@@ -213,22 +213,38 @@ public class OrderDetailsController extends DetailsController{
 		this.contactInformation.setText(hotelDetailsVO.hotelDiscribtionsVO.discribes.get(0));//TODO
 		else 
 		this.contactInformation.setText("请拨打服务热线 999999");
-		String roomNumbers="";
-		for(String string:orderVO.roomNumber){
-			roomNumbers=roomNumbers+string+" ";
-		}
-		this.roomNumbers.setText(roomNumbers);
-		if(orderVO.checkInTime!=null)
-		this.checkInDate.setText(DateFormat.format_includingTime(orderVO.checkInTime));
-		else
-			this.checkInDate.setText("未入住");
-		if(orderVO.planedCheckOutTime!=null)
-		this.planedCheckOutDate.setText(DateFormat.format_includingTime(orderVO.planedCheckOutTime));
 		
-		if(orderVO.checkInTime!=null)
-		this.checkOutDate.setText(DateFormat.format_includingTime(orderVO.checkInTime));
-		else
-			this.checkOutDate.setText("未离开");
+		if(orderVO.checkInTime==null){
+			this.checkInInfo.setVisible(false);
+			if(AccountType.Hotel.equals(loginService.getLogState().accountType)){
+				this.checkIn.setVisible(true);
+			}else {
+				this.checkIn.setVisible(false);
+			}
+		}else{
+			this.checkInInfo.setVisible(true);
+			String roomNumbers="";
+			for(String string:orderVO.roomNumber){
+				roomNumbers=roomNumbers+string+" ";
+			}
+			this.roomNumbers.setText(roomNumbers);
+			this.checkInDate.setText(DateFormat.format_includingTime(orderVO.checkInTime));
+			this.planedCheckOutDate.setText(DateFormat.format_includingTime(orderVO.planedCheckOutTime));
+			this.checkIn.setVisible(false);
+		}
+		if(orderVO.checkOutTime==null){
+			this.checkOutInfo.setVisible(false);
+			if(AccountType.Hotel.equals(loginService.getLogState().accountType)){
+				this.checkOut.setVisible(true);
+			}else {
+				this.checkOut.setVisible(false);
+			}
+		}else {
+			this.checkOutInfo.setVisible(true);
+			this.checkOutDate.setText(DateFormat.format_includingTime(orderVO.checkInTime));
+			this.checkOut.setVisible(false);
+		}
+		
 		this.mark.setText(orderVO.mark.getValue()+"");
 		this.star_1.setImage(orderVO.mark.getValue()>=1? yellowStar:greyStar);
 		this.star_2.setImage(orderVO.mark.getValue()>=2? yellowStar:greyStar);
