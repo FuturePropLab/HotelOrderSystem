@@ -73,19 +73,19 @@ public class CheckInAndOutInfoController extends DetailsController{
 		//如果退房成功，将房间变为可用
 		
 		if(OrderState.Unexecuted.equals(state)){
-			if(planedLeaveDate.getValue()!=null && planedLeaveTime.getValue()!=null){
+			if(planedLeaveDate.getValue()!=null && ((JFXDatePicker)planedLeaveTime).getTime()!=null){
 				ExecutionInfoVO executionInfoVO=new ExecutionInfoVO(ID, null, DateFormat.getDate(
 						(JFXDatePicker)planedLeaveDate, (JFXDatePicker)planedLeaveTime), new Date(), null);
 				OrderService orderService=OrderController.getInstance();
 				ResultMessage result=orderService.executionModify(executionInfoVO);
 				if(ResultMessage.Exist.equals(result)){
-					Dialogs.showMessage("叮咚","更新入住信息成功", DialogTransition.CENTER);
+					Dialogs.showMessage("叮咚","更新入住信息成功", DialogTransition.BOTTOM);
 				}else{
 					Dialogs.showMessage("诶哟", "更新入住信息失败了_(:з」∠)_   "+"订单ID"+ID+"   订单状态："+state.toString(), 
-							DialogTransition.CENTER);
+							DialogTransition.BOTTOM);
 				}
 			}else{
-				Dialogs.showMessage("诶哟", "你得先填写预计退房时间哟", DialogTransition.CENTER);
+				Dialogs.showMessage("诶哟", "你得先填写预计退房时间哟", DialogTransition.BOTTOM);
 			}
 		}else if (OrderState.Executed.equals(state)) {
 			checkOut();
@@ -108,10 +108,10 @@ public class CheckInAndOutInfoController extends DetailsController{
 		OrderService orderService=OrderController.getInstance();
 		ResultMessage result=orderService.executionModify(executionInfoVO);
 		if(ResultMessage.Exist.equals(result)){
-			Dialogs.showMessage("叮咚","更新退房信息成功", DialogTransition.CENTER);
+			Dialogs.showMessage("叮咚","更新退房信息成功", DialogTransition.BOTTOM);
 		}else{
 			Dialogs.showMessage("诶哟", "更新退房信息失败了_(:з」∠)_   "+"订单ID"+ID+"   订单状态："+state.toString(), 
-					DialogTransition.CENTER);
+					DialogTransition.BOTTOM);
 		}
 	}
 	

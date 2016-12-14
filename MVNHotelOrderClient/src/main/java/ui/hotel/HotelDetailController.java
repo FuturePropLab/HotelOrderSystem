@@ -297,6 +297,8 @@ public class HotelDetailController extends DetailsController{
 		ResultMessage_Hotel resultMessage_Hotel = manageHotelService.saveHotelInfo(hotelInputVO);
 		if(!ResultMessage_Hotel.success.equals(resultMessage_Hotel)){
 			Dialogs.showMessage("保存失败");
+		}else{
+			Dialogs.showMessage("保存成功");
 		}
 	}
 	

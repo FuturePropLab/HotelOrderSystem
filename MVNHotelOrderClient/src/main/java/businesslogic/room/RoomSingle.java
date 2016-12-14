@@ -19,8 +19,8 @@ public class RoomSingle  {
 	private RoomDataService roomDataService;
 	
 	public RoomSingle(){
-//		roomDataService = RemoteHelper.getInstance().getRoomDataService();
-		roomDataService = new RoomData_Stub();//TEST
+		roomDataService = RemoteHelper.getInstance().getRoomDataService();
+		//roomDataService = new RoomData_Stub();//TEST
 	}
 	public ResultMessage_Room addSingleRoom(String hotelID, String RoomNO, RoomType roomType) {
 		try {

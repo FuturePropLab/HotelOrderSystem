@@ -214,10 +214,11 @@ public class RootLayoutController {
 	 * @return 如果没有上一个界面返回false，否则true
 	 */
 	public boolean toLastView() {
-		if(formerViews.isEmpty()){
+		if(formerViews.size()<=1){
 			return false;
 		}
-		View lastView=formerViews.pop();
+		formerViews.pop();
+		View lastView=formerViews.peek();
 		details.getChildren().clear();
 		details.getChildren().addAll(lastView.parent);
 		detailsController = lastView.detailsController;
