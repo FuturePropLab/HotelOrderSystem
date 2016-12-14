@@ -133,7 +133,12 @@ public class AccountData_stub implements AccountDataService{
 
 	public List<AccountPO> getAccountList(List<String> idList, AccountType accountType) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		List <AccountPO> accountList = new ArrayList<AccountPO>();
+		AccountPO accountPO1 = new AccountPO("001" ,"CYY" , "001", AccountType.Customer);
+		AccountPO accountPO2 = new AccountPO("002" ,"CYY" , "002", AccountType.Customer);
+		accountList.add(accountPO1);
+		accountList.add(accountPO2);
+		return accountList;
 	}
 
 	@Override

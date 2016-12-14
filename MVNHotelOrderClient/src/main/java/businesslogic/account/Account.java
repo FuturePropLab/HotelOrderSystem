@@ -64,7 +64,7 @@ public class Account {
 	 * 无参数初始化
 	 */
 	public Account(){
-		this.accountDataService = RemoteHelper.getInstance().getAccountDataService();
+		this.accountDataService = RemoteHelper.getInstance().getAccountDataService();//test
 //		this.accountDataService = new AccountData_stub();
 		this.hotelInfo = null;
 		this.customerInfo = null;
@@ -196,6 +196,7 @@ public class Account {
 	 */
 	public List<AccountVO> searchCustomerAccount(CustomerSearchVO customerSearchVO) throws RemoteException{
 		CustomerInfo customerInfo = CustomerInfoImp.getInstance();
+//		CustomerInfo customerInfo  = new MockCustomer();//test
 		List<String>idList = customerInfo.searchCustomer(customerSearchVO);
 		List<AccountPO> accountPOs = accountDataService.getAccountList(idList, AccountType.Customer);
 		Iterator<AccountPO> it = accountPOs.iterator();

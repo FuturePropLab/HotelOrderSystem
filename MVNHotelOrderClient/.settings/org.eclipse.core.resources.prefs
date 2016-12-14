@@ -49,6 +49,7 @@ encoding//src/main/java/businesslogic/room/RoomDeal.java=UTF-8
 encoding//src/main/java/businesslogic/room/RoomManager.java=UTF-8
 encoding//src/main/java/businesslogic/room/RoomSingle.java=UTF-8
 encoding//src/main/java/businesslogic/strategy/CalculateHotelStrategy.java=UTF-8
+encoding//src/main/java/businesslogic/strategy/Strategy.java=UTF-8
 encoding//src/main/java/businesslogicservice/AccountCustomerService.java=UTF-8
 encoding//src/main/java/businesslogicservice/AccountService.java=UTF-8
 encoding//src/main/java/businesslogicservice/CreditLogDealService.java=UTF-8

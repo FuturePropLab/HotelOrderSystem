@@ -1,5 +1,6 @@
 package businesslogic.account;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import businesslogic.customer.Customer;
@@ -20,7 +21,11 @@ public class MockCustomer  implements CustomerInfo{
 	 * 实现接口
 	 */
 	public List<String> searchCustomer(CustomerSearchVO customerSearchVO){
-		return customerList;
+		List<String> idList = new ArrayList<String>();
+		idList.add("001");
+		idList.add("002");
+		
+		return idList;
 	}
 	/**
 	 * 初始化

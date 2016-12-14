@@ -140,6 +140,17 @@ public class TestAccountCustomer {
 		
 		assertEquals(ResultMessage_Account.InvalidInput, account.deleteAccount("222s"));
 	}
+	@Test
+	public void testSearch(){
+		Account account = new Account();
+		CustomerSearchVO searchVO =new CustomerSearchVO( "12345","陈语嫣","女");
+		try {
+			assertEquals(account.searchCustomerAccount(searchVO).get(0).userid,"001" );
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		};
+	}
 	
 }
 
