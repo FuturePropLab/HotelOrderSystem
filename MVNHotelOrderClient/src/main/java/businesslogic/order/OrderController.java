@@ -79,6 +79,7 @@ public class OrderController implements OrderService{
 		orderVO.orderID=order.getOrderID();
 		orderVO.customerID=order.getCustomer().customerID;
 		orderVO.hotelID=order.getHotelInfo().hotelID;
+		orderVO.price=order.getPlacingOrderInfo().price;
 		orderVO.roomNumber=order.getRoomNumber();
 		orderVO.startTime=order.getPlacingOrderInfo().startTime;
 		orderVO.latestTime=order.getPlacingOrderInfo().latestTime;
@@ -105,6 +106,7 @@ public class OrderController implements OrderService{
 		orderVO.orderID=orderPO.getOrderID();
 		orderVO.customerID=orderPO.getCustomerID();
 		orderVO.hotelID=orderPO.getHotelID();
+		orderVO.price=orderPO.getPrice();
 		orderVO.roomNumber=orderPO.getRoomNumber();
 		orderVO.startTime=orderPO.getStartTime();
 		orderVO.latestTime=orderPO.getLatestTime();
