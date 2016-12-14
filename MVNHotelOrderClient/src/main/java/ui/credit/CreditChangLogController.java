@@ -9,6 +9,7 @@ import businesslogicservice.LoginService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import ui.hotel.HotelDetailController;
 import ui.main.DetailsController;
 import ui.order.OrderDetailsController;
@@ -23,7 +24,7 @@ import vo.LogVO;
 public class CreditChangLogController extends DetailsController{
 
 	@FXML
-	private AnchorPane creditList;
+	private FlowPane creditList;
 		
 	@FXML
 	private void initialize() {

@@ -18,6 +18,7 @@ import javafx.scene.paint.Color;
 import tools.OrderState;
 import tools.ResultMessage;
 import ui.main.DetailsController;
+import ui.utils.Choice;
 import ui.utils.DateFormat;
 import ui.utils.Dialogs;
 import vo.CustomerVO;
@@ -67,7 +68,6 @@ public class CheckInAndOutInfoController extends DetailsController{
 	
 	@FXML
 	private void handleConfirm(){
-		//TODO:调用blservice填写入住或退房信息
 		//入住时间或实际退房时间即为酒店工作人员操作时的系统时间
 		//如果是异常订单，提示酒店工作人员是延时入住
 		//如果退房成功，将房间变为可用
@@ -88,9 +88,10 @@ public class CheckInAndOutInfoController extends DetailsController{
 				Dialogs.showMessage("诶哟", "你得先填写预计退房时间哟", DialogTransition.CENTER);
 			}
 		}else if (OrderState.Executed.equals(state)) {
-			
+			checkOut();
 		}else if (OrderState.Exception.equals(state)) {
-			
+			Dialogs.showChoise("这是一份异常订单，你确定要帮客户办理延时入住吗", 
+					new Choice("是的", e->checkOut()), new Choice("不了", e->{}));
 		}else {
 			System.out.println("this is a revoked order.");
 		}
@@ -101,6 +102,19 @@ public class CheckInAndOutInfoController extends DetailsController{
 			System.err.println("no former view");
 		}
 	}
+	
+	private void checkOut(){
+		ExecutionInfoVO executionInfoVO=new ExecutionInfoVO(ID, null, null, null, new Date());
+		OrderService orderService=OrderController.getInstance();
+		ResultMessage result=orderService.executionModify(executionInfoVO);
+		if(ResultMessage.Exist.equals(result)){
+			Dialogs.showMessage("叮咚","更新退房信息成功", DialogTransition.CENTER);
+		}else{
+			Dialogs.showMessage("诶哟", "更新退房信息失败了_(:з」∠)_   "+"订单ID"+ID+"   订单状态："+state.toString(), 
+					DialogTransition.CENTER);
+		}
+	}
+	
 	
 	/**
 	 * 初始化组件的值
