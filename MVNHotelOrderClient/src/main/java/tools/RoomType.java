@@ -9,5 +9,21 @@ public enum RoomType {
 	Double,
 	Standard,
 	Suites,
-	EluxeSuite
+	EluxeSuite;
+
+	@Override
+	public String toString() {
+		if(this.equals(Single)){
+			return "单人间";
+		}else if(this.equals(Double)){
+			return "双人间";
+		}else if(this.equals(Standard)){
+			return "标准间";
+		}else if(this.equals(Suites)){
+			return "豪华套房";
+		}else if(this.equals(EluxeSuite)){
+			return "总统套房";
+		}
+		return super.toString();
+	}
 }

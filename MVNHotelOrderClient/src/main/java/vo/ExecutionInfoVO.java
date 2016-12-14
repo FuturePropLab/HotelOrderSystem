@@ -16,8 +16,12 @@ public class ExecutionInfoVO {
 	public Date checkOutTime;//实际离开时间
 	
 	/**
-	 *  @param customer_ID  客户ID
-	 *  @param type  申请的会员类型
+	 * 
+	 * @param orderID 订单ID
+	 * @param roomNumber 房间号
+	 * @param planedLeaveTime 预计离开时间
+	 * @param checkInTime 实际入住时间
+	 * @param checkOutTime 实际离开时间
 	 */
 	public ExecutionInfoVO(String orderID, ArrayList<String> roomNumber, Date planedLeaveTime, Date checkInTime,
 			Date checkOutTime) {
