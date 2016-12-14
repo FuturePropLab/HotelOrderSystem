@@ -2,6 +2,7 @@ package ui.administor;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
@@ -18,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import tools.ResultMessage_Account;
+import ui.administor.CustomerController.Customer;
 import ui.utils.Dialogs;
 import vo.WebAccountVO;
 /**
@@ -26,6 +28,8 @@ import vo.WebAccountVO;
  *
  */
 public class WebController {
+	private static final String titles[]={"用户名","姓名"};
+	
 	private JFXTreeTableView<Web> webList;
 	private TextField filterField;
 	private Button reset;
@@ -52,22 +56,15 @@ public class WebController {
 		webs = FXCollections.observableArrayList();
 		//webs.add(new Web("userName","webName"));
 		//webs.add(new Web("userName1","webName"));
-		//上面时一个例子
-		//TODO:调用blservice添加酒店账号信息
-		WebDesignerAccountController webDesignerAccountController = 
-				WebDesignerAccountController.getInstance();
-		List<WebAccountVO> webVoList = webDesignerAccountController.getWebAccount();
-		Iterator<WebAccountVO> it = webVoList.iterator();
-		while(it.hasNext()){
-			WebAccountVO vo = it.next();
-			webs.add(new Web(vo.name,vo.id));
-		}
-		
+		//上面是一个例子
+		WebDesignerAccountController webDesignerAccountController = WebDesignerAccountController.getInstance();
+		List<WebAccountVO> list = webDesignerAccountController.getWebAccount();
+		webs.addAll(list.stream().map(account -> new Web(account.id,account.name)).collect(Collectors.toList()));
 		
 		final TreeItem<Web> root = new RecursiveTreeItem<Web>(webs, RecursiveTreeObject::getChildren);
 		webList.setRoot(root);
 		
-		for(int index=0;index<2;index++){
+		for(int index=0;index<titles.length;index++){
 			setCustomerColumn(index);
 		}
 		filterField.textProperty().addListener((o,oldVal,newVal)->{
@@ -78,7 +75,6 @@ public class WebController {
 		delete.setOnAction((action)->delete());
 	}
 	private void setCustomerColumn(int index){
-		String titles[]={"用户名","姓名"};
 		JFXTreeTableColumn<Web, String> colum=new JFXTreeTableColumn<>(titles[index]);
 		colum.setPrefWidth(150);
 		colum.setCellValueFactory((TreeTableColumn.CellDataFeatures<Web, String> param) ->{
@@ -94,16 +90,16 @@ public class WebController {
 		}
 		String userName=webList.getSelectionModel().getSelectedItem().getValue().userName.get();
 		System.out.println("reset:"+userName);
-		//TODO:调用blservice重置密码
+		
 		String id=webList.getSelectionModel().getSelectedItem().getValue().webName.get();
 		WebDesignerAccountController webDesignerAccountController = 
 				WebDesignerAccountController.getInstance();
 		ResultMessage_Account rs = webDesignerAccountController.resetPassword(id, "webweb");
 		
 		if(rs.equals(ResultMessage_Account.Success)){
-			Dialogs.showMessage("重置密码成功");
+			Dialogs.showMessage("耶耶","重置密码成功！≧∇≦");
 		}else{
-			Dialogs.showMessage("重置失败 可能是连接又问题s!");
+			Dialogs.showMessage("额", "重置失败，也许是网络问题？");
 		}
 		
 		
@@ -114,17 +110,17 @@ public class WebController {
 		}
 		String userName=webList.getSelectionModel().getSelectedItem().getValue().userName.get();
 		System.out.println("delete:"+userName);
-		//TODO:调用blservice删除账号
+		
 		String id=webList.getSelectionModel().getSelectedItem().getValue().webName.get();
 		WebDesignerAccountController webDesignerAccountController = 
 				WebDesignerAccountController.getInstance();
 		ResultMessage_Account rs = webDesignerAccountController.deleteAccount(id);
 		
 		if(rs.equals(ResultMessage_Account.Success)){
-			Dialogs.showMessage("删除成功");
+			Dialogs.showMessage("", "删除成功");
 			webs.remove(webList.getSelectionModel().getSelectedItem().getValue());
 		}else{
-			Dialogs.showMessage("删除失败 可能是连接又问题s!");
+			Dialogs.showMessage("额", "删除失败，也许是网络问题？");
 		}
 	}
 	

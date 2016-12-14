@@ -6,7 +6,7 @@ public class HotelAccount implements Serializable{
 
 	private static final long serialVersionUID = -3674650463149182777L;
 	String userName;
-	String customerID;
+	String customerID;//这个是酒店ID？
 	String HotelName;
 	String hotelAddress;
 	String contactWay;
@@ -25,8 +25,10 @@ public class HotelAccount implements Serializable{
 		this.userName = userName;
 	}
 
-
-
+	/**
+	 * 这个是酒店ID？
+	 * @return
+	 */
 	public String getCustomerID() {
 		return customerID;
 	}

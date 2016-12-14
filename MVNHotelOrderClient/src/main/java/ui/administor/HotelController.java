@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
@@ -33,6 +34,8 @@ import ui.utils.Dialogs;
  *
  */
 public class HotelController {
+	private static final String titles[]={"用户名","酒店ID","酒店名称","酒店地址","联系方式"};
+	
 	private JFXTreeTableView<Hotel> hotelList;
 	private TextField filterField;
 	private Button reset;
@@ -59,27 +62,19 @@ public class HotelController {
 		hotels = FXCollections.observableArrayList();
 //		hotels.add(new Hotel("userName", "hotelID", "hotelName", "hotelAddresssssssssssssssssss", "contactWay"));
 //		hotels.add(new Hotel("userName1", "hotelID", "hotelName", "hotelAddress", "contactWay"));
-		//上面时一个例子
-		//TODO:调用blservice添加酒店账号信息
+//		上面是一个例子
 		
 		AccountHotelService accountHotelService = HotelAccountController.getInstance();
-		List<HotelAccount> list = null;
-		list  = accountHotelService.getHotelAccount();
+		List<HotelAccount> list = accountHotelService.getHotelAccount();
 	
-		
-		//TODO  以后改成lamda表达式
-		Iterator<HotelAccount>  it = list.iterator();
-		while(it.hasNext()){
-			hotels.add(new Hotel(it.next()));
-		}
-		
-		
-		
+		hotels.addAll(list.stream().map(account -> new Hotel(account.getUserName(),
+				account.getCustomerID(), account.getHotelName(), account.getHotelAddress(), account.getContactWay()))
+				.collect(Collectors.toList()));
 		
 		final TreeItem<Hotel> root = new RecursiveTreeItem<Hotel>(hotels, RecursiveTreeObject::getChildren);
 		hotelList.setRoot(root);
 		
-		for(int index=0;index<5;index++){
+		for(int index=0;index<titles.length;index++){
 			setCustomerColumn(index);
 		}
 		filterField.textProperty().addListener((o,oldVal,newVal)->{
@@ -93,7 +88,6 @@ public class HotelController {
 		delete.setOnAction((action)->delete());
 	}
 	private void setCustomerColumn(int index){
-		String titles[]={"用户名","酒店ID","酒店名称","酒店地址","联系方式"};
 		JFXTreeTableColumn<Hotel, String> colum=new JFXTreeTableColumn<>(titles[index]);
 		colum.setPrefWidth(150);
 		colum.setCellValueFactory((TreeTableColumn.CellDataFeatures<Hotel, String> param) ->{
@@ -111,19 +105,16 @@ public class HotelController {
 		}
 		String userName=hotelList.getSelectionModel().getSelectedItem().getValue().userName.get();
 		System.out.println("reset:"+userName);
-		//TODO:调用blservice重置密码
-		String userID=hotelList.getSelectionModel().getSelectedItem().getValue().hotelID.get();
+		
+		String hotelID=hotelList.getSelectionModel().getSelectedItem().getValue().hotelID.get();
 		AccountHotelService accountHotelService = HotelAccountController.getInstance();
-		ResultMessage_Account rs = accountHotelService.resetPassword(userID, "woaini");
+		ResultMessage_Account rs = accountHotelService.resetPassword(hotelID, "woaini");
 		
 		if(rs.equals(ResultMessage_Account.Success)){
-			Dialogs.showMessage("重置密码成功");
+			Dialogs.showMessage("耶耶","重置密码成功！≧∇≦");
 		}else{
-			Dialogs.showMessage("重置失败 可能是连接又问题s!");
-		}
-		
-		
-		
+			Dialogs.showMessage("额", "重置失败，也许是网络问题？");
+		}	
 		
 	}
 	private void delete() {
@@ -132,21 +123,17 @@ public class HotelController {
 		}
 		String userName=hotelList.getSelectionModel().getSelectedItem().getValue().userName.get();
 		System.out.println("delete:"+userName);
-		//TODO:调用blservice删除账号
 		
-		String userID=hotelList.getSelectionModel().getSelectedItem().getValue().hotelID.get();
+		String hotelID=hotelList.getSelectionModel().getSelectedItem().getValue().hotelID.get();
 		AccountHotelService accountHotelService = HotelAccountController.getInstance();
-		ResultMessage_Account rs = accountHotelService.deleteAccount(userID);
+		ResultMessage_Account rs = accountHotelService.deleteAccount(hotelID);
 		
 		if(rs.equals(ResultMessage_Account.Success)){
-			Dialogs.showMessage("删除密码成功");
+			Dialogs.showMessage("", "删除成功");
 			hotels.remove(hotelList.getSelectionModel().getSelectedItem().getValue());
 		}else{
-			Dialogs.showMessage("删除失败 可能是连接又问题s!");
+			Dialogs.showMessage("额", "删除失败，也许是网络问题？");
 		}
-		
-		
-	
 	}
 	
 	/**
@@ -177,13 +164,13 @@ public class HotelController {
 			this.hotelAddress = new SimpleStringProperty(hotelAddress) ;
 			this.contactWay = new SimpleStringProperty(contactWay) ;
 		}
-		
-		public Hotel(HotelAccount account) {
-			this.userName = new SimpleStringProperty(account.getUserName()) ;
-			this.hotelID = new SimpleStringProperty(account.getCustomerID()) ;
-			this.hotelName = new SimpleStringProperty(account.getHotelName()) ;
-			this.hotelAddress = new SimpleStringProperty(account.getHotelAddress()) ;
-			this.contactWay = new SimpleStringProperty(account.getContactWay()) ;
-		} 
+//		
+//		public Hotel(HotelAccount account) {
+//			this.userName = new SimpleStringProperty(account.getUserName()) ;
+//			this.hotelID = new SimpleStringProperty(account.getCustomerID()) ;
+//			this.hotelName = new SimpleStringProperty(account.getHotelName()) ;
+//			this.hotelAddress = new SimpleStringProperty(account.getHotelAddress()) ;
+//			this.contactWay = new SimpleStringProperty(account.getContactWay()) ;
+//		} 
 	}
 }

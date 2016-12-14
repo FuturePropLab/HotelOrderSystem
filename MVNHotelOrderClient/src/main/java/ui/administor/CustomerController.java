@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
@@ -29,6 +30,8 @@ import ui.utils.Dialogs;
  *
  */
 public class CustomerController {
+	private static final String titles[]={"用户名","客户ID","客户姓名","性别","联系方式"};
+	
 	private JFXTreeTableView<Customer> customerList;
 	private TextField filterField;
 	private Button reset;
@@ -55,30 +58,24 @@ public class CustomerController {
 		customers = FXCollections.observableArrayList();
 //		customers.add(new Customer("userName", "customerID", "customerName", "gender", "contactWay"));
 //		customers.add(new Customer("userName1", "customerID", "customerName", "gender", "contactWay"));
+//		上面时一个例子
 		AccountCustomerService accountCustomerService = CustomerAccountController.getInstance();
 		List<CustomerAccount> list = null;
 		try {
 			 list  = accountCustomerService.getCustomerAccount();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Dialogs.showMessage("阿欧", "网络连接好像断开了……");
 			list  = new ArrayList<>();
 		}
 		
-		//TODO  以后改成lamda表达式
-		Iterator<CustomerAccount>  it = list.iterator();
-		while(it.hasNext()){
-			customers.add(new Customer(it.next()));
-		}
+		customers.addAll(list.stream().map(account -> new Customer(account.getUserName(),
+				account.getCustomerID(), account.getCustomerName(), account.getGender(), account.getContactWay()))
+				.collect(Collectors.toList()));
 		
-		
-		
-		//上面时一个例子
-		//TODO:调用blservice添加酒店账号信息
 		final TreeItem<Customer> root = new RecursiveTreeItem<Customer>(customers, RecursiveTreeObject::getChildren);
 		customerList.setRoot(root);
 		
-		for(int index=0;index<5;index++){
+		for(int index=0;index<titles.length;index++){
 			setCustomerColumn(index);
 		}
 		filterField.textProperty().addListener((o,oldVal,newVal)->{
@@ -92,7 +89,6 @@ public class CustomerController {
 		delete.setOnAction((action)->delete());
 	}
 	private void setCustomerColumn(int index){
-		String titles[]={"用户名","客户ID","客户姓名","性别","联系方式"};
 		JFXTreeTableColumn<Customer, String> colum=new JFXTreeTableColumn<>(titles[index]);
 		colum.setPrefWidth(150);
 		colum.setCellValueFactory((TreeTableColumn.CellDataFeatures<Customer, String> param) ->{
@@ -111,17 +107,15 @@ public class CustomerController {
 		String userName=customerList.getSelectionModel().getSelectedItem().getValue().userName.get();
 		System.out.println("reset:"+userName);
 		
-		String userID=customerList.getSelectionModel().getSelectedItem().getValue().customerID.get();
+		String customerID=customerList.getSelectionModel().getSelectedItem().getValue().customerID.get();
 		AccountCustomerService accountCustomerService = CustomerAccountController.getInstance();
-		ResultMessage_Account rs = accountCustomerService.resetPassword(userID, "hibernate");
+		ResultMessage_Account rs = accountCustomerService.resetPassword(customerID, "hibernate");
 		
 		if(rs.equals(ResultMessage_Account.Success)){
-			Dialogs.showMessage("重置密码成功");
+			Dialogs.showMessage("耶耶","重置密码成功！≧∇≦");
 		}else{
-			Dialogs.showMessage("重置失败 可能是连接又问题s!");
+			Dialogs.showMessage("额", "重置失败，也许是网络问题？");
 		}
-		
-		//TODO:调用blservice重置密码
 	}
 	private void delete() {
 		if(customerList.getSelectionModel().getSelectedItem()==null){
@@ -129,15 +123,15 @@ public class CustomerController {
 		}
 		String userName=customerList.getSelectionModel().getSelectedItem().getValue().userName.get();
 		System.out.println("delete:"+userName);
-		//TODO:调用blservice删除账号
+		
 		AccountCustomerService accountCustomerService = CustomerAccountController.getInstance();
-		String userID=customerList.getSelectionModel().getSelectedItem().getValue().customerID.get();
-		ResultMessage_Account rs = accountCustomerService.deleteAccount(userID);		
+		String customerID=customerList.getSelectionModel().getSelectedItem().getValue().customerID.get();
+		ResultMessage_Account rs = accountCustomerService.deleteAccount(customerID);		
 		if(rs.equals(ResultMessage_Account.Success)){
-			Dialogs.showMessage("删除成功");
+			Dialogs.showMessage("", "删除成功");
 			customers.remove(customerList.getSelectionModel().getSelectedItem().getValue());
 		}else{
-			Dialogs.showMessage("删除失败 可能是连接又问题s!");
+			Dialogs.showMessage("额", "删除失败，也许是网络问题？");
 		}
 	}
 	
@@ -169,13 +163,13 @@ public class CustomerController {
 			this.gender = new SimpleStringProperty(gender) ;
 			this.contactWay = new SimpleStringProperty(contactWay) ;
 		}
-		
-		public Customer(CustomerAccount account){
-			this.userName = new SimpleStringProperty(account.getUserName()) ;
-			this.customerID = new SimpleStringProperty(account.getCustomerID()) ;
-			this.customerName = new SimpleStringProperty(account.getCustomerName()) ;
-			this.gender = new SimpleStringProperty(account.getGender()) ;
-			this.contactWay = new SimpleStringProperty(account.getContactWay()) ;
-		}
+//		
+//		public Customer(CustomerAccount account){
+//			this.userName = new SimpleStringProperty(account.getUserName()) ;
+//			this.customerID = new SimpleStringProperty(account.getCustomerID()) ;
+//			this.customerName = new SimpleStringProperty(account.getCustomerName()) ;
+//			this.gender = new SimpleStringProperty(account.getGender()) ;
+//			this.contactWay = new SimpleStringProperty(account.getContactWay()) ;
+//		}
 	}
 }
