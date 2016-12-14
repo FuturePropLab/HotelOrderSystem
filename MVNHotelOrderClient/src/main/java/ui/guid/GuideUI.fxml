@@ -23,11 +23,11 @@
             <Label fx:id="userName" maxWidth="130.0" text="WSW的小号" />
             <HBox alignment="CENTER_LEFT" layoutY="43.0" spacing="5.0">
                <children>
-                  <Label fx:id="creditLabel" text="信用值：" />
-                  <Label fx:id="credit" prefWidth="60.0" text="99999999" />
+                  <Label fx:id="creditLabel" text="信用值：" visible="false" />
+                  <Label fx:id="credit" prefWidth="60.0" text="99999999" visible="false" />
                </children>
             </HBox>
-            <Label fx:id="memberType" layoutY="86.0" maxWidth="130.0" text="企业会员" />
+            <Label fx:id="memberType" layoutY="86.0" maxWidth="130.0" text="企业会员" visible="false" />
          </children>
       </Group>
       <JFXListView fx:id="guids" layoutX="38.0" layoutY="170.0" stylesheets="@../../../resources/css/jfoenix-main-demo.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />

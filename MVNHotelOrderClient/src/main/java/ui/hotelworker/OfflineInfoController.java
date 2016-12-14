@@ -2,6 +2,8 @@ package ui.hotelworker;
 
 import java.time.LocalDate;
 
+import businesslogic.login.LoginController;
+import businesslogicservice.LoginService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -33,7 +35,7 @@ public class OfflineInfoController extends DetailsController{
 	private TextField roomNumber;
 	@FXML
 	private Button confirm;
-	
+	private String hotelID;
 	
 	
 	
@@ -42,6 +44,9 @@ public class OfflineInfoController extends DetailsController{
 		roomType.getItems().addAll(roomTypes);
 		roomType.setValue(roomTypes[1]);
 		DateFormat.initDatePicker(date_from, date_to);
+		
+		LoginService loginService=LoginController.getInstance();
+		this.hotelID=loginService.getLogState().accountID;
 	}
 	@FXML
 	private void handleSearchRoom(){

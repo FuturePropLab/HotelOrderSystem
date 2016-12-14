@@ -159,10 +159,10 @@ public class LoginController extends FullLayoutController{
 					
 					if(testType == AccountType.Customer){			
 						rootLayoutController.changeDetails("../customer/ClientInfo.fxml");
-						ClientInfoController controller =
-								(ClientInfoController) rootLayoutController.getDetailsController();
-						controller.initValue( LoginServiceUtil.getLoginService().getLogState().accountID);
-					}			
+//						ClientInfoController controller =
+//						(ClientInfoController) rootLayoutController.getDetailsController();
+//				controller.initValue( LoginServiceUtil.getLoginService().getLogState().accountID);
+			}			
 				}
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block

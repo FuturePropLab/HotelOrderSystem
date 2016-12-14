@@ -3,7 +3,9 @@ package ui.credit;
 import java.io.IOException;
 
 import businesslogic.credit.CreditController;
+import businesslogic.login.LoginController;
 import businesslogicservice.CreditLogDealService;
+import businesslogicservice.LoginService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -12,6 +14,7 @@ import ui.main.DetailsController;
 import ui.order.OrderDetailsController;
 import ui.order.OrderItemController;
 import vo.CreditlogVO;
+import vo.LogVO;
 
 /**
  * 信用变化记录界面的控制器
@@ -21,6 +24,18 @@ public class CreditChangLogController extends DetailsController{
 
 	@FXML
 	private AnchorPane creditList;
+		
+	@FXML
+	private void initialize() {
+		LoginService loginService=LoginController.getInstance();
+		LogVO logVO=loginService.getLogState();
+		
+		creditList.getChildren().clear();
+		CreditLogDealService creditLogDealService=CreditController.getInstance();
+		for(CreditlogVO creditlogVO:creditLogDealService.getLogList(logVO.accountID)){
+			addItem(creditlogVO);
+		}
+	}
 	
 	
 	private CreditItemController addItem(CreditlogVO creditlogVO) {
@@ -36,18 +51,6 @@ public class CreditChangLogController extends DetailsController{
 			e.printStackTrace();
 		}
 		return null;
-	}
-	
-	/**
-	 * 初始化组件的值
-	 * @param customerID 客户ID
-	 */
-	public void initValue(String customerID) {
-		creditList.getChildren().clear();
-		CreditLogDealService creditLogDealService=CreditController.getInstance();
-		for(CreditlogVO creditlogVO:creditLogDealService.getLogList(customerID)){
-			addItem(creditlogVO);
-		}
 	}
 	
 	/**

@@ -36,6 +36,7 @@ import vo.CommentVO;
 import vo.HotelDetailsVO;
 import vo.HotelDiscribtionsVO;
 import vo.HotelInputVO;
+import vo.LogVO;
 
 /**
  * 酒店详情界面的控制器
@@ -164,6 +165,8 @@ public class HotelDetailController extends DetailsController{
 			
 			starComboBox.getItems().addAll(starArray);
 			cityComboBox.getItems().addAll("南京","Option 1","Option 2");
+			
+			initValue(login.getLogState().accountID);
 		}
     	else {
     		bookEluxeSuite.setDisable(true);

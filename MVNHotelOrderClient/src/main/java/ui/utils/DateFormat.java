@@ -54,13 +54,13 @@ public class DateFormat {
 	 * @param datePicker Jfoenix的日期选择器
 	 * @return 设置好值的Date对象
 	 */
-	public static Date getDate(JFXDatePicker datePicker) {
-		if(datePicker.getValue()==null){
+	public static Date getDate(JFXDatePicker datePicker,JFXDatePicker timePicker) {
+		if(datePicker.getValue()==null || timePicker.getValue()==null){
 			return null;
 		}
 		return new Date(datePicker.getValue().getYear(), datePicker.getValue().getMonthValue(), 
-				datePicker.getValue().getDayOfMonth(),datePicker.getTime().getHour(),
-				datePicker.getTime().getMinute(),datePicker.getTime().getSecond());
+				datePicker.getValue().getDayOfMonth(),timePicker.getTime().getHour(),
+				timePicker.getTime().getMinute(),timePicker.getTime().getSecond());
 	}
 	
 	/**

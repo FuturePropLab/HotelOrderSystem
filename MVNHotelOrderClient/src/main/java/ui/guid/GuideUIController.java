@@ -16,6 +16,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import tools.AccountType;
+import ui.credit.CreditChangLogController;
+import ui.customer.ClientInfoController;
+import ui.discount.HotelDiscountController;
 import ui.main.RootLayoutController;
 import ui.utils.Dialogs;
 import vo.CustomerVO;
@@ -78,7 +81,7 @@ public class GuideUIController {
 			creditLabel.setVisible(true);
 			memberType.setVisible(true);
 		}else if (AccountType.Hotel.equals(logVO.accountType)) {
-			guids.getItems().addAll(views[1],views[4],views[5],views[6],views[7]);
+			guids.getItems().addAll(views[1],views[4],views[5],views[7]);
 		}else if (AccountType.Web.equals(logVO.accountType)) {
 			guids.getItems().addAll(views[1],views[8],views[9]);
 		}else if (AccountType.Administor.equals(logVO.accountType)) {
@@ -96,12 +99,12 @@ public class GuideUIController {
 //			
 //		});
 		guids.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-                	try {
-						rootLayoutController.changeDetails(fxmls[getIndex(newValue)]);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-                });
+        	try {
+				rootLayoutController.changeDetails(fxmls[getIndex(newValue)]);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+        });
 		//((JFXListView<String>)guids).depthProperty().set(1);
 	}
 	@FXML

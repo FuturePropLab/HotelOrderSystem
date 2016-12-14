@@ -1,9 +1,12 @@
 package ui.customer;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 import businesslogic.customer.CustomerDealController;
+import businesslogic.login.LoginController;
 import businesslogic.member.MemberController;
+import businesslogicservice.LoginService;
 import businesslogicservice.MemberService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,9 +19,11 @@ import tools.MemberBelongType;
 import tools.MemberType;
 import tools.ResultMessage;
 import tools.ResultMessage_Member;
+import tools.ResultMessage_Modify;
 import ui.main.DetailsController;
 import ui.utils.Dialogs;
 import vo.CustomerVO;
+import vo.LogVO;
 import vo.MemberVO;
 
 /**
@@ -72,6 +77,60 @@ public class ClientInfoController extends DetailsController{
 	private void initialize(){
 		memberType_apply.getItems().setAll("普通会员","企业会员");
 		memberType_apply.setValue("普通会员");
+		
+		LoginService loginService=LoginController.getInstance();
+		LogVO logVO=loginService.getLogState();
+		this.customerID=logVO.accountID;
+		
+		try {
+			CustomerVO customerVO  =CustomerDealController.getInstance().getCustomerInfo(customerID);
+			if(customerVO!=null){
+				this.gender.setValue(customerVO.gender);
+				this.credit.setText(String.valueOf(customerVO.credit));
+				this.customerName.setText(customerVO.customerName);
+				this.contactWay.setText(customerVO.telephone);
+				MemberVO memberVO = MemberController.getInstance().getMemberInfo(customerID);
+				
+				MemberType me = memberVO.memberType;
+				if(me.getType()== MemberBelongType.None){
+					this.applyMessage.setVisible(false);
+					this.memberType.setText("不是会员");
+					this.memberType.setVisible(true);
+					this.memberType_apply.getItems().clear();
+					this.memberType_apply.getItems().add("普通会员");
+					this.memberType_apply.getItems().add("企业会员");
+					this.memberType.setText("");
+					
+				}else if(me.getType()==MemberBelongType.Ordinary){
+					this.applyMessage.setVisible(false);
+					this.applyMember.setVisible(false);
+					this.memberType.setText("普通会员");
+					this.memberMessage.setVisible(true);
+					this.memberTypeInfo.setText("会员生日:");
+					this.memberTypeInfo.setVisible(true);
+					this.memberInfo.setText(me.getBirthday().toString());
+					this.memberInfo.setVisible(true);
+					this.level.setText(String.valueOf(me.getLevel()));
+					this.level.setVisible(true);
+					this.levelLable.setVisible(true);
+				}else{
+					this.applyMessage.setVisible(false);
+					this.applyMember.setVisible(false);
+					this.memberType.setText("企业会员");
+					this.memberMessage.setVisible(true);
+					this.memberTypeInfo.setText("企业名称:");
+					this.memberTypeInfo.setVisible(true);
+					this.memberInfo.setText(me.getCompanyName());
+					this.memberInfo.setVisible(true);
+					this.level.setText(String.valueOf(me.getLevel()));
+					this.level.setVisible(true);
+					this.levelLable.setVisible(true);
+				}
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@FXML
@@ -79,11 +138,10 @@ public class ClientInfoController extends DetailsController{
 		CustomerVO customerVO =  new CustomerVO
 				(customerID, this.customerName.getText(), this.gender.getValue(),
 						this.contactWay.getText(), null, 0);
-		try {
-			CustomerDealController.getInstance().changeCustomerInfo(customerVO);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(ResultMessage_Modify.Success.equals(CustomerDealController.getInstance().changeCustomerInfo(customerVO))){
+			Dialogs.showMessage("嘿", "保存成功了哟……");
+		}else {
+			Dialogs.showMessage("阿欧", "保存失败了……");
 		}
 	}
 	@FXML
@@ -117,9 +175,13 @@ public class ClientInfoController extends DetailsController{
 			ResultMessage_Member rs = memberService.modifyMemberInfo(memberVO);
 			if(rs==ResultMessage_Member.Success){
 				Dialogs.showMessage("会员申请成功");
-				// TODO洁面刷新
+				try {
+					rootLayoutController.changeDetails("../customer/ClientInfo.fxml");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}else{
-				Dialogs.showMessage("会员申请失败   请注意自己的信用值");
+				Dialogs.showMessage("会员申请失败，也许是你信用值不够呢");
 			}
 		}else  if("企业会员".equals(this.memberType_apply.getValue())){
 			if(this.companyName_apply.getText()==null){
@@ -134,7 +196,11 @@ public class ClientInfoController extends DetailsController{
 			ResultMessage_Member rs = memberService.modifyMemberInfo(memberVO);
 			if(rs==ResultMessage_Member.Success){
 				Dialogs.showMessage("会员申请成功");
-				// TODO洁面刷新
+				try {
+					rootLayoutController.changeDetails("../customer/ClientInfo.fxml");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}else{
 				Dialogs.showMessage("会员申请失败   请注意自己的信用值");
 			}
@@ -142,64 +208,4 @@ public class ClientInfoController extends DetailsController{
 		
 	}
 	
-	/**
-	 * 
-	 * @param customerID 客户ID
-	 */
-	public void initValue(String customerID) {
-		this.customerID = customerID;
-		CustomerVO customerVO = null ;
-		//TODO:调用blservice获取客户信息并将组件的值填好
-		try {
-		   customerVO  =CustomerDealController.getInstance().getCustomerInfo(customerID);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		if(customerVO!=null){
-			this.gender.setValue(customerVO.gender);
-			this.credit.setText(String.valueOf(customerVO.credit));
-			this.customerName.setText(customerVO.customerName);
-			this.contactWay.setText(customerVO.telephone);
-			MemberVO memberVO = MemberController.getInstance().getMemberInfo(customerID);
-			
-			MemberType me = memberVO.memberType;
-			if(me.getType()== MemberBelongType.None){
-				this.applyMessage.setVisible(false);
-				this.memberType.setText("不是会员");
-				this.memberType.setVisible(true);
-				this.memberType_apply.getItems().clear();
-				this.memberType_apply.getItems().add("普通会员");
-				this.memberType_apply.getItems().add("企业会员");
-				this.memberType.setText("");
-				
-			}else if(me.getType()==MemberBelongType.Ordinary){
-				this.applyMessage.setVisible(false);
-				this.applyMember.setVisible(false);
-				this.memberType.setText("普通会员");
-				this.memberMessage.setVisible(true);
-				this.memberTypeInfo.setText("会员生日:");
-				this.memberTypeInfo.setVisible(true);
-				this.memberInfo.setText(me.getBirthday().toString());
-				this.memberInfo.setVisible(true);
-				this.level.setText(String.valueOf(me.getLevel()));
-				this.level.setVisible(true);
-				this.levelLable.setVisible(true);
-			}else{
-				this.applyMessage.setVisible(false);
-				this.applyMember.setVisible(false);
-				this.memberType.setText("企业会员");
-				this.memberMessage.setVisible(true);
-				this.memberTypeInfo.setText("企业名称:");
-				this.memberTypeInfo.setVisible(true);
-				this.memberInfo.setText(me.getCompanyName());
-				this.memberInfo.setVisible(true);
-				this.level.setText(String.valueOf(me.getLevel()));
-				this.level.setVisible(true);
-				this.levelLable.setVisible(true);
-			}
-			
-		}
-	}
 }
