@@ -214,8 +214,9 @@ public class OrderController implements OrderService{
 			return null;
 		}
 		try {
+			System.out.println(order_id);
 			OrderPO orderPO  = orderDataService.findOrder(order_id);
-			System.out.println(orderPO.getAssessment());
+			System.out.println(orderPO==null);
 			return getOrderVO(orderDataService.findOrder(order_id));
 		} catch (RemoteException e) {
 			System.err.println(e.getCause().getMessage());
@@ -240,8 +241,8 @@ public class OrderController implements OrderService{
 			//TODO: 暂时先用Mock代替
 			if(order2.getState().equals(OrderState.Unexecuted)){
 				CreditLogDealService creditLogDealService=CreditController.getInstance();
-				creditLogDealService.CreditChangeAboutOrder(order2, ActionType.RevokeOrder);
 				order2.setRevokeTime(new Date());
+				creditLogDealService.CreditChangeAboutOrder(order2, ActionType.RevokeOrder);
 				return order2.changeState(OrderState.Revoked);
 			}
 		} catch (RemoteException e) {

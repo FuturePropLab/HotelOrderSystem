@@ -66,7 +66,9 @@ public class CreditItemController {
 			OrderService orderService=OrderController.getInstance();
 			OrderVO orderVO=orderService.checkSingleOrder(creditlogVO.orderID);
 			HotelDealService hotelDealService=HotelDealController.getInstance();
+			System.out.println("getHotel"+orderVO.hotelID);
 			HotelbriefVO hotelbriefVO=hotelDealService.getHotelInfo(orderVO.hotelID);
+			System.out.println("getHotel!!!:   "+hotelbriefVO.hotelName);
 			this.price.setText(orderVO.value+"");
 			this.hotelName.setText(hotelbriefVO.hotelName);
 			this.orderIDLable.setVisible(true);

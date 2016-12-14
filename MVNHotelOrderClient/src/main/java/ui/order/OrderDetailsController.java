@@ -218,9 +218,17 @@ public class OrderDetailsController extends DetailsController{
 			roomNumbers=roomNumbers+string+" ";
 		}
 		this.roomNumbers.setText(roomNumbers);
+		if(orderVO.checkInTime!=null)
 		this.checkInDate.setText(DateFormat.format_includingTime(orderVO.checkInTime));
+		else
+			this.checkInDate.setText("未入住");
+		if(orderVO.planedCheckOutTime!=null)
 		this.planedCheckOutDate.setText(DateFormat.format_includingTime(orderVO.planedCheckOutTime));
+		
+		if(orderVO.checkInTime!=null)
 		this.checkOutDate.setText(DateFormat.format_includingTime(orderVO.checkInTime));
+		else
+			this.checkOutDate.setText("未离开");
 		this.mark.setText(orderVO.mark.getValue()+"");
 		this.star_1.setImage(orderVO.mark.getValue()>=1? yellowStar:greyStar);
 		this.star_2.setImage(orderVO.mark.getValue()>=2? yellowStar:greyStar);

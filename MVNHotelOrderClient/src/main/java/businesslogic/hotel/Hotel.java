@@ -374,6 +374,7 @@ public class Hotel {
 
 		public HotelFacilityVO gethotelFacilityVO(String hotelID) {
 			try {
+				System.out.println("dddd: "+hotelID);
 				HotelPO hotelPO  = hotelDataService.getHotel(hotelID);
 				HotelFacilityVO hotelFacilityVO = new HotelFacilityVO(hotelPO.getFacility());
 				hotelFacilityVO.hotelID = hotelID;

@@ -13,6 +13,7 @@ import businesslogic.order.Order;
 import dataservice.CreditDataService;
 import po.CreditLogPO;
 import po.OrderPO;
+import rmi.RemoteHelper;
 import stub.CreditData_Stub;
 import stub.CreditLogDeal_Stub;
 import tools.ActionType;
@@ -35,6 +36,9 @@ public class Credit {
 	 * chenyuyan 测试用构造方法
 	 * 
 	 */
+	public Credit(){
+		this.creditDataService = RemoteHelper.getInstance().getCreditDataService();
+	}
 	public Credit(CreditData_Stub stub){
 		this.creditDataService = stub;
 	}
@@ -52,17 +56,22 @@ public class Credit {
 		CustomerVO customerVO = order.getCustomer();
 		int credit = customerVO.credit;
 		//int credit =80;
-		switch (type){
 		
-		case RightOrder:creditchange = order.getOrderValue();//完成一个订单增加订单价值的信用值
-		case RevokeOrder://撤销的订单时间距离最晚订单执行时间不足6个小时，扣去订单价值的一半，需求上写的
-				Date revokedTime = order.getOrderPO().getRevokeTime();
-				Date latestTimeArriv = order.getOrderPO().getLatestTime();
-				long between = ((latestTimeArriv.getTime()-revokedTime.getTime())/(1000*60*60));
-				if(between<6){
-					creditchange = -order.getOrderValue()/2;
-				}
-			
+		
+		if(type == ActionType.RightOrder){
+			creditchange = order.getOrderValue();
+		}else if(type == ActionType.RevokeOrder){
+			System.out.println("revoke order:   here!!!!!!");
+			System.out.println(order.getOrderPO().getLatestTime());
+			System.out.println(order.getOrderPO().getRevokeTime());
+			Date revokedTime = order.getOrderPO().getRevokeTime();
+			Date latestTimeArriv = order.getOrderPO().getLatestTime();
+			System.out.println("is null? revoke:  "+revokedTime==null);
+			System.out.println("is null? last:  "+latestTimeArriv==null);
+			long between = ((latestTimeArriv.getTime()-revokedTime.getTime())/(1000*60*60));
+			if(between<6){
+				creditchange = -order.getOrderValue()/2;
+			}
 		}
 		result = credit+creditchange;
 		//异常订单交给数据层处理,只处理正常订单和撤销订单，正常订单包括手动延迟入住，交给数据层判断
@@ -76,21 +85,13 @@ public class Credit {
 					creditchange = -order.getOrderValue();
 					
 				}*/
-	
-				
+
 				/*long between=((checkOutTime.getTime()-planedLeaveTime.getTime())/(1000*60));
 				if(between>=30){
 					creditchange -=30;
 									}*/
 				//System.out.println(between);
-				
-				
-				
-		
-		
-		
-		
-		
+	
 		//System.out.print(result);
 	/*	try {
 			ResultMessage updatelevel = c.levelUpdate(result, order.getCustomer().customerID);
@@ -106,7 +107,6 @@ public class Credit {
 			e.printStackTrace();
 		}
 		
-	
 		if(order==null){return ResultMessage.NotExist;}
 		else if(type.equals(ActionType.RevokeOrder)){
 			
@@ -126,11 +126,10 @@ public class Credit {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+			
+		return ResultMessage.NotExist;
 	}
-			return ResultMessage.NotExist;
-	}
-	
-	
 	
 	
 	
@@ -142,11 +141,13 @@ public class Credit {
 	 */
 	public List<CreditlogVO> getLogList(String customer_id) {
 //		creditDataService = new CreditData_Stub();
+		System.out.println(" getLogList:   "+customer_id);
 		
 		List<CreditlogVO> logList = new ArrayList<CreditlogVO>();
 		List<CreditLogPO> list = null;
 		try {
 			list = creditDataService.getLogList(customer_id);
+			System.out.println(list);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -277,8 +278,4 @@ public class Credit {
 		
 	}
 	
-	
-	public Credit(){
-//		this.creditDataService = new CreditDataService();
-	}
 }

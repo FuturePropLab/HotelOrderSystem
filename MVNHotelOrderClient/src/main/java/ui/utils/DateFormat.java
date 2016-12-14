@@ -24,7 +24,8 @@ public class DateFormat {
 	 * @return 格式化的字符串
 	 */
 	public static String format(Date date) {
-		return date.getYear()+"-"+date.getMonth()+"-"+date.getDate();
+		return String.valueOf(1900+date.getYear())+"-"+String.valueOf(1+date.getMonth())+"-"+
+				String.valueOf(date.getDate());
 	}
 	
 	/**

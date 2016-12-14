@@ -26,7 +26,7 @@ public class CreditController implements CreditLogDealService{
 	private static CreditController creditController;
 	private CreditController() {
 		// TODO Auto-generated constructor stub
-		Credit credit = new Credit();
+		this.credit = new Credit();
 	} 
 	
 	
@@ -49,9 +49,6 @@ public class CreditController implements CreditLogDealService{
 		return credit.CreditChangeAboutOrder(order, type);
 	}
 	public List<CreditlogVO> getLogList(String customer_id) {
-		// TODO Auto-generated method stub
-		
-		//Credit credit = new Credit(customer_id);
 		return credit.getLogList(customer_id);
 	}
 

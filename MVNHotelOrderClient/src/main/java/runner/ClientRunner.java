@@ -11,6 +11,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import businesslogic.customer.CustomerDealController;
+import businesslogic.hotel.HotelDealController;
 import businesslogic.hotel.HotelManageController;
 import rmi.RemoteHelper;
 import vo.CustomerVO;
@@ -63,9 +64,12 @@ public class ClientRunner {
 		HotelFacilityVO hotelFacilityVO = new HotelFacilityVO();
 		hotelFacilityVO.hotelID = "HT001";
 		hotelFacilityVO.other="wwwwwww";
-		HotelManageController hotelManageController = HotelManageController.getInstance();
-		System.out.println(hotelManageController.modifyFacility(hotelFacilityVO));
-		
+		//HotelManageController hotelManageController = HotelManageController.getInstance();
+//		HotelDealController hotelDealController = HotelDealController.getInstance();
+//		HotelFacilityVO g = hotelDealController.gethotelFacilityVO("HT001");
+//		System.out.println(g.other);
+//		System.out.println(hotelManageController.modifyFacility(hotelFacilityVO));
+//		
 //		CustomerDealController customerDealController = CustomerDealController.getInstance();
 //		CustomerVO cus = customerDealController.getCustomerInfo("CS001");
 //		System.out.println(cus.membervo);
