@@ -199,7 +199,7 @@ public class OrderDetailsController extends DetailsController{
 		this.price.setText(orderVO.price+"");
 		this.latestDate.setText(DateFormat.format_includingTime(orderVO.latestTime));
 		this.planedLeaveDate.setText(DateFormat.format_includingTime(orderVO.planedLeaveTime));
-		this.people.setText(people+"");
+		this.people.setText(orderVO.planedPeopleNumber+"");
 		this.children.setText(orderVO.child?"有":"无");
 		this.customerName.setText(customerVO.customerName);
 		this.hotelAddress.setText(hotelbriefVO.hotelAddress.toString());
