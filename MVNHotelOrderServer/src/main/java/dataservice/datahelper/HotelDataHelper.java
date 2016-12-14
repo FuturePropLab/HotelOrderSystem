@@ -141,6 +141,9 @@ public interface HotelDataHelper {
 	  public List<OrderAssessPO> gethotelAssessVO(String hotelID);
 	  
 	  
+	  public  boolean isbooked(String customerID , String hotelID);
+	  
+	  
 
 	  
 	  

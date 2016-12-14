@@ -1,7 +1,6 @@
 
 package stub;
 
-import java.net.URI;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,13 +14,9 @@ import tools.HotelFacility;
 import tools.HotelRoomInfo;
 import tools.ResultMessage_Hotel;
 import tools.RoomType;
-import tools.SearchHotel;
 import tools.StandardSearch;
 import tools.Star;
 import tools.TypeRoomInfo;
-import vo.HotelDetailsVO;
-import vo.HotelDiscribtionsVO;
-import vo.HotelFacilityVO;
 import vo.HotelInputVO;
 
 public class HotelData_Stub implements HotelDataService{
@@ -284,6 +279,13 @@ public class HotelData_Stub implements HotelDataService{
 	public ResultMessage_Hotel saveFacility(String hotelID, HotelFacility hotelFacility) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	@Override
+	public boolean isbooked(String customerID, String hotelID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

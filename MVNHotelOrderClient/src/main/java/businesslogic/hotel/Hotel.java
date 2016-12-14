@@ -395,6 +395,11 @@ public class Hotel {
 			return pictureDeal.uploadFrontPicture(hotelID, uri);
 		}
 		
+		/**
+		 * 
+		 * @param hotelID
+		 * @return
+		 */
 		public HotelAssessVO gethotelAssessVO(String hotelID) {
 			List<OrderAssessPO> orderAssessPOs  = new ArrayList<>();
 			try {
@@ -435,7 +440,12 @@ public class Hotel {
 			return hotelAssessVO;
 		}
 		
-		
+		/**
+		 * 
+		 * @param hotelID
+		 * @param hotelFacilityVO
+		 * @return
+		 */
 		ResultMessage_Hotel saveFacility(String hotelID ,HotelFacilityVO hotelFacilityVO){
 			ResultMessage_Hotel rs = ResultMessage_Hotel.success;
 			HotelFacility hotelFacility = new HotelFacility(hotelFacilityVO);
@@ -454,5 +464,18 @@ public class Hotel {
 			return rs;
 		}
 		
+		/**
+		 * 
+		 * @param customerID
+		 * @param hotelID
+		 * @return
+		 */
+		public boolean isbooked(String customerID, String hotelID) {
+			try {
+				return hotelDataService.isbooked(customerID, hotelID);
+			} catch (RemoteException e) {
+				return false;
+			}
+		}
 	
 }

@@ -128,7 +128,22 @@ public interface HotelDataService extends Remote{
 	 */
 	public List<OrderAssessPO> gethotelAssessVO(String hotelID) throws RemoteException;
 	
-	
+	/**
+	 * 
+	 * @param hotelID
+	 * @param hotelFacility
+	 * @return
+	 * @throws RemoteException
+	 */
 	public ResultMessage_Hotel saveFacility(String hotelID , HotelFacility hotelFacility) throws RemoteException;
-
+	
+	/**
+	 * 
+	 * @param customerID
+	 * @param hotelID
+	 * @return
+	 * @throws RemoteException
+	 */
+	public  boolean isbooked(String customerID , String hotelID)throws RemoteException;
+	
 }
