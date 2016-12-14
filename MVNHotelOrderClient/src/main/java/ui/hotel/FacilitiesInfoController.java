@@ -1,15 +1,11 @@
 package ui.hotel;
 
 import java.io.File;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
 
 import businesslogic.hotel.HotelDealController;
 import businesslogic.hotel.HotelManageController;
 import businesslogic.login.LoginController;
 import businesslogicservice.LoginService;
-import businesslogicservice.ManageHotelInfoService;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Hyperlink;
@@ -19,15 +15,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-import sun.security.jgss.LoginConfigImpl;
 import tools.AccountType;
-import tools.HotelRoomInfo;
 import tools.ResultMessage_Hotel;
 import ui.main.DetailsController;
 import ui.utils.Dialogs;
-import vo.HotelDiscribtionsVO;
 import vo.HotelFacilityVO;
-import vo.HotelInputVO;
 
 /**
  * 酒店详情界面的控制器
@@ -93,13 +85,15 @@ public class FacilitiesInfoController extends DetailsController{
 	
     @FXML
     private void initialize() {
-    	this.hotelID = LoginController.getInstance().getLogState().accountID;
-    	HotelDealController hotelDealController = HotelDealController.getInstance();
-    	HotelFacilityVO hotelFacilityVO = hotelDealController.gethotelFacilityVO(hotelID);
-    	if(hotelFacilityVO!=null)
+    	
+    	if(this.hotelID==null){
+    		this.hotelID = LoginController.getInstance().getLogState().accountID;
+    		HotelDealController hotelDealController = HotelDealController.getInstance();
+    		HotelFacilityVO hotelFacilityVO = hotelDealController.gethotelFacilityVO(hotelID);
 //    	setValues(new HotelFacilityVO("hotelID", "hotelName", null, true, true, true, true, true, true, true, true, 
 //    			true, true, "other"));
-    	setValues(hotelFacilityVO);
+    		setValues(hotelFacilityVO);
+    	}
     }
     
     @FXML
@@ -177,6 +171,7 @@ public class FacilitiesInfoController extends DetailsController{
     		
     	}
     	else {
+    		this.hotelID = hotelFacilityVO.hotelID;
 			for(Label label:facilities){
 				label.setVisible(false);
 			}

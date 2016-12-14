@@ -243,6 +243,7 @@ public class OrderController implements OrderService{
 				CreditLogDealService creditLogDealService=CreditController.getInstance();
 				order2.setRevokeTime(new Date());
 				creditLogDealService.CreditChangeAboutOrder(order2, ActionType.RevokeOrder);
+				
 				return order2.changeState(OrderState.Revoked);
 			}
 		} catch (RemoteException e) {
