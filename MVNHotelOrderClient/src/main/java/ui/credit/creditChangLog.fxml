@@ -7,7 +7,7 @@
    <children>
       <ScrollPane hbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
-            <AnchorPane prefHeight="740.0" prefWidth="900.0" />
+            <AnchorPane fx:id="creditList" prefHeight="740.0" prefWidth="900.0" />
          </content>
       </ScrollPane>
    </children>
