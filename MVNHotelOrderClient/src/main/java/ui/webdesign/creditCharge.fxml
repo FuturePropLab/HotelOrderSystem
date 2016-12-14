@@ -73,7 +73,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="amount" maxWidth="151.0" minWidth="151.0" onAction="#handleAmount" onKeyTyped="#handleAmount" prefHeight="54.0" prefWidth="151.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <JFXTextField fx:id="amount" maxWidth="151.0" minWidth="151.0" onAction="#handleAmount" onKeyReleased="#handleAmount" onKeyTyped="#handleAmount" prefHeight="54.0" prefWidth="151.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="24.0" />
                </font>

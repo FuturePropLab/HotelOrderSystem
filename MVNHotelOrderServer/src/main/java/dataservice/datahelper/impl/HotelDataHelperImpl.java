@@ -18,6 +18,7 @@ import po.HotelAddressPO;
 import po.HotelBasePO;
 import po.HotelFacilityPO;
 import po.OrderAssessPO;
+import po.OrderSearchStorePO;
 import po.RoomPK;
 import po.TypeRoomInfoPO;
 import tools.HotelAddress;
@@ -196,30 +197,39 @@ public class HotelDataHelperImpl implements HotelDataHelper {
 	 * (non-Javadoc)
 	 * @see dataservice.datahelper.HotelDataHelper#modifyHotelBasePO(po.HotelBasePO)
 	 */
-	public ResultMessage_Hotel modifyHotelBasePO(HotelBasePO hotelBasePO) {
-//		String hotelID = hotelBasePO.getHotelID();
-//		HotelBasePO hotelBasePO2 = getHotelBasePO(hotelID);
-//		if(hotelBasePO2==null)  return ResultMessage_Hotel.fail;
-//		
-//		String hotelName = hotelBasePO.getHotelName();		
-//		if(hotelName!=null && "".equals(hotelName)){
-//			 hotelBasePO2.setHotelName(hotelName);
-//		}
-//		
-//		if(hotelBasePO.getGrade()!=0){
-//			hotelBasePO2.setGrade(hotelBasePO.getGrade());
-//		}
-//		
-//		Star star = hotelBasePO.getStar();
-//		if(star != null){
-//			hotelBasePO2.setStar(star);
-//		}
-//		
-		
+	public ResultMessage_Hotel modifyHotelBasePO(HotelBasePO hotelBasePO) {		
 		Session s = Hibernateutils.getSessionFactory().openSession();
 		try{
 			Transaction t = s.beginTransaction();
 			s.update(hotelBasePO);
+			t.commit();
+			s.close();
+			s = Hibernateutils.getSessionFactory().openSession();
+			t =  s.beginTransaction();
+			RoomPK roomPK =new RoomPK(hotelBasePO.getHotelID(), RoomType.Double);
+			TypeRoomInfoPO typeRoomInfoPO= (TypeRoomInfoPO) s.load(TypeRoomInfoPO.class, roomPK);
+			typeRoomInfoPO.setHotelName(hotelBasePO.getHotelName());
+			s.update(typeRoomInfoPO);
+			
+			roomPK =new RoomPK(hotelBasePO.getHotelID(), RoomType.EluxeSuite);
+			typeRoomInfoPO= (TypeRoomInfoPO) s.load(TypeRoomInfoPO.class, roomPK);
+			typeRoomInfoPO.setHotelName(hotelBasePO.getHotelName());
+			s.update(typeRoomInfoPO);
+			
+			roomPK =new RoomPK(hotelBasePO.getHotelID(), RoomType.Single);
+			typeRoomInfoPO= (TypeRoomInfoPO) s.load(TypeRoomInfoPO.class, roomPK);
+			typeRoomInfoPO.setHotelName(hotelBasePO.getHotelName());
+			s.update(typeRoomInfoPO);
+			
+			roomPK =new RoomPK(hotelBasePO.getHotelID(), RoomType.Standard);
+			typeRoomInfoPO= (TypeRoomInfoPO) s.load(TypeRoomInfoPO.class, roomPK);
+			typeRoomInfoPO.setHotelName(hotelBasePO.getHotelName());
+			s.update(typeRoomInfoPO);
+			
+			roomPK =new RoomPK(hotelBasePO.getHotelID(), RoomType.Suites);
+			typeRoomInfoPO= (TypeRoomInfoPO) s.load(TypeRoomInfoPO.class, roomPK);
+			typeRoomInfoPO.setHotelName(hotelBasePO.getHotelName());
+			s.update(typeRoomInfoPO);
 			t.commit();
 			return ResultMessage_Hotel.success;
 		}catch(Exception e){
@@ -478,6 +488,16 @@ public class HotelDataHelperImpl implements HotelDataHelper {
 		List<OrderAssessPO> hAssessPOs =  cr.list();
 		s.close();
 		return hAssessPOs;
+	}
+
+	public boolean isbooked(String customerID, String hotelID) {
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		Criteria cr = s.createCriteria(OrderSearchStorePO.class);
+		cr.add(Restrictions.eq("hotelID", hotelID));
+		cr.add(Restrictions.eq("customerID", customerID));
+		boolean ans = cr.list().isEmpty();
+		s.close();
+		return !ans;
 	}
 
 

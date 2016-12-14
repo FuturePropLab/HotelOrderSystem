@@ -90,4 +90,11 @@ public List<CustomerAccount> getCustomerAccount() throws RemoteException {
 	return null;
 }
 
+
+@Override
+public ResultMessage changeCustomerInfoAboutCredit(CustomerPO customerInfo) throws RemoteException {
+	// TODO Auto-generated method stub
+	return null;
+}
+
 }

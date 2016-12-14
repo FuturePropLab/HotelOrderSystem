@@ -102,4 +102,12 @@ public interface HotelDealService {
 	 */
 	public HotelDetailsVO  getHotelDetailsVO(String hotelID);
 	
+	/**
+	 * 
+	 * @param customerID
+	 * @param hotelID
+	 * @return
+	 */
+	public  boolean isbooked(String customerID , String hotelID);
+	
 }

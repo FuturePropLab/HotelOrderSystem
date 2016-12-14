@@ -21,7 +21,8 @@ public class testHotel {
 //			for (int i = 0; i < pos.size(); i++) {
 //				System.out.println(pos.get(i).getHotelName());
 //			}
-//			HotelDataHelper hotelDataHelper = DataHelperUtils.getHotelDataHelper();
+			HotelDataHelper hotelDataHelper = DataHelperUtils.getHotelDataHelper();
+			//System.out.println(hotelDataHelper.isbooked("CS002", "HT001"));
 //			String hotelID = "HT0410";
 //			String hotelName= "蓝鸟之家";
 //			TypeRoomInfo typeRoomInfo1 = new TypeRoomInfo(hotelID, hotelName, RoomType.Single, 0, 0.0);
@@ -66,7 +67,7 @@ public class testHotel {
 //				System.out.println(list.get(i).getHotelName());
 //				System.out.println(list.get(i).getStar());
 //			}
-			Hibernateutils.shutdown();
+			//Hibernateutils.shutdown();
 
 		}
 }

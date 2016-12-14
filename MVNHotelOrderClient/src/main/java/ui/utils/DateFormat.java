@@ -62,7 +62,7 @@ public class DateFormat {
 	 * @return 设置好值的Date对象
 	 */
 	public static Date getDate(JFXDatePicker datePicker,JFXDatePicker timePicker) {
-		if(datePicker.getValue()==null || timePicker.getValue()==null){
+		if(datePicker.getValue()==null || timePicker.getTime()==null){
 			return null;
 		}
 		return new Date(datePicker.getValue().getYear(), datePicker.getValue().getMonthValue(), 

@@ -47,6 +47,9 @@ public class CustomerPO implements Serializable{
 		 this.customerID = customervo.customerID;
 		 this.customerName = customervo.customerName;
 		 this.gender = customervo.gender;
+		 this.telephone = customervo.telephone;
+		 this.credit  = customervo.credit;
+		 
 	 }
 	
 	 

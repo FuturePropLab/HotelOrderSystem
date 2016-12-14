@@ -313,5 +313,8 @@ OrderDataService,CreditDataService, MemberDataService{
 	public ResultMessage_Hotel saveFacility(String hotelID, HotelFacility hotelFacility) throws RemoteException {
 		return hotelDataService.saveFacility(hotelID, hotelFacility);
 	}
+	public boolean isbooked(String customerID, String hotelID) throws RemoteException {
+		return hotelDataService.isbooked(customerID, hotelID);
+	}
 
 }

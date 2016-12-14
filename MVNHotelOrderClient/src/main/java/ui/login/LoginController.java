@@ -99,9 +99,7 @@ public class LoginController extends FullLayoutController{
 							(HotelDetailController) rootLayoutController.getDetailsController();
 					hotelDetailController.initValue(accountID);
 				}else if(testType == AccountType.Web){
-					rootLayoutController.changeDetails("../discount/WebStrategy.fxml");
-					WebDiscountController webDiscountController =
-							(WebDiscountController) rootLayoutController.getDetailsController();
+					rootLayoutController.changeDetails("../webdesign/creditCharge.fxml");				
 					
 				}
 				

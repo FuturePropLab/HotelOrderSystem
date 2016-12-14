@@ -41,7 +41,11 @@ public class RoomDataServiceImpl implements RoomDataService {
 	}
 
 	public ResultMessage_Room deleteRecord(String hotelID, String RoomNO, Date begin)throws RemoteException {
-		return roomDateHelper.deleteRecord(hotelID, RoomNO, begin);
+		if(begin==null){
+			return roomDateHelper.deleteRecord(hotelID, RoomNO);
+		}else{
+			return roomDateHelper.deleteRecord(hotelID, RoomNO, begin);
+		}
 	}
 
 	public List<String> getAvailbleRoomNoByType(String hotelID, RoomType roomType, Date begin, Date end)throws RemoteException {

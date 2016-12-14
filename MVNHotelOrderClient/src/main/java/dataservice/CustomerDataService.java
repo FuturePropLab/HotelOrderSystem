@@ -26,7 +26,7 @@ public interface CustomerDataService extends Remote{
 	public List<CustomerPO> searchCustomer()throws RemoteException;
 	
 	
-	public ResultMessage changeCustomerInfoAboutCredit(CustomerVO customerInfo);
+	public ResultMessage changeCustomerInfoAboutCredit(CustomerPO customerInfo) throws RemoteException;
 	
 	
 	public List<CustomerAccount>  getCustomerAccount() throws RemoteException;

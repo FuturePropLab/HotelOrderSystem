@@ -74,5 +74,10 @@ public class HotelDealController implements HotelDealService {
 	public HotelDetailsVO getHotelDetailsVO(String hotelID) {
 		return hotel.getHotelDetailsVO(hotelID);
 	}
+
+	@Override
+	public boolean isbooked(String customerID, String hotelID) {
+		return hotel.isbooked(customerID, hotelID);
+	}
 		
 }

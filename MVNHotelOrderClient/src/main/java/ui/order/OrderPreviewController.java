@@ -31,7 +31,6 @@ import vo.OrderInputVO;
 public class OrderPreviewController extends DetailsController{
 	private static Image yellowStar=new Image("file:./target/resources/images/star__selected.png");
 	private static Image greyStar=new Image("file:./target/resources/images/star_unselected.png");
-	protected RootLayoutController rootLayoutController;
 	@FXML
 	private Label hotelName;
 	@FXML

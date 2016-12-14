@@ -77,6 +77,8 @@ public class ClientInfoController extends DetailsController{
 	private void initialize(){
 		memberType_apply.getItems().setAll("普通会员","企业会员");
 		memberType_apply.setValue("普通会员");
+		this.gender.getItems().clear();
+		this.gender.getItems().addAll("男","女");
 		
 		LoginService loginService=LoginController.getInstance();
 		LogVO logVO=loginService.getLogState();

@@ -9,7 +9,10 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.Date;
 
+import businesslogic.credit.Credit;
+import businesslogic.credit.CreditController;
 import businesslogic.customer.CustomerDealController;
 import businesslogic.hotel.HotelDealController;
 import businesslogic.hotel.HotelManageController;
@@ -59,11 +62,12 @@ public class ClientRunner {
 		
 //		LoginController loginController = LoginController .getInstance();
 //		loginController.logOut("CS001");
-//		
-		
-		HotelFacilityVO hotelFacilityVO = new HotelFacilityVO();
-		hotelFacilityVO.hotelID = "HT001";
-		hotelFacilityVO.other="wwwwwww";
+//	
+		CreditController creditController = CreditController.getInstance();
+		System.out.println(creditController.charge("CS001", 10, new Date()));
+//		HotelFacilityVO hotelFacilityVO = new HotelFacilityVO();
+//		hotelFacilityVO.hotelID = "HT001";
+//		hotelFacilityVO.other="wwwwwww";
 		//HotelManageController hotelManageController = HotelManageController.getInstance();
 //		HotelDealController hotelDealController = HotelDealController.getInstance();
 //		HotelFacilityVO g = hotelDealController.gethotelFacilityVO("HT001");

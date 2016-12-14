@@ -8,20 +8,17 @@ import java.util.Date;
 import java.util.List;
 
 import businesslogic.customer.CustomerInfoforCreditImp;
-import businesslogic.discount.DiscountWebController;
 import businesslogic.order.Order;
 import dataservice.CreditDataService;
 import po.CreditLogPO;
 import po.OrderPO;
 import rmi.RemoteHelper;
 import stub.CreditData_Stub;
-import stub.CreditLogDeal_Stub;
 import tools.ActionType;
 import tools.RecoverValue;
 import tools.ResultMessage;
 import vo.CreditlogVO;
 import vo.CustomerVO;
-import vo.OrderVO;
 
 /**
  * credit 委托类
@@ -38,6 +35,7 @@ public class Credit {
 	 */
 	public Credit(){
 		this.creditDataService = RemoteHelper.getInstance().getCreditDataService();
+		this.customerInfo = CustomerInfoforCreditImp.getInstance();
 	}
 	public Credit(CreditData_Stub stub){
 		this.creditDataService = stub;
@@ -178,16 +176,19 @@ public class Credit {
 	public ResultMessage charge(String customer_id, int ChargeMoney,Date chargeTime){
 		int value = ChargeMoney * 100;
 		CustomerVO customerVO = customerInfo.getCustomerInfo(customer_id);
-		customerVO.credit+= value;
+		customerVO.credit= customerVO.credit+ value;
 		int result = customerVO.credit;
 		Credit c= new Credit();
-		ResultMessage ret=ResultMessage.NotExist;
-		
+		//ResultMessage ret=ResultMessage.NotExist;
+		System.out.println(customerVO.credit);
+		System.out.println(customerVO.telephone);
+		System.out.println(customerVO.customerID);
+		System.out.println(customerVO.customerName);
 		
 		
 		ResultMessage rm = customerInfo.changeCustomerInfo(customerVO);
 		
-		if(rm==ResultMessage.NotExist||ret==ResultMessage.NotExist) return rm;
+		//if(rm==ResultMessage.NotExist||ret==ResultMessage.NotExist) return rm;
 		
 		CreditLogPO creditLogPO = new CreditLogPO(customer_id, ActionType.Charge,null,chargeTime,value,ChargeMoney);
 		

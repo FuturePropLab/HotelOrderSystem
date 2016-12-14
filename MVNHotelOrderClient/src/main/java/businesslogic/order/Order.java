@@ -325,7 +325,7 @@ public class Order {
 //		MockMemberController memberController = new MockMemberController();
 		System.out.println(placingOrderInfo.customerID);
 		MemberVO memberVO = memberController.getMemberInfo(placingOrderInfo.customerID);
-		newValue+= memberVO.memberType.getType()==MemberBelongType.None?0:1000;
+		newValue+= (memberVO.memberType.getType()==MemberBelongType.None?0:1000);
 		//memberController.getMemberInfo(placingOrderInfo.customerID);
 //		newValue+=customerInfo.getCustomer(placingOrderInfo.customerID).membervo.memberType.getType()
 //				.equals(MemberBelongType.None)?0:1000;

@@ -369,6 +369,9 @@ public class HotelDataServiceImpl implements HotelDataService {
 		HotelFacilityPO hotelFacilityPO = new HotelFacilityPO(hotelID, hotelFacility);
 		return hotelDataHelper.modifyHotelFacilityPO(hotelFacilityPO);
 	}
+	public boolean isbooked(String customerID, String hotelID) throws RemoteException {
+		return hotelDataHelper.isbooked(customerID, hotelID);
+	}
 	
 }  
 

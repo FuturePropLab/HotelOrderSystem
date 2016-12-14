@@ -98,6 +98,7 @@ public class Customer {
 		
 		
 //		CustomerVO cus = customerStub.getCustomerInfo(customer_id);
+		if(cus==null) return null;
 		CustomerVO cusVO = new CustomerVO(cus);
 		
 //        MemberVO memberInfo = new MemberVO(cus.getMemberpo().getCustomer_ID(),cus.getMemberpo().getMemberType());
@@ -181,9 +182,17 @@ public class Customer {
 	 */
 	public ResultMessage changeCustomerInfoAboutCredit(CustomerVO customerInfo) {
 		// TODO Auto-generated method stub
-		
-		
-		return customerdata.changeCustomerInfoAboutCredit(customerInfo);
+		CustomerPO customerPO = new CustomerPO(customerInfo);
+		customerPO.setMembervo(null);
+		try {
+			ResultMessage_Modify rm = customerdata.modify(customerPO);
+			if(rm==ResultMessage_Modify.Success)  return ResultMessage.Exist;
+			else return ResultMessage.NotExist;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return ResultMessage.NotExist;
+		}
 	}
 
 }

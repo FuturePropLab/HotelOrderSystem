@@ -42,12 +42,14 @@ public class CreditChargeController extends DetailsController{
 	private void handleUserName(){
 		AccountCustomerService accountCustomerService=CustomerAccountController.getInstance();
 		String customerID=accountCustomerService.getAccountID(userName.getText());
-		if(!"".equals(customerID)){
+		if(customerID!=null &&!"".equals(customerID)){
 			try {
 				CustomerVO customerVO=accountCustomerService.getCustomerDetail(customerID);
-				customerName.setText(customerVO.customerName);
-				credit.setText(customerVO.credit+"");
-				this.customerID=customerID;
+				if(customerVO!=null){
+					customerName.setText(customerVO.customerName);
+					credit.setText(customerVO.credit+"");
+					this.customerID=customerID;
+				}
 			} catch (RemoteException e) {
 				Dialogs.showMessage("阿欧", "查询用户失败了……");
 			}
@@ -59,6 +61,7 @@ public class CreditChargeController extends DetailsController{
 	}
 	@FXML
 	private void handleAmount(){
+		if("".equals(amount.getText())) return ;
 		plusVaule.setText(Integer.parseInt(amount.getText())*100+"");
 	}
 	@FXML

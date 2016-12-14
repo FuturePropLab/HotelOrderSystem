@@ -165,8 +165,11 @@ public class HotelSearchController extends DetailsController{
 	private void initHotelItems(List<HotelbriefVO> voList) throws IOException {
     	hotelList.getChildren().clear();
     	System.out.println("after clear!!!!!");
+     	String customerID = LoginController.getInstance().getLogState().accountID;
     	if(voList!=null && !voList.isEmpty())
 		for(HotelbriefVO hotelInfoVO:voList){
+			if(!this.orderedBefore.isSelected() ||
+					HotelDealController.getInstance().isbooked(customerID, hotelInfoVO.hotelID)){
 			System.out.println(hotelInfoVO.hotelName);
 			System.out.println(hotelInfoVO.priceRange.lowest);
 			System.out.println(hotelInfoVO.priceRange.higest);
@@ -182,6 +185,8 @@ public class HotelSearchController extends DetailsController{
 	    
 	    	hotelItemController.setValues(image, hotelInfoVO.hotelName, hotelInfoVO.star, hotelInfoVO.mark, 
 	    			hotelInfoVO.priceRange.lowest, hotelInfoVO.priceRange.higest, hotelInfoVO.hotelID, this);
+		
+			}
 		}
 	}
 	

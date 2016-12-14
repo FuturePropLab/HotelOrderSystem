@@ -1,9 +1,20 @@
 package ui.hotelworker;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
+import com.sun.org.apache.xml.internal.security.algorithms.implementations.IntegrityHmac;
 
 import businesslogic.login.LoginController;
+import businesslogic.room.RoomManageController;
+import businesslogic.room.RoomSingleController;
 import businesslogicservice.LoginService;
+import businesslogicservice.RoomManageService;
+import businesslogicservice.RoomSingleService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -13,8 +24,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Font;
+import tools.ResultMessage_Room;
+import tools.RoomType;
 import ui.main.DetailsController;
 import ui.utils.DateFormat;
+import ui.utils.Dialogs;
 
 /**
  * 线下入住和退房信息界面的控制器
@@ -41,12 +55,14 @@ public class OfflineInfoController extends DetailsController{
 	
 	@FXML
 	private void initialize() {
+		roomList.getChildren().clear();
 		roomType.getItems().addAll(roomTypes);
 		roomType.setValue(roomTypes[1]);
 		DateFormat.initDatePicker(date_from, date_to);
 		
 		LoginService loginService=LoginController.getInstance();
 		this.hotelID=loginService.getLogState().accountID;
+		handleSearchRoom();
 	}
 	@FXML
 	private void handleSearchRoom(){
@@ -54,20 +70,87 @@ public class OfflineInfoController extends DetailsController{
 		LocalDate to=date_to.getValue();
 		if(from!=null && to!=null && to.isAfter(from) && roomType.getValue()!=null){
 			roomList.getChildren().clear();
-			//TODO:调用blservice获取房间号码和状态，设置roomList的值，下面是一个例子
-			Hyperlink room=new Hyperlink("8887");
-			room.setFont(Font.font(24));
-			room.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e) -> {
-				//TODO:调用blservice把这个房间设为不可用，如果成功，更新相关组件的值，如果失败，弹窗提示原因
+			
+			RoomManageService roomManageService=RoomManageController.getInstance();
+			RoomSingleService roomSingleService = RoomSingleController.getInstance();
+			RoomType roomType=geRoomType();
+			List<String> roomlist = new ArrayList<String>();
+			List<String> availableRoomLsit=new ArrayList<String>();
+			if(roomType==null){
+				roomlist.addAll(roomManageService.getAllRoomByType(hotelID, RoomType.Single));
+				roomlist.addAll(roomManageService.getAllRoomByType(hotelID, RoomType.Double));
+				roomlist.addAll(roomManageService.getAllRoomByType(hotelID, RoomType.Standard));
+				roomlist.addAll(roomManageService.getAllRoomByType(hotelID, RoomType.Suites));
+				roomlist.addAll(roomManageService.getAllRoomByType(hotelID, RoomType.EluxeSuite));
+				availableRoomLsit = roomManageService.getAvaiableRoomBytime
+						(hotelID, RoomType.Single, DateFormat.getDate(date_from),  DateFormat.getDate(date_to));
+				availableRoomLsit = roomManageService.getAvaiableRoomBytime
+						(hotelID, RoomType.Double, DateFormat.getDate(date_from),  DateFormat.getDate(date_to));
+				availableRoomLsit = roomManageService.getAvaiableRoomBytime
+						(hotelID, RoomType.Standard, DateFormat.getDate(date_from),  DateFormat.getDate(date_to));
+				availableRoomLsit = roomManageService.getAvaiableRoomBytime
+						(hotelID, RoomType.Suites, DateFormat.getDate(date_from),  DateFormat.getDate(date_to));
+				availableRoomLsit = roomManageService.getAvaiableRoomBytime
+						(hotelID, RoomType.EluxeSuite, DateFormat.getDate(date_from),  DateFormat.getDate(date_to));
+			}else {
+				roomlist = roomManageService.getAllRoomByType(hotelID, roomType);
+				availableRoomLsit = roomManageService.getAvaiableRoomBytime
+						(hotelID, roomType, DateFormat.getDate(date_from),  DateFormat.getDate(date_to));
+			}
+			
+			List<Hyperlink> rooms =roomlist.stream().map(room->new Hyperlink(room)).collect(Collectors.toList());
+			roomList.getChildren().addAll(rooms);
+			//为每个房间设置监听方法
+			rooms.forEach(room->{
+				room.setFont(Font.font(24));
+				room.setOnAction(e -> {
+					ResultMessage_Room result = roomSingleService.addDisable(hotelID, room.getText(), new Date(), null);
+					if(ResultMessage_Room.success.equals(result)){
+						Dialogs.showMessage("噢耶","变更房间信息成功");
+						room.setDisable(true);
+					}else{
+						Dialogs.showMessage("啊咧","变更房间信息失败");
+					}
+				});
 			});
-			roomList.getChildren().add(room);
-			//上面是一个例子
+			//把不可用的房间变为不可选定
+			for(Hyperlink room:rooms){
+				if(!availableRoomLsit.contains(room.getText())){
+					room.setDisable(true);
+				}
+			}
+			
 		}
 	}
 	@FXML
 	private void handleConfirm(){
 		if(!"".equals(roomNumber.getText())){
-			//TODO:调用blservice，如果这个房间是不可以状态，变为可用，否则提示这个房间没有人入住
+			RoomSingleService roomSingleService = RoomSingleController.getInstance();
+			ResultMessage_Room result=roomSingleService.deleteDisable(hotelID, roomNumber.getText(), null);
+			if(ResultMessage_Room.success.equals(result)){
+				Dialogs.showMessage("噢耶", "变更房间信息成功");
+			}else {
+				Dialogs.showMessage("啊咧","变更房间信息失败，也许是这个房间并没有被登记为有人入住");
+			}
 		}
+	}
+	
+	
+	private RoomType geRoomType() {
+		if(roomType.getValue()==null){
+			return null;
+		}else if (roomType.getValue().equals(roomTypes[1])) {
+			return RoomType.Single;
+		}else if (roomType.getValue().equals(roomTypes[2])) {
+			return RoomType.Double;
+		}else if (roomType.getValue().equals(roomTypes[3])) {
+			return RoomType.Standard;
+		}else if (roomType.getValue().equals(roomTypes[4])) {
+			return RoomType.Suites;
+		}else if (roomType.getValue().equals(roomTypes[5])) {
+			return RoomType.EluxeSuite;
+		}
+
+		return null;
 	}
 }

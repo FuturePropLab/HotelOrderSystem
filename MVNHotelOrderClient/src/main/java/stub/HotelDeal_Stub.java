@@ -4,11 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import Exception.OutOfBoundsException;
 import businesslogicservice.HotelDealService;
 import po.HotelPO;
-import tools.Mark;
-import tools.PriceRange;
 import tools.RoomType;
 import tools.SortType;
 import tools.Star;
@@ -18,8 +15,8 @@ import vo.DiscountVO_hotel;
 import vo.HotelAssessVO;
 import vo.HotelDetailsVO;
 import vo.HotelFacilityVO;
-import vo.HotelbriefVO;
 import vo.HotelRoomInfoVO;
+import vo.HotelbriefVO;
 import vo.SearchHotelVO;
 
 public class HotelDeal_Stub implements HotelDealService {
@@ -151,6 +148,13 @@ public class HotelDeal_Stub implements HotelDealService {
 	public HotelDetailsVO getHotelDetailsVO(String hotelID) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	@Override
+	public boolean isbooked(String customerID, String hotelID) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 

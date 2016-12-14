@@ -221,6 +221,8 @@ public class OrderDetailsController extends DetailsController{
 			}else {
 				this.checkIn.setVisible(false);
 			}
+			this.checkOutInfo.setVisible(false);
+			this.assessInfo.setVisible(false);
 		}else{
 			this.checkInInfo.setVisible(true);
 			String roomNumbers="";
@@ -231,18 +233,21 @@ public class OrderDetailsController extends DetailsController{
 			this.checkInDate.setText(DateFormat.format_includingTime(orderVO.checkInTime));
 			this.planedCheckOutDate.setText(DateFormat.format_includingTime(orderVO.planedCheckOutTime));
 			this.checkIn.setVisible(false);
-		}
-		if(orderVO.checkOutTime==null){
-			this.checkOutInfo.setVisible(false);
-			if(AccountType.Hotel.equals(loginService.getLogState().accountType)){
-				this.checkOut.setVisible(true);
+			
+			if(orderVO.checkOutTime==null){
+				this.checkOutInfo.setVisible(false);
+				if(AccountType.Hotel.equals(loginService.getLogState().accountType)){
+					this.checkOut.setVisible(true);
+				}else {
+					this.checkOut.setVisible(false);
+				}
+				this.assessInfo.setVisible(false);
 			}else {
+				this.checkOutInfo.setVisible(true);
+				this.checkOutDate.setText(DateFormat.format_includingTime(orderVO.checkInTime));
 				this.checkOut.setVisible(false);
+				this.assessInfo.setVisible(true);
 			}
-		}else {
-			this.checkOutInfo.setVisible(true);
-			this.checkOutDate.setText(DateFormat.format_includingTime(orderVO.checkInTime));
-			this.checkOut.setVisible(false);
 		}
 		
 		this.mark.setText(orderVO.mark.getValue()+"");

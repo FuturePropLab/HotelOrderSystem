@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 
 import businesslogic.credit.CustomerInfoforCredit;
 import tools.ResultMessage;
-import tools.ResultMessage_Modify;
 import vo.CustomerVO;
 
 public class CustomerInfoforCreditImp implements CustomerInfoforCredit{
@@ -13,7 +12,7 @@ public class CustomerInfoforCreditImp implements CustomerInfoforCredit{
 
 	Customer customer;
 	private static CustomerInfoforCreditImp customerImp = null;
-	private CustomerInfoforCreditImp(){
+	public CustomerInfoforCreditImp(){
 		 this.customer = new Customer();
 	}
 	
@@ -38,10 +37,7 @@ public class CustomerInfoforCreditImp implements CustomerInfoforCredit{
 		}
 	}
 
-	public ResultMessage changeCustomerInfo(CustomerVO customerInfo) {
-		// TODO Auto-generated method stub
-		
-		
+	public ResultMessage changeCustomerInfo(CustomerVO customerInfo) {		
 		return customer.changeCustomerInfoAboutCredit(customerInfo);
 	}
 
