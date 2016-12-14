@@ -1,10 +1,13 @@
 package ui.hotelworker;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+
+import com.sun.org.apache.xml.internal.security.algorithms.implementations.IntegrityHmac;
 
 import businesslogic.login.LoginController;
 import businesslogic.room.RoomManageController;
@@ -66,14 +69,37 @@ public class OfflineInfoController extends DetailsController{
 		LocalDate to=date_to.getValue();
 		if(from!=null && to!=null && to.isAfter(from) && roomType.getValue()!=null){
 			roomList.getChildren().clear();
+			
 			RoomManageService roomManageService=RoomManageController.getInstance();
 			RoomSingleService roomSingleService = RoomSingleController.getInstance();
-			List<String> roomlist = roomManageService.getAllRoomByType(hotelID, geRoomType());
-			List<String> availableRoomLsit = roomManageService.getAvaiableRoomBytime
-					(hotelID, geRoomType(), DateFormat.getDate(date_from),  DateFormat.getDate(date_to));
+			RoomType roomType=geRoomType();
+			List<String> roomlist = new ArrayList<String>();
+			List<String> availableRoomLsit=new ArrayList<String>();
+			if(roomType==null){
+				roomlist.addAll(roomManageService.getAllRoomByType(hotelID, RoomType.Single));
+				roomlist.addAll(roomManageService.getAllRoomByType(hotelID, RoomType.Double));
+				roomlist.addAll(roomManageService.getAllRoomByType(hotelID, RoomType.Standard));
+				roomlist.addAll(roomManageService.getAllRoomByType(hotelID, RoomType.Suites));
+				roomlist.addAll(roomManageService.getAllRoomByType(hotelID, RoomType.EluxeSuite));
+				availableRoomLsit = roomManageService.getAvaiableRoomBytime
+						(hotelID, RoomType.Single, DateFormat.getDate(date_from),  DateFormat.getDate(date_to));
+				availableRoomLsit = roomManageService.getAvaiableRoomBytime
+						(hotelID, RoomType.Double, DateFormat.getDate(date_from),  DateFormat.getDate(date_to));
+				availableRoomLsit = roomManageService.getAvaiableRoomBytime
+						(hotelID, RoomType.Standard, DateFormat.getDate(date_from),  DateFormat.getDate(date_to));
+				availableRoomLsit = roomManageService.getAvaiableRoomBytime
+						(hotelID, RoomType.Suites, DateFormat.getDate(date_from),  DateFormat.getDate(date_to));
+				availableRoomLsit = roomManageService.getAvaiableRoomBytime
+						(hotelID, RoomType.EluxeSuite, DateFormat.getDate(date_from),  DateFormat.getDate(date_to));
+			}else {
+				roomlist = roomManageService.getAllRoomByType(hotelID, roomType);
+				availableRoomLsit = roomManageService.getAvaiableRoomBytime
+						(hotelID, roomType, DateFormat.getDate(date_from),  DateFormat.getDate(date_to));
+			}
 			
 			List<Hyperlink> rooms =roomlist.stream().map(room->new Hyperlink(room)).collect(Collectors.toList());
 			roomList.getChildren().addAll(rooms);
+			//为每个房间设置监听方法
 			rooms.forEach(room->{
 				room.setFont(Font.font(24));
 				room.setOnAction(e -> {
@@ -86,23 +112,44 @@ public class OfflineInfoController extends DetailsController{
 					}
 				});
 			});
-			rooms.forEach(room->{
+			//把不可用的房间变为不可选定
+			for(Hyperlink room:rooms){
 				if(!availableRoomLsit.contains(room.getText())){
 					room.setDisable(true);
 				}
-			});
+			}
 			
 		}
 	}
 	@FXML
 	private void handleConfirm(){
 		if(!"".equals(roomNumber.getText())){
-			//TODO:调用blservice，如果这个房间是不可以状态，变为可用，否则提示这个房间没有人入住
+			RoomSingleService roomSingleService = RoomSingleController.getInstance();
+			ResultMessage_Room result=roomSingleService.deleteDisable(hotelID, roomNumber.getText(), null);
+			if(ResultMessage_Room.success.equals(result)){
+				Dialogs.showMessage("噢耶", "变更房间信息成功");
+			}else {
+				Dialogs.showMessage("啊咧","变更房间信息失败，也许是这个房间并没有被登记为有人入住");
+			}
 		}
 	}
 	
 	
 	private RoomType geRoomType() {
+		if(roomType.getValue()==null){
+			return null;
+		}else if (roomType.getValue().equals(roomTypes[1])) {
+			return RoomType.Single;
+		}else if (roomType.getValue().equals(roomTypes[2])) {
+			return RoomType.Double;
+		}else if (roomType.getValue().equals(roomTypes[3])) {
+			return RoomType.Standard;
+		}else if (roomType.getValue().equals(roomTypes[4])) {
+			return RoomType.Suites;
+		}else if (roomType.getValue().equals(roomTypes[5])) {
+			return RoomType.EluxeSuite;
+		}
+		return null;
 		
 	}
 }
