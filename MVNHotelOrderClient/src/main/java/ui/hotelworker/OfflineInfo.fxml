@@ -115,14 +115,9 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" layoutX="174.0" layoutY="305.0" spacing="20.0">
+                        <HBox alignment="CENTER_LEFT" layoutX="314.0" layoutY="305.0" spacing="20.0">
                            <children>
-                              <Label text="房间号码">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Label>
-                              <JFXTextField fx:id="roomNumber" maxWidth="174.0" minWidth="174.0" prefHeight="54.0" prefWidth="174.0">
+                              <JFXTextField fx:id="roomNumber" labelFloat="true" maxWidth="174.0" minWidth="174.0" prefHeight="54.0" prefWidth="174.0" promptText="房间号码">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
