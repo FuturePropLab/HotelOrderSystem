@@ -14,28 +14,31 @@ public class testOrder {
 		public static void main(String[] args) throws RemoteException {
 			//OrderDataHelper orderDataHelper = DataHelperUtils.getOrderDataHelper();
 			OrderDataService orderDataService = new OrderDataServiceImpl();
+			OrderPO order =    orderDataService.findOrder("-C7S2040419343");
+			orderDataService.modify(order);
+			
 //			
 //			SearchOrderInfo searchOrderInfo = 
 //			new SearchOrderInfo(null, null, null, null, null, null, null);
 //			
-			List<OrderPO>  list = orderDataService.searchFuzzyOrder(null, null, "朱ppsad",null);
-			System.out.println(list.size());
-			Iterator<OrderPO> it = list.iterator();
-//			
-			while(it.hasNext()){
-				OrderPO orderPO = it.next();
-				System.out.println(orderPO.getHotelID());
-				System.out.println(orderPO.getNumberOfRooms());
-				System.out.println(orderPO.getOrderState());
-				System.out.println(orderPO.getPrice());
-				System.out.println(orderPO.getPlanedPeopleNumber());
-				System.out.println(orderPO.getPlanedLeaveTime());
-				System.out.println(orderPO.getRoomNumber());
-				System.out.println(orderPO.getMark().getValue());
-				System.out.println(orderPO.getAssessment());
-				System.out.println();
-			}
-			System.out.println(list.size());
+//			List<OrderPO>  list = orderDataService.searchFuzzyOrder(null, null, "朱ppsad",null);
+//			System.out.println(list.size());
+//			Iterator<OrderPO> it = list.iterator();
+////			
+//			while(it.hasNext()){
+//				OrderPO orderPO = it.next();
+//				System.out.println(orderPO.getHotelID());
+//				System.out.println(orderPO.getNumberOfRooms());
+//				System.out.println(orderPO.getOrderState());
+//				System.out.println(orderPO.getPrice());
+//				System.out.println(orderPO.getPlanedPeopleNumber());
+//				System.out.println(orderPO.getPlanedLeaveTime());
+//				System.out.println(orderPO.getRoomNumber());
+//				System.out.println(orderPO.getMark().getValue());
+//				System.out.println(orderPO.getAssessment());
+//				System.out.println();
+//			}
+//			System.out.println(list.size());
 
 //			OrderAssessPO orderAssessPO = new OrderAssessPO("OD04", "HT001", 3.4, "not so good");
 //			OrderSearchStorePO  orderSearchStorePO = new OrderSearchStorePO();

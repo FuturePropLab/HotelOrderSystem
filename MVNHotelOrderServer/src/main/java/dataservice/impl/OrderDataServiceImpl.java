@@ -9,7 +9,9 @@ import java.util.List;
 import DataFactory.DataHelperUtils;
 import dataservice.OrderDataService;
 import dataservice.datahelper.OrderDataHelper;
+import dataservice.datahelper.RoomDateHelper;
 import po.OrderAssessPO;
+import po.OrderNotChangePO;
 import po.OrderPO;
 import po.OrderSearchStorePO;
 import po.SearchOrderInfo;
@@ -55,6 +57,15 @@ public class OrderDataServiceImpl implements OrderDataService {
 		ResultMessage rs = orderDataHelper.modifyOrderAssessPO(orderAssessPO);
 		if(rs == ResultMessage.NotExist)  return ResultMessage.NotExist;
 		
+		if(order.getRevokeTime()!=null||order.getCheckOutTime()!=null){
+			//OrderNotChangePO orderNotChangePO = orderDataHelper.getOrderNotChangePO(order.getOrderID());
+			Date date = order.getLatestTime();
+			RoomDateHelper roomDateHelper = DataHelperUtils.getRoomDateHelper();
+			List<String> roomList = order.getRoomNumber();
+			for (int i = 0; i < roomList.size(); i++) {
+				roomDateHelper.deleteRecord(order.getHotelID(), roomList.get(i), date);
+			}		
+		}
 		return  orderDataHelper.modifyOrderSearchPO(new OrderSearchStorePO(order));
 	}
 
