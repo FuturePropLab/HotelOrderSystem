@@ -3,6 +3,7 @@ package businesslogicservice;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import tools.DiscountState;
 import tools.ResultMessage_Discount;
 import tools.ResultMessage_DiscountDetail;
 import tools.Strategy_webType;
@@ -29,6 +30,7 @@ public interface DiscountWebService {
 	 * @return 根據類型得到網站促銷策略
 	 */
 	public List<DiscountVO_web> getWebDiscount(Strategy_webType type) ;
+	public List<DiscountVO_web> getWebDiscount(Strategy_webType type,DiscountState discountState) ;
 	
 	public ResultMessage_Discount deleteDiscount (String discountID) ;
 	

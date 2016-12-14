@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.paint.Color;
+import tools.DiscountState;
 import tools.Strategy_hotelType;
 import ui.utils.Dialogs;
 import vo.DiscountVO_hotel;
@@ -140,9 +141,11 @@ public abstract class HotelItemController {
 		DiscountVO_hotel discountVO_hotel = new DiscountVO_hotel(Double.parseDouble(discount.getText()) * 0.1,
 				startTime.getValue(), endTime.getValue(), aditionalMessage.getText(), superposition.isSelected(),
 				getType(), enterpriseName);
+		discountVO_hotel.discountID=discountID;
+		discountVO_hotel.discountState=DiscountState.valid;//策略狀態問題有待解決
 		// TODO:调用blservice保存信息，如果某个子类item的信息和这个了类不一样，覆写此方法
 		if (discountID != null)
-			discountHotelService.editHotelDiscount(discountID, discountVO_hotel);
+			discountHotelService.editHotelDiscount(hotelID, discountVO_hotel);
 	}
 
 	protected abstract Strategy_hotelType getType();
