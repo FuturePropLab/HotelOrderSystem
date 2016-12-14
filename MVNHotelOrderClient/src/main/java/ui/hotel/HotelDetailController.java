@@ -31,6 +31,7 @@ import ui.customer.BookHotelController;
 import ui.main.DetailsController;
 import ui.room.RoomInfoController;
 import ui.utils.Dialogs;
+import ui.utils.DoubleFormate;
 import ui.utils.StarHelper;
 import vo.CommentVO;
 import vo.HotelDetailsVO;
@@ -351,7 +352,7 @@ public class HotelDetailController extends DetailsController{
 		this.starComboBox.setValue(starArray[hotelDetailsVO.star.ordinal()]);
 		handleStarComboBox();
 		double mark=hotelDealService.gethotelAssessVO(hotelID).averageMark;
-		this.mark.setText(mark+"");
+		this.mark.setText(DoubleFormate.formateto(mark)+"");
 		this.star_1.setImage(mark>=1? yellowStar:greyStar);
 		this.star_2.setImage(mark>=2? yellowStar:greyStar);
 		this.star_3.setImage(mark>=3? yellowStar:greyStar);

@@ -21,6 +21,7 @@ import po.OrderAssessPO;
 import po.RoomPK;
 import po.TypeRoomInfoPO;
 import tools.HotelAddress;
+import tools.HotelFacility;
 import tools.HotelRoomInfo;
 import tools.ResultMessage_Hotel;
 import tools.RoomType;
@@ -478,6 +479,7 @@ public class HotelDataHelperImpl implements HotelDataHelper {
 		s.close();
 		return hAssessPOs;
 	}
+
 
 
 

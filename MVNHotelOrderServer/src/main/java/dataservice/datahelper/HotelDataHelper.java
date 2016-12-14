@@ -9,6 +9,7 @@ import po.HotelBasePO;
 import po.HotelFacilityPO;
 import po.OrderAssessPO;
 import tools.HotelAddress;
+import tools.HotelFacility;
 import tools.HotelRoomInfo;
 import tools.ResultMessage_Hotel;
 import tools.RoomType;
@@ -138,6 +139,8 @@ public interface HotelDataHelper {
 	  public List<String> getIDListByFuzzy(String regex);
 	  	  
 	  public List<OrderAssessPO> gethotelAssessVO(String hotelID);
+	  
+	  
 
 	  
 	  

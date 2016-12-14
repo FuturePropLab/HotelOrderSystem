@@ -365,6 +365,10 @@ public class HotelDataServiceImpl implements HotelDataService {
 	public List<OrderAssessPO> gethotelAssessVO(String hotelID) throws RemoteException {
 		return hotelDataHelper.gethotelAssessVO(hotelID);
 	}
+	public ResultMessage_Hotel saveFacility(String hotelID, HotelFacility hotelFacility) throws RemoteException {
+		HotelFacilityPO hotelFacilityPO = new HotelFacilityPO(hotelID, hotelFacility);
+		return hotelDataHelper.modifyHotelFacilityPO(hotelFacilityPO);
+	}
 	
 }  
 

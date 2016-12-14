@@ -52,7 +52,7 @@ public class HotelManageController implements ManageHotelInfoService {
 
 	@Override
 	public ResultMessage_Hotel modifyFacility(HotelFacilityVO hotelFacilityVO) {
-		return hotel.saveHotelInfo(new HotelInputVO(hotelFacilityVO.hotelID, hotelFacilityVO, null, null));
+		return hotel.saveFacility(hotelFacilityVO.hotelID, hotelFacilityVO);
 	}
 
 	@Override

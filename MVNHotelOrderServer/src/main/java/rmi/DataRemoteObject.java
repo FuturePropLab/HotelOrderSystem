@@ -39,6 +39,7 @@ import po.OrderAssessPO;
 import po.OrderPO;
 import po.SearchOrderInfo;
 import tools.AccountType;
+import tools.HotelFacility;
 import tools.ResultMessage;
 import tools.ResultMessage_Account;
 import tools.ResultMessage_Discount;
@@ -308,6 +309,9 @@ OrderDataService,CreditDataService, MemberDataService{
 	}
 	public ResultMessage_LoginCheck logOut(String accountID) throws RemoteException {
 		return loginCheckService.logOut(accountID);
+	}
+	public ResultMessage_Hotel saveFacility(String hotelID, HotelFacility hotelFacility) throws RemoteException {
+		return hotelDataService.saveFacility(hotelID, hotelFacility);
 	}
 
 }

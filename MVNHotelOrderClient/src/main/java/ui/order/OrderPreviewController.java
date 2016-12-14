@@ -19,6 +19,7 @@ import ui.main.DetailsController;
 import ui.main.RootLayoutController;
 import ui.utils.DateFormat;
 import ui.utils.Dialogs;
+import ui.utils.DoubleFormate;
 import vo.HotelbriefVO;
 import vo.OrderInputVO;
 
@@ -114,7 +115,7 @@ public class OrderPreviewController extends DetailsController{
 		this.date_to.setText(DateFormat.format(orderInputVO.planedLeaveTime));
 		this.roomType.setText(roomTypes[orderInputVO.roomType.ordinal()]);
 		this.roomNumber.setText(orderInputVO.numberOfRooms+"");
-		this.price.setText(orderInputVO.price+"");
+		this.price.setText(DoubleFormate.formateto(orderInputVO.price)+"");
 		this.latestDate.setText(DateFormat.format_includingTime(orderInputVO.latestTime));
 		this.planedLeaveDate.setText(DateFormat.format_includingTime(orderInputVO.planedLeaveTime));
 		this.people.setText(orderInputVO.planedPeopleNumber+"");

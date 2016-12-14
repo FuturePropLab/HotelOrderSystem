@@ -22,7 +22,8 @@ public class HotelPO implements Serializable{
 		super();
 		this.hotelID = hotelInputVO.hotelID;
 		this.hotelName = hotelInputVO.HotelName;
-//		this.facility =new HotelFacility(hotelInputVO.hotelFacilityVO);
+		if(hotelInputVO.hotelFacilityVO!=null)
+		this.facility =new HotelFacility(hotelInputVO.hotelFacilityVO);
 //		this.hotelRoom =hotelInputVO.hotelRoomInfo;
 		this.hotelAddress = hotelInputVO.hotelAddress;
 		this.star = hotelInputVO.star;

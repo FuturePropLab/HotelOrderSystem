@@ -33,6 +33,7 @@ import ui.main.DetailsController;
 import ui.order.OrderPreviewController;
 import ui.utils.DateFormat;
 import ui.utils.Dialogs;
+import ui.utils.DoubleFormate;
 import vo.CustomerVO;
 import vo.HotelbriefVO;
 import vo.OrderInputCalVO;
@@ -242,8 +243,8 @@ public class BookHotelController extends DetailsController{
 		
 		try {
 			StrategyVO strategyVO  =strategyController.CalculateBestStrategy(orderInputCalVO);
-			this.realPrice.setText(String.valueOf(strategyVO.price));
-			this.discount.setText(String.valueOf((10*strategyVO.price)/OriginValue));
+			this.realPrice.setText(String.valueOf(DoubleFormate.formateto(strategyVO.price)));
+			this.discount.setText(String.valueOf(DoubleFormate.formateto((10*strategyVO.price)/OriginValue)));
 		} catch (RemoteException e) {
 			System.out.println("rmi fail");
 			this.realPrice.setText(String.valueOf(OriginValue));

@@ -29,8 +29,9 @@ public class CreditChangLogController extends DetailsController{
 	private void initialize() {
 		LoginService loginService=LoginController.getInstance();
 		LogVO logVO=loginService.getLogState();
+		System.out.println("reditList");
 		
-		creditList.getChildren().clear();
+		this.creditList.getChildren().clear();
 		CreditLogDealService creditLogDealService=CreditController.getInstance();
 		for(CreditlogVO creditlogVO:creditLogDealService.getLogList(logVO.accountID)){
 			addItem(creditlogVO);

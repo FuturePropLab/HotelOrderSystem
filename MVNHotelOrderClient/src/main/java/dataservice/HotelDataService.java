@@ -7,6 +7,7 @@ import java.util.List;
 import po.HotelPO;
 import po.ImageInfoPO;
 import po.OrderAssessPO;
+import tools.HotelFacility;
 import tools.ResultMessage_Hotel;
 import tools.StandardSearch;
 
@@ -122,6 +123,15 @@ public interface HotelDataService extends Remote{
 	 * @throws RemoteException
 	 */
 	public List<OrderAssessPO> gethotelAssessVO(String hotelID) throws RemoteException;
+	
+	/**
+	 * 
+	 * @param hotelID
+	 * @param hotelFacility
+	 * @return
+	 * @throws RemoteException
+	 */
+	public ResultMessage_Hotel saveFacility(String hotelID, HotelFacility hotelFacility) throws RemoteException; 
 }
 
 

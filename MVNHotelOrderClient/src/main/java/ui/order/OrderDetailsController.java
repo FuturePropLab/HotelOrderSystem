@@ -1,6 +1,7 @@
 package ui.order;
 
 import java.io.IOException;
+import java.util.List;
 
 import businesslogic.customer.CustomerDealController;
 import businesslogic.hotel.HotelDealController;
@@ -24,7 +25,9 @@ import ui.hotel.HotelDetailController;
 import ui.hotelworker.CheckInAndOutInfoController;
 import ui.main.DetailsController;
 import ui.utils.DateFormat;
+import ui.utils.DoubleFormate;
 import vo.CustomerVO;
+import vo.HotelDetailsVO;
 import vo.HotelbriefVO;
 import vo.OrderVO;
 /**
@@ -174,7 +177,8 @@ public class OrderDetailsController extends DetailsController{
 		OrderService orderService=OrderController.getInstance();
 		OrderVO orderVO=orderService.checkSingleOrder(orderID);
 		HotelDealService hotelDealService=HotelDealController.getInstance();
-		HotelbriefVO hotelbriefVO=hotelDealService.getHotelInfo(orderVO.hotelID);
+		//HotelbriefVO hotelbriefVO=hotelDealService.getHotelInfo(orderVO.hotelID);
+		HotelDetailsVO hotelDetailsVO = hotelDealService.getHotelDetailsVO(orderVO.hotelID);
 		CustomerDealService customerDealService=CustomerDealController.getInstance();
 		CustomerVO customerVO = null;
 		try {
@@ -188,7 +192,7 @@ public class OrderDetailsController extends DetailsController{
 		String orderStates[]={"未入住","已入住","异常订单","已撤销"};
 		String roomTypes[]={"单人间","双人间","标准间","豪华套房","总统套房"};
 		
-		this.hotelName.setText(hotelbriefVO.hotelName);
+		this.hotelName.setText(hotelDetailsVO.hotelName);
 		this.orderState.setText(orderStates[orderVO.orderState.ordinal()]);
 		this.orderID.setText(orderVO.orderID);
 		this.placingOrderDate.setText(DateFormat.format(orderVO.startTime));
@@ -196,15 +200,19 @@ public class OrderDetailsController extends DetailsController{
 		this.date_to.setText(DateFormat.format(orderVO.planedLeaveTime));
 		this.roomType.setText(roomTypes[orderVO.roomType.ordinal()]);
 		this.roomNumber.setText(orderVO.roomNumber.size()+"");
-		this.price.setText(orderVO.price+"");
+		this.price.setText(DoubleFormate.formateto(orderVO.price)+"");
 		this.latestDate.setText(DateFormat.format_includingTime(orderVO.latestTime));
 		this.planedLeaveDate.setText(DateFormat.format_includingTime(orderVO.planedLeaveTime));
 		this.people.setText(orderVO.planedPeopleNumber+"");
 		this.children.setText(orderVO.child?"有":"无");
 		this.customerName.setText(customerVO.customerName);
-		this.hotelAddress.setText(hotelbriefVO.hotelAddress.toString());
+		this.hotelAddress.setText(hotelDetailsVO.hotelAddress.toString());
 		this.customerContactInfo.setText(customerVO.telephone);
-		this.contactInformation.setText("contactInformation");//TODO
+		List<String>  strlist = hotelDetailsVO.hotelDiscribtionsVO.discribes;
+		if(strlist!=null && !strlist.isEmpty())
+		this.contactInformation.setText(hotelDetailsVO.hotelDiscribtionsVO.discribes.get(0));//TODO
+		else 
+		this.contactInformation.setText("请拨打服务热线 999999");
 		String roomNumbers="";
 		for(String string:orderVO.roomNumber){
 			roomNumbers=roomNumbers+string+" ";

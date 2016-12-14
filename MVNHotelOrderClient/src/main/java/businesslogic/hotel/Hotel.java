@@ -16,6 +16,7 @@ import po.HotelPO;
 import po.OrderAssessPO;
 import rmi.RemoteHelper;
 import stub.HotelData_Stub;
+import tools.HotelFacility;
 import tools.Mark;
 import tools.ResultMessage_Hotel;
 import tools.SortType;
@@ -100,12 +101,12 @@ public class Hotel {
 		}	
 		
 		//更新酒店的设施图片
-//		if(hotelInputVO.hotelFacilityVO!=null  && hotelInputVO.hotelFacilityVO.facilityImage!=null){
-//			URI uri = hotelInputVO.hotelFacilityVO.facilityImage;
-//			ResultMessage_Hotel r = pictureDeal.uploadFacilttyPicture(hotelInputVO.hotelID, uri);
-//			if(r == ResultMessage_Hotel.fail)
-//				rs = ResultMessage_Hotel.fail;
-//		}
+		if(hotelInputVO.hotelFacilityVO!=null  && hotelInputVO.hotelFacilityVO.facilityImage!=null){
+			URI uri = hotelInputVO.hotelFacilityVO.facilityImage;
+			ResultMessage_Hotel r = pictureDeal.uploadFacilttyPicture(hotelInputVO.hotelID, uri);
+			if(r == ResultMessage_Hotel.fail)
+				rs = ResultMessage_Hotel.fail;
+		}
 		//更新酒店的其他信息
 		HotelPO hotelPO = new HotelPO(hotelInputVO);
 		try {
@@ -431,6 +432,25 @@ public class Hotel {
 			HotelAssessVO hotelAssessVO = new HotelAssessVO(avmark,assessVOs);
 			
 			return hotelAssessVO;
+		}
+		
+		
+		ResultMessage_Hotel saveFacility(String hotelID ,HotelFacilityVO hotelFacilityVO){
+			ResultMessage_Hotel rs = ResultMessage_Hotel.success;
+			HotelFacility hotelFacility = new HotelFacility(hotelFacilityVO);
+			try {
+				rs = hotelDataService.saveFacility(hotelID, hotelFacility);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				rs = ResultMessage_Hotel.fail;
+			}
+			if(hotelFacilityVO.facilityImage!=null){
+				ResultMessage_Hotel r= pictureDeal.uploadFrontPicture(hotelFacilityVO.hotelID, hotelFacilityVO.facilityImage);			
+				if(r==ResultMessage_Hotel.fail)rs = ResultMessage_Hotel.fail;
+			}
+			
+			return rs;
 		}
 		
 	

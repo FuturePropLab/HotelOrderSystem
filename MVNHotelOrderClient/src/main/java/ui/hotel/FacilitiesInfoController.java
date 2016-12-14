@@ -24,6 +24,7 @@ import tools.AccountType;
 import tools.HotelRoomInfo;
 import tools.ResultMessage_Hotel;
 import ui.main.DetailsController;
+import ui.utils.Dialogs;
 import vo.HotelDiscribtionsVO;
 import vo.HotelFacilityVO;
 import vo.HotelInputVO;
@@ -85,7 +86,9 @@ public class FacilitiesInfoController extends DetailsController{
 	private Label service5;
 	@FXML
 	private Label service6;
+	
 	private File imageFile;
+	
 	private String hotelID;
 	
     @FXML
@@ -101,12 +104,19 @@ public class FacilitiesInfoController extends DetailsController{
     
     @FXML
     private void handleSave() {
+    	System.out.println("NOT there  ??????????/andleSave");
     	HotelFacilityVO hotelFacilityVO = new HotelFacilityVO(hotelID,hotelName.getText(),imageFile.toURI(),
     			wifi.isSelected(),noneSmoke.isSelected(),diningHall.isSelected(),parkingLot.isSelected(),
     			elevator.isSelected(),conferenceHall.isSelected(),morningCall.isSelected(),
     			frontdeskservice.isSelected(),luggageStorage.isSelected(),breakfast.isSelected(),other.getText());
-		ManageHotelInfoService manageInfoService = HotelManageController.getInstance();
-    	ResultMessage_Hotel result = manageInfoService.modifyFacility(hotelFacilityVO);
+    	HotelManageController hotelManageController = HotelManageController.getInstance();
+    	ResultMessage_Hotel result = hotelManageController.modifyFacility(hotelFacilityVO);
+    	System.out.println(result);
+    	if(result==ResultMessage_Hotel.success){
+    		Dialogs.showMessage("修改成功");
+    	}else{
+    		Dialogs.showMessage("失败成功");
+    	}
     }
     @FXML
     private void handleFacilitiesImage() {
@@ -148,6 +158,7 @@ public class FacilitiesInfoController extends DetailsController{
 		
 		
     	if(!account.equals(AccountType.Hotel)){
+    		this.hotelID = login.getLogState().accountID;
     		for(Label label:facilities){//先把Lable清空
     			label.setText(null);
     		}
