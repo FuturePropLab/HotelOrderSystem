@@ -62,6 +62,7 @@ public class OfflineInfoController extends DetailsController{
 		
 		LoginService loginService=LoginController.getInstance();
 		this.hotelID=loginService.getLogState().accountID;
+		handleSearchRoom();
 	}
 	@FXML
 	private void handleSearchRoom(){
