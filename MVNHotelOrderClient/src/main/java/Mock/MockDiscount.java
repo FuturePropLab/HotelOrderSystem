@@ -1,4 +1,4 @@
-package businesslogic.strategy;
+package Mock;
 
 import java.util.LinkedList;
 import java.util.List;

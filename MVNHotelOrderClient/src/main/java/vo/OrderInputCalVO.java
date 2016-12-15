@@ -4,8 +4,6 @@ import java.time.LocalDate;
 
 import businesslogic.hotel.HotelDealController;
 import businesslogic.member.MemberController;
-import businesslogic.strategy.MockHotel;
-import businesslogic.strategy.MockMember;
 import businesslogicservice.HotelDealService;
 import tools.MemberBelongType;
 import tools.RoomType;

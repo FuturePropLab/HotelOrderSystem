@@ -21,29 +21,24 @@ public class CalculateWebStrategy {
 
 	public CalculateWebStrategy(OrderInputCalVO orderInput) throws RemoteException {
 
-//		StrategyGetService discount = new StrategyGet();
-		MockStrategyGet discount =new MockStrategyGet();
+		StrategyGetService discount = new StrategyGet();
+//		MockStrategyGet discount =new MockStrategyGet();
 		strategyList = discount.getSuitableDiscount_web(orderInput);
 		this.orderInputCalVO = orderInput;
 		
-		// DiscountGetService disDealService = new MockDiscount("web");//妗╃▼搴�
-
-		// strategyList = disDealService.getSuitableDiscount_web(orderInput);
 	}
 
-	/**
-	 * 璁＄畻寰楀埌鏈�浼�
-	 * 
-	 * @return 鏈�浼樼瓥鐣�
-	 */
-
+/**
+ * 计算得出网站最优促销策略，默认不可叠加
+ * @return
+ */
 	public DiscountVO_web calBest() {
 
 			DiscountVO_web single = new DiscountVO_web();
 			single.discount = 1;
 
 			Iterator<DiscountVO_web> iter = strategyList.iterator();
-			double min = 0;// 绛栫暐鍑忓幓鐨勯搴�,涓鸿礋鏁�
+			double min = 0;// 最小值
 
 			while (iter.hasNext()) {
 

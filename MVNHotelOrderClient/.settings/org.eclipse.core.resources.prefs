@@ -3,6 +3,8 @@
 >>>>>>>=Stashed changes
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
+encoding//src/main/java/Mock/MockDiscount.java=UTF-8
+encoding//src/main/java/Mock/MockHotel.java=UTF-8
 encoding//src/main/java/businesslogic/account/Account.java=UTF-8
 encoding//src/main/java/businesslogic/account/Certificate.java=UTF-8
 encoding//src/main/java/businesslogic/account/CustomerAccountController.java=UTF-8
@@ -52,8 +54,6 @@ encoding//src/main/java/businesslogic/room/RoomSingle.java=UTF-8
 encoding//src/main/java/businesslogic/strategy/CalculateHotelStrategy.java=UTF-8
 encoding//src/main/java/businesslogic/strategy/CalculateWebStrategy.java=UTF-8
 encoding//src/main/java/businesslogic/strategy/HotelStrategyInterface.java=UTF-8
-encoding//src/main/java/businesslogic/strategy/MockDiscount.java=UTF-8
-encoding//src/main/java/businesslogic/strategy/MockHotel.java=UTF-8
 encoding//src/main/java/businesslogic/strategy/Strategy.java=UTF-8
 encoding//src/main/java/businesslogic/strategy/StrategyGetService.java=UTF-8
 encoding//src/main/java/businesslogicservice/AccountCustomerService.java=UTF-8

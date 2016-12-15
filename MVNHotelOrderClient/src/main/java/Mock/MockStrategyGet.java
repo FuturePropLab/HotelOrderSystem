@@ -1,10 +1,11 @@
-package businesslogic.strategy;
+package Mock;
 
 import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import businesslogic.strategy.StrategyGetService;
 import po.DiscountPO_hotel;
 import tools.DiscountState;
 import tools.Strategy_hotelType;
