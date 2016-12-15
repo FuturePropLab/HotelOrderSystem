@@ -112,8 +112,8 @@ public class Dialogs {
 		for(Choice choice:choices){
 			JFXButton choiseButton=new JFXButton(choice.choiceName);
 			choiseButton.setOnAction(e -> {
-				choice.value.handle(e);
 				dialog.close();
+				choice.value.handle(e);
 			});
 			buttons.add(choiseButton);
 		}

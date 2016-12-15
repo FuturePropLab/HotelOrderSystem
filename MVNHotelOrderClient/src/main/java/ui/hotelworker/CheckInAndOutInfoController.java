@@ -74,24 +74,19 @@ public class CheckInAndOutInfoController extends DetailsController{
 		
 		if(OrderState.Unexecuted.equals(state)){
 			if(planedLeaveDate.getValue()!=null && ((JFXDatePicker)planedLeaveTime).getTime()!=null){
-				ExecutionInfoVO executionInfoVO=new ExecutionInfoVO(ID, null, DateFormat.getDate(
-						(JFXDatePicker)planedLeaveDate, (JFXDatePicker)planedLeaveTime), new Date(), null);
-				OrderService orderService=OrderController.getInstance();
-				ResultMessage result=orderService.executionModify(executionInfoVO);
-				if(ResultMessage.Exist.equals(result)){
-					Dialogs.showMessage("叮咚","更新入住信息成功", DialogTransition.BOTTOM);
-				}else{
-					Dialogs.showMessage("诶哟", "更新入住信息失败了_(:з」∠)_   "+"订单ID"+ID+"   订单状态："+state.toString(), 
-							DialogTransition.BOTTOM);
-				}
+				checkIn();
 			}else{
 				Dialogs.showMessage("诶哟", "你得先填写预计退房时间哟", DialogTransition.BOTTOM);
 			}
 		}else if (OrderState.Executed.equals(state)) {
 			checkOut();
 		}else if (OrderState.Exception.equals(state)) {
-			Dialogs.showChoise("这是一份异常订单，你确定要帮客户办理延时入住吗", 
-					new Choice("是的", e->checkOut()), new Choice("不了", e->{}));
+			if(planedLeaveDate.getValue()!=null && ((JFXDatePicker)planedLeaveTime).getTime()!=null){
+				Dialogs.showChoise("这是一份异常订单，你确定要帮客户办理延时入住吗", 
+						new Choice("是的", e->checkIn()), new Choice("不了", e->{}));
+			}else{
+				Dialogs.showMessage("诶哟", "你得先填写预计退房时间哟", DialogTransition.BOTTOM);
+			}
 		}else {
 			System.out.println("this is a revoked order.");
 		}
@@ -103,6 +98,18 @@ public class CheckInAndOutInfoController extends DetailsController{
 		}
 	}
 	
+	private void checkIn(){
+		ExecutionInfoVO executionInfoVO=new ExecutionInfoVO(ID, null, DateFormat.getDate(
+				(JFXDatePicker)planedLeaveDate, (JFXDatePicker)planedLeaveTime), new Date(), null);
+		OrderService orderService=OrderController.getInstance();
+		ResultMessage result=orderService.executionModify(executionInfoVO);
+		if(ResultMessage.Exist.equals(result)){
+			Dialogs.showMessage("叮咚","更新入住信息成功", DialogTransition.BOTTOM);
+		}else{
+			Dialogs.showMessage("诶哟", "更新入住信息失败了_(:з」∠)_   "+"订单ID"+ID+"   订单状态："+state.toString(), 
+					DialogTransition.BOTTOM);
+		}
+	}
 	private void checkOut(){
 		ExecutionInfoVO executionInfoVO=new ExecutionInfoVO(ID, null, null, null, new Date());
 		OrderService orderService=OrderController.getInstance();

@@ -136,7 +136,7 @@ public class Order {
 		if(executionInfo.roomNumber!=null){
 			placingOrderInfo.roomNumber=executionInfo.roomNumber;
 		}
-		if(checkInInfo.filled()&&orderState.equals(OrderState.Unexecuted)){
+		if(checkInInfo.filled()&&(orderState.equals(OrderState.Unexecuted)|| orderState.equals(OrderState.Exception))){
 			orderState=OrderState.Executed;
 			CreditLogDealService creditLogDealService=CreditController.getInstance();
 //			MockCredit creditLogDealService = new MockCredit();//test
