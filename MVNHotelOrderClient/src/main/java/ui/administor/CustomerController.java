@@ -70,7 +70,6 @@ public class CustomerController {
 			Dialogs.showMessage("阿欧", "网络连接好像断开了……");
 			list  = new ArrayList<>();
 		}
-		
 		customers.addAll(list.stream().map(account -> new Customer(account.getUserName(),
 				account.getCustomerID(), account.getCustomerName(), account.getGender(), account.getContactWay()))
 				.collect(Collectors.toList()));
@@ -104,17 +103,24 @@ public class CustomerController {
 			else return colum.getComputedValue(param);
 		});
 		// add editors
-		colum.setCellFactory((TreeTableColumn<Customer, String> param) -> 
+		if(index!=1){//客户ID不允许网站管理人员修改
+			colum.setCellFactory((TreeTableColumn<Customer, String> param) -> 
 			new GenericEditableTreeTableCell<Customer, String>(new TextFieldEditorBuilder()));
-		colum.setOnEditCommit((CellEditEvent<Customer, String> t)->{
+			colum.setOnEditCommit((CellEditEvent<Customer, String> t)->{
 			Customer customer=(Customer)t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue();
 			StringProperty propertys[]={customer.userName,customer.customerID,customer.customerName,
 					customer.gender,customer.contactWay};
 			propertys[index].set(t.getNewValue());//t.getNewValue()是编辑后的值
-		});
+			edit(customer);
+			});
+		}
 		
 		customerList.getColumns().add(colum);
 	}	
+	private void edit(Customer customer) {
+		AccountCustomerService accountCustomerService = CustomerAccountController.getInstance();
+		//TODO:调用blservice修改账号信息，例如：customer.contactWay.get()返回string类型的联系方式
+	}
 	private void resetPassword() {
 		if(customerList.getSelectionModel().getSelectedItem()==null){
 			return;

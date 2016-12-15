@@ -7,9 +7,13 @@ import java.util.stream.Collectors;
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
+import com.jfoenix.controls.cells.editors.TextFieldEditorBuilder;
+import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
+import businesslogic.account.HotelAccountController;
 import businesslogic.account.WebDesignerAccountController;
+import businesslogicservice.AccountHotelService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -18,8 +22,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableColumn.CellEditEvent;
 import tools.ResultMessage_Account;
 import ui.administor.CustomerController.Customer;
+import ui.administor.HotelController.Hotel;
 import ui.utils.Dialogs;
 import vo.WebAccountVO;
 /**
@@ -54,8 +60,8 @@ public class WebController {
 	
 	private void initWeb(){
 		webs = FXCollections.observableArrayList();
-		//webs.add(new Web("userName","webName"));
-		//webs.add(new Web("userName1","webName"));
+//		webs.add(new Web("userName","webName"));
+//		webs.add(new Web("userName1","webName"));
 		//上面是一个例子
 		WebDesignerAccountController webDesignerAccountController = WebDesignerAccountController.getInstance();
 		List<WebAccountVO> list = webDesignerAccountController.getWebAccount();
@@ -63,10 +69,12 @@ public class WebController {
 		
 		final TreeItem<Web> root = new RecursiveTreeItem<Web>(webs, RecursiveTreeObject::getChildren);
 		webList.setRoot(root);
-		
+		webList.setEditable(true);
+		//创建TreeTableView的列
 		for(int index=0;index<titles.length;index++){
 			setCustomerColumn(index);
 		}
+		//为filterField增加监听方法
 		filterField.textProperty().addListener((o,oldVal,newVal)->{
 			webList.setPredicate(web -> web.getValue().userName.get().contains(newVal) || 
 					web.getValue().webName.get().contains(newVal));
@@ -82,8 +90,24 @@ public class WebController {
 			if(colum.validateValue(param)) return propertys[index];
 			else return colum.getComputedValue(param);
 		});
+		// add editors
+		if(index!=1){//网站营销人员账号ID不允许网站管理人员修改
+			colum.setCellFactory((TreeTableColumn<Web, String> param) -> 
+			new GenericEditableTreeTableCell<Web, String>(new TextFieldEditorBuilder()));
+			colum.setOnEditCommit((CellEditEvent<Web, String> t)->{
+			Web web=(Web)t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue();
+			StringProperty propertys[]={web.userName,web.webName};
+			propertys[index].set(t.getNewValue());//t.getNewValue()是编辑后的值
+			edit(web);
+			});
+		}
+		
 		webList.getColumns().add(colum);
-	}	
+	}
+	private void edit(Web web) {
+		WebDesignerAccountController webDesignerAccountController = WebDesignerAccountController.getInstance();
+		//TODO:调用blservice修改账号信息，例如：web.userName.get()返回string类型的联系方式
+	}
 	private void resetPassword() {
 		if(webList.getSelectionModel().getSelectedItem()==null){
 			return;

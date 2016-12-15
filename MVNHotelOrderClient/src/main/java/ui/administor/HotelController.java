@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
+import com.jfoenix.controls.cells.editors.TextFieldEditorBuilder;
+import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
 import businesslogic.account.CustomerAccountController;
@@ -23,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableColumn.CellEditEvent;
 import po.CustomerAccount;
 import po.HotelAccount;
 import tools.ResultMessage_Account;
@@ -73,10 +76,12 @@ public class HotelController {
 		
 		final TreeItem<Hotel> root = new RecursiveTreeItem<Hotel>(hotels, RecursiveTreeObject::getChildren);
 		hotelList.setRoot(root);
-		
+		hotelList.setEditable(true);
+		//创建TreeTableView的列
 		for(int index=0;index<titles.length;index++){
 			setCustomerColumn(index);
 		}
+		//为filterField增加监听方法
 		filterField.textProperty().addListener((o,oldVal,newVal)->{
 			hotelList.setPredicate(hotel -> hotel.getValue().userName.get().contains(newVal) || 
 					hotel.getValue().hotelID.get().contains(newVal) || 
@@ -97,8 +102,25 @@ public class HotelController {
 			if(colum.validateValue(param)) return propertys[index];
 			else return colum.getComputedValue(param);
 		});
+		// add editors
+		if(index!=1){//酒店ID不允许网站管理人员修改
+			colum.setCellFactory((TreeTableColumn<Hotel, String> param) -> 
+			new GenericEditableTreeTableCell<Hotel, String>(new TextFieldEditorBuilder()));
+			colum.setOnEditCommit((CellEditEvent<Hotel, String> t)->{
+			Hotel hotel=(Hotel)t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue();
+			StringProperty propertys[]={hotel.userName,hotel.hotelID,hotel.hotelName,
+					hotel.hotelAddress,hotel.contactWay};
+			propertys[index].set(t.getNewValue());//t.getNewValue()是编辑后的值
+			edit(hotel);
+			});
+		}
+		
 		hotelList.getColumns().add(colum);
-	}	
+	}
+	private void edit(Hotel hotel) {
+		AccountHotelService accountHotelService = HotelAccountController.getInstance();
+		//TODO:调用blservice修改账号信息，例如：hotel.contactWay.get()返回string类型的联系方式
+	}
 	private void resetPassword() {
 		if(hotelList.getSelectionModel().getSelectedItem()==null){
 			return;
