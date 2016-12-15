@@ -59,7 +59,7 @@ public class WebController {
 		//上面是一个例子
 		WebDesignerAccountController webDesignerAccountController = WebDesignerAccountController.getInstance();
 		List<WebAccountVO> list = webDesignerAccountController.getWebAccount();
-		webs.addAll(list.stream().map(account -> new Web(account.id,account.name)).collect(Collectors.toList()));
+		webs.addAll(list.stream().map(account -> new Web(account.name,account.id)).collect(Collectors.toList()));
 		
 		final TreeItem<Web> root = new RecursiveTreeItem<Web>(webs, RecursiveTreeObject::getChildren);
 		webList.setRoot(root);

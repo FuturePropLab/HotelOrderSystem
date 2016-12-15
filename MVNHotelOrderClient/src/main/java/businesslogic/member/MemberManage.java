@@ -65,8 +65,8 @@ public class MemberManage {
 	}
 
 	public ResultMessage_Member modifyMemberInfo(MemberVO memberInfo) {
-//		memberDataService = RemoteHelper.getInstance().getMemberDataService();
-		memberDataService = new MemberData_Stub();
+		memberDataService = RemoteHelper.getInstance().getMemberDataService();
+//		memberDataService = new MemberData_Stub();
 		MemberManage manage = new MemberManage();
 		
 		MemberType memberType = manage.getMemberInfo(memberInfo.customer_ID).memberType;

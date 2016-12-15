@@ -189,7 +189,7 @@ public class OrderDetailsController extends DetailsController{
 	@FXML
 	private void handleGoTOAssess(){
 		try {
-			rootLayoutController.changeDetails("../hotelworker/CheckInAndOutInfo.fxml");
+			rootLayoutController.changeDetails("../customer/OrderAssess.fxml");
 			OrderAssessController orderAssessController=(OrderAssessController)rootLayoutController.getDetailsController();
 			orderAssessController.initValue(orderID.getText());
 		} catch (IOException e) {
@@ -275,9 +275,11 @@ public class OrderDetailsController extends DetailsController{
 				this.checkOutInfo.setVisible(true);
 				this.checkOutDate.setText(DateFormat.format_includingTime(orderVO.checkInTime));
 				this.checkOut.setVisible(false);
-				if(orderVO.mark==null){
+				if(orderVO.assessment==null||"".equals(orderVO.assessment.trim())){
 					this.assessInfo.setVisible(false);
-					this.goTOAssess.setVisible(true);
+					if(AccountType.Customer.equals(loginService.getLogState().accountType)){
+						this.goTOAssess.setVisible(true);
+					}
 				}else {
 					this.assessInfo.setVisible(true);
 					this.goTOAssess.setVisible(false);

@@ -125,7 +125,7 @@ public class OrderAssessController extends DetailsController{
 		//设置组件的值，如果订单不是已执行状态或者已经评价过，提示用户，调用handleCancel()
 		this.orderID=orderID;
 		OrderVO orderVO = OrderController.getInstance().checkSingleOrder(orderID);	
-		if((!OrderState.Executed.equals(orderVO.orderState)) || (orderVO.mark!=null)){
+		if(!OrderState.Executed.equals(orderVO.orderState)){
 			Dialogs.showMessage("亲：", "你已经评价过这个订单了，不能再次评价了哦！");
 			handleCancel();
 			return;

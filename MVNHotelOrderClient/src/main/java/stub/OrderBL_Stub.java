@@ -53,8 +53,8 @@ public class OrderBL_Stub implements OrderService{
 	}
 
 	
-	public int calculateCreditLose(OrderVO order) {
-		return order.value;
+	public int calculateCreditLose(String orderID) {
+		return 101;
 	}
 
 
@@ -74,8 +74,8 @@ public class OrderBL_Stub implements OrderService{
 	}
 
 	
-	public ResultMessage revokeBadOrderr(OrderVO badOrder,RecoverValue recoverValue) {
-		if(badOrder.orderState.equals(OrderState.Exception)){
+	public ResultMessage revokeBadOrderr(String orderID,RecoverValue recoverValue) {
+		if(orderID!=null){
 			return ResultMessage.Exist;
 		}
 		return ResultMessage.NotExist;

@@ -86,7 +86,7 @@ public class TestOrderController {
 	}
 	@Test
 	public void testCalculateCreditLose() {
-		assertTrue(orderController.calculateCreditLose(orderVO)>0);
+		assertTrue(orderController.calculateCreditLose(orderVO.orderID)>0);
 	}
 	@Test
 	public void testExecutionModify() {
@@ -98,6 +98,6 @@ public class TestOrderController {
 	}
 	@Test
 	public void testRevokeBadOrderr() {
-		assertEquals(orderController.revokeBadOrderr(orderVO,RecoverValue.RecoverAll), ResultMessage.NotExist);
+		assertEquals(orderController.revokeBadOrderr(orderVO.orderID,RecoverValue.RecoverAll), ResultMessage.NotExist);
 	}
 }
