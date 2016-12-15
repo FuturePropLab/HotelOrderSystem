@@ -27,7 +27,7 @@ public class DateFormat {
 		if(date==null){
 			return null;
 		}
-		return String.valueOf(1900+date.getYear())+"-"+String.valueOf(1+date.getMonth())+"-"+
+		return String.valueOf(date.getYear())+"-"+String.valueOf(1+date.getMonth())+"-"+
 				String.valueOf(date.getDate());
 	}
 	
@@ -40,7 +40,7 @@ public class DateFormat {
 		if(date==null){
 			return null;
 		}
-		return format(date)+" "+date.getHours()+":"+date.getMinutes();
+		return format(date)+" "+(date.getHours()<10?"0":"")+date.getHours()+":"+(date.getMinutes()<10?"0":"")+date.getMinutes();
 	}
 	
 	/**
