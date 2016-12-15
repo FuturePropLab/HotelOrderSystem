@@ -120,7 +120,8 @@ public class LoginController extends FullLayoutController{
 				Dialogs.showMessage("改用户已经在线");
 			}
 		} catch (RemoteException e) {
-			System.out.println("connect error");//TODO
+			System.out.println("connect error");
+			Dialogs.showMessage("阿欧","网络连接没有成功耶");
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -163,10 +164,9 @@ public class LoginController extends FullLayoutController{
 			}			
 				}
 			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
+				Dialogs.showMessage("阿欧","登陆失败了，是不是网络的问题？");
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		

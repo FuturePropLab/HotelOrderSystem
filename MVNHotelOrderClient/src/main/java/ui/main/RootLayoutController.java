@@ -11,7 +11,12 @@ import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXDialog.DialogTransition;
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
+import businesslogic.customer.CustomerDealController;
+import businesslogic.hotel.HotelDealController;
 import businesslogic.login.LoginController;
+import businesslogicservice.CustomerDealService;
+import businesslogicservice.HotelDealService;
+import businesslogicservice.LoginService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,6 +26,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import tools.AccountType;
 import tools.RoomType;
 import ui.customer.BookHotelController;
 import ui.customer.ClientInfoController;
@@ -28,6 +34,8 @@ import ui.customer.OrderAssessController;
 import ui.guid.GuideUIController;
 import ui.hotel.FacilitiesInfoController;
 import ui.utils.Dialogs;
+import vo.CustomerVO;
+import vo.HotelDetailsVO;
 
 /**
  * The controller for the root layout. The root layout provides the basic
@@ -131,7 +139,7 @@ public class RootLayoutController {
 			String accountID = loginController.getLogState().accountID;
 			loginController.logOut(accountID);
 		} catch (Exception e) {
-			// TODO: handle exception
+			Dialogs.showMessage("错误", "无法退出");
 		}
 		System.exit(0);
 	}
@@ -153,6 +161,22 @@ public class RootLayoutController {
 	 *             FXMLLoader.load(URL location)加载失败时
 	 */
 	public void changeDetails(String fxml) throws IOException {
+		//如果客户或者酒店没有填写完自己的基本信息，则强制跳转到填写信息的界面
+		LoginService loginService=LoginController.getInstance();
+		if(AccountType.Customer.equals(loginService.getLogState().accountType)){
+			CustomerDealService customerDealService=CustomerDealController.getInstance();
+			CustomerVO customerVO=customerDealService.getCustomerInfo(loginService.getLogState().accountID);
+			if("".equals(customerVO.customerName) || "".equals(customerVO.gender) || "".equals(customerVO.telephone)){
+				fxml="../customer/ClientInfo.fxml";
+			}
+		}else if(AccountType.Hotel.equals(loginService.getLogState().accountType)){
+			HotelDealService hotelDealService=HotelDealController.getInstance();
+			HotelDetailsVO hotelDetailsVO=hotelDealService.getHotelDetailsVO(loginService.getLogState().accountID);
+			if("".equals(hotelDetailsVO.hotelName) || "".equals(hotelDetailsVO.hotelAddress)){
+				fxml="../hotel/HotelDetail.fxml";
+			}
+		}
+		
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource(fxml));
 		Parent child = (Parent) loader.load();
