@@ -90,7 +90,6 @@ public class BookHotelController extends DetailsController{
 			hotelDetailController.initValue(hotelbriefVO.hotelID);
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -135,7 +134,6 @@ public class BookHotelController extends DetailsController{
 			OrderPreviewController orderPreviewController = (OrderPreviewController)rootLayoutController.getDetailsController();
 			orderPreviewController.initVaule(orderInputVO);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -146,7 +144,6 @@ public class BookHotelController extends DetailsController{
 	
 	@FXML
 	private void handleConfirm(){
-		//TODO:调用blservice下单
 
 		if(this.lastDate.getValue()==null || this.realPrice.getText()==null || 
 					this.originalPrice.getText()==null)  return;
@@ -261,7 +258,6 @@ public class BookHotelController extends DetailsController{
 		if(getRoomType() == null)
 			return ;		
 		LocalDate startDate = this.lastDate.getValue() ;		
-		//TODO
 		if(startDate==null)  return ;
 		LocalDate latestTime = lastDate_time.getValue();
 		//LocalDateTime lasttime = startDate.atTime(12, 0, 0);
@@ -303,8 +299,7 @@ public class BookHotelController extends DetailsController{
 		try {
 			customerVO = customerDealController.getCustomerInfo(customerID);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Dialogs.showMessage("啊咧", "好像网络连接断开了……");
 		}
 		String customerName = customerVO.customerName;
 		System.out.println("customerName:   "+customerName);

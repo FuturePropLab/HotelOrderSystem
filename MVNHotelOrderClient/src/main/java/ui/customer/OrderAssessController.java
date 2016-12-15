@@ -11,7 +11,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import tools.Mark;
+import tools.OrderState;
 import ui.main.DetailsController;
+import ui.utils.Dialogs;
 import vo.HotelbriefVO;
 import vo.OrderVO;
 
@@ -72,10 +74,11 @@ public class OrderAssessController extends DetailsController{
 	@FXML
 	private void handleSubmit(){
 		//TODO:调用blservice提交评价
+		
 	}
 	@FXML
 	private void handleCancel(){
-		//TODO:返回上一个界面
+		rootLayoutController.toLastView();
 	}
 	
 	/**
@@ -96,25 +99,21 @@ public class OrderAssessController extends DetailsController{
 	}
 	
 	public void initValue(String orderID) {
-		initialize();
-		OrderVO orderVO = OrderController.getInstance().checkSingleOrder(orderID);
-		Mark mark = orderVO.mark;
-		changeStarValue((int)mark.getValue());
-		System.out.println(orderVO.assessment);
-		if(orderVO.assessment!=null){
-			System.out.println(orderVO.assessment);
-			this.assessment.setText(orderVO.assessment);
+		//设置组件的值，如果订单不是已执行状态或者已经评价过，提示用户，调用handleCancel()
+		OrderVO orderVO = OrderController.getInstance().checkSingleOrder(orderID);	
+		if((!OrderState.Executed.equals(orderVO.orderState)) || (orderVO.mark!=null)){
+			Dialogs.showMessage("亲：", "你已经评价过这个订单了，不能再次评价了哦！");
+			handleCancel();
+			return;
 		}
 		String hotelID = orderVO.hotelID;
 		HotelbriefVO hotelbriefVO = HotelDealController.getInstance().getHotelInfo(hotelID);
 		this.hotelName.setText(hotelbriefVO.hotelName);
 		URI uri = hotelbriefVO.imageuri;
-		System.out.println(uri);
 		if(uri!=null){
 			Image image = new Image(uri.toString());
 			this.hotelImage.setImage(image);
 		}
-		//TODO:设置组件的值，如果订单不是已执行状态或者已经评价过，提示用户，调用handleCancel()
-		
+		changeStarValue(this.mark);
 	}
 }
