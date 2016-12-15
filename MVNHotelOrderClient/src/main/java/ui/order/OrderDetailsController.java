@@ -19,12 +19,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import tools.AccountType;
 import tools.OrderState;
+import tools.RecoverValue;
 import tools.ResultMessage;
 import ui.customer.OrderAssessController;
 import ui.hotel.HotelDetailController;
 import ui.hotelworker.CheckInAndOutInfoController;
 import ui.main.DetailsController;
+import ui.utils.Choice;
 import ui.utils.DateFormat;
+import ui.utils.Dialogs;
 import ui.utils.DoubleFormate;
 import vo.CustomerVO;
 import vo.HotelDetailsVO;
@@ -124,45 +127,71 @@ public class OrderDetailsController extends DetailsController{
 	}
 	@FXML
 	private void handleRevoke(){
-		//TODO:调用blservice撤销订单
-		OrderService orderService=OrderController.getInstance();
-		OrderVO orderVO=orderService.checkSingleOrder(orderID.getText());
-		ResultMessage resultMessage = orderService.revokeCurrentOrder(orderVO);
-		//TODO:如果是客户，则提示撤销结果，如果是网站促销人员，提示选择恢复全部信用值或一半，选择后调用blservice
+		String orderID=this.orderID.getText();
 		
+		OrderService orderService=OrderController.getInstance();
+		OrderVO orderVO=orderService.checkSingleOrder(orderID);
+		LoginService loginService=LoginController.getInstance();
+		//如果是客户，则提示撤销结果，如果是网站促销人员，提示选择恢复全部信用值或一半，选择后调用blservice
+		if(AccountType.Customer.equals(loginService.getLogState().accountType)){
+			int lose=orderService.calculateCreditLose(orderID);
+			Dialogs.showChoise("现在撤销订单的话，你将会被扣除"+lose+"点信用值，确定要继续吗？", 
+					new Choice("我已经想好了",e->{
+						ResultMessage result = orderService.revokeCurrentOrder(orderVO);
+						if(ResultMessage.Exist.equals(result)){
+							Dialogs.showMessage("嗯呐", "撤销订单成功");
+							try {
+								rootLayoutController.changeDetails("../order/OrderDetails.fxml");
+								OrderDetailsController orderDetailsController=(OrderDetailsController) 
+										rootLayoutController.getDetailsController();
+								orderDetailsController.initValue(orderID);
+							} catch (Exception e1) {
+								e1.printStackTrace();
+							}
+						}else {
+							Dialogs.showMessage("啊咧", "居然撤销订单失败了_(:з」∠)_");
+						}
+					}),
+					new Choice("还是不了", e->{}));
+		}else if (AccountType.Customer.equals(loginService.getLogState().accountType)) {
+			Dialogs.showChoise("要给客户恢复被扣除的全部信用值还是一半？", new Choice("全部",e->{
+				orderService.revokeBadOrderr(orderID, RecoverValue.RecoverAll);
+			}),new Choice("一半",e->{
+				orderService.revokeBadOrderr(orderID, RecoverValue.RecoverHalf);
+			}));
+		}else {
+			System.err.println(loginService.getLogState().accountType.toString()+" can not revoke an order.");
+		}
 		
 	}
 	@FXML
 	private void handleCheckIn(){
-		//TODO:跳转到入住和退房界面
 		try {
 			rootLayoutController.changeDetails("../hotelworker/CheckInAndOutInfo.fxml");
-			CheckInAndOutInfoController checkInAndOutInfoController = (CheckInAndOutInfoController)rootLayoutController.getDetailsController();
-			checkInAndOutInfoController.initValue(orderID.getText());//check in 与 check out 的 init应该为不同的方法，由于给的自由太小，那边的不敢动你的，再商议
+			CheckInAndOutInfoController checkInAndOutInfoController = (CheckInAndOutInfoController)
+					rootLayoutController.getDetailsController();
+			checkInAndOutInfoController.initValue(orderID.getText());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	@FXML
-	private void handleCheckOut(){ // 方法名称应该是弄反了 ,我调过来了 @lwy
-		//TODO:跳转到入住和退房界面
+	private void handleCheckOut(){ 
 		try {
 			rootLayoutController.changeDetails("../hotelworker/CheckInAndOutInfo.fxml");
-			CheckInAndOutInfoController checkInAndOutInfoController = (CheckInAndOutInfoController)rootLayoutController.getDetailsController();
-			checkInAndOutInfoController.initValue(orderID.getText());//check in 与 check out 的 init应该为不同的方法，由于给的自由太小，那边的不敢动你的，再商议
+			CheckInAndOutInfoController checkInAndOutInfoController = (CheckInAndOutInfoController)
+					rootLayoutController.getDetailsController();
+			checkInAndOutInfoController.initValue(orderID.getText());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	@FXML
 	private void handleGoTOAssess(){
-		//TODO:跳转到评价订单界面
 		try {
 			rootLayoutController.changeDetails("../hotelworker/CheckInAndOutInfo.fxml");
 			OrderAssessController orderAssessController=(OrderAssessController)rootLayoutController.getDetailsController();
-//			orderAssessController.init();暂无初始化
+			orderAssessController.initValue(orderID.getText());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -210,7 +239,7 @@ public class OrderDetailsController extends DetailsController{
 		this.customerContactInfo.setText(customerVO.telephone);
 		List<String>  strlist = hotelDetailsVO.hotelDiscribtionsVO.discribes;
 		if(strlist!=null && !strlist.isEmpty())
-		this.contactInformation.setText(hotelDetailsVO.hotelDiscribtionsVO.discribes.get(0));//TODO
+		this.contactInformation.setText(hotelDetailsVO.hotelDiscribtionsVO.discribes.get(0));
 		else 
 		this.contactInformation.setText("请拨打服务热线 999999");
 		
@@ -266,7 +295,7 @@ public class OrderDetailsController extends DetailsController{
 		if((loginService.getLogState().accountType.equals(AccountType.Customer) && 
 				orderVO.orderState.equals(OrderState.Unexecuted)) || 
 				(loginService.getLogState().accountType.equals(AccountType.Web) && 
-						orderVO.orderState.equals(OrderState.Unexecuted))){
+						orderVO.orderState.equals(OrderState.Exception))){
 			revoke.setVisible(true);
 		}
 		this.hotelID=orderVO.hotelID;

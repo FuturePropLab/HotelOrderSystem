@@ -41,17 +41,19 @@
       </TabPane>
       <AnchorPane AnchorPane.bottomAnchor="690.0" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox layoutX="44.0" layoutY="34.0" />
-            <CheckBox fx:id="valid" layoutX="63.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleFilter" selected="true" text="有效" textFill="#111cbd">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </CheckBox>
-            <CheckBox fx:id="invalid" layoutX="171.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleFilter" selected="true" text="已失效" textFill="#111cbd">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </CheckBox>
+            <HBox layoutX="44.0" layoutY="34.0" spacing="10.0">
+               <children>
+                  <CheckBox fx:id="valid" mnemonicParsing="false" onAction="#handleFilter" selected="true" text="有效" textFill="#111cbd">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="invalid" mnemonicParsing="false" onAction="#handleFilter" selected="true" text="已失效" textFill="#111cbd">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </CheckBox>
+               </children></HBox>
          </children>
       </AnchorPane>
    </children>

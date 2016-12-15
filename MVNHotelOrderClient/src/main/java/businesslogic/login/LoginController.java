@@ -70,8 +70,8 @@ public class LoginController implements LoginService{
 	}
 
 	@Override
-	public ResultMessage_LoginCheck  logOut(String accountID) {
-		 return loginw.logOut(accountID);
+	public ResultMessage_LoginCheck  logOut() {
+		 return loginw.logOut();
 	}
 
 }

@@ -37,5 +37,5 @@ public interface LoginService {
 	 * @param accountID
 	 * @return
 	 */
-	public ResultMessage_LoginCheck logOut(String accountID);
+	public ResultMessage_LoginCheck logOut();
 }

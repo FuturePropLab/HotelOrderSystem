@@ -44,6 +44,9 @@ public class Login {
 	 * @throws RemoteException 
 	 */
 	public ResultMessage_LoginCheck login(String username,String password,AccountType accountType) throws RemoteException{
+		if(loginCheckService==null){
+			return ResultMessage_LoginCheck.SystemError;
+		}
 		ResultMessage_LoginCheck loginResult=loginCheckService.checkLogin(username, password, accountType);
 		if(loginResult.equals(ResultMessage_LoginCheck.Success)){
 			this.state=State.login;
@@ -57,11 +60,13 @@ public class Login {
 		return loginResult;
 	}
 	
-	public ResultMessage_LoginCheck logOut(String accountID){
+	public ResultMessage_LoginCheck logOut(){
+		if(loginCheckService==null){
+			return ResultMessage_LoginCheck.SystemError;
+		}
 		try {
 			 return loginCheckService.logOut(getAccountID());
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return ResultMessage_LoginCheck.SystemError;
 		}

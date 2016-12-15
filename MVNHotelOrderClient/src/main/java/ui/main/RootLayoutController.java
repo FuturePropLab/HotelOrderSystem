@@ -134,13 +134,8 @@ public class RootLayoutController {
 	 */
 	@FXML
 	private void handleExit() {
-		try {
-			LoginController loginController = LoginController.getInstance();
-			String accountID = loginController.getLogState().accountID;
-			loginController.logOut(accountID);
-		} catch (Exception e) {
-			Dialogs.showMessage("错误", "无法退出");
-		}
+		LoginController loginController = LoginController.getInstance();
+		loginController.logOut();
 		System.exit(0);
 	}
 

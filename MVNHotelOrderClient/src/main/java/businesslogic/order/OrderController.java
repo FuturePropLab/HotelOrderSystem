@@ -252,15 +252,15 @@ public class OrderController implements OrderService{
 	}
 	/**
 	 * 计算撤销订单将要损失的信用值
-	 * @param order 订单的信息
+	 * @param orderID 订单ID
 	 * @return 预计损失的信用值，如果找不到订单，则返回-1
 	 */
-	public int calculateCreditLose(OrderVO order) {
-		if(order==null){
+	public int calculateCreditLose(String orderID) {
+		if(orderID==null){
 			throw new NullPointerException();
 		}
 		try {
-			OrderPO orderPO=orderDataService.findOrder(order.orderID);
+			OrderPO orderPO=orderDataService.findOrder(orderID);
 			if(orderPO==null){
 				return -1;
 			}
@@ -322,16 +322,16 @@ public class OrderController implements OrderService{
 	}
 	/**
 	 * 撤销异常订单
-	 * @param badOrder 订单信息
+	 * @param orderID 订单ID
 	 * @param recoverValue 选择恢复全部的信用值还是一半
 	 * @return 调用成功则返回Exist，失败返回NotExist
 	 */
-	public ResultMessage revokeBadOrderr(OrderVO badOrder,RecoverValue recoverValue) {
-		if(badOrder==null){
+	public ResultMessage revokeBadOrderr(String orderID,RecoverValue recoverValue) {
+		if(orderID==null){
 			return ResultMessage.NotExist;
 		}
 		try {
-			OrderPO orderPO=orderDataService.findOrder(badOrder.orderID);
+			OrderPO orderPO=orderDataService.findOrder(orderID);
 			if(orderPO==null){
 				return ResultMessage.NotExist;
 			}

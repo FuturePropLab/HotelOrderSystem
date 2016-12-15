@@ -51,10 +51,10 @@ public interface OrderService {
 	public ResultMessage revokeCurrentOrder(OrderVO order);
 	/**
 	 * 计算撤销订单将要损失的信用值
-	 * @param order 订单的信息
+	 * @param orderID 订单的ID
 	 * @return 预计损失的信用值
 	 */
-	public int calculateCreditLose (OrderVO order);
+	public int calculateCreditLose (String orderID);
 	/**
 	 * 客户到店办理入住时，酒店工作人员执行订单，即修改订单的入住信息
 	 * @param executionInfo 修改的信息
@@ -69,11 +69,11 @@ public interface OrderService {
 	public ResultMessage AutoToBad(OrderVO Order);
 	/**
 	 * 撤销异常订单
-	 * @param badOrder 订单信息
+	 * @param orderID 订单ID
 	 * @param recoverValue 选择恢复全部的信用值还是一半
 	 * @return 调用成功则返回Exist，失败返回NotExist
 	 */
-	public ResultMessage revokeBadOrderr(OrderVO badOrder,RecoverValue recoverValue);
+	public ResultMessage revokeBadOrderr(String orderID,RecoverValue recoverValue);
 	
 	
 	/**
