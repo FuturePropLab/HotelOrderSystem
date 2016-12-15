@@ -1,5 +1,7 @@
 package tools;
 
+import javafx.scene.paint.Color;
+
 /**
  *  订单的状态，一共四种
  *  @author zjy
@@ -22,5 +24,10 @@ public enum OrderState {
 			return "已撤销";
 		}
 		return super.toString();
+	}
+	
+	public Color getColor() {
+		Color[] stateColors={Color.LIGHTGREEN,Color.LIGHTSALMON,Color.RED,Color.DARKGREY};
+		return stateColors[this.ordinal()];
 	}
 }
