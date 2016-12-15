@@ -53,6 +53,7 @@ encoding//src/main/java/businesslogic/strategy/CalculateHotelStrategy.java=UTF-8
 encoding//src/main/java/businesslogic/strategy/CalculateWebStrategy.java=UTF-8
 encoding//src/main/java/businesslogic/strategy/HotelStrategyInterface.java=UTF-8
 encoding//src/main/java/businesslogic/strategy/MockDiscount.java=UTF-8
+encoding//src/main/java/businesslogic/strategy/MockHotel.java=UTF-8
 encoding//src/main/java/businesslogic/strategy/Strategy.java=UTF-8
 encoding//src/main/java/businesslogic/strategy/StrategyGetService.java=UTF-8
 encoding//src/main/java/businesslogicservice/AccountCustomerService.java=UTF-8
