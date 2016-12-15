@@ -33,7 +33,7 @@ public class MemberManage {
 		this.memberDataService = memberStub;
 	}
 	public MemberManage(){
-		
+		memberDataService=RemoteHelper.getInstance().getMemberDataService();
 	}
 	
 	public MemberVO getMemberInfo(String customer_id) {
