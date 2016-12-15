@@ -61,7 +61,7 @@ public class OrderBLService_Driver {
 		
 		order.value=100;
 		int lose=0;
-		lose=orderService.calculateCreditLose(order);
+//		lose=orderService.calculateCreditLose(order);
 		if(lose==0){
 			return false;
 		}
@@ -79,7 +79,7 @@ public class OrderBLService_Driver {
 		}
 		
 		order.orderState=OrderState.Exception;
-		result=orderService.revokeBadOrderr(order,RecoverValue.RecoverAll);
+//		result=orderService.revokeBadOrderr(order,RecoverValue.RecoverAll);
 		if(result.equals(ResultMessage.NotExist)){
 			return false;
 		}

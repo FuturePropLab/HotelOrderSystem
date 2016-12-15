@@ -84,10 +84,10 @@ public class TestOrderController {
 	public void testRevokeCurrentOrder() {
 		assertEquals(orderController.revokeCurrentOrder(orderVO), ResultMessage.Exist);
 	}
-	@Test
+	/*@Test
 	public void testCalculateCreditLose() {
 		assertTrue(orderController.calculateCreditLose(orderVO)>0);
-	}
+	}*/
 	@Test
 	public void testExecutionModify() {
 		assertEquals(orderController.executionModify(ExecutionInfoVO), ResultMessage.Exist);
@@ -96,8 +96,8 @@ public class TestOrderController {
 	public void testAutoToBad() {
 		assertEquals(orderController.AutoToBad(orderVO), ResultMessage.Exist);
 	}
-	@Test
+	/*@Test
 	public void testRevokeBadOrderr() {
 		assertEquals(orderController.revokeBadOrderr(orderVO,RecoverValue.RecoverAll), ResultMessage.NotExist);
-	}
+	}*/
 }
