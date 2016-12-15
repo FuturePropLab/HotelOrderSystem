@@ -16,6 +16,9 @@ import businesslogic.credit.CreditController;
 import businesslogic.customer.CustomerDealController;
 import businesslogic.hotel.HotelDealController;
 import businesslogic.hotel.HotelManageController;
+import businesslogic.order.OrderController;
+import dataservice.OrderDataService;
+import po.OrderPO;
 import rmi.RemoteHelper;
 import vo.CustomerVO;
 import vo.HotelFacilityVO;
@@ -63,8 +66,12 @@ public class ClientRunner {
 //		LoginController loginController = LoginController .getInstance();
 //		loginController.logOut("CS001");
 //	
-		CreditController creditController = CreditController.getInstance();
-		System.out.println(creditController.charge("CS001", 10, new Date()));
+//		CreditController creditController = CreditController.getInstance();
+//		System.out.println(creditController.charge("CS001", 10, new Date()));
+		OrderDataService orderDataService  =RemoteHelper.getInstance().getOrderDataService();
+		OrderPO orderPO  = orderDataService.findOrder("-C1S40407170821");
+		System.out.println(orderPO.getPrice());
+		
 //		HotelFacilityVO hotelFacilityVO = new HotelFacilityVO();
 //		hotelFacilityVO.hotelID = "HT001";
 //		hotelFacilityVO.other="wwwwwww";

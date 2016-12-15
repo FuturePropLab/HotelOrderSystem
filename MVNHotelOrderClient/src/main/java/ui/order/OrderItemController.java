@@ -77,8 +77,8 @@ public class OrderItemController {
 		this.hotelImage.setImage(hotelImage);
 		this.hotelName.setText(hotelName);
 		this.hotelAddress.setText(hotelAddress.getAddressDetail());
-		this.date_from.setText(date_from.getYear()+"-"+date_from.getMonth()+"-"+date_from.getDate());
-		this.date_to.setText(date_to.getYear()+"-"+date_to.getMonth()+"-"+date_to.getDate());
+		this.date_from.setText((1900+date_from.getYear())+"-"+(1+date_from.getMonth())+"-"+date_from.getDate());
+		this.date_to.setText((1900+date_to.getYear())+"-"+(1+date_to.getMonth())+"-"+date_to.getDate());
 		this.roomType.setText(roomTypes[roomType.ordinal()]);
 		this.roomNumber.setText(roomNumber+"");
 		this.price.setText(price+"");
