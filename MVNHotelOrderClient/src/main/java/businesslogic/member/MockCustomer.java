@@ -5,7 +5,9 @@ import java.rmi.RemoteException;
 import businesslogic.customer.Customer;
 import po.CustomerPO;
 import stub.CustomerDeal_Stub;
+import tools.MemberType;
 import vo.CustomerVO;
+import vo.MemberVO;
 
 public class MockCustomer extends Customer{
 	public CustomerVO getCustomerInfo(String customer_id) throws RemoteException{
@@ -13,10 +15,9 @@ public class MockCustomer extends Customer{
 		//MockMember test2=new MockMember();
 		//test2.customer_ID_test=customer_id;
 //		CustomerPO cus = customerdata.find(customer_id);
-		CustomerDeal_Stub customerStub = new CustomerDeal_Stub();
-		
-		
-		CustomerVO cus = customerStub.getCustomerInfo(customer_id);
+		MemberType memberType = new MemberType(customer_id);
+		MemberVO membervo = new MemberVO(customer_id,memberType);
+		CustomerVO cus = new CustomerVO(customer_id,"cyy","Ů","12345",membervo,1000);
 //		CustomerVO cusVO = new CustomerVO(cus);
 		
 //        MemberVO memberInfo = new MemberVO(cus.getMemberpo().getCustomer_ID(),cus.getMemberpo().getMemberType());

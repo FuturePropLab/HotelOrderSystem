@@ -33,12 +33,13 @@ public class MemberManage {
 		this.memberDataService = memberStub;
 	}
 	public MemberManage(){
-		
+
 	}
 	
 	public MemberVO getMemberInfo(String customer_id) {
 //		memberStub = new MemberData_Stub();
-//		memberDataService = RemoteHelper.getInstance().getMemberDataService();
+		memberDataService = RemoteHelper.getInstance().getMemberDataService();
+//		memberDataService = new MemberData_Stub();//test!!!
 		if(customer_id==null)return null;
 		else {
 			MemberPO memberpo;
@@ -60,7 +61,8 @@ public class MemberManage {
 	}
 
 	public ResultMessage_Member modifyMemberInfo(MemberVO memberInfo) {
-		memberDataService = RemoteHelper.getInstance().getMemberDataService();
+//		memberDataService = RemoteHelper.getInstance().getMemberDataService();
+		memberDataService = new MemberData_Stub();
 		MemberManage manage = new MemberManage();
 		
 		MemberType memberType = manage.getMemberInfo(memberInfo.customer_ID).memberType;
@@ -77,6 +79,7 @@ public class MemberManage {
 				//普通会员，判断信用值
 				
 				CustomerDealService customer = CustomerDealController.getInstance();
+//				MockCustomer customer = new MockCustomer();//test!!!!
 				try {
 					int credit = customer.getCustomerInfo(memberInfo.customer_ID).credit;
 //					System.out.println(credit);

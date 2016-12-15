@@ -7,6 +7,7 @@ import businesslogicservice.OrderService;
 import tools.OrderState;
 import tools.RecoverValue;
 import tools.ResultMessage;
+import vo.AssessVO;
 import vo.ExecutionInfoVO;
 import vo.FuzzySearchOrderVO;
 import vo.OrderInputVO;
@@ -83,6 +84,13 @@ public class OrderBL_Stub implements OrderService{
 
 	@Override
 	public List<OrderVO> CheckOrderList(FuzzySearchOrderVO fuzzySearchOrderVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public ResultMessage assessOrder(AssessVO assessVO) {
 		// TODO Auto-generated method stub
 		return null;
 	}

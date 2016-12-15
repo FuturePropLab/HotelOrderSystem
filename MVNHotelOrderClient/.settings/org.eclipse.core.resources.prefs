@@ -38,6 +38,7 @@ encoding//src/main/java/businesslogic/login/LoginController.java=UTF-8
 encoding//src/main/java/businesslogic/member/Member.java=UTF-8
 encoding//src/main/java/businesslogic/member/MemberApply.java=UTF-8
 encoding//src/main/java/businesslogic/member/MemberManage.java=UTF-8
+encoding//src/main/java/businesslogic/member/MockCustomer.java=UTF-8
 encoding//src/main/java/businesslogic/order/CheckInInfo.java=UTF-8
 encoding//src/main/java/businesslogic/order/CheckOutInfo.java=UTF-8
 encoding//src/main/java/businesslogic/order/CustomerInfo.java=UTF-8

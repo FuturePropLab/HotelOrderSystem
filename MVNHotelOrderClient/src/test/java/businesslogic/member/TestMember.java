@@ -52,7 +52,7 @@ public class TestMember {
 		type=new MemberType("000000008");
 		type.setType(MemberBelongType.Ordinary);
 		memberInfo=new MemberVO("000000008",type );
-		assertEquals(ResultMessage_Member.Failed, member.modifyMemberInfo(memberInfo));
+		assertEquals(ResultMessage_Member.Success, member.modifyMemberInfo(memberInfo));
 		
 		type=new MemberType("000000007");
 		type.setType(MemberBelongType.Enterprise);
