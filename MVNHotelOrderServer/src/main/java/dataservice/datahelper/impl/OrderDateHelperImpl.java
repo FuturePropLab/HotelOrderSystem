@@ -497,6 +497,23 @@ public class OrderDateHelperImpl implements OrderDataHelper {
 		return ans;
 	}
 
+	public ResultMessage updateAssess(OrderAssessPO orderAssessPO) {
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		//try {
+			OrderAssessPO assessPO = (OrderAssessPO) s.load(OrderAssessPO.class, orderAssessPO.getOrderID());
+			assessPO.setAssessment(orderAssessPO.getAssessment());
+			assessPO.setMarkValue(orderAssessPO.getMarkValue());
+			Transaction t = s.beginTransaction();
+			s.update(assessPO);
+			t.commit();
+			return ResultMessage.Exist;
+		//} catch (Exception e) {
+		//	return ResultMessage.NotExist;
+	//	}finally {
+		//	s.close();
+	//	}
+	}
+
 	
 
 }

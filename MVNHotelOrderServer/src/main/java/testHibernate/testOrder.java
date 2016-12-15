@@ -7,6 +7,7 @@ import java.util.List;
 
 import dataservice.OrderDataService;
 import dataservice.impl.OrderDataServiceImpl;
+import po.OrderAssessPO;
 import po.OrderPO;
 import po.SearchOrderInfo;
 
@@ -14,9 +15,11 @@ public class testOrder {
 		public static void main(String[] args) throws RemoteException {
 			//OrderDataHelper orderDataHelper = DataHelperUtils.getOrderDataHelper();
 			OrderDataService orderDataService = new OrderDataServiceImpl();
-			OrderPO order =    orderDataService.findOrder("-C7S2040419343");
-			orderDataService.modify(order);
-			
+//			OrderPO order =    orderDataService.findOrder("-C7S2040419343");
+//			orderDataService.modify(order);
+			OrderAssessPO orderAssessPO = new
+					OrderAssessPO("-C1S40406122215", null, 4, "不怎么样");
+			System.out.println(orderDataService.assessOrder(orderAssessPO));
 //			
 //			SearchOrderInfo searchOrderInfo = 
 //			new SearchOrderInfo(null, null, null, null, null, null, null);

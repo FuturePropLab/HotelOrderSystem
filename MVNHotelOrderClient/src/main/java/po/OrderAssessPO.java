@@ -2,6 +2,8 @@ package po;
 
 import java.io.Serializable;
 
+import vo.AssessVO;
+
 
 
 public class OrderAssessPO implements Serializable{
@@ -32,6 +34,17 @@ public class OrderAssessPO implements Serializable{
 		this.hotelID  =hotelID;
 		this.markValue  =markValue;
 		this.orderID  =orderID;
+	}
+	
+	
+	/**
+	 * 评价用初始化方法
+	 * @param assessVO
+	 */
+	public OrderAssessPO(AssessVO assessVO){
+		this.assessment = assessVO.assessment;
+		this.markValue = assessVO.mark.getValue();
+		this.orderID = assessVO.orderID;
 	}
 	
 

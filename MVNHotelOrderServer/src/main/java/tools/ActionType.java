@@ -1,9 +1,10 @@
 package tools;
 
 public enum ActionType {
-	Charge,
-	BadOrder,
 	RightOrder,
-	RevokeOrder
+	RevokeOrder,
+	BadOrder,
+	Recover,
+	Charge
 	
 }

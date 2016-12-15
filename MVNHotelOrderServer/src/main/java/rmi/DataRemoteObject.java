@@ -316,5 +316,8 @@ OrderDataService,CreditDataService, MemberDataService{
 	public boolean isbooked(String customerID, String hotelID) throws RemoteException {
 		return hotelDataService.isbooked(customerID, hotelID);
 	}
+	public ResultMessage assessOrder(OrderAssessPO orderAssessPO) throws RemoteException {
+		return orderDataService.assessOrder(orderAssessPO);
+	}
 
 }

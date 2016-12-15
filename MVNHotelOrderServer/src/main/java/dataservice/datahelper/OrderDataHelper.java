@@ -110,5 +110,10 @@ public interface OrderDataHelper {
 	 */
 	public List<String>  getAllComment(String hotelID);
 	
-
+	/**
+	 * 
+	 * @param orderAssessPO
+	 * @return
+	 */
+	public ResultMessage updateAssess(OrderAssessPO orderAssessPO);
 }

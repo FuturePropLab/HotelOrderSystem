@@ -4,20 +4,18 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import Exception.CustomerCreditNotEnoughException;
 import businesslogic.credit.CreditController;
-import businesslogic.customer.CustomerDealController;
 import businesslogic.customer.OrderCustomerInfoImpl;
 import businesslogic.hotel.OrderHotelInfoImpl;
 import businesslogic.login.LoginController;
 import businesslogicservice.CreditLogDealService;
-import businesslogicservice.CustomerDealService;
 import businesslogicservice.LoginService;
 import businesslogicservice.OrderService;
 import dataservice.OrderDataService;
+import po.OrderAssessPO;
 import po.OrderPO;
 import po.SearchOrderInfo;
 import rmi.RemoteHelper;
@@ -393,8 +391,14 @@ public class OrderController implements OrderService{
 
 	@Override
 	public ResultMessage assessOrder(AssessVO assessVO) {
-		// TODO Auto-generated method stub
-		return null;
+		OrderAssessPO orderAssessPO = new OrderAssessPO(assessVO);
+		try {
+			return orderDataService.assessOrder(orderAssessPO);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return ResultMessage.NotExist;
+		}
 	}
 
 }

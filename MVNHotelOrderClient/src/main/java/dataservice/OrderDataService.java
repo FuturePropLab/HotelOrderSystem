@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.List;
 
+import po.OrderAssessPO;
 import po.OrderPO;
 import po.SearchOrderInfo;
 import tools.ResultMessage;
@@ -57,5 +58,12 @@ public interface OrderDataService extends Remote{
 	 * @throws RemoteException
 	 */
 	public List<OrderPO> searchFuzzyOrder(String hotelID , String cusrtomerID , String input,Date begin)throws RemoteException;
-
+	
+	/**
+	 * 
+	 * @param orderAssessPO
+	 * @return ResultMessage
+	 * @throws RemoteException
+	 */
+	public ResultMessage assessOrder(OrderAssessPO orderAssessPO) throws RemoteException;
 }

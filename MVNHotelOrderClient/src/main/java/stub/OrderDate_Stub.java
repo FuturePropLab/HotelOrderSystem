@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import dataservice.OrderDataService;
+import po.OrderAssessPO;
 import po.OrderPO;
 import po.SearchOrderInfo;
 import tools.ResultMessage;
@@ -53,6 +54,13 @@ public class OrderDate_Stub implements OrderDataService{
 	@Override
 	public List<OrderPO> searchFuzzyOrder(String hotelID, String cusrtomerID, String input, Date begin)
 			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public ResultMessage assessOrder(OrderAssessPO orderAssessPO) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
