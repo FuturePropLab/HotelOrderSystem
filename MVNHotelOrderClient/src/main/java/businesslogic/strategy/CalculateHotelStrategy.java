@@ -35,6 +35,7 @@ public class CalculateHotelStrategy {
 	 */
 	public CalculateHotelStrategy(OrderInputCalVO orderInput)  {
 		StrategyGetService discount = new StrategyGet();
+//		MockStrategyGet discount = new MockStrategyGet();//test!!!!!!
 		try {
 			strategyList = discount.getSuitableDiscount_hotel(orderInput);
 		} catch (RemoteException e) {

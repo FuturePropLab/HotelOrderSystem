@@ -22,7 +22,7 @@ public class WebDiscount {
 	
 	public WebDiscount(){
 		this.dataService=RemoteHelper.getInstance().getDiscountWebDAteService();
-//		this.dataService = new DiscountWebData_stub();
+//		this.dataService = new DiscountWebData_stub();//test!!
 	}
 
 	private FactoryDiscount factory= new FactoryDiscount();

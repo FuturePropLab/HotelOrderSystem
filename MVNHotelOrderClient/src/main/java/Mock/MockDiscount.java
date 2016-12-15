@@ -28,7 +28,7 @@ public class MockDiscount implements DiscountHotelService{
 
 	public List<StrategyVO_hotel> getSuitableDiscount_hotel(OrderInputCalVO orderInput) {
 
-		// Ó¦¸Ã¸ù¾İtype ºÍ orderInputÀ´get
+		// åº”è¯¥æ ¹æ®type å’Œ orderInputæ¥get
 		List<StrategyVO_hotel> res = new LinkedList<StrategyVO_hotel>();
 		StrategyVO_hotel dv = new StrategyVO_hotel(null);
 		dv.discount = 0.9;
@@ -38,7 +38,7 @@ public class MockDiscount implements DiscountHotelService{
 
 	public List<DiscountVO_web> getSuitableDiscount_web(OrderInputCalVO orderInput) {
 
-		// Ó¦¸Ã¸ù¾İtype ºÍ orderInputÀ´get
+		// åº”è¯¥æ ¹æ®type å’Œ orderInputæ¥get
 		List<DiscountVO_web> res = new LinkedList<DiscountVO_web>();
 		DiscountVO_web dv = new DiscountVO_web();
 		dv.discount = 0.9;

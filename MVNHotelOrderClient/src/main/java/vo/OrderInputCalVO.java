@@ -85,6 +85,7 @@ public class OrderInputCalVO {
 
 	public void setCircle(String hotelID) {
 		HotelDealService hotelDealService = HotelDealController.getInstance();
+//		MockHotel hotelDealService = new MockHotel();//test!!!!
 		city = hotelDealService.getHotelInfo(hotelID).hotelAddress.getCity();
 		district = hotelDealService.getHotelInfo(hotelID).hotelAddress.getDistrict();
 		businessCircle = hotelDealService.getHotelInfo(hotelID).hotelAddress.getBusinessCircle();
@@ -98,6 +99,7 @@ public class OrderInputCalVO {
 
 	public void setMemberBelongType(String customerID) {
 		MemberController memberController = MemberController.getInstance();
+//		MockMember memberController = new MockMember();//test!!!!!!
 		memberBelongType = memberController.getMemberInfo(customerID).memberType.getType();
 	}
 
@@ -108,6 +110,8 @@ public class OrderInputCalVO {
 
 	public void setLevel(String customerID) {
 		MemberController memberController = MemberController.getInstance();
+//		MockMember memberController = new MockMember();//test!!!!!!
+				
 		level = memberController.getMemberInfo(customerID).memberType.getLevel();
 	}
 }
