@@ -124,16 +124,20 @@ public class FacilitiesInfoController extends DetailsController{
 		}
     }
     
+    /**
+     * 设置界面各组件的值
+     * @param hotelFacilityVO
+     */
     public void setValues(HotelFacilityVO hotelFacilityVO) {
     	if(hotelFacilityVO==null){
-    		System.out.println("HotelFacilityVO is null. At FacilitiesInfoController.setValues(HotelFacilityVO)");
+    		System.err.println("HotelFacilityVO is null. At FacilitiesInfoController.setValues(HotelFacilityVO)");
     		return;
     	}
     	if(hotelFacilityVO.facilityImage!=null){
     		facilitiesImage.setImage(new Image(hotelFacilityVO.facilityImage.toString()));
     		imageFile=new File(hotelFacilityVO.facilityImage);
     	}
-    	System.out.println("Fac UI :  "+hotelFacilityVO.hotelName);
+//    	System.out.println("Fac UI :  "+hotelFacilityVO.hotelName);
     	hotelName.setText(hotelFacilityVO.hotelName);
     	
 		Label[] facilities={facility1,facility2,facility3,facility4,facility5,service1,service2,service3,
@@ -149,10 +153,9 @@ public class FacilitiesInfoController extends DetailsController{
 		
 		LoginService login = LoginController.getInstance();
 		AccountType account = login.getLogState().accountType;
-		
+		this.hotelID = hotelFacilityVO.hotelID;
 		
     	if(!account.equals(AccountType.Hotel)){
-    		this.hotelID = login.getLogState().accountID;
     		for(Label label:facilities){//先把Lable清空
     			label.setText(null);
     		}
@@ -171,7 +174,6 @@ public class FacilitiesInfoController extends DetailsController{
     		
     	}
     	else {
-    		this.hotelID = hotelFacilityVO.hotelID;
 			for(Label label:facilities){
 				label.setVisible(false);
 			}
