@@ -27,8 +27,13 @@ public class DateFormat {
 		if(date==null){
 			return null;
 		}
+		if(date.getYear()<1000)
 		return String.valueOf(1900+date.getYear())+"-"+String.valueOf(1+date.getMonth())+"-"+
 				String.valueOf(date.getDate());
+		else
+			return 
+					String.valueOf(date.getYear())+"-"+String.valueOf(date.getMonth())+"-"+
+					String.valueOf(date.getDate());
 	}
 	
 	/**
@@ -52,7 +57,9 @@ public class DateFormat {
 		if(datePicker.getValue()==null){
 			return null;
 		}
-		return new Date(datePicker.getValue().getYear(), datePicker.getValue().getMonthValue(), 
+		
+		//wsw 修改 不知道会不会引起别的地方的错误!!!!!!!
+		return new Date(datePicker.getValue().getYear()-1900, datePicker.getValue().getMonthValue()-1, 
 				datePicker.getValue().getDayOfMonth());
 	}
 	

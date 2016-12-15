@@ -455,8 +455,13 @@ public class OrderDateHelperImpl implements OrderDataHelper {
 		
 		Session s = Hibernateutils.getSessionFactory().openSession();
 		Criteria cr = s.createCriteria(OrderNotChangePO.class);
+		cr.add(Restrictions.eq("orderID", orderID));
+		Date date2 = new Date(date.toString());
+		date2.setHours(0);
+		cr.add(Restrictions.ge("planedLeaveTime", date2));
+		date.setHours(23);
 		cr.add(Restrictions.le("latestTime", date));
-		cr.add(Restrictions.ge("planedLeaveTime", date));
+		
 		List<OrderNotChangePO> list =  cr.list();
 		s.close();
 		if(list.isEmpty())  return false;

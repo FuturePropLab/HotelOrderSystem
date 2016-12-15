@@ -1,6 +1,7 @@
 package ui.order;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,6 +32,7 @@ import tools.RoomType;
 import ui.customer.BookHotelController;
 import ui.hotel.HotelDetailController;
 import ui.main.DetailsController;
+import ui.utils.DateFormat;
 import vo.FuzzySearchOrderVO;
 import vo.HotelbriefVO;
 import vo.LogVO;
@@ -85,12 +87,17 @@ public class OrderListController extends DetailsController {
 		
 //		String ID = accountCustomerService.getAccountID(logVO.username);
 		String keywordinput = "".equals(keyWords.getText()) ? null : keyWords.getText();
-		
+		LocalDate localdate = this.date.getValue();
+		Date date = null;
+		if(localdate!=null){
+			date = DateFormat.getDate(this.date);
+		}
+		System.out.println("搜索订单的时间:"+date);
 		
 		List<OrderVO> orderVOs = new ArrayList<OrderVO>();
 		
 		orderVOs = orderService.CheckOrderList
-				(new FuzzySearchOrderVO(tempHotelID, tempcustomerID, null, keywordinput,
+				(new FuzzySearchOrderVO(tempHotelID, tempcustomerID, date, keywordinput,
 						unexecuted.isSelected(), executed.isSelected(),
 						revoked.isSelected(), exception.isSelected()));
 //		// 分别添加符合条件的

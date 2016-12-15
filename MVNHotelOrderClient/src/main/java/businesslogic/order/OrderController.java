@@ -2,6 +2,7 @@ package businesslogic.order;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -123,7 +124,12 @@ public class OrderController implements OrderService{
 		orderVO.mark=orderPO.getMark();
 		//System.out.println("change:         "+orderPO.getAssessment());
 		orderVO.assessment=orderPO.getAssessment();
-		System.out.println("before return:   "+orderVO);
+		orderVO.sortTime = orderPO.getCheckOutTime();
+		if(orderVO.sortTime==null)  orderVO.sortTime  = orderPO.getCheckInTime();
+		if(orderVO.sortTime ==null)  orderVO.sortTime = orderPO.getRevokeTime();
+		if(orderVO.sortTime==null) orderVO.sortTime = orderPO.getCheckOutTime();
+		//System.out.println(sortTime);
+		//System.out.println("before return:   "+orderVO);
 		return orderVO;
 	
 	}
@@ -385,7 +391,9 @@ public class OrderController implements OrderService{
 					}
 					return false;
 				}).map(orderPO->getOrderVO(orderPO)).collect(Collectors.toList());
-				return voList;
+			 Comparator<OrderVO> comparator = (h1, h2) -> h1.getSortTime().compareTo(h2.getSortTime());
+			 voList.sort(comparator.reversed());
+			return voList;
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}	

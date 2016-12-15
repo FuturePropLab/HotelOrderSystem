@@ -34,9 +34,14 @@ public class OrderVO {
 	public OrderState orderState;
 	public Mark mark;
 	public String assessment;
+	public Date sortTime;
 	
 	public OrderVO(){
 		
+	}
+	
+	public Date getSortTime(){
+		return this.sortTime;
 	}
 
 	/**
@@ -109,6 +114,11 @@ public class OrderVO {
 		this.orderState = orderPO.getOrderState();
 		this.mark = orderPO.getMark();
 		this.assessment = orderPO.getAssessment();
+		this.sortTime = orderPO.getCheckOutTime();
+		if(this.sortTime==null)  this.sortTime  = orderPO.getCheckInTime();
+		if(this.sortTime ==null)  this.sortTime = orderPO.getRevokeTime();
+		if(this.sortTime==null) this.sortTime = orderPO.getCheckOutTime();
+		System.out.println(sortTime);
 		
 		
 		
