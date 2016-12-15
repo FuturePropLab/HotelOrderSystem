@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import tools.HotelAddress;
 import tools.OrderState;
 import tools.RoomType;
+import ui.utils.DoubleFormate;
 
 /**
  * 订单列表项的控制器
@@ -81,7 +82,7 @@ public class OrderItemController {
 		this.date_to.setText((1900+date_to.getYear())+"-"+(1+date_to.getMonth())+"-"+date_to.getDate());
 		this.roomType.setText(roomTypes[roomType.ordinal()]);
 		this.roomNumber.setText(roomNumber+"");
-		this.price.setText(price+"");
+		this.price.setText(DoubleFormate.formateto(price));
 		this.orderState.setText(orderStates[orderState.ordinal()]);
 		this.orderID=orderID;
 		this.hotelID=hotelID;
