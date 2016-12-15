@@ -73,9 +73,9 @@ public class TestCustomer {
 @Test
 	public void testAddCustomer(){
 	 customer = new Customer();
-	CustomerInputVO test=new CustomerInputVO("xx","xxx","xxx", "12345678A", "xx");
+	CustomerInputVO test=new CustomerInputVO("xx","xxx","xxx", "1234567ABC", "xx");
 	try {
-		assertEquals(ResultMessage_signUp.Wrong,customer.addCustomer(test));
+		assertEquals(ResultMessage_signUp.Success,customer.addCustomer(test));
 	} catch (RemoteException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

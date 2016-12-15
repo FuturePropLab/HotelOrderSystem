@@ -5,6 +5,7 @@ import java.util.List;
 import Exception.CustomerCreditNotEnoughException;
 import tools.RecoverValue;
 import tools.ResultMessage;
+import vo.AssessVO;
 import vo.ExecutionInfoVO;
 import vo.FuzzySearchOrderVO;
 import vo.OrderInputVO;
@@ -77,8 +78,17 @@ public interface OrderService {
 	
 	/**
 	 * 适合 新界面的搜索接口 @wsw
-	 * @param fuzzySearchOrderVO
+	 * <p>
+	 * 模糊搜索
+	 * @param fuzzySearchOrderVO 模糊搜索的信息
 	 * @return
 	 */
 	public List<OrderVO> CheckOrderList (FuzzySearchOrderVO fuzzySearchOrderVO);
+	
+	/**
+	 * 评价
+	 * @param assessVO 评价信息
+	 * @return 评价成功返回exit，否则返回notExit
+	 */
+	public ResultMessage assessOrder(AssessVO assessVO);
 }

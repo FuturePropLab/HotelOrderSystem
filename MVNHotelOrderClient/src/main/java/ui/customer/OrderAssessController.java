@@ -1,9 +1,12 @@
 package ui.customer;
 
+import java.io.IOException;
 import java.net.URI;
 
+import Exception.OutOfBoundsException;
 import businesslogic.hotel.HotelDealController;
 import businesslogic.order.OrderController;
+import businesslogicservice.OrderService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,8 +15,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import tools.Mark;
 import tools.OrderState;
+import tools.ResultMessage;
 import ui.main.DetailsController;
+import ui.order.OrderDetailsController;
 import ui.utils.Dialogs;
+import vo.AssessVO;
 import vo.HotelbriefVO;
 import vo.OrderVO;
 
@@ -49,6 +55,7 @@ public class OrderAssessController extends DetailsController{
 	private Button submit;
 	@FXML
 	private Button cancel;
+	private String orderID;
 	private int mark=5;//初始化时默认评分为4分
 	
 	@FXML
@@ -73,8 +80,24 @@ public class OrderAssessController extends DetailsController{
 	
 	@FXML
 	private void handleSubmit(){
-		//TODO:调用blservice提交评价
-		
+		try {
+			Mark mark=new Mark(this.mark);
+			OrderService orderService=OrderController.getInstance();
+			if(ResultMessage.Exist.equals(orderService.assessOrder(new AssessVO(orderID, mark, assessment.getText())))){
+				Dialogs.showMessage("铛铛","评价成功了！");
+				rootLayoutController.changeDetails("../order/OrderDetails.fxml");
+				OrderDetailsController orderDetailsController=(OrderDetailsController) 
+						rootLayoutController.getDetailsController();
+				orderDetailsController.initValue(orderID);
+			}else {
+				Dialogs.showMessage("阿欧","评价失败了……");
+			}
+		} catch (OutOfBoundsException e) {
+			System.err.println("can not create Mark:"+this.mark);
+			return;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	private void handleCancel(){
@@ -100,6 +123,7 @@ public class OrderAssessController extends DetailsController{
 	
 	public void initValue(String orderID) {
 		//设置组件的值，如果订单不是已执行状态或者已经评价过，提示用户，调用handleCancel()
+		this.orderID=orderID;
 		OrderVO orderVO = OrderController.getInstance().checkSingleOrder(orderID);	
 		if((!OrderState.Executed.equals(orderVO.orderState)) || (orderVO.mark!=null)){
 			Dialogs.showMessage("亲：", "你已经评价过这个订单了，不能再次评价了哦！");

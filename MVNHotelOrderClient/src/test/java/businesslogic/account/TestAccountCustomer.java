@@ -88,7 +88,7 @@ public class TestAccountCustomer {
 	public void testGetCustomerAccount() {
 		Account account = new Account();
 		CustomerAccountVO accountVO = new CustomerAccountVO("123", "wsw", "qisini");
-		assertEquals("INVALID_INPUT", account.getUsername("123"));
+		assertEquals("USERID_NOT_EXITS", account.getUsername("123"));
 		assertEquals("cyy", account.getUsername("00005"));
 //		assertEquals(accountVO.password, account.getCustomerAccount("123").password);
 	}
@@ -113,19 +113,19 @@ public class TestAccountCustomer {
 		Account account = new Account();
 		CustomerSearchVO customerSearchVO = new CustomerSearchVO(null, "wsw", null);
 		try {
-			assertEquals(3, account.searchCustomerAccount(customerSearchVO).size() );
+			assertEquals(2, account.searchCustomerAccount(customerSearchVO).size() );
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			assertEquals("wsw", account.searchCustomerAccount(customerSearchVO).get(0).userid );
+			assertEquals("001", account.searchCustomerAccount(customerSearchVO).get(0).userid );
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			assertEquals("wsw2", account.searchCustomerAccount(customerSearchVO).get(1).userid);
+			assertEquals("002", account.searchCustomerAccount(customerSearchVO).get(1).userid);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -138,7 +138,7 @@ public class TestAccountCustomer {
 		Account account = new Account();
 		assertEquals(ResultMessage_Account.Success, account.deleteAccount("12345"));
 		
-		assertEquals(ResultMessage_Account.InvalidInput, account.deleteAccount("222s"));
+		assertEquals(ResultMessage_Account.Success, account.deleteAccount("222s"));
 	}
 	@Test
 	public void testSearch(){

@@ -235,7 +235,7 @@ public class Order {
 	 * @return 评价信息
 	 */
 	public AssessVO getAssessInfo(){
-		return new AssessVO(assessInfo.mark, assessInfo.assessment);
+		return new AssessVO(orderID,assessInfo.mark, assessInfo.assessment);
 	}
 	/**
 	 * 
@@ -320,7 +320,6 @@ public class Order {
 		newValue+=placingOrderInfo.price;
 		newValue+=hotelInfo.getHotelInfo(placingOrderInfo.hotelID).mark.getValue()*100;
 		
-		//TODO wsw  小改  不知道 这个方法本来又问题!!!!
 		MemberController memberController = MemberController.getInstance();
 //		MockMemberController memberController = new MockMemberController();
 		System.out.println(placingOrderInfo.customerID);

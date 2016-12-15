@@ -37,7 +37,7 @@ public class Hotel {
 	private PictureDeal pictureDeal;
 	public Hotel(){
 		hotelDataService = RemoteHelper.getInstance().getHotelDataService();
-		//hotelDataService = new HotelData_Stub();//test
+//		hotelDataService = new HotelData_Stub();//test!!
 		pictureDeal = new PictureDeal();
 	}
 	/**
@@ -426,7 +426,7 @@ public class Hotel {
 						e1.printStackTrace();
 					}
 				}
-				AssessVO assessVO = new AssessVO(mark, hAssessPO.getAssessment());
+				AssessVO assessVO = new AssessVO(hAssessPO.getOrderID(),mark, hAssessPO.getAssessment());
 				assessVOs.add(assessVO);
 				fullmark+=hAssessPO.getMarkValue();
 				count++;		

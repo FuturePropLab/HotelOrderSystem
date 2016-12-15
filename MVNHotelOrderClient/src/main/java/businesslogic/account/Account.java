@@ -65,7 +65,7 @@ public class Account {
 	 */
 	public Account(){
 		this.accountDataService = RemoteHelper.getInstance().getAccountDataService();//test
-//		this.accountDataService = new AccountData_stub();
+//		this.accountDataService = new AccountData_stub();//test!!!!
 		this.hotelInfo = null;
 		this.customerInfo = null;
 	}
@@ -183,7 +183,7 @@ public class Account {
 	 */
 	public CustomerVO getCustomerDetail(String customer_id) throws RemoteException{
 		CustomerInfo customerInfo = CustomerInfoImp.getInstance();
-//		MockCustomer customerInfo = new MockCustomer();
+//		MockCustomer customerInfo = new MockCustom?er();//test!!!!!
 		return customerInfo.getCustomerDetail(customer_id);
 	}
 	
