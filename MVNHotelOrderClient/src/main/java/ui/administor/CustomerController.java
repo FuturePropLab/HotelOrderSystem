@@ -29,6 +29,7 @@ import javafx.scene.control.TreeTableColumn.CellEditEvent;
 import po.CustomerAccount;
 import tools.ResultMessage_Account;
 import ui.utils.Dialogs;
+import vo.CustomerVO;
 /**
  * 客户管理的委托类
  * @author zjy
@@ -36,13 +37,15 @@ import ui.utils.Dialogs;
  */
 public class CustomerController {
 	private static final String titles[]={"用户名","客户ID","客户姓名","性别","联系方式"};
+	private static final String defaultPassword="hibernate";
 	
 	private JFXTreeTableView<Customer> customerList;
 	private TextField filterField;
 	private Button reset;
 	private Button delete;
 	private ObservableList<Customer> customers;//列表项的集合
-	private Label count_customer;
+	private Label count;
+	private Button add;
 	
 	/**
 	 * 
@@ -50,14 +53,17 @@ public class CustomerController {
 	 * @param filterField 过滤显示的TextField
 	 * @param reset 重置密码按钮
 	 * @param delete 删除账号按钮
+	 * @param count 计数Lable
+	 * @param add 增加账号按钮
 	 */
 	public CustomerController(JFXTreeTableView<Customer> customerList,TextField filterField,Button reset,
-			Button delete,Label count_customer) {
+			Button delete,Label count,Button add) {
 		this.customerList = customerList;
 		this.filterField=filterField;
 		this.reset=reset;
 		this.delete=delete;
-		this.count_customer=count_customer;
+		this.count=count;
+		this.add=add;
 		initCustomer();
 	}
 	
@@ -96,8 +102,11 @@ public class CustomerController {
 		});
 		reset.setOnAction((action)->resetPassword());
 		delete.setOnAction((action)->delete());
+		add.setOnAction((action)->add());
+		reset.disableProperty().bind(Bindings.equal(-1, customerList.getSelectionModel().selectedIndexProperty()));
+		delete.disableProperty().bind(Bindings.equal(-1, customerList.getSelectionModel().selectedIndexProperty()));
 		//为计数器Lable绑定显示的信息来源
-		count_customer.textProperty().bind(Bindings.createStringBinding(()-> 
+		count.textProperty().bind(Bindings.createStringBinding(()-> 
 			"共计 " + customerList.getCurrentItemsCount()+" 条", customerList.currentItemsCountProperty()));
 	}
 	private void setCustomerColumn(int index){
@@ -138,7 +147,7 @@ public class CustomerController {
 		
 		String customerID=customerList.getSelectionModel().getSelectedItem().getValue().customerID.get();
 		AccountCustomerService accountCustomerService = CustomerAccountController.getInstance();
-		ResultMessage_Account rs = accountCustomerService.resetPassword(customerID, "hibernate");
+		ResultMessage_Account rs = accountCustomerService.resetPassword(customerID, defaultPassword);
 		
 		if(rs.equals(ResultMessage_Account.Success)){
 			Dialogs.showMessage("耶耶","重置密码成功！≧∇≦");
@@ -161,6 +170,23 @@ public class CustomerController {
 			customers.remove(customerList.getSelectionModel().getSelectedItem().getValue());
 		}else{
 			Dialogs.showMessage("额", "删除失败，也许是网络问题？");
+		}
+	}
+	private void add() {
+		AccountCustomerService accountCustomerService = CustomerAccountController.getInstance();
+		ResultMessage_Account result=accountCustomerService.addAccount("newUser", defaultPassword);
+		if(ResultMessage_Account.Success.equals(result)){
+			try {
+				CustomerVO customerVO=accountCustomerService.getCustomerDetail(
+						accountCustomerService.getAccountID("newUser"));
+				customers.add(new Customer(accountCustomerService.getUsername(customerVO.customerID), 
+						customerVO.customerID, customerVO.customerName, customerVO.gender, customerVO.telephone));
+				Dialogs.showMessage("", "增加账号成功");
+			} catch (RemoteException e) {
+				Dialogs.showMessage("额", "增加账号失败，也许是用户"+"newUser"+"已经存在，或者是网络问题？");
+			}
+		}else{
+			Dialogs.showMessage("额", "增加账号失败，也许是网络问题？");
 		}
 	}
 	

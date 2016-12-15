@@ -1,5 +1,6 @@
 package ui.administor;
 
+import java.rmi.RemoteException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,9 +12,12 @@ import com.jfoenix.controls.cells.editors.TextFieldEditorBuilder;
 import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
+import businesslogic.account.CustomerAccountController;
 import businesslogic.account.HotelAccountController;
 import businesslogic.account.WebDesignerAccountController;
+import businesslogicservice.AccountCustomerService;
 import businesslogicservice.AccountHotelService;
+import businesslogicservice.AccountWebService;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -29,6 +33,7 @@ import tools.ResultMessage_Account;
 import ui.administor.CustomerController.Customer;
 import ui.administor.HotelController.Hotel;
 import ui.utils.Dialogs;
+import vo.CustomerVO;
 import vo.WebAccountVO;
 /**
  * 网站营销人员账号管理的委托类
@@ -37,13 +42,15 @@ import vo.WebAccountVO;
  */
 public class WebController {
 	private static final String titles[]={"用户名","姓名"};
+	private static final String defaultPassword="webweb";
 	
 	private JFXTreeTableView<Web> webList;
 	private TextField filterField;
 	private Button reset;
 	private Button delete;
 	private ObservableList<Web> webs;
-	private Label count_web;
+	private Label count;
+	private Button add;
 
 	/**
 	 * 
@@ -51,14 +58,17 @@ public class WebController {
 	 * @param filterField 过滤显示的TextField
 	 * @param reset 重置密码按钮
 	 * @param delete 删除账号按钮
+	 * @param count 计数Lable
+	 * @param add 增加账号按钮
 	 */
 	public WebController(JFXTreeTableView<Web> webList,TextField filterField,Button reset,
-			Button delete,Label count_web) {
+			Button delete,Label count,Button add) {
 		this.webList = webList;
 		this.filterField=filterField;
 		this.reset=reset;
 		this.delete=delete;
-		this.count_web=count_web;
+		this.count=count;
+		this.add=add;
 		initWeb();
 	}
 	
@@ -70,6 +80,7 @@ public class WebController {
 		//上面是一个例子
 		WebDesignerAccountController webDesignerAccountController = WebDesignerAccountController.getInstance();
 		List<WebAccountVO> list = webDesignerAccountController.getWebAccount();
+		//网站营销人员的名字 没有 暂时先用id 代替
 		webs.addAll(list.stream().map(account -> new Web(account.name,account.id)).collect(Collectors.toList()));
 		
 		final TreeItem<Web> root = new RecursiveTreeItem<Web>(webs, RecursiveTreeObject::getChildren);
@@ -86,8 +97,11 @@ public class WebController {
 		});
 		reset.setOnAction((action)->resetPassword());
 		delete.setOnAction((action)->delete());
+		add.setOnAction((action)->add());
+		reset.disableProperty().bind(Bindings.equal(-1, webList.getSelectionModel().selectedIndexProperty()));
+		delete.disableProperty().bind(Bindings.equal(-1, webList.getSelectionModel().selectedIndexProperty()));
 		//为计数器Lable绑定显示的信息来源
-		count_web.textProperty().bind(Bindings.createStringBinding(()-> 
+		count.textProperty().bind(Bindings.createStringBinding(()-> 
 			"共计 " + webList.getCurrentItemsCount()+" 条", webList.currentItemsCountProperty()));
 	}
 	private void setCustomerColumn(int index){
@@ -126,7 +140,7 @@ public class WebController {
 		String id=webList.getSelectionModel().getSelectedItem().getValue().webName.get();
 		WebDesignerAccountController webDesignerAccountController = 
 				WebDesignerAccountController.getInstance();
-		ResultMessage_Account rs = webDesignerAccountController.resetPassword(id, "webweb");
+		ResultMessage_Account rs = webDesignerAccountController.resetPassword(id, defaultPassword);
 		
 		if(rs.equals(ResultMessage_Account.Success)){
 			Dialogs.showMessage("耶耶","重置密码成功！≧∇≦");
@@ -155,6 +169,16 @@ public class WebController {
 			Dialogs.showMessage("额", "删除失败，也许是网络问题？");
 		}
 	}
+	private void add() {
+		AccountWebService accountWebService = WebDesignerAccountController.getInstance();
+		ResultMessage_Account result=accountWebService.addAccount("newUser", defaultPassword);
+		if(ResultMessage_Account.Success.equals(result)){
+			Dialogs.showMessage("", "增加账号成功");
+			webs.add(new Web("newUser", accountWebService.getAccountID("newUser")));
+		}else{
+			Dialogs.showMessage("额", "增加账号失败，也许是用户"+"newUser"+"已经存在，或者是网络问题？");
+		}
+	}
 	
 	/**
 	 * 要显示的网站营销人员属性
@@ -168,12 +192,12 @@ public class WebController {
 		/**
 		 * 
 		 * @param userName 用户名
-		 * @param webName 网站营销人员的名字  没有 暂时先用id 代替
+		 * @param webName 网站营销人员的名字
 		 */
-		public Web(String userID, String username) {
+		public Web(String userName, String webName) {
 			super();
-			this.userName = new SimpleStringProperty(userID) ;
-			this.webName = new SimpleStringProperty(username) ;
+			this.userName = new SimpleStringProperty(userName) ;
+			this.webName = new SimpleStringProperty(webName) ;
 		}
 	}
 }

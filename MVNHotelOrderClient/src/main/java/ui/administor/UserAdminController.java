@@ -46,6 +46,8 @@ public class UserAdminController extends DetailsController{
 	@FXML
 	private Button delete_customer;
 	@FXML
+	private Button add_customer;
+	@FXML
 	private JFXTreeTableView<Hotel> hotelList;
 	@FXML
 	private Label count_hotel;
@@ -56,6 +58,8 @@ public class UserAdminController extends DetailsController{
 	@FXML
 	private Button delete_hotel;
 	@FXML
+	private Button add_hotel;
+	@FXML
 	private JFXTreeTableView<Web> webList;
 	@FXML
 	private Label count_web;
@@ -65,6 +69,8 @@ public class UserAdminController extends DetailsController{
 	private Button reset_web;
 	@FXML
 	private Button delete_web;
+	@FXML
+	private Button add_web;
 	
 	private CustomerController customerController;
 	private HotelController hotelController;
@@ -73,9 +79,10 @@ public class UserAdminController extends DetailsController{
 	@FXML
 	private void initialize(){
 		customerController=new CustomerController(customerList,customerFilter,reset_customer,delete_customer
-				,count_customer);
-		hotelController=new HotelController(hotelList, hotelFilter, reset_hotel, delete_hotel,count_hotel);
-		webController=new WebController(webList, webFilter, reset_web, delete_web,count_web);
+				,count_customer,add_customer);
+		hotelController=new HotelController(hotelList, hotelFilter, reset_hotel, delete_hotel,count_hotel,
+				add_hotel);
+		webController=new WebController(webList, webFilter, reset_web, delete_web,count_web,add_web);
 	}
 	
 

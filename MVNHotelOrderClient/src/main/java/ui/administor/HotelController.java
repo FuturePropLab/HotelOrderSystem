@@ -15,8 +15,10 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
 import businesslogic.account.CustomerAccountController;
 import businesslogic.account.HotelAccountController;
+import businesslogic.hotel.HotelDealController;
 import businesslogicservice.AccountCustomerService;
 import businesslogicservice.AccountHotelService;
+import businesslogicservice.HotelDealService;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -33,6 +35,8 @@ import po.HotelAccount;
 import tools.ResultMessage_Account;
 import ui.administor.CustomerController.Customer;
 import ui.utils.Dialogs;
+import vo.CustomerVO;
+import vo.HotelbriefVO;
 /**
  * 酒店账号管理的委托类
  * @author zjy
@@ -40,13 +44,15 @@ import ui.utils.Dialogs;
  */
 public class HotelController {
 	private static final String titles[]={"用户名","酒店ID","酒店名称","酒店地址","联系方式"};
+	private static final String defaultPassword="woaini";
 	
 	private JFXTreeTableView<Hotel> hotelList;
 	private TextField filterField;
 	private Button reset;
 	private Button delete;
 	private ObservableList<Hotel> hotels;//列表项的集合
-	private Label count_hotel;
+	private Label count;
+	private Button add;
 
 	/**
 	 * 
@@ -54,14 +60,17 @@ public class HotelController {
 	 * @param filterField 过滤显示的TextField
 	 * @param reset 重置密码按钮
 	 * @param delete 删除账号按钮
+	 * @param count_hotel 计数Lable
+	 * @param add_hotel 增加账号按钮
 	 */
 	public HotelController(JFXTreeTableView<Hotel> hotelList,TextField filterField,Button reset,
-			Button delete,Label count_hotel) {
+			Button delete,Label count,Button add) {
 		this.hotelList = hotelList;
 		this.filterField=filterField;
 		this.reset=reset;
 		this.delete=delete;
-		this.count_hotel=count_hotel;
+		this.count=count;
+		this.add=add;
 		initHotel();
 	}
 	
@@ -96,8 +105,11 @@ public class HotelController {
 		});
 		reset.setOnAction((action)->resetPassword());
 		delete.setOnAction((action)->delete());
+		add.setOnAction((action)->add());
+		reset.disableProperty().bind(Bindings.equal(-1, hotelList.getSelectionModel().selectedIndexProperty()));
+		delete.disableProperty().bind(Bindings.equal(-1, hotelList.getSelectionModel().selectedIndexProperty()));
 		//为计数器Lable绑定显示的信息来源
-		count_hotel.textProperty().bind(Bindings.createStringBinding(()-> 
+		count.textProperty().bind(Bindings.createStringBinding(()-> 
 			"共计 " + hotelList.getCurrentItemsCount()+" 条", hotelList.currentItemsCountProperty()));
 	}
 	private void setCustomerColumn(int index){
@@ -138,7 +150,7 @@ public class HotelController {
 		
 		String hotelID=hotelList.getSelectionModel().getSelectedItem().getValue().hotelID.get();
 		AccountHotelService accountHotelService = HotelAccountController.getInstance();
-		ResultMessage_Account rs = accountHotelService.resetPassword(hotelID, "woaini");
+		ResultMessage_Account rs = accountHotelService.resetPassword(hotelID, defaultPassword);
 		
 		if(rs.equals(ResultMessage_Account.Success)){
 			Dialogs.showMessage("耶耶","重置密码成功！≧∇≦");
@@ -163,6 +175,21 @@ public class HotelController {
 			hotels.remove(hotelList.getSelectionModel().getSelectedItem().getValue());
 		}else{
 			Dialogs.showMessage("额", "删除失败，也许是网络问题？");
+		}
+	}
+	private void add() {
+		AccountHotelService accountHotelService = HotelAccountController.getInstance();
+		ResultMessage_Account result=accountHotelService.addAccount("newUser", defaultPassword);
+		HotelDealService hotelDealService=HotelDealController.getInstance();
+		if(ResultMessage_Account.Success.equals(result)){
+			Dialogs.showMessage("", "增加账号成功");
+			HotelbriefVO hotelbriefVO=hotelDealService.getHotelInfo(
+					accountHotelService.getAccountID("newUser"));
+			hotels.add(new Hotel(accountHotelService.getUsername(hotelbriefVO.hotelID), 
+					hotelbriefVO.hotelID, hotelbriefVO.hotelName, hotelbriefVO.hotelAddress.toString(),
+					"contackWay"));
+		}else{
+			Dialogs.showMessage("额", "增加账号失败，也许是用户"+"newUser"+"已经存在，或者是网络问题？");
 		}
 	}
 	

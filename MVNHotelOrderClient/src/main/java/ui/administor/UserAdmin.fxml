@@ -20,24 +20,29 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <JFXTreeTableView fx:id="customerList" layoutX="63.0" layoutY="182.0" prefHeight="504.0" prefWidth="760.0" showRoot="false" stylesheets="@../../../resources/css/jfoenix-main-demo.css" />
-                        <HBox alignment="CENTER_LEFT" layoutX="92.0" layoutY="113.0" spacing="30.0">
+                        <HBox alignment="CENTER_LEFT" layoutX="60.0" layoutY="113.0" spacing="10.0">
                            <children>
-                              <JFXButton fx:id="reset_customer" text="重置密码">
+                              <JFXButton fx:id="reset_customer" ripplerFill="#d723ad" text="重置密码">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton fx:id="delete_customer" prefWidth="128.0" text="删除">
+                              <JFXButton fx:id="delete_customer" prefWidth="128.0" ripplerFill="#d62424" text="删除">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </JFXButton>
-                              <Label fx:id="count_customer" text="搜索">
+                              <JFXButton fx:id="add_customer" ripplerFill="#35e40a" text="增加账号">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font size="24.0" />
+                                 </font>
+                              </JFXButton>
+                              <Label fx:id="count_customer" text="账号数量">
+                                 <font>
+                                    <Font size="18.0" />
                                  </font>
                                  <padding>
-                                    <Insets left="80.0" />
+                                    <Insets left="10.0" />
                                  </padding>
                               </Label>
                               <JFXTextField fx:id="customerFilter" labelFloat="true" minWidth="242.0" prefHeight="54.0" prefWidth="242.0" promptText="搜索">
@@ -56,27 +61,32 @@
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <JFXTreeTableView fx:id="hotelList" layoutX="63.0" layoutY="182.0" prefHeight="504.0" prefWidth="760.0" showRoot="false" stylesheets="@../../../resources/css/jfoenix-main-demo.css" />
-                        <HBox alignment="CENTER_LEFT" layoutX="92.0" layoutY="113.0" spacing="30.0">
+                        <HBox alignment="CENTER_LEFT" layoutX="60.0" layoutY="113.0" spacing="10.0">
                            <children>
-                              <JFXButton fx:id="reset_hotel" text="重置密码">
+                              <JFXButton fx:id="reset_hotel" ripplerFill="#d723ad" text="重置密码">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton fx:id="delete_hotel" prefWidth="128.0" text="删除">
+                              <JFXButton fx:id="delete_hotel" prefWidth="128.0" ripplerFill="#d62424" text="删除">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </JFXButton>
-                              <Label fx:id="count_hotel" text="搜索">
+                              <JFXButton fx:id="add_hotel" ripplerFill="#35e40a" text="增加账号">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font size="24.0" />
+                                 </font>
+                              </JFXButton>
+                              <Label fx:id="count_hotel" text="账号数量">
+                                 <font>
+                                    <Font size="18.0" />
                                  </font>
                                  <padding>
-                                    <Insets left="80.0" />
+                                    <Insets left="10.0" />
                                  </padding>
                               </Label>
-                              <JFXTextField fx:id="hotelFilter" minWidth="242.0" prefHeight="54.0" prefWidth="242.0" promptText="搜索">
+                              <JFXTextField fx:id="hotelFilter" labelFloat="true" minWidth="242.0" prefHeight="54.0" prefWidth="242.0" promptText="搜索">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -92,27 +102,32 @@
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <JFXTreeTableView fx:id="webList" layoutX="63.0" layoutY="182.0" prefHeight="504.0" prefWidth="760.0" showRoot="false" stylesheets="@../../../resources/css/jfoenix-main-demo.css" />
-                        <HBox alignment="CENTER_LEFT" layoutX="92.0" layoutY="113.0" spacing="30.0">
+                        <HBox alignment="CENTER_LEFT" layoutX="60.0" layoutY="113.0" spacing="10.0">
                            <children>
-                              <JFXButton fx:id="reset_web" text="重置密码">
+                              <JFXButton fx:id="reset_web" ripplerFill="#d723ad" text="重置密码">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton fx:id="delete_web" prefWidth="128.0" text="删除">
+                              <JFXButton fx:id="delete_web" prefWidth="128.0" ripplerFill="#d62424" text="删除">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </JFXButton>
-                              <Label fx:id="count_web" text="搜索">
+                              <JFXButton fx:id="add_web" ripplerFill="#35e40a" text="增加账号">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font size="24.0" />
+                                 </font>
+                              </JFXButton>
+                              <Label fx:id="count_web" text="账号数量">
+                                 <font>
+                                    <Font size="18.0" />
                                  </font>
                                  <padding>
-                                    <Insets left="80.0" />
+                                    <Insets left="10.0" />
                                  </padding>
                               </Label>
-                              <JFXTextField fx:id="webFilter" minWidth="242.0" prefHeight="54.0" prefWidth="242.0" promptText="搜索">
+                              <JFXTextField fx:id="webFilter" labelFloat="true" minWidth="242.0" prefHeight="54.0" prefWidth="242.0" promptText="搜索">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
