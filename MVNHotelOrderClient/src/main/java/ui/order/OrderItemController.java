@@ -11,6 +11,7 @@ import javafx.scene.paint.Color;
 import tools.HotelAddress;
 import tools.OrderState;
 import tools.RoomType;
+import ui.utils.DateFormat;
 
 /**
  * 订单列表项的控制器
@@ -79,8 +80,8 @@ public class OrderItemController {
 		this.hotelImage.setImage(hotelImage);
 		this.hotelName.setText(hotelName);
 		this.hotelAddress.setText(hotelAddress.getAddressDetail());
-		this.date_from.setText(date_from.getYear()+"-"+date_from.getMonth()+"-"+date_from.getDate());
-		this.date_to.setText(date_to.getYear()+"-"+date_to.getMonth()+"-"+date_to.getDate());
+		this.date_from.setText(DateFormat.format(date_from));
+		this.date_to.setText(DateFormat.format(date_to));
 		this.roomType.setText(roomType.toString());
 		this.roomNumber.setText(roomNumber+"");
 		this.price.setText(price+"");

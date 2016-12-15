@@ -108,6 +108,7 @@ public class OrderPO implements Serializable  {
 		this.planedLeaveTime = orderNotChangePO.getPlanedLeaveTime();
 		this.orderState=orderSearchStorePO.getOrderState();
 		this.assessment=orderAssessPO.getAssessment();
+		this.price= orderNotChangePO.getPrice();
 		//deal with the mark
 		try {
 			this.mark=new Mark(orderAssessPO.getMarkValue());
