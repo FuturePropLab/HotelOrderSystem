@@ -139,7 +139,6 @@ public class OrderController implements OrderService{
 			return null;
 		}
 		Order order=new Order(orderInput, new OrderCustomerInfoImpl(), new OrderHotelInfoImpl() , orderDataService);
-		//TODO: 暂时先用Mock代替
 		return order.saveOrder();
 	}
 	/**
@@ -154,8 +153,8 @@ public class OrderController implements OrderService{
 			return ResultMessage.NotExist;
 		}
 		try {
-			Order order = new Order(orderDataService.findOrder(preorder.orderID), new MockCustomerInfo(), 
-					new MockHotelInfo(), orderDataService);//TODO: 暂时先用Mock代替
+			Order order = new Order(orderDataService.findOrder(preorder.orderID), new OrderCustomerInfoImpl(), 
+					new OrderHotelInfoImpl(), orderDataService);
 			return order.saveOrder();
 		} catch (RemoteException e) {
 			System.err.println(e.getCause().getMessage());
@@ -239,8 +238,7 @@ public class OrderController implements OrderService{
 			if(orderPO==null){
 				return ResultMessage.NotExist;
 			}
-			Order order2=new Order(orderPO,  new MockCustomerInfo(),new MockHotelInfo(), orderDataService); 
-			//TODO: 暂时先用Mock代替
+			Order order2=new Order(orderPO,  new OrderCustomerInfoImpl(), new OrderHotelInfoImpl(), orderDataService); 
 			if(order2.getState().equals(OrderState.Unexecuted)){
 				CreditLogDealService creditLogDealService=CreditController.getInstance();
 				order2.setRevokeTime(new Date());
@@ -267,8 +265,7 @@ public class OrderController implements OrderService{
 			if(orderPO==null){
 				return -1;
 			}
-			Order order2=new Order(orderPO,  new MockCustomerInfo(),new MockHotelInfo(), orderDataService); 
-			//TODO: 暂时先用Mock代替
+			Order order2=new Order(orderPO,  new OrderCustomerInfoImpl(), new OrderHotelInfoImpl(), orderDataService); 
 			//如果撤销的订单距离最晚订单执行时间不足6个小时，撤销的同时扣除信用值，信用值为订单的（总价值*1/2）
 			return new Date().getTime()-order2.getPlacingOrderInfo().latestTime.getTime()>6*24*60*1000?
 					0:order2.getOrderValue()/2;
@@ -291,8 +288,7 @@ public class OrderController implements OrderService{
 			if(orderPO==null){
 				return ResultMessage.NotExist;
 			}
-			Order order=new Order(orderPO,  new MockCustomerInfo(),new MockHotelInfo(), orderDataService); 
-			//TODO: 暂时先用Mock代替
+			Order order=new Order(orderPO, new OrderCustomerInfoImpl(), new OrderHotelInfoImpl(), orderDataService); 
 			boolean checkIn=order.modifyCheckInInfo(executionInfo);
 			boolean checkOut=order.modifyCheckOutInfo(executionInfo);
 			if(checkIn&&checkOut){
@@ -318,8 +314,7 @@ public class OrderController implements OrderService{
 			if(orderPO==null){
 				return ResultMessage.NotExist;
 			}
-			Order order2=new Order(orderPO,  new MockCustomerInfo(),new MockHotelInfo(), orderDataService); 
-			//TODO: 暂时先用Mock代替
+			Order order2=new Order(orderPO, new OrderCustomerInfoImpl(), new OrderHotelInfoImpl(), orderDataService); 
 			return ResultMessage.Exist;
 		} catch (RemoteException e) {
 			System.err.println(e.getCause().getMessage());
@@ -341,8 +336,7 @@ public class OrderController implements OrderService{
 			if(orderPO==null){
 				return ResultMessage.NotExist;
 			}
-			Order order=new Order(orderPO,  new MockCustomerInfo(),new MockHotelInfo(), orderDataService); 
-			//TODO: 暂时先用Mock代替
+			Order order=new Order(orderPO,  new OrderCustomerInfoImpl(), new OrderHotelInfoImpl(), orderDataService); 
 			if(order.getState().equals(OrderState.Exception)){
 				CreditLogDealService creditLogDealService=CreditController.getInstance();
 				creditLogDealService.Recover(order, recoverValue);
@@ -391,7 +385,6 @@ public class OrderController implements OrderService{
 				}).map(orderPO->getOrderVO(orderPO)).collect(Collectors.toList());
 				return voList;
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 		return null;

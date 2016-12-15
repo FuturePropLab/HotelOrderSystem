@@ -320,7 +320,6 @@ public class Order {
 		newValue+=placingOrderInfo.price;
 		newValue+=hotelInfo.getHotelInfo(placingOrderInfo.hotelID).mark.getValue()*100;
 		
-		//TODO wsw  小改  不知道 这个方法本来又问题!!!!
 		MemberController memberController = MemberController.getInstance();
 //		MockMemberController memberController = new MockMemberController();
 		System.out.println(placingOrderInfo.customerID);
