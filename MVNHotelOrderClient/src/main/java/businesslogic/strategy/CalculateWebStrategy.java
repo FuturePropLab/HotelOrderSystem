@@ -21,8 +21,8 @@ public class CalculateWebStrategy {
 
 	public CalculateWebStrategy(OrderInputCalVO orderInput) throws RemoteException {
 
-//		StrategyGetService discount = new StrategyGet();
-		MockStrategyGet discount =new MockStrategyGet();
+		StrategyGetService discount = new StrategyGet();
+//		MockStrategyGet discount =new MockStrategyGet();//test!!
 		strategyList = discount.getSuitableDiscount_web(orderInput);
 		this.orderInputCalVO = orderInput;
 		

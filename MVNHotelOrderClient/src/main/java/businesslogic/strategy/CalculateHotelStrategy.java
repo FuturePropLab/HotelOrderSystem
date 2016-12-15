@@ -34,8 +34,8 @@ public class CalculateHotelStrategy {
 	 *            构造方法
 	 */
 	public CalculateHotelStrategy(OrderInputCalVO orderInput)  {
-//		StrategyGetService discount = new StrategyGet();
-		MockStrategyGet discount = new MockStrategyGet();//test!!!!!!
+		StrategyGetService discount = new StrategyGet();
+//		MockStrategyGet discount = new MockStrategyGet();//test!!!!!!
 		try {
 			strategyList = discount.getSuitableDiscount_hotel(orderInput);
 		} catch (RemoteException e) {
