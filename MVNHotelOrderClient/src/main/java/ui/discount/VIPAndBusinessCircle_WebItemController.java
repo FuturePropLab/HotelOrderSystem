@@ -142,10 +142,8 @@ public class VIPAndBusinessCircle_WebItemController extends WebItemController {
 	 * @param businessCircle
 	 *            商圈
 	 */
-	public void setValue(String state, double discount, int vipLevel, String city, String district,
+	public void setValue( int vipLevel, String city, String district,
 			String businessCircle) {
-		this.state.setText(state);
-		this.discount.setText(discount + "");
 		this.delete.setText("删 除");// 字中间有空格
 		this.vipLevel.setValue("VIP" + vipLevel);
 		this.city.setValue(city);

@@ -79,9 +79,7 @@ public class VIPLevelAndDiscount_WebItemController extends WebItemController {
 	 * @param credit
 	 *            至少的信用值
 	 */
-	public void setValue(String state, double discount, int level, int credit) {
-		this.state.setText(state);
-		this.discount.setText(discount + "");
+	public void setValue( int level, int credit) {
 		this.delete.setText("删 除");// 字中间有空格
 		this.level.setText("VIP" + level);
 		this.credit.setText("" + credit);

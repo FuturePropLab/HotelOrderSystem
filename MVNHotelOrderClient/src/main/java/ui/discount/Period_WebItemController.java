@@ -98,9 +98,7 @@ public class Period_WebItemController extends WebItemController {
 	 * @param endDate
 	 *            结束时间
 	 */
-	public void setValue(String state, double discount, LocalDate startDate, LocalDate endDate) {
-		this.state.setText(state);
-		this.discount.setText(discount + "");
+	public void setValue( LocalDate startDate, LocalDate endDate) {
 		this.startTime.setPromptText(startDate.toString());
 		this.endTime.setPromptText(endDate.toString());
 		this.delete.setText("删 除");// 字中间有空格

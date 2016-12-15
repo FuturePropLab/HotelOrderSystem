@@ -85,10 +85,9 @@ public abstract class WebItemController {
 		delete.setDisable(true);
 	}
 
-	public void setValue(String title, String state, String aditionalMessage, double discount, String discountID) {
+	public void setValue(String title, String state,  double discount, String discountID) {
 		this.title.setText(title);
 		this.state.setText(state);
-		this.aditionalMessage.setText(aditionalMessage);
 		this.discount.setText(discount + "");
 		this.delete.setText("删 除");// 字中间有空格
 		this.discountID = discountID;
