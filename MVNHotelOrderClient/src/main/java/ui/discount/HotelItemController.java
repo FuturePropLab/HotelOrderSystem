@@ -51,26 +51,26 @@ public abstract class HotelItemController {
 	public void setHotelDiscountController(HotelDiscountController hotelDiscountController) {
 		this.hotelDiscountController = hotelDiscountController;
 	}
-
+	
 	@FXML
 	protected void handleDiscount() {
-		double num = 0;
-		try {
-			num = Double.parseDouble(discount.getText());
-		} catch (NumberFormatException e) {
-			System.out.println("discount is not a number");// TODO: 折扣数不正确时处理
-			Dialogs.showMessage("折扣格式不正确");
-			discount.setText("");
-			return;
-		}
-		if (num < 0 || num > 10) {
-			System.out.println("discount is not between 0 and 10");
-			Dialogs.showMessage("折扣数应在0~10之间");
-			discount.setText("");
-			return;
-		}
-		if (discountID != null)
-			handleSave();
+//		double num = 0;
+//		try {
+//			num = Double.parseDouble(discount.getText());
+//		} catch (NumberFormatException e) {
+//			System.out.println("discount is not a number");// TODO: 折扣数不正确时处理
+//			Dialogs.showMessage("折扣格式不正确");
+//			discount.setText("");
+//			return;
+//		}
+//		if (num < 0 || num > 10) {
+//			System.out.println("discount is not between 0 and 10");
+//			Dialogs.showMessage("折扣数应在0~10之间");
+//			discount.setText("");
+//			return;
+//		}
+//		if (discountID != null)
+//			handleSave();
 	}
 
 	@FXML
@@ -204,5 +204,24 @@ public abstract class HotelItemController {
 		this.discountID = discountID;
 		this.enterpriseName = enterpriseName;
 		setTitle();
+		this.discount.focusedProperty().addListener(e->{
+			double num = 0;
+			try {
+				num = Double.parseDouble(this.discount.getText());
+			} catch (NumberFormatException e1) {
+				System.out.println("discount is not a number");// TODO: 折扣数不正确时处理
+				Dialogs.showMessage("折扣格式不正确");
+				this.discount.setText("");
+				return;
+			}
+			if (num < 0 || num > 10) {
+				System.out.println("discount is not between 0 and 10");
+				Dialogs.showMessage("折扣数应在0~10之间");
+				this.discount.setText("");
+				return;
+			}
+			if (discountID != null)
+				handleSave();
+		});
 	}
 }
