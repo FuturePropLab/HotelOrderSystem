@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
+import com.jfoenix.controls.cells.editors.TextFieldEditorBuilder;
+import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
 import businesslogic.account.CustomerAccountController;
@@ -21,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableColumn.CellEditEvent;
 import po.CustomerAccount;
 import tools.ResultMessage_Account;
 import ui.utils.Dialogs;
@@ -74,10 +77,12 @@ public class CustomerController {
 		
 		final TreeItem<Customer> root = new RecursiveTreeItem<Customer>(customers, RecursiveTreeObject::getChildren);
 		customerList.setRoot(root);
-		
+		customerList.setEditable(true);
+		//创建TreeTableView的列
 		for(int index=0;index<titles.length;index++){
 			setCustomerColumn(index);
 		}
+		//为filterField增加监听方法
 		filterField.textProperty().addListener((o,oldVal,newVal)->{
 			customerList.setPredicate(customer -> customer.getValue().userName.get().contains(newVal) || 
 					customer.getValue().customerID.get().contains(newVal) || 
@@ -98,6 +103,16 @@ public class CustomerController {
 			if(colum.validateValue(param)) return propertys[index];
 			else return colum.getComputedValue(param);
 		});
+		// add editors
+		colum.setCellFactory((TreeTableColumn<Customer, String> param) -> 
+			new GenericEditableTreeTableCell<Customer, String>(new TextFieldEditorBuilder()));
+		colum.setOnEditCommit((CellEditEvent<Customer, String> t)->{
+			Customer customer=(Customer)t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue();
+			StringProperty propertys[]={customer.userName,customer.customerID,customer.customerName,
+					customer.gender,customer.contactWay};
+			propertys[index].set(t.getNewValue());//t.getNewValue()是编辑后的值
+		});
+		
 		customerList.getColumns().add(colum);
 	}	
 	private void resetPassword() {

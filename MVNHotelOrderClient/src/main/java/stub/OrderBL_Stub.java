@@ -96,17 +96,4 @@ public class OrderBL_Stub implements OrderService{
 	}
 
 
-	@Override
-	public int calculateCreditLose(String orderID) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	@Override
-	public ResultMessage revokeBadOrderr(String orderID, RecoverValue recoverValue) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

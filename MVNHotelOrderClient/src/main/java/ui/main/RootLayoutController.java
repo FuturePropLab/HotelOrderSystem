@@ -98,9 +98,9 @@ public class RootLayoutController {
 	private void initialize() {
 		formerViews=new Stack<View>();
 		try {
-			 changeFullLayout("../login/Login.fxml");
+//			 changeFullLayout("../login/Login.fxml");
 //			 changeDetails("../order/OrderList.fxml");
-//			changeDetails("../administor/UserAdmin.fxml");
+			changeDetails("../administor/UserAdmin.fxml");
 //			OrderAssessController controller = (OrderAssessController) this.getDetailsController();
 //			controller.initValue("-C4S90908105229");
 //			changeDetails("../customer/ClientInfo.fxml");
