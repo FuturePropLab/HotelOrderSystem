@@ -2,6 +2,7 @@ package ui.customer;
 
 import java.net.URI;
 
+import Exception.OutOfBoundsException;
 import businesslogic.hotel.HotelDealController;
 import businesslogic.order.OrderController;
 import javafx.fxml.FXML;
@@ -74,7 +75,12 @@ public class OrderAssessController extends DetailsController{
 	@FXML
 	private void handleSubmit(){
 		//TODO:调用blservice提交评价
-		
+		try {
+			Mark mark=new Mark(this.mark);
+		} catch (OutOfBoundsException e) {
+			System.err.println("can not create Mark:"+this.mark);
+			return;
+		}
 	}
 	@FXML
 	private void handleCancel(){

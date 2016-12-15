@@ -426,7 +426,7 @@ public class Hotel {
 						e1.printStackTrace();
 					}
 				}
-				AssessVO assessVO = new AssessVO(mark, hAssessPO.getAssessment());
+				AssessVO assessVO = new AssessVO(hAssessPO.getOrderID(),mark, hAssessPO.getAssessment());
 				assessVOs.add(assessVO);
 				fullmark+=hAssessPO.getMarkValue();
 				count++;		

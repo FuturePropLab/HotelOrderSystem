@@ -235,7 +235,7 @@ public class Order {
 	 * @return 评价信息
 	 */
 	public AssessVO getAssessInfo(){
-		return new AssessVO(assessInfo.mark, assessInfo.assessment);
+		return new AssessVO(orderID,assessInfo.mark, assessInfo.assessment);
 	}
 	/**
 	 * 
