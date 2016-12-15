@@ -27,7 +27,7 @@ public class DateFormat {
 		if(date==null){
 			return null;
 		}
-		return String.valueOf(date.getYear())+"-"+String.valueOf(1+date.getMonth())+"-"+
+		return String.valueOf(1900+date.getYear())+"-"+String.valueOf(1+date.getMonth())+"-"+
 				String.valueOf(date.getDate());
 	}
 	

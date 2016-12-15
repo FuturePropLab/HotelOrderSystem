@@ -246,17 +246,22 @@ public class OrderDetailsController extends DetailsController{
 				this.checkOutInfo.setVisible(true);
 				this.checkOutDate.setText(DateFormat.format_includingTime(orderVO.checkInTime));
 				this.checkOut.setVisible(false);
-				this.assessInfo.setVisible(true);
+				if(orderVO.mark==null){
+					this.assessInfo.setVisible(false);
+					this.goTOAssess.setVisible(true);
+				}else {
+					this.assessInfo.setVisible(true);
+					this.goTOAssess.setVisible(false);
+					this.mark.setText(orderVO.mark.getValue()+"");
+					this.star_1.setImage(orderVO.mark.getValue()>=1? yellowStar:greyStar);
+					this.star_2.setImage(orderVO.mark.getValue()>=2? yellowStar:greyStar);
+					this.star_3.setImage(orderVO.mark.getValue()>=3? yellowStar:greyStar);
+					this.star_4.setImage(orderVO.mark.getValue()>=4? yellowStar:greyStar);
+					this.star_5.setImage(orderVO.mark.getValue()>=5? yellowStar:greyStar);
+					this.assess.setText(orderVO.assessment);
+				}
 			}
 		}
-		
-		this.mark.setText(orderVO.mark.getValue()+"");
-		this.star_1.setImage(orderVO.mark.getValue()>=1? yellowStar:greyStar);
-		this.star_2.setImage(orderVO.mark.getValue()>=2? yellowStar:greyStar);
-		this.star_3.setImage(orderVO.mark.getValue()>=3? yellowStar:greyStar);
-		this.star_4.setImage(orderVO.mark.getValue()>=4? yellowStar:greyStar);
-		this.star_5.setImage(orderVO.mark.getValue()>=5? yellowStar:greyStar);
-		this.assess.setText(orderVO.assessment);
 		
 		if((loginService.getLogState().accountType.equals(AccountType.Customer) && 
 				orderVO.orderState.equals(OrderState.Unexecuted)) || 

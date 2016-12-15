@@ -260,11 +260,9 @@ public class HotelDetailController extends DetailsController{
 	@FXML
 	private void handleAssess() {
 		//TODO:跳转到评价信息界面
-		
-		HotelDealService hotelDealService = HotelDealController.getInstance();
-		List<CommentVO> commentList = hotelDealService.getComment(hotelDetailsVO.hotelID);
+
 		try {
-			rootLayoutController.changeDetails("");//跳转到酒店评价信息界面，
+			rootLayoutController.changeDetails("../hotel/HotelRankList.fxml");//跳转到酒店评价信息界面，
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		

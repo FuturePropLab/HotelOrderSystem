@@ -10,16 +10,17 @@ import javafx.scene.image.ImageView;
 import tools.HotelAddress;
 import tools.OrderState;
 import tools.RoomType;
+import ui.utils.DateFormat;
 import ui.utils.DoubleFormate;
-
 /**
  * 订单列表项的控制器
  * @author zjy
  *
  */
 public class OrderItemController {
-	private static String[] roomTypes={"单人间","双人间","标准间","豪华套房","总统套房"};
-	private static String[] orderStates={"未入住","已入住","异常订单","已撤销"};
+//	private static String[] roomTypes={"单人间","双人间","标准间","豪华套房","总统套房"};
+//	private static String[] orderStates={"未入住","已入住","异常订单","已撤销"};
+//	private static Color[] stateColors={Color.LIGHTGREEN,Color.LIGHTSALMON,Color.RED,Color.DARKGREY};
 
 	@FXML
 	private ImageView hotelImage;
@@ -78,12 +79,15 @@ public class OrderItemController {
 		this.hotelImage.setImage(hotelImage);
 		this.hotelName.setText(hotelName);
 		this.hotelAddress.setText(hotelAddress.getAddressDetail());
-		this.date_from.setText((1900+date_from.getYear())+"-"+(1+date_from.getMonth())+"-"+date_from.getDate());
-		this.date_to.setText((1900+date_to.getYear())+"-"+(1+date_to.getMonth())+"-"+date_to.getDate());
-		this.roomType.setText(roomTypes[roomType.ordinal()]);
+		this.date_from.setText(DateFormat.format(date_from));
+		this.date_to.setText(DateFormat.format(date_to));
+		this.roomType.setText(roomType.toString());
 		this.roomNumber.setText(roomNumber+"");
+
 		this.price.setText(DoubleFormate.formateto(price));
-		this.orderState.setText(orderStates[orderState.ordinal()]);
+
+		this.orderState.setText(orderState.toString());
+		this.orderState.setTextFill(orderState.getColor());
 		this.orderID=orderID;
 		this.hotelID=hotelID;
 	}
