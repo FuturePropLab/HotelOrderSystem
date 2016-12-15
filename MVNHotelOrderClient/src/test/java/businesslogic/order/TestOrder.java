@@ -209,7 +209,7 @@ public class TestOrder {
 		
 		
 		
-		assertEquals(order.getOrderValue(), 1320);
+		assertEquals(order.getOrderValue(), 320);
 		assertEquals(order2.getOrderValue(), 1300);
 		assertEquals(order3.getOrderValue(),2400 );
 		

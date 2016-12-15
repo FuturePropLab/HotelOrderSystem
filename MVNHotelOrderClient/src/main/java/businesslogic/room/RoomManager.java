@@ -29,7 +29,7 @@ public class RoomManager {
 	public RoomManager(){
 		this.roomDataService = RemoteHelper.getInstance().getRoomDataService();
 		roomPictureDeal = new RoomPictureDeal();
-//		this.roomDataService =new RoomData_Stub();
+//		this.roomDataService =new RoomData_Stub();//test!!!
 //		this.roomPictureDeal = new RoomPictureDeal();
 	}
 	
