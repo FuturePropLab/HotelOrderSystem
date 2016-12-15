@@ -83,9 +83,7 @@ public class OrderItemController {
 		this.date_to.setText(DateFormat.format(date_to));
 		this.roomType.setText(roomType.toString());
 		this.roomNumber.setText(roomNumber+"");
-
 		this.price.setText(DoubleFormate.formateto(price));
-
 		this.orderState.setText(orderState.toString());
 		this.orderState.setTextFill(orderState.getColor());
 		this.orderID=orderID;
