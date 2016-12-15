@@ -26,6 +26,7 @@ import tools.ActionType;
 import tools.OrderState;
 import tools.RecoverValue;
 import tools.ResultMessage;
+import vo.AssessVO;
 import vo.ExecutionInfoVO;
 import vo.FuzzySearchOrderVO;
 import vo.OrderInputVO;
@@ -387,6 +388,12 @@ public class OrderController implements OrderService{
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}	
+		return null;
+	}
+
+	@Override
+	public ResultMessage assessOrder(AssessVO assessVO) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

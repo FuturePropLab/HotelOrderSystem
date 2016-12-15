@@ -186,6 +186,7 @@ public class BookHotelController extends DetailsController{
 			 System.out.println(resultMessage);
 		} catch (CustomerCreditNotEnoughException e) {
 			Dialogs.showMessage("你的信用值是："+e.credit,"你的信用值不足，不能下单，请联系网站促销人员进行充值");
+			return;
 		}
 		if(resultMessage.equals(ResultMessage.Exist)){
 			try {
@@ -211,7 +212,8 @@ public class BookHotelController extends DetailsController{
 		LocalDate startDate = this.lastDate.getValue() ;
 		LocalDate endDate = this.planedLeaveDate.getValue() ;
 		
-		if(startDate == null || endDate==null) return ;
+		if(startDate == null || endDate==null ) return ;
+		if(lastDate_time.getValue()==null || planedLeaveDate_time.getValue()==null) return;
 		
 		//简单计算天数
 
@@ -313,8 +315,8 @@ public class BookHotelController extends DetailsController{
 	}
 	
 	public void setRoomType(RoomType roomType) {
-		this.roomType.getItems().clear();
-		System.out.println(roomType);
+//		this.roomType.getItems().clear();
+//		System.out.println(roomType);
 		this.roomType.setValue(getRoomString(roomType));
 	}		
 	public void setLastDate(Date lastDate) {

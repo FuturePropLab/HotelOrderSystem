@@ -7,6 +7,7 @@ import businesslogic.hotel.HotelManageController;
 import businesslogic.login.LoginController;
 import businesslogicservice.LoginService;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -55,7 +56,7 @@ public class FacilitiesInfoController extends DetailsController{
 	@FXML
 	private TextField other;
 	@FXML
-	private Hyperlink save;
+	private Button save;
 	@FXML
 	private Label facility1;
 	@FXML

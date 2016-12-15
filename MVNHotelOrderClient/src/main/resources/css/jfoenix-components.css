@@ -1,6 +1,5 @@
 .root{
-	-fx-font-family: Roboto;	
-    src:"/resources/roboto/Roboto-Regular.ttf";
+	
 }
 /* Burgers Demo */
 
@@ -101,10 +100,15 @@
 
 
 .jfx-check-box{
-    -fx-font-weight: BOLD;
+     
 }
 
-.custom-jfx-check-box{
+.default-jfx-check-box{
+	-fx-font-size: 18px;
+}
+
+.red-jfx-check-box{
+	-fx-font-size: 18px;
     -fx-checked-color: RED;
     -fx-unchecked-color: BLACK;
 }

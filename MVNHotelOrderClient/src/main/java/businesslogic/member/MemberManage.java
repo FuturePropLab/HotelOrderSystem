@@ -34,6 +34,10 @@ public class MemberManage {
 	}
 	public MemberManage(){
 
+
+
+		memberDataService=RemoteHelper.getInstance().getMemberDataService();
+
 	}
 	
 	public MemberVO getMemberInfo(String customer_id) {
