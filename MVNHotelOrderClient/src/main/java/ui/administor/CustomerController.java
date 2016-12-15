@@ -15,11 +15,13 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
 import businesslogic.account.CustomerAccountController;
 import businesslogicservice.AccountCustomerService;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
@@ -40,7 +42,8 @@ public class CustomerController {
 	private Button reset;
 	private Button delete;
 	private ObservableList<Customer> customers;//列表项的集合
-
+	private Label count_customer;
+	
 	/**
 	 * 
 	 * @param customerList 显示列表的TreeTableView
@@ -48,11 +51,13 @@ public class CustomerController {
 	 * @param reset 重置密码按钮
 	 * @param delete 删除账号按钮
 	 */
-	public CustomerController(JFXTreeTableView<Customer> customerList,TextField filterField,Button reset,Button delete) {
+	public CustomerController(JFXTreeTableView<Customer> customerList,TextField filterField,Button reset,
+			Button delete,Label count_customer) {
 		this.customerList = customerList;
 		this.filterField=filterField;
 		this.reset=reset;
 		this.delete=delete;
+		this.count_customer=count_customer;
 		initCustomer();
 	}
 	
@@ -91,6 +96,9 @@ public class CustomerController {
 		});
 		reset.setOnAction((action)->resetPassword());
 		delete.setOnAction((action)->delete());
+		//为计数器Lable绑定显示的信息来源
+		count_customer.textProperty().bind(Bindings.createStringBinding(()-> 
+			"共计 " + customerList.getCurrentItemsCount()+" 条", customerList.currentItemsCountProperty()));
 	}
 	private void setCustomerColumn(int index){
 		JFXTreeTableColumn<Customer, String> colum=new JFXTreeTableColumn<>(titles[index]);

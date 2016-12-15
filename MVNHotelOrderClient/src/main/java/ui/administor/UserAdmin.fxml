@@ -32,15 +32,15 @@
                                     <Font size="24.0" />
                                  </font>
                               </JFXButton>
-                              <Label text="搜索">
+                              <Label fx:id="count_customer" text="搜索">
                                  <font>
-                                    <Font size="24.0" />
+                                    <Font size="20.0" />
                                  </font>
                                  <padding>
                                     <Insets left="80.0" />
                                  </padding>
                               </Label>
-                              <JFXTextField fx:id="customerFilter" minWidth="242.0" prefHeight="54.0" prefWidth="242.0">
+                              <JFXTextField fx:id="customerFilter" labelFloat="true" minWidth="242.0" prefHeight="54.0" prefWidth="242.0" promptText="搜索">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -68,15 +68,15 @@
                                     <Font size="24.0" />
                                  </font>
                               </JFXButton>
-                              <Label text="搜索">
+                              <Label fx:id="count_hotel" text="搜索">
                                  <font>
-                                    <Font size="24.0" />
+                                    <Font size="20.0" />
                                  </font>
                                  <padding>
                                     <Insets left="80.0" />
                                  </padding>
                               </Label>
-                              <JFXTextField fx:id="hotelFilter" minWidth="242.0" prefHeight="54.0" prefWidth="242.0">
+                              <JFXTextField fx:id="hotelFilter" minWidth="242.0" prefHeight="54.0" prefWidth="242.0" promptText="搜索">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -104,15 +104,15 @@
                                     <Font size="24.0" />
                                  </font>
                               </JFXButton>
-                              <Label text="搜索">
+                              <Label fx:id="count_web" text="搜索">
                                  <font>
-                                    <Font size="24.0" />
+                                    <Font size="20.0" />
                                  </font>
                                  <padding>
                                     <Insets left="80.0" />
                                  </padding>
                               </Label>
-                              <JFXTextField fx:id="webFilter" minWidth="242.0" prefHeight="54.0" prefWidth="242.0">
+                              <JFXTextField fx:id="webFilter" minWidth="242.0" prefHeight="54.0" prefWidth="242.0" promptText="搜索">
                                  <font>
                                     <Font size="24.0" />
                                  </font>

@@ -12,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
@@ -37,6 +38,8 @@ public class UserAdminController extends DetailsController{
 	@FXML
 	private JFXTreeTableView<Customer> customerList;
 	@FXML
+	private Label count_customer;
+	@FXML
 	private TextField customerFilter;
 	@FXML
 	private Button reset_customer;
@@ -45,6 +48,8 @@ public class UserAdminController extends DetailsController{
 	@FXML
 	private JFXTreeTableView<Hotel> hotelList;
 	@FXML
+	private Label count_hotel;
+	@FXML
 	private TextField hotelFilter;
 	@FXML
 	private Button reset_hotel;
@@ -52,6 +57,8 @@ public class UserAdminController extends DetailsController{
 	private Button delete_hotel;
 	@FXML
 	private JFXTreeTableView<Web> webList;
+	@FXML
+	private Label count_web;
 	@FXML
 	private TextField webFilter;
 	@FXML
@@ -65,9 +72,10 @@ public class UserAdminController extends DetailsController{
 	
 	@FXML
 	private void initialize(){
-		customerController=new CustomerController(customerList,customerFilter,reset_customer,delete_customer);
-		hotelController=new HotelController(hotelList, hotelFilter, reset_hotel, delete_hotel);
-		webController=new WebController(webList, webFilter, reset_web, delete_web);
+		customerController=new CustomerController(customerList,customerFilter,reset_customer,delete_customer
+				,count_customer);
+		hotelController=new HotelController(hotelList, hotelFilter, reset_hotel, delete_hotel,count_hotel);
+		webController=new WebController(webList, webFilter, reset_web, delete_web,count_web);
 	}
 	
 

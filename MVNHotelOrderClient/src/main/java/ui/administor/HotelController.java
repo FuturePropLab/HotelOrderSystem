@@ -17,11 +17,13 @@ import businesslogic.account.CustomerAccountController;
 import businesslogic.account.HotelAccountController;
 import businesslogicservice.AccountCustomerService;
 import businesslogicservice.AccountHotelService;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
@@ -44,6 +46,7 @@ public class HotelController {
 	private Button reset;
 	private Button delete;
 	private ObservableList<Hotel> hotels;//列表项的集合
+	private Label count_hotel;
 
 	/**
 	 * 
@@ -52,11 +55,13 @@ public class HotelController {
 	 * @param reset 重置密码按钮
 	 * @param delete 删除账号按钮
 	 */
-	public HotelController(JFXTreeTableView<Hotel> hotelList,TextField filterField,Button reset,Button delete) {
+	public HotelController(JFXTreeTableView<Hotel> hotelList,TextField filterField,Button reset,
+			Button delete,Label count_hotel) {
 		this.hotelList = hotelList;
 		this.filterField=filterField;
 		this.reset=reset;
 		this.delete=delete;
+		this.count_hotel=count_hotel;
 		initHotel();
 	}
 	
@@ -91,6 +96,9 @@ public class HotelController {
 		});
 		reset.setOnAction((action)->resetPassword());
 		delete.setOnAction((action)->delete());
+		//为计数器Lable绑定显示的信息来源
+		count_hotel.textProperty().bind(Bindings.createStringBinding(()-> 
+			"共计 " + hotelList.getCurrentItemsCount()+" 条", hotelList.currentItemsCountProperty()));
 	}
 	private void setCustomerColumn(int index){
 		JFXTreeTableColumn<Hotel, String> colum=new JFXTreeTableColumn<>(titles[index]);

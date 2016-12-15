@@ -14,11 +14,13 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import businesslogic.account.HotelAccountController;
 import businesslogic.account.WebDesignerAccountController;
 import businesslogicservice.AccountHotelService;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
@@ -41,6 +43,7 @@ public class WebController {
 	private Button reset;
 	private Button delete;
 	private ObservableList<Web> webs;
+	private Label count_web;
 
 	/**
 	 * 
@@ -49,11 +52,13 @@ public class WebController {
 	 * @param reset 重置密码按钮
 	 * @param delete 删除账号按钮
 	 */
-	public WebController(JFXTreeTableView<Web> webList,TextField filterField,Button reset,Button delete) {
+	public WebController(JFXTreeTableView<Web> webList,TextField filterField,Button reset,
+			Button delete,Label count_web) {
 		this.webList = webList;
 		this.filterField=filterField;
 		this.reset=reset;
 		this.delete=delete;
+		this.count_web=count_web;
 		initWeb();
 	}
 	
@@ -81,6 +86,9 @@ public class WebController {
 		});
 		reset.setOnAction((action)->resetPassword());
 		delete.setOnAction((action)->delete());
+		//为计数器Lable绑定显示的信息来源
+		count_web.textProperty().bind(Bindings.createStringBinding(()-> 
+			"共计 " + webList.getCurrentItemsCount()+" 条", webList.currentItemsCountProperty()));
 	}
 	private void setCustomerColumn(int index){
 		JFXTreeTableColumn<Web, String> colum=new JFXTreeTableColumn<>(titles[index]);
