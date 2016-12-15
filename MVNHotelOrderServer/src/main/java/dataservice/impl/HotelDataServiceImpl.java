@@ -218,6 +218,7 @@ public class HotelDataServiceImpl implements HotelDataService {
 
 	public ResultMessage_Hotel upload(String filename, byte[] fileContent) throws RemoteException {
 		  File file = new File(filename); 
+		  System.out.println(filename);
           try { 
               if (!file.exists()) 
                   file.createNewFile(); 

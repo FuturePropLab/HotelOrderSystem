@@ -141,8 +141,10 @@ public class AccountDataServiceImpl implements AccountDataService {
 		while(it.hasNext()){
 			AccountPO accountPO = it.next();
 			CustomerPO customerPO  =customerDataHelper.find(accountPO.getUserid()) ;
-			CustomerAccount account = new CustomerAccount(accountPO, customerPO);
-			customerAccounts.add(account);
+			if(customerPO!=null && accountPO!=null){
+				CustomerAccount account = new CustomerAccount(accountPO, customerPO);
+				customerAccounts.add(account);
+			}
 		}
 		return customerAccounts;
 	}
@@ -159,12 +161,14 @@ public class AccountDataServiceImpl implements AccountDataService {
 			AccountPO accountPO = it.next();
 			HotelAddressPO hotelAddressPO  =hotelDataHelper.getHotelAddressPO(accountPO.getUserid()) ;
 			HotelBasePO hotelBasePO = hotelDataHelper.getHotelBasePO(accountPO.getUserid());
-			HotelAccount account = new HotelAccount(accountPO, hotelAddressPO, hotelBasePO);
-			List<String>  liststr = hotelDataService.getHotelInfoString(accountPO.getUserid());
-			if(liststr!=null && !liststr.isEmpty()){
-				account.setContactWay(liststr.get(0));
+			if(accountPO!=null && hotelAddressPO!=null && hotelBasePO!=null){
+				HotelAccount account = new HotelAccount(accountPO, hotelAddressPO, hotelBasePO);
+				List<String>  liststr = hotelDataService.getHotelInfoString(accountPO.getUserid());
+				if(liststr!=null && !liststr.isEmpty()){
+					account.setContactWay(liststr.get(0));
+				}
+				hotelAccounts.add(account);
 			}
-			hotelAccounts.add(account);
 		}
 		return hotelAccounts;
 	}

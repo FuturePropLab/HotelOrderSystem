@@ -153,12 +153,14 @@ public class Credit {
 		for(int i = 0 ; i <  list.size() ; i++){
 			CreditLogPO creditlogPO = list.get(i);
 			CreditlogVO creditlogVO;
-			if(creditlogPO.getOrderID()==null){
+			if(creditlogPO.getActionType()==ActionType.Charge){
 				//充值
-				creditlogVO = new CreditlogVO(creditlogPO.getCustomerID(),creditlogPO.getActionType(),null,creditlogPO.getChangDate(),creditlogPO.getChangeValue(),creditlogPO.getMoney());
+				creditlogVO = new CreditlogVO
+						(creditlogPO.getCustomerID(),creditlogPO.getActionType(),null,creditlogPO.getChangDate(),creditlogPO.getChangeValue(),creditlogPO.getMoney());
 			}else{
 				//订单变化
-				creditlogVO = new CreditlogVO(creditlogPO.getCustomerID(),creditlogPO.getActionType(),creditlogPO.getOrderID(),creditlogPO.getChangDate(),creditlogPO.getChangeValue(),0);
+				creditlogVO = new CreditlogVO
+						(creditlogPO.getCustomerID(),creditlogPO.getActionType(),creditlogPO.getOrderID(),creditlogPO.getChangDate(),creditlogPO.getChangeValue(),0);
 			}
 			
 			logList.add(creditlogVO);

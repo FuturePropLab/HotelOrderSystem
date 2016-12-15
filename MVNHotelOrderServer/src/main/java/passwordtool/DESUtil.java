@@ -70,6 +70,6 @@ public class DESUtil {
     
     
     public static void main(String[] args) {
-
+    	System.out.println(decode("HJ0ZYQZqoDQ1fMPvfUX2bA=="));
 	}
 }

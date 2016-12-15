@@ -2,7 +2,6 @@ package vo;
 
 import java.util.Date;
 
-import po.Order;
 import tools.ActionType;
 
 public class CreditlogVO {

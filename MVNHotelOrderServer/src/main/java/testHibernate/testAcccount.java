@@ -1,17 +1,22 @@
 package testHibernate;
 
 import java.rmi.RemoteException;
+import java.util.List;
 
 import dataservice.impl.AccountDataServiceImpl;
 import po.AccountPO;
+import po.CustomerAccount;
 import tools.AccountType;
 
 public class testAcccount {
 		
 		public static void main(String[] args) throws RemoteException {
-			AccountDataServiceImpl accountDataServiceImpl = new AccountDataServiceImpl();
-			AccountPO accountPO  =new AccountPO("WB001", "mengyidan", "mengyidan", AccountType.Web);
-			accountDataServiceImpl.addAccount(accountPO);
+			AccountDataServiceImpl ccccc = new AccountDataServiceImpl();
+//			AccountPO accountPO  =new AccountPO("WB001", "mengyidan", "mengyidan", AccountType.Web);
+//			accountDataServiceImpl.addAccount(accountPO);
+			List<CustomerAccount> customerAccounts =ccccc.getCustomerAccount();
+			System.out.println(customerAccounts.size());
+			
 			//AccountDataHelper accountDataHelper = DataHelperUtils.getAccountDataHelper();
 			//LoginCheckService loginCheckService = new LoginCheckServiceImpl();
 			//System.out.println(loginCheckService.checkLogin("zhujunyi", "zjyzjy11", AccountType.Customer));

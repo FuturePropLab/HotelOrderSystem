@@ -10,6 +10,20 @@ public enum RoomType {
 	Standard,
 	Suites,
 	EluxeSuite;
+	
+	public String tosave(){
+		if(this.equals(Single)){
+			return "Single";
+		}else if(this.equals(Double)){
+			return "Double";
+		}else if(this.equals(Standard)){
+			return "Standard";
+		}else if(this.equals(Suites)){
+			return "Suites";
+		}else if(this.equals(EluxeSuite)){
+			return "EluxeSuite";
+		}else return null;
+	}
 
 	@Override
 	public String toString() {

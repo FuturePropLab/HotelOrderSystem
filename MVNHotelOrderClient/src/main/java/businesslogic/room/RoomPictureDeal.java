@@ -46,7 +46,7 @@ public class RoomPictureDeal {
 	  * @return
 	  */
 	 public ResultMessage_Hotel uploadRoomPicture(String hotelId , RoomType room,URI uri){
-		 String pwd = "./ImageData/"+room.toString()+"/"+hotelId+".png";	
+		 String pwd = "./ImageData/"+room.tosave()+"/"+hotelId+".png";	
 		 return  upload(pwd, uri);
 	 }
 	 
@@ -57,7 +57,7 @@ public class RoomPictureDeal {
 	  * @return
 	  */
 	 public URI downloadRoomPicture(String hotelId,RoomType room){
-		 String pwd = "./ImageData/"+room.toString()+"/"+hotelId+".png";
+		 String pwd = "./ImageData/"+room.tosave()+"/"+hotelId+".png";
 		 String cache = "./Cache/"+room.toString()+hotelId+".png";
 		 return download(pwd, cache);
 	 }

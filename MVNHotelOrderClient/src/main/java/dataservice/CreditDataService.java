@@ -12,15 +12,15 @@ public interface CreditDataService extends Remote{
 	/**
 	 * 
 	 * @param creditlog
-	 * @return
+	 * @return ResultMessage
 	 */
 	public ResultMessage add(CreditLogPO creditlog)throws RemoteException;
 	
 	
 	/**
-	 * 
+	 * 获取全部的信用记录
 	 * @param customer_id
-	 * @return
+	 * @return  List<CreditLogPO>
 	 */
 	public List<CreditLogPO>  getLogList(String customer_id)throws RemoteException;
 	

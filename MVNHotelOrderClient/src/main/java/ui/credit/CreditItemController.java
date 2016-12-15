@@ -55,7 +55,7 @@ public class CreditItemController {
 		this.changLogController=changLogController;
 		this.reason.setText(reasons[creditlogVO.actionType.ordinal()]);
 		this.reason.setTextFill(creditlogVO.changeValue>=0? Color.GREEN:Color.RED);
-		this.value.setText(creditlogVO.changeValue>0?"+":"" + creditlogVO.changeValue);
+		this.value.setText((creditlogVO.changeValue>0?"+":"") + creditlogVO.changeValue);
 		this.time.setText(DateFormat.format_includingTime(creditlogVO.ChangDate));
 		if(creditlogVO.actionType.equals(ActionType.Charge)){
 			this.price.setText(creditlogVO.money+"");

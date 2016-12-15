@@ -342,12 +342,23 @@ public class HotelDetailController extends DetailsController{
 		if(hotelDetailsVO==null){
 			System.err.println("hotelDetailsVO is null. At HotelDetailController.initVaule(String hotelID)");
 		}
-		this.hotelImage.setImage(new Image(hotelDetailsVO.hotelImage.toString()));
-		this.imageFile=new File(hotelDetailsVO.hotelImage);
-		this.hotelNameLabel.setText(hotelDetailsVO.hotelName);
+		if(hotelDetailsVO.hotelImage!=null){
+			this.hotelImage.setImage(new Image(hotelDetailsVO.hotelImage.toString()));
+			this.imageFile=new File(hotelDetailsVO.hotelImage);
+		}
+		else
+		this.hotelImage.setImage(new Image("file:./target/resources/images/room.png"));	
+
+		if(hotelDetailsVO.hotelName!=null){
+			this.hotelNameLabel.setText(hotelDetailsVO.hotelName);
 		this.hotelNameTextField.setText(hotelDetailsVO.hotelName);
-		this.describtionText.setText(hotelDetailsVO.hotelDiscribtionsVO.discribes.get(0));
-		this.describtionTextArea.setText(hotelDetailsVO.hotelDiscribtionsVO.discribes.get(0));
+			}
+		if(hotelDetailsVO.hotelDiscribtionsVO.discribes!=null
+				&& !hotelDetailsVO.hotelDiscribtionsVO.discribes.isEmpty()){
+			this.describtionText.setText(hotelDetailsVO.hotelDiscribtionsVO.discribes.get(0));
+			this.describtionTextArea.setText(hotelDetailsVO.hotelDiscribtionsVO.discribes.get(0));
+		}
+		
 		this.starLabel.setText(hotelDetailsVO.star.ordinal()+"");
 		this.starComboBox.setValue(starArray[hotelDetailsVO.star.ordinal()]);
 		handleStarComboBox();
@@ -358,9 +369,13 @@ public class HotelDetailController extends DetailsController{
 		this.star_3.setImage(mark>=3? yellowStar:greyStar);
 		this.star_4.setImage(mark>=4? yellowStar:greyStar);
 		this.star_5.setImage(mark>=5? yellowStar:greyStar);
+		if(hotelDetailsVO.hotelAddress.getCity()!=null)
 		this.cityLabel.setText(hotelDetailsVO.hotelAddress.getCity());
+		if(hotelDetailsVO.hotelAddress.getDistrict()!=null)
 		this.districtLabel.setText(hotelDetailsVO.hotelAddress.getDistrict());
+		if(hotelDetailsVO.hotelAddress.getBusinessCircle()!=null)
 		this.businessCircleLabel.setText(hotelDetailsVO.hotelAddress.getBusinessCircle());
+		if(hotelDetailsVO.hotelAddress.getAddressDetail()!=null)
 		this.addressLabel.setText(hotelDetailsVO.hotelAddress.getAddressDetail());
 		this.cityComboBox.getItems().clear();
 		this.cityComboBox.getItems().addAll(hotelDealService.getAllCity());

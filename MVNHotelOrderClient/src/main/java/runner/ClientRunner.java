@@ -9,19 +9,11 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.Date;
+import java.util.List;
 
-import businesslogic.credit.Credit;
-import businesslogic.credit.CreditController;
-import businesslogic.customer.CustomerDealController;
-import businesslogic.hotel.HotelDealController;
-import businesslogic.hotel.HotelManageController;
-import businesslogic.order.OrderController;
-import dataservice.OrderDataService;
-import po.OrderPO;
+import dataservice.CreditDataService;
+import po.CreditLogPO;
 import rmi.RemoteHelper;
-import vo.CustomerVO;
-import vo.HotelFacilityVO;
 
 public class ClientRunner {
 	private RemoteHelper remoteHelper;
@@ -63,98 +55,16 @@ public class ClientRunner {
 	
 	public void test() throws RemoteException{	
 		
-//		LoginController loginController = LoginController .getInstance();
-//		loginController.logOut("CS001");
-//	
-//		CreditController creditController = CreditController.getInstance();
-//		System.out.println(creditController.charge("CS001", 10, new Date()));
-		OrderDataService orderDataService  =RemoteHelper.getInstance().getOrderDataService();
-		OrderPO orderPO  = orderDataService.findOrder("-C1S40407170821");
-		System.out.println(orderPO.getPrice());
-		
-//		HotelFacilityVO hotelFacilityVO = new HotelFacilityVO();
-//		hotelFacilityVO.hotelID = "HT001";
-//		hotelFacilityVO.other="wwwwwww";
-		//HotelManageController hotelManageController = HotelManageController.getInstance();
-//		HotelDealController hotelDealController = HotelDealController.getInstance();
-//		HotelFacilityVO g = hotelDealController.gethotelFacilityVO("HT001");
-//		System.out.println(g.other);
-//		System.out.println(hotelManageController.modifyFacility(hotelFacilityVO));
-//		
-//		CustomerDealController customerDealController = CustomerDealController.getInstance();
-//		CustomerVO cus = customerDealController.getCustomerInfo("CS001");
-//		System.out.println(cus.membervo);
-//		
-//		HotelDataService hotelDataService  =RemoteHelper.getInstance().getHotelDataService();
-//		System.out.println(hotelDataService.gethotelAssessVO("HT001").size());
-		
-		
-//		LoginController loginController = LoginController.getInstance();
-//		System.out.println(loginController.getInstance().getLogState().accountID);
-		
-		
-//		HotelDataService hotelDataService = RemoteHelper.getInstance().getHotelDataService();
-//		HotelPO hotelPO = hotelDataService.getHotel("HT001");
-//		System.out.println(hotelPO.getHotelName());
-//		System.out.println(hotelPO.getHotelRoom().getTypeRoomInfo().size());
-//		
-		
-//		HotelDealController hotelDealController = HotelDealController.getInstance();
-//		
-//		HotelDetailsVO hotelDetailsVO = hotelDealController.getHotelDetailsVO("HT001");
-//		System.out.println(hotelDetailsVO == null);
-//.out.println(hotelDetailsVO.hotelName);
-//		 DiscountWebDataService discountWebDataService =
-//				 RemoteHelper.getInstance().getDiscountWebDAteService();
-//		 List<DiscountPO_web> list = discountWebDataService.getWebDiscount();
-//		 for (int i = 0; i < list.size(); i++) {
-//			System.out.println(list.get(i).getDiscountState());
-//			System.out.println(list.get(i).getDiscount());
-//		}
-//		
-//		DiscountHotelDataService discountHotelDataService = RemoteHelper.getInstance().getDiscountHotelDataService();
-//		DiscountPO_hotel discountPO_hotel = new DiscountPO_hotel
-//				(DiscountState.valid, Strategy_hotelType.CooperateEnterprise, null, 9.5,  LocalDate.now(),
-//						LocalDate.of(2016, 12, 31), "王帅惟设计的", false, "朱俊毅粉丝后援团");
-//		System.out.println(discountHotelDataService.getHotelDiscount("HT000").isEmpty());
-		
-//		DiscountHotelService discountHotelService = DiscountHotelController.getInstance();
-		
-//		DiscountVO_hotel discountVO_hotel = 
-//				new DiscountVO_hotel(
-//						6, LocalDate.of(2016, 12, 4), LocalDate.of(2016, 12, 6), "很豪华", false);
-//		discountHotelService.addHotelDiscount("330", discountVO_hotel);
-//		DiscountVO_hotel discountVO_hotel = discountHotelService.getHotelDiscount("330").get(0);
-//		System.out.println(discountVO_hotel.remarks);
-		
-		
-		
-		
 
-//		DiscountHotelDataService discountHotelDataService = RemoteHelper.getInstance().getDiscountHotelDataService();
-//		DiscountPO_hotel discountPO_hotel = new DiscountPO_hotel
-//				(DiscountState.valid, Strategy_hotelType.CooperateEnterprise, null, 8.5,  LocalDate.now(),
-//						LocalDate.of(2016, 12, 31), "王帅惟设计的2", true, "朱俊毅粉丝后援团2");
-//		System.out.println(discountHotelDataService.getHotelDiscount("HT000").isEmpty());
-//		LoginCheckService loginCheckService = RemoteHelper.getInstance().getLoginCheckService();
-//		System.out.println(loginCheckService.checkLogin("zhujunyi", "zhujunyi", AccountType.Customer));
-		
-//		Calendar calendar = Calendar.getInstance();
-//		calendar.set(Calendar.HOUR_OF_DAY, 21); // 控制时
-//		calendar.set(Calendar.MINUTE, 15);    // 控制分
-//	    calendar.set(Calendar.SECOND, 0);    // 控制秒
-//		OrderDataService orderDataService  =RemoteHelper.getInstance().getOrderDataService();
-//		OrderPO order = new 
-//				OrderPO("OD09", "CS002", "HT001", null, new Date(), calendar.getTime(), new Date(2016-1900, 11, 15), 
-//						null, null, null, null, RoomType.Double, 1, 3, 1, true, OrderState.Unexecuted, null, null, 180);
-//		System.out.println(orderDataService.add(order));
 		
 		
-		//CreditDataService creditDataService = RemoteHelper.getInstance().getCreditDataService();
+		CreditDataService creditDataService = RemoteHelper.getInstance().getCreditDataService();
 //		CreditLogPO creditLogPO =new CreditLogPO
 //				("CS001", ActionType.Charge, null, new Date(), 400, 100);
 //		System.out.println(creditDataService.add(creditLogPO));	
-		//System.out.println(creditDataService.getLogList("CS001").size());
+		List<CreditLogPO> lsit = creditDataService.getLogList("CS001");
+		lsit.forEach(t->System.out.println(t.getActionType()+"   "+t.getMoney()));
+		
 		//System.out.println(creditDataService.changeCredit("CS001", 500));
 //		
 //		
