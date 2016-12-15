@@ -121,8 +121,9 @@ public class OrderController implements OrderService{
 		orderVO.child=orderPO.isChild();
 		orderVO.orderState=orderPO.getOrderState();
 		orderVO.mark=orderPO.getMark();
-		System.out.println("change:         "+orderPO.getAssessment());
+		//System.out.println("change:         "+orderPO.getAssessment());
 		orderVO.assessment=orderPO.getAssessment();
+		System.out.println("before return:   "+orderVO);
 		return orderVO;
 	
 	}
@@ -213,11 +214,13 @@ public class OrderController implements OrderService{
 		if(order_id==null){
 			return null;
 		}
+		//System.out.println("checkSingleOrder:  "+order_id);
 		try {
-			System.out.println(order_id);
+			System.out.println("which:       "+order_id);
 			OrderPO orderPO  = orderDataService.findOrder(order_id);
-			System.out.println(orderPO==null);
-			return getOrderVO(orderDataService.findOrder(order_id));
+			System.out.println("ordrpo is"+orderPO);
+			//System.out.println(orderPO==null);
+			return getOrderVO(orderPO);
 		} catch (RemoteException e) {
 			System.err.println(e.getCause().getMessage());
 			return null;
