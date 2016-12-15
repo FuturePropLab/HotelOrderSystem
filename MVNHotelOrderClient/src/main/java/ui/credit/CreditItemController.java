@@ -57,7 +57,7 @@ public class CreditItemController {
 		this.reason.setTextFill(creditlogVO.changeValue>=0? Color.GREEN:Color.RED);
 		this.value.setText((creditlogVO.changeValue>0?"+":"") + creditlogVO.changeValue);
 		this.time.setText(DateFormat.format_includingTime(creditlogVO.ChangDate));
-		if(creditlogVO.actionType.equals(ActionType.Charge)){
+		if(creditlogVO.actionType.equals(ActionType.Charge)||creditlogVO.orderID.startsWith("Charge")){
 			this.price.setText(creditlogVO.money+"");
 			this.hotelName.setVisible(false);
 			this.orderIDLable.setVisible(false);
@@ -65,8 +65,10 @@ public class CreditItemController {
 		}else {
 			OrderService orderService=OrderController.getInstance();
 			OrderVO orderVO=orderService.checkSingleOrder(creditlogVO.orderID);
+			System.out.println("order is "+orderVO);
 			HotelDealService hotelDealService=HotelDealController.getInstance();
-			System.out.println("getHotel"+orderVO.hotelID);
+			//System.out.println("orderVO is NULL? ");
+			//System.out.println("getHotel"+orderVO.hotelID);
 			HotelbriefVO hotelbriefVO=hotelDealService.getHotelInfo(orderVO.hotelID);
 			System.out.println("getHotel!!!:   "+hotelbriefVO.hotelName);
 			this.price.setText(orderVO.value+"");
