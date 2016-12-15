@@ -31,7 +31,7 @@ public class Customer {
 	
 	public Customer(){
 		this.customerdata = rmi.RemoteHelper.getInstance().getCustomerDataService();
-	//	this.customerdata = new CustomerData_Stub();
+//		this.customerdata = new CustomerData_Stub();//test!!
 	}
 	/**
 	 * chenyuyan 测试用构造方法

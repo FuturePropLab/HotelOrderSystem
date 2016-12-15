@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import businesslogic.customer.CustomerInfoforCreditImp;
+import businesslogic.discount.DiscountWebController;
 import businesslogic.order.Order;
 import dataservice.CreditDataService;
 import po.CreditLogPO;
@@ -35,11 +36,12 @@ public class Credit {
 	 */
 	public Credit(){
 		this.creditDataService = RemoteHelper.getInstance().getCreditDataService();
+//		this.creditDataService = new CreditData_Stub();//test!!!
 		this.customerInfo = CustomerInfoforCreditImp.getInstance();
 	}
-	public Credit(CreditData_Stub stub){
+	/*public Credit(CreditData_Stub stub){
 		this.creditDataService = stub;
-	}
+	}*/
 	/**
 	 * @author chenyuyan 12/1
 	 * 
@@ -209,11 +211,11 @@ public class Credit {
 	 * @throws RemoteException 
 	 */
 	public int levelUpdate(String customer_id) throws RemoteException{
-//		CustomerInfoforCredit customerInfo = CustomerInfoforCreditImp.getInstance();
-		CustomerInfoforCredit customerInfo  = new MockCustomer();//test
+		CustomerInfoforCredit customerInfo = CustomerInfoforCreditImp.getInstance();
+//		CustomerInfoforCredit customerInfo  = new MockCustomer();//test!!!
 		int result = customerInfo.getCustomerInfo(customer_id).credit;
-//		DiscountWebController discountWeb =  DiscountWebController.getInstance();
-		MockDiscount discountWeb = new MockDiscount();//test
+		DiscountWebController discountWeb =  DiscountWebController.getInstance();
+//		MockDiscount discountWeb = new MockDiscount();//test!!
 		
 		int [] uplevel =new int[4];
 		

@@ -37,7 +37,7 @@ public class Hotel {
 	private PictureDeal pictureDeal;
 	public Hotel(){
 		hotelDataService = RemoteHelper.getInstance().getHotelDataService();
-		//hotelDataService = new HotelData_Stub();//test
+//		hotelDataService = new HotelData_Stub();//test!!
 		pictureDeal = new PictureDeal();
 	}
 	/**

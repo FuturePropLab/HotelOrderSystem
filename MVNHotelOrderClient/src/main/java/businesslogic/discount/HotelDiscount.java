@@ -23,7 +23,7 @@ public class HotelDiscount {
 	
 	public  HotelDiscount(){
 		this.dataService = RemoteHelper.getInstance().getDiscountHotelDataService();
-//		this.dataService = new DiscountHotelData_stub();
+//		this.dataService = new DiscountHotelData_stub();//test!!!!
 		
 		
 		
