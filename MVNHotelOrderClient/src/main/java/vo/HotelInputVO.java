@@ -13,8 +13,8 @@ import tools.Star;
  */
 public class HotelInputVO {
 	public URI hotePictureURI;
-	//public String username;//酒店工作人员账户名
-	//public String password; //酒店工作人员账密码
+	public String username;//酒店工作人员账户名
+	public String password; //酒店工作人员账密码
 	public String hotelID; //酒店的ID
 	public String HotelName;//酒店名字
 	public Star star; 
@@ -28,11 +28,11 @@ public class HotelInputVO {
 	 * @param username
 	 * @param password
 	 */
-	/*public HotelInputVO (String username ,String password){
+	public HotelInputVO (String username ,String password){
 		super();
 		this.username = username;
 		this.password = password;
-	}*/
+	}
 	
 	/**
 	 * 注册用构造方法
@@ -41,13 +41,13 @@ public class HotelInputVO {
 	 * @param HotelName
 	 * @param star
 	 */
-	/*public HotelInputVO(String username ,String password, String HotelName,Star star){
+	public HotelInputVO(String username ,String password, String HotelName,Star star){
 		super();
 		this.username = username;
 		this.password = password;
 		this.star = star;
 		this.HotelName = HotelName;
-	}*/
+	}
 	
 	/**
 	 * 注册用构造方法

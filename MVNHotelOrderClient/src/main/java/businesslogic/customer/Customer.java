@@ -61,24 +61,20 @@ public class Customer {
 			 //Account customer = new Account();
 			 AccountCustomerService account=CustomerAccountController.getInstance();
 			 ResultMessage_Account result = account.addAccount(customerInput.username, customerInput.password);//密码，username，
+			 System.out.println("before add customer :  "+result);
 			 if(result==ResultMessage_Account.Success){
-			 String id = account.getAccountID(customerInput.username);
-			 
-			 MemberType memberType = new MemberType(id);
-			 memberType.setType(MemberBelongType.None);
-			 MemberPO memberpo=new MemberPO(id, memberType);
-			 int credit = 0;
-			 
-			 CustomerPO customerinfo = new CustomerPO(id,customerInput.customerName,customerInput.gender,customerInput.telephone,memberpo,credit);
-			 re=customerdata.add(customerinfo);
+				 String id = account.getAccountID(customerInput.username);			 
+				 MemberType memberType = new MemberType(id);
+				 memberType.setType(MemberBelongType.None);
+				 MemberPO memberpo=new MemberPO(id, memberType);
+				 int credit = 0;				 
+				 CustomerPO customerinfo = new CustomerPO(id,customerInput.customerName,customerInput.gender,customerInput.telephone,memberpo,credit);
+				 re=customerdata.add(customerinfo);
 			//CustomerPO customerinfo = new CustomerPO(customerInput.username,customerInput.password,customerInput.customerName,customerInput.telephone,customerInput.gender);
+			 }else{
+				 return ResultMessage_signUp.Wrong;
 			 }
 		}
-		
-		
-		
-		
-		//return test.addCustomer(customerInput);
 		return re;
 		
 	}

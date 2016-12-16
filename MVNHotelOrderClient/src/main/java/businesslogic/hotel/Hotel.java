@@ -18,6 +18,7 @@ import rmi.RemoteHelper;
 import stub.HotelData_Stub;
 import tools.HotelFacility;
 import tools.Mark;
+import tools.ResultMessage_Account;
 import tools.ResultMessage_Hotel;
 import tools.SortType;
 import tools.StandardSearch;
@@ -52,21 +53,19 @@ public class Hotel {
 	 * @return ResultMessage_Hotel成功
 	 */
 	public ResultMessage_Hotel addHotel(HotelInputVO hotelInputVO) {
-//		String username = hotelInputVO.username;
-//		String password = hotelInputVO.password;
+		String username = hotelInputVO.username;
+		String password = hotelInputVO.password;
 		HotelAccountController hotelAccountController =  HotelAccountController.getInstance();
-//		ResultMessage_Account rs = hotelAccountController.addAccount(username, password);
-		
-//		if(!rs.equals(ResultMessage_Account.Success)){
-//			TODO  add more return detail
-//			return ResultMessage_Hotel.fail;
-//		}
-//		String hotelID = hotelAccountController.getAccountID(username);
-//		if("".equals(hotelID) || hotelID == null) return ResultMessage_Hotel.fail;
+		ResultMessage_Account rs = hotelAccountController.addAccount(username, password);
+		if(!rs.equals(ResultMessage_Account.Success)){
+			return ResultMessage_Hotel.fail;
+		}
+		String hotelID = hotelAccountController.getAccountID(username);
+		if("".equals(hotelID) || hotelID == null) return ResultMessage_Hotel.fail;
 		
 		//一般应该是空的
 		HotelPO hotelPO = new HotelPO(hotelInputVO);
-//		hotelPO.setHotelID(hotelID);	
+		hotelPO.setHotelID(hotelID);	
 		ResultMessage_Hotel result;
 		try {
 			result = hotelDataService.addHotel(hotelPO);

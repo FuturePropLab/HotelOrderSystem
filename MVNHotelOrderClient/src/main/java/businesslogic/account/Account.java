@@ -126,6 +126,7 @@ public class Account {
 			accountPO = new AccountPO(generatedID, username, password, accountType); 
 			try {
 				result = accountDataService.addAccount(accountPO);
+				System.out.println("add result :   "+result);
 			} catch (RemoteException e) {
 				return ResultMessage_Account.SystemError;
 			}
@@ -165,7 +166,7 @@ public class Account {
 	public String getUsername(String userId){
 		AccountPO accountPO;
 		try {
-			accountDataService = new AccountData_stub();
+			accountDataService = RemoteHelper.getInstance().getAccountDataService();
 			accountPO = accountDataService.getAccountByID(userId);
 			if(accountPO==null)
 				return usrID_notexits;

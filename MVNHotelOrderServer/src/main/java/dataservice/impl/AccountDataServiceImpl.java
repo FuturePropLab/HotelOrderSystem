@@ -102,11 +102,6 @@ public class AccountDataServiceImpl implements AccountDataService {
 	 * 测试用
 	 * @param args
 	 */
-	public static void main(String[] args) {
-//		AccountDataServiceImpl impl = new AccountDataServiceImpl();
-//		System.out.println(impl.addAccount(new AccountPO("CR002","wswwsw","zhujunyi",AccountType.Customer)));
-//		System.out.println(impl.getAccountByID("CR002").getUsername());
-	}
 	
 	/*@
 	 * (non-Javadoc)

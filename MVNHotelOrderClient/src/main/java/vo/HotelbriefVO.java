@@ -64,6 +64,7 @@ public class HotelbriefVO {
 	
 	public HotelbriefVO(HotelPO hotelPO){
 		super();
+		System.out.println(hotelPO);
 		this.facility = hotelPO.getFacility();
 		this.hotelRoom = hotelPO.getHotelRoom();
 		this.hotelAddress =hotelPO.getHotelAddress();

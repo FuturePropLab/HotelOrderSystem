@@ -1,8 +1,5 @@
 package ui.administor;
 
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,10 +10,9 @@ import com.jfoenix.controls.cells.editors.TextFieldEditorBuilder;
 import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
-import businesslogic.account.CustomerAccountController;
 import businesslogic.account.HotelAccountController;
 import businesslogic.hotel.HotelDealController;
-import businesslogicservice.AccountCustomerService;
+import businesslogic.hotel.HotelManageController;
 import businesslogicservice.AccountHotelService;
 import businesslogicservice.HotelDealService;
 import javafx.beans.binding.Bindings;
@@ -30,12 +26,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableColumn.CellEditEvent;
-import po.CustomerAccount;
 import po.HotelAccount;
 import tools.ResultMessage_Account;
-import ui.administor.CustomerController.Customer;
+import tools.ResultMessage_Hotel;
+import tools.Star;
 import ui.utils.Dialogs;
-import vo.CustomerVO;
+import vo.HotelInputVO;
 import vo.HotelbriefVO;
 /**
  * 酒店账号管理的委托类
@@ -179,17 +175,20 @@ public class HotelController {
 	}
 	private void add() {
 		AccountHotelService accountHotelService = HotelAccountController.getInstance();
-		ResultMessage_Account result=accountHotelService.addAccount("newUser", defaultPassword);
+		HotelManageController hotelManageController = HotelManageController.getInstance();
+		HotelInputVO hotelInputVO = new HotelInputVO("newHotel", defaultPassword, "新增的酒店", Star.one);
+		ResultMessage_Hotel result =hotelManageController.addHotel(hotelInputVO);
+		//ResultMessage_Account result=hotelManageController.addAccount("newUser", defaultPassword);
 		HotelDealService hotelDealService=HotelDealController.getInstance();
-		if(ResultMessage_Account.Success.equals(result)){
+		if(ResultMessage_Hotel.success.equals(result)){
 			Dialogs.showMessage("", "增加账号成功");
 			HotelbriefVO hotelbriefVO=hotelDealService.getHotelInfo(
-					accountHotelService.getAccountID("newUser"));
+					accountHotelService.getAccountID("newHotel"));
 			hotels.add(new Hotel(accountHotelService.getUsername(hotelbriefVO.hotelID), 
 					hotelbriefVO.hotelID, hotelbriefVO.hotelName, hotelbriefVO.hotelAddress.toString(),
 					"contackWay"));
 		}else{
-			Dialogs.showMessage("额", "增加账号失败，也许是用户"+"newUser"+"已经存在，或者是网络问题？");
+			Dialogs.showMessage("额", "增加账号失败，也许是用户"+"newHotel"+"已经存在，或者是网络问题？");
 		}
 	}
 	

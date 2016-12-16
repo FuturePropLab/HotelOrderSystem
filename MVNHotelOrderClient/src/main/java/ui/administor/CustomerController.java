@@ -14,6 +14,7 @@ import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
 import businesslogic.account.CustomerAccountController;
+import businesslogic.customer.CustomerSignupController;
 import businesslogicservice.AccountCustomerService;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
@@ -28,7 +29,9 @@ import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableColumn.CellEditEvent;
 import po.CustomerAccount;
 import tools.ResultMessage_Account;
+import tools.ResultMessage_signUp;
 import ui.utils.Dialogs;
+import vo.CustomerInputVO;
 import vo.CustomerVO;
 /**
  * 客户管理的委托类
@@ -174,8 +177,13 @@ public class CustomerController {
 	}
 	private void add() {
 		AccountCustomerService accountCustomerService = CustomerAccountController.getInstance();
-		ResultMessage_Account result=accountCustomerService.addAccount("newUser", defaultPassword);
-		if(ResultMessage_Account.Success.equals(result)){
+		CustomerSignupController customerSignupController = 
+				CustomerSignupController.getInstance();
+		CustomerInputVO customerInputVO = new CustomerInputVO
+				("newUser", defaultPassword, "请修改", null, null);
+		ResultMessage_signUp result = customerSignupController.addCustomer(customerInputVO);
+		//ResultMessage_Account result=accountCustomerService.addAccount("newUser", defaultPassword);
+		if(ResultMessage_signUp.Success.equals(result)){
 			try {
 				CustomerVO customerVO=accountCustomerService.getCustomerDetail(
 						accountCustomerService.getAccountID("newUser"));
