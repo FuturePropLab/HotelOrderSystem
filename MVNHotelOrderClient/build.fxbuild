@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="ASCII"?>
 <anttasks:AntTask xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:anttasks="http://org.eclipse.fx.ide.jdt/1.0" buildDirectory="${project}/build">
-  <deploy>
-    <application name="MVNHotelOrderClient"/>
-    <info/>
+  <deploy packagingFormat="exe">
+    <application name="MVNHotelOrderClient" mainclass="ui.main.MainApp" version="2016.12.16"/>
+    <info title="Prop002" vendor="FP"/>
   </deploy>
   <signjar/>
+  <manifestEntries name="zjy" value="author"/>
+  <manifestEntries name="wsw" value="author"/>
+  <manifestEntries name="lwy" value="author"/>
+  <manifestEntries name="cyy" value="author"/>
 </anttasks:AntTask>

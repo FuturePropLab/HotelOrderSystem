@@ -98,8 +98,8 @@ public class RootLayoutController {
 	private void initialize() {
 		formerViews=new Stack<View>();
 		try {
-			 changeFullLayout("../login/Login.fxml");
-//			 changeDetails("../order/OrderList.fxml");
+			changeFullLayout("../login/Login.fxml");
+//			changeDetails("../order/OrderList.fxml");
 //			changeDetails("../administor/UserAdmin.fxml");
 //			OrderAssessController controller = (OrderAssessController) this.getDetailsController();
 //			controller.initValue("-C4S90908105229");
@@ -146,6 +146,19 @@ public class RootLayoutController {
 	private void handleMinimize() {
 		primaryStage.setIconified(true);
 	}
+	
+	/**
+	 * 因为在jar包中执行软件时会加载FXML失败，
+	 * 所以把fxml的以类所在文件路径为基础替换为以项目根路径为基础
+	 * @param fxml 原fxml相对路径
+	 * @return
+	 */
+	private String fixURL(String fxml) {
+		if(fxml.startsWith("../")){
+			fxml="/ui"+fxml.substring(2);
+		}
+		return fxml;
+	}
 
 	/**
 	 * 用来切换rootlayout的details的板块
@@ -172,6 +185,7 @@ public class RootLayoutController {
 			}
 		}
 		
+		fxml=fixURL(fxml);
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource(fxml));
 		Parent child = (Parent) loader.load();
@@ -191,6 +205,7 @@ public class RootLayoutController {
 	 *             FXMLLoader.load(URL location)加载失败时
 	 */
 	public void changeGuid(String fxml) throws IOException {
+		fxml=fixURL(fxml);
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource(fxml));
 		Parent child = (Parent) loader.load();
@@ -216,6 +231,7 @@ public class RootLayoutController {
 			fullLayout.setDisable(true);
 			return;
 		}
+		fxml=fixURL(fxml);
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource(fxml));
 		Parent child = (Parent) loader.load();

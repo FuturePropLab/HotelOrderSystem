@@ -44,20 +44,17 @@ public class MainUI {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainUI.class
-                    .getResource("RootLayout.fxml"));
+            loader.setLocation(getClass().getResource("RootLayout.fxml"));
             rootLayout = (StackPane) loader.load();
-
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
-            scene.getStylesheets().add(getClass().getResource("../../css/jfoenix-components.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/css/jfoenix-components.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.initStyle(StageStyle.UNDECORATED);//设定窗口无边框
-
+            
             // Give the controller access to the main app.
             rootLayoutController= loader.getController();
             rootLayoutController.setPrimaryStage(primaryStage);
-
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
