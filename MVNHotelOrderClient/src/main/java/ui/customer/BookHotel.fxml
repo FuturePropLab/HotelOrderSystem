@@ -153,7 +153,7 @@
                </children>
             </HBox>
             <JFXDatePicker fx:id="planedLeaveDate" onAction="#handleDate" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <JFXCheckBox fx:id="children" text=" " GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <JFXCheckBox fx:id="children" onAction="#handlePrice" text=" " GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <font>
                   <Font size="24.0" />
                </font>

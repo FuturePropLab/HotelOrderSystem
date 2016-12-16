@@ -213,7 +213,7 @@ public class BookHotelController extends DetailsController{
 		LocalDate endDate = this.planedLeaveDate.getValue() ;
 		
 		if(startDate == null || endDate==null ) return ;
-		if(lastDate_time.getValue()==null || planedLeaveDate_time.getValue()==null) return;
+		//if(lastDate_time.getValue()==null || planedLeaveDate_time.getValue()==null) return;
 		
 		//简单计算天数
 
@@ -261,7 +261,7 @@ public class BookHotelController extends DetailsController{
 			return ;		
 		LocalDate startDate = this.lastDate.getValue() ;		
 		if(startDate==null)  return ;
-		LocalDate latestTime = lastDate_time.getValue();
+		//LocalDate latestTime = lastDate_time.getValue();
 		//LocalDateTime lasttime = startDate.atTime(12, 0, 0);
 		//Date datestart = Date.from(lasttime.atZone(ZoneId.systemDefault()).toInstant()); 
 		

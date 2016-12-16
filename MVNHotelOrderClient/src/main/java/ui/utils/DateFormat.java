@@ -72,7 +72,7 @@ public class DateFormat {
 		if(datePicker.getValue()==null || timePicker.getTime()==null){
 			return null;
 		}
-		return new Date(datePicker.getValue().getYear(), datePicker.getValue().getMonthValue(), 
+		return new Date(datePicker.getValue().getYear()-1900, datePicker.getValue().getMonthValue()-1, 
 				datePicker.getValue().getDayOfMonth(),timePicker.getTime().getHour(),
 				timePicker.getTime().getMinute(),timePicker.getTime().getSecond());
 	}
