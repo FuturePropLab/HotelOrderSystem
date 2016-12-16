@@ -10,6 +10,8 @@ import java.util.List;
 
 import Exception.OutOfBoundsException;
 import businesslogic.account.HotelAccountController;
+import businesslogic.discount.DiscountHotelController;
+import businesslogic.discount.getDiscountInfoImp;
 import businesslogic.order.HotelCommentImpl;
 import dataservice.HotelDataService;
 import po.HotelPO;
@@ -195,8 +197,9 @@ public class Hotel {
 	 */
 	public List<DiscountVO_hotel> getHotelDiscount(String hotel_id) {
 		// TODO Auto-generated method stub
-		MockHotelDiscount test=new MockHotelDiscount();
-		return test.getHotelDiscount(hotel_id);
+		//MockHotelDiscount test=new MockHotelDiscount();
+		getDiscountInfo hotelDisController =new getDiscountInfoImp();
+		return hotelDisController.getHotelDiscount(hotel_id);
 	}
 	/**
 	 * 
