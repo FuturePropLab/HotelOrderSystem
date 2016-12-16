@@ -407,6 +407,7 @@ public class OrderDateHelperImpl implements OrderDataHelper {
 	 */
 	public boolean isValidCustomerName(String customerpattern, String customerID) {
 		if(customerpattern==null)  return true;
+		if(customerID==null)  return true;
 		Session s = Hibernateutils.getSessionFactory().openSession();
 		CustomerPO customerPO  = (CustomerPO) s.load(CustomerPO.class, customerID);
 		String realname = null;
@@ -429,6 +430,7 @@ public class OrderDateHelperImpl implements OrderDataHelper {
 	 */
 	public boolean isValidHotelName(String hotelnamepattern, String hotelID) {
 		if(hotelnamepattern==null)  return true;
+		if(hotelID==null)  return true;
 		Session s = Hibernateutils.getSessionFactory().openSession();
 		HotelBasePO hotelBasePO  = (HotelBasePO) s.load(HotelBasePO.class, hotelID);
 		String realname = null;

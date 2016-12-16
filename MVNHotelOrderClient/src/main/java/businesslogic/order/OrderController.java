@@ -128,8 +128,9 @@ public class OrderController implements OrderService{
 		if(orderVO.sortTime==null)  orderVO.sortTime  = orderPO.getCheckInTime();
 		if(orderVO.sortTime ==null)  orderVO.sortTime = orderPO.getRevokeTime();
 		if(orderVO.sortTime==null) orderVO.sortTime = orderPO.getCheckOutTime();
-		//System.out.println(sortTime);
-		//System.out.println("before return:   "+orderVO);
+		System.out.println(orderVO.orderID);
+		System.out.println(orderVO.sortTime);
+		System.out.println("before return:   "+orderVO);
 		return orderVO;
 	
 	}
@@ -369,28 +370,35 @@ public class OrderController implements OrderService{
 					(fuzzySearchOrderVO.hotelID, fuzzySearchOrderVO.customerID, 
 							fuzzySearchOrderVO.keyword, fuzzySearchOrderVO.date);
 			List<OrderPO>  poListnew = new ArrayList<OrderPO>();
+			 List<OrderVO> voList = new ArrayList<>();
 			for (int i = 0; i < poList.size(); i++) {
 				OrderPO orderPO = poList.get(i);
 				OrderState orderState = orderPO.getOrderState();
+				System.out.println(orderState);
+				System.out.println(orderPO.getOrderID());
 				if(orderState == OrderState.Unexecuted && fuzzySearchOrderVO.unexe==true){
 					poListnew.add(orderPO);
+					voList.add(new OrderVO(orderPO));
 				}else if(orderState == OrderState.Executed && fuzzySearchOrderVO.exed==true){
 					poListnew.add(orderPO);
+					voList.add(new OrderVO(orderPO));
 				}else if(orderState == OrderState.Revoked && fuzzySearchOrderVO.revoke==true){
 					poListnew.add(orderPO);
+					voList.add(new OrderVO(orderPO));
 				}else if(orderState == OrderState.Exception && fuzzySearchOrderVO.bad==true){
 					poListnew.add(orderPO);
+					voList.add(new OrderVO(orderPO));					
 				}
 			}
 			
-			 List<OrderVO> voList=poListnew.stream().filter(element->{
-					for(OrderPO orderPO:poListnew){
-						if(orderPO.getOrderID().equals(element.getOrderID())){
-							return true;
-						}
-					}
-					return false;
-				}).map(orderPO->getOrderVO(orderPO)).collect(Collectors.toList());
+//			 List<OrderVO> voList=poListnew.stream().filter(element->{
+//					for(OrderPO orderPO:poListnew){
+//						if(orderPO.getOrderID().equals(element.getOrderID())){
+//							return true;
+//						}
+//					}
+//					return false;
+//				}).map(orderPO->getOrderVO(orderPO)).collect(Collectors.toList());
 			 Comparator<OrderVO> comparator = (h1, h2) -> h1.getSortTime().compareTo(h2.getSortTime());
 			 voList.sort(comparator.reversed());
 			return voList;

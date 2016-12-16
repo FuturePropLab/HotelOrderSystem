@@ -11,11 +11,13 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import businesslogic.order.OrderController;
 import dataservice.CreditDataService;
 import dataservice.OrderDataService;
 import po.CreditLogPO;
 import po.OrderPO;
 import rmi.RemoteHelper;
+import vo.FuzzySearchOrderVO;
 
 public class ClientRunner {
 	private RemoteHelper remoteHelper;
@@ -57,11 +59,15 @@ public class ClientRunner {
 	
 	public void test() throws RemoteException{	
 		
-
 		
-		OrderDataService orderDataService = RemoteHelper.getInstance().getOrderDataService();
-		OrderPO orderPO =   orderDataService.findOrder("4C4S0240117691721521024486");
-		System.out.println(orderPO==null);
+	   OrderController orderController  =OrderController.getInstance();
+	   FuzzySearchOrderVO fuzzySearchOrderVO = 
+			   new FuzzySearchOrderVO(null, null, null, null, true, true, true, true);
+	   System.out.println(orderController.CheckOrderList(fuzzySearchOrderVO).size());
+		
+//		OrderDataService orderDataService = RemoteHelper.getInstance().getOrderDataService();
+//		OrderPO orderPO =   orderDataService.findOrder("4C4S0240117691721521024486");
+//		System.out.println(orderPO==null);
 //		CreditDataService creditDataService = RemoteHelper.getInstance().getCreditDataService();
 //		CreditLogPO creditLogPO =new CreditLogPO
 //				("CS001", ActionType.Charge, null, new Date(), 400, 100);

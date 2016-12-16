@@ -117,7 +117,7 @@ public class OrderVO {
 		this.sortTime = orderPO.getCheckOutTime();
 		if(this.sortTime==null)  this.sortTime  = orderPO.getCheckInTime();
 		if(this.sortTime ==null)  this.sortTime = orderPO.getRevokeTime();
-		if(this.sortTime==null) this.sortTime = orderPO.getCheckOutTime();
+		if(this.sortTime==null) this.sortTime = orderPO.getLatestTime();
 		System.out.println(sortTime);
 		
 		

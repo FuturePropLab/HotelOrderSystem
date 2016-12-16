@@ -17,17 +17,19 @@ public class testOrder {
 			OrderDataService orderDataService = new OrderDataServiceImpl();
 //			OrderPO order =    orderDataService.findOrder("-C7S2040419343");
 //			orderDataService.modify(order);
-			OrderAssessPO orderAssessPO = new
-					OrderAssessPO("-C1S40406122215", null, 4, "不怎么样");
-			System.out.println(orderDataService.assessOrder(orderAssessPO));
+//			OrderAssessPO orderAssessPO = new
+//					OrderAssessPO("-C1S40406122215", null, 4, "不怎么样");
+//			System.out.println(orderDataService.assessOrder(orderAssessPO));
 //			
+			
+			
 //			SearchOrderInfo searchOrderInfo = 
 //			new SearchOrderInfo(null, null, null, null, null, null, null);
 //			
-//			List<OrderPO>  list = orderDataService.searchFuzzyOrder(null, null, "朱ppsad",null);
-//			System.out.println(list.size());
-//			Iterator<OrderPO> it = list.iterator();
-////			
+			List<OrderPO>  list = orderDataService.searchFuzzyOrder(null, null, null,null);
+			System.out.println(list.size());
+			Iterator<OrderPO> it = list.iterator();
+//////			
 //			while(it.hasNext()){
 //				OrderPO orderPO = it.next();
 //				System.out.println(orderPO.getHotelID());
