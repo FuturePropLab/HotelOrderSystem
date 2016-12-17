@@ -25,7 +25,7 @@ public class Company_HotelItemController extends HotelItemController{
 		return Strategy_hotelType.CooperateEnterprise;
 	}
 	
-	@Override
+	@FXML@Override
 	protected void setTitle() {
 		handleCompanyName();
 	}

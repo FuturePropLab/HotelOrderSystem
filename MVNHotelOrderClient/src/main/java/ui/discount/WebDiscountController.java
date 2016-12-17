@@ -50,7 +50,7 @@ public class WebDiscountController extends DetailsController {
 	private void initialize() {
 		initAccordions();
 	}
-
+	@FXML
 	private void initAccordions() {
 		// TODO: 调用blservice查询该策略的信息然后将组建的值设置好
 		DiscountWebService discountWebService = DiscountWebController.getInstance();

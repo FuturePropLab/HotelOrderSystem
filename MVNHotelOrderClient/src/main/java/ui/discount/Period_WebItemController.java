@@ -105,7 +105,7 @@ public class Period_WebItemController extends WebItemController {
 		setTitle();
 	}
 
-	@Override
+	@FXML@Override
 	protected void handleDelete() {
 		// TODO Auto-generated method stub
 		if (state.getText().equals("填写中")) {
@@ -131,7 +131,7 @@ public class Period_WebItemController extends WebItemController {
 		}
 	}
 
-	@Override
+	@FXML@Override
 	protected void handleSave() {
 		// TODO Auto-generated method stub
 		DiscountVO_web discountVO_web = new DiscountVO_web_period(startTime.getValue(), endTime.getValue(),

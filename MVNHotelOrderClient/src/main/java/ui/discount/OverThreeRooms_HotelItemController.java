@@ -21,7 +21,7 @@ public class OverThreeRooms_HotelItemController extends HotelItemController{
 		return Strategy_hotelType.OrderMore;
 	}
 
-	@Override
+	@FXML@Override
 	protected void setTitle() {
 		handleDiscount();
 	}

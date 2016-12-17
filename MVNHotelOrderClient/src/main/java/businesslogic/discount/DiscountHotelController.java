@@ -14,10 +14,10 @@ import vo.DiscountVO_hotel;
 
 /**
  * 
- * @author LWY
- * 增删改查
- * 采用缓存链表的形式，数据发生改变后先调用数据库，若更新成功则在本地的缓存进行更新。
- * 酒店ID更改则重新加载缓存
+ * @author LWY 
+ * 增删改查 采用缓存链表的形式，数据发生改变后先调用数据库，
+ * 若更新成功则在本地的缓存进行更新。
+ *  酒店ID更改则重新加载缓存
  */
 public class DiscountHotelController implements DiscountHotelService {
 
@@ -50,10 +50,9 @@ public class DiscountHotelController implements DiscountHotelService {
 	 */
 	public List<DiscountVO_hotel> getHotelDiscount(String hotelID) {
 		List<DiscountVO_hotel> discountVO_hotels = new LinkedList<DiscountVO_hotel>();
-		if (this.hotelID!=null&&hotelID.equals(this.hotelID)) {
+		if (this.hotelID != null && hotelID.equals(this.hotelID)) {
 			return list;
-		}
-		else{
+		} else {
 			discountVO_hotels = initHotelDiscount(hotelID);
 		}
 		return discountVO_hotels;
@@ -175,7 +174,7 @@ public class DiscountHotelController implements DiscountHotelService {
 			return null;
 		}
 	}
-	
+
 	private List<DiscountVO_hotel> initHotelDiscount(String hotelID) {
 		List<DiscountVO_hotel> discountVO_hotels = new LinkedList<DiscountVO_hotel>();
 		try {

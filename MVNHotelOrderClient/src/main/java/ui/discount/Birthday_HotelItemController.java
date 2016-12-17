@@ -21,7 +21,7 @@ public class Birthday_HotelItemController extends HotelItemController{
 		return Strategy_hotelType.Birthday;
 	}
 
-	@Override
+	@FXML@Override
 	protected void setTitle() {
 		handleDiscount();
 	}

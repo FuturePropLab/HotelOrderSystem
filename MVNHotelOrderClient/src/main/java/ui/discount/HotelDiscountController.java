@@ -45,12 +45,10 @@ public class HotelDiscountController extends DetailsController {
 		initAccordions();
 		this.hotelID = LoginController.getInstance().getLogState().accountID;
 	}
-
+	@FXML
 	private void initAccordions() {
-		// TODO: 调用blservice查询该优惠策略的信息然后将组建的值设置好
 
 		DiscountHotelService discountHotelService = DiscountHotelController.getInstance();
-//		List<DiscountVO_hotel> discountVO_hotels = discountHotelService.getHotelDiscount(hotelID);
 		
 		//初始化生日策略
 		List<DiscountVO_hotel> birthVOs = discountHotelService.getHotelDiscountByType(hotelID,

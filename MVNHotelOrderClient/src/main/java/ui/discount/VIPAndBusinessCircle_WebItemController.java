@@ -152,7 +152,7 @@ public class VIPAndBusinessCircle_WebItemController extends WebItemController {
 		setTitle();
 	}
 
-	@Override
+	@FXML@Override
 	protected void handleDelete() {
 		// TODO Auto-generated method stub
 		if (state.getText().equals("填写中")) {
