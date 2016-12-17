@@ -43,12 +43,12 @@
          <children>
             <HBox layoutX="44.0" layoutY="34.0" spacing="10.0">
                <children>
-                  <CheckBox fx:id="valid" mnemonicParsing="false" onAction="#handleFilter" selected="true" text="有效" textFill="#111cbd">
+                  <CheckBox fx:id="valid" mnemonicParsing="false" onAction="#initAccordions" selected="true" text="有效" textFill="#111cbd">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </CheckBox>
-                  <CheckBox fx:id="invalid" mnemonicParsing="false" onAction="#handleFilter" selected="true" text="已失效" textFill="#111cbd">
+                  <CheckBox fx:id="invalid" mnemonicParsing="false" onAction="#initAccordions" selected="true" text="已失效" textFill="#111cbd">
                      <font>
                         <Font size="18.0" />
                      </font>
