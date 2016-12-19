@@ -80,4 +80,9 @@ public class WebDesignerAccountController implements AccountWebService {
 	}
 	
 	
+	@Override
+	public ResultMessage_Account modifyUserName(String accountID, String username) {
+		return account.modifyUserName(accountID, username);
+	}
+	
 }

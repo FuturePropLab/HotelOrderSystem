@@ -82,4 +82,14 @@ public interface AccountDataService extends Remote{
 	 */
 	public List<AccountPO> getAccountByTypr(AccountType accountType) throws RemoteException;
 	
+	
+	/**
+	 * 修改新增账号的用户名
+	 * @param accountID
+	 * @param username
+	 * @return
+	 * @throws RemoteException
+	 */
+	public ResultMessage_Account modifyUserName(String accountID , String username)throws RemoteException;
+	
 }

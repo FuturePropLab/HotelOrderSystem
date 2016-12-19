@@ -71,4 +71,14 @@ public interface AccountHotelService {
 	 * @return
 	 */
 	public List<HotelAccount> getHotelAccount();
+	
+	
+	
+	/**
+	 * 修改新增酒店的用户名
+	 * @param accountID
+	 * @param username
+	 * @return
+	 */
+	public ResultMessage_Account modifyUserName(String accountID , String username);
 }

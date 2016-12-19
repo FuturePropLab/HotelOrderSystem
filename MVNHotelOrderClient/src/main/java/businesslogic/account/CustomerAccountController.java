@@ -70,6 +70,11 @@ public class CustomerAccountController implements AccountCustomerService{
 	public List<CustomerAccount> getCustomerAccount() throws RemoteException {
 		return account.getCustomerAccount();
 	}
+
+	@Override
+	public ResultMessage_Account modifyUserName(String accountID, String username) {
+		return account.modifyUserName(accountID, username);
+	}
 	
 		
 }

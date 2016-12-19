@@ -275,4 +275,14 @@ public class Account {
 		return accountDataService.getAccountByTypr(AccountType.Web);
 	}
 	
+	public ResultMessage_Account modifyUserName(String accountID , String username){
+		try {
+			return accountDataService.modifyUserName(accountID, username);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return ResultMessage_Account.SystemError;		
+		}
+		
+	}
+	
 }

@@ -221,5 +221,37 @@ public class AccountDataHelperImpl implements AccountDataHelper{
 		}
 		return accountlist;
 	}
+	
+	
+	
+	public ResultMessage_Account modifyUserName(String accountID, String username) {
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		String newusername = DESUtil.encode(username);
+		AccountPO accountPO = (AccountPO) s.load(AccountPO.class, accountID);
+		try{
+			System.out.println(accountPO.getUsername());
+		}catch(Exception e){
+			s.close();
+			return ResultMessage_Account.InvalidInput;
+		}
+		
+		try {	
+			Query q = s.createSQLQuery("select * from accountpo "
+					+ "where username = '" + newusername + "' limit 1");
+			if (!q.list().isEmpty()) {
+				return ResultMessage_Account.InvalidInput;
+			}
+		}catch (Exception e) {
+			s.close();
+			return ResultMessage_Account.SystemError;
+		}
+		
+		accountPO.setUsername(newusername);
+		Transaction t = s.beginTransaction();
+		s.update(accountPO);
+		t.commit();
+		s.close();		
+		return ResultMessage_Account.Success;
+	}
 
 }

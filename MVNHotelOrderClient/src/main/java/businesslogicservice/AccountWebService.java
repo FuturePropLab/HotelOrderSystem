@@ -68,4 +68,12 @@ public interface AccountWebService {
 	public List<WebAccountVO> getWebAccount();
 	
 	
+	/**
+	 * 修改新增网站营销人员的用户名
+	 * @param accountID
+	 * @param username
+	 * @return
+	 */
+	public ResultMessage_Account modifyUserName(String accountID , String username);
+	
 }

@@ -319,5 +319,8 @@ OrderDataService,CreditDataService, MemberDataService{
 	public ResultMessage assessOrder(OrderAssessPO orderAssessPO) throws RemoteException {
 		return orderDataService.assessOrder(orderAssessPO);
 	}
+	public ResultMessage_Account modifyUserName(String accountID, String username) throws RemoteException {
+		return accountDataService.modifyUserName(accountID, username);
+	}
 
 }

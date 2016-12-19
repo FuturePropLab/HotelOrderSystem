@@ -81,4 +81,13 @@ public interface AccountDataService extends Remote{
 	 * @throws RemoteException
 	 */
 	public List<AccountPO> getAccountByTypr(AccountType accountType) throws RemoteException;
+	
+	/**
+	 * 
+	 * @param accountID
+	 * @param username
+	 * @return
+	 * @throws RemoteException
+	 */
+	public ResultMessage_Account modifyUserName(String accountID , String username)throws RemoteException;
 }

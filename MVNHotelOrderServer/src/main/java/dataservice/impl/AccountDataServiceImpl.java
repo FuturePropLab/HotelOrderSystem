@@ -178,4 +178,9 @@ public class AccountDataServiceImpl implements AccountDataService {
 		return list;
 	}
 
+	public ResultMessage_Account modifyUserName(String accountID, String username) throws RemoteException{ 
+	AccountDataHelper accountDataHelper = DataHelperUtils.getAccountDataHelper();	
+	return accountDataHelper.modifyUserName(accountID, username);
+	}
+
 }

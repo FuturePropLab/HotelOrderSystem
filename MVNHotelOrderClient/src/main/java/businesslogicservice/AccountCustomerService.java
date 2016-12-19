@@ -73,5 +73,13 @@ public interface AccountCustomerService {
 	 */
 	public List<CustomerAccount>  getCustomerAccount() throws RemoteException;
 	
+	/**
+	 * 修改新增客户的用户名
+	 * @param accountID
+	 * @param username
+	 * @return
+	 */
+	public ResultMessage_Account modifyUserName(String accountID , String username);
+	
 
 }

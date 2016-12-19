@@ -158,6 +158,12 @@ public class AccountData_stub implements AccountDataService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public ResultMessage_Account modifyUserName(String accountID, String username) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 

@@ -139,6 +139,15 @@ public class CustomerController {
 	}	
 	private void edit(Customer customer) {
 		AccountCustomerService accountCustomerService = CustomerAccountController.getInstance();
+		String customerID=customerList.getSelectionModel().getSelectedItem().getValue().customerID.get();
+		String userName=customerList.getSelectionModel().getSelectedItem().getValue().userName.get();
+		ResultMessage_Account rs = accountCustomerService.modifyUserName(customerID, userName);
+		if(rs == ResultMessage_Account.Success){
+			
+		}else{
+			Dialogs.showMessage("提醒","您输入的用户名可能已经存在了");
+			initCustomer();
+		}
 		//TODO:调用blservice修改账号信息，例如：customer.contactWay.get()返回string类型的联系方式
 	}
 	private void resetPassword() {

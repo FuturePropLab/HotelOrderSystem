@@ -5,6 +5,7 @@ import java.util.List;
 import po.AccountPO;
 import tools.AccountType;
 import tools.ResultMessage_Account;
+import tools.ResultMessage_Room;
 
 /**
  * 
@@ -57,4 +58,12 @@ public interface AccountDataHelper{
 	 * @return List<AccountPO>
 	 */
 	public List<AccountPO> getAccountList(AccountType accountType);
+	
+	/**
+	 * 修改账户用户名
+	 * @param accountID
+	 * @param username
+	 * @return
+	 */
+	public ResultMessage_Account modifyUserName(String accountID , String username);
 }

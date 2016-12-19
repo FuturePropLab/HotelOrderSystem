@@ -81,6 +81,10 @@ public class HotelAccountController implements AccountHotelService {
 			return new ArrayList<>();
 		}
 	}
-
+	
+	@Override
+	public ResultMessage_Account modifyUserName(String accountID, String username) {
+		return account.modifyUserName(accountID, username);
+	}
 
 }
