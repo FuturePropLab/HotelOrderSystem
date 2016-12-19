@@ -14,6 +14,7 @@ import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
 import businesslogic.account.CustomerAccountController;
+import businesslogic.customer.CustomerDealController;
 import businesslogic.customer.CustomerSignupController;
 import businesslogicservice.AccountCustomerService;
 import javafx.beans.binding.Bindings;
@@ -141,13 +142,33 @@ public class CustomerController {
 		AccountCustomerService accountCustomerService = CustomerAccountController.getInstance();
 		String customerID=customerList.getSelectionModel().getSelectedItem().getValue().customerID.get();
 		String userName=customerList.getSelectionModel().getSelectedItem().getValue().userName.get();
+		String gender = customerList.getSelectionModel().getSelectedItem().getValue().gender.get();
+		String customerName  = 
+				customerList.getSelectionModel().getSelectedItem().getValue().customerName.get();
+		String contact = 
+				customerList.getSelectionModel().getSelectedItem().getValue().contactWay.get();
 		ResultMessage_Account rs = accountCustomerService.modifyUserName(customerID, userName);
+		
+		CustomerDealController controller =
+				CustomerDealController.getInstance();
 		if(rs == ResultMessage_Account.Success){
 			
 		}else{
 			Dialogs.showMessage("提醒","您输入的用户名可能已经存在了");
 			initCustomer();
 		}
+		CustomerVO customerVOold = null;
+		try {
+			customerVOold = controller.getCustomerInfo(customerID);
+		} catch (RemoteException e) {
+			Dialogs.showMessage("提醒","网络连接可能异常");
+			e.printStackTrace();
+			return ;
+			
+		}
+		CustomerVO customerVO  =new CustomerVO
+				(customerID, customerName, gender, contact, null, customerVOold.credit);
+		controller.changeCustomerInfo(customerVO);
 		//TODO:调用blservice修改账号信息，例如：customer.contactWay.get()返回string类型的联系方式
 	}
 	private void resetPassword() {
