@@ -26,7 +26,7 @@
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <Hyperlink focusTraversable="false" layoutX="15.0" layoutY="40.0" text="登 出">
+            <Hyperlink fx:id="logout" focusTraversable="false" layoutX="15.0" layoutY="40.0" onAction="#handleLogout" text="登 出">
                <font>
                   <Font size="18.0" />
                </font>

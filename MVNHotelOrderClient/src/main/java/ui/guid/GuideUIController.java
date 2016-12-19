@@ -1,6 +1,7 @@
 package ui.guid;
 
 import java.io.File;
+import java.io.IOException;
 import java.rmi.RemoteException;
 
 import businesslogic.customer.CustomerDealController;
@@ -17,6 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import tools.AccountType;
+import tools.ResultMessage_LoginCheck;
 import ui.main.RootLayoutController;
 import ui.utils.Dialogs;
 import vo.CustomerVO;
@@ -40,10 +42,6 @@ public class GuideUIController {
 	@FXML
 	private Label userName;
 	@FXML
-	private Label credit;
-	@FXML
-	private Label creditLabel;
-	@FXML
 	private Hyperlink logout;
 	@FXML
 	private ListView<String> guids;
@@ -64,16 +62,6 @@ public class GuideUIController {
 		
 		if(AccountType.Customer.equals(logVO.accountType)){
 			guids.getItems().addAll(views[0],views[1],views[2],views[3]);
-			CustomerDealService customerDealService=CustomerDealController.getInstance();
-			try {
-				CustomerVO customerVO = customerDealService.getCustomerInfo(logVO.accountID);
-				credit.setText(customerVO.credit+"");
-			} catch (RemoteException e) {
-				Dialogs.showMessage("阿欧", "网络连接好像断开了……");
-			}
-			
-			credit.setVisible(true);
-			creditLabel.setVisible(true);
 		}else if (AccountType.Hotel.equals(logVO.accountType)) {
 			guids.getItems().addAll(views[1],views[4],views[5],views[7]);
 		}else if (AccountType.Web.equals(logVO.accountType)) {
@@ -110,6 +98,20 @@ public class GuideUIController {
 		if (selectedFile != null) {
 			headPortrait.setImage(new Image(selectedFile.toURI().toString()));
 			//TODO:保存头像
+		}
+	}
+	@FXML
+	private void handleLogout() {
+		LoginService loginService=LoginController.getInstance();
+		ResultMessage_LoginCheck result=loginService.logOut();
+		if(ResultMessage_LoginCheck.Success.equals(result)){
+			try {
+				rootLayoutController.changeFullLayout("../login/Login.fxml");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}else {
+			Dialogs.showMessage("啊哦", "登出失败了……可能是网络原因……");
 		}
 	}
 	

@@ -65,7 +65,14 @@ public class Login {
 			return ResultMessage_LoginCheck.SystemError;
 		}
 		try {
-			 return loginCheckService.logOut(getAccountID());
+			ResultMessage_LoginCheck result=loginCheckService.logOut(getAccountID());
+			if(ResultMessage_LoginCheck.Success.equals(result)){
+				this.state=State.logout;
+				this.username=null;
+				this.accountType=null;
+				this.accountID=null;
+			}
+			return result;
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return ResultMessage_LoginCheck.SystemError;
