@@ -8,6 +8,7 @@ import businesslogic.login.LoginController;
 import businesslogicservice.CustomerDealService;
 import businesslogicservice.LoginService;
 import javafx.fxml.FXML;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
@@ -43,7 +44,7 @@ public class GuideUIController {
 	@FXML
 	private Label creditLabel;
 	@FXML
-	private Label memberType;
+	private Hyperlink logout;
 	@FXML
 	private ListView<String> guids;
 	@FXML
@@ -67,16 +68,12 @@ public class GuideUIController {
 			try {
 				CustomerVO customerVO = customerDealService.getCustomerInfo(logVO.accountID);
 				credit.setText(customerVO.credit+"");
-				String memberTypes[]={"普通会员","企业会员","你不是会员"};
-				System.out.println(customerVO.membervo);
-				memberType.setText(memberTypes[customerVO.membervo.memberType.getType().ordinal()]);
 			} catch (RemoteException e) {
 				Dialogs.showMessage("阿欧", "网络连接好像断开了……");
 			}
 			
 			credit.setVisible(true);
 			creditLabel.setVisible(true);
-			memberType.setVisible(true);
 		}else if (AccountType.Hotel.equals(logVO.accountType)) {
 			guids.getItems().addAll(views[1],views[4],views[5],views[7]);
 		}else if (AccountType.Web.equals(logVO.accountType)) {

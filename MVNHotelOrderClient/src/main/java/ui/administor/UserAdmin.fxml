@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.administor.UserAdminController">
+<AnchorPane prefHeight="750.0" prefWidth="900.0" style="-fx-background-color: WHITE;" stylesheets="@../../../resources/css/jfoenix-components.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.administor.UserAdminController">
    <children>
-      <JFXTabPane layoutX="227.0" layoutY="152.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <JFXTabPane layoutX="227.0" layoutY="152.0" tabMaxHeight="50.0" tabMaxWidth="150.0" tabMinHeight="50.0" tabMinWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
             <Tab text="      客户      ">
               <content>
