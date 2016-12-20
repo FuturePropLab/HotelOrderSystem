@@ -91,23 +91,19 @@ public class LoginController extends FullLayoutController{
 						rootLayoutController.changeFullLayout(null);
 						rootLayoutController.changeGuid("../guid/GuideUI.fxml");
 						
-						AccountType testType  = LoginServiceUtil.getLoginService().getLogState().accountType;
-						System.out.println(testType);
+						AccountType loginType  = LoginServiceUtil.getLoginService().getLogState().accountType;
 						
-						if( testType  == AccountType.Customer){			
-							rootLayoutController.changeDetails("../hotel/HotelSearch.fxml");
-							HotelSearchController controller =
-									(HotelSearchController) rootLayoutController.getDetailsController();
-							
-						}else if(testType == AccountType.Hotel){
-							System.out.println("Brfore into Detail Hotel : "+accountID);
+						if( loginType  == AccountType.Customer){			
+							rootLayoutController.changeDetails("../hotel/HotelSearch.fxml");							
+						}else if(loginType == AccountType.Hotel){
 							rootLayoutController.changeDetails("../hotel/HotelDetail.fxml");
 							HotelDetailController hotelDetailController  =
 									(HotelDetailController) rootLayoutController.getDetailsController();
 							hotelDetailController.initValue(accountID);
-						}else if(testType == AccountType.Web){
-							rootLayoutController.changeDetails("../webdesign/creditCharge.fxml");				
-							
+						}else if(loginType == AccountType.Web){
+							rootLayoutController.changeDetails("../webdesign/CreditCharge.fxml");
+						}else if (loginType == AccountType.Administor) {
+							rootLayoutController.changeDetails("../administor/UserAdmin.fxml");
 						}
 					}
 					else if (result.equals(ResultMessage_LoginCheck.InvalidUsername)) {
