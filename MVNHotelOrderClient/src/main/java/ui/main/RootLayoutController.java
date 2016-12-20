@@ -229,12 +229,6 @@ public class RootLayoutController {
 	public void changeFullLayout(String fxml) throws IOException {
 		if (fxml == null) {
 			fullLayoutController = null;
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			fullLayout.getChildren().clear();
 			fullLayout.setDisable(true);
 			return;

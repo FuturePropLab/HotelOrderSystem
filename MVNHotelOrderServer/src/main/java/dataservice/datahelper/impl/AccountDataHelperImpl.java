@@ -230,6 +230,8 @@ public class AccountDataHelperImpl implements AccountDataHelper{
 		AccountPO accountPO = (AccountPO) s.load(AccountPO.class, accountID);
 		try{
 			System.out.println(accountPO.getUsername());
+			if(accountPO.getUsername().equals(newusername))  return ResultMessage_Account.Success;
+			
 		}catch(Exception e){
 			s.close();
 			return ResultMessage_Account.InvalidInput;
