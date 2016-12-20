@@ -17,6 +17,7 @@ import businesslogic.login.LoginController;
 import businesslogicservice.CustomerDealService;
 import businesslogicservice.HotelDealService;
 import businesslogicservice.LoginService;
+import bussinesslogic.message.MessageDealController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -35,9 +36,12 @@ import ui.customer.ClientInfoController;
 import ui.customer.OrderAssessController;
 import ui.guid.GuideUIController;
 import ui.hotel.FacilitiesInfoController;
+import ui.order.OrderDetailsController;
+import ui.utils.Choice;
 import ui.utils.Dialogs;
 import vo.CustomerVO;
 import vo.HotelDetailsVO;
+import vo.MessageVO;
 
 /**
  * The controller for the root layout. The root layout provides the basic
@@ -196,8 +200,36 @@ public class RootLayoutController {
 		detailsController = loader.getController();
 		detailsController.setRootLayoutController(this);
 		formerViews.add(new View(child, detailsController));
-	}
+		
+		
+		//wsw add
+		if(AccountType.Customer.equals(loginService.getLogState().accountType)){
+			MessageDealController messageDealController = MessageDealController.getInstance();
+			MessageVO messageVO = messageDealController.getMessage(loginService.getLogState().accountID);
+			if(messageVO!=null && messageVO.message!=null){
+				if(messageVO.OrderID==null){
+					Dialogs.showMessage("恭喜", messageVO.message);
+				}else{
+					Dialogs.showChoise(messageVO.message, 
+							new Choice("查看详情", e->toOrderDetailView(messageVO.OrderID)), new Choice("知道了", e->{}));
+				}
 
+			}
+		}
+	}
+	
+	
+	private void toOrderDetailView(String orderID) {
+		try {
+			this.changeDetails("../order/OrderDetails.fxml");
+			OrderDetailsController orderDetailsController = (OrderDetailsController) this
+					.getDetailsController();
+			orderDetailsController.initValue(orderID);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * 用来切换rootlayout的guid的板块
 	 * 

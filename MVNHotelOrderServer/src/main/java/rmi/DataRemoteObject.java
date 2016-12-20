@@ -13,8 +13,10 @@ import dataservice.DiscountWebDataService;
 import dataservice.HotelDataService;
 import dataservice.LoginCheckService;
 import dataservice.MemberDataService;
+import dataservice.MessgeDataService;
 import dataservice.OrderDataService;
 import dataservice.RoomDataService;
+import dataservice.datahelper.MessageDateHelper;
 import dataservice.impl.AccountDataServiceImpl;
 import dataservice.impl.CreditdataServiceImpl;
 import dataservice.impl.CustomerDataServiceImpl;
@@ -23,6 +25,7 @@ import dataservice.impl.DiscountWebServiceImpl;
 import dataservice.impl.HotelDataServiceImpl;
 import dataservice.impl.LoginCheckServiceImpl;
 import dataservice.impl.MemberDataServiceImpl;
+import dataservice.impl.MessgeDataServiceImpl;
 import dataservice.impl.OrderDataServiceImpl;
 import dataservice.impl.RoomDataServiceImpl;
 import po.AccountPO;
@@ -35,6 +38,7 @@ import po.HotelAccount;
 import po.HotelPO;
 import po.ImageInfoPO;
 import po.MemberPO;
+import po.MessagePO;
 import po.OrderAssessPO;
 import po.OrderPO;
 import po.SearchOrderInfo;
@@ -56,7 +60,7 @@ import tools.StandardSearch;
 public class DataRemoteObject extends UnicastRemoteObject implements
 LoginCheckService ,AccountDataService,CustomerDataService,
 HotelDataService,RoomDataService, DiscountWebDataService,DiscountHotelDataService,
-OrderDataService,CreditDataService, MemberDataService{
+OrderDataService,CreditDataService, MemberDataService,MessgeDataService{
 	/**
 	 *  RMI 接口
 	 */
@@ -71,6 +75,7 @@ OrderDataService,CreditDataService, MemberDataService{
 	private OrderDataService orderDataService;
 	private CreditDataService creditDataService;
 	private MemberDataService memberDataService;
+	private MessgeDataService messgeDataService;
 	protected DataRemoteObject() throws RemoteException {
 		//用loginCheckServiceIMPL 实现
 		loginCheckService = new LoginCheckServiceImpl();
@@ -83,6 +88,7 @@ OrderDataService,CreditDataService, MemberDataService{
 		orderDataService = new OrderDataServiceImpl();
 		creditDataService = new CreditdataServiceImpl();
 		memberDataService = new MemberDataServiceImpl();
+		messgeDataService = new MessgeDataServiceImpl();
 
 	}
 	/**
@@ -324,6 +330,19 @@ OrderDataService,CreditDataService, MemberDataService{
 	}
 	public ResultMessage_Hotel modifyHotelName(String hotelID, String hotelName) throws RemoteException {
 		return hotelDataService.modifyHotelName(hotelID, hotelName);
+	}
+	
+	
+	/**
+	 * @throws RemoteException 
+	 * 
+	 */
+	public MessagePO getMessage(String custoemerID) throws RemoteException {
+		return messgeDataService.getMessage(custoemerID);
+	}
+	public ResultMessage writeMessage(String custoemerID, String message, String orderID) throws RemoteException {
+		System.out.println("RMI getMessage");
+		return messgeDataService.writeMessage(custoemerID, message, orderID);
 	}
 
 }

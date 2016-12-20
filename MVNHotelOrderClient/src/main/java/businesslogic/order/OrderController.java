@@ -15,6 +15,7 @@ import businesslogic.login.LoginController;
 import businesslogicservice.CreditLogDealService;
 import businesslogicservice.LoginService;
 import businesslogicservice.OrderService;
+import dataservice.MessgeDataService;
 import dataservice.OrderDataService;
 import po.OrderAssessPO;
 import po.OrderPO;
@@ -301,6 +302,8 @@ public class OrderController implements OrderService{
 			boolean checkIn=order.modifyCheckInInfo(executionInfo);
 			boolean checkOut=order.modifyCheckOutInfo(executionInfo);
 			if(checkIn&&checkOut){
+				MessgeDataService messgeDataService = RemoteHelper.getInstance().getMessgeDataService();
+				messgeDataService.writeMessage(orderPO.getCustomerID(), "恭喜，您的订单已经执行成功", orderPO.getOrderID());
 				return ResultMessage.Exist;
 			}
 		} catch (RemoteException e) {
@@ -350,7 +353,14 @@ public class OrderController implements OrderService{
 				CreditLogDealService creditLogDealService=CreditController.getInstance();
 				creditLogDealService.Recover(order, recoverValue);
 				order.setRevokeTime(new Date());
-				return order.changeState(OrderState.Revoked);
+				ResultMessage rs =  order.changeState(OrderState.Revoked);
+				if(rs==ResultMessage.Exist){
+					MessgeDataService messgeDataService = RemoteHelper.getInstance().getMessgeDataService();
+					messgeDataService.writeMessage(orderPO.getCustomerID(), "恭喜,您的异常订单申诉成功"
+							, orderPO.getOrderID());
+				}
+				
+				return rs;
 			}
 		} catch (RemoteException e) {
 			System.err.println(e.getCause().getMessage());

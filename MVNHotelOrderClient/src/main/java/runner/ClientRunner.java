@@ -13,6 +13,7 @@ import java.util.List;
 
 import businesslogic.order.OrderController;
 import dataservice.CreditDataService;
+import dataservice.MessgeDataService;
 import dataservice.OrderDataService;
 import po.CreditLogPO;
 import po.OrderPO;
@@ -60,10 +61,17 @@ public class ClientRunner {
 	public void test() throws RemoteException{	
 		
 		
-	   OrderController orderController  =OrderController.getInstance();
-	   FuzzySearchOrderVO fuzzySearchOrderVO = 
-			   new FuzzySearchOrderVO(null, null, null, null, true, true, true, true);
-	   System.out.println(orderController.CheckOrderList(fuzzySearchOrderVO).size());
+		
+//		MessgeDataService messgeDataService = RemoteHelper.getInstance().getMessgeDataService();
+//		System.out.println(messgeDataService.writeMessage("HT001", "您的订单已经变为异常请注意", null));
+//		System.out.println(messgeDataService.getMessage("HT001").getMessage());
+//		System.out.println(messgeDataService.getMessage("HT001"));
+		
+//		
+//	   OrderController orderController  =OrderController.getInstance();
+//	   FuzzySearchOrderVO fuzzySearchOrderVO = 
+//			   new FuzzySearchOrderVO(null, null, null, null, true, true, true, true);
+//	   System.out.println(orderController.CheckOrderList(fuzzySearchOrderVO).size());
 		
 //		OrderDataService orderDataService = RemoteHelper.getInstance().getOrderDataService();
 //		OrderPO orderPO =   orderDataService.findOrder("4C4S0240117691721521024486");

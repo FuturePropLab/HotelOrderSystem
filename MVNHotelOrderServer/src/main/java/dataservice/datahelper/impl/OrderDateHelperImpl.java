@@ -18,6 +18,7 @@ import org.hibernate.criterion.Restrictions;
 import DataFactory.DataHelperUtils;
 import DataFactory.Hibernateutils;
 import dataservice.datahelper.CreditLogdataHelper;
+import dataservice.datahelper.MessageDateHelper;
 import dataservice.datahelper.OrderDataHelper;
 import dataservice.datahelper.RoomDateHelper;
 import po.CreditLogPO;
@@ -159,6 +160,9 @@ public class OrderDateHelperImpl implements OrderDataHelper {
 	    			}finally{
 	    				s.close();
 	    			}
+	    		//加入消息队列
+	    			MessageDateHelper messageDateHelper = DataHelperUtils.getMessageDateHelper();
+	    			messageDateHelper.writeMessage(customerID, "您有一封订单没有及时入住,请尽快联系工作人员", OrderID);
 	    			
 	    			
 	    		//add credit log 

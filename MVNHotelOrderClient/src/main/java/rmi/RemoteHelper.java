@@ -10,6 +10,7 @@ import dataservice.DiscountWebDataService;
 import dataservice.HotelDataService;
 import dataservice.LoginCheckService;
 import dataservice.MemberDataService;
+import dataservice.MessgeDataService;
 import dataservice.OrderDataService;
 import dataservice.RoomDataService;
 
@@ -87,6 +88,10 @@ public class RemoteHelper {
 	
 	public MemberDataService getMemberDataService(){
 		return (MemberDataService)remote;
+	}
+	
+	public MessgeDataService getMessgeDataService(){
+		return (MessgeDataService)remote;
 	}
 	
 	

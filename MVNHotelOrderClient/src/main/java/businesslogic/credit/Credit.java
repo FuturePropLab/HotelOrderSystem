@@ -10,7 +10,10 @@ import java.util.List;
 import businesslogic.customer.CustomerInfoforCreditImp;
 import businesslogic.discount.DiscountWebController;
 import businesslogic.order.Order;
+import businesslogicservice.MessageDealService;
+import bussinesslogic.message.MessageDealController;
 import dataservice.CreditDataService;
+import dataservice.MessgeDataService;
 import po.CreditLogPO;
 import po.OrderPO;
 import rmi.RemoteHelper;
@@ -197,6 +200,8 @@ public class Credit {
 		CreditLogPO creditLogPO = new CreditLogPO(customer_id, ActionType.Charge,null,chargeTime,value,ChargeMoney);
 		
 		try {
+			MessgeDataService messgeDataService  = RemoteHelper.getInstance().getMessgeDataService();
+			messgeDataService.writeMessage(customer_id, "您的信用充值已经成功，您的信用值增加了"+value, null);
 			return creditDataService.add(creditLogPO);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

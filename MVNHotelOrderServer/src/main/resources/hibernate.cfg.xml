@@ -71,6 +71,7 @@ jdbc:mysql://localhost:3306/wsw
         <mapping class="po.OrderAssessPO"/>
         <mapping class="po.CreditLogPO"/>
         <mapping class="po.StatePO"/>
+        <mapping class="po.MessagePO"/>
         
         
     </session-factory>
