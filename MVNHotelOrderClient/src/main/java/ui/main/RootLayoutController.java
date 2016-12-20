@@ -14,6 +14,7 @@ import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 import businesslogic.customer.CustomerDealController;
 import businesslogic.hotel.HotelDealController;
 import businesslogic.login.LoginController;
+import businesslogic.login.State;
 import businesslogicservice.CustomerDealService;
 import businesslogicservice.HotelDealService;
 import businesslogicservice.LoginService;
@@ -141,6 +142,7 @@ public class RootLayoutController {
 	@FXML
 	private void handleExit() {
 		LoginController loginController = LoginController.getInstance();
+		if(loginController.getLogState().state==State.login)
 		loginController.logOut();
 		System.exit(0);
 	}

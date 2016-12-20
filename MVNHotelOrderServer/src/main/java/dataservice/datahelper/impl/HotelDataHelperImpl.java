@@ -512,6 +512,7 @@ public class HotelDataHelperImpl implements HotelDataHelper {
 			return ResultMessage_Hotel.fail;
 		}
 	}
+	
 
 
 

@@ -8,6 +8,8 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.plaf.synth.SynthSpinnerUI;
+
 import Exception.OutOfBoundsException;
 import businesslogic.account.HotelAccountController;
 import businesslogic.discount.getDiscountInfoImp;
@@ -142,6 +144,18 @@ public class Hotel {
 		while(it.hasNext()){
 			HotelPO hotelPO  =  it.next();
 			HotelbriefVO hotelbriefVO = new HotelbriefVO(hotelPO);
+			double mark=gethotelAssessVO(hotelPO.getHotelID()).averageMark;
+			try {
+				hotelbriefVO.mark = new Mark(mark);
+			} catch (OutOfBoundsException e) {
+				try {
+					hotelbriefVO.mark = new Mark(0);
+				} catch (OutOfBoundsException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			
 			hotelbriefVO.imageuri = pictureDeal.downloadFrontPicture(hotelPO.getHotelID());
 			hotelbriefVOs.add(hotelbriefVO);
 		}
@@ -301,6 +315,18 @@ public class Hotel {
 			while(it.hasNext()){
 				HotelPO hotelPO  =  it.next();
 				HotelbriefVO hotelbriefVO = new HotelbriefVO(hotelPO);
+				double mark=gethotelAssessVO(hotelPO.getHotelID()).averageMark;
+				System.out.println("mark:  "+mark);
+				try {
+					hotelbriefVO.mark = new Mark(mark);
+				} catch (OutOfBoundsException e) {
+					try {
+						hotelbriefVO.mark = new Mark(0);
+					} catch (OutOfBoundsException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
 				hotelbriefVO.imageuri = pictureDeal.downloadFrontPicture(hotelPO.getHotelID());
 				hotelbriefVOs.add(hotelbriefVO);
 			}			
@@ -406,6 +432,7 @@ public class Hotel {
 			List<OrderAssessPO> orderAssessPOs  = new ArrayList<>();
 			try {
 				orderAssessPOs= hotelDataService.gethotelAssessVO(hotelID);
+				System.out.println("orderAssessPOs+    ::"+orderAssessPOs.size());
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -420,6 +447,7 @@ public class Hotel {
 				Mark mark = null;
 				try {
 					mark = new Mark(hAssessPO.getMarkValue());
+					System.out.println("mark Value:   "+hAssessPO.getMarkValue());
 				} catch (OutOfBoundsException e) {
 					try {
 						mark = new Mark(5);

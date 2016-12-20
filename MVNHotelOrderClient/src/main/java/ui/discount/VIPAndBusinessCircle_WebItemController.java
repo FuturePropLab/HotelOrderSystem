@@ -93,7 +93,7 @@ public class VIPAndBusinessCircle_WebItemController extends WebItemController {
 	protected void handleSave() {
 		DiscountWebService discountWebService = DiscountWebController.getInstance();
 		DiscountVO_web discountVO_web = new DiscountVO_web_district(Double.parseDouble(discount.getText()),
-				Integer.valueOf(vipLevel.getValue()), city.getValue(), district.getValue(), businessCircle.getValue());
+				Integer.valueOf(vipLevel.getValue()==null?vipLevel.getValue():"0"), city.getValue(), district.getValue(), businessCircle.getValue());
 		discountVO_web.discountID = discountID;
 		
 		discountVO_web.discountState = DiscountState.valid;//状态待统一
