@@ -9,6 +9,8 @@ import com.jfoenix.controls.JFXTextField;
 
 import businesslogic.customer.CustomerSignupController;
 import javafx.application.Platform;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -70,67 +72,55 @@ public class LoginController extends FullLayoutController{
 		loginButton.setVisible(false);
 		spinner.setVisible(true);
 		
-		Platform.runLater(new Runnable(){
-			@Override
-			public void run() {
-				try {
-					ResultMessage_LoginCheck result;
-					String accountTy = accountType.getValue();
-					AccountType accountType  = null;
-					if(accountTy.equals(accountTypes[0])) accountType = AccountType.Customer;
-					else if(accountTy.equals(accountTypes[1]))  accountType = AccountType.Hotel;
-					else if(accountTy.equals(accountTypes[2]))  accountType = AccountType.Web;
-					else if(accountTy.equals(accountTypes[3]))  accountType = AccountType.Administor;
-					else    return;
+		LoginBackService service=new LoginBackService();
+		service.setOnSucceeded(event->{
+			try {
+				if(service.result.equals(ResultMessage_LoginCheck.Success)){
+					saveUsernameUtil.saveinfo(username.getText().trim(), service.accountTy);
+					String accountID  =  LoginServiceUtil.getLoginService().getLogState().accountID;
+					rootLayoutController.changeFullLayout(null);
+					rootLayoutController.changeGuid("../guid/GuideUI.fxml");
 					
-					result = LoginServiceUtil.getLoginService().login(username.getText(), password.getText(),accountType);
-					if(result.equals(ResultMessage_LoginCheck.Success)){
-						
-						saveUsernameUtil.saveinfo(username.getText().trim(), accountTy);
-						String accountID  =  LoginServiceUtil.getLoginService().getLogState().accountID;
-						rootLayoutController.changeFullLayout(null);
-						rootLayoutController.changeGuid("../guid/GuideUI.fxml");
-						
-						AccountType loginType  = LoginServiceUtil.getLoginService().getLogState().accountType;
-						
-						if( loginType  == AccountType.Customer){			
-							rootLayoutController.changeDetails("../hotel/HotelSearch.fxml");							
-						}else if(loginType == AccountType.Hotel){
-							rootLayoutController.changeDetails("../hotel/HotelDetail.fxml");
-							HotelDetailController hotelDetailController  =
-									(HotelDetailController) rootLayoutController.getDetailsController();
-							hotelDetailController.initValue(accountID);
-						}else if(loginType == AccountType.Web){
-							rootLayoutController.changeDetails("../webdesign/CreditCharge.fxml");
-						}else if (loginType == AccountType.Administor) {
-							rootLayoutController.changeDetails("../administor/UserAdmin.fxml");
-						}
+					AccountType loginType  = LoginServiceUtil.getLoginService().getLogState().accountType;
+					
+					if( loginType  == AccountType.Customer){			
+						rootLayoutController.changeDetails("../hotel/HotelSearch.fxml");							
+					}else if(loginType == AccountType.Hotel){
+						rootLayoutController.changeDetails("../hotel/HotelDetail.fxml");
+						HotelDetailController hotelDetailController  =
+								(HotelDetailController) rootLayoutController.getDetailsController();
+						hotelDetailController.initValue(accountID);
+					}else if(loginType == AccountType.Web){
+						rootLayoutController.changeDetails("../webdesign/CreditCharge.fxml");
+					}else if (loginType == AccountType.Administor) {
+						rootLayoutController.changeDetails("../administor/UserAdmin.fxml");
 					}
-					else if (result.equals(ResultMessage_LoginCheck.InvalidUsername)) {
-						System.out.println("Invalid Username");
-						Dialogs.showMessage("不存在这个用户名");
-					}
-					else if (result.equals(ResultMessage_LoginCheck.InvalidPassword)) {
-						System.out.println("Invalid Password");
-						Dialogs.showMessage("密码错误");
-					}
-					else if (result.equals(ResultMessage_LoginCheck.SystemError)) {
-						System.err.println("login fail:SystemError");
-					}else if(result.equals(ResultMessage_LoginCheck.hasOn)){
-						Dialogs.showMessage("该用户已经在线");
-					}
-				} catch (RemoteException e) {
-					System.out.println("connect error");
-					Dialogs.showMessage("阿欧","网络连接没有成功耶");
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}finally {
-					loginButton.setVisible(true);
-					spinner.setVisible(false);
 				}
-			}	
+				else if (service.result.equals(ResultMessage_LoginCheck.InvalidUsername)) {
+					System.out.println("Invalid Username");
+					Dialogs.showMessage("不存在这个用户名");
+				}
+				else if (service.result.equals(ResultMessage_LoginCheck.InvalidPassword)) {
+					System.out.println("Invalid Password");
+					Dialogs.showMessage("密码错误");
+				}
+				else if (service.result.equals(ResultMessage_LoginCheck.SystemError)) {
+					System.err.println("login fail:SystemError");
+				}else if(service.result.equals(ResultMessage_LoginCheck.hasOn)){
+					Dialogs.showMessage("该用户已经在线");
+				}
+			} catch (RemoteException e) {
+				System.out.println("connect error");
+				Dialogs.showMessage("阿欧","网络连接没有成功耶");
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}finally {
+				loginButton.setVisible(true);
+				spinner.setVisible(false);
+			}
 		});
+		service.start();
 	}
 	
 	@FXML
@@ -175,6 +165,38 @@ public class LoginController extends FullLayoutController{
 				e.printStackTrace();
 			}
 		
+		}
+	}
+	
+	private class LoginBackService extends Service<Void> {
+		private ResultMessage_LoginCheck result;
+		private String accountTy = accountType.getValue();
+		private AccountType loginType;
+		
+		
+		public LoginBackService() {
+			super();
+			if(accountTy.equals(accountTypes[0])) loginType = AccountType.Customer;
+			else if(accountTy.equals(accountTypes[1]))  loginType = AccountType.Hotel;
+			else if(accountTy.equals(accountTypes[2]))  loginType = AccountType.Web;
+			else if(accountTy.equals(accountTypes[3]))  loginType = AccountType.Administor;
+			else    return ;
+		}
+		
+		@Override
+		protected Task<Void> createTask() {
+			return new Task<Void>() {
+				@Override
+				protected Void call() throws Exception {
+					result = LoginServiceUtil.getLoginService().login(username.getText(), password.getText(),loginType);
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					return null;
+				}
+			};
 		}
 	}
 }
