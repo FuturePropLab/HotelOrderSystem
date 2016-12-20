@@ -170,11 +170,8 @@ public class RootLayoutController {
 
 	/**
 	 * 用来切换rootlayout的details的板块
-	 * 
-	 * @param fxml
-	 *            details所在的fxlm文件的名称（相对路径）
-	 * @throws IOException
-	 *             FXMLLoader.load(URL location)加载失败时
+	 * @param fxml details所在的fxlm文件的名称（相对路径）
+	 * @throws IOException FXMLLoader.load(URL location)加载失败时
 	 */
 	public void changeDetails(String fxml) throws IOException {
 		//如果客户或者酒店没有填写完自己的基本信息，则强制跳转到填写信息的界面
@@ -201,10 +198,10 @@ public class RootLayoutController {
 		details.getChildren().addAll(child);
 		detailsController = loader.getController();
 		detailsController.setRootLayoutController(this);
-		formerViews.add(new View(child, detailsController));
-		
+		formerViews.add(new View(child, detailsController,fxml));		
 		
 		//wsw add
+		//zjy modified
 		if(AccountType.Customer.equals(loginService.getLogState().accountType)){
 			MessageDealController messageDealController = MessageDealController.getInstance();
 			MessageVO messageVO = messageDealController.getMessage(loginService.getLogState().accountID);
@@ -213,32 +210,25 @@ public class RootLayoutController {
 					Dialogs.showMessage("恭喜", messageVO.message);
 				}else{
 					Dialogs.showChoise(messageVO.message, 
-							new Choice("查看详情", e->toOrderDetailView(messageVO.OrderID)), new Choice("知道了", e->{}));
+							new Choice("查看详情", event->{
+								try {
+									changeDetails("../order/OrderDetails.fxml");
+									((OrderDetailsController)getDetailsController()).initValue(messageVO.OrderID);
+								} catch (IOException e) {
+									e.printStackTrace();
+								}
+							}), 
+							new Choice("知道了", event->{}));
 				}
 
 			}
 		}
 	}
 	
-	
-	private void toOrderDetailView(String orderID) {
-		try {
-			this.changeDetails("../order/OrderDetails.fxml");
-			OrderDetailsController orderDetailsController = (OrderDetailsController) this
-					.getDetailsController();
-			orderDetailsController.initValue(orderID);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
 	/**
 	 * 用来切换rootlayout的guid的板块
-	 * 
-	 * @param fxml
-	 *            guid所在的fxlm文件的名称（相对路径）
-	 * @throws IOException
-	 *             FXMLLoader.load(URL location)加载失败时
+	 * @param fxml guid所在的fxlm文件的名称（相对路径）
+	 * @throws IOException FXMLLoader.load(URL location)加载失败时
 	 */
 	public void changeGuid(String fxml) throws IOException {
 		fxml=fixURL(fxml);
@@ -254,11 +244,8 @@ public class RootLayoutController {
 
 	/**
 	 * 用来切换rootlayout的整个界面
-	 * 
-	 * @param fxml
-	 *            guid所在的fxlm文件的名称（相对路径）
-	 * @throws IOException
-	 *             FXMLLoader.load(URL location)加载失败时
+	 * @param fxml guid所在的fxlm文件的名称（相对路径）
+	 * @throws IOException FXMLLoader.load(URL location)加载失败时
 	 */
 	public void changeFullLayout(String fxml) throws IOException {
 		if (fxml == null) {
@@ -297,6 +284,24 @@ public class RootLayoutController {
 	}
 	
 	/**
+	 * 刷新详情界面
+	 * @return 如果没有当前的详情界面返回false，否则true
+	 */
+	public boolean syncDetail() {
+		if(formerViews.isEmpty()){
+			return false;
+		}
+		View presentView=formerViews.pop();
+		try {
+			changeDetails(presentView.fxml);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+	
+	
+	/**
 	 * 界面和控制器的集合类
 	 * @author zjy
 	 *
@@ -304,11 +309,13 @@ public class RootLayoutController {
 	private class View {
 		private Parent parent;
 		private DetailsController detailsController;
+		private String fxml;
 		
-		private View(Parent parent, DetailsController detailsController) {
+		private View(Parent parent, DetailsController detailsController,String fxml) {
 			super();
 			this.parent = parent;
 			this.detailsController = detailsController;
+			this.fxml=fxml;
 		}
 	}
 }

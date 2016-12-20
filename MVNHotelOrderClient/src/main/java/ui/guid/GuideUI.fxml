@@ -8,6 +8,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -33,7 +34,29 @@
             </Hyperlink>
          </children>
       </Group>
-      <JFXListView fx:id="guids" layoutX="38.0" layoutY="170.0" stylesheets="@../../../resources/css/jfoenix-main-demo.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <HBox layoutX="140.0" layoutY="135.0">
+         <children>
+            <JFXButton fx:id="back" onAction="#handleBack" ripplerFill="#a11ad9" text="">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0">
+                     <image>
+                        <Image url="@../../../resources/images/back.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="sync" onAction="#handleSync" ripplerFill="#a11ad9" text="">
+               <graphic>
+                  <ImageView fx:id="headPortrait1" fitHeight="50.0" fitWidth="50.0">
+                     <image>
+                        <Image url="@../../../resources/images/sync.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+         </children>
+      </HBox>
+      <JFXListView fx:id="guids" layoutX="38.0" layoutY="200.0" stylesheets="@../../../resources/css/jfoenix-main-demo.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
       <AnchorPane fx:id="messagePane" layoutX="100.0" layoutY="580.0" prefHeight="102.0" prefWidth="200.0" visible="false" AnchorPane.rightAnchor="0.0">
          <children>
             <ImageView fitHeight="102.0" fitWidth="200.0">

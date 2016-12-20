@@ -9,6 +9,7 @@ import businesslogic.login.LoginController;
 import businesslogicservice.CustomerDealService;
 import businesslogicservice.LoginService;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -43,6 +44,10 @@ public class GuideUIController {
 	private Label userName;
 	@FXML
 	private Hyperlink logout;
+	@FXML
+	private Button back;
+	@FXML
+	private Button sync;
 	@FXML
 	private ListView<String> guids;
 	@FXML
@@ -112,6 +117,18 @@ public class GuideUIController {
 			}
 		}else {
 			Dialogs.showMessage("啊哦", "登出失败了……可能是网络原因……");
+		}
+	}
+	@FXML
+	private void handleBack() {
+		if(rootLayoutController.toLastView()==false){
+			System.out.println("no last view.");
+		}
+	}
+	@FXML
+	private void handleSync() {
+		if(rootLayoutController.syncDetail()==false){
+			System.out.println("no present view.");
 		}
 	}
 	
