@@ -373,6 +373,9 @@ public class HotelDataServiceImpl implements HotelDataService {
 	public boolean isbooked(String customerID, String hotelID) throws RemoteException {
 		return hotelDataHelper.isbooked(customerID, hotelID);
 	}
+	public ResultMessage_Hotel modifyHotelName(String hotelID, String hotelName) throws RemoteException {
+		return hotelDataHelper.modifyHotelName(hotelID, hotelName);
+	}
 	
 }  
 

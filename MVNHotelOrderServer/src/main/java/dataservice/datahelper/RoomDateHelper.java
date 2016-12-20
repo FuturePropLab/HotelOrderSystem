@@ -72,7 +72,7 @@ public interface RoomDateHelper {
 	 	public ResultMessage_Room modifyTypeToomInfoName(String hotelID , String hotelName);
 	 	
 	 	/**
-	 	 * 
+	 	 * change this room 's price
 	 	 * @param hotelID
 	 	 * @param roomType
 	 	 * @param price

@@ -322,5 +322,8 @@ OrderDataService,CreditDataService, MemberDataService{
 	public ResultMessage_Account modifyUserName(String accountID, String username) throws RemoteException {
 		return accountDataService.modifyUserName(accountID, username);
 	}
+	public ResultMessage_Hotel modifyHotelName(String hotelID, String hotelName) throws RemoteException {
+		return hotelDataService.modifyHotelName(hotelID, hotelName);
+	}
 
 }

@@ -3,6 +3,7 @@ package businesslogicservice;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import tools.ResultMessage_Hotel;
 import tools.SortType;
 import vo.CommentVO;
 import vo.DiscountVO_hotel;
@@ -109,5 +110,13 @@ public interface HotelDealService {
 	 * @return
 	 */
 	public  boolean isbooked(String customerID , String hotelID);
+	
+	/**
+	 * 注册时候修改酒店的名字
+	 * @param hotelID
+	 * @param hotelName
+	 * @return
+	 */
+	public ResultMessage_Hotel modifyHotelName(String hotelID , String hotelName);
 	
 }

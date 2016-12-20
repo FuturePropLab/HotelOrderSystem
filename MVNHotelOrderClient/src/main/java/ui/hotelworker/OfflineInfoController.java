@@ -135,11 +135,11 @@ public class OfflineInfoController extends DetailsController{
 	private RoomType geRoomType() {
 		if(roomType.getValue()==null){
 			return null;
-		}else if (roomType.getValue().equals(roomTypes[1])) {
-			return RoomType.Single;
 		}else if (roomType.getValue().equals(roomTypes[2])) {
-			return RoomType.Double;
+			return RoomType.Single;
 		}else if (roomType.getValue().equals(roomTypes[3])) {
+			return RoomType.Double;
+		}else if (roomType.getValue().equals(roomTypes[1])) {
 			return RoomType.Standard;
 		}else if (roomType.getValue().equals(roomTypes[4])) {
 			return RoomType.Suites;
