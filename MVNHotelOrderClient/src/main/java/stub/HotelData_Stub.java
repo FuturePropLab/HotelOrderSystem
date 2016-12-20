@@ -288,4 +288,11 @@ public class HotelData_Stub implements HotelDataService{
 		return false;
 	}
 
+
+	@Override
+	public ResultMessage_Hotel modifyHotelName(String hotelID, String hotelName) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

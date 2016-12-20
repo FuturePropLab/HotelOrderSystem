@@ -138,6 +138,9 @@ public class CustomerController {
 		
 		customerList.getColumns().add(colum);
 	}	
+	
+	
+	
 	private void edit(Customer customer) {
 		AccountCustomerService accountCustomerService = CustomerAccountController.getInstance();
 		String customerID=customerList.getSelectionModel().getSelectedItem().getValue().customerID.get();

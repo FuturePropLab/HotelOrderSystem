@@ -15,6 +15,7 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import businesslogic.account.CustomerAccountController;
 import businesslogic.account.HotelAccountController;
 import businesslogic.account.WebDesignerAccountController;
+import businesslogic.customer.CustomerDealController;
 import businesslogicservice.AccountCustomerService;
 import businesslogicservice.AccountHotelService;
 import businesslogicservice.AccountWebService;
@@ -41,7 +42,7 @@ import vo.WebAccountVO;
  *
  */
 public class WebController {
-	private static final String titles[]={"用户名","姓名"};
+	private static final String titles[]={"用户名","账户ID"};
 	private static final String defaultPassword="webweb";
 	
 	private JFXTreeTableView<Web> webList;
@@ -126,10 +127,28 @@ public class WebController {
 		
 		webList.getColumns().add(colum);
 	}
+	
+	
+	
+	
 	private void edit(Web web) {
 		WebDesignerAccountController webDesignerAccountController = WebDesignerAccountController.getInstance();
+		String webID=webList.getSelectionModel().getSelectedItem().getValue().webName.get();
+		String userName=webList.getSelectionModel().getSelectedItem().getValue().userName.get();
+		ResultMessage_Account rs = webDesignerAccountController.modifyUserName(webID, userName);
+		
+		if(rs == ResultMessage_Account.Success){
+			
+		}else{
+			Dialogs.showMessage("提醒","您输入的用户名可能已经存在了");
+			initWeb();
+		}
 		//TODO:调用blservice修改账号信息，例如：web.userName.get()返回string类型的联系方式
 	}
+	
+	
+	
+	
 	private void resetPassword() {
 		if(webList.getSelectionModel().getSelectedItem()==null){
 			return;

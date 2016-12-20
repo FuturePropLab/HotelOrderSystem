@@ -146,4 +146,13 @@ public interface HotelDataService extends Remote{
 	 */
 	public  boolean isbooked(String customerID , String hotelID)throws RemoteException;
 	
+	/**
+	 * 
+	 * @param hotelID
+	 * @param hotelName
+	 * @return
+	 * @throws RemoteException
+	 */
+	public ResultMessage_Hotel modifyHotelName(String hotelID , String hotelName)throws RemoteException;
+	
 }

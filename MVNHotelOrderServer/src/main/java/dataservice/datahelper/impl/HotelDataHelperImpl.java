@@ -500,6 +500,19 @@ public class HotelDataHelperImpl implements HotelDataHelper {
 		return !ans;
 	}
 
+	public ResultMessage_Hotel modifyHotelName(String hotelID, String hotelName) {
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		HotelBasePO hotelBasePO  =(HotelBasePO) s.load(HotelBasePO.class, hotelID);
+		try{
+			hotelBasePO.setHotelName(hotelName);
+			s.close();
+			return modifyHotelBasePO(hotelBasePO);
+		}catch(Exception e){
+			s.close();
+			return ResultMessage_Hotel.fail;
+		}
+	}
+
 
 
 

@@ -11,6 +11,7 @@ import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
 import businesslogic.account.HotelAccountController;
+import businesslogic.customer.CustomerDealController;
 import businesslogic.hotel.HotelDealController;
 import businesslogic.hotel.HotelManageController;
 import businesslogicservice.AccountHotelService;
@@ -135,6 +136,20 @@ public class HotelController {
 	}
 	private void edit(Hotel hotel) {
 		AccountHotelService accountHotelService = HotelAccountController.getInstance();
+		String hotelID=hotelList.getSelectionModel().getSelectedItem().getValue().hotelID.get();
+		String userName=hotelList.getSelectionModel().getSelectedItem().getValue().userName.get();
+		ResultMessage_Account rs = accountHotelService.modifyUserName(hotelID, userName);
+		
+		HotelDealService controller =
+				HotelDealController.getInstance();
+		if(rs == ResultMessage_Account.Success){
+			
+		}else{
+			Dialogs.showMessage("提醒","您输入的用户名可能已经存在了");
+			initHotel();
+		}
+		String hotelName = hotelList.getSelectionModel().getSelectedItem().getValue().hotelName.get();
+		controller.modifyHotelName(hotelID, hotelName);
 		//TODO:调用blservice修改账号信息，例如：hotel.contactWay.get()返回string类型的联系方式
 	}
 	private void resetPassword() {

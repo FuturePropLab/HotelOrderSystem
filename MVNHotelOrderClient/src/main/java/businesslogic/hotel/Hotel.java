@@ -459,7 +459,7 @@ public class Hotel {
 				rs = ResultMessage_Hotel.fail;
 			}
 			if(hotelFacilityVO.facilityImage!=null){
-				ResultMessage_Hotel r= pictureDeal.uploadFrontPicture(hotelFacilityVO.hotelID, hotelFacilityVO.facilityImage);			
+				ResultMessage_Hotel r= pictureDeal.uploadFacilttyPicture(hotelFacilityVO.hotelID, hotelFacilityVO.facilityImage);			
 				if(r==ResultMessage_Hotel.fail)rs = ResultMessage_Hotel.fail;
 			}
 			
@@ -477,6 +477,21 @@ public class Hotel {
 				return hotelDataService.isbooked(customerID, hotelID);
 			} catch (RemoteException e) {
 				return false;
+			}
+		}
+		/**
+		 * 酒店注册时 修改酒店的名字
+		 * @param hotelID
+		 * @param hotelName
+		 * @return
+		 */
+		public ResultMessage_Hotel modifyHotelName(String hotelID, String hotelName) {
+			try {
+				return hotelDataService.modifyHotelName(hotelID, hotelName);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();;
+				return ResultMessage_Hotel.fail;
 			}
 		}
 	

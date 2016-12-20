@@ -6,6 +6,7 @@ import java.util.List;
 
 import businesslogicservice.HotelDealService;
 import po.HotelPO;
+import tools.ResultMessage_Hotel;
 import tools.RoomType;
 import tools.SortType;
 import tools.Star;
@@ -155,6 +156,13 @@ public class HotelDeal_Stub implements HotelDealService {
 	public boolean isbooked(String customerID, String hotelID) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+
+	@Override
+	public ResultMessage_Hotel modifyHotelName(String hotelID, String hotelName) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

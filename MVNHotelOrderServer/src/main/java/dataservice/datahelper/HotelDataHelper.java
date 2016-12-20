@@ -132,16 +132,58 @@ public interface HotelDataHelper {
 	  	  
 	  public boolean isvalidBase(String hotelID, Star star ,String regex);
 	  
+	  
+	  /**
+	   * 
+	   * @param hotelID
+	   * @param roomType
+	   * @return
+	   */
 	  public boolean isvalidRoomType(String hotelID, RoomType roomType);
 	  
+	  
+	  /**
+	   * 
+	   * @param hotelID
+	   * @param roomType
+	   * @param low
+	   * @param high
+	   * @return
+	   */
 	  public boolean isvalidRoomType(String hotelID,RoomType roomType, double low , double high);
 	  
+	  
+	  
+	  /**
+	   * 
+	   * @param regex
+	   * @return
+	   */
 	  public List<String> getIDListByFuzzy(String regex);
-	  	  
+	  	 
+	  /**
+	   * 
+	   * @param hotelID
+	   * @return
+	   */
 	  public List<OrderAssessPO> gethotelAssessVO(String hotelID);
 	  
-	  
+	  /**
+	   * 
+	   * @param customerID
+	   * @param hotelID
+	   * @return
+	   */
 	  public  boolean isbooked(String customerID , String hotelID);
+	  
+	  
+	  /**
+	   * 
+	   * @param hotelID
+	   * @param hotelName
+	   * @return
+	   */
+	  public ResultMessage_Hotel modifyHotelName(String hotelID , String hotelName);
 	  
 	  
 

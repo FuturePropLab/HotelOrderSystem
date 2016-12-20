@@ -1,1 +1,1 @@
-admin:管理人员
+njubbd:用户

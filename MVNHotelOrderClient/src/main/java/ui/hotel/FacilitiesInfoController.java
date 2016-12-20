@@ -1,6 +1,7 @@
 package ui.hotel;
 
 import java.io.File;
+import java.net.URI;
 
 import businesslogic.hotel.HotelDealController;
 import businesslogic.hotel.HotelManageController;
@@ -100,7 +101,14 @@ public class FacilitiesInfoController extends DetailsController{
     @FXML
     private void handleSave() {
     	System.out.println("NOT there  ??????????/andleSave");
-    	HotelFacilityVO hotelFacilityVO = new HotelFacilityVO(hotelID,hotelName.getText(),imageFile.toURI(),
+    	URI uri = null;
+    	if(imageFile!=null){
+    		System.out.println("save facility image:  "+imageFile.getAbsolutePath());
+    		uri = imageFile.toURI();
+    	}
+    	System.out.println(uri);
+    	
+    	HotelFacilityVO hotelFacilityVO = new HotelFacilityVO(hotelID,hotelName.getText(),uri,
     			wifi.isSelected(),noneSmoke.isSelected(),diningHall.isSelected(),parkingLot.isSelected(),
     			elevator.isSelected(),conferenceHall.isSelected(),morningCall.isSelected(),
     			frontdeskservice.isSelected(),luggageStorage.isSelected(),breakfast.isSelected(),other.getText());

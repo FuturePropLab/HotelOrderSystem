@@ -3,6 +3,7 @@ package businesslogic.hotel;
 import java.util.List;
 
 import businesslogicservice.HotelDealService;
+import tools.ResultMessage_Hotel;
 import tools.SortType;
 import vo.CommentVO;
 import vo.DiscountVO_hotel;
@@ -78,6 +79,11 @@ public class HotelDealController implements HotelDealService {
 	@Override
 	public boolean isbooked(String customerID, String hotelID) {
 		return hotel.isbooked(customerID, hotelID);
+	}
+
+	@Override
+	public ResultMessage_Hotel modifyHotelName(String hotelID, String hotelName) {
+		return hotel.modifyHotelName(hotelID, hotelName);
 	}
 		
 }
