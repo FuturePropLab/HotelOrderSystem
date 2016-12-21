@@ -3,9 +3,13 @@ package ui.customer;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import com.jfoenix.controls.JFXPasswordField;
+
+import businesslogic.account.CustomerAccountController;
 import businesslogic.customer.CustomerDealController;
 import businesslogic.login.LoginController;
 import businesslogic.member.MemberController;
+import businesslogicservice.AccountCustomerService;
 import businesslogicservice.LoginService;
 import businesslogicservice.MemberService;
 import javafx.fxml.FXML;
@@ -13,15 +17,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import tools.MemberBelongType;
 import tools.MemberType;
 import tools.ResultMessage;
+import tools.ResultMessage_Account;
 import tools.ResultMessage_Member;
 import tools.ResultMessage_Modify;
 import ui.main.DetailsController;
 import ui.utils.Dialogs;
+import ui.utils.TextFieldUtil;
 import vo.CustomerVO;
 import vo.LogVO;
 import vo.MemberVO;
@@ -75,8 +82,8 @@ public class ClientInfoController extends DetailsController{
 	
 	@FXML
 	private void initialize(){
-		memberType_apply.getItems().setAll("普通会员","企业会员");
-		memberType_apply.setValue("普通会员");
+		this.memberType_apply.getItems().setAll("普通会员","企业会员");
+		this.memberType_apply.setValue("普通会员");
 		this.gender.getItems().clear();
 		this.gender.getItems().addAll("男","女");
 		
@@ -209,5 +216,4 @@ public class ClientInfoController extends DetailsController{
 		}
 		
 	}
-	
 }

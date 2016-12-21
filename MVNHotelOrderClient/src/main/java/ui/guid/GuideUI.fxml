@@ -21,13 +21,18 @@
             <Image url="@../../../resources/images/headPortrait.jpg" />
          </image>
       </ImageView>
-      <Group layoutX="160.0" layoutY="43.0">
+      <Group layoutX="159.0" layoutY="24.0">
          <children>
             <Label fx:id="userName" maxWidth="130.0" text="WSW的小号">
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <Hyperlink fx:id="logout" focusTraversable="false" layoutX="15.0" layoutY="40.0" onAction="#handleLogout" text="登 出">
+            <Hyperlink fx:id="resetPassword" focusTraversable="false" layoutX="8.0" layoutY="30.0" onAction="#handleResetPassword" text="修改密码">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink fx:id="logout" focusTraversable="false" layoutX="20.0" layoutY="70.0" onAction="#handleLogout" text="登 出">
                <font>
                   <Font size="18.0" />
                </font>

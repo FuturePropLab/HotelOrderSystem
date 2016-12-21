@@ -38,7 +38,7 @@ public class LoginController extends FullLayoutController{
 	@FXML
 	private TextField username;
 	@FXML
-	private PasswordField password;
+	private JFXPasswordField password;
 	@FXML
 	private ComboBox<String> accountType;
 	@FXML
@@ -46,11 +46,11 @@ public class LoginController extends FullLayoutController{
 	@FXML
 	private JFXSpinner spinner;
 	@FXML
-	private TextField username_signup;
+	private JFXTextField username_signup;
 	@FXML
-	private PasswordField password_signup;
+	private JFXPasswordField password_signup;
 	@FXML
-	private PasswordField repeatPassword;
+	private JFXPasswordField repeatPassword;
 	@FXML
 	private Button signupButton;
 	
@@ -59,9 +59,9 @@ public class LoginController extends FullLayoutController{
 		accountType.getItems().addAll(accountTypes);
 		accountType.setValue(accountTypes[0]);
 		
-		TextFieldUtil.setValidator((JFXTextField) username_signup);
-		TextFieldUtil.setValidator((JFXPasswordField) password_signup);
-		TextFieldUtil.setRepeatValidator((JFXPasswordField) password_signup,(JFXPasswordField) repeatPassword);
+		TextFieldUtil.setValidator(username_signup);
+		TextFieldUtil.setValidator(password_signup);
+		TextFieldUtil.setRepeatValidator(password_signup,repeatPassword);
 		String[] str= saveUsernameUtil.getSave();
 		this.username.setText(str[0]);
 		this.accountType.setValue(str[1]);
@@ -125,17 +125,17 @@ public class LoginController extends FullLayoutController{
 	
 	@FXML
 	private void handleSignUp(){
-		//LoginService loginService=businesslogic.login.LoginController.getInstance();
+		if("".equals(password_signup.getText()) || "".equals(repeatPassword.getText()) || 
+				!password_signup.getText().equals(repeatPassword.getText())){
+			return;
+		}
+		
 		CustomerSignupController signupController = CustomerSignupController.getInstance();
 		CustomerInputVO customerInputVO = 
 				new CustomerInputVO(this.username_signup.getText(), this.password_signup.getText(), "", "", "");
-		//CustomerAccountController customerAccountController = CustomerAccountController.getInstance();
-		//System.out.println(this.username.getText()+"   "+this.password.getText());
 		ResultMessage_signUp rs =signupController.addCustomer(customerInputVO);
 		if(rs.equals(ResultMessage_signUp.Wrong)){
-			Dialogs.showMessage("注册失败,请重新输入用户名和密码");
-		//}else if(rs.equals(ResultMessage_Account.InvalidInput)){
-		//	Dialogs.showMessage("注册失败,请输入5位以上的用户名 和6位以上的密码");
+			Dialogs.showMessage("注册失败了,可能是这个用户名已经存在了哦");
 		}else if(rs.equals(ResultMessage_signUp.Success)){
 			Dialogs.showMessage("恭喜您注册成功");
 			accountType.setValue(accountTypes[0]);			
@@ -153,13 +153,10 @@ public class LoginController extends FullLayoutController{
 					
 					if(testType == AccountType.Customer){			
 						rootLayoutController.changeDetails("../customer/ClientInfo.fxml");
-//						ClientInfoController controller =
-//						(ClientInfoController) rootLayoutController.getDetailsController();
-//				controller.initValue( LoginServiceUtil.getLoginService().getLogState().accountID);
-			}			
+					}			
 				}
 			} catch (RemoteException e) {
-				Dialogs.showMessage("阿欧","登陆失败了，是不是网络的问题？");
+				Dialogs.showMessage("阿欧","注册失败了，是不是网络的问题？");
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();

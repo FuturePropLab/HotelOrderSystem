@@ -8,6 +8,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import ui.guid.ResetPasswordController;
 import ui.main.RootLayoutController;
 
 import java.util.ArrayList;
@@ -46,7 +47,9 @@ public class Dialogs {
 		jfxDialogLayout.setActions(buttons);
 		
 		dialog=new JFXDialog(rootLayout, jfxDialogLayout, DialogTransition.TOP);
-		dialog.setTransitionType(transition);
+		if(transition!=null){
+			dialog.setTransitionType(transition);
+		}
 		dialog.show(rootLayout);
 	}
 	
@@ -120,4 +123,13 @@ public class Dialogs {
 		showDialog("aaa", message, DialogTransition.BOTTOM, buttons.toArray(new JFXButton[0]));
 	}
 	
+	/**
+	 * 显示修改密码的对话框
+	 * @param jfxDialogLayout 对话框界面
+	 */
+	public static void showResetPassword(JFXDialogLayout jfxDialogLayout,ResetPasswordController controller) {
+		controller.setOnClose(e->dialog.close());
+		dialog=new JFXDialog(rootLayout, jfxDialogLayout, DialogTransition.LEFT);
+		dialog.show(rootLayout);
+	}
 }

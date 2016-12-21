@@ -4,11 +4,15 @@ import java.io.File;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
+import com.jfoenix.controls.JFXDialogLayout;
+
 import businesslogic.customer.CustomerDealController;
 import businesslogic.login.LoginController;
 import businesslogicservice.CustomerDealService;
 import businesslogicservice.LoginService;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -42,6 +46,8 @@ public class GuideUIController {
 	private ImageView headPortrait;		//TODO:设置头像
 	@FXML
 	private Label userName;
+	@FXML
+	private Hyperlink resetPassword;
 	@FXML
 	private Hyperlink logout;
 	@FXML
@@ -103,6 +109,16 @@ public class GuideUIController {
 		if (selectedFile != null) {
 			headPortrait.setImage(new Image(selectedFile.toURI().toString()));
 			//TODO:保存头像
+		}
+	}
+	@FXML
+	private void handleResetPassword(){
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("ResetPassword.fxml"));
+			Dialogs.showResetPassword(loader.load(), loader.getController());
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	@FXML

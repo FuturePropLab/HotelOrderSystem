@@ -324,6 +324,10 @@
 	-fx-rippler-fill: #5264AE;
 }
 
+.combo-box-popup .list-view .jfx-list-cell .label {
+  	-fx-font-size: 24px;
+}
+
  
 /*.combo-box .combo-box-button-container{
  	-fx-border-color:BLACK;-fx-border-width: 0 0 1 0;

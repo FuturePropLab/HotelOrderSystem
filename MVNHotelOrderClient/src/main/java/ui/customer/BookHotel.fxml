@@ -67,7 +67,7 @@
                   <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="customerName" text="XXX" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+            <Label fx:id="customerName" maxWidth="1.7976931348623157E308" text="XXX" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                <font>
                   <Font size="24.0" />
                </font>
@@ -91,7 +91,7 @@
                   <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="discount" text="9.5" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Label fx:id="discount" maxWidth="1.7976931348623157E308" text="9.5" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
                   <Font size="24.0" />
                </font>
@@ -99,7 +99,7 @@
                   <Insets left="10.0" />
                </padding>
             </Label>
-            <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
                   <Label text="￥">
                      <font>
@@ -137,7 +137,7 @@
                   <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <JFXDatePicker fx:id="lastDate" onAction="#handleDate" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
+            <JFXDatePicker fx:id="lastDate" onAction="#handleDate" overLay="true" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
             <HBox alignment="CENTER_LEFT" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <children>
                   <JFXTextField fx:id="people" maxWidth="177.0" minWidth="74.0" onAction="#handlePrice" prefHeight="54.0" prefWidth="74.0" text="1">
@@ -152,7 +152,7 @@
                   </Label>
                </children>
             </HBox>
-            <JFXDatePicker fx:id="planedLeaveDate" onAction="#handleDate" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <JFXDatePicker fx:id="planedLeaveDate" onAction="#handleDate" overLay="true" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
             <JFXCheckBox fx:id="children" onAction="#handlePrice" text=" " GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <font>
                   <Font size="24.0" />
@@ -173,12 +173,12 @@
                </children>
             </HBox>
             <JFXComboBox fx:id="roomType" onAction="#handlePrice" prefHeight="30.0" prefWidth="144.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Hyperlink fx:id="hotelName" onAction="#handleHotelName" text="大酒店" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Hyperlink fx:id="hotelName" maxWidth="1.7976931348623157E308" onAction="#handleHotelName" text="大酒店" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="24.0" />
                </font>
             </Hyperlink>
-            <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
                   <Label text="￥">
                      <font>
@@ -192,8 +192,8 @@
                   </Label>
                </children>
             </HBox>
-            <JFXDatePicker fx:id="lastDate_time" onAction="#handleDate" showTime="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <JFXDatePicker fx:id="planedLeaveDate_time" onAction="#handleDate" showTime="true" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <JFXDatePicker fx:id="lastDate_time" onAction="#handleDate" overLay="true" showTime="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <JFXDatePicker fx:id="planedLeaveDate_time" onAction="#handleDate" overLay="true" showTime="true" GridPane.columnIndex="3" GridPane.rowIndex="3" />
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="212.45538330078125" minWidth="10.0" prefWidth="134.83050537109375" />
