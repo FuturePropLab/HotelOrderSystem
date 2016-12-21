@@ -3,8 +3,13 @@ package ui.guid;
 import com.jfoenix.controls.JFXPasswordField;
 
 import businesslogic.account.CustomerAccountController;
+import businesslogic.account.HotelAccountController;
+import businesslogic.account.WebDesignerAccountController;
 import businesslogic.login.LoginController;
 import businesslogicservice.AccountCustomerService;
+import businesslogicservice.AccountHotelService;
+import businesslogicservice.AccountService;
+import businesslogicservice.AccountWebService;
 import businesslogicservice.LoginService;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -12,6 +17,8 @@ import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import serviceFactory.AccountContollerUtil;
+import tools.AccountType;
 import tools.ResultMessage_Account;
 import ui.utils.Dialogs;
 import ui.utils.TextFieldUtil;
@@ -42,8 +49,21 @@ public class ResetPasswordController {
 				newPassword.getText().equals(confirmPassword.getText())){
 			LoginService loginService=LoginController.getInstance();
 			String username=loginService.getLogState().username;
-			AccountCustomerService accountCustomerService=CustomerAccountController.getInstance();
-			ResultMessage_Account result=accountCustomerService.resetPassword(username, confirmPassword.getText());
+			
+			ResultMessage_Account result = null;
+			if(AccountType.Customer.equals(loginService.getLogState().accountType)){
+				AccountCustomerService accountCustomerService=CustomerAccountController.getInstance();
+				result=accountCustomerService.resetPassword(username, confirmPassword.getText());
+			}else if (AccountType.Hotel.equals(loginService.getLogState().accountType)) {
+				AccountHotelService accountHotelService=HotelAccountController.getInstance();
+				result=accountHotelService.resetPassword(username, confirmPassword.getText());
+			}else if (AccountType.Web.equals(loginService.getLogState().accountType)) {
+				AccountWebService accountWebService=WebDesignerAccountController.getInstance();
+				result=accountWebService.resetPassword(username, confirmPassword.getText());
+			}else if (AccountType.Administor.equals(loginService.getLogState().accountType)) {
+				//TODO:
+			}
+			
 			if(ResultMessage_Account.Success.equals(result)){
 				closeHandler.handle(new ActionEvent());
 			}else {
