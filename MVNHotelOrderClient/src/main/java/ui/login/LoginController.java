@@ -165,6 +165,11 @@ public class LoginController extends FullLayoutController{
 		}
 	}
 	
+	/**
+	 * 登陆的后台线程
+	 * @author zjy
+	 *
+	 */
 	private class LoginBackService extends Service<Void> {
 		private ResultMessage_LoginCheck result;
 		private String accountTy = accountType.getValue();

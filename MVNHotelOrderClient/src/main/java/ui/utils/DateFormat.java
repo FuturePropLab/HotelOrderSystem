@@ -111,9 +111,4 @@ public class DateFormat {
         checkOutDatePicker.setDayCellFactory(dayCellFactory);
         checkOutDatePicker.setValue(checkInDatePicker.getValue().plusDays(1));
 	}
-	
-	@Deprecated
-	public static void initTimePicker(DatePicker timePicker) {
-		
-	}
 }

@@ -11,15 +11,21 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
 import businesslogic.hotel.HotelDealController;
 import businesslogic.order.OrderController;
+import businesslogicservice.AccountCustomerService;
 import businesslogicservice.HotelDealService;
+import dataservice.AccountDataService;
 import dataservice.CreditDataService;
 import dataservice.MessgeDataService;
 import dataservice.OrderDataService;
+import po.AccountPO;
 import po.CreditLogPO;
 import po.OrderPO;
 import rmi.RemoteHelper;
+import tools.AccountType;
 import vo.FuzzySearchOrderVO;
 
 public class ClientRunner {
@@ -63,8 +69,12 @@ public class ClientRunner {
 	public void test() throws RemoteException{	
 		
 		
-		HotelDealService hotelDealService = HotelDealController.getInstance();
-		System.out.println(hotelDealService.getHotelDetailsVO("HT2016122011121686").star);
+		//HotelDealService hotelDealService = HotelDealController.getInstance();
+		//System.out.println(hotelDealService.getHotelDetailsVO("HT2016122011121686").star);
+		
+		AccountDataService accountDataService = remoteHelper.getInstance().getAccountDataService();
+		System.out.println(accountDataService);
+		System.out.println(accountDataService.addAccount(new AccountPO("HT001", "zhujunyi","123456", AccountType.Customer)));
 		
 		
 //		MessgeDataService messgeDataService = RemoteHelper.getInstance().getMessgeDataService();
