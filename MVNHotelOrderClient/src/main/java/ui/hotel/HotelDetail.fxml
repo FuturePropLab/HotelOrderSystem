@@ -80,12 +80,12 @@
          </children>
       </AnchorPane>
       <Separator layoutX="472.0" orientation="VERTICAL" prefHeight="750.0" prefWidth="6.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <Label fx:id="hotelNameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="540.0" layoutY="10.0" prefWidth="300.0" text="xx酒店" textAlignment="CENTER" textFill="#f0ac26">
+      <Label fx:id="hotelNameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="540.0" layoutY="10.0" prefWidth="250.0" text="xx酒店" textAlignment="CENTER" textFill="#f0ac26">
          <font>
             <Font size="28.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="hotelNameTextField" focusTraversable="false" layoutX="540.0" layoutY="5.0" promptText="酒店名称" styleClass="jfx-text-field-center" visible="false">
+      <JFXTextField fx:id="hotelNameTextField" focusTraversable="false" layoutX="540.0" layoutY="5.0" prefWidth="250.0" promptText="酒店名称" styleClass="jfx-text-field-center" visible="false">
          <font>
             <Font size="22.0" />
          </font>
