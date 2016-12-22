@@ -7,7 +7,7 @@ import vo.DiscountVO_hotel;
 /**
  * 
  * @author chenyuyan 12/15
- 通过酒店id获取酒店折扣信息
+ * 閫氳繃閰掑簵id鑾峰彇閰掑簵鎶樻墸淇℃伅
  */
 public class getDiscountInfoImp implements getDiscountInfo {
 
