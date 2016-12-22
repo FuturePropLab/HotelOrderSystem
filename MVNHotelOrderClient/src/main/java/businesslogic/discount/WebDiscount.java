@@ -21,8 +21,8 @@ public class WebDiscount {
 	private dataservice.DiscountWebDataService dataService;
 	
 	public WebDiscount(){
-		this.dataService=RemoteHelper.getInstance().getDiscountWebDAteService();
-//		this.dataService = new DiscountWebData_stub();//test!!
+//		this.dataService=RemoteHelper.getInstance().getDiscountWebDAteService();
+		this.dataService = new DiscountWebData_stub();//test!!
 	}
 
 	private FactoryDiscount factory= new FactoryDiscount();

@@ -30,8 +30,8 @@ public class Customer {
 	private  CustomerDeal_Stub customerStub;
 	
 	public Customer(){
-		this.customerdata = rmi.RemoteHelper.getInstance().getCustomerDataService();
-//		this.customerdata = new CustomerData_Stub();//test!!
+//		this.customerdata = rmi.RemoteHelper.getInstance().getCustomerDataService();
+		this.customerdata = new CustomerData_Stub();//test!!
 	}
 	/**
 	 * chenyuyan 测试用构造方法
@@ -46,7 +46,7 @@ public class Customer {
 	 */
 	 
 	public ResultMessage_signUp addCustomer(CustomerInputVO customerInput) throws RemoteException{
-//		CustomerSignup_Stub test=new CustomerSignup_Stub();
+//		CustomerSignup_Stub test=new CustomerSignup_Stub();//test!!
 		
 	
 		

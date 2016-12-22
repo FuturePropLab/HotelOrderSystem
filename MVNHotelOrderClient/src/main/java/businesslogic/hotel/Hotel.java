@@ -40,8 +40,8 @@ public class Hotel {
 	private HotelDataService hotelDataService;
 	private PictureDeal pictureDeal;
 	public Hotel(){
-		hotelDataService = RemoteHelper.getInstance().getHotelDataService();
-//		hotelDataService = new HotelData_Stub();//test!!
+//		hotelDataService = RemoteHelper.getInstance().getHotelDataService();
+		hotelDataService = new HotelData_Stub();//test!!
 		
 		pictureDeal = new PictureDeal();
 	}
@@ -144,7 +144,7 @@ public class Hotel {
 		while(it.hasNext()){
 			HotelPO hotelPO  =  it.next();
 			HotelbriefVO hotelbriefVO = new HotelbriefVO(hotelPO);
-			double mark=gethotelAssessVO(hotelPO.getHotelID()).averageMark;
+	/*		double mark=gethotelAssessVO(hotelPO.getHotelID()).averageMark;//test!!!
 			try {
 				hotelbriefVO.mark = new Mark(mark);
 			} catch (OutOfBoundsException e) {
@@ -156,7 +156,7 @@ public class Hotel {
 				}
 			}
 			
-			hotelbriefVO.imageuri = pictureDeal.downloadFrontPicture(hotelPO.getHotelID());
+			hotelbriefVO.imageuri = pictureDeal.downloadFrontPicture(hotelPO.getHotelID());*/
 			hotelbriefVOs.add(hotelbriefVO);
 		}
 		
@@ -211,8 +211,8 @@ public class Hotel {
 	 */
 	public List<DiscountVO_hotel> getHotelDiscount(String hotel_id) {
 		// TODO Auto-generated method stub
-		//MockHotelDiscount test=new MockHotelDiscount();
-		getDiscountInfo hotelDisController =new getDiscountInfoImp();
+		MockHotelDiscount hotelDisController=new MockHotelDiscount();//test!!!
+//		getDiscountInfo hotelDisController =new getDiscountInfoImp();
 		return hotelDisController.getHotelDiscount(hotel_id);
 	}
 	/**
@@ -250,7 +250,7 @@ public class Hotel {
 	
 	  public HotelDiscribtionsVO  getHotelDiscribtionsVO(String hotelID){
 		  HotelDiscribtionsVO hotelDiscribtionsVO = new HotelDiscribtionsVO();
-		  hotelDiscribtionsVO.pictureURI= pictureDeal.downloadHotelInfoPic(hotelID);
+//		  hotelDiscribtionsVO.pictureURI= pictureDeal.downloadHotelInfoPic(hotelID);//test!!!!
 		  try {
 			hotelDiscribtionsVO.discribes = hotelDataService.getHotelInfoString(hotelID);
 		} catch (RemoteException e) {

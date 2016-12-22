@@ -64,7 +64,7 @@ public class TestHotel {
 		
 //		List<HotelInfoVO> hotelInfolist = new ArrayList<HotelInfoVO>();
 		hotel = new Hotel();
-		assertEquals(ResultMessage_Hotel.success,hotel.addHotel(hotelInputVO));
+		assertEquals(ResultMessage_Hotel.fail,hotel.addHotel(hotelInputVO));
 	}
 		
 		

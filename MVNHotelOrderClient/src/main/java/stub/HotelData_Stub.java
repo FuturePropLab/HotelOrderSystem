@@ -175,12 +175,13 @@ public class HotelData_Stub implements HotelDataService{
 			hotelList.add(hotel2);
 			hotelList.add(hotel3);
 		
-//			System.out.println("1");
+//			System.out.println("successs!!!!!");
 			return hotelList;
 		}else if(standardSearch.getHotelAddress().getBusinessCircle()=="夫子庙"){
 //			System.out.println("2");
 			hotelList.add(hotel3);
 //			System.out.println("2");
+//			System.out.println("test1 successs!!!!!");
 			return hotelList;
 		}else if(standardSearch.getHotelName()=="rujia"){
 			hotelList.add(hotel3);

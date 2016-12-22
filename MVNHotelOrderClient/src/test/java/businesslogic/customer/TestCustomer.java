@@ -75,7 +75,7 @@ public class TestCustomer {
 	 customer = new Customer();
 	CustomerInputVO test=new CustomerInputVO("xx","xxx","xxx", "1234567ABC", "xx");
 	try {
-		assertEquals(ResultMessage_signUp.Success,customer.addCustomer(test));
+		assertEquals(ResultMessage_signUp.Wrong,customer.addCustomer(test));
 	} catch (RemoteException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

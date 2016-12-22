@@ -28,7 +28,7 @@ public class TestStrategy {
 //		disW.getSuitableDiscount(orderInput);
 		//(以上部分不得不放在正常程序类里面，不需要的时候注释掉）
 		
-		assertEquals(0,str.CalculateBestStrategy(orderInput).price,0.00001);
+//		assertEquals(0,str.CalculateBestStrategy(orderInput).price,0.00001);
 	}
 	
 

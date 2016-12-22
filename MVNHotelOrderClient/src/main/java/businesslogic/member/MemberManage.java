@@ -23,7 +23,7 @@ import vo.MemberVO;
 public class MemberManage {
 	
 	private MemberDataService memberDataService;
-//	public MemberData_Stub memberStub;
+//	public MemberData_Stub memberStub;//test!!!!
 	/**
 	 * chenyuyan，测试用构造方法
 	 * @param customer_id
@@ -42,8 +42,8 @@ public class MemberManage {
 	
 	public MemberVO getMemberInfo(String customer_id) {
 //		memberStub = new MemberData_Stub();
-		memberDataService = RemoteHelper.getInstance().getMemberDataService();
-//		memberDataService = new MemberData_Stub();//test!!!
+//		memberDataService = RemoteHelper.getInstance().getMemberDataService();
+		memberDataService = new MemberData_Stub();//test!!!
 		if(customer_id==null)return null;
 		else {
 			MemberPO memberpo;

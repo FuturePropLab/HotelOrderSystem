@@ -64,8 +64,8 @@ public class Account {
 	 * 无参数初始化
 	 */
 	public Account(){
-		this.accountDataService = RemoteHelper.getInstance().getAccountDataService();//test
-//		this.accountDataService = new AccountData_stub();//test!!!!
+//		this.accountDataService = RemoteHelper.getInstance().getAccountDataService();//test
+		this.accountDataService = new AccountData_stub();//test!!!!
 		this.hotelInfo = null;
 		this.customerInfo = null;
 	}
@@ -166,7 +166,8 @@ public class Account {
 	public String getUsername(String userId){
 		AccountPO accountPO;
 		try {
-			accountDataService = RemoteHelper.getInstance().getAccountDataService();
+//			accountDataService = RemoteHelper.getInstance().getAccountDataService();//test!!!
+			
 			accountPO = accountDataService.getAccountByID(userId);
 			if(accountPO==null)
 				return usrID_notexits;
@@ -183,8 +184,8 @@ public class Account {
 	 * @throws RemoteException 
 	 */
 	public CustomerVO getCustomerDetail(String customer_id) throws RemoteException{
-		CustomerInfo customerInfo = CustomerInfoImp.getInstance();
-//		MockCustomer customerInfo = new MockCustom?er();//test!!!!!
+//		CustomerInfo customerInfo = CustomerInfoImp.getInstance();
+		MockCustomer customerInfo = new MockCustomer();//test!!!!!
 		return customerInfo.getCustomerDetail(customer_id);
 	}
 	
@@ -196,8 +197,8 @@ public class Account {
 	 * @throws RemoteException 
 	 */
 	public List<AccountVO> searchCustomerAccount(CustomerSearchVO customerSearchVO) throws RemoteException{
-		CustomerInfo customerInfo = CustomerInfoImp.getInstance();
-//		CustomerInfo customerInfo  = new MockCustomer();//test
+//		CustomerInfo customerInfo = CustomerInfoImp.getInstance();
+		CustomerInfo customerInfo  = new MockCustomer();//test
 		List<String>idList = customerInfo.searchCustomer(customerSearchVO);
 		List<AccountPO> accountPOs = accountDataService.getAccountList(idList, AccountType.Customer);
 		Iterator<AccountPO> it = accountPOs.iterator();
