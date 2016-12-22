@@ -48,21 +48,21 @@ public class ResetPasswordController {
 		if(!"".equals(newPassword.getText()) && !"".equals(confirmPassword.getText()) && 
 				newPassword.getText().equals(confirmPassword.getText())){
 			LoginService loginService=LoginController.getInstance();
-			String username=loginService.getLogState().username;
+			String userID=loginService.getLogState().accountID;
 			
 			ResultMessage_Account result = null;
 			if(AccountType.Customer.equals(loginService.getLogState().accountType)){
 				AccountCustomerService accountCustomerService=CustomerAccountController.getInstance();
-				result=accountCustomerService.resetPassword(username, confirmPassword.getText());
+				result=accountCustomerService.resetPassword(userID, confirmPassword.getText());
 			}else if (AccountType.Hotel.equals(loginService.getLogState().accountType)) {
 				AccountHotelService accountHotelService=HotelAccountController.getInstance();
-				result=accountHotelService.resetPassword(username, confirmPassword.getText());
+				result=accountHotelService.resetPassword(userID, confirmPassword.getText());
 			}else if (AccountType.Web.equals(loginService.getLogState().accountType)) {
 				AccountWebService accountWebService=WebDesignerAccountController.getInstance();
-				result=accountWebService.resetPassword(username, confirmPassword.getText());
+				result=accountWebService.resetPassword(userID, confirmPassword.getText());
 			}else if (AccountType.Administor.equals(loginService.getLogState().accountType)) {
 				AccountCustomerService accountCustomerService=CustomerAccountController.getInstance();
-				result=accountCustomerService.resetPassword(username, confirmPassword.getText());
+				result=accountCustomerService.resetPassword(userID, confirmPassword.getText());
 			}
 			
 			if(ResultMessage_Account.Success.equals(result)){
