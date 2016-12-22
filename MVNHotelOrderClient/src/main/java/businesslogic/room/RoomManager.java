@@ -27,10 +27,10 @@ public class RoomManager {
 	private RoomDataService roomDataService;
 	private RoomPictureDeal roomPictureDeal;
 	public RoomManager(){
-//		this.roomDataService = RemoteHelper.getInstance().getRoomDataService();
+		this.roomDataService = RemoteHelper.getInstance().getRoomDataService();
 		roomPictureDeal = new RoomPictureDeal();
-		this.roomDataService =new RoomData_Stub();//test!!!
-//		this.roomPictureDeal = new RoomPictureDeal();
+//		this.roomDataService =new RoomData_Stub();//test!!!
+		this.roomPictureDeal = new RoomPictureDeal();
 	}
 	
 	public RoomDescriptionVO getRoomInfo(String hotelID, RoomType roomType) {
