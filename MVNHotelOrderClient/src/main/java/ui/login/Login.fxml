@@ -40,7 +40,7 @@
                               <Image url="@../../../resources/images/password.png" />
                            </image>
                         </ImageView>
-                        <JFXComboBox fx:id="accountType" layoutX="41.0" layoutY="245.0" prefHeight="45.0" prefWidth="171.0" stylesheets="@../../../resources/css/jfoenix-components.css" />
+                        <JFXComboBox fx:id="accountType" layoutX="41.0" layoutY="245.0" prefHeight="45.0" prefWidth="171.0" styleClass="combo-box-font18px" stylesheets="@../../../resources/css/jfoenix-components.css" />
                         <JFXSpinner fx:id="spinner" layoutX="399.0" layoutY="249.0" radius="15.0" visible="false" />
                         <JFXButton fx:id="loginButton" buttonType="RAISED" layoutX="353.0" layoutY="244.0" onAction="#handleLogin" prefWidth="130.0" ripplerFill="WHITE" styleClass="button-raised-purple" stylesheets="@../../../resources/css/jfoenix-components.css" text="确定">
                            <font>

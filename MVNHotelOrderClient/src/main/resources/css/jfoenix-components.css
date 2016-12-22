@@ -326,9 +326,14 @@
 .combo-box-popup .list-view .jfx-list-cell .jfx-rippler {
 	-fx-rippler-fill: #5264AE;
 }
-
 .combo-box-popup .list-view .jfx-list-cell .label {
-  	-fx-font-size: 24px;
+  	-fx-font-size: 18px;
+}
+.combo-box{
+	-fx-font-size: 18px;
+}
+.combo-box-font18px{
+	-fx-font-size: 18px;
 }
 
  
