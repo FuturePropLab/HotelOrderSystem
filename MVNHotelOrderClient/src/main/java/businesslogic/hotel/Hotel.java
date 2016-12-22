@@ -40,8 +40,8 @@ public class Hotel {
 	private HotelDataService hotelDataService;
 	private PictureDeal pictureDeal;
 	public Hotel(){
-//		hotelDataService = RemoteHelper.getInstance().getHotelDataService();
-		hotelDataService = new HotelData_Stub();//test!!
+		hotelDataService = RemoteHelper.getInstance().getHotelDataService();
+	//	hotelDataService = new HotelData_Stub();//test!!
 		
 		pictureDeal = new PictureDeal();
 	}
