@@ -35,7 +35,7 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <JFXComboBox fx:id="gender" promptText="男" />
+            <JFXComboBox fx:id="gender" promptText="男" styleClass="combo-box-font18px" />
          </children>
       </HBox>
       <HBox alignment="CENTER" layoutX="364.0" layoutY="78.0">
@@ -120,7 +120,7 @@
       </AnchorPane>
       <AnchorPane fx:id="applyMessage" layoutX="83.0" layoutY="366.0" prefHeight="370.0" prefWidth="405.0" visible="false">
          <children>
-            <JFXComboBox fx:id="memberType_apply" layoutX="30.0" layoutY="14.0" onAction="#handleMemberType_apply" prefHeight="30.0" prefWidth="119.0" promptText="普通会员" />
+            <JFXComboBox fx:id="memberType_apply" layoutX="30.0" layoutY="14.0" onAction="#handleMemberType_apply" prefHeight="30.0" prefWidth="119.0" promptText="普通会员" styleClass="combo-box-font18px" />
             <Label fx:id="memberTypeInfo_apply" layoutX="48.0" layoutY="61.0" text="生日">
                <font>
                   <Font size="22.0" />

@@ -172,7 +172,7 @@
                   </Label>
                </children>
             </HBox>
-            <JFXComboBox fx:id="roomType" onAction="#handlePrice" prefHeight="30.0" prefWidth="144.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <JFXComboBox fx:id="roomType" onAction="#handlePrice" prefHeight="30.0" prefWidth="144.0" styleClass="combo-box-font18px" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Hyperlink fx:id="hotelName" maxWidth="1.7976931348623157E308" onAction="#handleHotelName" text="大酒店" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="24.0" />

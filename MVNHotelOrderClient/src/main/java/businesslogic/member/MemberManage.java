@@ -42,8 +42,8 @@ public class MemberManage {
 	
 	public MemberVO getMemberInfo(String customer_id) {
 //		memberStub = new MemberData_Stub();
-//		memberDataService = RemoteHelper.getInstance().getMemberDataService();
-		memberDataService = new MemberData_Stub();//test!!!
+		memberDataService = RemoteHelper.getInstance().getMemberDataService();
+//		memberDataService = new MemberData_Stub();//test!!!
 		if(customer_id==null)return null;
 		else {
 			MemberPO memberpo;
