@@ -61,7 +61,8 @@ public class ResetPasswordController {
 				AccountWebService accountWebService=WebDesignerAccountController.getInstance();
 				result=accountWebService.resetPassword(username, confirmPassword.getText());
 			}else if (AccountType.Administor.equals(loginService.getLogState().accountType)) {
-				//TODO:
+				AccountCustomerService accountCustomerService=CustomerAccountController.getInstance();
+				result=accountCustomerService.resetPassword(username, confirmPassword.getText());
 			}
 			
 			if(ResultMessage_Account.Success.equals(result)){
