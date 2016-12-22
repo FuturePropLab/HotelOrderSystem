@@ -27,6 +27,9 @@
     -fx-alignment: top-left ;
 }
 
+.jfx-text-field-center{
+	-fx-alignment: center ;
+}
 
 
 .jfx-decorator {

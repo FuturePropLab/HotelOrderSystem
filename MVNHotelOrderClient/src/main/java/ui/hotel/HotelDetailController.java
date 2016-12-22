@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.jfoenix.controls.JFXTextField;
+
 import businesslogic.hotel.HotelDealController;
 import businesslogic.hotel.HotelManageController;
 import businesslogic.login.LoginController;
@@ -29,10 +31,12 @@ import tools.ResultMessage_Hotel;
 import tools.RoomType;
 import ui.customer.BookHotelController;
 import ui.main.DetailsController;
+import ui.order.OrderListController;
 import ui.room.RoomInfoController;
 import ui.utils.Dialogs;
 import ui.utils.DoubleFormate;
 import ui.utils.StarHelper;
+import ui.utils.TextFieldUtil;
 import vo.CommentVO;
 import vo.HotelDetailsVO;
 import vo.HotelDiscribtionsVO;
@@ -73,7 +77,7 @@ public class HotelDetailController extends DetailsController{
 	@FXML
 	private Label hotelNameLabel;//除了酒店工作人员，其他用户可见
 	@FXML
-	private TextField hotelNameTextField;//只有酒店工作人员可见
+	private JFXTextField hotelNameTextField;//只有酒店工作人员可见
 	@FXML
 	private TextArea describtionTextArea;//只有酒店工作人员可见
 	@FXML
@@ -126,6 +130,8 @@ public class HotelDetailController extends DetailsController{
 	private TextField addressTextField;//只有酒店工作人员可见
 	@FXML
 	private Hyperlink save;//只有酒店工作人员可见
+	@FXML
+	private Hyperlink historyOrders;//只有客户可见
 	private File imageFile;
 	
 	private HotelDetailsVO hotelDetailsVO;
@@ -163,9 +169,11 @@ public class HotelDetailController extends DetailsController{
 			bookStandard.setDisable(true);
 			bookDouble.setDisable(true);
 			bookSingle.setDisable(true);
+			historyOrders.setVisible(false);
 			
 			starComboBox.getItems().addAll(starArray);
 			cityComboBox.getItems().addAll("南京","Option 1","Option 2");
+			TextFieldUtil.setValidator(hotelNameTextField);
 			
 			initValue(login.getLogState().accountID);
 		}
@@ -175,6 +183,7 @@ public class HotelDetailController extends DetailsController{
 			bookStandard.setDisable(true);
 			bookDouble.setDisable(true);
 			bookSingle.setDisable(true);
+			historyOrders.setVisible(false);
 		}
     }
 	
@@ -297,6 +306,16 @@ public class HotelDetailController extends DetailsController{
 			Dialogs.showMessage("保存失败");
 		}else{
 			Dialogs.showMessage("保存成功");
+		}
+	}
+	@FXML
+	private void handleHistoryOrders() {
+		try {
+			rootLayoutController.changeDetails("../order/OrderList.fxml");
+			OrderListController orderListController=(OrderListController) rootLayoutController.getDetailsController();
+			orderListController.search(hotelDetailsVO.hotelName, null);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	

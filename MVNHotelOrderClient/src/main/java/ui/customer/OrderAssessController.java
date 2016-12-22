@@ -3,6 +3,8 @@ package ui.customer;
 import java.io.IOException;
 import java.net.URI;
 
+import com.jfoenix.controls.JFXTextArea;
+
 import Exception.OutOfBoundsException;
 import businesslogic.hotel.HotelDealController;
 import businesslogic.order.OrderController;
@@ -19,6 +21,7 @@ import tools.ResultMessage;
 import ui.main.DetailsController;
 import ui.order.OrderDetailsController;
 import ui.utils.Dialogs;
+import ui.utils.TextFieldUtil;
 import vo.AssessVO;
 import vo.HotelbriefVO;
 import vo.OrderVO;
@@ -50,7 +53,7 @@ public class OrderAssessController extends DetailsController{
 	@FXML
 	private Label markLabel;
 	@FXML
-	private TextArea assessment;
+	private JFXTextArea assessment;
 	@FXML
 	private Button submit;
 	@FXML
@@ -76,6 +79,8 @@ public class OrderAssessController extends DetailsController{
 		star_3.setOnMouseClicked(e -> changeStarValue(mark=3));
 		star_4.setOnMouseClicked(e -> changeStarValue(mark=4));
 		star_5.setOnMouseClicked(e -> changeStarValue(mark=5));
+		
+		TextFieldUtil.setValidator(assessment);
 	}
 	
 	@FXML

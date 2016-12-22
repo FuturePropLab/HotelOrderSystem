@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,14 +18,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.hotel.HotelDetailController">
+<AnchorPane prefHeight="750.0" prefWidth="900.0" style="-fx-background-color: WHITE;" stylesheets="@../../../resources/css/jfoenix-components.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.hotel.HotelDetailController">
    <children>
       <ImageView fx:id="hotelImage" fitHeight="250.0" fitWidth="475.0" layoutY="7.0" onMouseClicked="#handleHotelImage" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../../../resources/images/picture.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="7.0" layoutY="250.0" prefHeight="497.0" prefWidth="475.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="253.0">
+      <AnchorPane layoutX="7.0" layoutY="250.0" prefHeight="497.0" prefWidth="475.0" style="-fx-background-color: WHITE;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="253.0">
          <children>
             <GridPane layoutX="6.0" prefHeight="497.0" prefWidth="467.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columnConstraints>
@@ -41,11 +41,6 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="bookEluxeSuite" mnemonicParsing="false" onAction="#handleBookEluxeSuite" prefHeight="36.0" prefWidth="109.0" text="预订" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Button fx:id="bookSuites" mnemonicParsing="false" onAction="#handleBookSuites" prefHeight="36.0" prefWidth="109.0" text="预订" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <Button fx:id="bookDouble" mnemonicParsing="false" onAction="#handleBookDouble" prefHeight="36.0" prefWidth="109.0" text="预订" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                  <Button fx:id="bookStandard" mnemonicParsing="false" onAction="#handleBookStandard" prefHeight="36.0" prefWidth="109.0" text="预订" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                  <Button fx:id="bookSingle" mnemonicParsing="false" onAction="#handleBookSingle" prefHeight="36.0" prefWidth="109.0" text="预订" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                   <Hyperlink fx:id="EluxeSuite" onAction="#handleEluxeSuite" text="总统套房" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
                         <Font size="24.0" />
@@ -71,6 +66,11 @@
                         <Font size="24.0" />
                      </font>
                   </Hyperlink>
+                  <JFXButton fx:id="bookEluxeSuite" buttonType="RAISED" minWidth="110.0" onAction="#handleBookEluxeSuite" ripplerFill="#fffc37" text="预订&gt;" textFill="#005765" GridPane.columnIndex="2" />
+                  <JFXButton fx:id="bookSuites" buttonType="RAISED" minWidth="110.0" onAction="#handleBookSuites" ripplerFill="#fffc37" text="预订&gt;" textFill="#005765" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <JFXButton fx:id="bookStandard" buttonType="RAISED" minWidth="110.0" onAction="#handleBookStandard" ripplerFill="#fffc37" text="预订&gt;" textFill="#005765" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <JFXButton fx:id="bookDouble" buttonType="RAISED" minWidth="110.0" onAction="#handleBookDouble" ripplerFill="#fffc37" text="预订&gt;" textFill="#005765" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <JFXButton fx:id="bookSingle" buttonType="RAISED" minWidth="110.0" onAction="#handleBookSingle" ripplerFill="#fffc37" text="预订&gt;" textFill="#005765" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                </children>
             </GridPane>
             <Separator layoutY="98.0" prefHeight="9.0" prefWidth="466.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
@@ -80,26 +80,26 @@
          </children>
       </AnchorPane>
       <Separator layoutX="472.0" orientation="VERTICAL" prefHeight="750.0" prefWidth="6.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <Label fx:id="hotelNameLabel" layoutX="640.0" layoutY="10.0" text="xx酒店" textFill="#f0ac26">
+      <Label fx:id="hotelNameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="540.0" layoutY="10.0" prefWidth="300.0" text="xx酒店" textAlignment="CENTER" textFill="#f0ac26">
          <font>
             <Font size="28.0" />
          </font>
       </Label>
-      <TextField fx:id="hotelNameTextField" layoutX="608.0" layoutY="4.0" prefHeight="48.0" prefWidth="155.0" text="xx酒店" visible="false" AnchorPane.topAnchor="2.0">
+      <JFXTextField fx:id="hotelNameTextField" focusTraversable="false" layoutX="540.0" layoutY="5.0" promptText="酒店名称" styleClass="jfx-text-field-center" visible="false">
          <font>
-            <Font size="24.0" />
+            <Font size="22.0" />
          </font>
-      </TextField>
-      <Text fx:id="describtionText" layoutX="672.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="简介" AnchorPane.leftAnchor="473.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+      </JFXTextField>
+      <Text fx:id="describtionText" layoutX="672.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="简介" AnchorPane.leftAnchor="475.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <TextArea fx:id="describtionTextArea" layoutX="603.0" layoutY="31.0" prefHeight="202.0" prefWidth="427.0" text="简介" visible="false" AnchorPane.leftAnchor="473.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+      <JFXTextArea fx:id="describtionTextArea" focusTraversable="false" labelFloat="true" prefHeight="220.0" promptText="简介" visible="false" AnchorPane.leftAnchor="475.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
          <font>
-            <Font size="24.0" />
+            <Font size="20.0" />
          </font>
-      </TextArea>
+      </JFXTextArea>
       <GridPane layoutX="502.0" layoutY="324.0" prefHeight="96.0" prefWidth="425.0" AnchorPane.leftAnchor="475.0" AnchorPane.rightAnchor="0.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" />
@@ -147,11 +147,11 @@
                   </Label>
                </children>
             </HBox>
-            <ComboBox fx:id="starComboBox" onAction="#handleStarComboBox" prefHeight="33.0" prefWidth="124.0" promptText="5星酒店" visible="false" GridPane.valignment="TOP">
+            <JFXComboBox fx:id="starComboBox" onAction="#handleStarComboBox" prefHeight="33.0" prefWidth="124.0" promptText="5星酒店" visible="false" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets left="150.0" />
                </GridPane.margin>
-            </ComboBox>
+            </JFXComboBox>
             <HBox GridPane.rowIndex="1">
                <children>
                   <ImageView fx:id="mark_1" fitHeight="30.0" fitWidth="30.0">
@@ -210,7 +210,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <HBox spacing="10.0">
+            <HBox maxWidth="425.0" spacing="10.0">
                <children>
                   <Label text="地址：">
                      <font>
@@ -239,15 +239,15 @@
             </HBox>
             <HBox spacing="10.0">
                <children>
-                  <ComboBox fx:id="cityComboBox" onAction="#handleCityComboBox" prefHeight="30.0" prefWidth="101.0" promptText="南京市" visible="false" />
-                  <ComboBox fx:id="districtComboBox" onAction="#handleDistrictComboBox" prefHeight="30.0" prefWidth="101.0" promptText="栖霞区" visible="false" />
-                  <ComboBox fx:id="businessCircleComboBox" prefHeight="30.0" prefWidth="101.0" promptText="仙林中心" visible="false" />
+                  <JFXComboBox fx:id="cityComboBox" onAction="#handleCityComboBox" prefHeight="30.0" prefWidth="110.0" promptText="南京市" visible="false" />
+                  <JFXComboBox fx:id="districtComboBox" onAction="#handleDistrictComboBox" prefHeight="30.0" prefWidth="110.0" promptText="栖霞区" visible="false" />
+                  <JFXComboBox fx:id="businessCircleComboBox" prefHeight="30.0" prefWidth="110.0" promptText="仙林中心" visible="false" />
                </children>
                <GridPane.margin>
                   <Insets left="75.0" />
                </GridPane.margin>
             </HBox>
-            <Label fx:id="addressLabel" text="详细地址" GridPane.rowIndex="1">
+            <Label fx:id="addressLabel" maxWidth="1.7976931348623157E308" text="详细地址" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
@@ -255,13 +255,18 @@
                   <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="addressTextField" promptText="详细地址" visible="false" GridPane.rowIndex="1">
+            <JFXTextField fx:id="addressTextField" promptText="详细地址" visible="false" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
-            </TextField>
+            </JFXTextField>
          </children>
       </GridPane>
+      <Hyperlink fx:id="historyOrders" layoutX="478.0" layoutY="533.0" onAction="#handleHistoryOrders" text="我在该酒店的历史订单">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Hyperlink>
       <Hyperlink fx:id="save" layoutX="738.0" layoutY="656.0" onAction="#handleSave" text="保存信息" visible="false">
          <font>
             <Font size="24.0" />

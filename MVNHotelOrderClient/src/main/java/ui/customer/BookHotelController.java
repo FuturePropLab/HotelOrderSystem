@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTextField;
 
 import Exception.CustomerCreditNotEnoughException;
 import businesslogic.customer.CustomerDealController;
@@ -34,6 +35,7 @@ import ui.order.OrderPreviewController;
 import ui.utils.DateFormat;
 import ui.utils.Dialogs;
 import ui.utils.DoubleFormate;
+import ui.utils.TextFieldUtil;
 import vo.CustomerVO;
 import vo.HotelbriefVO;
 import vo.OrderInputCalVO;
@@ -59,7 +61,7 @@ public class BookHotelController extends DetailsController{
 	@FXML
 	private ComboBox<String> roomType;
 	@FXML
-	private TextField roomNumber;
+	private JFXTextField roomNumber;
 	@FXML
 	private DatePicker lastDate;
 	@FXML
@@ -69,18 +71,22 @@ public class BookHotelController extends DetailsController{
 	@FXML
 	private JFXDatePicker planedLeaveDate_time;
 	@FXML
-	private TextField people;
+	private JFXTextField people;
 	@FXML
 	private CheckBox children;
 	@FXML
 	private Button preview;
 	@FXML
-	private Button confirm;
-	
-	
+	private Button confirm;	
 	private static String typename[] =  {"单人间","双人间","标准间","套房","总统套房"}; 
 	private HotelbriefVO hotelbriefVO = null;
 	private String customerID = null;
+	
+	@FXML
+	private void initialize() {
+		TextFieldUtil.setNumberValidator(roomNumber);
+		TextFieldUtil.setNumberValidator(people);
+	}
 	@FXML
 	private void handleHotelName(){
 		try {

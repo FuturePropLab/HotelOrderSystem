@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 
 import businesslogic.account.CustomerAccountController;
 import businesslogic.customer.CustomerDealController;
@@ -41,9 +42,9 @@ import vo.MemberVO;
 public class ClientInfoController extends DetailsController{
 
 	@FXML
-	private TextField customerName;
+	private JFXTextField customerName;
 	@FXML
-	private TextField contactWay;
+	private JFXTextField contactWay;
 	@FXML
 	private ComboBox<String> gender;
 	@FXML
@@ -86,6 +87,8 @@ public class ClientInfoController extends DetailsController{
 		this.memberType_apply.setValue("普通会员");
 		this.gender.getItems().clear();
 		this.gender.getItems().addAll("男","女");
+		TextFieldUtil.setValidator(this.customerName);
+		TextFieldUtil.setValidator(this.contactWay);
 		
 		LoginService loginService=LoginController.getInstance();
 		LogVO logVO=loginService.getLogState();

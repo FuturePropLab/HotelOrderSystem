@@ -183,4 +183,15 @@ public class OrderListController extends DetailsController {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 发起搜索，如果某项是null，则该项条件不限
+	 * @param keyWords 关键词
+	 * @param date 日期
+	 */
+	public void search(String keyWords,LocalDate date) {
+		this.keyWords.setText(keyWords);
+		this.date.setValue(date);
+		handleSearch();
+	}
 }
