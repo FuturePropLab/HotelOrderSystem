@@ -20,9 +20,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import tools.AccountType;
@@ -167,7 +167,7 @@ public class HotelSearchController extends DetailsController{
 		    	FXMLLoader loader = new FXMLLoader();
 		        loader.setLocation(getClass().getResource("HotelItem.fxml"));
 				try {
-					SplitPane item = (SplitPane) loader.load();
+					AnchorPane item = (AnchorPane) loader.load();
 			    	hotelList.getChildren().addAll(item);
 			    	HotelItemController hotelItemController=loader.getController();
 			    	//defense  by wsw
