@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
+import com.jfoenix.controls.JFXColorPicker;
 import com.jfoenix.controls.JFXDialogLayout;
 
 import businesslogic.customer.CustomerDealController;
@@ -20,6 +21,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import tools.AccountType;
@@ -62,6 +65,12 @@ public class GuideUIController {
 	private AnchorPane messagePane;
 	@FXML
 	private Label message;
+	@FXML
+	private JFXColorPicker colorPicker;
+	@FXML
+	private AnchorPane guidPane;
+	@FXML
+	private AnchorPane toolsPane;
 	protected RootLayoutController rootLayoutController;
 	
 	@FXML
@@ -146,6 +155,13 @@ public class GuideUIController {
 		if(rootLayoutController.syncDetail()==false){
 			System.out.println("no present view.");
 		}
+	}
+	@FXML
+	private void handleColorPicker() {
+		Background background=new Background(new BackgroundFill(colorPicker.getValue(), null, null));
+		guidPane.setBackground(background);
+		guids.setBackground(background);
+		toolsPane.setBackground(background);
 	}
 	
 	private int getIndex(String name) {

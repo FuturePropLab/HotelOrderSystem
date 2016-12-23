@@ -2,12 +2,19 @@
 
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="200.0" prefWidth="900.0" style="-fx-background-color: WHITE;" stylesheets="@../../../resources/css/jfoenix-components.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.credit.CreditItemController">
    <children>
+      <ImageView fitHeight="216.0" fitWidth="949.0" layoutX="-23.0" layoutY="-10.0" pickOnBounds="true" AnchorPane.bottomAnchor="-6.0" AnchorPane.leftAnchor="-23.0" AnchorPane.rightAnchor="-26.0" AnchorPane.topAnchor="-10.0">
+         <image>
+            <Image url="@../../../resources/images/rectangle_purple.png" />
+         </image>
+      </ImageView>
       <HBox alignment="CENTER_LEFT" layoutX="37.0" layoutY="20.0" spacing="20.0">
          <children>
             <Label fx:id="reason" text="完成订单" textFill="#14d711">

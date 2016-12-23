@@ -14,11 +14,16 @@
 
 <AnchorPane prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: WHITE;" stylesheets="@../../../resources/css/jfoenix-components.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.login.LoginController">
    <children>
+      <ImageView fitHeight="750.0" fitWidth="1000.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <image>
+            <Image url="@../../../resources/images/background_01.png" />
+         </image>
+      </ImageView>
       <JFXTabPane layoutX="342.0" layoutY="160.0" prefHeight="410.0" prefWidth="560.0" styleClass="jfx-tab-pane-login">
          <tabs>
           <Tab text="登陆">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: WHITE;">
                      <children>
                         <JFXTextField fx:id="username" labelFloat="true" layoutX="16.0" layoutY="65.0" maxWidth="480.0" minWidth="455.0" prefHeight="54.0" prefWidth="480.0" promptText="用户名">
                            <font>

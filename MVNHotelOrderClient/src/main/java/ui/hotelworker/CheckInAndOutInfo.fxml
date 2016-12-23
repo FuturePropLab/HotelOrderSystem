@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.hotelworker.CheckInAndOutInfoController">
+<AnchorPane prefHeight="750.0" prefWidth="900.0" style="-fx-background-color: WHITE;" stylesheets="@../../../resources/css/jfoenix-components.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.hotelworker.CheckInAndOutInfoController">
    <children>
     <AnchorPane AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -58,7 +58,7 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="orderID" text="00000000001">
+                        <Label fx:id="orderID" maxWidth="220.0" text="00000000001">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -116,7 +116,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="price" text="999999999" textFill="#ee8a11">
+                              <Label fx:id="price" maxWidth="200.0" text="999999999" textFill="#ee8a11">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -132,7 +132,7 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="customerName" text="特朗普" textFill="#ee8a11">
+                        <Label fx:id="customerName" maxWidth="300.0" text="特朗普" textFill="#ee8a11">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -153,7 +153,7 @@
                         <Font size="30.0" />
                      </font>
                   </Label>
-                  <Label fx:id="roomNumbers" text="8888 8889">
+                  <Label fx:id="roomNumbers" maxWidth="600.0" text="8888 8889">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -170,8 +170,8 @@
                         <Insets right="30.0" />
                      </padding>
                   </Label>
-                  <JFXDatePicker fx:id="planedLeaveDate" prefHeight="36.0" prefWidth="174.0" />
-                  <JFXDatePicker fx:id="planedLeaveTime" prefHeight="36.0" prefWidth="174.0" showTime="true" />
+                  <JFXDatePicker fx:id="planedLeaveDate" overLay="true" prefHeight="36.0" prefWidth="174.0" />
+                  <JFXDatePicker fx:id="planedLeaveTime" overLay="true" prefHeight="36.0" prefWidth="174.0" showTime="true" />
                </children>
             </HBox>
             <HBox layoutX="501.0" layoutY="167.0" spacing="40.0">

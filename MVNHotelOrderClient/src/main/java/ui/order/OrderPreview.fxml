@@ -11,20 +11,23 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.order.OrderPreviewController">
+<AnchorPane prefHeight="750.0" prefWidth="900.0" style="-fx-background-color: WHITE;" stylesheets="@../../../resources/css/jfoenix-components.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.order.OrderPreviewController">
    <children>
-      <AnchorPane layoutX="92.0" layoutY="-15.0" maxHeight="689.0" prefHeight="689.0" prefWidth="606.0">
+      <AnchorPane layoutX="58.0" maxHeight="689.0" prefHeight="660.0" prefWidth="788.0">
          <children>
-            <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="603.0" layoutX="66.0" layoutY="57.0" stroke="BLACK" strokeType="INSIDE" width="624.0" />
-            <Label fx:id="hotelName" contentDisplay="CENTER" layoutX="215.0" layoutY="77.0" text="皇家酒店">
+            <ImageView fitHeight="648.0" fitWidth="665.0" layoutX="63.0" layoutY="12.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../../resources/images/background_order_02.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="hotelName" contentDisplay="CENTER" layoutX="174.0" layoutY="72.0" maxWidth="240.0" text="皇家酒店">
                <font>
                   <Font size="30.0" />
                </font>
             </Label>
-            <HBox layoutX="358.0" layoutY="78.0">
+            <HBox layoutX="419.0" layoutY="73.0">
                <children>
                   <ImageView fx:id="star_1" fitHeight="37.0" fitWidth="37.0">
                      <image>
@@ -53,21 +56,21 @@
                   </ImageView>
                </children>
             </HBox>
-            <HBox layoutX="319.0" layoutY="129.0">
+            <HBox layoutX="174.0" layoutY="128.0">
                <children>
                   <Label text="地址：">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="hotelAddress" text="南京市栖霞区仙林大道163号">
+                  <Label fx:id="hotelAddress" maxWidth="400.0" text="南京市栖霞区仙林大道163号">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <GridPane layoutX="165.0" layoutY="172.0" prefHeight="285.0" prefWidth="410.0">
+            <GridPane layoutX="174.0" layoutY="167.0" prefHeight="285.0" prefWidth="410.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -85,7 +88,7 @@
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <Label fx:id="customerName" text="特朗普" GridPane.columnIndex="1">
+                  <Label fx:id="customerName" maxWidth="1.7976931348623157E308" text="特朗普" GridPane.columnIndex="1">
                      <font>
                         <Font size="22.0" />
                      </font>
@@ -144,9 +147,9 @@
                   </Label>
                </children>
             </GridPane>
-            <HBox layoutX="395.0" layoutY="472.0">
+            <HBox layoutX="404.0" layoutY="467.0">
                <children>
-                  <Label fx:id="date_from" text="10-1">
+                  <Label fx:id="date_from" maxWidth="110.0" text="10-1">
                      <font>
                         <Font size="28.0" />
                      </font>
@@ -156,14 +159,14 @@
                         <Font size="28.0" />
                      </font>
                   </Label>
-                  <Label fx:id="date_to" text="10-2">
+                  <Label fx:id="date_to" maxWidth="110.0" text="10-2">
                      <font>
                         <Font size="28.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <Group layoutX="418.0" layoutY="516.0">
+            <Group layoutX="427.0" layoutY="511.0">
                <children>
                   <Label fx:id="roomType" layoutX="-22.0" text="总统套房">
                      <font>
@@ -189,14 +192,14 @@
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <HBox layoutX="79.0" layoutY="36.0">
+                  <HBox layoutX="51.0" layoutY="37.0">
                      <children>
                         <Label text="￥">
                            <font>
                               <Font size="50.0" />
                            </font>
                         </Label>
-                        <Label fx:id="price" text="999">
+                        <Label fx:id="price" maxWidth="130.0" text="999">
                            <font>
                               <Font size="50.0" />
                            </font>
@@ -207,7 +210,7 @@
             </Group>
          </children>
       </AnchorPane>
-      <HBox layoutX="534.0" layoutY="658.0" spacing="40.0">
+      <HBox layoutX="452.0" layoutY="669.0" spacing="40.0">
          <children>
             <Hyperlink fx:id="confirm" onAction="#handleConfirm" text="确认下单">
                <font>

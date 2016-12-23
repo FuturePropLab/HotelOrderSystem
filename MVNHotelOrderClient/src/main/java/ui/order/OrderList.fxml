@@ -1,35 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.DatePicker?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.order.OrderListController">
+<AnchorPane prefHeight="750.0" prefWidth="900.0" style="-fx-background-color: WHITE;" stylesheets="@../../../resources/css/jfoenix-components.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.order.OrderListController">
    <children>
 
-      <AnchorPane cache="true" layoutY="49.0" minHeight="0.0" minWidth="0.0" prefHeight="535.0" prefWidth="604.0" AnchorPane.bottomAnchor="550.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane cache="true" layoutY="49.0" minHeight="0.0" minWidth="0.0" prefHeight="535.0" prefWidth="604.0" style="-fx-background-color: WHITE;" AnchorPane.bottomAnchor="550.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TextField fx:id="keyWords" layoutX="103.0" layoutY="71.0" onAction="#handleSearch" prefHeight="43.0" prefWidth="298.0" promptText="酒店名称" />
-            <DatePicker fx:id="date" layoutX="506.0" layoutY="71.0" onAction="#handleSearch" prefHeight="40.0" prefWidth="209.0" />
-            <CheckBox fx:id="unexecuted" layoutX="270.0" layoutY="149.0" mnemonicParsing="false" onAction="#handleSearch" selected="true" text="未入住" />
-            <CheckBox fx:id="executed" layoutX="375.0" layoutY="149.0" mnemonicParsing="false" onAction="#handleSearch" selected="true" text="已入住" />
-            <CheckBox fx:id="exception" layoutX="487.0" layoutY="149.0" mnemonicParsing="false" onAction="#handleSearch" text="异常订单" />
-            <CheckBox fx:id="revoked" layoutX="612.0" layoutY="149.0" mnemonicParsing="false" onAction="#handleSearch" text="已撤销" />
-            <ImageView fx:id="search" fitHeight="40.0" fitWidth="39.0" layoutX="412.0" layoutY="73.0" onMouseClicked="#handleSearch">
-               <image>
-                  <Image url="@../../../resources/images/icon_search.png" />
-               </image>
-            </ImageView>
+            <HBox alignment="BOTTOM_CENTER" layoutX="124.0" layoutY="70.0">
+               <children>
+                  <JFXTextField fx:id="keyWords" focusTraversable="false" labelFloat="true" onAction="#handleSearch" promptText="酒店名称">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXDatePicker fx:id="date" onAction="#handleSearch" overLay="true" prefHeight="38.0" prefWidth="182.0" promptText="日期">
+                     <padding>
+                        <Insets bottom="2.0" />
+                     </padding>
+                  </JFXDatePicker>
+               </children>
+            </HBox>
+            <JFXButton layoutX="630.0" layoutY="77.0" text="">
+               <graphic>
+                  <ImageView fx:id="search" fitHeight="70.0" fitWidth="70.0" onMouseClicked="#handleSearch">
+                     <image>
+                        <Image url="@../../../resources/images/icon_search.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <HBox layoutX="135.0" layoutY="139.0" spacing="10.0">
+               <children>
+                  <JFXCheckBox fx:id="unexecuted" onAction="#handleSearch" styleClass="red-jfx-check-box" text="未入住" />
+                  <JFXCheckBox fx:id="executed" onAction="#handleSearch" styleClass="red-jfx-check-box" text="已入住" />
+                  <JFXCheckBox fx:id="exception" onAction="#handleSearch" styleClass="red-jfx-check-box" text="异常订单" />
+                  <JFXCheckBox fx:id="revoked" onAction="#handleSearch" styleClass="red-jfx-check-box" text="已撤销" />
+               </children>
+            </HBox>
+            <Line endX="900.0" stroke="#3d7902" strokeWidth="2.0" AnchorPane.bottomAnchor="0.0" />
          </children>
       </AnchorPane>
-      <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">
+      <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: WHITE;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">
          <content>
-            <FlowPane fx:id="orderList" prefHeight="540.0" prefWidth="900.0" />
+            <FlowPane fx:id="orderList" prefHeight="540.0" prefWidth="900.0" style="-fx-background-color: WHITE;" />
          </content>
       </ScrollPane>
 
