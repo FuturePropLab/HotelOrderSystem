@@ -74,7 +74,7 @@ public class ClientRunner {
 		
 		AccountDataService accountDataService = remoteHelper.getInstance().getAccountDataService();
 		System.out.println(accountDataService);
-		System.out.println(accountDataService.addAccount(new AccountPO("HT001", "zhujunyi","123456", AccountType.Customer)));
+		System.out.println(accountDataService.addAccount(new AccountPO("AD001", "admin","admin", AccountType.Administor)));
 		
 		
 //		MessgeDataService messgeDataService = RemoteHelper.getInstance().getMessgeDataService();
