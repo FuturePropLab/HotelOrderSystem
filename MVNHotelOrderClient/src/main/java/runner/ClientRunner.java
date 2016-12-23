@@ -9,21 +9,11 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.List;
 
-import businesslogic.hotel.HotelDealController;
-import businesslogic.order.OrderController;
-import businesslogicservice.HotelDealService;
 import dataservice.AccountDataService;
-import dataservice.CreditDataService;
-import dataservice.MessgeDataService;
-import dataservice.OrderDataService;
 import po.AccountPO;
-import po.CreditLogPO;
-import po.OrderPO;
 import rmi.RemoteHelper;
 import tools.AccountType;
-import vo.FuzzySearchOrderVO;
 
 public class ClientRunner {
 	private RemoteHelper remoteHelper;
@@ -66,9 +56,12 @@ public class ClientRunner {
 	public void test() throws RemoteException{	
 		
 		
-		AccountDataService accountDataService = RemoteHelper.getInstance().getAccountDataService();
-		System.out.println(accountDataService.addAccount(new 
-				AccountPO("AD001", "admin", "admin", AccountType.Administor)));
+		//HotelDealService hotelDealService = HotelDealController.getInstance();
+		//System.out.println(hotelDealService.getHotelDetailsVO("HT2016122011121686").star);
+		
+		AccountDataService accountDataService = remoteHelper.getInstance().getAccountDataService();
+		System.out.println(accountDataService);
+		System.out.println(accountDataService.addAccount(new AccountPO("AD001", "admin","admin", AccountType.Administor)));
 		
 		
 //		MessgeDataService messgeDataService = RemoteHelper.getInstance().getMessgeDataService();

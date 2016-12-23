@@ -4,22 +4,27 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+import com.jfoenix.controls.JFXDatePicker;
+
 import Exception.NoSuchValueException;
 import Exception.OutOfBoundsException;
 import businesslogic.hotel.HotelDealController;
 import businesslogic.login.LoginController;
 import businesslogicservice.HotelDealService;
 import businesslogicservice.LoginService;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.StackPane;
 import tools.AccountType;
 import tools.PriceRange;
 import tools.RoomType;
@@ -45,9 +50,9 @@ public class HotelSearchController extends DetailsController{
 	@FXML
 	private ComboBox<String> businessCircle;//商圈
 	@FXML
-	private DatePicker checkInDate;
+	private JFXDatePicker checkInDate;
 	@FXML
-	private DatePicker checkOutDate;
+	private JFXDatePicker checkOutDate;
 	@FXML
 	private TextField hotelName;
 	@FXML
@@ -66,6 +71,8 @@ public class HotelSearchController extends DetailsController{
 	private Button search;
 	@FXML
 	private FlowPane hotelList;
+	@FXML
+	private StackPane spinnerPane;
 	
 	private HotelDealService hotelDealService;
 	/**
@@ -74,6 +81,8 @@ public class HotelSearchController extends DetailsController{
      */
     @FXML
     private void initialize() {
+    	DateFormat.initDatePicker(checkInDate, checkOutDate);
+    	
     	HotelDealService hotelDealService= HotelDealController.getInstance();
     	city.getItems().addAll(hotelDealService.getAllCity());
     	star.getItems().addAll("所有","1星","2星","3星","4星","5星");
@@ -84,23 +93,13 @@ public class HotelSearchController extends DetailsController{
 	
 	@FXML
 	private void handleSearch(){
-		HotelDealService hotelDealService= HotelDealController.getInstance();
-		try {
-			System.out.println("DO SEARCH:   "+city.getValue() );
-			SearchHotelVO searchHotelVO=new SearchHotelVO(city.getValue(), district.getValue(), businessCircle.getValue(),
-					hotelName.getText(), getPriceRange(), getStar(), getRoomType(),orderedBefore.isSelected());
-			System.out.println("ok????");
-			List<HotelbriefVO> voList=hotelDealService.SearchHotel(searchHotelVO);
-			System.out.println(voList==null);
-			//SortType sortType = 
-			System.out.println(getSortType());
-			List<HotelbriefVO> voListsort = hotelDealService.SortHotel(voList, getSortType());
-			//if(voList!=null && !voList.isEmpty())
-			initHotelItems(voListsort);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		spinnerPane.setVisible(true);
+		SearchService searchService=new SearchService();
+		searchService.setOnSucceeded(e->{
+			spinnerPane.setVisible(true);
+			initHotelItems(searchService.voList);
+		});
+		searchService.start();
 	}
 	@FXML
 	private void handleCity(){
@@ -135,12 +134,7 @@ public class HotelSearchController extends DetailsController{
 		System.out.println(getSortType());
 		List<HotelbriefVO> voListsort = hotelDealService.SortHotel(voList, getSortType());
 		if(voList!=null && !voList.isEmpty());
-		//if(voList!=null && !voList.isEmpty())
-		try {
-			initHotelItems(voListsort);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		initHotelItems(voListsort);
 	}
 	
 	@FXML
@@ -162,7 +156,7 @@ public class HotelSearchController extends DetailsController{
 	}
 	
 	
-	private void initHotelItems(List<HotelbriefVO> voList) throws IOException {
+	private void initHotelItems(List<HotelbriefVO> voList){
     	hotelList.getChildren().clear();
     	System.out.println("after clear!!!!!");
      	String customerID = LoginController.getInstance().getLogState().accountID;
@@ -170,21 +164,21 @@ public class HotelSearchController extends DetailsController{
 		for(HotelbriefVO hotelInfoVO:voList){
 			if(!this.orderedBefore.isSelected() ||
 					HotelDealController.getInstance().isbooked(customerID, hotelInfoVO.hotelID)){
-			System.out.println(hotelInfoVO.hotelName);
-			System.out.println(hotelInfoVO.priceRange.lowest);
-			System.out.println(hotelInfoVO.priceRange.higest);
-	    	FXMLLoader loader = new FXMLLoader();
-	        loader.setLocation(getClass().getResource("HotelItem.fxml"));
-	    	SplitPane item = (SplitPane) loader.load();
-	    	hotelList.getChildren().addAll(item);
-	    	HotelItemController hotelItemController=loader.getController();
-	    	//defense  by wsw
-	    	Image image = null;
-	    	if(hotelInfoVO.imageuri!=null)
-	    		image = new Image(hotelInfoVO.imageuri.toString());
-	    
-	    	hotelItemController.setValues(image, hotelInfoVO.hotelName, hotelInfoVO.star, hotelInfoVO.mark, 
-	    			hotelInfoVO.priceRange.lowest, hotelInfoVO.priceRange.higest, hotelInfoVO.hotelID, this);
+		    	FXMLLoader loader = new FXMLLoader();
+		        loader.setLocation(getClass().getResource("HotelItem.fxml"));
+				try {
+					AnchorPane item = (AnchorPane) loader.load();
+			    	hotelList.getChildren().addAll(item);
+			    	HotelItemController hotelItemController=loader.getController();
+			    	//defense  by wsw
+			    	Image image = null;
+			    	if(hotelInfoVO.imageuri!=null)
+			    		image = new Image(hotelInfoVO.imageuri.toString());	    
+			    	hotelItemController.setValues(image, hotelInfoVO.hotelName, hotelInfoVO.star, hotelInfoVO.mark, 
+			    			hotelInfoVO.priceRange.lowest, hotelInfoVO.priceRange.higest, hotelInfoVO.hotelID, this);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 		
 			}
 		}
@@ -277,6 +271,33 @@ public class HotelSearchController extends DetailsController{
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+	
+	/**
+	 * 搜索酒店的后台线程
+	 * @author zjy
+	 *
+	 */
+	private class SearchService extends Service<Void> {
+		private List<HotelbriefVO> voList;
+		@Override
+		protected Task<Void> createTask() {
+			return new Task<Void>() {
+				@Override
+				protected Void call() throws Exception {
+					try {
+						HotelDealService hotelDealService= HotelDealController.getInstance();
+						SearchHotelVO searchHotelVO=new SearchHotelVO(city.getValue(), district.getValue(), businessCircle.getValue(),
+								hotelName.getText(), getPriceRange(), getStar(), getRoomType(),orderedBefore.isSelected());
+						voList=hotelDealService.SearchHotel(searchHotelVO);
+						voList = hotelDealService.SortHotel(voList, getSortType());
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					return null;
+				}
+			};
 		}
 	}
 }

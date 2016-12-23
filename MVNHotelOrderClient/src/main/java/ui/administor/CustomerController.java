@@ -224,10 +224,10 @@ public class CustomerController {
 						customerVO.customerID, customerVO.customerName, customerVO.gender, customerVO.telephone));
 				Dialogs.showMessage("", "增加账号成功");
 			} catch (RemoteException e) {
-				Dialogs.showMessage("额", "增加账号失败，也许是用户"+"newUser"+"已经存在，或者是网络问题？");
+				Dialogs.showMessage("额", "增加账号成功了，但是获取不了新账户的信息……也许是网络问题？");
 			}
 		}else{
-			Dialogs.showMessage("额", "增加账号失败，也许是网络问题？");
+			Dialogs.showMessage("额", "增加账号失败，也许是用户"+"newUser"+"已经存在，或者是网络问题？");
 		}
 	}
 	
