@@ -21,6 +21,7 @@ import businesslogic.hotel.MockOrder;
 import businesslogic.order.MockCustomerInfo;
 import businesslogic.order.MockHotelInfo;
 import po.HotelPO;
+import stub.HotelData_Stub;
 import stub.HotelDeal_Stub;
 import stub.ManageHotelInfo_Stub;
 import stub.OrderDate_Stub;
@@ -63,20 +64,21 @@ public class TestHotel {
 		
 		
 //		List<HotelInfoVO> hotelInfolist = new ArrayList<HotelInfoVO>();
-		hotel = new Hotel();
+		
+		hotel = new Hotel(new HotelData_Stub());
 		assertEquals(ResultMessage_Hotel.fail,hotel.addHotel(hotelInputVO));
 	}
 		
 		
 	@Test
 	public void testSearchHotel(){
-		hotel = new Hotel();
+		hotel = new Hotel(new HotelData_Stub());
 		SearchHotelVO searchVO = new SearchHotelVO("南京",null,"夫子庙",null,null,null,null,false);
 		assertEquals("003",hotel.SearchHotel(searchVO).get(0).hotelID);
 	}
 	@Test
 	public void testSearchHotel2(){
-		hotel = new Hotel();
+		hotel = new Hotel(new HotelData_Stub());
 		SearchHotelVO searchVO = new SearchHotelVO("南京",null,null,"rujia",null,null,null,false);
 		assertEquals("003",hotel.SearchHotel(searchVO).get(0).hotelID);
 	}
@@ -88,7 +90,7 @@ public class TestHotel {
 	}
 	@Test
 	public void testSort(){
-		hotel = new Hotel();
+		hotel = new Hotel(new HotelData_Stub());
 		
 		HotelAddress add = new HotelAddress("南京", "秦淮区","新街口","aa");
 		HotelInputVO hotelInputVO = new HotelInputVO(null,"001","jinling",Star.five,add,null);
@@ -160,7 +162,7 @@ public class TestHotel {
 		
 		@Test
 		public void testGetHotelDiscription(){
-			hotel =new Hotel();
+			hotel =new Hotel(new HotelData_Stub());
 			assertEquals(hotel.getHotelDiscribtionsVO("001").discribes.get(0), "环境好");
 		}
 		/*List<TypeRoomInfo> typeList = new ArrayList<TypeRoomInfo>();

@@ -8,8 +8,6 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.swing.plaf.synth.SynthSpinnerUI;
-
 import Exception.OutOfBoundsException;
 import businesslogic.account.HotelAccountController;
 import businesslogic.discount.getDiscountInfoImp;
@@ -18,7 +16,6 @@ import dataservice.HotelDataService;
 import po.HotelPO;
 import po.OrderAssessPO;
 import rmi.RemoteHelper;
-import stub.HotelData_Stub;
 import tools.HotelFacility;
 import tools.Mark;
 import tools.ResultMessage_Account;
@@ -46,8 +43,8 @@ public class Hotel {
 	/**
 	 * chenyuyan 测试用构造
 	 */
-	public Hotel(HotelData_Stub stub){
-		this.hotelDataService = stub;
+	public Hotel(HotelDataService hotelDataService){
+		this.hotelDataService = hotelDataService;
 	}
 	/**
 	 * 添加酒店
@@ -422,7 +419,7 @@ public class Hotel {
 		}
 		
 		/**
-		 * 
+		 * woe
 		 * @param hotelID
 		 * @return
 		 */

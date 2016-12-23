@@ -1,0 +1,78 @@
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+<session-factory>
+
+
+
+<property name="hibernate.connection.driver_class">
+      org.gjt.mm.mysql.Driver
+    </property>
+<property name="hibernate.connection.url">
+jdbc:mysql://localhost:3306/wsw
+    </property>
+    <property name="hibernate.connection.url">
+        <![CDATA[jdbc:mysql://localhost:3306/wsw?useUnicode=true&characterEncoding=utf8]]>
+   </property>
+<property name="hibernate.connection.username">root</property>
+<property name="hibernate.connection.password">root</property>
+   <property name="hibernate.hbm2ddl.auto">update</property>
+      <property name="hibernate.dialect">
+           org.hibernate.dialect.MySQL5InnoDBDialect
+        </property>
+     
+<!--          <property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+        <property name="hibernate.c3p0.max_size">20</property>
+        <property name="hibernate.c3p0.min_size">5</property>
+         <property name="hibernate.c3p0.timeout">120</property>
+        <property name="automaticTestTable">Test</property>
+        <property name="hibernate.c3p0.max_statements">100</property>
+        <property name="hibernate.c3p0.idle_test_period">120</property>
+        <property name="hibernate.c3p0.acquire_increment">1</property>
+        <property name="c3p0.testConnectionOnCheckout">true</property>
+        <property name="c3p0.idleConnectionTestPeriod">18000</property>
+        <property name="c3p0.maxIdleTime">25000</property> -->
+     
+     
+<property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+<property name="c3p0.min_size">5 </property> <!--在连接池中可用数据库连接的最小数目--> 
+<property name="c3p0.max_size">30 </property> <!--在连接池中所有数据库连接的最大数目--> 
+<property name="c3p0.time_out">1800 </property> <!--设定数据库连接的超时时间--> 
+<property name="c3p0.max_statement">50 </property> <!--可以被缓存的PreparedStatement的最大数目-->
+
+        <!--  <property name="hibernate.show_sql">true</property>  -->
+        <property name="hibernate.use_sql_comments">true</property>
+     
+        <!-- Show and print nice SQL on stdout -->
+        
+        
+        <property name="show_sql">false</property>
+        <property name="format_sql">true</property>  
+        <mapping class="po.AccountPO"/>
+        <mapping class="po.CustomerPO"/>
+        <mapping class="po.MemberStorePO"/>
+        <mapping class="po.DistributeCommercialPO"/>
+        <mapping class="po.TypeRoomInfoPO"/>
+        <mapping class="po.HotelAddressPO"/>
+        <mapping class="po.HotelBasePO"/>
+        <mapping class="po.HotelFacilityPO"/>
+        <mapping class="po.RoomDisablePO"/>      
+        <mapping class="po.SingleRoomPO"/>
+        <mapping class="po.DiscountPO_web"/>
+        <mapping class="po.DiscountPO_web_period"/>
+        <mapping class="po.DiscountPO_web_level"/>
+        <mapping class="po.DiscountPO_web_district"/>
+        <mapping class="po.DiscountHotelPO"/>
+        <mapping class="po.OrderNotChangePO"/>
+        <mapping class="po.OrderRoomPO"/>
+        <mapping class="po.OrderSearchStorePO"/>
+        <mapping class="po.OrderAssessPO"/>
+        <mapping class="po.CreditLogPO"/>
+        <mapping class="po.StatePO"/>
+        <mapping class="po.MessagePO"/>
+        
+        
+    </session-factory>
+</hibernate-configuration>

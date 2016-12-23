@@ -19,6 +19,12 @@ import tools.Star;
 import tools.TypeRoomInfo;
 import vo.HotelInputVO;
 
+
+/**
+ * 
+ * @author chenyuyan 
+ *
+ */
 public class HotelData_Stub implements HotelDataService{
 
 	
