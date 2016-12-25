@@ -13,6 +13,7 @@ import tools.AccountType;
 public class AccountPO implements Serializable{
 	
 	private static final long serialVersionUID = -3068966912083464632L;
+	@Id	
 		private String userid;
 		private String password;
 		private String username;
@@ -28,7 +29,6 @@ public class AccountPO implements Serializable{
 			this.password = password;
 			this.accountType = accountType;
 		}
-		@Id
 		public String getUserid() {
 			return userid;
 		}

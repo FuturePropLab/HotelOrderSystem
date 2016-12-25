@@ -87,7 +87,8 @@ public class HotelbriefVO {
 		if(star==null){
 			this.star = Star.one;
 		}
-		
+		System.out.println(hotelRoom==null);
+		if(hotelRoom==null) return ;
 		List<TypeRoomInfo> typeRoomInfos =hotelRoom.getTypeRoomInfo();
 		//System.out.println("number of type info : "+typeRoomInfos.size());
 		if(typeRoomInfos!=null  && typeRoomInfos.size()!=0){

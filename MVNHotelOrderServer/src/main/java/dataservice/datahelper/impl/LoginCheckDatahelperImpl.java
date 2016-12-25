@@ -9,6 +9,7 @@ import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
 import dataservice.datahelper.LoginCheckDatahelper;
@@ -102,12 +103,12 @@ public class LoginCheckDatahelperImpl implements LoginCheckDatahelper {
 			return "FAIL";
 		}
 		Session s = Hibernateutils.getSessionFactory().openSession();  //获取数据库连接池
-		Query q = s.createSQLQuery("select userid from accountpo where username = '"
-		+desid+"'");
-		List<String> idlist =  q.list();
+		Criteria cr = s.createCriteria(AccountPO.class);
+		cr.add(Restrictions.eq("username", desid));
+		List<AccountPO> idlist =  cr.list();
 		s.close();
 		if(idlist.isEmpty())  return "FAIL";
-		return idlist.get(0);
+		return idlist.get(0).getUserid();
 	}
 
 	public ResultMessage_LoginCheck addState(String accountID) {
