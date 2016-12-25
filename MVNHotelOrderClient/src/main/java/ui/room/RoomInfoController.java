@@ -10,6 +10,7 @@ import businesslogic.login.LoginController;
 import businesslogic.room.RoomManageController;
 import businesslogic.room.RoomSingleController;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -47,7 +48,7 @@ public class RoomInfoController extends DetailsController{
 	@FXML
 	private TextArea roomDescribtion;
 	@FXML
-	private Hyperlink save;
+	private Button save;
 	@FXML
 	private Label avaliableRoom;
 	@FXML
@@ -140,7 +141,7 @@ public class RoomInfoController extends DetailsController{
 		LocalDate to=date_to.getValue();
 		if(from!=null && to!=null && to.isAfter(from)){
 			RoomManageController roomManageController = RoomManageController.getInstance();
-			roomList.getChildren().clear();
+			this.roomList.getChildren().clear();
 			int  allRoomNum = roomManageController.getAllNumberByType(hotelID, roomType);
 			int availableNum = roomManageController.getAvaiableNumberByTime
 					(hotelID, roomType, DateFormat.getDate(date_from),  DateFormat.getDate(date_to));
@@ -150,12 +151,15 @@ public class RoomInfoController extends DetailsController{
 			List<String> roomlist = roomManageController.getAllRoomByType(hotelID, roomType);
 			List<String> availableRoomLsit = roomManageController.getAvaiableRoomBytime
 					(hotelID, roomType, DateFormat.getDate(date_from),  DateFormat.getDate(date_to));
+			//如果没有房间，就显示"没有房间"
+			if(roomlist==null || roomlist.size()==0){
+				Label label=new Label("没有房间");
+				label.setFont(Font.font(24));
+				this.roomList.getChildren().addAll(label);
+				return;
+			}
 			
-			
-			RoomSingleController roomSingleController = 
-					RoomSingleController.getInstance();
-			//roomSingleController.deleteSingleRoom(hotelID, roomNO);
-			
+			RoomSingleController roomSingleController = RoomSingleController.getInstance();
 			
 			//添加可以删除的房间
 			for (int i = 0; i < availableRoomLsit.size(); i++) {

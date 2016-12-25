@@ -20,11 +20,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.text.Font;
 import tools.AccountType;
 import tools.HotelAddress;
 import tools.OrderState;
@@ -113,7 +115,7 @@ public class OrderListController extends DetailsController {
 //		if (revoked.isSelected()) {
 //			orderVOs.addAll(orderService.CheckOrderList(new SearchOrderInfoVO(string, null, OrderState.Revoked)));
 //		}
-		orderList.getChildren().clear();
+		this.orderList.getChildren().clear();
 		if (orderVOs != null) {
 			for (OrderVO orderVO : orderVOs) {
 				OrderItemController orderItemController = addItem();
@@ -125,6 +127,11 @@ public class OrderListController extends DetailsController {
 						orderVO.planedLeaveTime, orderVO.roomType, orderVO.roomNumber.size(), orderVO.price,
 						orderVO.orderState, orderVO.orderID, orderVO.hotelID);
 			}
+		}else {
+			Label label=new Label("没有订单");
+			label.setFont(Font.font(24));
+			this.orderList.getChildren().addAll(label);
+			return;
 		}
 	}
 

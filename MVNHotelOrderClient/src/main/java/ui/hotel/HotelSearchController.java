@@ -20,11 +20,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 import tools.AccountType;
 import tools.PriceRange;
 import tools.RoomType;
@@ -96,7 +98,7 @@ public class HotelSearchController extends DetailsController{
 		spinnerPane.setVisible(true);
 		SearchService searchService=new SearchService();
 		searchService.setOnSucceeded(e->{
-			spinnerPane.setVisible(true);
+			spinnerPane.setVisible(false);
 			initHotelItems(searchService.voList);
 		});
 		searchService.start();
@@ -112,9 +114,7 @@ public class HotelSearchController extends DetailsController{
 			district.getItems().addAll(hotelDealService.getAllDistrictByCity(city.getValue()));
 		}
 		
-		
 		handleSearch();
-		
 	}
 	@FXML
 	private void handleDistrict(){
@@ -123,8 +123,8 @@ public class HotelSearchController extends DetailsController{
 		if(district.getValue()!=null && !"".equals(district.getValue())){
 			businessCircle.getItems().addAll(hotelDealService.getBusineeCircleByDistrict(district.getValue()));
 		}
+		
 		handleSearch();
-
 	}
 	@FXML
 	private void handleKeyWords(){
@@ -160,27 +160,33 @@ public class HotelSearchController extends DetailsController{
     	hotelList.getChildren().clear();
     	System.out.println("after clear!!!!!");
      	String customerID = LoginController.getInstance().getLogState().accountID;
-    	if(voList!=null && !voList.isEmpty())
-		for(HotelbriefVO hotelInfoVO:voList){
-			if(!this.orderedBefore.isSelected() ||
-					HotelDealController.getInstance().isbooked(customerID, hotelInfoVO.hotelID)){
-		    	FXMLLoader loader = new FXMLLoader();
-		        loader.setLocation(getClass().getResource("HotelItem.fxml"));
-				try {
-					AnchorPane item = (AnchorPane) loader.load();
-			    	hotelList.getChildren().addAll(item);
-			    	HotelItemController hotelItemController=loader.getController();
-			    	//defense  by wsw
-			    	Image image = null;
-			    	if(hotelInfoVO.imageuri!=null)
-			    		image = new Image(hotelInfoVO.imageuri.toString());	    
-			    	hotelItemController.setValues(image, hotelInfoVO.hotelName, hotelInfoVO.star, hotelInfoVO.mark, 
-			    			hotelInfoVO.priceRange.lowest, hotelInfoVO.priceRange.higest, hotelInfoVO.hotelID, this);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-		
-			}
+    	if(voList!=null && !voList.isEmpty()){
+    		for(HotelbriefVO hotelInfoVO:voList){
+    			if(!this.orderedBefore.isSelected() ||
+    					HotelDealController.getInstance().isbooked(customerID, hotelInfoVO.hotelID)){
+    		    	FXMLLoader loader = new FXMLLoader();
+    		        loader.setLocation(getClass().getResource("HotelItem.fxml"));
+    				try {
+    					AnchorPane item = (AnchorPane) loader.load();
+    			    	hotelList.getChildren().addAll(item);
+    			    	HotelItemController hotelItemController=loader.getController();
+    			    	//defense  by wsw
+    			    	Image image = null;
+    			    	if(hotelInfoVO.imageuri!=null)
+    			    		image = new Image(hotelInfoVO.imageuri.toString());	    
+    			    	hotelItemController.setValues(image, hotelInfoVO.hotelName, hotelInfoVO.star, hotelInfoVO.mark, 
+    			    			hotelInfoVO.priceRange.lowest, hotelInfoVO.priceRange.higest, hotelInfoVO.hotelID, this);
+    				} catch (IOException e) {
+    					e.printStackTrace();
+    				}
+    		
+    			}
+    		}
+    	}else {
+    		Label label=new Label("没有符合条件的酒店");
+			label.setFont(Font.font(24));
+			this.hotelList.getChildren().addAll(label);
+			return;
 		}
 	}
 	

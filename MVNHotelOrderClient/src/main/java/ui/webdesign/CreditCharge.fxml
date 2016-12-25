@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.webdesign.CreditChargeController">
+<AnchorPane prefHeight="750.0" prefWidth="900.0" style="-fx-background-color: WHITE;" stylesheets="@../../../resources/css/jfoenix-components.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.webdesign.CreditChargeController">
    <children>
       <GridPane layoutX="206.0" layoutY="63.0" prefHeight="430.0" prefWidth="427.0">
          <columnConstraints>
@@ -29,7 +29,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="userName" maxWidth="240.0" minWidth="240.0" onAction="#handleUserName" onKeyReleased="#handleUserName" prefHeight="54.0" prefWidth="240.0" GridPane.columnIndex="1">
+            <JFXTextField fx:id="userName" maxWidth="240.0" minWidth="240.0" onAction="#handleUserName" onKeyPressed="#handleUserName" onKeyReleased="#handleUserName" prefHeight="54.0" prefWidth="240.0" GridPane.columnIndex="1">
                <font>
                   <Font size="24.0" />
                </font>
@@ -39,7 +39,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="customerName" text="特朗普" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="customerName" maxWidth="1.7976931348623157E308" text="特朗普" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="24.0" />
                </font>
@@ -61,7 +61,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="plusVaule" text="1000" textFill="#0ee115">
+                  <Label fx:id="plusVaule" maxWidth="1.7976931348623157E308" text="1000" textFill="#0ee115">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -80,7 +80,7 @@
             </JFXTextField>
          </children>
       </GridPane>
-      <JFXButton fx:id="charge" buttonType="RAISED" layoutX="340.0" layoutY="522.0" onAction="#handleCharge" prefWidth="110.0" ripplerFill="#e17a14" text="充值">
+      <JFXButton fx:id="charge" buttonType="RAISED" layoutX="340.0" layoutY="522.0" onAction="#handleCharge" prefWidth="140.0" ripplerFill="WHITE" styleClass="button-raised-purple" text="充值">
          <font>
             <Font size="24.0" />
          </font>

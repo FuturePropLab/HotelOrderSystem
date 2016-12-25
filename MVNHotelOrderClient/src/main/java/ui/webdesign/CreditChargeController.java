@@ -3,6 +3,8 @@ package ui.webdesign;
 import java.rmi.RemoteException;
 import java.util.Date;
 
+import com.jfoenix.controls.JFXTextField;
+
 import businesslogic.account.CustomerAccountController;
 import businesslogic.credit.CreditController;
 import businesslogicservice.AccountCustomerService;
@@ -15,6 +17,7 @@ import tools.ResultMessage;
 import tools.ResultMessage_Modify;
 import ui.main.DetailsController;
 import ui.utils.Dialogs;
+import ui.utils.TextFieldUtil;
 import vo.CustomerVO;
 
 /**
@@ -25,7 +28,7 @@ import vo.CustomerVO;
 public class CreditChargeController extends DetailsController{
 
 	@FXML
-	private TextField userName;
+	private JFXTextField userName;
 	@FXML
 	private Label customerName;
 	@FXML
@@ -33,11 +36,16 @@ public class CreditChargeController extends DetailsController{
 	@FXML
 	private Label plusVaule;
 	@FXML
-	private TextField amount;
+	private JFXTextField amount;
 	@FXML
 	private Button charge;
 	private String customerID;//在没有查询到客户的时候一直为null
 	
+	@FXML
+	private void initialize() {
+		TextFieldUtil.setValidator(userName);
+		TextFieldUtil.setNumberValidator(amount);
+	}
 	@FXML
 	private void handleUserName(){
 		AccountCustomerService accountCustomerService=CustomerAccountController.getInstance();
@@ -54,14 +62,17 @@ public class CreditChargeController extends DetailsController{
 				Dialogs.showMessage("阿欧", "查询用户失败了……");
 			}
 		}else {
-			customerName.setText(null);
+			customerName.setText("没有这个用户");
 			credit.setText(0+"");
 			this.customerID=null;
 		}
 	}
 	@FXML
 	private void handleAmount(){
-		if("".equals(amount.getText())) return ;
+		if("".equals(amount.getText())){ 
+			plusVaule.setText("0");
+			return;
+		}
 		plusVaule.setText(Integer.parseInt(amount.getText())*100+"");
 	}
 	@FXML

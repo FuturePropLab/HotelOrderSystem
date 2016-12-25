@@ -44,10 +44,10 @@
             </JFXButton>
             <HBox layoutX="135.0" layoutY="139.0" spacing="10.0">
                <children>
-                  <JFXCheckBox fx:id="unexecuted" onAction="#handleSearch" styleClass="red-jfx-check-box" text="未入住" />
-                  <JFXCheckBox fx:id="executed" onAction="#handleSearch" styleClass="red-jfx-check-box" text="已入住" />
-                  <JFXCheckBox fx:id="exception" onAction="#handleSearch" styleClass="red-jfx-check-box" text="异常订单" />
-                  <JFXCheckBox fx:id="revoked" onAction="#handleSearch" styleClass="red-jfx-check-box" text="已撤销" />
+                  <JFXCheckBox fx:id="unexecuted" onAction="#handleSearch" selected="true" styleClass="red-jfx-check-box" text="未入住" />
+                  <JFXCheckBox fx:id="executed" onAction="#handleSearch" selected="true" styleClass="red-jfx-check-box" text="已入住" />
+                  <JFXCheckBox fx:id="exception" onAction="#handleSearch" selected="true" styleClass="red-jfx-check-box" text="异常订单" />
+                  <JFXCheckBox fx:id="revoked" onAction="#handleSearch" selected="true" styleClass="red-jfx-check-box" text="已撤销" />
                </children>
             </HBox>
             <Line endX="900.0" stroke="#3d7902" strokeWidth="2.0" AnchorPane.bottomAnchor="0.0" />

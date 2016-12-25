@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.DatePicker?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.room.RoomInfoController">
+<AnchorPane prefHeight="750.0" prefWidth="900.0" style="-fx-background-color: WHITE;" stylesheets="@../../../resources/css/jfoenix-components.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.room.RoomInfoController">
    <children>
       <AnchorPane prefHeight="360.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -21,39 +22,35 @@
                   <Image url="@../../../resources/images/room.png" />
                </image>
             </ImageView>
-            <HBox layoutX="506.0" layoutY="84.0" spacing="20.0">
+            <HBox alignment="CENTER" layoutX="508.0" layoutY="57.0" spacing="20.0">
                <children>
                   <Label text="房间价格">
                      <font>
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="roomPrice" prefHeight="41.0" prefWidth="200.0" text="666">
+                  <JFXTextField fx:id="roomPrice" prefWidth="200.0" text="666">
                      <font>
-                        <Font size="20.0" />
+                        <Font size="24.0" />
                      </font>
-                  </TextField>
+                  </JFXTextField>
                </children>
             </HBox>
-            <HBox layoutX="506.0" layoutY="152.0" spacing="20.0">
+            <HBox layoutX="508.0" layoutY="125.0" spacing="20.0">
                <children>
                   <Label text="客房详情">
                      <font>
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="roomDescribtion" prefHeight="151.0" prefWidth="201.0" text="xxxxxx">
+                  <JFXTextArea fx:id="roomDescribtion" prefHeight="150.0" prefWidth="250.0" text="xxxxxx">
                      <font>
                         <Font size="18.0" />
                      </font>
-                  </TextArea>
+                  </JFXTextArea>
                </children>
             </HBox>
-            <Hyperlink fx:id="save" layoutX="705.0" layoutY="303.0" onAction="#handleSave" text="保存信息">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Hyperlink>
+            <JFXButton fx:id="save" layoutX="711.0" layoutY="298.0" onAction="#handleSave" ripplerFill="#ff7e42" text="保存信息" textFill="#059770" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="roomManage" layoutX="83.0" layoutY="303.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="360.0">
@@ -86,13 +83,13 @@
                   </HBox>
                </children>
             </HBox>
-            <HBox layoutX="686.0" layoutY="11.0">
+            <HBox alignment="CENTER" layoutX="686.0" layoutY="11.0">
                <children>
-                  <TextField fx:id="newRoomNum" prefWidth="100.0" promptText="房间号码">
+                  <JFXTextField fx:id="newRoomNum" labelFloat="true" onAction="#handleAdd" prefWidth="120.0" promptText="房间号码">
                      <font>
                         <Font size="18.0" />
                      </font>
-                  </TextField>
+                  </JFXTextField>
                   <Hyperlink fx:id="add" onAction="#handleAdd" text="添加房间">
                      <font>
                         <Font size="18.0" />
@@ -100,15 +97,15 @@
                   </Hyperlink>
                </children>
             </HBox>
-            <HBox layoutX="343.0" layoutY="14.0" spacing="10.0">
+            <HBox alignment="CENTER" layoutX="343.0" layoutY="14.0" spacing="10.0">
                <children>
-                  <DatePicker fx:id="date_from" onAction="#handleDate" prefHeight="30.0" prefWidth="140.0" />
+                  <JFXDatePicker fx:id="date_from" onAction="#handleDate" overLay="true" prefWidth="150.0" promptText="开始时间段" />
                   <Label text="-">
                      <font>
-                        <Font size="20.0" />
+                        <Font size="24.0" />
                      </font>
                   </Label>
-                  <DatePicker fx:id="date_to" onAction="#handleDate" prefHeight="30.0" prefWidth="140.0" />
+                  <JFXDatePicker fx:id="date_to" layoutX="10.0" layoutY="10.0" onAction="#handleDate" overLay="true" prefWidth="150.0" promptText="结束时间段" />
                </children>
             </HBox>
             <FlowPane fx:id="roomList" hgap="30.0" layoutX="92.0" layoutY="86.0" vgap="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="70.0">
