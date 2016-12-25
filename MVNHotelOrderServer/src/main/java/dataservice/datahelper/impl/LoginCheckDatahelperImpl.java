@@ -78,6 +78,7 @@ public class LoginCheckDatahelperImpl implements LoginCheckDatahelper {
 		Criteria cr = s.createCriteria(AccountPO.class);
 		//cr.setCacheable(true);
 		cr.add(Restrictions.eq("username", DESid));
+		cr.add(Restrictions.eq("accountType", accountType));
 		List<AccountPO> AccountPOs = cr.list();
 		//s.evict(AccountPO.class);
 		s.clear();

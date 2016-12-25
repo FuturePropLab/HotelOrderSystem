@@ -3,25 +3,30 @@ package testHibernate;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import DataFactory.DataHelperUtils;
 import dataservice.HotelDataService;
-import dataservice.datahelper.HotelDataHelper;
 import dataservice.impl.HotelDataServiceImpl;
 import po.HotelPO;
+import tools.HotelAddress;
 import tools.RoomType;
-import tools.TypeRoomInfo;
+import tools.StandardSearch;
 
 
 public class testHotel {
 		public static void main(String[] args) throws RemoteException {
-//			HotelDataService hotelDataService = new HotelDataServiceImpl();
-//			List<HotelPO> pos = hotelDataService.searchHotelListFuzzy("蓝鸟");
+			HotelDataService hotelDataService = new HotelDataServiceImpl();
+			StandardSearch search  = new StandardSearch();
+			search.setHotelAddress(new HotelAddress("北京", null, null, null));
+			search.setRoomType(RoomType.Standard);
+			List<HotelPO> pos = hotelDataService.searchHotelList(search);
+			
+			System.out.println("noaho!!!!!!!!!!!!!!!!!");
+			pos.forEach(t->System.out.println(t.getHotelName()));
 //			
 //			System.out.println(pos.size());
 //			for (int i = 0; i < pos.size(); i++) {
 //				System.out.println(pos.get(i).getHotelName());
 //			}
-			HotelDataHelper hotelDataHelper = DataHelperUtils.getHotelDataHelper();
+//			HotelDataHelper hotelDataHelper = DataHelperUtils.getHotelDataHelper();
 			//System.out.println(hotelDataHelper.isbooked("CS002", "HT001"));
 //			String hotelID = "HT0410";
 //			String hotelName= "蓝鸟之家";
