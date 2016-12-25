@@ -2,6 +2,8 @@ package ui.discount;
 
 import java.time.LocalDate;
 
+import com.jfoenix.controls.JFXTextField;
+
 import businesslogic.discount.DiscountHotelController;
 import businesslogic.login.LoginController;
 import businesslogicservice.DiscountHotelService;
@@ -14,8 +16,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.paint.Color;
 import tools.DiscountState;
+import tools.ResultMessage_Discount;
 import tools.Strategy_hotelType;
+import ui.utils.DateFormat;
 import ui.utils.Dialogs;
+import ui.utils.TextFieldUtil;
 import vo.DiscountVO_hotel;
 
 /**
@@ -33,7 +38,7 @@ public abstract class HotelItemController {
 	@FXML
 	protected TextField aditionalMessage;
 	@FXML
-	protected TextField discount;
+	protected JFXTextField discount;
 	@FXML
 	protected DatePicker startTime;
 	@FXML
@@ -44,6 +49,7 @@ public abstract class HotelItemController {
 	protected Hyperlink delete;// 确认和删除合一的按钮，名字叫delete
 	protected HotelDiscountController hotelDiscountController;
 
+	protected double discountNumber;
 	private String hotelID;
 	private String discountID;
 	private String enterpriseName;
@@ -53,69 +59,50 @@ public abstract class HotelItemController {
 	}
 	
 	@FXML
-	protected void handleDiscount() {
-//		double num = 0;
-//		try {
-//			num = Double.parseDouble(discount.getText());
-//		} catch (NumberFormatException e) {
-//			System.out.println("discount is not a number");// TODO: 折扣数不正确时处理
-//			Dialogs.showMessage("折扣格式不正确");
-//			discount.setText("");
-//			return;
-//		}
-//		if (num < 0 || num > 10) {
-//			System.out.println("discount is not between 0 and 10");
-//			Dialogs.showMessage("折扣数应在0~10之间");
-//			discount.setText("");
-//			return;
-//		}
-//		if (discountID != null)
-//			handleSave();
+	private void initialize() {
+		TextFieldUtil.setNumberValidator(discount);
+		DateFormat.initDatePicker(startTime, endTime);
 	}
-
+	
+	@FXML
+	protected void handleDiscount() {
+		double num = 0;
+		try {
+			num = Double.parseDouble(discount.getText());
+		} catch (NumberFormatException e) {
+			System.out.println("discount is not a number");
+			this.discountNumber=0;
+			return;
+		}
+		if (num < 0 || num > 10) {
+			System.out.println("discount is not between 0 and 10");
+			this.discountNumber=0;
+			return;
+		}
+		this.discountNumber=num;
+		handleSave();
+	}
 	@FXML
 	protected void handleStartTime() {
-		// TODO: 开始时间在结束时间之后时处理
-		LocalDate startDate = startTime.getValue();
-		LocalDate endDate;
-		if (startDate != null && endTime.getValue() != null) {
-			endDate = endTime.getValue();
-			if (startDate.compareTo(endDate) >= 0) {
-				Dialogs.showMessage("开始日期应在结束日期之前！");
-				startTime.setValue(null);
-				return;
-			}
-			if (discountID != null)
-				handleSave();
-		}
+		handleSave();
 	}
-
 	@FXML
 	protected void handleEndTime() {
-		// TODO: 开始时间在结束时间之后时处理
-		LocalDate endDate = endTime.getValue();
-		LocalDate startDate;
-		if (endDate != null && startTime.getValue() != null) {
-			startDate = startTime.getValue();
-			if (startDate.compareTo(endDate) >= 0) {
-				Dialogs.showMessage("结束日期应在开始日期之后！");
-				endTime.setValue(null);
-				return;
-			}
-			if (discountID != null)
-				handleSave();
-		}
+		handleSave();
 	}
-
+	
+	/**
+	 * 这个方法是处理确定和删除合一按钮的监听方法
+	 */
 	@FXML
 	protected void handleDelete() {
 		if (state.getText().equals("填写中")) {
 			if (isFinished()) {
 				setTitle();
 				state.setText("未开始");
-
-				// TODO: 调用blservice新增策略
+				state.setTextFill(Color.GREEN);
 				delete.setText("删 除");// 字中间有空格
+				
 				DiscountHotelService discountHotelService = DiscountHotelController.getInstance();
 				DiscountVO_hotel discountVO_hotel = new DiscountVO_hotel(Double.parseDouble(discount.getText()) * 0.1,
 						startTime.getValue(), endTime.getValue(), aditionalMessage.getText(),
@@ -127,25 +114,30 @@ public abstract class HotelItemController {
 			}
 		} else {
 			disableControls();
-			// TODO: 调用blservice删除策略
 			DiscountHotelService discountHotelService = DiscountHotelController.getInstance();
-			if (discountID != null)
-				discountHotelService.deleteHotelDiscount(hotelID, discountID);
-			hotelDiscountController.addNewItem(getType());
+			if (discountID != null){
+				ResultMessage_Discount result=discountHotelService.deleteHotelDiscount(hotelID, discountID);
+				if(ResultMessage_Discount.Success.equals(result)){
+					state.setText("已删除");
+					state.setTextFill(Color.GREY);
+				}
+			}
 		}
 	}
 
 	@FXML
 	protected void handleSave() {
-		DiscountHotelService discountHotelService = DiscountHotelController.getInstance();
-		DiscountVO_hotel discountVO_hotel = new DiscountVO_hotel(Double.parseDouble(discount.getText()) * 0.1,
-				startTime.getValue(), endTime.getValue(), aditionalMessage.getText(), superposition.isSelected(),
-				getType(), enterpriseName);
-		discountVO_hotel.discountID=discountID;
-		discountVO_hotel.discountState=DiscountState.valid;//策略狀態問題有待解決
-		// TODO:调用blservice保存信息，如果某个子类item的信息和这个了类不一样，覆写此方法
-		if (discountID != null)
+		if (isFinished()) {
+			DiscountHotelService discountHotelService = DiscountHotelController.getInstance();
+			DiscountVO_hotel discountVO_hotel = new DiscountVO_hotel(Double.parseDouble(discount.getText()) * 0.1,
+					startTime.getValue(), endTime.getValue(), aditionalMessage.getText(), superposition.isSelected(),
+					getType(), enterpriseName);
+			discountVO_hotel.discountID=discountID;
+			discountVO_hotel.discountState="已删除".equals(this.state.getText())?DiscountState.invalid:DiscountState.valid;
 			discountHotelService.editHotelDiscount(hotelID, discountVO_hotel);
+		}else {
+			Dialogs.showMessage("策略未完成");
+		}
 	}
 
 	protected abstract Strategy_hotelType getType();
@@ -158,7 +150,7 @@ public abstract class HotelItemController {
 	 * @return
 	 */
 	protected boolean isFinished() {
-		return startTime.getValue() != null && endTime.getValue() != null && !"".equals(discount.getText());
+		return startTime.getValue() != null && endTime.getValue() != null && discountNumber>0;
 	}
 
 	protected void disableControls() {
@@ -209,14 +201,12 @@ public abstract class HotelItemController {
 			try {
 				num = Double.parseDouble(this.discount.getText());
 			} catch (NumberFormatException e1) {
-				System.out.println("discount is not a number");// TODO: 折扣数不正确时处理
-				Dialogs.showMessage("折扣格式不正确");
+				System.out.println("discount is not a number");
 				this.discount.setText("");
 				return;
 			}
 			if (num < 0 || num > 10) {
 				System.out.println("discount is not between 0 and 10");
-				Dialogs.showMessage("折扣数应在0~10之间");
 				this.discount.setText("");
 				return;
 			}
