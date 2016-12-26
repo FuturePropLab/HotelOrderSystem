@@ -1,5 +1,7 @@
 package ui.discount;
 
+import com.jfoenix.controls.JFXTextField;
+
 import businesslogic.discount.DiscountWebController;
 import businesslogicservice.DiscountWebService;
 import javafx.fxml.FXML;
@@ -8,8 +10,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.paint.Color;
+import tools.ResultMessage_Discount;
 import tools.Strategy_webType;
 import ui.utils.Dialogs;
+import ui.utils.TextFieldUtil;
 import vo.DiscountVO_web;
 
 /**
@@ -25,57 +29,78 @@ public abstract class WebItemController {
 	@FXML
 	protected Label state;
 	@FXML
-	protected TextField discount;
+	protected JFXTextField discount;
 	@FXML
 	protected Hyperlink delete;// 确认和删除合一的按钮，名字叫delete
 	@FXML
 	protected TextField aditionalMessage;
 	protected WebDiscountController webDiscountController;
-
 	protected String discountID;
+	protected double discountNumber;
 
 	public void setWebStrategyController(WebDiscountController webDiscountController) {
 		this.webDiscountController = webDiscountController;
 	}
 
 	@FXML
+	private void initialize() {
+		TextFieldUtil.setNumberValidator(discount);
+	}
+	
+	@FXML
 	protected void handleDiscount() {
 		double num = 0;
 		try {
 			num = Double.parseDouble(discount.getText());
 		} catch (NumberFormatException e) {
-			System.out.println("discount is not a number");// TODO: 折扣数不正确时处理
-			discount.setText("");
-			Dialogs.showMessage("折扣数非正确数字格式");
+			System.out.println("discount is not a number");
+			this.discountNumber=0;
 			return;
 		}
 		if (num < 0 || num > 10) {
 			System.out.println("discount is not between 0 and 10");
-			Dialogs.showMessage("折扣数应为0~10");
-			discount.setText("");
+			this.discountNumber=0;
 			return;
 		}
-
+		this.discountNumber=num;
 		handleSave();
 	}
 
 	@FXML
-	protected abstract void handleDelete();
-
-	@FXML
+	protected void handleDelete(){
+		if (state.getText().equals("填写中")) {
+			if (isFinished()) {
+				setTitle();
+				state.setText("进行中");
+				state.setTextFill(Color.GREEN);
+				delete.setText("删 除");// 字中间有空格
+				add();
+				
+				webDiscountController.addNewItem(getType());
+			}else {
+				Dialogs.showMessage("策略未完成");
+			}
+		}else {
+			disableControls();
+			DiscountWebService discountWebService = DiscountWebController.getInstance();
+			ResultMessage_Discount result=discountWebService.deleteDiscount(this.discountID);
+			if(ResultMessage_Discount.Success.equals(result)){
+				state.setText("已失效");
+				state.setTextFill(Color.GREY);
+			}
+		}
+	}
+	
+	@FXML	//调用blservice保存信息，如果某个子类item的信息和这个了类不一样，覆写此方法
 	protected abstract void handleSave();
-	// TODO:调用blservice保存信息，如果某个子类item的信息和这个了类不一样，覆写此方法
+	
+	protected void setTitle(){
+		this.title.setText(discountNumber+"折");
+	}
 
 	protected abstract Strategy_webType getType();
-
-	protected abstract void setTitle();
-
-	/**
-	 * 检查是否填写完毕
-	 * 
-	 * @return
-	 */
 	protected abstract boolean isFinished();
+	protected abstract void add();
 
 	protected void disableControls() {
 		state.setText("已删除");
@@ -85,6 +110,13 @@ public abstract class WebItemController {
 		delete.setDisable(true);
 	}
 
+	/**
+	 * 设置策略的值
+	 * @param title 标题
+	 * @param state 状态
+	 * @param discount 折扣
+	 * @param discountID 折扣ID
+	 */
 	public void setValue(String title, String state,  double discount, String discountID) {
 		this.title.setText(title);
 		this.state.setText(state);

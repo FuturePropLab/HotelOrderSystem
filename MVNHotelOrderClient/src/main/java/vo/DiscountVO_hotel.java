@@ -23,7 +23,8 @@ public class DiscountVO_hotel {
 	public String enterpriseName;
 	
 	
-	public DiscountVO_hotel( double discount,LocalDate start,LocalDate end,String remarks,boolean superimpose,Strategy_hotelType type ,String enterpriseName){
+	public DiscountVO_hotel( double discount,LocalDate start,LocalDate end,String remarks,boolean superimpose,
+			Strategy_hotelType type ,String enterpriseName){
 		this.discount=discount;
 		this.startDate=start;
 		this.endDate=end;
@@ -31,7 +32,7 @@ public class DiscountVO_hotel {
 		this.superimpose=superimpose;
 		this.type=type;
 		this.enterpriseName=enterpriseName;
-		this.discountState=DiscountState.valid;
+		this.discountState=null;
 	}
 	public DiscountVO_hotel (DiscountPO_hotel discountPO_hotel) {
 		this.discountID=discountPO_hotel.getDiscount_id();

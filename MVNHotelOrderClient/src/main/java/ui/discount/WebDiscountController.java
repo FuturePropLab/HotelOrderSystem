@@ -25,7 +25,7 @@ import vo.DiscountVO_web_period;
 /**
  * 酒店优惠策略制定界面的控制器
  * 
- * @author zjy 怎么处理discount Id？--lwy 初始化后checkbox分别选择怎么调用
+ * @author zjy
  */
 public class WebDiscountController extends DetailsController {
 
@@ -52,7 +52,6 @@ public class WebDiscountController extends DetailsController {
 	}
 	@FXML
 	private void initAccordions() {
-		// TODO: 调用blservice查询该策略的信息然后将组建的值设置好
 		DiscountWebService discountWebService = DiscountWebController.getInstance();
 		List<DiscountVO_web> listP = new LinkedList<DiscountVO_web>();
 		List<DiscountVO_web> listV = new LinkedList<DiscountVO_web>();
@@ -73,12 +72,12 @@ public class WebDiscountController extends DetailsController {
 		Iterator<DiscountVO_web> iterator = listP.iterator();
 		while (iterator.hasNext()) {
 			DiscountVO_web_period discountVO_web_period = (DiscountVO_web_period) iterator.next();
-			Period_WebItemController period_WebItemController = (Period_WebItemController) addTitlePane(specialDayList,
-					"Period_WebItem.fxml");
+			Period_WebItemController period_WebItemController = (Period_WebItemController) addNewItem(
+					Strategy_webType.Period);
 			period_WebItemController.setValue(
-					discountVO_web_period.startDate.toString() + " ~ " + discountVO_web_period.endDate.toString(),
-					discountVO_web_period.discountState.toString(), discountVO_web_period.discount,
-					discountVO_web_period.discountID);
+					discountVO_web_period.startDate.toString() + " - " + discountVO_web_period.endDate.toString(),
+					DiscountState.valid.equals(discountVO_web_period.discountState)?"进行中":"已失效", 
+					discountVO_web_period.discount,discountVO_web_period.discountID);
 			period_WebItemController.setValue(discountVO_web_period.startDate, discountVO_web_period.endDate);
 		}
 
@@ -86,11 +85,11 @@ public class WebDiscountController extends DetailsController {
 		Iterator<DiscountVO_web> iterator2 = listV.iterator();
 		while (iterator2.hasNext()) {
 			DiscountVO_web_district discountVO_web_district = (DiscountVO_web_district) iterator2.next();
-			VIPAndBusinessCircle_WebItemController vipAndBusinessCircleItemController = (VIPAndBusinessCircle_WebItemController) addTitlePane(
-					VIPAndBusinessCircleList, "VIPAndBusinessCircleItem.fxml");
+			VIPAndBusinessCircle_WebItemController vipAndBusinessCircleItemController = 
+					(VIPAndBusinessCircle_WebItemController) addNewItem(Strategy_webType.VIP_district);
 			vipAndBusinessCircleItemController.setValue(discountVO_web_district.businessCircle,
-					discountVO_web_district.discountState.toString(), discountVO_web_district.discount,
-					discountVO_web_district.discountID);
+					DiscountState.valid.equals(discountVO_web_district.discountState)?"进行中":"已失效", 
+					discountVO_web_district.discount,discountVO_web_district.discountID);
 			vipAndBusinessCircleItemController.setValue(discountVO_web_district.level, discountVO_web_district.city,
 					discountVO_web_district.district, discountVO_web_district.businessCircle);
 		}
@@ -99,11 +98,11 @@ public class WebDiscountController extends DetailsController {
 		Iterator<DiscountVO_web> iterator3 = listL.iterator();
 		while (iterator3.hasNext()) {
 			DiscountVO_web_level discountVO_web_level = (DiscountVO_web_level) iterator3.next();
-			VIPLevelAndDiscount_WebItemController vipLevelAndDiscountItemController = (VIPLevelAndDiscount_WebItemController) addTitlePane(
-					VIPLevelAndDiscountList, "VIPLevelAndDiscountItem.fxml");
+			VIPLevelAndDiscount_WebItemController vipLevelAndDiscountItemController = 
+					(VIPLevelAndDiscount_WebItemController) addNewItem(Strategy_webType.Level);
 			vipLevelAndDiscountItemController.setValue(String.valueOf(discountVO_web_level.level),
-					discountVO_web_level.discountState.toString(), discountVO_web_level.discount,
-					discountVO_web_level.discountID);
+					DiscountState.valid.equals(discountVO_web_level.discountState)?"进行中":"已失效", 
+					discountVO_web_level.discount,discountVO_web_level.discountID);
 			vipLevelAndDiscountItemController.setValue(discountVO_web_level.level, discountVO_web_level.levelUpCredit);
 		}
 
@@ -135,22 +134,22 @@ public class WebDiscountController extends DetailsController {
 	 * @param strategy_webType
 	 *            网站策略类型
 	 */
-	public void addNewItem(Strategy_webType strategy_webType) {
+	public WebItemController addNewItem(Strategy_webType strategy_webType) {
 		switch (strategy_webType) {
 		case Period:
-			addTitlePane(specialDayList, "Period_WebItem.fxml");
-			break;
+			return addTitlePane(specialDayList, "Period_WebItem.fxml");
 		case VIP_district:
-			addTitlePane(VIPAndBusinessCircleList, "VIPAndBusinessCircleItem.fxml");
-			break;
+			return addTitlePane(VIPAndBusinessCircleList, "VIPAndBusinessCircleItem.fxml");
 		case Level:
-			VIPLevelAndDiscount_WebItemController vipLevelAndDiscountItemController = (VIPLevelAndDiscount_WebItemController) addTitlePane(
+			VIPLevelAndDiscount_WebItemController vipLevelAndDiscountItemController = 
+			(VIPLevelAndDiscount_WebItemController) addTitlePane(
 					VIPLevelAndDiscountList, "VIPLevelAndDiscountItem.fxml");
 			vipLevelAndDiscountItemController.setLevel(VIPLevelAndDiscountList.getPanes().size());
-			break;
+			return vipLevelAndDiscountItemController;
 		default:
 			break;
 		}
+		return null;
 	}
 
 }

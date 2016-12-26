@@ -127,17 +127,13 @@ public abstract class HotelItemController {
 
 	@FXML
 	protected void handleSave() {
-		if (isFinished()) {
-			DiscountHotelService discountHotelService = DiscountHotelController.getInstance();
-			DiscountVO_hotel discountVO_hotel = new DiscountVO_hotel(Double.parseDouble(discount.getText()) * 0.1,
-					startTime.getValue(), endTime.getValue(), aditionalMessage.getText(), superposition.isSelected(),
-					getType(), enterpriseName);
-			discountVO_hotel.discountID=discountID;
-			discountVO_hotel.discountState="已删除".equals(this.state.getText())?DiscountState.invalid:DiscountState.valid;
-			discountHotelService.editHotelDiscount(hotelID, discountVO_hotel);
-		}else {
-			Dialogs.showMessage("策略未完成");
-		}
+		DiscountHotelService discountHotelService = DiscountHotelController.getInstance();
+		DiscountVO_hotel discountVO_hotel = new DiscountVO_hotel(Double.parseDouble(discount.getText()) * 0.1,
+				startTime.getValue(), endTime.getValue(), aditionalMessage.getText(), superposition.isSelected(),
+				getType(), enterpriseName);
+		discountVO_hotel.discountID=discountID;
+		discountVO_hotel.discountState="已删除".equals(this.state.getText())?DiscountState.invalid:DiscountState.valid;
+		discountHotelService.editHotelDiscount(hotelID, discountVO_hotel);
 	}
 
 	protected abstract Strategy_hotelType getType();

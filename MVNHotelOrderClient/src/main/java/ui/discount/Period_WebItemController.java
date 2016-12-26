@@ -7,8 +7,11 @@ import businesslogic.discount.DiscountWebController;
 import businesslogicservice.DiscountWebService;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
+import javafx.scene.paint.Color;
 import tools.DiscountState;
+import tools.ResultMessage_Discount;
 import tools.Strategy_webType;
+import ui.utils.DateFormat;
 import ui.utils.Dialogs;
 import vo.DiscountVO_web;
 import vo.DiscountVO_web_district;
@@ -26,43 +29,20 @@ public class Period_WebItemController extends WebItemController {
 	protected DatePicker startTime;
 	@FXML
 	protected DatePicker endTime;
+	
+	@FXML
+	private void initialize() {
+		DateFormat.initDatePicker(startTime, endTime);
+	}
 
 	@FXML
 	protected void handleStartTime() {
-		// TODO: 开始时间在结束时间之后时处理
-		LocalDate startDate = startTime.getValue();
-		LocalDate endDate;
-		if (startDate != null && endTime.getValue() != null) {
-			endDate = endTime.getValue();
-			if (startDate.compareTo(endDate) >= 0) {
-				Dialogs.showMessage("开始日期应在结束日期之前！");
-				startTime.setValue(null);
-				return;
-			}
-			handleSave();
-		}
+		handleSave();
 	}
 
 	@FXML
 	protected void handleEndTime() {
-		// TODO: 开始时间在结束时间之后时处理
-		LocalDate endDate = endTime.getValue();
-		LocalDate startDate;
-		if (endDate != null && startTime.getValue() != null) {
-			startDate = startTime.getValue();
-			if (startDate.compareTo(endDate) >= 0) {
-				Dialogs.showMessage("结束日期应在开始日期之后！");
-				endTime.setValue(null);
-				return;
-			}
-			handleSave();
-		}
-	}
-
-	@FXML
-	protected void handleDiscount() {
-		title.setText(discount.getText() + "折");
-		super.handleDiscount();
+		handleSave();
 	}
 
 	@Override
@@ -77,7 +57,7 @@ public class Period_WebItemController extends WebItemController {
 
 	@Override
 	protected boolean isFinished() {
-		return startTime.getValue() != null && endTime.getValue() != null && !"".equals(discount.getText());
+		return startTime.getValue() != null && endTime.getValue() != null && discountNumber>0;
 	}
 
 	@Override
@@ -87,57 +67,32 @@ public class Period_WebItemController extends WebItemController {
 		endTime.setEditable(false);
 	}
 
+
 	/**
-	 * 
-	 * @param state
-	 *            状态
-	 * @param discount
-	 *            折扣
-	 * @param startDate
-	 *            开始时间
-	 * @param endDate
-	 *            结束时间
+	 * 设置值
+	 * @param startDate 开始时间
+	 * @param endDate 结束时间
 	 */
 	public void setValue( LocalDate startDate, LocalDate endDate) {
 		this.startTime.setPromptText(startDate.toString());
 		this.endTime.setPromptText(endDate.toString());
-		this.delete.setText("删 除");// 字中间有空格
 		setTitle();
 	}
 
-	@FXML@Override
-	protected void handleDelete() {
-		// TODO Auto-generated method stub
-		if (state.getText().equals("填写中")) {
-			if (isFinished()) {
-				setTitle();
-				// TODO: 调用blservice增加策略
-				DiscountVO_web discountVO_web = new DiscountVO_web_period(startTime.getValue(), endTime.getValue(),
-						Double.parseDouble(discount.getText()));
-				DiscountWebService discountWebService = DiscountWebController.getInstance();
-				discountWebService.addWebDiscount(discountVO_web);
-
-				delete.setText("删 除");// 字中间有空格
-				webDiscountController.addNewItem(getType());
-			} else {
-				System.out.println("the strategy is not finished");// TODO:弹窗提示未完成
-				Dialogs.showMessage("策略未完成");
-			}
-		} else {
-			disableControls();
-			// TODO: 调用blservice删除策略
-			DiscountWebService discountWebService = DiscountWebController.getInstance();
-			discountWebService.deleteDiscount(this.discountID);
-		}
+	@Override
+	protected void add() {
+		DiscountVO_web discountVO_web = new DiscountVO_web_period(startTime.getValue(), endTime.getValue(),
+				Double.parseDouble(discount.getText()));
+		DiscountWebService discountWebService = DiscountWebController.getInstance();
+		discountWebService.addWebDiscount(discountVO_web);
 	}
 
 	@FXML@Override
 	protected void handleSave() {
-		// TODO Auto-generated method stub
 		DiscountVO_web discountVO_web = new DiscountVO_web_period(startTime.getValue(), endTime.getValue(),
 				Double.parseDouble(discount.getText()));
 		discountVO_web.discountID=discountID;
-		discountVO_web.discountState =DiscountState.valid;//待议
+		discountVO_web.discountState =null;
 		DiscountWebService discountWebService = DiscountWebController.getInstance();
 		discountWebService.editWebDiscount(discountVO_web);
 	}

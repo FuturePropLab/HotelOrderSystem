@@ -23,7 +23,7 @@ public class DiscountVO_web_level extends DiscountVO_web {
 		this.level=level;
 		this.levelUpCredit = levelUpCredit;
 		this.type = Strategy_webType.Level;
-		this.discountState = DiscountState.valid;
+		this.discountState = null;
 	}
 	public int level;// 会员等级
 

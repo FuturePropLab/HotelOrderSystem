@@ -214,7 +214,6 @@ public class DiscountWebController implements DiscountWebService {
 	 * 
 	 * @return 返回各个等级的最低信用值
 	 *         example：返回[20,50,90]表示达到20升入2级，（默认0信用值起始为1级），信用值达到50升到3级
-	 * @throws RemoteException
 	 */
 	public int[] getLevelCredit() {
 
