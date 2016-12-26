@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;
+import tools.DiscountState;
 import tools.Strategy_hotelType;
 import ui.main.DetailsController;
 import vo.DiscountVO_hotel;
@@ -56,58 +57,57 @@ public class HotelDiscountController extends DetailsController {
 		Iterator<DiscountVO_hotel> iterator = birthVOs.iterator();
 		while (iterator.hasNext()) {
 			DiscountVO_hotel dis = iterator.next();
-			Birthday_HotelItemController birthdayItemController = (Birthday_HotelItemController) addTitlePane(
-					birthdayList, "BirthdayItem.fxml");
-			birthdayItemController.setValue("生日特惠", dis.discountState.toString(), dis.remarks, dis.discount * 10,
-					dis.startDate, dis.endDate, dis.superimpose, dis.discountID, hotelID); // discount*10为转换为几折几折
-			birthdayItemController.setTitle();
+			Birthday_HotelItemController birthdayItemController = (Birthday_HotelItemController) addNewItem(
+					Strategy_hotelType.Birthday);
+			birthdayItemController.setValue("生日特惠", DiscountState.valid.equals(dis.discountState)?"进行中":"已删除", 
+					dis.remarks, dis.discount * 10,dis.startDate, dis.endDate, dis.superimpose, dis.discountID, null); 
+			// discount*10为转换为几折几折
 		}
 		
 		//初始化预订多间房策略
 		List<DiscountVO_hotel> overThreeVOs = discountHotelService.getHotelDiscountByType(hotelID,
 				Strategy_hotelType.OrderMore);
-		Iterator<DiscountVO_hotel> iterator2 = overThreeVOs.iterator();
-		while (iterator2.hasNext()) {
-			DiscountVO_hotel dis2 = iterator2.next();
-			OverThreeRooms_HotelItemController overThreeRooms_HotelItemController = (OverThreeRooms_HotelItemController) addTitlePane(
-					overThreeRoomsList, "OverThreeRoomsItem.fxml");
-			overThreeRooms_HotelItemController.setValue("预订多间优惠", dis2.discountState.toString(), dis2.remarks,
-					dis2.discount * 10, dis2.startDate, dis2.endDate, dis2.superimpose, dis2.discountID, hotelID);
-			overThreeRooms_HotelItemController.setTitle();
+		Iterator<DiscountVO_hotel> iterator_overThree = overThreeVOs.iterator();
+		while (iterator_overThree.hasNext()) {
+			DiscountVO_hotel dis = iterator_overThree.next();
+			OverThreeRooms_HotelItemController overThreeRooms_HotelItemController = (OverThreeRooms_HotelItemController) 
+					addNewItem(Strategy_hotelType.OrderMore);
+			overThreeRooms_HotelItemController.setValue("预订多间优惠", DiscountState.valid.equals(dis.discountState)?
+					"进行中":"已删除", dis.remarks,dis.discount * 10, dis.startDate, dis.endDate, 
+					dis.superimpose, dis.discountID, null);
 		}
 		
 		//初始合作企业促销策略
 		List<DiscountVO_hotel> enterpriseVOs = discountHotelService.getHotelDiscountByType(hotelID,
 				Strategy_hotelType.CooperateEnterprise);
-		Iterator<DiscountVO_hotel> iterator3 = enterpriseVOs.iterator();
-		while (iterator3.hasNext()) {
-			DiscountVO_hotel dis3 = iterator3.next();
-			Company_HotelItemController company_HotelItemController = (Company_HotelItemController) addTitlePane(
-					companyList, "CompanyItem.fxml");
-			company_HotelItemController.setValue("合作企业优惠", dis3.discountState.toString(), dis3.remarks,
-					dis3.discount * 10, dis3.startDate, dis3.endDate, dis3.superimpose, dis3.discountID, hotelID);
-			company_HotelItemController.setCompanyName(dis3.enterpriseName);
-			company_HotelItemController.setTitle();
+		Iterator<DiscountVO_hotel> iterator_enterprise = enterpriseVOs.iterator();
+		while (iterator_enterprise.hasNext()) {
+			DiscountVO_hotel dis = iterator_enterprise.next();
+			Company_HotelItemController company_HotelItemController = (Company_HotelItemController) addNewItem(
+					Strategy_hotelType.CooperateEnterprise);
+			company_HotelItemController.setValue("合作企业优惠", DiscountState.valid.equals(dis.discountState)?
+					"进行中":"已删除", dis.remarks,dis.discount * 10, dis.startDate, dis.endDate, 
+					dis.superimpose, dis.discountID, dis.enterpriseName);
 		}
 		
 		//初始特定期间促销策略
 		List<DiscountVO_hotel> periodVOs = discountHotelService.getHotelDiscountByType(hotelID,
 				Strategy_hotelType.Period);
-		Iterator<DiscountVO_hotel> iterator4 = periodVOs.iterator();
-		while (iterator4.hasNext()) {
-			Period_HotelItemController period_HotelItemController = (Period_HotelItemController) addTitlePane(
-					double11List, "Period_HotelItem.fxml");
-			DiscountVO_hotel dis4 = iterator4.next();
-			period_HotelItemController.setValue("特定期间优惠", dis4.discountState.toString(), dis4.remarks,
-					dis4.discount * 10, dis4.startDate, dis4.endDate, dis4.superimpose, dis4.discountID, hotelID);
-			period_HotelItemController.setFestivalDate(dis4.startDate, dis4.endDate);
-			period_HotelItemController.setTitle();
+		Iterator<DiscountVO_hotel> iterator_period = periodVOs.iterator();
+		while (iterator_period.hasNext()) {
+			Period_HotelItemController period_HotelItemController = (Period_HotelItemController) addNewItem(
+					Strategy_hotelType.Period);
+			DiscountVO_hotel dis = iterator_period.next();
+			period_HotelItemController.setValue("特定期间优惠", DiscountState.valid.equals(dis.discountState)?
+					"进行中":"已删除", dis.remarks,dis.discount * 10, dis.startDate, dis.endDate, 
+					dis.superimpose, dis.discountID, null);
+			period_HotelItemController.setFestivalDate(dis.startDate, dis.endDate);
 		}
 		
-		addTitlePane(birthdayList, "BirthdayItem.fxml");
-		addTitlePane(overThreeRoomsList, "OverThreeRoomsItem.fxml");
-		addTitlePane(companyList, "CompanyItem.fxml");
-		addTitlePane(double11List, "Period_HotelItem.fxml");
+		addNewItem(Strategy_hotelType.Birthday);
+		addNewItem(Strategy_hotelType.OrderMore);
+		addNewItem(Strategy_hotelType.CooperateEnterprise);
+		addNewItem(Strategy_hotelType.Period);
 	}
 
 	private HotelItemController addTitlePane(Accordion accordion, String fxml) {
@@ -130,26 +130,22 @@ public class HotelDiscountController extends DetailsController {
 	/**
 	 * 增加新的促销策略
 	 * 
-	 * @param strategy_hotelType
-	 *            促销策略类型
+	 * @param strategy_hotelType 促销策略类型
 	 */
-	public void addNewItem(Strategy_hotelType strategy_hotelType) {
+	public HotelItemController addNewItem(Strategy_hotelType strategy_hotelType) {
 		switch (strategy_hotelType) {
 		case Birthday:
-			addTitlePane(birthdayList, "BirthdayItem.fxml");
-			break;
+			return addTitlePane(birthdayList, "BirthdayItem.fxml");
 		case OrderMore:
-			addTitlePane(overThreeRoomsList, "OverThreeRoomsItem.fxml");
-			break;
+			return addTitlePane(overThreeRoomsList, "OverThreeRoomsItem.fxml");
 		case CooperateEnterprise:
-			addTitlePane(companyList, "CompanyItem.fxml");
-			break;
+			return addTitlePane(companyList, "CompanyItem.fxml");
 		case Period:
-			addTitlePane(double11List, "Period_HotelItem.fxml");
-			break;
+			return addTitlePane(double11List, "Period_HotelItem.fxml");
 		default:
 			break;
 		}
+		return null;
 	}
 
 }

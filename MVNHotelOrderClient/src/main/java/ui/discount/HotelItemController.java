@@ -99,7 +99,7 @@ public abstract class HotelItemController {
 		if (state.getText().equals("填写中")) {
 			if (isFinished()) {
 				setTitle();
-				state.setText("未开始");
+				state.setText("进行中");
 				state.setTextFill(Color.GREEN);
 				delete.setText("删 除");// 字中间有空格
 				
@@ -186,6 +186,7 @@ public abstract class HotelItemController {
 			LocalDate endTime, boolean superposition, String discountID, String enterpriseName) {
 		this.title.setText(title);
 		this.state.setText(state);
+		this.state.setTextFill(DiscountState.valid.equals("进行中")?Color.GREEN:Color.GREY);
 		this.aditionalMessage.setText(aditionalMessage);
 		this.discount.setText(discount + "");
 		this.startTime.setPromptText(startTime.toString());
