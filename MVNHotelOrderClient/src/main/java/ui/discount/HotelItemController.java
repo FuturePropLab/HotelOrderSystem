@@ -52,7 +52,7 @@ public abstract class HotelItemController {
 	protected double discountNumber;
 	private String hotelID;
 	private String discountID;
-	private String enterpriseName;
+	protected String enterpriseName;
 
 	public void setHotelDiscountController(HotelDiscountController hotelDiscountController) {
 		this.hotelDiscountController = hotelDiscountController;
@@ -107,6 +107,7 @@ public abstract class HotelItemController {
 				DiscountVO_hotel discountVO_hotel = new DiscountVO_hotel(Double.parseDouble(discount.getText()) * 0.1,
 						startTime.getValue(), endTime.getValue(), aditionalMessage.getText(),
 						superposition.isSelected(),getType(), enterpriseName);
+				System.out.println("enterpriseName:"+enterpriseName);
 				discountHotelService.addHotelDiscount(hotelID, discountVO_hotel);
 				hotelDiscountController.addNewItem(getType());
 			} else {

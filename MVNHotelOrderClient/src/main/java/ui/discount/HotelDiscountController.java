@@ -43,8 +43,8 @@ public class HotelDiscountController extends DetailsController {
 	 */
 	@FXML
 	private void initialize() {
-		initAccordions();
 		this.hotelID = LoginController.getInstance().getLogState().accountID;
+		initAccordions();
 	}
 	@FXML
 	private void initAccordions() {
@@ -88,6 +88,7 @@ public class HotelDiscountController extends DetailsController {
 			company_HotelItemController.setValue("合作企业优惠", DiscountState.valid.equals(dis.discountState)?
 					"进行中":"已删除", dis.remarks,dis.discount * 10, dis.startDate, dis.endDate, 
 					dis.superimpose, dis.discountID, dis.enterpriseName);
+			company_HotelItemController.setCompanyName(dis.enterpriseName);
 		}
 		
 		//初始特定期间促销策略

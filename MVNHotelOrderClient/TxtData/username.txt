@@ -1,1 +1,1 @@
-admin:管理人员
+lanniao:酒店工作人员

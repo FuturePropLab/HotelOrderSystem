@@ -17,6 +17,7 @@ public class Company_HotelItemController extends HotelItemController{
 	@FXML
 	private void handleCompanyName(){
 		title.setText(companyName.getText());
+		enterpriseName=companyName.getText();
 		handleSave();
 	}
 	
@@ -48,6 +49,7 @@ public class Company_HotelItemController extends HotelItemController{
 	 */
 	public void setCompanyName(String companyName) {
 		this.companyName.setText(companyName);
+		setTitle();
 	}
 
 }

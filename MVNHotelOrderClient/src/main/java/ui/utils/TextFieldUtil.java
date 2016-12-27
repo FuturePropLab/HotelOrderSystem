@@ -15,6 +15,7 @@ import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
 
 /**
  * 输入框的功能设置类，只提供静态方法
@@ -100,7 +101,7 @@ public class TextFieldUtil {
 	public static void setNumberValidator(JFXTextField textField) {
 		textField.setLabelFloat(true);
 		
-		NumberValidator numberValidator=new NumberValidator();
+		FloatNumberValidator numberValidator=new FloatNumberValidator();
 		numberValidator.setErrorStyleClass("");
 		numberValidator.setMessage("只能输入数字!");
 		numberValidator.setIcon(new Icon(AwesomeIcon.WARNING,"1em",";","error"));		
