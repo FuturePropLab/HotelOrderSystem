@@ -106,7 +106,7 @@ public abstract class HotelItemController {
 				DiscountHotelService discountHotelService = DiscountHotelController.getInstance();
 				DiscountVO_hotel discountVO_hotel = new DiscountVO_hotel(Double.parseDouble(discount.getText()) * 0.1,
 						startTime.getValue(), endTime.getValue(), aditionalMessage.getText(),
-						superposition.isSelected(),getType(), enterpriseName);
+						superposition.isSelected(),getType(), enterpriseName,hotelID);
 				System.out.println("enterpriseName:"+enterpriseName);
 				discountHotelService.addHotelDiscount(hotelID, discountVO_hotel);
 				hotelDiscountController.addNewItem(getType());
@@ -131,7 +131,7 @@ public abstract class HotelItemController {
 		DiscountHotelService discountHotelService = DiscountHotelController.getInstance();
 		DiscountVO_hotel discountVO_hotel = new DiscountVO_hotel(Double.parseDouble(discount.getText()) * 0.1,
 				startTime.getValue(), endTime.getValue(), aditionalMessage.getText(), superposition.isSelected(),
-				getType(), enterpriseName);
+				getType(), enterpriseName,hotelID);
 		discountVO_hotel.discountID=discountID;
 		discountVO_hotel.discountState="已删除".equals(this.state.getText())?DiscountState.invalid:DiscountState.valid;
 		discountHotelService.editHotelDiscount(hotelID, discountVO_hotel);

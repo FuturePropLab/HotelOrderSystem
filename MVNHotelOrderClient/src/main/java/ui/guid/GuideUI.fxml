@@ -88,5 +88,10 @@
             <JFXColorPicker fx:id="colorPicker" focusTraversable="false" layoutX="63.0" layoutY="21.0" onAction="#handleColorPicker" />
          </children>
       </AnchorPane>
+      <ImageView fitHeight="750.0" fitWidth="10.0" pickOnBounds="true" AnchorPane.rightAnchor="-5.0">
+         <image>
+            <Image url="@../../../resources/images/split_line.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
