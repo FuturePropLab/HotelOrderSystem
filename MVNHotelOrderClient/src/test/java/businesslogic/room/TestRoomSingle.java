@@ -2,6 +2,7 @@ package businesslogic.room;
 
 import static org.junit.Assert.*;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import tools.ResultMessage;
@@ -11,7 +12,7 @@ import vo.RoomVO;
 
 public class TestRoomSingle {
 
-	@Test
+	@Test@Ignore
 	public void testDelete() {
 		
 		RoomSingle roomSingle=new RoomSingle();

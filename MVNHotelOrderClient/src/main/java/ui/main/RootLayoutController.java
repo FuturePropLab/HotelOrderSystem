@@ -1,15 +1,8 @@
 package ui.main;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
-
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
-import com.jfoenix.controls.JFXDialogLayout;
-import com.jfoenix.controls.JFXDialog.DialogTransition;
-import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
 import businesslogic.customer.CustomerDealController;
 import businesslogic.hotel.HotelDealController;
@@ -23,20 +16,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import tools.AccountType;
-import tools.RoomType;
-import ui.customer.BookHotelController;
-import ui.customer.ClientInfoController;
-import ui.customer.OrderAssessController;
 import ui.guid.GuideUIController;
-import ui.hotel.FacilitiesInfoController;
 import ui.order.OrderDetailsController;
 import ui.utils.Choice;
 import ui.utils.Dialogs;

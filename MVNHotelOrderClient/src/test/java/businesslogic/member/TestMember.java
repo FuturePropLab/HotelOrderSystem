@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import businesslogic.customer.MemberInfo;
@@ -19,8 +20,8 @@ import vo.MemberVO;
 
 public class TestMember {
 	Member member =new Member();
-	@Test
-/*	public void test() {
+/*	@Test
+	public void test() {
 		MemberBelongType type=MemberBelongType.Ordinary;
 		ApplyVO applyVO=new ApplyVO("001",type );
 		assertEquals(ResultMessage.NotExist, member.addApply(applyVO));
@@ -41,7 +42,7 @@ public class TestMember {
 		
 		assertEquals(new MemberVO("000000002", new MemberType("000000002")).customer_ID, member.getMemberInfo("000000002").customer_ID);
 	}*/
-	//@Test
+	@Test@Ignore
 	public void test5() {
 		MemberType type=new MemberType("000000009");
 		type.setType(MemberBelongType.Ordinary);

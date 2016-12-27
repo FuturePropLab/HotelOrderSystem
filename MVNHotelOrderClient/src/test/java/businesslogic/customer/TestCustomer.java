@@ -6,6 +6,7 @@ import java.rmi.RemoteException;
 import java.util.Iterator;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import businesslogicservice.CustomerDealService;
@@ -56,7 +57,7 @@ public class TestCustomer {
 		}*/
 		public Customer customer;
 
-@Test
+@Test@Ignore
 	public void testGetCustomerInfo(){
 	String customer_id="123";
 	customer = new Customer();
@@ -66,7 +67,6 @@ public class TestCustomer {
 	try {
 		assertEquals(customerVO.customerID,customer.getCustomerInfo(customer_id).customerID);
 	} catch (RemoteException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 }
@@ -77,7 +77,6 @@ public class TestCustomer {
 	try {
 		assertEquals(ResultMessage_signUp.Wrong,customer.addCustomer(test));
 	} catch (RemoteException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 }

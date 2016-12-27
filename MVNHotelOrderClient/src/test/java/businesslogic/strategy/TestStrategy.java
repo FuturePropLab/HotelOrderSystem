@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.rmi.RemoteException;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import vo.OrderInputCalVO;
@@ -14,7 +15,7 @@ import vo.OrderInputCalVO;
  */
 public class TestStrategy {
 
-	@Test
+	@Test@Ignore
 	public void test() throws RemoteException {
 		
 		

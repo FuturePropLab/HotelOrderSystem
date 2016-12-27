@@ -1,7 +1,9 @@
-businesslogic/discount/FactoryDiscount$1.class
-ui/main/RootLayoutController$1.class
-ui/discount/HotelDiscountController$1.class
-businesslogic/strategy/FactoryConcreteWebStrategy$1.class
-businesslogic/strategy/FactoryConcreteHotelStrategy$1.class
-businesslogic/order/Order$1.class
-ui/discount/WebDiscountController$1.class
+businesslogic\strategy\FactoryConcreteWebStrategy$1.class
+businesslogic\strategy\FactoryConcreteHotelStrategy$1.class
+businesslogic\order\Order$1.class
+ui\discount\HotelDiscountController$1.class
+ui\hotel\HotelSearchController$1.class
+ui\main\RootLayoutController$1.class
+ui\discount\WebDiscountController$1.class
+ui\order\OrderListController$1.class
+businesslogic\discount\FactoryDiscount$1.class

@@ -8,6 +8,7 @@ import Exception.CustomerCreditNotEnoughException;
 import businesslogic.credit.CreditController;
 import businesslogic.member.MemberController;
 import businesslogicservice.CreditLogDealService;
+import businesslogicservice.MemberService;
 import dataservice.OrderDataService;
 import po.MemberPO;
 import po.OrderPO;
@@ -41,6 +42,7 @@ public class Order {
 	private AssessInfo assessInfo;
 	private CustomerInfo customerInfo;
 	private HotelInfo hotelInfo;
+	private MemberService memberService;
 	private OrderDataService orderDataService;
 //	private OrderPO orderPO;
 	
@@ -58,6 +60,8 @@ public class Order {
 		if(orderInput==null){
 			return;
 		}
+		this.memberService=MemberController.getInstance();
+		
 		int credit=customerInfo.getCustomer(orderInput.customerID).credit;
 		if(credit<0){
 			throw new CustomerCreditNotEnoughException(credit);
@@ -82,6 +86,8 @@ public class Order {
 		if(orderPO==null){
 			return;
 		}
+		
+		this.memberService=MemberController.getInstance();
 		this.customerInfo=customerInfo;
 		this.hotelInfo=hotelInfo;
 		this.orderDataService=orderDataService;
@@ -270,6 +276,7 @@ public class Order {
 	public void setRevokeTime(Date revokeTime) {
 		this.revokeTime = revokeTime;
 	}
+	
 	/**
 	 * 订单的初始化
 	 */
@@ -315,19 +322,12 @@ public class Order {
 	 */
 	private int createValue() {
 		int newValue=0;
-//		hotelInfo = new MockHotelInfo();//test
-//		customerInfo = new MockCustomerInfo();//test
 		newValue+=placingOrderInfo.price;
 		newValue+=hotelInfo.getHotelInfo(placingOrderInfo.hotelID).mark.getValue()*100;
 		
-		MemberController memberController = MemberController.getInstance();
+		MemberVO memberVO = memberService.getMemberInfo(placingOrderInfo.customerID);
 //		MockMemberController memberController = new MockMemberController();
-		System.out.println(placingOrderInfo.customerID);
-		MemberVO memberVO = memberController.getMemberInfo(placingOrderInfo.customerID);
 		newValue+= (memberVO.memberType.getType()==MemberBelongType.None?0:1000);
-		//memberController.getMemberInfo(placingOrderInfo.customerID);
-//		newValue+=customerInfo.getCustomer(placingOrderInfo.customerID).membervo.memberType.getType()
-//				.equals(MemberBelongType.None)?0:1000;
 		return newValue;
 	}
 	/**

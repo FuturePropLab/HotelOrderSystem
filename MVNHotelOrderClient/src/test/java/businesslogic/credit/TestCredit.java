@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import businesslogic.order.CustomerInfo;
@@ -31,7 +32,7 @@ public class TestCredit {
 	
 	businesslogic.credit.Credit credit;
 
-	@Test
+	@Test@Ignore
 	public  void testGetLogList(){
 		
 		CustomerVO  customerVO  = new CustomerVO

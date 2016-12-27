@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import tools.RoomType;
@@ -16,7 +17,7 @@ import vo.HotelRoomInfoVO;
 
 public class TestHotelRoomInfo {
 	public RoomManager manager ;
-	@Test
+	@Test@Ignore
 	public void testGetRoomByType() {
 		/*RoomManager hotelRoomInfo=new RoomManager();
 		List<TypeRoomInfo> list =new LinkedList<TypeRoomInfo>();
@@ -27,14 +28,14 @@ public class TestHotelRoomInfo {
 		manager =new RoomManager();
 		assertEquals("001",manager.getAllRoomByType("001", RoomType.Double).get(0));
 	}
-	@Test
+	@Test@Ignore
 	public void testGetRoomByType2(){
 		manager =new RoomManager();
 		assertEquals("002", manager.getAllRoomByType("001",RoomType.Single).get(0));
 		
 	}
 
-	@Test
+	@Test@Ignore
 	public void testGetRoomNumByTime(){
 		manager = new RoomManager();
 		Date date5= null;
@@ -54,7 +55,7 @@ public class TestHotelRoomInfo {
 		}
 		assertEquals(1, manager.getAvaiableNumberByTime("001", RoomType.Double, date5, date6));
 	}
-	@Test
+	@Test@Ignore
 	public void tetGetRoomByTime(){
 		manager = new RoomManager();
 		Date date5= null;

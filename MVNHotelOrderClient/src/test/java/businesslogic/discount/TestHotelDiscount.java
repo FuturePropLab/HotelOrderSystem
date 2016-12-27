@@ -5,13 +5,14 @@ import static org.junit.Assert.*;
 import java.rmi.RemoteException;
 import java.util.Date;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import tools.ResultMessage_Discount;
 
 public class TestHotelDiscount {
 	public HotelDiscount hotelDiscount;
-	@Test
+	@Test@Ignore
 	public void testGetHotelDiscount() {
 //		ResultMessage_Discount re=ResultMessage_Discount.Success;
 //		HotelDiscount test=new HotelDiscount();
@@ -44,7 +45,7 @@ public class TestHotelDiscount {
 		
 		
 	}
-	@Test
+	@Test@Ignore
 	public void testInvalid(){
 		hotelDiscount = new HotelDiscount();
 		try {

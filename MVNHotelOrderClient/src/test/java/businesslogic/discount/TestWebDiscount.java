@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.rmi.RemoteException;
 import java.util.Date;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import tools.DiscountState;
@@ -12,7 +13,7 @@ import tools.ResultMessage_Discount;
 
 public class TestWebDiscount {
 
-	@Test
+	@Test@Ignore
 	public void test() {
 		Date t1=new Date(2016,9,1);
 		Date t2=new Date(2016,9,2);
@@ -35,7 +36,7 @@ public class TestWebDiscount {
 		}
 		
 	}
-	@Test
+	@Test@Ignore
 	public void testDelete(){
 		WebDiscount webDis =new WebDiscount();
 		try {

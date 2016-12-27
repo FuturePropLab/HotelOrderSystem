@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import businesslogic.discount.HotelDiscount;
@@ -15,7 +16,7 @@ import vo.DiscountVO_hotel;
 
 public class TestHotelDiscount {
 
-	@Test
+	@Test@Ignore
 	public void test() throws RemoteException {
 		Date t1=new Date(2016,9,1);
 		Date t2=new Date(2016,9,2);
