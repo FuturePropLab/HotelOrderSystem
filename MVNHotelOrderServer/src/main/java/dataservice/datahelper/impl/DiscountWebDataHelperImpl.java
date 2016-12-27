@@ -240,6 +240,7 @@ public class DiscountWebDataHelperImpl implements DiscountWebDataHelper {
 			try{
 				Transaction t = s.beginTransaction();
 				System.out.println("?????? modify");
+				System.out.println(discountPO_web_district.getDiscountID());
 				s.update(discountPO_web_district);
 				t.commit();
 				return ResultMessage_Discount.Success;
