@@ -50,9 +50,10 @@ public class DiscountPO_web_district extends DiscountPO_web implements Serializa
 		this.city=discountVO_web.city;
 		this.district=discountVO_web.district;
 		this.businessCircle=discountVO_web.businessCircle;
-		setDiscount(discountVO_web.discount);
+		super.setDiscount(discountVO_web.discount);
 		super.setType(Strategy_webType.VIP_district);
 		super.setDiscountState(discountVO_web.discountState);
+		discountID=discountVO_web.discountID;
 	}
 
 

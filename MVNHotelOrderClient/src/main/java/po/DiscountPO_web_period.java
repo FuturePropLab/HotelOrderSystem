@@ -46,6 +46,7 @@ public class DiscountPO_web_period extends DiscountPO_web implements Serializabl
 		this.endDate=discountVO_web.endDate;
 		super.setType(Strategy_webType.Period);
 		super.setDiscountState(discountVO_web.discountState);
+		discountID=discountVO_web.discountID;
 	}
 	public LocalDate getEnddate() {
 		return endDate;

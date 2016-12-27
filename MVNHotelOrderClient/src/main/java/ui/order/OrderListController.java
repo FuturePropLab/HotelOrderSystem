@@ -16,6 +16,8 @@ import businesslogicservice.AccountService;
 import businesslogicservice.HotelDealService;
 import businesslogicservice.LoginService;
 import businesslogicservice.OrderService;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -27,6 +29,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import tools.AccountType;
 import tools.HotelAddress;
@@ -40,6 +43,7 @@ import vo.FuzzySearchOrderVO;
 import vo.HotelbriefVO;
 import vo.LogVO;
 import vo.OrderVO;
+import vo.SearchHotelVO;
 import vo.SearchOrderInfoVO;
 
 /**
@@ -66,6 +70,8 @@ public class OrderListController extends DetailsController {
 	private CheckBox revoked;
 	@FXML
 	private FlowPane orderList;
+	@FXML
+	private StackPane spinnerPane;
 	
 	@FXML
 	private void initialize() {
@@ -74,71 +80,34 @@ public class OrderListController extends DetailsController {
 
 	@FXML
 	private void handleSearch() {
-		OrderService orderService = OrderController.getInstance();
-		LoginService loginService = LoginController.getInstance();
-		AccountCustomerService accountCustomerService = CustomerAccountController.getInstance();
-		HotelDealService hotelDealService = HotelDealController.getInstance();
-
-		LogVO logVO = loginService.getLogState();
-		if (logVO.state.equals(State.logout)) {
-			System.err.println("can't handleSearch: the login state is logout!");
-			return;
-		}
-		
-		String tempHotelID = null;
-		String tempcustomerID = null;
-		if(logVO.accountType==AccountType.Customer){
-			tempcustomerID = logVO.accountID;
-		}else if(logVO.accountType==AccountType.Hotel){
-			tempHotelID = logVO.accountID;;
-		}
-		
-//		String ID = accountCustomerService.getAccountID(logVO.username);
-		String keywordinput = "".equals(keyWords.getText()) ? null : keyWords.getText();
-		LocalDate localdate = this.date.getValue();
-		Date date = null;
-		if(localdate!=null){
-			date = DateFormat.getDate(this.date);
-		}
-		System.out.println("搜索订单的时间:"+date);
-		
-		List<OrderVO> orderVOs = new ArrayList<OrderVO>();
-		
-		orderVOs = orderService.CheckOrderList
-				(new FuzzySearchOrderVO(tempHotelID, tempcustomerID, date, keywordinput,
-						unexecuted.isSelected(), executed.isSelected(),
-						revoked.isSelected(), exception.isSelected()));
-//		// 分别添加符合条件的
-//		if (unexecuted.isSelected()) {
-//			orderVOs.addAll(orderService.CheckOrderList(new SearchOrderInfoVO(string, null, OrderState.Unexecuted)));
-//		}
-//		if (executed.isSelected()) {
-//			orderVOs.addAll(orderService.CheckOrderList(new SearchOrderInfoVO(string, null, OrderState.Executed)));
-//		}
-//		if (exception.isSelected()) {
-//			orderVOs.addAll(orderService.CheckOrderList(new SearchOrderInfoVO(string, null, OrderState.Exception)));
-//		}
-//		if (revoked.isSelected()) {
-//			orderVOs.addAll(orderService.CheckOrderList(new SearchOrderInfoVO(string, null, OrderState.Revoked)));
-//		}
 		this.orderList.getChildren().clear();
-		if (orderVOs != null) {
-			for (OrderVO orderVO : orderVOs) {
-				OrderItemController orderItemController = addItem();
-				HotelbriefVO hotelbriefVO = hotelDealService.getHotelInfo(orderVO.hotelID);
-				Image hotelImage = new Image(hotelbriefVO.imageuri.toString());
-				String hotelName = hotelbriefVO.hotelName;
-				HotelAddress hotelAddress = hotelbriefVO.hotelAddress;
-				orderItemController.setValue(hotelImage, hotelName, hotelAddress, orderVO.latestTime,
-						orderVO.planedLeaveTime, orderVO.roomType, orderVO.roomNumber.size(), orderVO.price,
-						orderVO.orderState, orderVO.orderID, orderVO.hotelID);
+		
+		HotelDealService hotelDealService = HotelDealController.getInstance();
+		
+		spinnerPane.setVisible(true);
+		SearchService searchService =new SearchService();
+		searchService.setOnSucceeded(e->{
+			spinnerPane.setVisible(false);
+			
+			if (searchService.orderVOs != null) {
+				for (OrderVO orderVO : searchService.orderVOs) {
+					OrderItemController orderItemController = addItem();
+					HotelbriefVO hotelbriefVO = hotelDealService.getHotelInfo(orderVO.hotelID);
+					Image hotelImage = new Image(hotelbriefVO.imageuri.toString());
+					String hotelName = hotelbriefVO.hotelName;
+					HotelAddress hotelAddress = hotelbriefVO.hotelAddress;
+					orderItemController.setValue(hotelImage, hotelName, hotelAddress, orderVO.latestTime,
+							orderVO.planedLeaveTime, orderVO.roomType, orderVO.roomNumber.size(), orderVO.price,
+							orderVO.orderState, orderVO.orderID, orderVO.hotelID);
+				}
+			}else {
+				Label label=new Label("没有订单");
+				label.setFont(Font.font(24));
+				this.orderList.getChildren().addAll(label);
+				return;
 			}
-		}else {
-			Label label=new Label("没有订单");
-			label.setFont(Font.font(24));
-			this.orderList.getChildren().addAll(label);
-			return;
-		}
+		});
+		searchService.start();
 	}
 
 	private Date getDate() {
@@ -206,5 +175,58 @@ public class OrderListController extends DetailsController {
 		this.keyWords.setText(keyWords);
 		this.date.setValue(date);
 		handleSearch();
+	}
+	
+	
+	/**
+	 * 搜索订单的后台线程
+	 * @author zjy
+	 *
+	 */
+	private class SearchService extends Service<Void> {
+		private List<OrderVO> orderVOs = new ArrayList<OrderVO>();
+		@Override
+		protected Task<Void> createTask() {
+			return new Task<Void>() {
+				@Override
+				protected Void call() throws Exception {
+					try {
+						OrderService orderService = OrderController.getInstance();
+						LoginService loginService = LoginController.getInstance();
+
+						LogVO logVO = loginService.getLogState();
+						if (logVO.state.equals(businesslogic.login.State.logout)) {
+							System.err.println("can't handleSearch: the login state is logout!");
+							return null;
+						}
+						
+						String tempHotelID = null;
+						String tempcustomerID = null;
+						if(logVO.accountType==AccountType.Customer){
+							tempcustomerID = logVO.accountID;
+						}else if(logVO.accountType==AccountType.Hotel){
+							tempHotelID = logVO.accountID;;
+						}
+						
+						String keywordinput = "".equals(keyWords.getText()) ? null : keyWords.getText();
+						LocalDate localdate = OrderListController.this.date.getValue();
+						Date date = null;
+						if(localdate!=null){
+							date = DateFormat.getDate(OrderListController.this.date);
+						}
+						
+						orderVOs = orderService.CheckOrderList
+								(new FuzzySearchOrderVO(tempHotelID, tempcustomerID, date, keywordinput,
+										unexecuted.isSelected(), executed.isSelected(),
+										revoked.isSelected(), exception.isSelected()));
+						
+						Thread.sleep(1000);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					return null;
+				}
+			};
+		}
 	}
 }

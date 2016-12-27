@@ -68,7 +68,7 @@ public class VIPAndBusinessCircle_WebItemController extends WebItemController {
 				vipLevel.getValue()==null?0:Integer.parseInt(vipLevel.getValue().split(" ")[1]), 
 				city.getValue(), district.getValue(), businessCircle.getValue());
 		discountVO_web.discountID = discountID;
-		discountVO_web.discountState = null;
+		discountVO_web.discountState = DiscountState.valid;
 		
 		if (discountID != null)
 			discountWebService.editWebDiscount(discountVO_web);
@@ -113,7 +113,7 @@ public class VIPAndBusinessCircle_WebItemController extends WebItemController {
 		DiscountWebService discountWebService = DiscountWebController.getInstance();
 		HotelDealService hotelDealService=HotelDealController.getInstance();
 		int[] levelCredits=discountWebService.getLevelCredit();
-		for(int i:levelCredits){
+		for(int i=0;i<levelCredits.length;i++){
 			this.vipLevel.getItems().add("VIP " + i+1);
 		}		
 		if(vipLevel>levelCredits.length){
