@@ -51,7 +51,7 @@ public class HotelDetailController extends DetailsController{
 	private static Image yellowStar=new Image("file:./target/resources/images/star__selected.png");
 	private static Image greyStar=new Image("file:./target/resources/images/star_unselected.png");
 	private static String starArray[]={"1星酒店","2星酒店","3星酒店","4星酒店","5星酒店"};
-	
+
 	@FXML
 	private ImageView hotelImage;
 	@FXML

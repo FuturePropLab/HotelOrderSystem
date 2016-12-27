@@ -33,6 +33,20 @@ public class VIPAndBusinessCircle_WebItemController extends WebItemController {
 	protected ComboBox<String> district;
 	@FXML
 	protected ComboBox<String> businessCircle;
+	
+	@FXML
+	private void initialize() {
+		DiscountWebService discountWebService = DiscountWebController.getInstance();
+		HotelDealService hotelDealService=HotelDealController.getInstance();
+		
+		int[] levelCredits=discountWebService.getLevelCredit();
+		for(int i=0;i<levelCredits.length;i++){
+			this.vipLevel.getItems().add("VIP " + (i+1));
+		}
+		
+		this.city.getItems().clear();
+		this.city.getItems().addAll(hotelDealService.getAllCity());
+	}
 
 	@FXML
 	protected void handleVIPLevel() {
@@ -109,21 +123,8 @@ public class VIPAndBusinessCircle_WebItemController extends WebItemController {
 	 * @param businessCircle 商圈
 	 */
 	public void setValue( int vipLevel, String city, String district,
-			String businessCircle) {
-		DiscountWebService discountWebService = DiscountWebController.getInstance();
-		HotelDealService hotelDealService=HotelDealController.getInstance();
-		int[] levelCredits=discountWebService.getLevelCredit();
-		for(int i=0;i<levelCredits.length;i++){
-			this.vipLevel.getItems().add("VIP " + i+1);
-		}		
-		if(vipLevel>levelCredits.length){
-			System.err.println("cant not find VIP "+vipLevel);
-		}else {
-			this.vipLevel.setValue("VIP " + vipLevel);
-		}
-		
-		this.city.getItems().clear();
-		this.city.getItems().addAll(hotelDealService.getAllCity());
+			String businessCircle) {		
+		this.vipLevel.setValue("VIP " + vipLevel);		
 		this.city.setValue(city);
 		handleCity();
 		this.district.setValue(district);
@@ -134,9 +135,11 @@ public class VIPAndBusinessCircle_WebItemController extends WebItemController {
 
 	@Override
 	protected void add() {
-		DiscountVO_web discountVO_web = new DiscountVO_web_district(Double.parseDouble(discount.getText()),
-				Integer.valueOf(vipLevel.getValue()), city.getValue(), district.getValue(),
+		DiscountVO_web discountVO_web = new DiscountVO_web_district(Double.parseDouble(discount.getText())*0.1,
+				Integer.valueOf(vipLevel.getValue().substring(4)), city.getValue(), district.getValue(),
 				businessCircle.getValue());
+		discountVO_web.discountID=this.discountID;
+		discountVO_web.discountState =DiscountState.valid;
 		DiscountWebService discountWebService = DiscountWebController.getInstance();
 		discountWebService.addWebDiscount(discountVO_web);
 	}
