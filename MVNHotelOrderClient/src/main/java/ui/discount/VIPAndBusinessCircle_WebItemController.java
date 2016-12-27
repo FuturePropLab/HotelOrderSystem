@@ -39,8 +39,8 @@ public class VIPAndBusinessCircle_WebItemController extends WebItemController {
 		DiscountWebService discountWebService = DiscountWebController.getInstance();
 		HotelDealService hotelDealService=HotelDealController.getInstance();
 		
-		int[] levelCredits=discountWebService.getLevelCredit();
-		for(int i=0;i<levelCredits.length;i++){
+		List<DiscountVO_web> getWebDiscount = discountWebService.getWebDiscount(Strategy_webType.Level, DiscountState.valid);
+		for(int i=0;i<getWebDiscount.size();i++){
 			this.vipLevel.getItems().add("VIP " + (i+1));
 		}
 		

@@ -30,7 +30,7 @@ public class DiscountVO_web_district extends DiscountVO_web {
 		this.district = district;
 		this.businessCircle = businessCircle;
 		this.type = Strategy_webType.VIP_district;
-		this.discountState = null;
+		this.discountState = DiscountState.valid;
 	}
 
 	public int level;// 会员等级
