@@ -1,21 +1,12 @@
 package ui.utils;
 
-import java.util.Date;
-
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.validation.NumberValidator;
 import com.jfoenix.validation.RequiredFieldValidator;
-import com.jfoenix.validation.base.ValidatorBase;
 
 import de.jensd.fx.fontawesome.AwesomeIcon;
 import de.jensd.fx.fontawesome.Icon;
-import javafx.beans.property.ReadOnlyBooleanProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.collections.ObservableList;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputControl;
 
 /**
  * 输入框的功能设置类，只提供静态方法

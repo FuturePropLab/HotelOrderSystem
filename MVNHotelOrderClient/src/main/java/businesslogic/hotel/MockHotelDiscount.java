@@ -23,7 +23,7 @@ public class MockHotelDiscount implements getDiscountInfo{
 			
 //		String discountid="0001";
 //		HotelDiscount temp=new HotelDiscount();
-		DiscountVO_hotel discountVO=new DiscountVO_hotel(8.8,date1,date2,"aa",false,Strategy_hotelType.Birthday,null);
+		DiscountVO_hotel discountVO=new DiscountVO_hotel(8.8,date1,date2,"aa",false,Strategy_hotelType.Birthday,null,"HT001");
 		List<DiscountVO_hotel> list=new LinkedList();
 		list.add(discountVO);
 		return list;

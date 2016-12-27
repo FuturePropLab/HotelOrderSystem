@@ -70,6 +70,8 @@ public class DiscountHotelDataHelperImpl implements DiscountHotelDataHelper {
 	public ResultMessage_Discount modifyHotelDiscount(String hotelID, DiscountPO_hotel discountPO_hotel) {
 		DiscountHotelPO discountHotelPO = new DiscountHotelPO(hotelID, discountPO_hotel);
 		if(discountHotelPO.getDiscountID()==null)  return ResultMessage_Discount.Fail;
+		
+		
 		Session s = Hibernateutils.getSessionFactory().openSession();
 		try {
 			Transaction t = s.beginTransaction();

@@ -61,7 +61,7 @@ public class DiscountHotelController implements DiscountHotelService {
 	public ResultMessage_DiscountDetail addHotelDiscount(String hotelID, DiscountVO_hotel dis) {
 		ResultMessage_DiscountDetail resultMessage_DiscountDetail = ResultMessage_DiscountDetail.fail;
 		try {
-
+			System.out.println("Add  discount hotelID :    "+hotelID);
 			resultMessage_DiscountDetail = hotelDiscount.addHotelDiscount(hotelID, dis);
 			if (resultMessage_DiscountDetail == ResultMessage_DiscountDetail.Success) {
 				initHotelDiscount(hotelID);
@@ -81,6 +81,7 @@ public class DiscountHotelController implements DiscountHotelService {
 			resultMessage_Discount = hotelDiscount.editHotelDiscount(discountID, discountVO_hotel);
 			if (resultMessage_Discount == ResultMessage_Discount.Success) {
 				getHotelDiscount(hotelID);
+				initHotelDiscount(hotelID);
 			}
 			return resultMessage_Discount;
 		} catch (RemoteException e) {

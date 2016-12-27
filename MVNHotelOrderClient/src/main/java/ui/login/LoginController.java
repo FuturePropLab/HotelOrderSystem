@@ -63,8 +63,10 @@ public class LoginController extends FullLayoutController{
 		TextFieldUtil.setValidator(password_signup);
 		TextFieldUtil.setRepeatValidator(password_signup,repeatPassword);
 		String[] str= saveUsernameUtil.getSave();
-		this.username.setText(str[0]);
-		this.accountType.setValue(str[1]);
+		if(str.length>1){
+			this.username.setText(str[0]);
+			this.accountType.setValue(str[1]);
+		}
 	}
 	
 	@FXML
