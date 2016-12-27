@@ -27,7 +27,7 @@ public enum OrderState {
 	}
 	
 	public Color getColor() {
-		Color[] stateColors={Color.LIGHTGREEN,Color.LIGHTSALMON,Color.RED,Color.DARKGREY};
+		Color[] stateColors={Color.GREEN,Color.LIGHTSKYBLUE,Color.RED,Color.DARKGREY};
 		return stateColors[this.ordinal()];
 	}
 }

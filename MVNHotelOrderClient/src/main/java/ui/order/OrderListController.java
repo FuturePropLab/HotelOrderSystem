@@ -18,6 +18,7 @@ import businesslogicservice.LoginService;
 import businesslogicservice.OrderService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -52,7 +53,7 @@ public class OrderListController extends DetailsController {
 	@FXML
 	private TextField keyWords;
 	@FXML
-	private ImageView search;
+	private Button search;
 	@FXML
 	private DatePicker date;
 	@FXML
@@ -65,6 +66,11 @@ public class OrderListController extends DetailsController {
 	private CheckBox revoked;
 	@FXML
 	private FlowPane orderList;
+	
+	@FXML
+	private void initialize() {
+		handleSearch();
+	}
 
 	@FXML
 	private void handleSearch() {

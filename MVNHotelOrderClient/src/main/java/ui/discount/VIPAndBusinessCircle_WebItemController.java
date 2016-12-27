@@ -44,6 +44,7 @@ public class VIPAndBusinessCircle_WebItemController extends WebItemController {
 		HotelDealService hotelDealService=HotelDealController.getInstance();
 		this.district.getItems().clear();
 		this.district.getItems().addAll(hotelDealService.getAllDistrictByCity(this.city.getValue()));
+		this.district.setValue(null);
 	}
 
 	@FXML
@@ -51,6 +52,7 @@ public class VIPAndBusinessCircle_WebItemController extends WebItemController {
 		HotelDealService hotelDealService=HotelDealController.getInstance();
 		this.businessCircle.getItems().clear();
 		this.businessCircle.getItems().addAll(hotelDealService.getBusineeCircleByDistrict(this.district.getValue()));
+		this.businessCircle.setValue(null);
 	}
 
 	@FXML
@@ -62,7 +64,7 @@ public class VIPAndBusinessCircle_WebItemController extends WebItemController {
 	@FXML @Override
 	protected void handleSave() {
 		DiscountWebService discountWebService = DiscountWebController.getInstance();
-		DiscountVO_web discountVO_web = new DiscountVO_web_district(Double.parseDouble(discount.getText()),
+		DiscountVO_web discountVO_web = new DiscountVO_web_district(Double.parseDouble(discount.getText())*0.1,
 				vipLevel.getValue()==null?0:Integer.parseInt(vipLevel.getValue().split(" ")[1]), 
 				city.getValue(), district.getValue(), businessCircle.getValue());
 		discountVO_web.discountID = discountID;

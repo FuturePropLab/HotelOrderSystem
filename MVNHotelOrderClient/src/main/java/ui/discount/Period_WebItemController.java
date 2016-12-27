@@ -90,7 +90,7 @@ public class Period_WebItemController extends WebItemController {
 	@FXML@Override
 	protected void handleSave() {
 		DiscountVO_web discountVO_web = new DiscountVO_web_period(startTime.getValue(), endTime.getValue(),
-				Double.parseDouble(discount.getText()));
+				Double.parseDouble(discount.getText())*0.1);
 		discountVO_web.discountID=discountID;
 		discountVO_web.discountState =null;
 		DiscountWebService discountWebService = DiscountWebController.getInstance();

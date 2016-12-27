@@ -33,9 +33,9 @@
                   </JFXDatePicker>
                </children>
             </HBox>
-            <JFXButton layoutX="630.0" layoutY="77.0" text="">
+            <JFXButton fx:id="search" layoutX="630.0" layoutY="77.0" onAction="#handleSearch" text="">
                <graphic>
-                  <ImageView fx:id="search" fitHeight="70.0" fitWidth="70.0" onMouseClicked="#handleSearch">
+                  <ImageView fitHeight="70.0" fitWidth="70.0" onMouseClicked="#handleSearch">
                      <image>
                         <Image url="@../../../resources/images/icon_search.png" />
                      </image>

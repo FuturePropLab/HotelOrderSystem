@@ -99,7 +99,7 @@ public class VIPLevelAndDiscount_WebItemController extends WebItemController {
 
 	@Override
 	protected void handleSave() {
-		DiscountVO_web dis = new DiscountVO_web_level(Strategy_webType.Level, Double.parseDouble(discount.getText()),
+		DiscountVO_web dis = new DiscountVO_web_level(Strategy_webType.Level, Double.parseDouble(discount.getText())*0.1,
 				Integer.parseInt(level.getText().split(" ")[1]), Integer.parseInt(credit.getText()));
 		DiscountWebController.getInstance().editWebDiscount(dis);
 	}

@@ -83,7 +83,7 @@ public class WebDiscountController extends DetailsController {
 			period_WebItemController.setValue(
 					discountVO_web_period.startDate.toString() + " - " + discountVO_web_period.endDate.toString(),
 					DiscountState.valid.equals(discountVO_web_period.discountState)?"进行中":"已失效", 
-					discountVO_web_period.discount,discountVO_web_period.discountID);
+					discountVO_web_period.discount*10,discountVO_web_period.discountID);
 			period_WebItemController.setValue(discountVO_web_period.startDate, discountVO_web_period.endDate);
 		}
 
@@ -95,7 +95,7 @@ public class WebDiscountController extends DetailsController {
 					(VIPAndBusinessCircle_WebItemController) addNewItem(Strategy_webType.VIP_district);
 			vipAndBusinessCircleItemController.setValue(discountVO_web_district.businessCircle,
 					DiscountState.valid.equals(discountVO_web_district.discountState)?"进行中":"已失效", 
-					discountVO_web_district.discount,discountVO_web_district.discountID);
+					discountVO_web_district.discount*10,discountVO_web_district.discountID);
 			vipAndBusinessCircleItemController.setValue(discountVO_web_district.level, discountVO_web_district.city,
 					discountVO_web_district.district, discountVO_web_district.businessCircle);
 		}
@@ -108,7 +108,7 @@ public class WebDiscountController extends DetailsController {
 					(VIPLevelAndDiscount_WebItemController) addNewItem(Strategy_webType.Level);
 			vipLevelAndDiscountItemController.setValue(String.valueOf(discountVO_web_level.level),
 					DiscountState.valid.equals(discountVO_web_level.discountState)?"进行中":"已失效", 
-					discountVO_web_level.discount,discountVO_web_level.discountID);
+					discountVO_web_level.discount*10,discountVO_web_level.discountID);
 			vipLevelAndDiscountItemController.setValue(discountVO_web_level.level, discountVO_web_level.levelUpCredit);
 		}
 
