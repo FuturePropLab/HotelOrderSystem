@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXSpinner?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
@@ -11,6 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
@@ -58,6 +60,17 @@
             <FlowPane fx:id="orderList" prefHeight="540.0" prefWidth="900.0" style="-fx-background-color: WHITE;" />
          </content>
       </ScrollPane>
+      <StackPane fx:id="spinnerPane" layoutX="360.0" layoutY="360.0" stylesheets="@../../../resources/css/jfoenix-main-demo.css" visible="false">
+         <children>
+            <JFXSpinner startingAngle="-40" styleClass="materialDesign-purple, first-spinner" />
+            <JFXSpinner startingAngle="-90" styleClass="materialDesign-blue, second-spinner" />
+            <JFXSpinner startingAngle="-120" styleClass="materialDesign-cyan, third-spinner" />
+            <JFXSpinner startingAngle="-150" styleClass="materialDesign-green, fourth-spinner" />
+            <JFXSpinner startingAngle="-180" styleClass="materialDesign-yellow, fifth-spinner" />
+            <JFXSpinner startingAngle="-210" styleClass="materialDesign-orange, sixth-spinner" />
+            <JFXSpinner startingAngle="-240" styleClass="materialDesign-red, seventh-spinner" />
+         </children>
+      </StackPane>
 
    </children>
 </AnchorPane>

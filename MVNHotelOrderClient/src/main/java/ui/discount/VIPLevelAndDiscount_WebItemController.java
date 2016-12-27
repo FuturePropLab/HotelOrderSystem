@@ -7,6 +7,7 @@ import businesslogicservice.DiscountWebService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import tools.DiscountState;
 import tools.Strategy_webType;
 import ui.utils.Dialogs;
 import ui.utils.TextFieldUtil;
@@ -99,8 +100,13 @@ public class VIPLevelAndDiscount_WebItemController extends WebItemController {
 
 	@Override
 	protected void handleSave() {
-		DiscountVO_web dis = new DiscountVO_web_level(Strategy_webType.Level, Double.parseDouble(discount.getText())*0.1,
-				Integer.parseInt(level.getText().split(" ")[1]), Integer.parseInt(credit.getText()));
-		DiscountWebController.getInstance().editWebDiscount(dis);
+		DiscountVO_web discountVO_web = new DiscountVO_web_level(Strategy_webType.Level, 
+				Double.parseDouble(discount.getText())*0.1,Integer.parseInt(level.getText().split(" ")[1]), 
+				Integer.parseInt(credit.getText()));
+		
+		discountVO_web.discountID = discountID;
+		discountVO_web.discountState = DiscountState.valid;
+		if (discountID != null)
+			DiscountWebController.getInstance().editWebDiscount(discountVO_web);
 	}
 }

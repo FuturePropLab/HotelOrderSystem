@@ -40,11 +40,12 @@ public class DiscountPO_web_level extends DiscountPO_web implements Serializable
 
 	public DiscountPO_web_level(DiscountVO_web_level discountVO_web) {
 		// TODO Auto-generated constructor stub
-		setDiscount(discountVO_web.discount);
+		super.setDiscount(discountVO_web.discount);
 		this.level = discountVO_web.level;
 		this.levelUpCredit = discountVO_web.levelUpCredit;
 		super.setType(Strategy_webType.Level);
 		super.setDiscountState(discountVO_web.discountState);
+		discountID=discountVO_web.discountID;
 	}
 
 	public int getLv() {

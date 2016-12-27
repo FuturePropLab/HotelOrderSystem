@@ -22,7 +22,7 @@ public class DiscountPO_web implements Serializable{
 	
 	private double discount;
 	
-	private String discountID;
+	protected String discountID;
 	
 	private String remarks;//备注
 	
