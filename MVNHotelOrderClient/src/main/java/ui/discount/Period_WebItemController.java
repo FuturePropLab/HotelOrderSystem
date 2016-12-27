@@ -74,8 +74,8 @@ public class Period_WebItemController extends WebItemController {
 	 * @param endDate 结束时间
 	 */
 	public void setValue( LocalDate startDate, LocalDate endDate) {
-		this.startTime.setPromptText(startDate.toString());
-		this.endTime.setPromptText(endDate.toString());
+		this.startTime.setValue(startDate);
+		this.endTime.setValue(endDate);
 		setTitle();
 	}
 

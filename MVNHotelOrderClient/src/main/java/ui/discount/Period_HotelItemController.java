@@ -71,8 +71,8 @@ public class Period_HotelItemController extends HotelItemController{
 	 * @param endTime 节日日期
 	 */
 	public void setFestivalDate(LocalDate startDate,LocalDate endDate) {
-		this.festivalDate_from.setPromptText(startDate.toString());
-		this.festivalDate_to.setPromptText(endDate.toString());
+		this.festivalDate_from.setValue(startDate);
+		this.festivalDate_to.setValue(endDate);
 	}
 
 }
