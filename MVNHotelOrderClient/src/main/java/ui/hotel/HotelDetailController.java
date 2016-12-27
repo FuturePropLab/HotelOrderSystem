@@ -113,6 +113,8 @@ public class HotelDetailController extends DetailsController{
 	@FXML
 	private Hyperlink assess;
 	@FXML
+	private Label address_Label;//除了酒店工作人员，其他用户可见
+	@FXML
 	private Label cityLabel;//除了酒店工作人员，其他用户可见
 	@FXML
 	private Label districtLabel;//除了酒店工作人员，其他用户可见
@@ -155,6 +157,7 @@ public class HotelDetailController extends DetailsController{
 			describtionTextArea.setVisible(true);
 			starLabel.setVisible(false);
 			starComboBox.setVisible(true);
+			address_Label.setVisible(false);
 			cityLabel.setVisible(false);
 			cityComboBox.setVisible(true);
 			districtLabel.setVisible(false);
