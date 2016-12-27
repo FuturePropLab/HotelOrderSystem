@@ -245,7 +245,7 @@ public class HotelDetailController extends DetailsController{
 	@FXML
 	private void handleStarComboBox() {
 		int starValue=0;
-		for(;starValue<=5;starValue++){
+		for(;starValue<starArray.length;starValue++){
 			if(starComboBox.getValue().equals(starArray[starValue])){
 				break;
 			}
@@ -382,15 +382,20 @@ public class HotelDetailController extends DetailsController{
 		}
 		
 		this.starLabel.setText(hotelDetailsVO.star.ordinal()+"");
-		this.starComboBox.setValue(starArray[hotelDetailsVO.star.ordinal()]);
+		this.star_1.setImage(hotelDetailsVO.star.ordinal()>=1? yellowStar:greyStar);
+		this.star_2.setImage(hotelDetailsVO.star.ordinal()>=2? yellowStar:greyStar);
+		this.star_3.setImage(hotelDetailsVO.star.ordinal()>=3? yellowStar:greyStar);
+		this.star_4.setImage(hotelDetailsVO.star.ordinal()>=4? yellowStar:greyStar);
+		this.star_5.setImage(hotelDetailsVO.star.ordinal()>=5? yellowStar:greyStar);
+		this.starComboBox.setValue(starArray[hotelDetailsVO.star.ordinal()-1]);
 		handleStarComboBox();
 		double mark=hotelDealService.gethotelAssessVO(hotelID).averageMark;
 		this.mark.setText(DoubleFormate.formateto(mark)+"");
-		this.star_1.setImage(mark>=1? yellowStar:greyStar);
-		this.star_2.setImage(mark>=2? yellowStar:greyStar);
-		this.star_3.setImage(mark>=3? yellowStar:greyStar);
-		this.star_4.setImage(mark>=4? yellowStar:greyStar);
-		this.star_5.setImage(mark>=5? yellowStar:greyStar);
+		this.mark_1.setImage(mark>=1? yellowStar:greyStar);
+		this.mark_2.setImage(mark>=2? yellowStar:greyStar);
+		this.mark_3.setImage(mark>=3? yellowStar:greyStar);
+		this.mark_4.setImage(mark>=4? yellowStar:greyStar);
+		this.mark_5.setImage(mark>=5? yellowStar:greyStar);
 		if(hotelDetailsVO.hotelAddress.getCity()!=null)
 		this.cityLabel.setText(hotelDetailsVO.hotelAddress.getCity());
 		if(hotelDetailsVO.hotelAddress.getDistrict()!=null)

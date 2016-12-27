@@ -45,7 +45,7 @@
                      <children>
                         <JFXComboBox fx:id="city" editable="true" onAction="#handleCity" prefWidth="100.0" promptText="城市" />
                         <JFXComboBox fx:id="district" editable="true" layoutX="10.0" layoutY="10.0" onAction="#handleDistrict" prefWidth="100.0" promptText="区" />
-                        <JFXComboBox fx:id="businessCircle" editable="true" layoutX="110.0" layoutY="10.0" prefWidth="160.0" promptText="商圈" />
+                        <JFXComboBox fx:id="businessCircle" editable="true" layoutX="110.0" layoutY="10.0" onAction="#handleSearch" prefWidth="160.0" promptText="商圈" />
                      </children>
                   </HBox>
                   <HBox layoutX="401.0" layoutY="84.0" spacing="30.0">

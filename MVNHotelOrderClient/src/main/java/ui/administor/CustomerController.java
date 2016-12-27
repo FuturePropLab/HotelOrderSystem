@@ -41,7 +41,7 @@ import vo.CustomerVO;
  */
 public class CustomerController {
 	private static final String titles[]={"用户名","客户ID","客户姓名","性别","联系方式"};
-	private static final String defaultPassword="hibernate";
+	private static final String defaultPassword="123456";
 	
 	private JFXTreeTableView<Customer> customerList;
 	private TextField filterField;

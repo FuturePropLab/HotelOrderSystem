@@ -137,14 +137,23 @@
                         <Image url="@../../../resources/images/star__selected.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="starLabel" text="5星酒店">
-                     <font>
-                        <Font size="27.0" />
-                     </font>
+                  <HBox>
+                     <children>
+                        <Label fx:id="starLabel" text="5">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="starLabel1" text="星酒店">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                     </children>
                      <padding>
                         <Insets left="20.0" />
                      </padding>
-                  </Label>
+                  </HBox>
                </children>
             </HBox>
             <JFXComboBox fx:id="starComboBox" onAction="#handleStarComboBox" prefHeight="33.0" prefWidth="140.0" promptText="5星酒店" visible="false" GridPane.valignment="TOP">
@@ -179,14 +188,23 @@
                         <Image url="@../../../resources/images/star_unselected.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="mark" text="3.8分">
-                     <font>
-                        <Font size="27.0" />
-                     </font>
+                  <HBox>
+                     <children>
+                        <Label fx:id="mark" text="3.8">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="mark1" text="分">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                     </children>
                      <padding>
                         <Insets left="20.0" />
                      </padding>
-                  </Label>
+                  </HBox>
                </children>
             </HBox>
             <Hyperlink fx:id="assess" onAction="#handleAssess" text="评价详情" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">

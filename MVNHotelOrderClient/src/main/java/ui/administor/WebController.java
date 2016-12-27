@@ -43,7 +43,7 @@ import vo.WebAccountVO;
  */
 public class WebController {
 	private static final String titles[]={"用户名","账户ID"};
-	private static final String defaultPassword="webweb";
+	private static final String defaultPassword="123456";
 	
 	private JFXTreeTableView<Web> webList;
 	private TextField filterField;

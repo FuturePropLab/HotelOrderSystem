@@ -108,7 +108,7 @@ public class OrderPreviewController extends DetailsController{
 		HotelbriefVO hotelbriefVO=hotelDealService.getHotelInfo(orderInputVO.hotelID);
 		CustomerDealService customerDealService=CustomerDealController.getInstance();
 		String roomTypes[]={"单人间","双人间","标准间","豪华套房","总统套房"};
-		//System.out.println(hotelbriefVO.hotelName);
+		
 		this.hotelName.setText(hotelbriefVO.hotelName);
 		this.date_from.setText(DateFormat.format(orderInputVO.latestTime));
 		this.date_to.setText(DateFormat.format(orderInputVO.planedLeaveTime));
@@ -125,11 +125,11 @@ public class OrderPreviewController extends DetailsController{
 			e.printStackTrace();
 		}
 		this.hotelAddress.setText(hotelbriefVO.hotelAddress.toString());
-		this.star_1.setImage(hotelbriefVO.star.ordinal()+1>=1? yellowStar:greyStar);
-		this.star_2.setImage(hotelbriefVO.star.ordinal()+1>=2? yellowStar:greyStar);
-		this.star_3.setImage(hotelbriefVO.star.ordinal()+1>=3? yellowStar:greyStar);
-		this.star_4.setImage(hotelbriefVO.star.ordinal()+1>=4? yellowStar:greyStar);
-		this.star_5.setImage(hotelbriefVO.star.ordinal()+1>=5? yellowStar:greyStar);
+		this.star_1.setImage(hotelbriefVO.star.ordinal()>=1? yellowStar:greyStar);
+		this.star_2.setImage(hotelbriefVO.star.ordinal()>=2? yellowStar:greyStar);
+		this.star_3.setImage(hotelbriefVO.star.ordinal()>=3? yellowStar:greyStar);
+		this.star_4.setImage(hotelbriefVO.star.ordinal()>=4? yellowStar:greyStar);
+		this.star_5.setImage(hotelbriefVO.star.ordinal()>=5? yellowStar:greyStar);
 		this.orderInputVO=orderInputVO;
 	}
 }

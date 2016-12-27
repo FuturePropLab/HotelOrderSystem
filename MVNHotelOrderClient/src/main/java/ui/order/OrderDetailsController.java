@@ -223,6 +223,7 @@ public class OrderDetailsController extends DetailsController{
 		
 		this.hotelName.setText(hotelDetailsVO.hotelName);
 		this.orderState.setText(orderStates[orderVO.orderState.ordinal()]);
+		this.orderState.setTextFill(orderVO.orderState.getColor());
 		this.orderID.setText(orderVO.orderID);
 		this.placingOrderDate.setText(DateFormat.format(orderVO.startTime));
 		this.date_from.setText(DateFormat.format(orderVO.latestTime));

@@ -104,10 +104,8 @@ public class HotelSearchController extends DetailsController{
 		searchService.start();
 	}
 	@FXML
-	private void handleCity(){
-		//System.out.println("Before CLEAR:   "+city.getValue());
+	private void handleCity(){		
 		district.getItems().clear();
-		//System.out.println("AFTER CLEAR:   "+city.getValue());
 		businessCircle.getItems().clear();
 		HotelDealService hotelDealService= HotelDealController.getInstance();
 		if(city.getValue()!=null && !"".equals(city.getValue())){
@@ -130,8 +128,6 @@ public class HotelSearchController extends DetailsController{
 	private void handleKeyWords(){
 		HotelDealService hotelDealService= HotelDealController.getInstance();
 		List<HotelbriefVO> voList=hotelDealService.searchHotelListFuzzy(keyWords.getText());
-		System.out.println(voList==null);
-		System.out.println(getSortType());
 		List<HotelbriefVO> voListsort = hotelDealService.SortHotel(voList, getSortType());
 		if(voList!=null && !voList.isEmpty());
 		initHotelItems(voListsort);
@@ -139,7 +135,6 @@ public class HotelSearchController extends DetailsController{
 	
 	@FXML
 	private void handleSort(){
-		System.out.println("handleSort()");
 		String citystr = city.getValue();
 		String keystr = keyWords.getText();
 		if(citystr!=null && !"".equals(citystr)){
@@ -158,7 +153,6 @@ public class HotelSearchController extends DetailsController{
 	
 	private void initHotelItems(List<HotelbriefVO> voList){
     	hotelList.getChildren().clear();
-    	System.out.println("after clear!!!!!");
      	String customerID = LoginController.getInstance().getLogState().accountID;
     	if(voList!=null && !voList.isEmpty()){
     		for(HotelbriefVO hotelInfoVO:voList){

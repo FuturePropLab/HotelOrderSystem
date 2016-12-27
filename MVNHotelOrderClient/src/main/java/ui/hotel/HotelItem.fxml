@@ -131,14 +131,25 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Label fx:id="price_to" text="￥350" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="100.0" />
-                     </GridPane.margin>
-                  </Label>
+                  <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <Label fx:id="price_from" text="￥120">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label text="-">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="price_to" text="￥350">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                   <Hyperlink fx:id="hotelDetail" focusTraversable="false" onAction="#handleHotelDetail" prefHeight="56.0" prefWidth="174.0" text="酒店详情" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <font>
                         <Font size="24.0" />
@@ -152,19 +163,6 @@
                         <Font size="24.0" />
                      </font>
                   </Hyperlink>
-                  <Label fx:id="price_from" text="￥120" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label text="-" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="80.0" />
-                     </GridPane.margin>
-                  </Label>
                </children>
             </GridPane>
             <Label fx:id="hotelName" layoutX="23.0" layoutY="8.0" text="儒家酒店" textFill="#c26f29">

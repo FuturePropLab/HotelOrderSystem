@@ -147,9 +147,9 @@
                   </Label>
                </children>
             </GridPane>
-            <HBox layoutX="404.0" layoutY="467.0">
+            <HBox layoutX="174.0" layoutY="468.0" maxWidth="500.0">
                <children>
-                  <Label fx:id="date_from" maxWidth="110.0" text="10-1">
+                  <Label fx:id="date_from" text="10-1">
                      <font>
                         <Font size="28.0" />
                      </font>
@@ -159,14 +159,14 @@
                         <Font size="28.0" />
                      </font>
                   </Label>
-                  <Label fx:id="date_to" maxWidth="110.0" text="10-2">
+                  <Label fx:id="date_to" text="10-2">
                      <font>
                         <Font size="28.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <Group layoutX="427.0" layoutY="511.0">
+            <Group layoutX="401.0" layoutY="505.0">
                <children>
                   <Label fx:id="roomType" layoutX="-22.0" text="总统套房">
                      <font>
@@ -192,14 +192,14 @@
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <HBox layoutX="51.0" layoutY="37.0">
+                  <HBox layoutX="30.0" layoutY="37.0">
                      <children>
                         <Label text="￥">
                            <font>
                               <Font size="50.0" />
                            </font>
                         </Label>
-                        <Label fx:id="price" maxWidth="130.0" text="999">
+                        <Label fx:id="price" maxWidth="200.0" prefWidth="200.0" text="999">
                            <font>
                               <Font size="50.0" />
                            </font>

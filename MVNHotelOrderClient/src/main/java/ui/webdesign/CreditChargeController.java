@@ -50,13 +50,18 @@ public class CreditChargeController extends DetailsController{
 	private void handleUserName(){
 		AccountCustomerService accountCustomerService=CustomerAccountController.getInstance();
 		String customerID=accountCustomerService.getAccountID(userName.getText());
-		if(customerID!=null &&!"".equals(customerID)){
+		if(customerID!=null &&!"".equals(customerID) &&!"INVALID_INPUT".equals(customerID) 
+				&&!"USERNAME_NOT_EXITS".equals(customerID)){
 			try {
 				CustomerVO customerVO=accountCustomerService.getCustomerDetail(customerID);
-				if(customerVO!=null){
+				if(customerVO!=null && customerVO.customerName!=null){
 					customerName.setText(customerVO.customerName);
 					credit.setText(customerVO.credit+"");
 					this.customerID=customerID;
+				}else {
+					customerName.setText("没有这个用户");
+					credit.setText(0+"");
+					this.customerID=null;
 				}
 			} catch (RemoteException e) {
 				Dialogs.showMessage("阿欧", "查询用户失败了……");
@@ -70,17 +75,30 @@ public class CreditChargeController extends DetailsController{
 	@FXML
 	private void handleAmount(){
 		if("".equals(amount.getText())){ 
+			//amount.setText("0");
 			plusVaule.setText("0");
 			return;
 		}
-		plusVaule.setText(Integer.parseInt(amount.getText())*100+"");
+		try{
+			plusVaule.setText(Integer.parseInt(amount.getText())*100+"");
+		}catch(NumberFormatException e){
+			System.out.println(amount.getText()+" is not a number");
+		}
 	}
 	@FXML
 	private void handleCharge(){
+		//检测充值输入是否是整数
+		int amount=0;
+		try{
+			amount=Integer.parseInt(this.amount.getText());
+		}catch(NumberFormatException e){
+			return;
+		}
+		
 		if(this.customerID!=null){
 			CreditLogDealService creditLogDealService=CreditController.getInstance();
 			if(ResultMessage.Exist.equals(creditLogDealService.charge(
-					customerID, Integer.parseInt(amount.getText()), new Date()))){
+					customerID, amount, new Date()))){
 				Dialogs.showMessage("耶耶", "充值成功！≧∇≦");
 			}else {
 				Dialogs.showMessage("额", "充值失败了(⊙o⊙)…");

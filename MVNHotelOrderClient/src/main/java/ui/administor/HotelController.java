@@ -41,7 +41,7 @@ import vo.HotelbriefVO;
  */
 public class HotelController {
 	private static final String titles[]={"用户名","酒店ID","酒店名称","酒店地址","联系方式"};
-	private static final String defaultPassword="woaini";
+	private static final String defaultPassword="123456";
 	
 	private JFXTreeTableView<Hotel> hotelList;
 	private TextField filterField;

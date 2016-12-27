@@ -126,8 +126,6 @@ public class BookHotelController extends DetailsController{
 		double reprice = Double.valueOf(realPrice.getText());
 		int numberOfRoom = Integer.valueOf(this.roomNumber.getText());
 		
-		System.out.println(customerID);
-		
 		OrderInputVO orderInputVO = new OrderInputVO
 				(customerID, this.hotelbriefVO.hotelID, 
 						new Date(), datestart, dateend,
@@ -157,9 +155,7 @@ public class BookHotelController extends DetailsController{
 		
 		
 		LocalDate latestTimex = lastDate_time.getValue();
-		//System.out.println(latestTimex.toString());
 		
-		//TODO  精确到时间有问题
 		//start time deal
 		LocalDate startDate = this.lastDate.getValue() ;
 		LocalTime startTime = this.lastDate_time.getTime();		
@@ -189,7 +185,6 @@ public class BookHotelController extends DetailsController{
 		ResultMessage resultMessage = null;
 		try {
 			 resultMessage=orderController.createOrders(orderInputVO);
-			 System.out.println(resultMessage);
 		} catch (CustomerCreditNotEnoughException e) {
 			Dialogs.showMessage("你的信用值是："+e.credit,"你的信用值不足，不能下单，请联系网站促销人员进行充值");
 			return;
@@ -235,7 +230,12 @@ public class BookHotelController extends DetailsController{
 			}
 		}
 		//number of room
-		int numberofRoom = Integer.valueOf(this.roomNumber.getText());
+		int numberofRoom=1;
+		try {
+			numberofRoom = Integer.valueOf(this.roomNumber.getText());
+		} catch (NumberFormatException e) {
+			System.out.println(this.roomNumber.getText()+" is not a number");
+		}
 		double OriginValue =  days * singlePrice *numberofRoom;
 		
 		//set origin
@@ -244,7 +244,7 @@ public class BookHotelController extends DetailsController{
 		//get discout info
 		OrderInputCalVO orderInputCalVO  = new OrderInputCalVO
 				(singlePrice, this.customerID, hotelbriefVO.hotelID, startDate, endDate, 
-						LocalDate.now(), getRoomType(), Integer.valueOf(this.roomNumber.getText()));
+						LocalDate.now(), getRoomType(), numberofRoom);
 		
 		try {
 			StrategyVO strategyVO  =strategyController.CalculateBestStrategy(orderInputCalVO);
@@ -310,7 +310,6 @@ public class BookHotelController extends DetailsController{
 			Dialogs.showMessage("啊咧", "好像网络连接断开了……");
 		}
 		String customerName = customerVO.customerName;
-		System.out.println("customerName:   "+customerName);
 		this.customerName.setText(customerName);
 		DateFormat.initDatePicker(lastDate, planedLeaveDate);
 		
@@ -321,8 +320,6 @@ public class BookHotelController extends DetailsController{
 	}
 	
 	public void setRoomType(RoomType roomType) {
-//		this.roomType.getItems().clear();
-//		System.out.println(roomType);
 		this.roomType.setValue(getRoomString(roomType));
 	}		
 	public void setLastDate(Date lastDate) {

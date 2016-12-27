@@ -51,7 +51,7 @@
             </Label>
             <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Label fx:id="credit" text="40">
+                  <Label fx:id="credit" text="0">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -61,7 +61,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="plusVaule" maxWidth="1.7976931348623157E308" text="1000" textFill="#0ee115">
+                  <Label fx:id="plusVaule" maxWidth="1.7976931348623157E308" text="0" textFill="#0ee115">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -73,7 +73,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="amount" maxWidth="151.0" minWidth="151.0" onAction="#handleAmount" onKeyReleased="#handleAmount" onKeyTyped="#handleAmount" prefHeight="54.0" prefWidth="151.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <JFXTextField fx:id="amount" maxWidth="151.0" minWidth="151.0" onAction="#handleAmount" onKeyReleased="#handleAmount" onKeyTyped="#handleAmount" prefHeight="54.0" prefWidth="151.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="24.0" />
                </font>
