@@ -12,6 +12,7 @@ import tools.Strategy_hotelType;
  */
 public class DiscountVO_hotel {
 	
+	public  String hotelID;
 	public  Strategy_hotelType type;
 	public String discountID;//还得靠数据层生成啊
 	public double discount;
@@ -24,7 +25,7 @@ public class DiscountVO_hotel {
 	
 	
 	public DiscountVO_hotel( double discount,LocalDate start,LocalDate end,String remarks,boolean superimpose,
-			Strategy_hotelType type ,String enterpriseName){
+			Strategy_hotelType type ,String enterpriseName,String hotelID){
 		this.discount=discount;
 		this.startDate=start;
 		this.endDate=end;
@@ -32,6 +33,7 @@ public class DiscountVO_hotel {
 		this.superimpose=superimpose;
 		this.type=type;
 		this.enterpriseName=enterpriseName;
+		this.hotelID = hotelID;
 		this.discountState=null;
 	}
 	public DiscountVO_hotel (DiscountPO_hotel discountPO_hotel) {
@@ -44,5 +46,6 @@ public class DiscountVO_hotel {
 		this.superimpose=discountPO_hotel.isSuperimpose();
 		this.discountState=discountPO_hotel.getDiscountState();
 		this.enterpriseName=discountPO_hotel.getEnterpriseName();
+		this.hotelID = discountPO_hotel.getHotelID();
 	}
 }
