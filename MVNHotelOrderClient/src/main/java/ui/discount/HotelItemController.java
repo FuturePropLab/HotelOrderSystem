@@ -159,6 +159,7 @@ public abstract class HotelItemController {
 		title.setTextFill(Color.GRAY);
 		aditionalMessage.setEditable(false);
 		discount.setEditable(false);
+		discount.setDisable(true);
 		startTime.setEditable(false);
 		endTime.setEditable(false);
 		superposition.setDisable(true);

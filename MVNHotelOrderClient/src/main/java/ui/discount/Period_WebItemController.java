@@ -52,7 +52,7 @@ public class Period_WebItemController extends WebItemController {
 
 	@Override
 	protected void setTitle() {
-		handleDiscount();
+		title.setText(startTime.getValue().toString() + " - " + endTime.getValue().toString());
 	}
 
 	@Override
@@ -82,7 +82,9 @@ public class Period_WebItemController extends WebItemController {
 	@Override
 	protected void add() {
 		DiscountVO_web discountVO_web = new DiscountVO_web_period(startTime.getValue(), endTime.getValue(),
-				Double.parseDouble(discount.getText()));
+				Double.parseDouble(discount.getText())*0.1);
+		discountVO_web.discountID=this.discountID;
+		discountVO_web.discountState =DiscountState.valid;
 		DiscountWebService discountWebService = DiscountWebController.getInstance();
 		discountWebService.addWebDiscount(discountVO_web);
 	}

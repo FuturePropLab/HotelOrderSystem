@@ -107,6 +107,7 @@ public abstract class WebItemController {
 		state.setTextFill(Color.GRAY);
 		title.setTextFill(Color.GRAY);
 		discount.setEditable(false);
+		discount.setDisable(true);
 		delete.setDisable(true);
 	}
 

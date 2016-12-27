@@ -92,8 +92,10 @@ public class VIPLevelAndDiscount_WebItemController extends WebItemController {
 	@Override
 	protected void add() {
 		DiscountVO_web discountVO_web = new DiscountVO_web_level(Strategy_webType.Level,
-				Double.parseDouble(discount.getText()), Integer.valueOf(level.getText()),
+				Double.parseDouble(discount.getText())*0.1, Integer.valueOf(level.getText().substring(4)),
 				Integer.valueOf(credit.getText()));
+		discountVO_web.discountID=this.discountID;
+		discountVO_web.discountState =DiscountState.valid;
 		DiscountWebService discountWebService = DiscountWebController.getInstance();
 		discountWebService.addWebDiscount(discountVO_web);
 	}
