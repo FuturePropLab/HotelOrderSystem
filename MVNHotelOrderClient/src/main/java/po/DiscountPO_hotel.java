@@ -19,6 +19,8 @@ public class DiscountPO_hotel implements Serializable{
 	/**
 	 * 
 	 */
+	private String hotelID ;
+	
 	private static final long serialVersionUID = 7645590613074411508L;
 
 	private DiscountState discountState;//策略状态，valid ， invalid
@@ -52,6 +54,7 @@ public class DiscountPO_hotel implements Serializable{
 	 * @param enterpriseName
 	 */
 	public DiscountPO_hotel(DiscountState discountState,Strategy_hotelType type,String discountID,double discount,LocalDate startDate,LocalDate enDate,String remarks,boolean superimpose,String enterpriseName){
+		super();
 		this.discountState=discountState;
 		this.type=type;
 		this.discountID=discountID;
@@ -72,6 +75,7 @@ public class DiscountPO_hotel implements Serializable{
 		this.setRemarks(discountVO_hotel.remarks);//备注
 		this.setSuperimpose(discountVO_hotel.superimpose);//是否可叠加
 		this.enterpriseName = discountVO_hotel.enterpriseName;
+		this.hotelID = discountVO_hotel.hotelID;
 	}
 	public LocalDate getStartDate() {
 		return startDate;
@@ -116,5 +120,13 @@ public class DiscountPO_hotel implements Serializable{
 	public String getEnterpriseName() {
 		return enterpriseName;
 	}
+	public String getHotelID() {
+		return hotelID;
+	}
+	public void setHotelID(String hotelID) {
+		this.hotelID = hotelID;
+	}
+	
+	
 
 }
