@@ -52,6 +52,12 @@ public class WebDiscountController extends DetailsController {
 	}
 	@FXML
 	private void initAccordions() {
+		titledPanes.clear();
+		webItemControllers.clear();
+		specialDayList.getPanes().clear();
+		VIPAndBusinessCircleList.getPanes().clear();
+		VIPLevelAndDiscountList.getPanes().clear();
+		
 		DiscountWebService discountWebService = DiscountWebController.getInstance();
 		List<DiscountVO_web> listP = new LinkedList<DiscountVO_web>();
 		List<DiscountVO_web> listV = new LinkedList<DiscountVO_web>();

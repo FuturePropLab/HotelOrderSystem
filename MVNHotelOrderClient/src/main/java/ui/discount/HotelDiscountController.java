@@ -48,6 +48,11 @@ public class HotelDiscountController extends DetailsController {
 	}
 	@FXML
 	private void initAccordions() {
+		titledPanes.clear();
+		hotelItemControllers.clear();
+		birthdayList.getPanes().clear();
+		companyList.getPanes().clear();
+		double11List.getPanes().clear();
 
 		DiscountHotelService discountHotelService = DiscountHotelController.getInstance();
 		

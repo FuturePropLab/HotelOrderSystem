@@ -153,7 +153,7 @@ public class OrderDetailsController extends DetailsController{
 						}
 					}),
 					new Choice("还是不了", e->{}));
-		}else if (AccountType.Customer.equals(loginService.getLogState().accountType)) {
+		}else if (AccountType.Web.equals(loginService.getLogState().accountType)) {
 			Dialogs.showChoise("要给客户恢复被扣除的全部信用值还是一半？", new Choice("全部",e->{
 				orderService.revokeBadOrderr(orderID, RecoverValue.RecoverAll);
 			}),new Choice("一半",e->{

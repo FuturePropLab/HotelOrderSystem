@@ -55,9 +55,7 @@ public class VIPAndBusinessCircle_WebItemController extends WebItemController {
 
 	@FXML
 	protected void handleBusinessCircle() {
-		if (city.getValue() != null && district.getValue() != null && businessCircle.getValue() != null) {
-			setTitle();
-		}
+		setTitle();
 		handleSave();
 	}
 
@@ -81,7 +79,9 @@ public class VIPAndBusinessCircle_WebItemController extends WebItemController {
 
 	@Override
 	protected void setTitle() {
-		handleBusinessCircle();
+		if (city.getValue() != null && district.getValue() != null && businessCircle.getValue() != null) {
+			this.title.setText(businessCircle.getValue());
+		}
 	}
 
 	@Override

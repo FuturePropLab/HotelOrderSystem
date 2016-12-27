@@ -43,6 +43,8 @@ public class DiscountPO_web_level extends DiscountPO_web implements Serializable
 		setDiscount(discountVO_web.discount);
 		this.level = discountVO_web.level;
 		this.levelUpCredit = discountVO_web.levelUpCredit;
+		super.setType(Strategy_webType.Level);
+		super.setDiscountState(discountVO_web.discountState);
 	}
 
 	public int getLv() {

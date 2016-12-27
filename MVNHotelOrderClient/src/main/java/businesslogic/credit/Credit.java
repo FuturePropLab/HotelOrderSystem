@@ -38,8 +38,8 @@ public class Credit {
 	 * 
 	 */
 	public Credit(){
-//		this.creditDataService = RemoteHelper.getInstance().getCreditDataService();
-		this.creditDataService = new CreditData_Stub();//test!!!
+		this.creditDataService = RemoteHelper.getInstance().getCreditDataService();
+		//this.creditDataService = new CreditData_Stub();//test!!!
 		this.customerInfo = CustomerInfoforCreditImp.getInstance();
 	}
 	/*public Credit(CreditData_Stub stub){
@@ -267,6 +267,7 @@ public class Credit {
 		
 			try {
 				resultMessage = creditDataService.changeCredit(customer_id, credit);
+				System.out.println("RECOVER "+resultMessage);
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
