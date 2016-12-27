@@ -34,7 +34,7 @@ public class DiscountVO_hotel {
 		this.type=type;
 		this.enterpriseName=enterpriseName;
 		this.hotelID = hotelID;
-		this.discountState=null;
+		this.discountState=DiscountState.valid;
 	}
 	public DiscountVO_hotel (DiscountPO_hotel discountPO_hotel) {
 		this.discountID=discountPO_hotel.getDiscount_id();
