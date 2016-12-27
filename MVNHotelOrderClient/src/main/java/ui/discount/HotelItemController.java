@@ -188,10 +188,10 @@ public abstract class HotelItemController {
 		this.state.setText(state);
 		this.state.setTextFill(DiscountState.valid.equals("进行中")?Color.GREEN:Color.GREY);
 		this.aditionalMessage.setText(aditionalMessage);
-
 		this.discount.setText(DoubleFormate.formateto(discount));
-		this.startTime.setPromptText(startTime.toString());
-		this.endTime.setPromptText(endTime.toString());
+		this.startTime.setValue(startTime);
+		this.endTime.setValue(endTime);
+
 		this.superposition.setSelected(superposition);
 		this.delete.setText("删 除");// 字中间有空格
 		this.hotelID = LoginController.getInstance().getLogState().accountID;
