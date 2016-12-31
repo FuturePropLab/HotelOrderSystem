@@ -14,17 +14,17 @@ public class OrderMoreStrategy_hotel implements HotelStrategyInterface {
 
 		double res = 0;
 
-		final int maxNoDiscount = 2;// 刚好获得优惠的房间数量-1 软编码哈哈哈
+		final int maxNoDiscount = 2;// 刚好获得优惠的房间数量-1
 
 		if (orderInputCalVO.numberOfRooms > maxNoDiscount) {
 
-			res = orderInputCalVO.price * maxNoDiscount + orderInputCalVO.price
-					* (orderInputCalVO.numberOfRooms - maxNoDiscount) * strategyVO_hotel.discount;
-
+//			res = orderInputCalVO.price * maxNoDiscount + orderInputCalVO.price
+//					* (orderInputCalVO.numberOfRooms - maxNoDiscount) * strategyVO_hotel.discount;
+			res = orderInputCalVO.price*strategyVO_hotel.discount*orderInputCalVO.numberOfRooms;
 			res = res - orderInputCalVO.price * orderInputCalVO.numberOfRooms;
 
 		} 
-//		System.out.println(res);
+		System.out.println("lwy"+res);
 		return res;
 	}
 
