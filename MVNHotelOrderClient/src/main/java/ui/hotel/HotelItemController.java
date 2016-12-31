@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import tools.Mark;
 import tools.Star;
+import ui.utils.DoubleFormate;
 
 /**
  * 酒店列表项的控制器
@@ -81,7 +82,7 @@ public class HotelItemController {
 		this.imageView.setImage(image==null? new Image("file:./target/resources/images/room.png"):image);
 		this.hotelName.setText(hotelName);
 		this.star.setText(star.ordinal()+"星");
-		this.mark.setText(mark.getValue()+"分");
+		this.mark.setText(DoubleFormate.formateto(mark.getValue())+"分");
 		this.price_from.setText("￥"+price_from);
 		this.price_to.setText("￥"+price_to);
 		this.hotelID=hotelID;
