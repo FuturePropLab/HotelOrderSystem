@@ -8,5 +8,5 @@ public enum Strategy_hotelType {
 	Birthday,
 	OrderMore,
 	CooperateEnterprise,
-	SpecificPeriod
+	Period
 }

@@ -28,11 +28,8 @@ public class testDiscount {
 //					new DiscountPO_web_level(9.8, 3, 23, DiscountState.valid, "haha",Strategy_webType.Level);
 //			discountPO_web_level.setDiscountID("DS004");
 //			
-			DiscountHotelDataService discountHotelDataService = new DiscountHotelDataServiceImpl();
-			DiscountPO_hotel discountPO_hotel = new DiscountPO_hotel
-			(DiscountState.valid, Strategy_hotelType.CooperateEnterprise, null, 8.8,  LocalDate.now(),
-					LocalDate.of(2016, 12, 31), "王帅惟设计的2", true, "朱俊毅粉丝后援团2");
-			System.out.println(discountHotelDataService.addHotelDiscount("HT001", discountPO_hotel));			
+			DiscountHotelDataService dataService = new DiscountHotelDataServiceImpl();
+			dataService.invalidDiscount("DSH20161231174638320");
 			
 //			DiscountDataHelperImpl dataHelperImpl = new DiscountDataHelperImpl();
 //			

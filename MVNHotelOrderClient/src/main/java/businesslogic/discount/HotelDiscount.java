@@ -23,8 +23,6 @@ public class HotelDiscount {
 
 	public HotelDiscount() {
 		this.dataService = RemoteHelper.getInstance().getDiscountHotelDataService();
-//		 this.dataService = new DiscountHotelData_stub();//test!!!!
-
 	}
 
 	/**
@@ -86,7 +84,6 @@ public class HotelDiscount {
 	 * @throws RemoteException
 	 */
 	public ResultMessage_Discount invalidDiscount(String hotelID, String discountID) throws RemoteException {
-		// TODO Auto-generated method stubS
 		return dataService.invalidDiscount(discountID);
 	}
 
