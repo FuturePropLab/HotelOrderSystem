@@ -95,6 +95,7 @@ public class HotelSearchController extends DetailsController{
 	
 	@FXML
 	private void handleSearch(){
+		hotelList.getChildren().clear();
 		spinnerPane.setVisible(true);
 		SearchService searchService=new SearchService();
 		searchService.setOnSucceeded(e->{

@@ -3,6 +3,7 @@ package ui.main;
 import java.io.IOException;
 import java.util.Stack;
 import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDrawersStack;
 
 import businesslogic.customer.CustomerDealController;
 import businesslogic.hotel.HotelDealController;
@@ -90,30 +91,6 @@ public class RootLayoutController {
 		formerViews=new Stack<View>();
 		try {
 			changeFullLayout("../login/Login.fxml");
-//			changeDetails("../order/OrderList.fxml");
-//			changeDetails("../administor/UserAdmin.fxml");
-//			OrderAssessController controller = (OrderAssessController) this.getDetailsController();
-//			controller.initValue("-C4S90908105229");
-//			changeDetails("../customer/ClientInfo.fxml");
-//			ClientInfoController clientInfoController = (ClientInfoController) this.getDetailsController();
-//			clientInfoController.initValue("CS2016112919423486");
-//			BookHotelController bookHotelController = (BookHotelController)this.getDetailsController();
-//			bookHotelController.setRoomType(RoomType.Double);
-//			bookHotelController.setValue("CS001", "HT001");
-//			changeDetails("../hotel/HotelDetail.fxml");
-//			changeDetails("../customer/BookHotel.fxml");
-//			BookHotelController bookHotelController = (BookHotelController)this.getDetailsController();
-//			bookHotelController.setRoomType(RoomType.Double);
-//			bookHotelController.setValue("CS001", "HT001");
-//			changeFullLayout("../login/FacilitiesInfo.fxml");
-//			FacilitiesInfoController facilitiesInfoController = (FacilitiesInfoController) this.getDetailsController();
-			
-			// changeDetails("../room/RoomInfo.fxml");
-//			changeDetails("../order/OrderDetails.fxml");
-//			 changeDetails("../discount/HotelDiscount.fxml");
-//			changeDetails("../customer/OrderAssess.fxml");
-
-//			changeGuid("../guid/GuideUI.fxml");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
