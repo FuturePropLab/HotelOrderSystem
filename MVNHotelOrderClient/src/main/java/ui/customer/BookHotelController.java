@@ -26,6 +26,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import tools.ResultMessage;
 import tools.RoomType;
 import tools.TypeRoomInfo;
@@ -262,14 +263,18 @@ public class BookHotelController extends DetailsController{
 					discount_hotel+=strategyVO_hotel.type.show()+":"+strategyVO_hotel.discount+"\r\n";
 				}
 				this.hotelDiscount.setText(discount_hotel);
+				this.hotelDiscount.setTextFill(Color.GREEN);
 			}else {
 				this.hotelDiscount.setText("没有可用的酒店的折扣");
+				this.hotelDiscount.setTextFill(Color.BLACK);
 			}
 			//显示网站折扣
-			if(strategyVO.web!=null){
+			if(strategyVO.web!=null && strategyVO.web.type!=null){
 				this.webDiscount.setText(strategyVO.web.type.show()+":"+strategyVO.web.discount+"\r\n");
+				this.webDiscount.setTextFill(Color.GREEN);
 			}else {
 				this.webDiscount.setText("没有可用的网站的折扣");
+				this.hotelDiscount.setTextFill(Color.BLACK);
 			}
 			
 		} catch (RemoteException e) {
