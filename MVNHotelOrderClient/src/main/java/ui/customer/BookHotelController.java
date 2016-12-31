@@ -282,8 +282,6 @@ public class BookHotelController extends DetailsController{
 			this.realPrice.setText(String.valueOf(OriginValue));
 			this.discount.setText("10.0");
 		}
-		
-		
 	}
 	
 	

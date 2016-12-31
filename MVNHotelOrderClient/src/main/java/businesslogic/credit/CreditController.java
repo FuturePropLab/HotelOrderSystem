@@ -16,7 +16,6 @@ import vo.CreditlogVO;
 
 
 /**
- * 瀹炵幇CreditLogDealService鐨勬帴鍙�
  * @author wshwbluebird
  *
  */

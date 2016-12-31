@@ -247,7 +247,7 @@ public class Credit {
 	public ResultMessage Recover(Order order,RecoverValue recoverValue){
 		int value  = order.getOrderValue();		
 		int creditchange = 0;
-		if(recoverValue == RecoverValue.RecoverAll){
+		if(RecoverValue.RecoverAll.equals(recoverValue)){
 			creditchange = value;
 		}else{
 			creditchange = value/2;
@@ -259,14 +259,12 @@ public class Credit {
 		
 		ResultMessage resultMessage = null;
 		
-		
-			try {
-				resultMessage = creditDataService.changeCredit(customer_id, credit);
-				System.out.println("RECOVER "+resultMessage);
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}//修改客户信用值
+		try {
+			resultMessage = creditDataService.changeCredit(customer_id, credit);
+			System.out.println("RECOVER "+resultMessage);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}//修改客户信用值
 		
 		if(resultMessage.equals(ResultMessage.Exist)){
 			//String customerID , ActionType actionType , String  orderID, Date changDate ,  int changeValue,int money
