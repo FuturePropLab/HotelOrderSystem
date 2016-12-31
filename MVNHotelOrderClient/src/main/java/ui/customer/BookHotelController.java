@@ -41,6 +41,7 @@ import vo.HotelbriefVO;
 import vo.OrderInputCalVO;
 import vo.OrderInputVO;
 import vo.StrategyVO;
+import vo.StrategyVO_hotel;
 
 /**
  * 预订酒店界面的控制器
@@ -54,6 +55,10 @@ public class BookHotelController extends DetailsController{
 	private Hyperlink hotelName;
 	@FXML
 	private Label discount;
+	@FXML
+	private Label hotelDiscount;
+	@FXML
+	private Label webDiscount;
 	@FXML
 	private Label originalPrice;
 	@FXML
@@ -250,6 +255,23 @@ public class BookHotelController extends DetailsController{
 			StrategyVO strategyVO  =strategyController.CalculateBestStrategy(orderInputCalVO);
 			this.realPrice.setText(String.valueOf(DoubleFormate.formateto(strategyVO.price)));
 			this.discount.setText(String.valueOf(DoubleFormate.formateto((10*strategyVO.price)/OriginValue)));
+			//显示酒店折扣
+			if(strategyVO.hotel!=null && !strategyVO.hotel.isEmpty()){
+				String discount_hotel="";
+				for(StrategyVO_hotel strategyVO_hotel:strategyVO.hotel){
+					discount_hotel+=strategyVO_hotel.type.show()+":"+strategyVO_hotel.discount+"\r\n";
+				}
+				this.hotelDiscount.setText(discount_hotel);
+			}else {
+				this.hotelDiscount.setText("没有可用的酒店的折扣");
+			}
+			//显示网站折扣
+			if(strategyVO.web!=null){
+				this.webDiscount.setText(strategyVO.web.type.show()+":"+strategyVO.web.discount+"\r\n");
+			}else {
+				this.webDiscount.setText("没有可用的网站的折扣");
+			}
+			
 		} catch (RemoteException e) {
 			System.out.println("rmi fail");
 			this.realPrice.setText(String.valueOf(OriginValue));

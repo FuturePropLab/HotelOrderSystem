@@ -99,20 +99,6 @@
                   <Insets left="10.0" />
                </padding>
             </Label>
-            <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <children>
-                  <Label text="￥">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="originalPrice" maxWidth="1.7976931348623157E308" text="100">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
             <Label text="最优折扣数:" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
                   <Font size="24.0" />
@@ -121,7 +107,7 @@
                   <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <Label text="优惠后价格:" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Label text="折后价/原价:" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font size="24.0" />
                </font>
@@ -129,10 +115,7 @@
                   <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <Label text="原价格:" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-               <font>
-                  <Font size="24.0" />
-               </font>
+            <Label fx:id="hotelDiscount" text="没有可用的酒店的折扣" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
@@ -160,7 +143,7 @@
             </JFXCheckBox>
             <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <children>
-                  <JFXTextField fx:id="roomNumber" maxWidth="177.0" minWidth="74.0" onAction="#handlePrice" prefHeight="54.0" prefWidth="74.0" text="1">
+                  <JFXTextField fx:id="roomNumber" maxWidth="177.0" minWidth="74.0" onAction="#handlePrice" onKeyPressed="#handlePrice" onKeyReleased="#handlePrice" prefHeight="54.0" prefWidth="74.0" text="1">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -184,16 +167,37 @@
                      <font>
                         <Font size="24.0" />
                      </font>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
                   </Label>
                   <Label fx:id="realPrice" maxWidth="1.7976931348623157E308" text="95">
                      <font>
-                        <Font size="24.0" />
+                        <Font size="40.0" />
                      </font>
+                  </Label>
+                  <Label text="/">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="originalPrice" maxWidth="1.7976931348623157E308" text="100">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
                   </Label>
                </children>
             </HBox>
             <JFXDatePicker fx:id="lastDate_time" onAction="#handleDate" overLay="true" showTime="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             <JFXDatePicker fx:id="planedLeaveDate_time" onAction="#handleDate" overLay="true" showTime="true" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Label fx:id="webDiscount" layoutX="86.0" layoutY="301.0" text="没有可用的网站的折扣" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="212.45538330078125" minWidth="10.0" prefWidth="134.83050537109375" />

@@ -22,6 +22,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -93,7 +94,9 @@ public class HotelDetailController extends DetailsController{
 	@FXML
 	private ImageView star_5;
 	@FXML
-	private Label starLabel;//除了酒店工作人员，其他用户可见
+	private Label starLabel;
+	@FXML
+	private HBox starHBox;//除了酒店工作人员，其他用户可见
 	@FXML
 	private ComboBox<String> starComboBox;//只有酒店工作人员可见
 	@FXML
@@ -155,7 +158,7 @@ public class HotelDetailController extends DetailsController{
 			hotelNameTextField.setVisible(true);
 			describtionText.setVisible(false);
 			describtionTextArea.setVisible(true);
-			starLabel.setVisible(false);
+			starHBox.setVisible(false);
 			starComboBox.setVisible(true);
 			address_Label.setVisible(false);
 			cityLabel.setVisible(false);

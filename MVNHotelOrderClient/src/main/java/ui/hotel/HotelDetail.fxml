@@ -137,14 +137,14 @@
                         <Image url="@../../../resources/images/star__selected.png" />
                      </image>
                   </ImageView>
-                  <HBox>
+                  <HBox fx:id="starHBox">
                      <children>
                         <Label fx:id="starLabel" text="5">
                            <font>
                               <Font size="27.0" />
                            </font>
                         </Label>
-                        <Label fx:id="starLabel1" text="星酒店">
+                        <Label text="星酒店">
                            <font>
                               <Font size="27.0" />
                            </font>
@@ -195,7 +195,7 @@
                               <Font size="27.0" />
                            </font>
                         </Label>
-                        <Label fx:id="mark1" text="分">
+                        <Label text="分">
                            <font>
                               <Font size="27.0" />
                            </font>
