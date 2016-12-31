@@ -182,10 +182,10 @@ public class Credit {
 		int result = customerVO.credit;
 		Credit c= new Credit();
 		//ResultMessage ret=ResultMessage.NotExist;
-		System.out.println(customerVO.credit);
-		System.out.println(customerVO.telephone);
-		System.out.println(customerVO.customerID);
-		System.out.println(customerVO.customerName);
+//		System.out.println(customerVO.credit);
+//		System.out.println(customerVO.telephone);
+//		System.out.println(customerVO.customerID);
+//		System.out.println(customerVO.customerName);
 		
 		
 		ResultMessage rm = customerInfo.changeCustomerInfo(customerVO);
@@ -213,8 +213,8 @@ public class Credit {
 	 * @throws RemoteException 
 	 */
 	public int levelUpdate(String customer_id) throws RemoteException{
-//		CustomerInfoforCredit customerInfo = CustomerInfoforCreditImp.getInstance();
-		CustomerInfoforCredit customerInfo  = new MockCustomer();//test!!!
+		CustomerInfoforCredit customerInfo = CustomerInfoforCreditImp.getInstance();
+//		CustomerInfoforCredit customerInfo  = new MockCustomer();//test!!!
 		int result = customerInfo.getCustomerInfo(customer_id).credit;
 //		DiscountWebController discountWeb =  DiscountWebController.getInstance();
 		MockDiscount discountWeb = new MockDiscount();//test!!
