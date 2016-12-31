@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.paint.Color;
+import tools.DiscountState;
 import tools.ResultMessage_Discount;
 import tools.Strategy_webType;
 import ui.utils.Dialogs;
@@ -121,6 +122,7 @@ public abstract class WebItemController {
 	public void setValue(String title, String state,  double discount, String discountID) {
 		this.title.setText(title);
 		this.state.setText(state);
+		this.state.setTextFill("进行中".equals(state)?Color.GREEN:Color.GREY);
 		this.discount.setText(discount + "");
 		this.delete.setText("删 除");// 字中间有空格
 		this.discountID = discountID;

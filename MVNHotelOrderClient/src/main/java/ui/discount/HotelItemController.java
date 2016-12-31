@@ -189,7 +189,7 @@ public abstract class HotelItemController {
 			LocalDate endTime, boolean superposition, String discountID, String enterpriseName) {
 		this.title.setText(title);
 		this.state.setText(state);
-		this.state.setTextFill(DiscountState.valid.equals("进行中")?Color.GREEN:Color.GREY);
+		this.state.setTextFill("进行中".equals(state)?Color.GREEN:Color.GREY);
 		this.aditionalMessage.setText(aditionalMessage);
 		this.discount.setText(DoubleFormate.formateto(discount));
 		this.startTime.setValue(startTime);
