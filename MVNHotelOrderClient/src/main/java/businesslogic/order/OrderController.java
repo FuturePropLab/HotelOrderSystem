@@ -351,8 +351,8 @@ public class OrderController implements OrderService{
 			Order order=new Order(orderPO,  new OrderCustomerInfoImpl(), new OrderHotelInfoImpl(), orderDataService); 
 			if(order.getState().equals(OrderState.Exception)){
 				CreditLogDealService creditLogDealService=CreditController.getInstance();
-				creditLogDealService.Recover(order, recoverValue);
 				order.setRevokeTime(new Date());
+				creditLogDealService.Recover(order, recoverValue);
 				ResultMessage rs =  order.changeState(OrderState.Revoked);
 				if(rs==ResultMessage.Exist){
 					MessgeDataService messgeDataService = RemoteHelper.getInstance().getMessgeDataService();

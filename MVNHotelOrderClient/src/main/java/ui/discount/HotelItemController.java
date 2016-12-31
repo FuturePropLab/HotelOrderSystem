@@ -120,7 +120,7 @@ public abstract class HotelItemController {
 			disableControls();
 			DiscountHotelService discountHotelService = DiscountHotelController.getInstance();
 			if (discountID != null){
-				ResultMessage_Discount result=discountHotelService.deleteHotelDiscount(hotelID, discountID);
+				ResultMessage_Discount result=discountHotelService.invalidDiscount(hotelID, discountID);
 				if(ResultMessage_Discount.Success.equals(result)){
 					state.setText("已删除");
 					state.setTextFill(Color.GREY);
@@ -137,6 +137,7 @@ public abstract class HotelItemController {
 				getType(), enterpriseName,hotelID);
 		discountVO_hotel.discountID=discountID;
 		discountVO_hotel.discountState="已删除".equals(this.state.getText())?DiscountState.invalid:DiscountState.valid;
+		System.out.println(discountVO_hotel.discountState);
 		discountHotelService.editHotelDiscount(hotelID, discountVO_hotel);
 	}
 

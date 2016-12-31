@@ -64,13 +64,8 @@ public class Credit {
 		if(type == ActionType.RightOrder){
 			creditchange = order.getOrderValue();
 		}else if(type == ActionType.RevokeOrder){
-			System.out.println("revoke order:   here!!!!!!");
-			System.out.println(order.getOrderPO().getLatestTime());
-			System.out.println(order.getOrderPO().getRevokeTime());
 			Date revokedTime = order.getOrderPO().getRevokeTime();
 			Date latestTimeArriv = order.getOrderPO().getLatestTime();
-			System.out.println("is null? revoke:  "+revokedTime==null);
-			System.out.println("is null? last:  "+latestTimeArriv==null);
 			long between = ((latestTimeArriv.getTime()-revokedTime.getTime())/(1000*60*60));
 			if(between<6){
 				creditchange = -order.getOrderValue()/2;
@@ -101,7 +96,7 @@ public class Credit {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}*/  //会员等级信息不在这里同步了
-		creditDataService = new CreditData_Stub();//test
+		//creditDataService = new CreditData_Stub();//test
 		ResultMessage resultMessage;
 		try {
 			resultMessage = creditDataService.changeCredit(order.getCustomer().customerID, result);
