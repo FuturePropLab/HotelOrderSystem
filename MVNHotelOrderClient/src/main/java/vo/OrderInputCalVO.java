@@ -52,7 +52,7 @@ public class OrderInputCalVO {
 			setBirthday(customerID);
 
 		} else if (memberBelongType == MemberBelongType.Enterprise) {
-			setMemberBelongType(customerID);
+			setEnterprise(customerID);
 		}
 	}
 

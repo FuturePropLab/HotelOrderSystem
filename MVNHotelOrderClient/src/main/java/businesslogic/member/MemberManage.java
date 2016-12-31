@@ -44,13 +44,17 @@ public class MemberManage {
 //		memberStub = new MemberData_Stub();
 		memberDataService = RemoteHelper.getInstance().getMemberDataService();
 //		memberDataService = new MemberData_Stub();//test!!!
-		if(customer_id==null)return null;
+		if(customer_id==null){
+			System.out.println("20161231`;   ");
+			return null;
+		}
 		else {
 			MemberPO memberpo;
 			
 				
 				try {
 					memberpo = memberDataService.getMember(customer_id);
+					System.out.println("20161231:  "+memberpo==null);
 				} catch (RemoteException e) {
 					return null;
 				}
