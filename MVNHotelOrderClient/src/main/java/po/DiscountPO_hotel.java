@@ -76,6 +76,7 @@ public class DiscountPO_hotel implements Serializable{
 		this.setSuperimpose(discountVO_hotel.superimpose);//是否可叠加
 		this.enterpriseName = discountVO_hotel.enterpriseName;
 		this.hotelID = discountVO_hotel.hotelID;
+		this.discountState = discountVO_hotel.discountState;
 	}
 	public LocalDate getStartDate() {
 		return startDate;
