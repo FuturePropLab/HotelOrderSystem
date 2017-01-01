@@ -68,7 +68,6 @@ public class DiscountHotelController implements DiscountHotelService {
 			}
 			return resultMessage_DiscountDetail;
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -182,7 +181,6 @@ public class DiscountHotelController implements DiscountHotelService {
 		try {
 			discountVO_hotels = hotelDiscount.getHotelDiscount(hotelID);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		this.list = discountVO_hotels;

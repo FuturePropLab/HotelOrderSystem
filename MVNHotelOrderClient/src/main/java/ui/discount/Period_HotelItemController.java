@@ -35,12 +35,12 @@ public class Period_HotelItemController extends HotelItemController{
 	
 	@FXML
 	protected void handleFromTime() {
-		
+		handleSave();
 	}
 
 	@FXML
 	protected void handleToTime() {
-		
+		handleSave();
 	}
 
 	@Override

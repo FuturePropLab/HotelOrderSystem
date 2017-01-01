@@ -100,6 +100,7 @@ public abstract class HotelItemController {
 	@FXML
 	protected void handleDelete() {
 		if (state.getText().equals("填写中")) {
+			//处理增加策略请求
 			if (isFinished()) {
 				setTitle();
 				state.setText("进行中");
@@ -110,13 +111,13 @@ public abstract class HotelItemController {
 				DiscountVO_hotel discountVO_hotel = new DiscountVO_hotel(Double.parseDouble(discount.getText()) * 0.1,
 						startTime.getValue(), endTime.getValue(), aditionalMessage.getText(),
 						superposition.isSelected(),getType(), enterpriseName,hotelID);
-				System.out.println("enterpriseName:"+enterpriseName);
 				discountHotelService.addHotelDiscount(hotelID, discountVO_hotel);
 				hotelDiscountController.addNewItem(getType());
 			} else {
 				Dialogs.showMessage("策略未完成");
 			}
 		} else {
+			//处理删除策略请求
 			disableControls();
 			DiscountHotelService discountHotelService = DiscountHotelController.getInstance();
 			if (discountID != null){
@@ -138,8 +139,6 @@ public abstract class HotelItemController {
 				getType(), enterpriseName,hotelID);
 		discountVO_hotel.discountID=discountID;
 		discountVO_hotel.discountState="已删除".equals(this.state.getText())?DiscountState.invalid:DiscountState.valid;
-		System.out.println("20161231: "+this.state.getText()+(this.state.getText())+" "+this.discountID);
-		System.out.println(discountVO_hotel.discountState);
 		discountHotelService.editHotelDiscount(hotelID, discountVO_hotel);
 	}
 
