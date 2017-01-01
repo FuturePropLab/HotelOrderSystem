@@ -22,4 +22,11 @@ public interface CreditLogdataHelper {
 		 * @return
 		 */
 		public ResultMessage changeCredit(String customer_id, int result);
+		
+		/**
+		 * 获取单条的信用记录
+		 * @param orderID
+		 * @return
+		 */
+		public CreditLogPO getCreditLogPO(String orderID);
 }

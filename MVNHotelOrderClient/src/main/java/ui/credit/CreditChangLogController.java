@@ -45,6 +45,8 @@ public class CreditChangLogController extends DetailsController{
 				this.creditList.getChildren().addAll(label);
 				return;
 			}
+			voList.sort((v1,v2)->v2.ChangDate.compareTo(v1.ChangDate));
+			
 			for(CreditlogVO creditlogVO:voList){
 				addItem(creditlogVO);
 			}

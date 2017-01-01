@@ -20,7 +20,9 @@ public class CreditdataServiceImpl implements CreditDataService {
 	public ResultMessage add(CreditLogPO creditlog) throws RemoteException {
 		ResultMessage rs = creditLogdataHelper.addCreditLog(creditlog);
 		if(rs==ResultMessage.NotExist){
-			creditlog.setChangeValue(0);
+			CreditLogPO old = creditLogdataHelper.getCreditLogPO
+					(creditlog.getOrderID());
+			creditlog.setChangeValue(creditlog.getChangeValue()+old.getChangeValue());
 			return creditLogdataHelper.modifyCreditLog(creditlog);
 		}
 		return rs;

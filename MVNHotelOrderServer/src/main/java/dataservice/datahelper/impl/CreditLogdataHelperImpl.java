@@ -64,6 +64,16 @@ public class CreditLogdataHelperImpl implements CreditLogdataHelper {
 		}
 	}
 
+	public CreditLogPO getCreditLogPO(String orderID) {
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		Criteria cr = s.createCriteria(CreditLogPO.class);
+		cr.add(Restrictions.eq("orderID", orderID));
+		List<CreditLogPO>  list = cr.list();
+		s.close();		
+		return list.get(0);
+	}
+	
+	
 	public List<CreditLogPO> getCreditLogPOList(String customerID) {
 		Session s = Hibernateutils.getSessionFactory().openSession();
 		Criteria cr = s.createCriteria(CreditLogPO.class);
@@ -72,6 +82,7 @@ public class CreditLogdataHelperImpl implements CreditLogdataHelper {
 		s.close();		
 		return list;
 	}
+	
 	
 	/*@
 	 * (non-Javadoc)

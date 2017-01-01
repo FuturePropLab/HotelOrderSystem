@@ -194,7 +194,11 @@ public class OrderDataServiceImpl implements OrderDataService {
 		}	
 		return listpo;
 	}
-
+	
+	/*@
+	 * (non-Javadoc)
+	 * @see dataservice.OrderDataService#assessOrder(po.OrderAssessPO)
+	 */
 	public ResultMessage assessOrder(OrderAssessPO orderAssessPO) throws RemoteException {
 		return orderDataHelper.updateAssess(orderAssessPO);
 	}
