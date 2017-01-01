@@ -216,8 +216,8 @@ public class Credit {
 		CustomerInfoforCredit customerInfo = CustomerInfoforCreditImp.getInstance();
 //		CustomerInfoforCredit customerInfo  = new MockCustomer();//test!!!
 		int result = customerInfo.getCustomerInfo(customer_id).credit;
-//		DiscountWebController discountWeb =  DiscountWebController.getInstance();
-		MockDiscount discountWeb = new MockDiscount();//test!!
+		DiscountWebController discountWeb =  DiscountWebController.getInstance();
+//		MockDiscount discountWeb = new MockDiscount();//test!!
 		
 		int [] uplevel =new int[4];
 		

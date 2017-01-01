@@ -19,7 +19,6 @@ public class VIP_circleStrategy_web implements WebStrategyInterface {
 				orderInputCalVO.city.equals(discountVO_web_district.city)&&
 				orderInputCalVO.district.equals(discountVO_web_district.district)&&
 				orderInputCalVO.level==discountVO_web_district.level){
-			
 			res=(discountVO_web_district.discount-1)*orderInputCalVO.numberOfRooms*orderInputCalVO.price;
 		}
 		return res;

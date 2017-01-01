@@ -16,7 +16,9 @@ public class OrderMoreStrategy_hotel implements HotelStrategyInterface {
 
 		final int maxNoDiscount = 2;// 刚好获得优惠的房间数量-1
 
-		if (orderInputCalVO.numberOfRooms > maxNoDiscount) {
+		if (orderInputCalVO.numberOfRooms > maxNoDiscount
+				&& strategyVO_hotel.startDate.toEpochDay()<=day
+				&& strategyVO_hotel.endDate.toEpochDay()>=day) {
 
 //			res = orderInputCalVO.price * maxNoDiscount + orderInputCalVO.price
 //					* (orderInputCalVO.numberOfRooms - maxNoDiscount) * strategyVO_hotel.discount;

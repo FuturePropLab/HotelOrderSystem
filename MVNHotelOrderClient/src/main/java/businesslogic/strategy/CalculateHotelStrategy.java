@@ -21,12 +21,6 @@ public class CalculateHotelStrategy {
 	private OrderInputCalVO orderInputCalVO;
 
 	public double[] minus ;
-	// public HotelStrategy(OrderInputVO orderInput) {
-	// 桩程序
-	// DiscountGetService disDealService = new MockDiscount("hotel");
-
-	// strategyList = disDealService.getSuitableDiscount_hotel(orderInput);
-	// }
 
 	/**
 	 * 
@@ -73,7 +67,7 @@ public class CalculateHotelStrategy {
 				double calculate = hotelStrategyInterface.calculate(orderInputCalVO, strategyVO_hotel, i);
 
 				strategyVO_hotel.minusPrice = calculate;
-				if (strategyVO_hotel.superimpose == true) {
+				if (strategyVO_hotel.superimpose == true&&calculate!=0) {
 					temp.add(strategyVO_hotel);
 					all += strategyVO_hotel.minusPrice;
 				} else if (calculate < min) {
@@ -112,7 +106,6 @@ public class CalculateHotelStrategy {
 			} else {
 //				System.out.println(single.discount+""+);
 				minus[(int)( i-orderInputCalVO.startDate.toEpochDay())]=single.minusPrice;
-//				System.out.println((single.discount-1)*orderInputCalVO.numberOfRooms*orderInputCalVO.price);
 				boolean exist = false;
 				Iterator<StrategyVO_hotel> iterator = res.iterator();
 				while (iterator.hasNext()) {
