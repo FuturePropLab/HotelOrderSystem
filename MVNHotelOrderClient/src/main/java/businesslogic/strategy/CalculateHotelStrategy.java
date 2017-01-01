@@ -67,7 +67,7 @@ public class CalculateHotelStrategy {
 				double calculate = hotelStrategyInterface.calculate(orderInputCalVO, strategyVO_hotel, i);
 
 				strategyVO_hotel.minusPrice = calculate;
-				if (strategyVO_hotel.superimpose == true&&calculate!=0) {/////
+				if (strategyVO_hotel.superimpose == true&&calculate!=0) {
 					temp.add(strategyVO_hotel);
 					all += strategyVO_hotel.minusPrice;
 				} else if (calculate < min) {
