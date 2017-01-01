@@ -116,6 +116,6 @@ public class OrderInputCalVO {
 		
 //		MockMember memberController = new MockMember();//test!!!!!!
 				
-//		level = memberController.getMemberInfo(customerID).memberType.getLevel();
+		level = memberController.getMemberInfo(customerID).memberType.getLevel();
 	}
 }
