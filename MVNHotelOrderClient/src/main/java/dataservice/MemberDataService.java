@@ -31,6 +31,14 @@ public interface MemberDataService extends Remote{
 	 * @return 会员信息
 	 */
 	public MemberPO getMember(String customer_id)throws RemoteException;
+	
+	/**
+	 * 获取信用值 等级
+	 * @param customerID
+	 * @return
+	 * @throws RemoteException
+	 */
+	public int getLevel(String customerID) throws RemoteException;
 
 	
 	

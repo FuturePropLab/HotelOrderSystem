@@ -1,5 +1,6 @@
 package stub;
 
+import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -122,6 +123,13 @@ public class MemberData_Stub implements MemberDataService{
 			return ResultMessage_Member.Success;
 		}
 		return ResultMessage_Member.Failed;
+	}
+
+
+	@Override
+	public int getLevel(String customerID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	

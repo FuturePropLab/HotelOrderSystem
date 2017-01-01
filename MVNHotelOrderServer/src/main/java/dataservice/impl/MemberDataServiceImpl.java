@@ -24,4 +24,9 @@ public class MemberDataServiceImpl implements MemberDataService {
 		return memberDataHelper.getMemberByID(customerID);
 	}
 
+	@Override
+	public int getLevel(String customerID) throws RemoteException {
+		return memberDataHelper.getLevel(customerID);
+	}
+
 }

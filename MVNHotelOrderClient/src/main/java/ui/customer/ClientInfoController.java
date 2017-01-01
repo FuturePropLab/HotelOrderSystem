@@ -134,7 +134,7 @@ public class ClientInfoController extends DetailsController{
 					this.memberTypeInfo.setVisible(true);
 					this.memberInfo.setText(me.getCompanyName());
 					this.memberInfo.setVisible(true);
-					this.level.setText(String.valueOf(me.getLevel()));
+					this.level.setText(String.valueOf(memberVO.level));
 					this.level.setVisible(true);
 					this.levelLable.setVisible(true);
 				}

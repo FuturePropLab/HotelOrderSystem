@@ -344,5 +344,10 @@ OrderDataService,CreditDataService, MemberDataService,MessgeDataService{
 		System.out.println("RMI getMessage");
 		return messgeDataService.writeMessage(custoemerID, message, orderID);
 	}
+	@Override
+	public int getLevel(String customerID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return memberDataService.getLevel(customerID);
+	}
 
 }

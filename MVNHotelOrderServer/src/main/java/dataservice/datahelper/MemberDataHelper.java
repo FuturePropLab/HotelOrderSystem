@@ -18,5 +18,12 @@ public interface MemberDataHelper {
 		 */
 		
 		public MemberPO getMemberByID (String customerID);
+		
+		/**
+		 * get level from botom
+		 * @param customerID
+		 * @return
+		 */
+		public int getLevel(String customerID);
 
 }

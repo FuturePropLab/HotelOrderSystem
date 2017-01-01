@@ -1,10 +1,16 @@
 package dataservice.datahelper.impl;
 
+import java.util.List;
+
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import DataFactory.Hibernateutils;
 import dataservice.datahelper.MemberDataHelper;
+import po.CustomerPO;
+import po.DiscountPO_web_level;
 import po.MemberPO;
 import po.MemberStorePO;
 import tools.ResultMessage_Member;
@@ -71,7 +77,6 @@ public class MemberDataHelperImpl implements MemberDataHelper {
 	public MemberPO getMemberByID(String customerID) {
 		Session s = Hibernateutils.getSessionFactory().openSession();
 		MemberStorePO memberStorePO  = (MemberStorePO) s.load(MemberStorePO.class, customerID);
-		
 		try{
 			System.out.println(memberStorePO.getMemberBelongType());
 		}catch(Exception e){
@@ -80,8 +85,40 @@ public class MemberDataHelperImpl implements MemberDataHelper {
 		}finally {
 			s.close();
 		}		
-		MemberPO memberPO  =new MemberPO(memberStorePO);		
+		MemberPO memberPO  =new MemberPO(memberStorePO);	
 		return memberPO;
+	}
+
+	@Override
+	public int getLevel(String customerID) {
+		Session s = Hibernateutils.getSessionFactory().openSession();
+		CustomerPO customerPO = (CustomerPO) s.load(CustomerPO.class, customerID);
+		try{
+			System.out.println(customerPO.getCredit());
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+			return 0;
+		}finally {
+			s.close();
+		}
+		
+		int credit = customerPO.getCredit();
+		s = Hibernateutils.getSessionFactory().openSession();
+		Criteria crnew = s.createCriteria(DiscountPO_web_level.class);
+		List<DiscountPO_web_level> discountPO_web_level = crnew.list();
+		s.close();
+		
+		int level = 0 ;
+		int i = 0;
+		while(credit > 0 && i < discountPO_web_level.size()){
+			int temp = discountPO_web_level.get(i).getLevelUpCredit();
+			if(credit>=temp )
+				level++;
+			credit -= temp;
+			i++;
+		}
+		
+		return level;
 	}
 
 }
