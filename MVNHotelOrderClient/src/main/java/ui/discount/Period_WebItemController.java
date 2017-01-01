@@ -94,7 +94,7 @@ public class Period_WebItemController extends WebItemController {
 		DiscountVO_web discountVO_web = new DiscountVO_web_period(startTime.getValue(), endTime.getValue(),
 				Double.parseDouble(discount.getText())*0.1);
 		discountVO_web.discountID=discountID;
-		discountVO_web.discountState =DiscountState.valid;
+		discountVO_web.discountState ="已删除".equals(this.state.getText())?DiscountState.invalid:DiscountState.valid;
 		DiscountWebService discountWebService = DiscountWebController.getInstance();
 		discountWebService.editWebDiscount(discountVO_web);
 	}

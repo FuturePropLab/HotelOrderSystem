@@ -14,6 +14,7 @@ import tools.DiscountState;
 import tools.ResultMessage_Discount;
 import tools.Strategy_webType;
 import ui.utils.Dialogs;
+import ui.utils.DoubleFormate;
 import ui.utils.TextFieldUtil;
 import vo.DiscountVO_web;
 
@@ -123,7 +124,7 @@ public abstract class WebItemController {
 		this.title.setText(title);
 		this.state.setText(state);
 		this.state.setTextFill("进行中".equals(state)?Color.GREEN:Color.GREY);
-		this.discount.setText(discount + "");
+		this.discount.setText(DoubleFormate.formateto(discount));
 		this.delete.setText("删 除");// 字中间有空格
 		this.discountID = discountID;
 		setTitle();

@@ -29,7 +29,7 @@ public class testDiscount {
 //			discountPO_web_level.setDiscountID("DS004");
 //			
 			DiscountHotelDataService dataService = new DiscountHotelDataServiceImpl();
-			dataService.invalidDiscount("DSH20161231174638320");
+			System.out.println(dataService.invalidDiscount("DSH20170101131603880"));
 			
 //			DiscountDataHelperImpl dataHelperImpl = new DiscountDataHelperImpl();
 //			

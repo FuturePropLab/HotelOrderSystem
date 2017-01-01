@@ -82,7 +82,7 @@ public class VIPAndBusinessCircle_WebItemController extends WebItemController {
 				vipLevel.getValue()==null?0:Integer.parseInt(vipLevel.getValue().split(" ")[1]), 
 				city.getValue(), district.getValue(), businessCircle.getValue());
 		discountVO_web.discountID = discountID;
-		discountVO_web.discountState = DiscountState.valid;
+		discountVO_web.discountState = "已删除".equals(this.state.getText())?DiscountState.invalid:DiscountState.valid;
 		
 		if (discountID != null)
 			discountWebService.editWebDiscount(discountVO_web);

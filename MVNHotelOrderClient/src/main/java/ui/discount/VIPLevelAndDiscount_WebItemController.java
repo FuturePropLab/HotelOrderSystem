@@ -107,7 +107,7 @@ public class VIPLevelAndDiscount_WebItemController extends WebItemController {
 				Integer.parseInt(credit.getText()));
 		
 		discountVO_web.discountID = discountID;
-		discountVO_web.discountState = DiscountState.valid;
+		discountVO_web.discountState = "已删除".equals(this.state.getText())?DiscountState.invalid:DiscountState.valid;
 		if (discountID != null)
 			DiscountWebController.getInstance().editWebDiscount(discountVO_web);
 	}

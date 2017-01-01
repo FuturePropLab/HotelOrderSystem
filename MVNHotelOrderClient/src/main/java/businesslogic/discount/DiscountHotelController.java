@@ -160,6 +160,7 @@ public class DiscountHotelController implements DiscountHotelService {
 		try {
 			resultMessage_Discount = hotelDiscount.invalidDiscount(hotelID, discountID);
 			if (resultMessage_Discount == ResultMessage_Discount.Success) {
+				System.out.println("2017 ui : "+discountID);
 				Iterator<DiscountVO_hotel> iterator = list.iterator();
 				while (iterator.hasNext()) {
 					DiscountVO_hotel discountVO_hotel = (DiscountVO_hotel) iterator.next();

@@ -236,7 +236,9 @@ OrderDataService,CreditDataService, MemberDataService,MessgeDataService{
 		return discountWebDataService.deleteWebDiscount(discountID);
 	}
 	public ResultMessage_Discount invalidDiscount(String discountID) throws RemoteException {
-		return discountWebDataService.invalidDiscount(discountID);
+		discountHotelDataService.invalidDiscount(discountID);
+		discountWebDataService.invalidDiscount(discountID);
+		return ResultMessage_Discount.Success;
 	}
 	
 	/**

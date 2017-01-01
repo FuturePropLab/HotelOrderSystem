@@ -35,6 +35,7 @@ public class DiscountHotelDataServiceImpl implements DiscountHotelDataService {
 	}
 
 	public ResultMessage_Discount invalidDiscount(String discountID) throws RemoteException {
+		System.out.println("2017:   "+discountID);
 		return discountHotelDataHelper.invalidDiscount(discountID);
 	}
 

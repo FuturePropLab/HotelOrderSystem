@@ -11,6 +11,8 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import dataservice.AccountDataService;
+import dataservice.DiscountHotelDataService;
+import dataservice.DiscountWebDataService;
 import dataservice.LoginCheckService;
 import dataservice.MemberDataService;
 import po.AccountPO;
@@ -60,14 +62,17 @@ public class ClientRunner {
 		
 		//HotelDealService hotelDealService = HotelDealController.getInstance();
 		//System.out.println(hotelDealService.getHotelDetailsVO("HT2016122011121686").star);
-		
+		 //DiscountHotelDataService discountHotelDataService = RemoteHelper.getInstance().getDiscountHotelDataService();
+		DiscountWebDataService discountHotelDataService =
+				RemoteHelper.getInstance().getDiscountWebDAteService() ;
+		System.out.println(discountHotelDataService.invalidDiscount("DS20170101130058618"));
 		//AccountDataService accountDataService = remoteHelper.getInstance().getAccountDataService();
 		//System.out.println(accountDataService);
 		//System.out.println(accountDataService.addAccount(new AccountPO("AD001", "admin","admin", AccountType.Administor)));
 		//LoginCheckService loginCheckService = RemoteHelper.getInstance().getLoginCheckService();
 		//System.out.print(accountDataService.deleteAccount("HT001"));
-		MemberDataService memberDataService = RemoteHelper.getInstance().getMemberDataService();
-		System.out.println(memberDataService.getLevel("CS001"));
+		//MemberDataService memberDataService = RemoteHelper.getInstance().getMemberDataService();
+		//System.out.println(memberDataService.getLevel("CS001"));
 //		MessgeDataService messgeDataService = RemoteHelper.getInstance().getMessgeDataService();
 //		System.out.println(messgeDataService.writeMessage("HT001", "您的订单已经变为异常请注意", null));
 //		System.out.println(messgeDataService.getMessage("HT001").getMessage());
