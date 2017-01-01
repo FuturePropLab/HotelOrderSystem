@@ -55,6 +55,7 @@ public class MemberType  implements Serializable{
 	public void setCustomer_ID(String customer_ID) {
 		this.customer_ID = customer_ID;
 	}
+	//没有用
 	public int getLevel(){
 		return level;
 	}

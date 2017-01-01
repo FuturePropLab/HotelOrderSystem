@@ -34,8 +34,6 @@ public class MemberManage {
 	}
 	public MemberManage(){
 
-
-
 		memberDataService=RemoteHelper.getInstance().getMemberDataService();
 
 	}
@@ -45,7 +43,7 @@ public class MemberManage {
 		memberDataService = RemoteHelper.getInstance().getMemberDataService();
 //		memberDataService = new MemberData_Stub();//test!!!
 		if(customer_id==null){
-			System.out.println("20161231`;   ");
+//			System.out.println("20161231`;   ");
 			return null;
 		}
 		else {
@@ -54,7 +52,7 @@ public class MemberManage {
 				
 				try {
 					memberpo = memberDataService.getMember(customer_id);
-					System.out.println("20161231:  "+memberpo==null);
+//					System.out.println("20161231:  "+memberpo==null);
 				} catch (RemoteException e) {
 					return null;
 				}

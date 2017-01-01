@@ -1,5 +1,7 @@
 package ui.customer;
 
+
+
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
@@ -260,7 +262,8 @@ public class BookHotelController extends DetailsController{
 			if(strategyVO.hotel!=null && !strategyVO.hotel.isEmpty()){
 				String discount_hotel="";
 				for(StrategyVO_hotel strategyVO_hotel:strategyVO.hotel){
-					discount_hotel+=strategyVO_hotel.type.show()+":"+strategyVO_hotel.discount+"\r\n";
+					discount_hotel+=strategyVO_hotel.type.show()+":"+
+							DoubleFormate.formateto(strategyVO_hotel.discount*10)+"折\r\n";
 				}
 				this.hotelDiscount.setText(discount_hotel);
 				this.hotelDiscount.setTextFill(Color.GREEN);
@@ -270,7 +273,8 @@ public class BookHotelController extends DetailsController{
 			}
 			//显示网站折扣
 			if(strategyVO.web!=null && strategyVO.web.type!=null){
-				this.webDiscount.setText(strategyVO.web.type.show()+":"+strategyVO.web.discount+"\r\n");
+				this.webDiscount.setText(strategyVO.web.type.show()+":"+
+						DoubleFormate.formateto(strategyVO.web.discount*10)+"折");
 				this.webDiscount.setTextFill(Color.GREEN);
 			}else {
 				this.webDiscount.setText("没有可用的网站的折扣");
@@ -398,3 +402,4 @@ public class BookHotelController extends DetailsController{
 		else return false;
 	}
 }
+
