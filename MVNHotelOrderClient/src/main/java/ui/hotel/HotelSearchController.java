@@ -87,7 +87,7 @@ public class HotelSearchController extends DetailsController{
     	
     	HotelDealService hotelDealService= HotelDealController.getInstance();
     	city.getItems().addAll(hotelDealService.getAllCity());
-    	star.getItems().addAll("所有","1星","2星","3星","4星","5星");
+    	star.getItems().addAll("1星","2星","3星","4星","5星","所有");
     	roomType.getItems().addAll("标准间","单人间","双人间","豪华套房","总统套房");
     	theWayOfOrder.getItems().addAll("价格","星级","评分");
     	handleSearch();
@@ -204,8 +204,8 @@ public class HotelSearchController extends DetailsController{
 		if(star.getValue()==null){
 			return null;
 		}
-		Star[] types={null,Star.one,Star.two,Star.three,Star.four,Star.five};
-		String[] texts={"所有","1星","2星","3星","4星","5星"};
+		Star[] types={Star.one,Star.two,Star.three,Star.four,Star.five,null};
+		String[] texts={"5星","1星","2星","3星","4星","所有"};
 		int index;
 		for(index=0;index<texts.length;index++){
 			if(star.getValue().equals(texts[index])){
