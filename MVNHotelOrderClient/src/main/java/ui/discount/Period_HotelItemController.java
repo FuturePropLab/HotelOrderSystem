@@ -74,5 +74,7 @@ public class Period_HotelItemController extends HotelItemController{
 		this.festivalDate_from.setValue(startDate);
 		this.festivalDate_to.setValue(endDate);
 	}
+	
+	
 
 }
