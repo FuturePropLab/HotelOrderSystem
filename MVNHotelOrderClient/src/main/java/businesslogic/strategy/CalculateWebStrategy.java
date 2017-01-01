@@ -55,7 +55,7 @@ public class CalculateWebStrategy {
 			}
 
 		}
-
-		return single;
+		if(min<0)	return single;
+		else return new DiscountVO_web();
 	}
 }
