@@ -65,7 +65,9 @@ public class LoginController extends FullLayoutController{
 		String[] str= saveUsernameUtil.getSave();
 		if(str.length>1){
 			this.username.setText(str[0]);
-			this.accountType.setValue(str[1]);
+			if(!"".equals(str[1])){
+				this.accountType.setValue(str[1]);
+			}
 		}
 	}
 	
