@@ -15,7 +15,9 @@ public class EnterpriseStrategy_hotel implements HotelStrategyInterface {
 		System.out.println("林文烨");
 		System.out.println(orderInputCalVO.enterprise);
 		System.out.println(strategyVO_hotel.enterpriseName);
-		if (strategyVO_hotel.enterpriseName.equals(orderInputCalVO.enterprise)) {
+		if (strategyVO_hotel.enterpriseName.equals(orderInputCalVO.enterprise)
+				&& strategyVO_hotel.startDate.toEpochDay()<=day
+				&& strategyVO_hotel.endDate.toEpochDay()>=day) {
 			System.out.println("enen");
 			return orderInputCalVO.price * orderInputCalVO.numberOfRooms * (strategyVO_hotel.discount - 1);
 		} else
