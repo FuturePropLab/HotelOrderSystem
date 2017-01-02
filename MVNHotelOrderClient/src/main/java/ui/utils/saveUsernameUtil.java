@@ -1,11 +1,15 @@
 package ui.utils;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -21,9 +25,10 @@ public class saveUsernameUtil {
 					file.createNewFile();
 				} catch (IOException e) {
 				}
-			FileWriter writer;
 	        try {
-	        	writer = new FileWriter(file);
+	        	//FileWriter writer = new FileWriter(file);
+	        	PrintWriter writer = new PrintWriter(new BufferedWriter(new OutputStreamWriter(
+	        			new FileOutputStream(file),"UTF-8")));
 	            writer.write(username+":"+accountTypeChinese);  
 	            writer.flush();
 	            writer.close();

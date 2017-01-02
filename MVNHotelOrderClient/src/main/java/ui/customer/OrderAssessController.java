@@ -21,6 +21,7 @@ import tools.ResultMessage;
 import ui.main.DetailsController;
 import ui.order.OrderDetailsController;
 import ui.utils.Dialogs;
+import ui.utils.ImageUtil;
 import ui.utils.TextFieldUtil;
 import vo.AssessVO;
 import vo.HotelbriefVO;
@@ -32,8 +33,8 @@ import vo.OrderVO;
  *
  */
 public class OrderAssessController extends DetailsController{
-	private static Image yellowStar=new Image("file:./target/resources/images/star__selected.png");
-	private static Image greyStar=new Image("file:./target/resources/images/star_unselected.png");
+	private static Image yellowStar=new Image(ImageUtil.getURL("star__selected.png"));
+	private static Image greyStar=new Image(ImageUtil.getURL("star_unselected.png"));
 	private static String starArray[]={"差评！","有些糟糕","一般般→_→","还不错哦","棒棒棒≧∇≦"};
 
 	@FXML

@@ -123,14 +123,17 @@ public class FacilitiesInfoController extends DetailsController{
     }
     @FXML
     private void handleFacilitiesImage() {
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("选择一张图片");
-		fileChooser.getExtensionFilters().addAll(new ExtensionFilter("图片", "*.png", "*.jpg", "*.gif"));
-		File selectedFile = fileChooser.showOpenDialog(rootLayoutController.getPrimaryStage());
-		if (selectedFile != null) {
-			facilitiesImage.setImage(new Image(selectedFile.toURI().toString()));
-			imageFile=selectedFile;
-		}
+    	LoginService loginService=LoginController.getInstance();
+    	if(AccountType.Hotel.equals(loginService.getLogState().accountType)){
+    		FileChooser fileChooser = new FileChooser();
+    		fileChooser.setTitle("选择一张图片");
+    		fileChooser.getExtensionFilters().addAll(new ExtensionFilter("图片", "*.png", "*.jpg", "*.gif"));
+    		File selectedFile = fileChooser.showOpenDialog(rootLayoutController.getPrimaryStage());
+    		if (selectedFile != null) {
+    			facilitiesImage.setImage(new Image(selectedFile.toURI().toString()));
+    			imageFile=selectedFile;
+    		}
+    	}
     }
     
     /**

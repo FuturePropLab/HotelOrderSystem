@@ -32,6 +32,7 @@ import ui.customer.BookHotelController;
 import ui.main.DetailsController;
 import ui.utils.DateFormat;
 import ui.utils.Dialogs;
+import ui.utils.ImageUtil;
 import vo.RoomDescriptionVO;
 
 /**
@@ -244,8 +245,8 @@ public class RoomInfoController extends DetailsController{
 			this.imageFile = new File(roomDescriptionVO.typeimage);
 			this.roomImage.setImage(new Image(roomDescriptionVO.typeimage.toString()));
 		}else{
-			this.imageFile = new File("./target/resources/images/room.png");
-			this.roomImage.setImage(new Image(imageFile.toURI().toString()));
+			this.imageFile = null;
+			this.roomImage.setImage(new Image(ImageUtil.getURL("room.png")));
 		}
 		roomPrice.setText(typeRoomInfo.getPrice()+"");
 		if(roomDescriptionVO.description!=null && !roomDescriptionVO.description.isEmpty())

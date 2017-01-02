@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import tools.Mark;
 import tools.Star;
 import ui.utils.DoubleFormate;
+import ui.utils.ImageUtil;
 
 /**
  * 酒店列表项的控制器
@@ -15,8 +16,8 @@ import ui.utils.DoubleFormate;
  *
  */
 public class HotelItemController {
-	private static Image yellowStar=new Image("file:./target/resources/images/star__selected.png");
-	private static Image greyStar=new Image("file:./target/resources/images/star_unselected.png");
+	private static Image yellowStar=new Image(ImageUtil.getURL("star__selected.png"));
+	private static Image greyStar=new Image(ImageUtil.getURL("star_unselected.png"));
 	
 	@FXML
 	private ImageView imageView;
@@ -79,20 +80,19 @@ public class HotelItemController {
 	 */
 	public void setValues(Image image,String hotelName,Star star,Mark mark,double price_from,double price_to,
 			String hotelID,HotelSearchController hotelSearchController) {	
-		this.imageView.setImage(image==null? new Image("file:./target/resources/images/room.png"):image);
+		this.imageView.setImage(image==null? new Image(ImageUtil.getURL("room.png")):image);
 		this.hotelName.setText(hotelName);
-		this.star.setText(star.ordinal()+"星");
+		this.star.setText(star.ordinal()+1+"星");
 		this.mark.setText(DoubleFormate.formateto(mark.getValue())+"分");
 		this.price_from.setText("￥"+price_from);
 		this.price_to.setText("￥"+price_to);
 		this.hotelID=hotelID;
 		this.hotelSearchController=hotelSearchController;
-		
-		star_1.setImage(star.ordinal()>=1? yellowStar:greyStar);
-		star_2.setImage(star.ordinal()>=2? yellowStar:greyStar);
-		star_3.setImage(star.ordinal()>=3? yellowStar:greyStar);
-		star_4.setImage(star.ordinal()>=4? yellowStar:greyStar);
-		star_5.setImage(star.ordinal()>=5? yellowStar:greyStar);
+		star_1.setImage(star.ordinal()>=0? yellowStar:greyStar);
+		star_2.setImage(star.ordinal()>=1? yellowStar:greyStar);
+		star_3.setImage(star.ordinal()>=2? yellowStar:greyStar);
+		star_4.setImage(star.ordinal()>=3? yellowStar:greyStar);
+		star_5.setImage(star.ordinal()>=4? yellowStar:greyStar);
 		mark_1.setImage(mark.getValue()>=1? yellowStar:greyStar);
 		mark_2.setImage(mark.getValue()>=2? yellowStar:greyStar);
 		mark_3.setImage(mark.getValue()>=3? yellowStar:greyStar);

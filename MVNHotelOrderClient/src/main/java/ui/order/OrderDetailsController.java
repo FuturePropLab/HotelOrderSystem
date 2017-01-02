@@ -29,6 +29,7 @@ import ui.utils.Choice;
 import ui.utils.DateFormat;
 import ui.utils.Dialogs;
 import ui.utils.DoubleFormate;
+import ui.utils.ImageUtil;
 import vo.CustomerVO;
 import vo.HotelDetailsVO;
 import vo.HotelbriefVO;
@@ -39,8 +40,8 @@ import vo.OrderVO;
  *
  */
 public class OrderDetailsController extends DetailsController{
-	private static Image yellowStar=new Image("file:./target/resources/images/star__selected.png");
-	private static Image greyStar=new Image("file:./target/resources/images/star_unselected.png");
+	private static Image yellowStar=new Image(ImageUtil.getURL("star__selected.png"));
+	private static Image greyStar=new Image(ImageUtil.getURL("star_unselected.png"));
 
 	@FXML
 	private Hyperlink hotelName;

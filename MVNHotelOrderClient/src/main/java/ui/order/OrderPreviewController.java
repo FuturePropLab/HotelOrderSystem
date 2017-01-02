@@ -20,6 +20,7 @@ import ui.main.RootLayoutController;
 import ui.utils.DateFormat;
 import ui.utils.Dialogs;
 import ui.utils.DoubleFormate;
+import ui.utils.ImageUtil;
 import vo.HotelbriefVO;
 import vo.OrderInputVO;
 
@@ -29,8 +30,8 @@ import vo.OrderInputVO;
  *
  */
 public class OrderPreviewController extends DetailsController{
-	private static Image yellowStar=new Image("file:./target/resources/images/star__selected.png");
-	private static Image greyStar=new Image("file:./target/resources/images/star_unselected.png");
+	private static Image yellowStar=new Image(ImageUtil.getURL("star__selected.png"));
+	private static Image greyStar=new Image(ImageUtil.getURL("star_unselected.png"));
 	@FXML
 	private Label hotelName;
 	@FXML
@@ -125,11 +126,11 @@ public class OrderPreviewController extends DetailsController{
 			e.printStackTrace();
 		}
 		this.hotelAddress.setText(hotelbriefVO.hotelAddress.toString());
-		this.star_1.setImage(hotelbriefVO.star.ordinal()>=1? yellowStar:greyStar);
-		this.star_2.setImage(hotelbriefVO.star.ordinal()>=2? yellowStar:greyStar);
-		this.star_3.setImage(hotelbriefVO.star.ordinal()>=3? yellowStar:greyStar);
-		this.star_4.setImage(hotelbriefVO.star.ordinal()>=4? yellowStar:greyStar);
-		this.star_5.setImage(hotelbriefVO.star.ordinal()>=5? yellowStar:greyStar);
+		this.star_1.setImage(hotelbriefVO.star.ordinal()>=0? yellowStar:greyStar);
+		this.star_2.setImage(hotelbriefVO.star.ordinal()>=1? yellowStar:greyStar);
+		this.star_3.setImage(hotelbriefVO.star.ordinal()>=2? yellowStar:greyStar);
+		this.star_4.setImage(hotelbriefVO.star.ordinal()>=3? yellowStar:greyStar);
+		this.star_5.setImage(hotelbriefVO.star.ordinal()>=4? yellowStar:greyStar);
 		this.orderInputVO=orderInputVO;
 	}
 }

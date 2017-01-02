@@ -205,7 +205,7 @@ public class HotelSearchController extends DetailsController{
 			return null;
 		}
 		Star[] types={Star.one,Star.two,Star.three,Star.four,Star.five,null};
-		String[] texts={"5星","1星","2星","3星","4星","所有"};
+		String[] texts={"1星","2星","3星","4星","5星","所有"};
 		int index;
 		for(index=0;index<texts.length;index++){
 			if(star.getValue().equals(texts[index])){

@@ -36,6 +36,7 @@ import ui.order.OrderListController;
 import ui.room.RoomInfoController;
 import ui.utils.Dialogs;
 import ui.utils.DoubleFormate;
+import ui.utils.ImageUtil;
 import ui.utils.StarHelper;
 import ui.utils.TextFieldUtil;
 import vo.CommentVO;
@@ -49,8 +50,8 @@ import vo.LogVO;
  * @author zjy
  */
 public class HotelDetailController extends DetailsController{
-	private static Image yellowStar=new Image("file:./target/resources/images/star__selected.png");
-	private static Image greyStar=new Image("file:./target/resources/images/star_unselected.png");
+	private static Image yellowStar=new Image(ImageUtil.getURL("star__selected.png"));
+	private static Image greyStar=new Image(ImageUtil.getURL("star_unselected.png"));
 	private static String starArray[]={"1星酒店","2星酒店","3星酒店","4星酒店","5星酒店"};
 
 	@FXML
@@ -303,8 +304,8 @@ public class HotelDetailController extends DetailsController{
 		ArrayList<String> discribes=new ArrayList<>();
 		discribes.add(describtionTextArea.getText());
 		HotelDiscribtionsVO hotelDiscribtionsVO=new HotelDiscribtionsVO(discribes, null);
-		HotelInputVO hotelInputVO=new HotelInputVO(imageFile.toURI(), hotelDetailsVO.hotelID, hotelNameTextField.getText(), 
-				StarHelper.getStar(starComboBox), hotelAddress, hotelDiscribtionsVO);
+		HotelInputVO hotelInputVO=new HotelInputVO(imageFile==null?null:imageFile.toURI(), hotelDetailsVO.hotelID, 
+				hotelNameTextField.getText(), StarHelper.getStar(starComboBox), hotelAddress, hotelDiscribtionsVO);
 		
 		ManageHotelInfoService manageHotelService = HotelManageController.getInstance();
 		ResultMessage_Hotel resultMessage_Hotel = manageHotelService.saveHotelInfo(hotelInputVO);
@@ -372,7 +373,7 @@ public class HotelDetailController extends DetailsController{
 			this.imageFile=new File(hotelDetailsVO.hotelImage);
 		}
 		else
-		this.hotelImage.setImage(new Image("file:./target/resources/images/room.png"));	
+		this.hotelImage.setImage(new Image(ImageUtil.getURL("room.png")));	
 
 		if(hotelDetailsVO.hotelName!=null){
 			this.hotelNameLabel.setText(hotelDetailsVO.hotelName);
@@ -384,13 +385,13 @@ public class HotelDetailController extends DetailsController{
 			this.describtionTextArea.setText(hotelDetailsVO.hotelDiscribtionsVO.discribes.get(0));
 		}
 		
-		this.starLabel.setText(hotelDetailsVO.star.ordinal()+"");
-		this.star_1.setImage(hotelDetailsVO.star.ordinal()>=1? yellowStar:greyStar);
-		this.star_2.setImage(hotelDetailsVO.star.ordinal()>=2? yellowStar:greyStar);
-		this.star_3.setImage(hotelDetailsVO.star.ordinal()>=3? yellowStar:greyStar);
-		this.star_4.setImage(hotelDetailsVO.star.ordinal()>=4? yellowStar:greyStar);
-		this.star_5.setImage(hotelDetailsVO.star.ordinal()>=5? yellowStar:greyStar);
-		this.starComboBox.setValue(starArray[hotelDetailsVO.star.ordinal()-1]);
+		this.starLabel.setText(hotelDetailsVO.star.ordinal()+1+"");
+		this.star_1.setImage(hotelDetailsVO.star.ordinal()>=0? yellowStar:greyStar);
+		this.star_2.setImage(hotelDetailsVO.star.ordinal()>=1? yellowStar:greyStar);
+		this.star_3.setImage(hotelDetailsVO.star.ordinal()>=2? yellowStar:greyStar);
+		this.star_4.setImage(hotelDetailsVO.star.ordinal()>=3? yellowStar:greyStar);
+		this.star_5.setImage(hotelDetailsVO.star.ordinal()>=4? yellowStar:greyStar);
+		this.starComboBox.setValue(starArray[hotelDetailsVO.star.ordinal()]);
 		handleStarComboBox();
 		double mark=hotelDealService.gethotelAssessVO(hotelID).averageMark;
 		this.mark.setText(DoubleFormate.formateto(mark)+"");
