@@ -277,11 +277,7 @@ public class HotelDetailController extends DetailsController{
 	private void handleAssess() {
 		//TODO:跳转到评价信息界面
 
-		try {
-			rootLayoutController.changeDetails("../hotel/HotelRankList.fxml");//跳转到酒店评价信息界面，
-		} catch (IOException e) {
-			e.printStackTrace();
-		}		
+		Dialogs.showMessage("抱歉", "功能尚未开放");		
 	}
 	@FXML
 	private void handleCityComboBox() {
